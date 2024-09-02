@@ -1,0 +1,261 @@
+{
+    "consult-mu": {
+        "cargoLocks": null,
+        "date": "2024-07-16",
+        "extract": null,
+        "name": "consult-mu",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "armindarvish",
+            "repo": "consult-mu",
+            "rev": "cfab7c556c5f3823733d7c823d1eb84a697f1230",
+            "sha256": "sha256-7OUO3OCTNSprUW6cJ213OP9yQ4LO8oUZgAK1IX6Sxq4=",
+            "type": "github"
+        },
+        "version": "cfab7c556c5f3823733d7c823d1eb84a697f1230"
+    },
+    "consult-omni": {
+        "cargoLocks": null,
+        "date": "2024-08-25",
+        "extract": null,
+        "name": "consult-omni",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "armindarvish",
+            "repo": "consult-omni",
+            "rev": "7f39e3a599348ad21cb3c36110f7ebd85c212ec2",
+            "sha256": "sha256-+IJWFgSeb3Kh7F/GG6PX+jQCn7v97QZWE485hCmj37E=",
+            "type": "github"
+        },
+        "version": "7f39e3a599348ad21cb3c36110f7ebd85c212ec2"
+    },
+    "copilot-el": {
+        "cargoLocks": null,
+        "date": "2024-08-16",
+        "extract": null,
+        "name": "copilot-el",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "zerolfx",
+            "repo": "copilot.el",
+            "rev": "535ef61e82f09d744cd5b097b1fc99f08cce175c",
+            "sha256": "sha256-/ZDnEZWUFcKnUtFrd/4C7LX16GAdUQncU8ZnYzntKS0=",
+            "type": "github"
+        },
+        "version": "535ef61e82f09d744cd5b097b1fc99f08cce175c"
+    },
+    "doom-snippets": {
+        "cargoLocks": null,
+        "date": "2024-08-09",
+        "extract": null,
+        "name": "doom-snippets",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "doomemacs",
+            "repo": "snippets",
+            "rev": "b672e69bbf5623e8af0fed27b23a1093fa217315",
+            "sha256": "sha256-t0jgXdfO5V/u5GOd1tkXGtgeTiezu6/NOK8IhkH6WY0=",
+            "type": "github"
+        },
+        "version": "b672e69bbf5623e8af0fed27b23a1093fa217315"
+    },
+    "eglot-booster": {
+        "cargoLocks": null,
+        "date": "2024-04-11",
+        "extract": null,
+        "name": "eglot-booster",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "jdtsmith",
+            "repo": "eglot-booster",
+            "rev": "e19dd7ea81bada84c66e8bdd121408d9c0761fe6",
+            "sha256": "sha256-vF34ZoUUj8RENyH9OeKGSPk34G6KXZhEZozQKEcRNhs=",
+            "type": "github"
+        },
+        "version": "e19dd7ea81bada84c66e8bdd121408d9c0761fe6"
+    },
+    "gptel-quick": {
+        "cargoLocks": null,
+        "date": "2024-06-28",
+        "extract": null,
+        "name": "gptel-quick",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "karthink",
+            "repo": "gptel-quick",
+            "rev": "ae3847287c2d21fb035e15b9a250191ab16463bb",
+            "sha256": "sha256-IpH76pIP+JiwPnP+IchKIdKvJi7LuFafPQRKm5/jZ9g=",
+            "type": "github"
+        },
+        "version": "ae3847287c2d21fb035e15b9a250191ab16463bb"
+    },
+    "indent-bars": {
+        "cargoLocks": null,
+        "date": "2024-08-30",
+        "extract": null,
+        "name": "indent-bars",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "jdtsmith",
+            "repo": "indent-bars",
+            "rev": "c8376cf4373a6444ca88e88736db7576dedb51d6",
+            "sha256": "sha256-MEegS7ArIQuE0z5e4h7EAnn+V0Q5MtIgthldyMpKrcA=",
+            "type": "github"
+        },
+        "version": "c8376cf4373a6444ca88e88736db7576dedb51d6"
+    },
+    "org-popup-posframe": {
+        "cargoLocks": null,
+        "date": "2024-05-28",
+        "extract": null,
+        "name": "org-popup-posframe",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "A7R7",
+            "repo": "org-popup-posframe",
+            "rev": "d39cb7c2c9a996689b0d6519695eed3d807c0c85",
+            "sha256": "sha256-yZJBx/uJ9W9ZAdYieZ7ArRvigt0391rIyTt+DEIHHjU=",
+            "type": "github"
+        },
+        "version": "d39cb7c2c9a996689b0d6519695eed3d807c0c85"
+    },
+    "org-typst": {
+        "cargoLocks": null,
+        "date": "2024-05-10",
+        "extract": null,
+        "name": "org-typst",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "skissue",
+            "repo": "org-typst",
+            "rev": "367f23c9db3c80f75be6c407470ba71d5c34f709",
+            "sha256": "sha256-ynuUyRdZRvmUq/zejkGyZSpHDKd7R34olAfqMoqU7Ic=",
+            "type": "github"
+        },
+        "version": "367f23c9db3c80f75be6c407470ba71d5c34f709"
+    },
+    "revealjs": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "revealjs",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "hakimel",
+            "repo": "reveal.js",
+            "rev": "5.1.0",
+            "sha256": "sha256-L6KVBw20K67lHT07Ws+ZC2DwdURahqyuyjAaK0kTgN0=",
+            "type": "github"
+        },
+        "version": "5.1.0"
+    },
+    "syncthing-el": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "syncthing-el",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "KeyWeeUsr",
+            "repo": "emacs-syncthing",
+            "rev": "2.2.0",
+            "sha256": "sha256-F2f0QH18MijQ4mLd7/0bftVqi1EQDA0RMuEV16V9Ro8=",
+            "type": "github"
+        },
+        "version": "2.2.0"
+    },
+    "treesit-fold": {
+        "cargoLocks": null,
+        "date": "2024-07-25",
+        "extract": null,
+        "name": "treesit-fold",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "emacs-tree-sitter",
+            "repo": "treesit-fold",
+            "rev": "7312871386e4b525a0ced6a03dc33062cb27f573",
+            "sha256": "sha256-/RtT8Fg+wb5+uakmUSRxNtv9paAM6VgqeqJUSHp0S8c=",
+            "type": "github"
+        },
+        "version": "7312871386e4b525a0ced6a03dc33062cb27f573"
+    },
+    "typst-ts-mode": {
+        "cargoLocks": null,
+        "date": "2024-08-14",
+        "extract": null,
+        "name": "typst-ts-mode",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "a8487acfb74b93f76784651459e65e47f815cd67",
+            "sha256": "sha256-C4BV+6wAheIMR5TRyPDwmLYx/z9TyZ4eLSiux/sPnGM=",
+            "type": "git",
+            "url": "https://git.sr.ht/~meow_king/typst-ts-mode"
+        },
+        "version": "a8487acfb74b93f76784651459e65e47f815cd67"
+    }
+}

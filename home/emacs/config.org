@@ -1,0 +1,2506 @@
+:PROPERTIES:
+:header-args: :results none :tangle yes
+:END:
+#+title: Emacs Configuration
+#+auto_tangle: t
+
+* Lexical Scoping
+I want lexical scoping, so this has to be the first line in the file.
+#+begin_src elisp
+  ;; -*- lexical-binding: t; -*-
+#+end_src
+
+* Early Init
+:PROPERTIES:
+:header-args: :results none :tangle early-init.el
+:END:
+** GC
+To optimize startup time, we max out the heap size as early as possible to avoid wasting time collecting garbage.
+#+begin_src elisp :tangle early-init.el
+  (setq-default gc-cons-threshold most-positive-fixnum)
+#+end_src
+
+** Native Compilation Cache
+Put the native compilation cache in ~XDG_CACHE_HOME~, where it belongs. This has to be loaded early, so we throw it into ~early-init.el~.
+#+begin_src elisp
+  (when (fboundp 'startup-redirect-eln-cache)
+    (startup-redirect-eln-cache
+      (expand-file-name  "emacs/eln-cache/" (getenv "XDG_CACHE_HOME"))))
+#+end_src
+
+** Disable UI Elements
+Disable these before they've loaded to save some time. Supposedly, manually adjusting [[help:default-frame-alist][default-frame-alist]] is faster.
+#+begin_src elisp
+  (push '(menu-bar-lines . 0) default-frame-alist)
+  (push '(tool-bar-lines . 0) default-frame-alist)
+  (push '(vertical-scroll-bars) default-frame-alist)
+
+  (setq-default use-file-dialog nil
+                use-dialog-box nil)
+#+end_src
+
+** Translucence
+#+begin_src elisp
+  (push '(alpha-background . 0.85) default-frame-alist)
+#+end_src
+
+** Performance
+Disable a bunch of miscellaneous things to improve both startup and redisplay performance.
+#+begin_src elisp
+  (setq-default inhibit-startup-screen t
+                inhibit-startup-echo-area-message user-login-name
+                initial-buffer-choice nil
+                inhibit-startup-buffer-menu t
+                inhibit-x-resources t
+                bidi-paragraph-direction 'left-to-right
+                bidi-inhibit-bpa t
+                initial-major-mode #'fundamental-mode
+                initial-scratch-message nil
+                frame-inhibit-implied-resize t
+                auto-mode-case-fold nil)
+#+end_src
+
+* Convenience Definitions
+Some macros  to make configuration more concise (basically, emulating some of ~use-package~'s features, since I'm not using it).
+
+#+begin_src elisp
+  (defmacro after! (files &rest body)
+    "Evaluate BODY after FILES have been loaded. Thin wrapper
+   around `with-eval-after-load', inspired by Doom."
+    (cond
+     ((null files)
+      `(progn ,@body))
+     ((listp files)
+      `(with-eval-after-load ',(car files)
+         (after! ,(cdr files) ,@body)))
+     (t
+      `(with-eval-after-load ',files
+         ,@body))))
+  (put 'after! 'lisp-indent-function 'defun)
+#+end_src
+
+#+begin_src elisp
+  (defmacro idle-load (package)
+    "Load PACKAGE after Emacs has been idle for a second."
+    `(run-with-idle-timer 1 nil #'require ,package))
+#+end_src
+
+#+begin_src elisp
+  (defmacro add-hooks (&rest hooks)
+    `(progn
+       ,@(mapcar (lambda (hook)
+                   `(add-hook ',(car hook) #',(cdr hook)))
+                 hooks)))
+#+end_src
+
+#+begin_src elisp
+  (defmacro autoload-many (filename interactive &rest funcs)
+    `(progn
+       ,@(mapcar (lambda (func)
+                   `(autoload ,func ,filename nil ,interactive))
+                 funcs)))
+#+end_src
+
+#+begin_src elisp
+  (defmacro cmd! (&rest body)
+    "Wrap BODY in an interactive lambda definition with no arguments."
+    `(lambda ()
+       (interactive)
+       ,@body))
+#+end_src
+
+* Startup Performance
+We create a function that echoes to us the time it took for Emacs to start, along with the number of garbage collections (for optimization). We then enable [[https://github.com/emacsmirror/gcmh][gcmh]] to optimize garbage collection (and reset ~gc-cons-threshold~, which we maxed out in ~early-init.el~ to prevent garbage collections). Shamelessly stolen from [[https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org#startup-performance][here]].
+#+begin_src elisp
+  (defun my/display-startup-time ()
+    (message "Emacs loaded in %s with %d garbage collections."
+             (format "%.3f seconds"
+                     (float-time
+                      (time-subtract after-init-time before-init-time)))
+             gcs-done)
+    (gcmh-mode))
+  (add-hook 'emacs-startup-hook #'my/display-startup-time 50)
+#+end_src
+
+Configure ~gcmh~ with values stolen from [[https://github.com/doomemacs/doomemacs/blob/9620bb45ac4cd7b0274c497b2d9d93c4ad9364ee/lisp/doom-start.el#L95][Doom Emacs]].
+#+begin_src elisp
+  (after! gcmh
+    (setopt gcmh-idle-delay 'auto
+            gcmh-auto-idle-delay-factor 10
+            gcmh-high-cons-threshold (* 16 1024 1024)))
+#+end_src
+
+* Private Config
+There's personal information that I'd rather not be in my public dotfiles, so they're set in a private NixOS module. I convert that information from a Nix attrset into JSON, and then load it into a nested alist in Emacs here.
+#+begin_src elisp
+  (defvar my/private
+    (json-read-file (expand-file-name "private.json" user-emacs-directory))
+    "My private configuration data.")
+#+end_src
+
+Convenience function to access nested elements.
+#+begin_src elisp
+  (defun my/private (keys)
+    "Return value of `my/private' by recursively following KEYS."
+    (map-nested-elt my/private keys))
+#+end_src
+
+* Libraries
+#+begin_src elisp
+  (require 'f)
+  (eval-when-compile
+    (require 'cl-lib))
+#+end_src
+
+* Behavior
+** No Littering
+Don't leave random files everywhere in the filesystem. Paths must be set before loading the package. This has to be loaded before most the packages that it configures, so it's pretty early.
+#+begin_src elisp
+  (setq-default no-littering-etc-directory
+                (expand-file-name "emacs/" (getenv "XDG_CONFIG_HOME"))
+                no-littering-var-directory
+                (expand-file-name "emacs/" (getenv "XDG_DATA_HOME")))
+  (require 'no-littering)
+#+end_src
+
+Again, don't leave random backup files and lockfiles everywhere.
+#+begin_src elisp
+  (setq-default make-backup-files nil
+                create-lockfiles nil)
+#+end_src
+
+** Auto-save
+#+begin_src elisp
+  (setopt auto-save-default nil)
+  (auto-save-visited-mode)
+#+end_src
+
+** Auto-reload
+Automatically reload files when they're changed on the filesystem.
+#+begin_src elisp
+  (idle-load 'autorevert)
+  (after! autorevert
+    (setopt global-auto-revert-non-file-buffers t
+            auto-revert-interval 1)
+    (global-auto-revert-mode))
+#+end_src
+
+** Track Recent Files
+#+begin_src elisp
+  (recentf-mode)
+  (setopt recentf-max-saved-items 200)
+#+end_src
+
+** Save Place
+Saves location in visited files, so re-opening a file brings point back to the last location.
+#+begin_src elisp
+  (save-place-mode)
+#+end_src
+
+** Savehist
+#+begin_src elisp
+  (savehist-mode)
+  (setopt history-length 250
+          history-delete-duplicates t)
+  (add-to-list 'savehist-additional-variables 'corfu-history)
+#+end_src
+
+** Quick Confirmation
+Don't make me type an entire word and hit enter for confirmation prompts, I know what I'm doing™.
+#+begin_src elisp
+  (setq-default use-short-answers t)
+#+end_src
+
+** Smartparens
+#+begin_src elisp
+  (add-hook 'prog-mode-hook #'smartparens-mode)
+#+end_src
+
+** Scrolling
+#+begin_src elisp
+  (setq-default scroll-conservatively 10
+                scroll-margin 4
+                scroll-preserve-screen-position t
+                auto-window-vscroll nil
+                fast-but-imprecise-scrolling t)
+#+end_src
+
+** Editing
+#+begin_src elisp
+  (setq-default indent-tabs-mode nil
+                sentence-end-double-space nil
+                tab-width 4
+                fill-column 80
+                comment-multi-line t
+                require-final-newline t
+                comment-empty-lines 'eol)
+#+end_src
+
+** Persistent Scratch Buffer
+#+begin_src elisp
+  (persistent-scratch-setup-default)
+#+end_src
+
+** Sub-word Navigation
+Navigate through sub-units of words (e.g. CamelCase).
+#+begin_src elisp
+  (add-hook 'prog-mode-hook #'subword-mode)
+#+end_src
+
+** Auth Source
+GPG is a pain to work with, so tell Auth Source to just use the default Secret Service settings, which is much easier to deal with.
+#+begin_src elisp
+  (setopt auth-sources '(default))
+#+end_src
+
+** Clipboard
+If there is something on the clipboard, save it to the kill ring before overriding it with some killed text.
+#+begin_src elisp
+  (setopt save-interprogram-paste-before-kill t)
+#+end_src
+
+** Warnings
+Only popup errors, don't interrupt me for mere warnings.
+#+begin_src elisp
+  (setopt warning-minimum-level :error)
+#+end_src
+
+** Winner
+#+begin_src elisp
+  (winner-mode)
+#+end_src
+
+** Recursive Minibuffer
+Recursive minibuffers allow usage of the minibuffer when in the minibuffer, "recursing" into layers. Very useful (especially with [[*Vertico][Vertico]]), though disabled by default (probably because it could easily be confusing).
+#+begin_src elisp
+  (setopt enable-recursive-minibuffers t)
+  (minibuffer-depth-indicate-mode)
+#+end_src
+
+** Comint
+#+begin_src elisp
+  (setopt comint-prompt-read-only t)
+#+end_src
+
+** Compilation
+#+begin_src elisp
+  (setopt compilation-always-kill t
+          compilation-ask-about-save nil
+          compilation-scroll-output 'first-error)
+#+end_src
+
+* Appearance
+** Line Numbers
+#+begin_src elisp
+  (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+#+end_src
+
+** Word-wrap
+Always word-wrap and act on visual lines.
+#+begin_src elisp
+  (global-visual-line-mode)
+#+end_src
+
+** Window Title
+#+begin_src elisp
+  (setq-default frame-title-format '("" "%b - Emacs"))
+#+end_src
+
+** Fringe Size
+Reduce fringe size on the right (left is used for various indicators).
+#+begin_src elisp
+  (set-fringe-mode '(6 . 2))
+#+end_src
+** Fonts
+#+begin_src elisp
+  (custom-set-faces
+   '(default           ((t (:font "Iosevka SS18"       :height 140))))
+   '(fixed-pitch       ((t (:font "Iosevka Fixed SS18" :height 140))))
+   '(fixed-pitch-serif ((t (:font "Iosevka Slab"       :height 140))))
+   '(variable-pitch    ((t (:font "Iosevka Aile"       :height 140)))))
+#+end_src
+
+#+begin_src elisp
+  (autoload #'nerd-icons-set-font "nerd-icons" "Modify nerd font charsets to use FONT-FAMILY for FRAME." nil)
+  (add-hook 'server-after-make-frame-hook #'nerd-icons-set-font)
+#+end_src
+
+[[https://github.com/mickeynp/ligature.el][ligature.el]] provides support for ligatures in Emacs. However, they must be explicitly specified, so I shamelessly stole [[https://github.com/doomemacs/doomemacs/blob/986398504d09e585c7d1a8d73a6394024fe6f164/modules/ui/ligatures/config.el#L50][Doom Emacs']] list.
+#+begin_src elisp
+  (add-hook 'prog-mode-hook #'ligature-mode)
+  (after! ligature
+    (ligature-set-ligatures
+     'prog-mode
+     '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+       "\\\\" "://")))
+#+end_src
+
+** Theme
+#+begin_src elisp
+  (require 'catppuccin-theme)
+  (setopt catppuccin-flavor 'macchiato
+          catppuccin-italic-comments t
+          catppuccin-height-doc-title 2.0
+          catppuccin-height-title-1 1.5
+          catppuccin-height-title-2 1.3
+          catppuccin-height-title-3 1.2)
+  (load-theme 'catppuccin :no-confirm)
+#+end_src
+
+Some extra tweaks:
++ Force certain faces to be fixed pitch (faces that are usually used in variable pitch prose buffers).
++ Make ~org-block~ not horrendously filled with green text, as it is by default (makes code unbearable to read).
+#+begin_src elisp
+  (custom-set-faces
+   `(org-document-info-keyword ((t :inherit (shadow fixed-pitch))))
+   `(org-meta-line             ((t :inherit (shadow fixed-pitch))))
+   `(org-drawer                ((t :inherit (shadow fixed-pitch))))
+   `(org-special-keyword       ((t :inherit fixed-pitch)))
+   `(org-property-value        ((t :inherit shadow)))
+   `(org-indent                ((t :inherit (fixed-pitch org-hide))))
+   `(org-table                 ((t :inherit fixed-pitch)))
+   `(org-block                 ((t :inherit fixed-pitch
+                                   :foreground unspecified)))
+   `(org-agenda-structure      ((t :height 1.3))))
+#+end_src
+
+** Modeline
+#+begin_src elisp
+  (minions-mode)
+#+end_src
+
+** Nyan Mode
+This is such an important addition to Emacs.
+#+begin_src elisp
+  (require 'nyan-mode)
+  (setopt nyan-bar-length 24
+          nyan-minimum-window-width 48
+          nyan-wavy-trail t)
+  (nyan-mode)
+#+end_src
+
+** Spacious Padding
+#+begin_src elisp
+  (require 'spacious-padding)
+
+  (setopt spacious-padding-subtle-mode-line
+          '(:mode-line-active error)
+          spacious-padding-widths
+          (plist-put spacious-padding-widths
+                     :right-divider-width 0))
+
+  (spacious-padding-mode)
+#+end_src
+
+** ElDoc Box
+#+begin_src elisp
+  (add-hook 'eldoc-mode-hook #'eldoc-box-hover-at-point-mode)
+
+  (after! eldoc-box
+    (custom-set-faces
+     `(eldoc-box-border ((t :background ,(catppuccin-get-color 'base))))
+     '(eldoc-box-body ((t :inherit variable-pitch))))
+    (setcdr (assq 'left-fringe eldoc-box-frame-parameters) 2)
+    (setcdr (assq 'right-fringe eldoc-box-frame-parameters) 2))
+#+end_src
+
+Custom positioning function to put the popup above the text rather than under it, since under it is taken by my [[*Corfu][Corfu]] completions.
+#+begin_src elisp
+  (after! eldoc-box
+    (defun my/eldoc-box-at-point-position-function (width height)
+      "Positions the `eldoc-box' popup above the text rather than below
+  it by adjusting the return value of
+  `eldoc-box--default-at-point-position-function-1'."
+      (cl-destructuring-bind (x . y)
+          (eldoc-box--default-at-point-position-function-1 width height)
+        (let* ((ch (frame-char-height)))
+          ;; Up is negative
+          (cons x (max 0 (- y ch height))))))
+    (setopt eldoc-box-at-point-position-function #'my/eldoc-box-at-point-position-function))
+#+end_src
+
+** Dashboard
+#+begin_src elisp
+  (dashboard-setup-startup-hook)
+
+  (setopt initial-buffer-choice
+          (lambda ()
+            (get-buffer-create dashboard-buffer-name)))
+
+  (setopt dashboard-startup-banner (expand-file-name "logo.webp"
+                                                     user-emacs-directory)
+          dashboard-center-content t
+          dashboard-items '((recents   . 5)
+                            (projects  . 5)
+                            (bookmarks . 5)
+                            (registers . 5))
+          dashboard-display-icons-p t
+          dashboard-icon-type 'nerd-icons
+          dashboard-set-heading-icons t
+          ;; For some reason this is getting set to 'nil'
+          dashboard-heading-icons '((recents . "nf-oct-history")
+                                    (bookmarks . "nf-oct-bookmark")
+                                    (agenda . "nf-oct-calendar")
+                                    (projects . "nf-oct-rocket")
+                                    (registers . "nf-oct-database"))
+          dashboard-set-file-icons t
+          dashboard-projects-backend 'project-el
+          dashboard-projects-switch-function #'project-switch-project
+          dashboard-remove-missing-entry t)
+
+  (after! org
+    (setf (alist-get 'agenda dashboard-items) 5))
+#+end_src
+
+** Indent Bars
+#+begin_src elisp
+  (autoload #'indent-bars-mode "indent-bars" "Indicate indentation with configurable bars." t)
+  (add-hook 'prog-mode-hook #'indent-bars-mode)
+#+end_src
+
+* Keybindings
+** Keymaps
+Some personal prefix keymaps that I bind to throughout my config; I bind them to leader keys here for clarity.
+#+begin_src elisp
+  (dolist (map '(my/buffer-map
+                 my/git-map
+                 my/notes-map
+                 my/open-map
+                 my/toggle-map
+                 my/window-map))
+    (unless (boundp map)
+      (define-prefix-command map)))
+
+  (bind-keys ("C-c b" . my/buffer-map)
+             ("C-c g" . my/git-map)
+             ("C-c n" . my/notes-map)
+             ("C-c o" . my/open-map)
+             ("C-c t" . my/toggle-map)
+             ("C-c w" . my/window-map))
+#+end_src
+
+Buffer management keys.
+#+begin_src elisp
+  (bind-keys :map my/buffer-map
+             ("b" . switch-to-buffer)
+             ("k" . (lambda () (interactive) (kill-buffer)))
+             ("q" . kill-buffer-and-window))
+#+end_src
+
+Window management keys.
+#+begin_src elisp
+  (bind-keys :map my/window-map
+             ("u" . windmove-up)
+             ("n" . windmove-left)
+             ("e" . windmove-down)
+             ("i" . windmove-right)
+             ("h" . split-window-below)
+             ("v" . split-window-right)
+             ("w" . other-window)
+             ("k" . delete-window)
+             ("o" . delete-other-windows)
+             ("m" . winner-undo)
+             ("r" . winner-redo)
+             ("T" . transpose-frame)
+             ("^" . tear-off-window))
+#+end_src
+** Last Buffer
+I have no idea where else to put this, so here we are ¯\_(ツ)_/¯.
+#+begin_src elisp
+  (bind-key "C-`" #'previous-buffer)
+#+end_src
+
+** Devil
+We opt not to use Devil's repeating functionality in favor of [[*Repeat mode]] instead.
+#+begin_src elisp
+  (global-devil-mode)
+
+  (setopt devil-repeatable-keys nil)
+#+end_src
+
+I need Devil to also adjust [[help:this-original-command][this-original-command]] during translation; this is half of a fix for working with [[*Multiple Cursors][multiple-cursors.el]].
+#+begin_src elisp
+  (define-advice devil--update-command-loop-info
+      (:after (&rest _) set-original-command)
+    (setq this-original-command real-this-command))
+#+end_src
+
+** Repeat Mode
+#+begin_src elisp
+  (repeat-mode)
+
+  (setopt repeat-exit-timeout 3)
+
+  (defvar-keymap my/movement-repeat-map
+    :repeat t
+    "n" #'next-line
+    "p" #'previous-line
+    "f" #'forward-char
+    "b" #'backward-char)
+
+  (defvar-keymap my/word-repeat-map
+    :repeat t
+    "f" #'forward-word
+    "b" #'backward-word)
+
+  (defvar-keymap my/sentence-repeat-map
+    :repeat t
+    "e" #'forward-sentence
+    "a" #'backward-sentence)
+
+  (defvar-keymap my/paragraph-repeat-map
+    :repeat t
+    "}" #'forward-paragraph
+    "{" #'backward-paragraph)
+
+  (defvar-keymap my/sexp-repeat-map
+    :repeat t
+    "f" #'forward-sexp
+    "b" #'backward-sexp)
+
+  (defvar-keymap my/undo-repeat-map
+    :repeat t
+    "/" #'undo)
+
+  (defvar-keymap my/delete-repeat-map
+    :repeat t
+    "d" #'delete-char)
+#+end_src
+
+** Multiple Cursors
+#+begin_src elisp
+  (bind-keys ("C-S-c" . mc/edit-lines)
+             ("C->" . mc/mark-next-like-this)
+             ("C-<" . mc/mark-previous-like-this)
+             ("C-M->" . mc/mark-all-like-this))
+#+end_src
+
+This is the other half for making this work with [[*Devil][Devil]]; don't record [[help:devil][devil]] as the command being run, so that it instead looks up the translated bind.
+#+begin_src elisp
+  (after! multiple-cursors-core
+    (define-advice mc/make-a-note-of-the-command-being-run
+        (:after (&rest _) dont-note-devil)
+      (when (eq mc--this-command 'devil)
+        (setq mc--this-command nil))))
+#+end_src
+
+** ace-window
+#+begin_src elisp
+  (bind-keys ("M-o" . ace-window)
+             ([remap other-window] . ace-window))
+
+  (after! ace-window
+    (ace-window-display-mode)
+    (ace-window-posframe-mode)
+    (setopt aw-keys '(?a ?r ?s ?t ?g ?m ?n ?e ?i ?o)
+            aw-scope 'frame))
+
+  (custom-set-faces
+   '(aw-leading-char-face ((t :inherit error :height 480))))
+#+end_src
+
+** Escape
+#+begin_src elisp
+  (bind-key "<escape>" #'keyboard-escape-quit)
+
+  (after! transient
+    (bind-key "<escape>" #'transient-quit-one transient-base-map))
+#+end_src
+
+** Avy
+#+begin_src elisp
+  (bind-keys ([remap goto-char] . avy-goto-char-timer)
+             :map goto-map
+             ("a" . casual-avy-tmenu))
+
+  (after! avy
+    (setopt avy-timeout-seconds 0.3
+            ;; Homerow on Colemak DH
+            avy-keys '(?a ?r ?s ?t ?n ?e ?i ?o)))
+#+end_src
+
+Integrates Avy with [[*Embark][Embark]] (taken from [[https://karthinks.com/software/avy-can-do-anything/#avy-plus-embark-any-action-anywhere][here]]).
+#+begin_src elisp
+  (defun my/avy-action-embark (pt)
+    "Use Embark as an Avy dispatch action."
+    (unwind-protect
+        (save-excursion
+          (goto-char pt)
+          (embark-act))
+      (select-window
+       (cdr (ring-ref avy-ring 0))))
+    t)
+
+  (after! avy
+    (setf (alist-get ?. avy-dispatch-alist) #'my/avy-action-embark))
+#+end_src
+
+* Completion
+** Vertico
+#+begin_src elisp
+  (require 'vertico)
+
+  (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
+  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
+
+  (bind-keys ("M-S-s" . vertico-suspend)
+             ("M-S-r" . vertico-repeat)
+             :map vertico-map
+             ("RET" . vertico-directory-enter)
+             ("DEL" . vertico-directory-delete-char)
+             ("M-DEL" . vertico-directory-delete-word)
+             ("M-j" . vertico-quick-jump)
+             ("M-P" . vertico-repeat-previous)
+             ("M-N" . vertico-repeat-nex))
+
+  (setopt vertico-count 15
+          vertico-cycle t
+          vertico-resize nil
+          vertico-quick1 "arstneio"
+          vertico-quick2 vertico-quick1)
+
+  (vertico-mode)
+#+end_src
+
+Repeat map for candidate navigation.
+#+begin_src elisp
+  (defvar-keymap my/vertico-repeat-map
+    :repeat t
+    "n" #'vertico-next
+    "p" #'vertico-previous)
+#+end_src
+
+** Orderless
+#+begin_src elisp
+  (require 'orderless)
+  (setopt completion-styles '(orderless basic)
+          completion-category-overrides '((file (styles basic partial-completion))))
+#+end_src
+
+** Consult
+#+begin_src elisp
+  (bind-keys ([remap yank-pop] . consult-yank-pop)
+             ([remap switch-to-buffer] . consult-buffer)
+             ([remap goto-line] . consult-goto-line)
+             ([remap imenu] . consult-imenu)
+             ([remap execute-extended-command-for-buffer] . consult-mode-command)
+             ([remap repeat-complex-command] . consult-complex-command)
+             ([remap project-switch-to-buffer] . consult-project-buffer)
+             ([remap previous-matching-history-element] . consult-history)
+             ([remap next-matching-history-element] . consult-history)
+             ([remap bookmark-jump] . consult-bookmark)
+             ([remap point-to-register] . consult-register-store)
+             ([remap jump-to-register] . consult-register-load)
+             ("C-x r J" . consult-register)
+             :map goto-map
+             ("f" . consult-flymake)
+             ("I" . consult-imenu-multi)
+             ("h" . consult-org-heading)
+             ("m" . consult-mark)
+             ("M" . consult-global-mark)
+             :map search-map
+             ("g" . consult-ripgrep)
+             ("l" . consult-line))
+#+end_src
+
+[[https://github.com/karthink/consult-dir][consult-dir]] allows Consult-powered rapid navigation and insertion of directories into the minibuffer.
+#+begin_src elisp
+  (bind-keys ("C-x C-d" . consult-dir)
+             :map vertico-map
+             ("C-x C-d" . consult-dir)
+             ("C-x C-j" . consult-dir-jump-file))
+
+  (after! consult-dir
+    (defvar my/consult-dir-source-zoxide
+      `(:name "Zoxide dirs"
+              :narrow ?z
+              :category file
+              :face consult-file
+              :history file-name-history
+              :enabled ,(lambda () (featurep 'zoxide))
+              :items ,#'zoxide-query)
+      "Source for `consult-dir' using `zoxide.el'.")
+    (cl-pushnew 'my/consult-dir-source-zoxide consult-dir-sources))
+#+end_src
+
+** Marginalia
+#+begin_src elisp
+  (require 'marginalia)
+  (bind-key "M-A" #'marginalia-cycle)
+  (marginalia-mode)
+#+end_src
+
+** Embark
+#+begin_src elisp
+  (bind-keys ("C-." . embark-act)
+             ("C-;" . embark-dwim))
+
+  (setopt prefix-help-command #'embark-prefix-help-command)
+
+  (after! embark
+    ;; Needed for `eww-download-directory' in `embark-download-url'.
+    (require 'eww))
+#+end_src
+
+** Corfu
+=Corfu='s completion does not take effect in the minibuffer by default; I stole a snippet from an [[https://github.com/minad/corfu#completing-in-the-minibuffer][upstream example]].
+#+begin_src elisp
+  (defun my/corfu-enable-in-minibuffer ()
+   "Enable Corfu in the minibuffer if `completion-at-point' is bound."
+   (when (where-is-internal #'completion-at-point
+                            (list (current-local-map)))
+     (corfu-mode)))
+
+  (add-hooks   (prog-mode-hook        . corfu-mode)
+               (text-mode-hook        . corfu-mode)
+               (minibuffer-setup-hook . my/corfu-enable-in-minibuffer))
+
+  (after! corfu
+    (bind-key "RET" nil 'corfu-map)
+    (setopt tab-always-indent 'complete
+            corfu-auto t
+            corfu-auto-prefix 2
+            corfu-cycle t
+            corfu-preview-current t)
+    (corfu-popupinfo-mode)
+    (corfu-history-mode))
+     
+  (custom-set-faces
+   '(corfu-default ((t (:inherit fixed-pitch)))))
+#+end_src
+
+Repeat maps to simplify candidate selection 🙂.
+#+begin_src elisp
+  (defvar-keymap my/corfu-repeat-map
+    :repeat t
+    "n" #'corfu-next
+    "p" #'corfu-previous)
+#+end_src
+
+=Cape= provides many various completion-at-point functions (=capfs=), which help extend =Corfu=, which itself extends Emacs' native completion-at-point functionality. All the functions have autoloads, but [[help:completion-at-point-functions][completion-at-point-functions]] is usually buffer-local, so we use a hook to add it 👍.
+#+begin_src elisp
+  (defun my/add-cape-capfs ()
+    (dolist (f #'(cape-file cape-elisp-block cape-emoji cape-tex))
+      (cl-pushnew f completion-at-point-functions)))
+  (add-hook 'text-mode-hook #'my/add-cape-capfs)
+#+end_src
+
+** Eglot
+#+begin_src elisp
+  (after! eglot
+    (bind-keys :map eglot-mode-map
+               ("C-c c a" . eglot-code-actions)
+               ("C-c c f" . eglot-format)
+               ("C-c c r" . eglot-rename))
+    (setopt eglot-autoshutdown t)
+    (setf (alist-get '(markdown-mode org-mode text-mode) eglot-server-programs
+                     nil nil #'equal)
+          '("ltex-ls")))
+
+  (custom-set-faces
+   '(eglot-inlay-hint-face ((t (:inherit font-lock-comment-face)))))
+#+end_src
+
+Eglot [[https://github.com/joaotavora/eglot/blob/bd6a1cccfe9c0f724772f846d1f4a9300f40f88f/eglot.el#L321-L323][changes its own completion styles]] by default. Not only do I want to use [[*Orderless][Orderless]] instead, but this also seems to be breaking [[*Corfu][Corfu]] at the time of writing.
+#+begin_src elisp
+  (after! eglot
+    (setf (alist-get 'eglot-capf completion-category-overrides)
+          '((styles orderless basic))))
+#+end_src
+
+#+begin_src elisp
+  (after! eglot
+    (require 'eglot-booster)
+    (eglot-booster-mode))
+#+end_src
+
+* Tools
+** Helpful
+#+begin_src elisp
+  (bind-keys ("C-c C-d"                 . helpful-at-point)
+             ([remap describe-function] . helpful-callable)
+             ([remap describe-variable] . helpful-variable)
+             ([remap describe-key]      . helpful-key)
+             ([remap describe-command]  . helpful-command)
+             ([remap describe-symbol]   . helpful-symbol))
+
+  (cl-pushnew '((major-mode . helpful-mode)
+                (display-buffer-reuse-mode-window display-buffer-at-bottom)
+                (reusable-frames . nil))
+              display-buffer-alist
+              :test #'equal)
+
+  (after! helpful
+    (defun my/org-help-link-make-nicer ()
+      "Add an :insert-description property to \"help\" links in Org that
+  uses the symbol name as the default description, as well as a
+  :complete property to create links with completion."
+      (org-link-set-parameters
+       "help"
+       :insert-description (lambda (url desc)
+                             (or desc
+                                 (substring url 5)))
+       :complete (lambda (&optional arg)
+                   (concat "help:"
+                           (symbol-name (helpful--read-symbol
+                                         "Symbol: "
+                                         (helpful--symbol-at-point)
+                                         #'always))))))
+    (advice-add #'helpful--add-support-for-org-links
+                :after #'my/org-help-link-make-nicer))
+#+end_src
+
+#+begin_src elisp
+  (after! helpful
+    (advice-add 'helpful-update
+                :after #'elisp-demos-advice-helpful-update))
+#+end_src
+
+** Direnv
+#+begin_src elisp
+  (envrc-global-mode)
+
+  (defun my/direnv-use-nix (arg)
+    "Create an .envrc file with \"use nix\" as content and enable
+  direnv. With prefix argument ARG, use \"use flake\" as content
+  instead."
+    (interactive "P")
+    (let* ((dir (if-let ((proj (project-current)))
+                    (project-root proj)
+                  default-directory))
+           (path (expand-file-name ".envrc" dir)))
+      (with-temp-file path
+        (insert (if arg
+                    "use flake"
+                  "use nix")))
+      (envrc-allow)))
+#+end_src
+
+** Git
+#+begin_src elisp
+  (bind-keys :map my/git-map
+             ("b" . magit-branch)
+             ("B" . magit-blame)
+             ("c" . magit-commit)
+             ("C" . magit-clone)
+             ("g" . magit-status)
+             :map project-prefix-map
+             ("m" . magit-project-status))
+
+  (after! project
+    (setf (alist-get 'magit-project-status project-switch-commands)
+          '("Magit")))
+
+  (after! magit
+    (setopt magit-save-repository-buffers 'dontask
+            magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1
+            magit-bind-magit-project-status nil ;; We do this ourselves for lazy-loading
+            magit-clone-default-directory "~/git/"))
+#+end_src
+
+Repeat map 🙂.
+#+begin_src elisp
+  (defvar-keymap my/magit-navigation-repeat-map
+    :repeat t
+    "n" #'magit-next-line
+    "p" #'magit-previous-line)
+#+end_src
+
+Custom URLs to access my various accounts. Authentication is managed via custom SSH hostnames.
+#+begin_src elisp
+  (after! magit
+    (add-to-list 'magit-clone-name-alist 
+                 `("\\`\\(?:gh-skissue:\\)?\\([^:]+\\)\\'" "gh-skissue" "skissue"))
+    (add-to-list 'magit-clone-name-alist 
+                 `("\\`\\(?:cb-skissue:\\)?\\([^:]+\\)\\'" "cb-skissue" "skissue"))
+    (add-to-list 'magit-clone-name-alist 
+                 `("\\`\\(?:work:\\)?\\([^:]+\\)\\'" "gh-work" ,(my/private '(user work)))))
+#+end_src
+
+#+begin_src elisp
+  (bind-key "t" #'git-timemachine my/git-map)
+#+end_src
+
+Currently disabled cause it throws a cryptic error that I don't feel like tracking down 🤷.
+#+begin_src elisp :tangle no
+  (after! magit
+    (magit-todos-mode))
+#+end_src
+
+#+begin_src elisp
+  (autoload-many "diff-hl" nil #'diff-hl-magit-pre-refresh #'diff-hl-magit-post-refresh)
+  (add-hooks (find-file-hook          . diff-hl--global-turn-on)
+             (magit-pre-refresh-hook  . diff-hl-magit-pre-refresh)
+             (magit-post-refresh-hook . diff-hl-magit-post-refresh))
+#+end_src
+
+#+begin_src elisp
+  (after! magit
+    (require 'forge))
+
+  (after! forge
+    (dolist (host '("gh-skissue" "gh-work"))
+      (setf (alist-get host forge-alist
+                       nil nil #'equal)
+            '("api.github.com" "github.com" forge-github-repository))))
+#+end_src
+
+** YASnippet
+#+begin_src elisp
+  (add-hooks (text-mode-hook . yas-minor-mode)
+             (prog-mode-hook . yas-minor-mode))
+  (after! yasnippet
+    (defun my/corfu-active-p ()
+      (and (frame-live-p corfu--frame) (frame-visible-p corfu--frame)))
+    (cl-pushnew #'my/corfu-active-p yas-keymap-disable-hook))
+#+end_src
+
+#+begin_src elisp
+  (after! yasnippet
+    (require 'yasnippet-snippets))
+#+end_src
+
+Because the repository has a bunch of folders (for snippets), it can't be built with NixOS' default setup, so we clone and load it from the source folder instead.
+#+begin_src elisp
+  (cl-pushnew "@doom_snippets_src@" load-path
+              :test #'equal)
+  (after! yasnippet
+    (require 'doom-snippets))
+#+end_src
+
+Order [[help:yas-snippet-dirs][yas-snippet-dirs]] correctly.
+#+begin_src elisp
+  (after! doom-snippets
+    (setopt yas-snippet-dirs `(,(expand-file-name "snippets/"
+                                                  user-emacs-directory)
+                               doom-snippets-dir
+                               yasnippet-snippets-dir)))
+#+end_src
+
+** Pulsar
+#+begin_src elisp
+  (idle-load 'pulsar)
+  (after! pulsar
+    (setopt pulsar-face 'highlight
+            pulsar-delay 0.04
+            pulsar-iterations 8)
+    (dolist (f '(my/smooth-scroll-up-command
+                 my/smooth-scroll-down-command
+                 org-edit-special))
+      (cl-pushnew f pulsar-pulse-functions))
+    (pulsar-global-mode))
+#+end_src
+
+** =copilot.el=
+#+begin_src elisp
+  (autoload #'copilot-mode "copilot" "Minor mode for Copilot." t)
+  (bind-key "c" #'copilot-mode my/toggle-map)
+
+  (after! copilot
+    (bind-keys :map copilot-completion-map
+               ("M-RET"   . copilot-accept-completion)
+               ("M-n"     . copilot-next-completion)
+               ("M-p"     . copilot-previous-completion)
+               ("M-<tab>" . copilot-accept-completion-by-line)
+               ("M-f"     . copilot-accept-completion-by-word)))
+#+end_src
+
+** PDF Tools
+In addition to auto-loading via filename or magic values, we also want to load the package if [[*Dirvish][Dirvish]] is opened, since it requires PDF Tools to be loaded for PDF previews to work.
+#+begin_src elisp
+  (setf (alist-get "\\.pdf\\'" auto-mode-alist
+                   nil nil #'equal)
+        #'pdf-tools-install
+        (alist-get "%PDF" magic-mode-alist
+                   nil nil #'equal)
+        #'pdf-tools-install)
+
+  (after! dirvish
+    (add-hook 'dirvish-directory-view-mode-hook #'pdf-tools-install))
+
+  (after! pdf-tools
+    (bind-key "?" #'gptel-quick pdf-view-mode-map))
+
+  (defvar-keymap my/pdf-view-repeat-map
+    :repeat t
+    "n" #'pdf-view-next-line-or-next-page
+    "p" #'pdf-view-previous-line-or-previous-page)
+#+end_src
+
+** =zoxide.el=
+#+begin_src elisp
+  (defun my/zoxide-add-safe (&optional path &rest _)
+    "Call `zoxide-add' if PATH exists."
+    (require 'zoxide)
+    (unless path
+      (setq path (funcall zoxide-get-path-function 'add)))
+    (when (file-exists-p path)
+      (zoxide-add path)))
+
+  (add-hooks (find-file-hook . my/zoxide-add-safe)
+             (eshell-directory-change-hook . my/zoxide-add-safe)
+             (dirvish-find-entry-hook . my/zoxide-add-safe))
+#+end_src
+
+** Focus
+#+begin_src elisp
+  (bind-key "f" #'focus-mode my/toggle-map)
+#+end_src
+
+** Highlight TODO
+#+begin_src elisp
+  (add-hook 'prog-mode-hook #'hl-todo-mode)
+
+  (after! hl-todo
+    (setopt hl-todo-keyword-faces
+            `(("TODO" . ,(catppuccin-get-color 'green))
+              ("FIXME" . ,(catppuccin-get-color 'yellow))
+              ("HACK" . ,(catppuccin-get-color 'blue)))))
+#+end_src
+
+#+begin_src elisp
+  (bind-keys :map goto-map
+             ("t" . consult-todo)
+             ("T" . consult-todo-all))
+#+end_src
+
+** Xref
+#+begin_src elisp
+  (after! xref
+    (setopt xref-search-program 'ripgrep
+            xref-truncation-width nil))
+#+end_src
+
+** =topsy.el=
+#+begin_src elisp
+  (add-hooks (prog-mode-hook          . topsy-mode)
+             (magit-section-mode-hook . topsy-mode))
+#+end_src
+
+** =Writeroom-mode=
+#+begin_src elisp
+  (bind-key "w" #'writeroom-mode my/toggle-map)
+
+  (after! writeroom-mode
+    (setopt writeroom-maximize-window nil
+            writeroom-fullscreen-effect 'maximized))
+#+end_src
+
+** Jinx
+#+begin_src elisp
+  (add-hook 'text-mode-hook #'jinx-mode)
+  (bind-key [remap ispell-word] #'jinx-correct)
+#+end_src
+
+** Ispell
+#+begin_src elisp
+  (after! ispell
+    (setopt ispell-alternate-dictionary (getenv "WORDLIST")))
+#+end_src
+
+** Apheleia
+According to [[https://github.com/radian-software/apheleia/blob/main/README.md#user-guide][the README]], the global mode has been set up to /not/ load the entire package until needed.
+#+begin_src elisp
+  (apheleia-global-mode)
+#+end_src
+
+A lot of my formatters are configured through [[*Eglot][Eglot]], since it provides a nice unified interface that takes advantage of the capabilities of language servers. This snippet allows formatting using [[help:eglot-format-buffer][eglot-format-buffer]] ([[https://github.com/radian-software/apheleia/issues/153#issuecomment-1452783713][source]]).
+#+begin_src elisp
+  (cl-defun my/apheleia-format-with-eglot
+      (&key buffer scratch callback &allow-other-keys)
+    "Copy BUFFER to SCRATCH, then format scratch, then call CALLBACK."
+    (if (not (and (featurep 'eglot)
+                  (with-current-buffer buffer
+                    (eglot-current-server))))
+        (funcall callback '(error . "Eglot not available"))
+      (with-current-buffer scratch
+        (setq-local eglot--cached-server
+                    (with-current-buffer buffer
+                      (eglot-current-server)))
+        (let ((buffer-file-name (buffer-local-value 'buffer-file-name buffer)))
+          (eglot-format-buffer))
+        (funcall callback))))
+
+  (after! apheleia
+    (setf (alist-get 'eglot apheleia-formatters)
+          #'my/apheleia-format-with-eglot)
+    (dolist (mode '(rustic-mode
+                    nix-ts-mode))
+      (setf (alist-get mode apheleia-mode-alist)
+            'eglot)))
+#+end_src
+
+** Undo
+There are already multiple keys for undoing; let's give the least convenient one to Vundo.
+#+begin_src elisp
+  (bind-key "C-x u" #'vundo)
+#+end_src
+
+Persist undo history; despite the name, this works independently of Undo Fu and works on the built-in Emacs undo system, which plays perfectly with Vundo.
+#+begin_src elisp
+  (undo-fu-session-global-mode)
+
+  (setopt undo-fu-session-compression 'zst
+          undo-fu-session-file-limit 100)
+#+end_src
+
+** gptel
+#+begin_src elisp
+  (bind-key "C-c A" #'gptel-send)
+
+  (autoload #'gptel-context-add "gptel-context" "Add context to gptel in a DWIM fashion.
+
+  - If a region is selected, add the selected region to the
+    context.  If there is already a gptel context at point, remove it
+    instead.
+
+  - If in Dired, add marked files or file at point to the context.
+    With negative prefix ARG, remove them from the context instead.
+
+  - Otherwise add the current buffer to the context.  With positive
+    prefix ARG, prompt for a buffer name and add it to the context.
+
+  - With negative prefix ARG, remove all gptel contexts from the
+    current buffer." t)
+
+  (after! embark
+    (bind-key "C" #'gptel-context-add embark-general-map))
+
+  (after! gptel
+    (setopt gptel-model "llama3.1:latest"
+            gptel-backend (gptel-make-ollama "Ollama"
+                            :host "windstorm:11434"
+                            :stream t
+                            :models '("llama3.1:latest" "mistral:latest" "gemma2:latest"))
+            gptel-default-mode #'org-mode
+            gptel-use-context 'user))
+#+end_src
+
+#+begin_src elisp
+  (autoload #'gptel-quick "gptel-quick" "Explain or summarize region or thing at point with an LLM.
+
+  QUERY-TEXT is the text being explained.  COUNT is the approximate
+  word count of the response." t)
+
+  (after! embark
+    (bind-key "?" #'gptel-quick embark-general-map))
+#+end_src
+
+** =treesit-fold=
+#+begin_src elisp
+  (autoload #'treesit-fold-indicators-mode "treesit-fold-indicators" "Minor mode for display fringe folding indicators." t)
+
+  (add-hook 'prog-mode-hook #'treesit-fold-indicators-mode)
+
+  (after! treesit-fold
+    (bind-keys :map prog-mode-map
+               ("C-c C-f c" . treesit-fold-close)
+               ("C-c C-f C" . treesit-fold-close-all)
+               ("C-c C-f o" . treesit-fold-open)
+               ("C-c C-f O" . treesit-fold-open-all)
+               ("C-c C-f r" . treesit-fold-open-recursively)
+               ("C-c C-f z" . treesit-fold-toggle)))
+#+end_src
+
+** =consult-mu=
+For some reason, this package is failing to byte-compile, so I'm just going to install it manually for now ¯\_(ツ)_/¯. Mainly needed for [[*=consult-omni=][consult-omni]].
+#+begin_src elisp
+  (cl-pushnew "@consult_mu_src@" load-path
+              :test #'equal)
+#+end_src
+
+** =consult-omni=
+The repository comes with many different files for "sources", that each have various dependencies; I don't need all of them, nor want to install all dependencies, so I'm installing the package manually.
+#+begin_src elisp
+  (cl-pushnew "@consult_omni_src@" load-path
+              :test #'equal)
+  (cl-pushnew "@consult_omni_src@/sources" load-path
+              :test #'equal)
+
+  (autoload #'consult-omni "consult-omni" "Convinient wrapper function for favorite interactive command.
+
+  Calls the function in `consult-omni-default-interactive-command'." t)
+
+  (bind-key "C-S-s" #'consult-omni)
+
+  (after! consult-omni
+    ;; For some reason, if `mu4e' doesn't load properly, `consult-omni-mu4e'
+    ;; causes it to crash and burn.
+    (require 'mu4e)
+    (require 'consult-omni-sources)
+    (require 'consult-omni-embark)
+
+    (setopt consult-omni-sources-modules-to-load '(consult-omni-wikipedia
+                                                   consult-omni-gptel
+                                                   consult-omni-calc
+                                                   consult-omni-buffer
+                                                   consult-omni-mu4e
+                                                   consult-omni-stackoverflow
+                                                   consult-omni-dict
+                                                   consult-omni-man
+                                                   consult-omni-org-agenda
+                                                   consult-omni-notes))
+    (consult-omni-sources-load-modules)
+
+    (setopt consult-omni-http-retrieve-backend 'plz
+            consult-omni-multi-sources '("Wikipedia"
+                                         "gptel"
+                                         "calc"
+                                         "Buffer"
+                                         "File"
+                                         "mu4e"
+                                         "StackOverflow"
+                                         "Dictionary"
+                                         "man"
+                                         "Org Agenda"
+                                         "Notes Search")
+            consult-omni-notes-files (list denote-directory)
+            consult-omni-notes-backend-command "rga"
+            consult-omni--notes-new-func #'consult-omni--notes-new-create-denote))
+#+end_src
+
+** Expreg
+#+begin_src elisp
+  (bind-keys ("C-=" . expreg-expand)
+             ("C-+" . expreg-contract))
+
+  (defvar-keymap my/expreg-repeat-map
+    :repeat t
+    "=" #'expreg-expand
+    "+" #'expreg-contract)
+#+end_src
+
+* Denote
+We set [[help:denote-directory][denote-directory]] early since other parts of my configuration use it as well.
+#+begin_src elisp
+  (defun my/denote-ingest-file (arg)
+    "Rename a file using `denote-rename-file', then move it into
+  `denote-directory'. With prefix argument ARG, copy the file instead of moving
+  it."
+    (interactive "P")
+    (let* ((fn (if arg #'copy-file #'rename-file))
+           (filename (expand-file-name (read-file-name "Ingest File: ")))
+           (basename (file-name-nondirectory filename))
+           (target (expand-file-name basename (denote-directory))))
+      (funcall fn filename target)
+      (apply #'denote-rename-file target
+             (denote--rename-get-file-info-from-prompts-or-existing target))))
+
+  (bind-keys :map my/notes-map
+             ("b" . denote-backlinks)
+             ("f" . denote-open-or-create)
+             ("I" . my/denote-ingest-file)
+             ("l" . denote-link-or-create)
+             ("L" . denote-org-extras-link-to-heading)
+             ("k" . denote-rename-file-keywords))
+  (bind-key "C-c X" #'org-capture)
+
+  (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
+
+  (setopt denote-directory "~/denote/")
+
+  (after! denote
+    (denote-rename-buffer-mode)
+    (consult-denote-mode)
+    ;; Illegal characters on Android
+    (setopt denote-excluded-punctuation-extra-regexp (rx (* (or "<" ">")))
+            denote-excluded-directories-regexp "publish/"
+            denote-known-keywords '("quest" "person" "needy" "private"
+                                    "reference" "thought" "journal")
+            denote-date-prompt-use-org-read-date t
+            denote-backlinks-show-context t
+            denote-prompts '(title date keywords template)
+            denote-dired-directories (list denote-directory)
+            denote-dired-directories-include-subdirectories t
+            denote-templates `((default . "")
+                               (person . ,(lambda ()
+                                            (with-temp-buffer
+                                              (insert-file-contents
+                                               (expand-file-name
+                                                "template/person.org"
+                                                 denote-directory))
+                                              (buffer-string)))))
+            consult-denote-grep-command #'consult-ripgrep))
+
+  (after! org-capture
+    (require 'denote))
+#+end_src
+
+** Thought Stack
+#+begin_src elisp
+  (defun my/goto-thought-stack ()
+    "Visit Denote thought stack file. Used by `org-capture' template."
+    (let ((path (car
+                 (seq-filter (lambda (x)
+                               (string-match-p "--thought-stack" x))
+                             (denote-directory-files)))))
+      (find-file path)
+      (goto-char (point-min))))
+
+  (after! org-capture
+    (cl-pushnew '("t" "Push note onto thought stack" entry
+                  (function my/goto-thought-stack)
+                  "* [%<%F %a %R>] %?"
+                  :prepend t
+                  :empty-lines 1
+                  :kill-buffer t)
+                org-capture-templates
+                :test #'equal))
+#+end_src
+
+** Journals
+#+begin_src elisp
+  (defun my/denote-journal-yesterday (&optional forward)
+    "Visit or create yesterday's Denote journal entry.
+  If FORWARD is non-nil, go to tomorrow instead."
+    (interactive)
+    (denote-journal-extras-new-or-existing-entry
+     (time-add nil (* 60 60 24 (if forward 1 -1)))))
+
+  (defun my/denote-journal-tomorrow ()
+    "Visit or create tomorrow's Denote journal entry."
+    (interactive)
+    (my/denote-journal-yesterday :forward))
+
+  (bind-keys :map my/notes-map
+             :prefix "d"
+             :prefix-map my/denote-journal-map
+             ("d" . denote-journal-extras-new-or-existing-entry)
+             ("l" . denote-journal-extras-link-or-create-entry)
+             ("t" . my/denote-journal-tomorrow)
+             ("y" . my/denote-journal-yesterday))
+
+  (defun my/denote-journal-prepare-check-in ()
+    "Function called by `org-capture' to prepare for a check-in entry
+  capture. Visits the journal entry for today and moves point to
+  the end of the file."
+    (denote-journal-extras-new-or-existing-entry)
+    (goto-char (point-max)))
+
+  (after! org-capture
+    (cl-pushnew '("d" "Check-in entry in today's journal" plain
+                  (function my/denote-journal-prepare-check-in)
+                  "+ =%<%H:%M>=: %?"
+                  :kill-buffer t
+                  :clock-in t
+                  :clock-resume t)
+                org-capture-templates
+                :test #'equal))
+
+  (after! denote-journal-extras
+    (setopt denote-journal-extras-directory (expand-file-name "journal/" denote-directory)
+            denote-journal-extras-title-format "%Y-%m-%d %a")
+    (setf (alist-get 'journal denote-templates)
+          (lambda ()
+            (with-temp-buffer
+              (insert-file-contents
+               (expand-file-name "template/journal.org"
+                                 ;; We have to use `default-toplevel-value' here
+                                 ;; because the journal code let-binds
+                                 ;; `denote-directory' to the journal
+                                 ;; subdirectory.
+                                 (default-toplevel-value 'denote-directory))) 
+              (buffer-string)))))
+#+end_src
+
+** Explore
+#+begin_src elisp
+  (bind-keys :map my/notes-map
+             :prefix "e"
+             :prefix-map my/denote-explore-map
+             ("cd" . denote-explore-degree-barchart)
+             ("ce" . denote-explore-extensions-barchart)
+             ("ck" . denote-explore-keywords-barchart)
+             ("d"  . denote-explore-identify-duplicate-notes)
+             ("i"  . denote-explore-isolated-notes)
+             ("n"  . denote-explore-network)
+             ("N"  . denote-explore-network-regenerate)
+             ("rk" . denote-explore-random-keyword)
+             ("rl" . denote-explore-random-link)
+             ("rn" . denote-explore-random-note)
+             ("s"  . denote-explore-sync-metadata))
+#+end_src
+
+** Fix Heading Links in Capture
+[[help:org-capture][org-capture]] uses the linking mechanism internally when capturing things, which sometimes results in Denote trying to create a =CUSTOM_ID= when I don't actually want one.
+#+begin_src elisp
+  (defun my/fix-denote-heading-links-in-capture (fn &rest args)
+    "Around advice for `org-capture' that binds
+  `denote-org-store-link-to-heading' to 'nil', to avoid randomly
+  creating 'CUSTOM_ID' properties, since `org-capture' uses the
+  Org linking mechanism internally."
+    (let ((denote-org-store-link-to-heading nil))
+      (apply fn args)))
+
+  (after! org-capture
+    (advice-add #'org-capture :around #'my/fix-denote-heading-links-in-capture))
+#+end_src
+
+** Aliases
+#+begin_src elisp
+  (defun my/denote-link-description (file)
+    "Format a link description for FILE.
+
+  - If the region is active, use the region.
+
+  - If FILE is not a supported text file, use the name of the file.
+
+  - Otherwise, prompts for a description, sourcing from:
+  `denote-link-description-with-signature-and-title' and aliases if they are
+  present. Auto-picks if only one option is available."
+    (cond
+     ((region-active-p)
+      (buffer-substring-no-properties (region-beginning) (region-end)))
+     ((not (denote-file-has-supported-extension-p file))
+      (file-name-nondirectory file))
+     (t
+      (let ((options (list (denote-link-description-with-signature-and-title file)))
+            (file-type (denote-filetype-heuristics file)))
+        (when (eq file-type 'org)
+          (with-temp-buffer
+            (insert-file-contents file)
+            (org-mode)
+            (when-let* ((prop (cdar (org-collect-keywords '("aliases") '("aliases"))))
+                        (aliases (split-string-and-unquote prop)))
+              (nconc options aliases))))
+        (if (cdr options)
+            (completing-read "Description: " options)
+          (car options))))))
+
+  (after! denote
+    (setopt denote-link-description-function #'my/denote-link-description))
+#+end_src
+
+** Auto-commit
+#+begin_src elisp
+  (autoload #'denote-file-is-note-p "denote" "Return non-nil if FILE is an actual Denote note.
+  For our purposes, a note must not be a directory, must satisfy
+  `file-regular-p' and `denote-filename-is-note-p'.")
+  (defun my/enable-gac-in-denote ()
+    "Enable `git-auto-commit-mode' if the visited file is a Denote file."
+    (when (and buffer-file-name
+               (denote-file-is-note-p buffer-file-name))
+      (git-auto-commit-mode)))
+
+  (add-hook 'find-file-hook #'my/enable-gac-in-denote)
+
+  (after! git-auto-commit-mode
+    (setopt gac-silent-message-p t
+            gac-debounce-interval 60))
+#+end_src
+
+** Citar
+#+begin_src elisp
+  (after! citar
+    (citar-denote-mode)
+    (setopt citar-bibliography (list
+                                (expand-file-name "refs.bib" denote-directory))
+            org-cite-global-bibliography citar-bibliography))
+#+end_src
+
+* Org Mode
+Ah, the crown jewel of Emacs 👑.
+#+begin_src elisp
+  (add-hook 'org-mode-hook #'variable-pitch-mode)
+  (add-hook 'org-mode-hook #'writeroom-mode)
+  (add-hook 'org-mode-hook (lambda () (setq-local line-spacing 0.1)))
+  (add-hook 'org-mode-hook #'org-autolist-mode)
+
+  (after! org
+    (setopt org-directory                          denote-directory
+            org-hide-emphasis-markers              t
+            org-confirm-babel-evaluate             nil
+            org-startup-indented                   t
+            org-indent-indentation-per-level       0
+            org-startup-folded                     'content
+            org-ellipsis                           " "
+            org-pretty-entities                    t
+            org-log-done                           'note
+            org-log-into-drawer                    t
+            org-log-reschedule                     'note
+            org-log-redeadline                     'note
+            org-return-follows-link                t
+            org-attach-method                      'mv
+            org-use-sub-superscripts               '{}
+            org-list-demote-modify-bullet          '(("+" . "-")
+                                                     ("-" . "*")
+                                                     ("*" . "+"))
+            org-highlight-latex-and-related        '(native script entities)
+            org-preview-latex-image-directory      (expand-file-name
+                                                    "org/latex/"
+                                                    no-littering-var-directory)
+            org-insert-heading-respect-content     t
+            org-auto-align-tags                    nil
+            org-tags-column                        0
+            org-special-ctrl-a/e                   t
+            org-todo-keywords                      '((type "TODO(t)"
+                                                           "WAIT(w@/@)"
+                                                           "|"
+                                                           "DONE(d)"
+                                                           "CANCELED(c)"))
+            org-fontify-done-headline              t
+            org-fontify-quote-and-verse-blocks     t
+            org-startup-with-inline-images         t
+            org-image-actual-width                 nil
+            org-enforce-todo-dependencies          t
+            org-list-allow-alphabetical            t
+            org-edit-src-auto-save-idle-delay      5
+            org-todo-keyword-faces `(("CANCELED"
+                                      :foreground ,(catppuccin-get-color 'red))
+                                     ("WAIT"
+                                      :foreground ,(catppuccin-get-color 'yellow))))
+    (custom-set-faces
+     `(org-headline-done ((t :inherit nil
+                             :italic t
+                             :strike-through t)))))
+#+end_src
+
+** Repeat Maps
+#+begin_src elisp
+  (defvar-keymap my/org-sentence-repeat-map
+    :repeat t
+    "e" #'org-forward-sentence
+    "a" #'org-backward-sentence)
+
+  (defvar-keymap my/org-line-repeat-map
+    :repeat t
+    "a" #'org-beginning-of-line
+    "e" #'org-end-of-line)
+
+  (defvar-keymap my/org-element-repeat-map
+    :repeat t
+    "}" #'org-forward-element
+    "{" #'org-backward-element)
+
+  (defvar-keymap my/org-delete-repeat-map
+    :repeat t
+    "d" #'org-delete-char)
+
+  (defvar-keymap my/org-heading-repeat-map
+    :repeat t
+    "n" #'org-next-visible-heading
+    "p" #'org-previous-visible-heading)
+
+  (defvar-keymap my/org-link-repeat-map
+    :repeat t
+    "n" #'org-next-link
+    "p" #'org-previous-link)
+
+  (defvar-keymap my/org-block-repeat-map
+    :repeat t
+    "f" #'org-next-block
+    "b" #'org-previous-block)
+#+end_src
+
+** Org Agenda
+#+begin_src elisp
+  (bind-key "C-c a" #'org-agenda)
+
+  (after! org-agenda
+    (defun my/org-agenda-get-title ()
+      "Get the title of the current Org buffer, or else an empty string."
+      (if-let* ((title (org-get-title))
+                (title (if (length> title 26)
+                           (concat (string-limit title 25)
+                                   "…")
+                         title)))
+          (format "%s: " title)
+        ""))
+
+    (setopt org-agenda-files (list denote-directory)
+            org-agenda-file-regexp (rx "_quest" (* any) ".org" string-end)
+            org-agenda-prefix-format '((agenda . " %i%-28(my/org-agenda-get-title)% t%s%b")
+                                       (todo   . " %i%-28(my/org-agenda-get-title)%b")
+                                       (tags   . " %i %-12:c")
+                                       (search . " %i %-12:c"))
+            org-agenda-time-leading-zero t
+            org-agenda-time-grid '((daily today remove-match)
+                                   (600 800 1000 1200 1400 1600 1800 2000 2200)
+                                   " ┄┄┄┄┄" "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+            org-agenda-current-time-string "—————————————————— now"
+            org-agenda-breadcrumbs-separator " ⇢ "
+            org-agenda-tags-column 0
+            org-agenda-skip-deadline-if-done t
+            org-agenda-skip-scheduled-if-done t
+            org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled
+            org-agenda-hide-tags-regexp (rx (or "quest" "journal" "needy"))
+            org-agenda-span 'fortnight
+            org-agenda-start-on-weekday nil
+            org-agenda-start-day "-3d"
+            org-agenda-window-setup 'current-window
+            org-agenda-inhibit-startup t
+            org-agenda-compact-blocks t
+            org-agenda-deadline-leaders '("Deadline: "
+                                          "In %3dd: "
+                                          "%2dd ago: ")
+            org-agenda-deadline-faces '((0.8 . org-imminent-deadline)
+                                        (0.5 . org-upcoming-deadline)
+                                        (0.0 . org-upcoming-distant-deadline)))
+    (custom-set-faces
+     `(org-imminent-deadline         ((t (:foreground ,(catppuccin-get-color 'red) :weight semibold))))
+     `(org-upcoming-deadline         ((t (:foreground ,(catppuccin-get-color 'yellow) :weight medium))))
+     `(org-upcoming-distant-deadline ((t (:foreground ,(catppuccin-get-color 'yellow) :weight light))))))
+#+end_src
+
+Iosevka by default lets some characters be two-wide, which messes up some alignment in Org Agenda, so we force the font to be perfectly monospace.
+#+begin_src elisp
+  (add-hook 'org-agenda-mode-hook (lambda ()
+                                    (face-remap-add-relative 'default 'fixed-pitch)))
+#+end_src
+
+Habits.
+#+begin_src elisp
+  (after! org
+    (require 'org-habit)
+    (setopt org-habit-preceding-days 14
+            org-habit-following-days 7
+            org-habit-graph-column 100))
+#+end_src
+
+*Super* agenda 🔥.
+#+begin_src elisp
+  (after! org-agenda
+    (require 'denote-journal-extras)
+    (org-super-agenda-mode)
+
+    (defun my/agenda-transform-daily-plan-line (line)
+      "Specially format a \"Daily Plan\" line for my custom agenda view."
+      (save-match-data
+        (if (string-match (rx
+                           (group (= 2 digit) ":" (= 2 digit))
+                           (group (or "-" " "))
+                           (group (or (seq (= 2 digit) ":" (= 2 digit))
+                                      "┄┄┄┄┄"))
+                           " Daily Plan ⇢ "
+                           (group (* any))
+                           string-end)
+                          line)
+            (apply #'propertize
+                   (format " %s                 %s%s%s %s"
+                           (propertize "Daily Plan:"
+                                       'face 'org-agenda-calendar-event)
+                           (match-string 1 line)
+                           (match-string 2 line)
+                           (match-string 3 line)
+                           (match-string 4 line))
+                   (text-properties-at 0 line))
+          line)))
+    
+    (setopt
+     org-super-agenda-unmatched-name "Other"
+     org-agenda-custom-commands
+     '(("c" "Custom super view"
+        ((agenda "" ((org-agenda-files
+                       (append org-agenda-files
+                               (denote-journal-extras--entry-today)))
+                     (org-agenda-span 'day)
+                     (org-agenda-start-day nil)
+                     (org-super-agenda-groups
+                      '((:habit t
+                                :order 1)
+                        (:name "Today"
+                               :time-grid t
+                               :date today
+                               :transformer my/agenda-transform-daily-plan-line)
+                        (:name "Overdue"
+                               :deadline past
+                               :scheduled past
+                               :order 2)
+                        (:name "Due Soon"
+                               :deadline future
+                               :order 3)))))
+         (alltodo "" ((org-agenda-overriding-header "")
+                      (org-super-agenda-groups
+                       '((:discard (:habit t))
+                         (:name "Important"
+                                :priority "A")
+                         (:name "Upcoming"
+                                :scheduled future)
+                         (:name "Academics"
+                                :tag "academics")
+                         (:name "Programming"
+                                :tag "programming"))))))))))
+#+end_src
+
+** Org Links
+#+begin_src elisp
+  (bind-key "s" #'org-store-link my/notes-map)
+#+end_src
+
+** Org Clock
+#+begin_src elisp
+  (bind-keys :map my/notes-map
+             ("cg" . org-clock-goto)
+             ("ci" . org-clock-in)
+             ("cl" . org-clock-in-last)
+             ("co" . org-clock-out)
+             ("cq" . org-clock-cancel)
+             ("cr" . org-resolve-clocks))
+#+end_src
+
+** Org Src
+#+begin_src elisp
+  (after! org-src
+    (bind-key "C-c C-c" #'org-edit-src-exit org-src-mode-map))
+#+end_src
+
+** Org Attach
+#+begin_src elisp
+  (after! org-attach
+    (setopt org-attach-id-dir "attach")
+    (defun my/insert-org-attach-dir ()
+      "Insert the current org-attach directory relative to
+   `org-directory', creating it if needed."
+      (interactive)
+      (insert
+       (file-relative-name (org-attach-dir-get-create)
+                           org-directory))))
+#+end_src
+
+** Org Modern
+Make Org Mode pretty again!
+#+begin_src elisp
+  (after! org
+    (global-org-modern-mode))
+
+  (after! org-modern
+    (setopt org-modern-list '((?+ . "➤")
+                              (?- . "–")
+                              (?* . "•"))
+            org-modern-progress 8
+     ;; For some reason, inheriting from `org-modern-todo' messes with the size
+            org-modern-todo-faces `(("CANCELED"
+                                     :inverse-video t
+                                     :weight semibold
+                                     :foreground ,(catppuccin-get-color 'red))
+                                    ("WAIT"
+                                     :inverse-video t
+                                     :weight semibold
+                                     :foreground ,(catppuccin-get-color 'yellow)))))
+
+  (custom-set-faces
+   `(org-modern-done ((t :inherit org-modern-todo
+                         :foreground ,(catppuccin-get-color 'green)))) 
+   '(org-modern-symbol ((t (:family "Iosevka Fixed SS18")))))
+#+end_src
+
+** Org Appear
+Automatically toggles certain markers on and off depending on whether they're being edited.
+#+begin_src elisp
+  (add-hook 'org-mode-hook #'org-appear-mode)
+
+  (after! org-appear
+    (setopt org-appear-trigger        'always
+            org-appear-autosubmarkers t
+            org-appear-autoentities   t))
+#+end_src
+
+** =org-fragtog=
+#+begin_src elisp
+  (add-hook 'org-mode-hook #'org-fragtog-mode)
+#+end_src
+
+** Org Download
+#+begin_src elisp
+  (after! org-download
+    (setopt org-download-backend "curl \"%s\" -o \"%s\""
+            org-download-delete-image-after-download t
+            org-download-method 'attach
+            org-download-screenshot-method "grim -g \"$(slurp)\" %s"))
+#+end_src
+
+** Org Anki
+#+begin_src elisp
+  (after! org-anki
+    (setopt org-anki-default-deck "Default"))
+#+end_src
+
+** Auto Tangling
+#+begin_src elisp
+  (add-hook 'org-mode-hook #'org-auto-tangle-mode)
+#+end_src
+
+** Table of Contents
+#+begin_src elisp
+  (add-hook 'org-mode-hook #'org-make-toc-mode)
+#+end_src
+
+** Export
+#+begin_src elisp
+  (after! ox
+    (setopt org-export-with-toc nil))
+#+end_src
+
+Don't evaluate code blocks when exporting, and include both the code and results.
+#+begin_src elisp
+  (after! (ox ob)
+    (setf (alist-get :eval org-babel-default-header-args)
+          "no-export"
+          (alist-get :exports org-babel-default-header-args)
+          "both"))
+#+end_src
+
+*** Reveal.js
+#+begin_src elisp
+  (after! ox
+    (require 'org-re-reveal)
+    (setopt org-re-reveal-root (expand-file-name "revealjs"
+                                                 (getenv "XDG_DATA_HOME"))
+            org-re-reveal-extra-options "controlsTutorial: false"))
+#+end_src
+
+** Babel Languages
+*** C/C++
+#+begin_src elisp
+  (autoload #'org-babel-execute:C "ob-C" "Execute a block of C code with org-babel.
+  This function is called by `org-babel-execute-src-block'." nil)
+  (autoload #'org-babel-execute:C++ "ob-C" "Execute a block of C++ code with org-babel.
+  This function is called by `org-babel-execute-src-block'." nil)
+  (autoload #'org-babel-execute:cpp "ob-C" "Execute BODY according to PARAMS.
+  This function calls `org-babel-execute:C++'." nil)
+
+  (after! ob-C
+    (setopt org-babel-C-compiler "cc"
+            org-babel-C++-compiler "c++"))
+#+end_src
+
+*** Shell
+#+begin_src elisp
+  (autoload #'org-babel-execute:sh "ob-shell" "Execute a block of sh commands with Babel." nil)
+  (autoload #'org-babel-execute:shell "ob-shell" "Execute a block of Shell commands with Babel." nil)
+  (autoload #'org-babel-execute:bash "ob-shell" "Execute a block of bash commands with Babel." nil)
+#+end_src
+
+*** Gnuplot
+#+begin_src elisp
+  (autoload #'org-babel-execute:gnuplot "ob-gnuplot" "Execute a block of Gnuplot code.
+  This function is called by `org-babel-execute-src-block'." nil)
+#+end_src
+
+*** Typst
+#+begin_src elisp
+  (autoload #'org-babel-execute:typst "org-typst" "Execute a block of Typst markup." nil)
+
+  (after! org-typst
+    (cl-pushnew "#import \"@preview/cetz:0.2.2\""
+                org-typst-babel-preamble
+                :test #'equal))
+#+end_src
+
+*** Lisp
+#+begin_src elisp
+  (autoload #'org-babel-execute:lisp "ob-lisp" "Execute a block of Common Lisp code with Babel.
+  BODY is the contents of the block, as a string.  PARAMS is
+  a property list containing the parameters of the block.")
+
+  (after! ob-lisp
+    (setopt org-babel-lisp-eval-fn #'sly-eval))
+#+end_src
+
+*** D2
+#+begin_src elisp
+  (autoload #'org-babel-execute:d2 "ob-d2" "Execute a BODY of D2 code with org-babel and additional PARAMS.
+  This function is called by `org-babel-execute-src-block'.")
+#+end_src
+
+** Fix List Bullets
+This formats the bullets in lists with a separate face, which is useful to both style it differently and also fix indentation with variable pitch faces. This snippet is adapted from [[https://github.com/doomemacs/themes/blob/master/extensions/doom-themes-ext-org.el][doomemacs/themes]]. We use two different regular expressions so that we can match lists with =*= as a bullet without matching headlines as well.
+#+begin_src elisp
+  (defface my/org-list-bullet
+    '((t :inherit (fixed-pitch org-list-dt)))
+    "Custom face for Org list bulletpoints.")
+    
+  (defun my/org-list-bullet-font-lock-setup ()
+    "Set up `org-font-lock-extra-keywords' to use my custom bullet face."
+    (push '("^\\( *\\)\\([-+]\\|\\(?:[0-9]+\\|[a-zA-Z]\\)[).]\\)\\([ \t]\\)"
+            (1 'org-indent append)
+            (2 'my/org-list-bullet append)
+            (3 'org-indent append))
+          org-font-lock-extra-keywords)
+    (push '("^\\( +\\)\\(\\*\\|\\(?:[0-9]+\\|[a-zA-Z]\\)[).]\\)\\([ \t]\\)"
+            (1 'org-indent append)
+            (2 'my/org-list-bullet append)
+            (3 'org-indent append))
+          org-font-lock-extra-keywords))
+
+  (add-hook 'org-font-lock-set-keywords-hook #'my/org-list-bullet-font-lock-setup)
+#+end_src
+
+** Inline SVG Colors
+A lot of generated SVGs assume black text on a white background, but Emacs likes to use the colors from the current theme instead. Since I use a dark theme, a lot of SVGs end up unreadable. This patches [[help:org--create-inline-image][org--create-inline-image]] to explicitly set the foreground and background colors to white and black, respectively.
+#+begin_src elisp
+  (after! org
+    (defun my/org-inline-images-fix-svg-colors (image)
+      "If IMAGE is an SVG, explicitly set the foreground and
+   background colors to white and black, respectively. Fixes
+   legibility of most generated SVGs."
+      (if-let* ((props (cdr image))
+                (type (plist-get props :type))
+                ((not (eq type 'svg))))
+          image
+        `(,@image :foreground "#000000" :background "#FFFFFF")))
+    (advice-add #'org--create-inline-image :filter-return #'my/org-inline-images-fix-svg-colors))
+#+end_src
+** Sliced Inline Images
+Makes scrolling +much nicer+ functional 🙂.
+#+begin_src elisp
+  (after! org
+    (advice-add #'org-remove-inline-images :override #'org-sliced-images-remove-inline-images)
+    (advice-add #'org-toggle-inline-images :override #'org-sliced-images-toggle-inline-images)
+    (advice-add #'org-display-inline-images :override #'org-sliced-images-display-inline-images))
+#+end_src
+
+** Posframe Popups
+#+begin_src elisp
+  (autoload #'org-popup-posframe-mode "org-popup-posframe" "Show `org-mode' popup buffers in posframe." t)
+
+  (after! org
+    (setopt org-popup-posframe-org-insert-link nil
+            ;; Currently broken with Org 9.7
+            org-popup-posframe-org-todo nil)
+    (org-popup-posframe-mode))
+#+end_src
+
+** Easydraw
+According to the README:
+#+begin_quote
+When using the org-export-in-background option (when using the
+asynchronous export function), the following settings are
+required. This is because Emacs started in a separate process does
+not load org.el but only ox.el.
+#+end_quote
+
+#+begin_src elisp :tangle no
+  (after! org
+    (require 'edraw-org)
+    (edraw-org-setup-default))
+  (after! ox
+    (require 'edraw-org)
+    (edraw-org-setup-exporter))
+#+end_src
+
+* Languages
+** Lisp
+#+begin_src elisp
+  (add-hook 'lisp-data-mode-hook #'parinfer-rust-mode)
+  (add-hook 'parinfer-rust-mode-hook (lambda () (electric-pair-local-mode -1)))
+
+  (after! parinfer-rust-mode
+    (setopt parinfer-rust-auto-download t
+            parinfer-rust-troublesome-modes nil))
+#+end_src
+
+Emacs Lisp.
+#+begin_src elisp
+  (add-hook 'emacs-lisp-mode-hook #'package-lint-flymake-setup)
+  (add-hook 'emacs-lisp-mode-hook #'display-fill-column-indicator-mode)
+#+end_src
+
+Common Lisp.
+#+begin_src elisp
+  (add-hook 'sly-mode-hook #'corfu-mode)
+
+  (after! sly
+    (setopt inferior-lisp-program "sbcl"))
+#+end_src
+
+** Nix
+#+begin_src elisp
+  (setf (alist-get "\\.nix\\'" auto-mode-alist
+                   nil nil #'equal)
+        #'nix-ts-mode)
+
+  (add-hook 'nix-ts-mode-hook (lambda ()
+                                (yas-activate-extra-mode 'nix-mode)))
+
+  (after! (nix-ts-mode eglot)
+    (setf (alist-get 'nix-ts-mode eglot-server-programs)
+          '("nil" :initializationOptions
+            (:formatting (:command ["alejandra"])))))
+
+  (after! org
+    (setf (alist-get "nix" org-src-lang-modes
+                     nil nil #'equal)
+          'nix-ts))
+#+end_src
+
+** Rust
+[[help:rust-mode-treesitter-derive][rust-mode-treesitter-derive]] must be set *before* ~rust-mode~ loads.
+#+begin_src elisp
+  (setf (alist-get "\\.rs\\'" auto-mode-alist
+                   nil nil #'equal)
+        #'rustic-mode)
+
+  (setopt rust-mode-treesitter-derive t)
+
+  (after! rustic
+    (setopt rustic-lsp-client 'eglot))
+#+end_src
+
+** Typst
+#+begin_src elisp
+  (autoload #'typst-ts-mode "typst-ts-mode" "Major mode for editing Typst, powered by tree-sitter." t)
+  (setf (alist-get "\\.typ\\'" auto-mode-alist
+                   nil nil #'equal)
+        #'typst-ts-mode)
+  (add-hook 'typst-ts-mode-hook #'writeroom-mode)
+  (add-hook 'typst-ts-mode-hook #'hl-todo-mode)
+
+  (after! org
+    (setf (alist-get "typst" org-src-lang-modes
+                     nil nil #'equal)
+          'typst-ts))
+  (after! typst-ts-mode
+    (setopt typst-ts-mode-indent-offset 2))
+  (after! (typst-ts-mode eglot)
+    (setf (alist-get 'typst-ts-mode eglot-server-programs)
+          ("tinymist" :initializationOptions
+           (:formatterMode "typstyle"))))
+#+end_src
+
+** Nushell
+#+begin_src elisp
+  (setf (alist-get "\\.nu\\'" auto-mode-alist
+                   nil nil #'equal)
+        #'nushell-mode
+        (alist-get "nu" interpreter-mode-alist
+                   nil nil #'equal)
+        #'nushell-mode)
+#+end_src
+
+** Just
+#+begin_src elisp
+  (setf (alist-get "[Jj]ustfile\\'" auto-mode-alist
+                   nil nil #'equal)
+        #'just-mode)
+#+end_src
+
+#+begin_src elisp
+  (bind-key "j" #'justl project-prefix-map)
+
+  (after! project
+    (defun my/justl-project ()
+      "Wrapper around `justl' that uses
+   `project-current-directory-override'."
+      (interactive)
+      (let ((default-directory project-current-directory-override))
+        (call-interactively #'justl)))
+    (setf (alist-get 'my/justl-project project-switch-commands)
+          '("Just" "j")))
+#+end_src
+
+** Gnuplot
+#+begin_src elisp
+  (setf (alist-get "\\.gp\\'" auto-mode-alist
+                   nil nil #'equal)
+        #'gnuplot-mode)
+#+end_src
+
+** YAML
+#+begin_src elisp
+  (setf (alist-get "\\.ya?ml\\'" auto-mode-alist
+                   nil nil #'equal)
+        #'yaml-ts-mode)
+
+  (after! org
+    (setf (alist-get "yaml" org-src-lang-modes
+                     nil nil #'equal)
+          'yaml-ts))
+#+end_src
+
+** GNU Octave
+#+begin_src elisp
+  (setf (alist-get "\\.m\\'" auto-mode-alist
+                   nil nil #'equal)
+        #'octave-mode)
+#+end_src
+
+** Web
+#+begin_src elisp
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
+#+end_src
+
+*** Emmet
+#+begin_src elisp
+  (add-hook 'sgml-mode-hook #'emmet-mode)
+  (add-hook 'web-mode-hook #'emmet-mode)
+#+end_src
+
+** BibTeX
+#+begin_src elisp
+  (after! bibtex
+    (setopt bibtex-maintain-sorted-entries 'entry-class
+            bibtex-entry-format t))
+#+end_src
+
+* Applications
+** Osm.el
+I have [[help:global-visual-line-mode][global-visual-line-mode]] enabled, which breaks stuff inside map buffers, so I undo the breaking stuff.
+#+begin_src elisp
+  (bind-key "m" #'osm my/open-map)
+
+  (add-hook 'osm-mode-hook (lambda ()
+                             (visual-line-mode -1)
+                             (setq-local truncate-lines t)))
+
+  (setf (alist-get '(major-mode . osm-mode) display-buffer-alist
+                   nil nil #'equal)
+        '(display-buffer-same-window))
+#+end_src
+
+Add a function to publish ~geo:~ links as URLs that lead to OpenStreetMap's website.
+#+begin_src elisp
+  (after! (osm ol)
+    (defun my/osm-publish-org-link (location description backend ext-plist)
+      "Publish a geo: link as an OpenStreetMap URL."
+      (cl-destructuring-bind (lat long z) (split-string location
+                                                        (regexp-opt '("," ";z=")))
+        (org-export-string-as
+         (format "[[https://www.openstreetmap.org/#map=%s/%s/%s]%s]"
+                 z lat long
+                 (when description
+                   (format "[%s]" description)))
+         backend
+         t
+         ext-plist)))
+    (org-link-set-parameters
+     "geo"
+     :export #'my/osm-publish-org-link))
+#+end_src
+
+** Dirvish
+#+begin_src elisp
+  (bind-key "d" #'dirvish my/open-map)
+
+  (after! dired
+    (dirvish-override-dired-mode)
+    (dired-async-mode)
+
+    (setopt dired-dwim-target t))
+#+end_src
+
+** Syncthing
+#+begin_src elisp
+  (bind-key "s" #'syncthing my/open-map)
+
+  (after! syncthing
+    (setopt syncthing-default-server-token "iPy5Nbp6JFhjPcECDTAvfxhuabgjjVQU"))
+#+end_src
+
+** mu4e
+#+begin_src elisp
+  (bind-key "e" #'mu4e my/open-map)
+
+  (setopt mail-user-agent #'mu4e-user-agent
+          read-mail-command #'mu4e)
+
+  (after! mu4e
+    (bind-key "b" #'mu4e-search-bookmark mu4e-main-mode-map)
+    
+    (setopt send-mail-function #'sendmail-send-it
+            message-confirm-send t
+            message-signature 'user-full-name
+            mail-specify-envelope-from t
+            mail-envelope-from 'header
+            message-kill-buffer-on-exit t
+            mu4e-get-mail-command "mbsync -a"
+            mu4e-change-filenames-when-moving t
+            mu4e-refile-folder "/archive"
+            mu4e-use-fancy-chars t
+            mu4e-read-option-use-builtin nil
+            mu4e-completing-read-function #'completing-read
+            mu4e-compose-format-flowed t
+            mu4e-confirm-quit nil
+            mu4e-search-hide-predicate (lambda (msg)
+                                         (member 'trashed
+                                                 (mu4e-message-field msg :flags)))
+            mu4e-context-policy 'pick-first
+            mu4e-contexts
+            `(,(make-mu4e-context
+                :name (my/private '(user public))
+                :match-func
+                (lambda (msg)
+                  (and msg
+                       (cl-find-if
+                        (lambda (email)
+                          (string-match-p
+                           (rx "@"
+                               (literal (my/private '(domain public)))
+                               string-end)
+                           email))
+                        (append (mu4e-message-field msg :to)
+                                (mu4e-message-field msg :from))
+                        :key (lambda (x) (plist-get x :email)))))
+                :vars `((user-mail-address . ,(my/private '(email public)))
+                        (user-full-name . "Ad")
+                        (mu4e-sent-folder . "/mailbox/Sent")
+                        (mu4e-drafts-folder . "/mailbox/Drafts")
+                        (mu4e-trash-folder . "/mailbox/Trash")))
+              ,(make-mu4e-context
+                :name (my/private '(user personal))
+                :match-func
+                (lambda (msg)
+                  (and msg
+                       (cl-find-if
+                        (lambda (email)
+                          (string-match-p
+                           (rx "@"
+                               (literal (my/private '(domain personal)))
+                               string-end)
+                           email))
+                        (append (mu4e-message-field msg :to)
+                                (mu4e-message-field msg :from))
+                        :key (lambda (x) (plist-get x :email)))))
+                :vars `((user-mail-address . ,(my/private '(email personal)))
+                        (user-full-name . ,(my/private '(name)))
+                        (mu4e-sent-folder . "/mailbox/Sent")
+                        (mu4e-drafts-folder . "/mailbox/Drafts")
+                        (mu4e-trash-folder . "/mailbox/Trash"))))))
+#+end_src
+
+I have some catch-all aliases set up, so, when replying, I always want to use the address that the original email was sent to (if applicable). Note that this is already somewhat possible using [[help:message-alternative-emails][message-alternative-email]]; however, that option doesn't preserve the address name.
+#+begin_src elisp
+  (after! mu4e
+    (defun my/mu4e-use-to-address ()
+      "Use \"To\" address when replying with a catch-all alias."
+      (when-let* ((msg mu4e-compose-parent-message)
+                  (parent-to (mu4e-message-field msg :to))
+                  (my-address (cl-find-if
+                               (lambda (email)
+                                 (string-match-p
+                                  (rx "@"
+                                      (or (literal (my/private '(domain public)))
+                                          (literal (my/private '(domain personal))))
+                                      string-end)
+                                  email))
+                               parent-to
+                               :key (lambda (x) (plist-get x :email))))
+                  (name (plist-get my-address :name))
+                  (email (plist-get my-address :email)))
+        (message-replace-header "From"
+                                (format "%s <%s>" name email))))
+    (add-hook 'mu4e-compose-mode-hook #'my/mu4e-use-to-address))
+#+end_src
+
+** Eshell
+#+begin_src elisp
+  (bind-key "s" #'eshell my/open-map)
+
+  (add-hook 'eshell-mode-hook #'corfu-mode)
+  (add-hook 'eshell-mode-hook #'electric-pair-local-mode)
+
+  (after! eshell
+    (eat-eshell-mode)
+    ;; Since we have Eat emulating a true terminal, we don't want any commands to
+    ;; defer to an external `term' buffer.
+    (setopt eshell-visual-commands nil)
+    ;; Devil key
+    (add-to-list 'eat-semi-char-non-bound-keys [?,])
+    (add-to-list 'eat-eshell-semi-char-non-bound-keys [?,])
+    (eat-update-semi-char-mode-map)
+    (eat-eshell-update-semi-char-mode-map))
+#+end_src
+
+Support for [[https://atuin.sh][Atuin]].
+#+begin_src elisp
+  (after! em-hist
+    (eshell-atuin-mode)
+    (bind-keys ([remap eshell-list-history] . eshell-atuin-history)
+               :map eshell-hist-mode-map
+               ("M-r" . eshell-atuin-history)))
+#+end_src
+
+A ~command-not-found~ substitute based off of [[https://github.com/nix-community/nix-index/blob/master/command-not-found.sh][nix-index]].
+#+begin_src elisp
+  (defun my/eshell-nix-locate (command)
+    "Locate possible executables for not found COMMAND using `nix-locate'."
+    (let* ((cmd (format "nix-locate --minimal --no-group --type x --type s --top-level --whole-name --at-root '/bin/%s'"
+                        command))
+           (matches (shell-command-to-string cmd)))
+      (unless (string-empty-p matches)
+        (error "The program `%s' is currently not installed. It is provided by the following derivations:\n%s"
+               command matches))))
+
+  (add-hook 'eshell-alternate-command-hook #'my/eshell-nix-locate)
+#+end_src
+
+Jump around at lightning speed using [[*Consult][consult-dir]] ⚡. Inspired by snippet from [[https://github.com/karthink/consult-dir/wiki#directories-visited-in-eshell][here]].
+#+begin_src elisp
+  (defun eshell/z (&optional prompt)
+    "Jump around directories using `consult-dir'."
+    (if prompt
+        (eshell/cd (or (eshell-find-previous-directory prompt)
+                       (car (zoxide-query-with prompt))))
+      (require 'consult-dir)
+      (eshell/cd (consult-dir--pick))))
+#+end_src
+
+A prettier prompt, inspired by based off code from [[https://github.com/zwild/eshell-prompt-extras][zwild/eshell-prompt-extras]]. Note that, on Emacs versions below 30, [[help:eshell-prompt-regexp][eshell-prompt-regexp]] needs to be set as well.
+#+begin_src elisp
+  (defun my/eshell-prompt ()
+    "My custom, prettier prompt for Eshell."
+    (require 'magit)
+    (concat "\n"
+            (propertize (abbreviate-file-name (eshell/pwd))
+                        'face 'eshell-ls-directory)
+            (when (magit-gitdir (eshell/pwd))
+              (concat " on "
+                      (propertize (concat "" (magit-get-current-branch))
+                                  'face 'magit-branch-current)
+                      (let (m u)
+                        (cl-loop for (file _ x y) in (magit-file-status)
+                                 if (= y ??)
+                                 do (setq u "?")
+                                 else
+                                 do (setq m "!"))
+                        (when (or m u)
+                          (propertize (concat " [" m u "]")
+                                      'face 'error)))))
+            "\n"
+            (propertize "λ " 'face (if (eshell-exit-success-p)
+                                       'success
+                                     'error))))
+
+  (after! eshell
+    (setopt eshell-prompt-function #'my/eshell-prompt
+            eshell-prompt-regexp (rx line-start "λ ")))
+
+  ;; We highlight things we want highlighted ourselves
+  (custom-set-faces
+   '(eshell-prompt ((t :foreground unspecified
+                       :weight unspecified))))
+#+end_src
+
+Syntax highlighting.
+#+begin_src elisp
+  (after! eshell
+    (eshell-syntax-highlighting-global-mode))
+#+end_src
+
+** Calc
+#+begin_src elisp
+  (after! calc
+    (bind-key "C-o" #'casual-calc-tmenu calc-mode-map))
+#+end_src
+
+** Verb
+#+begin_src elisp
+  (after! org
+    ;; Can't use `bind-keys' because we need `verb-command-map' to be evaluated.
+    (bind-key "C-c C-r" verb-command-map org-mode-map)
+    ;; Originally bound to C-c C-r
+    (bind-key "C-c C-S-r" #'org-fold-reveal org-mode-map))
+#+end_src
+
+Org Babel integration.
+#+begin_src elisp
+  (autoload #'org-babel-execute:verb "ob-verb")
+
+  (after! ob-verb
+    (defvar org-babel-default-header-args:verb '((:wrap . "src ob-verb-response"))))
+#+end_src
+
+** Spray
+Spritz-like speedreading for Emacs 💨.
+#+begin_src elisp
+  (after! spray
+    (setopt spray-wpm 750
+            spray-ramp 4)
+    (custom-set-faces
+     '(spray-accent-face ((t :inherit (error spray-base-face))))))
+#+end_src
+
+** Calfw
+#+begin_src elisp
+  (autoload #'cfw:open-org-calendar "calfw-org" "Open an org schedule calendar in the new buffer." t)
+
+  (bind-key "c" #'cfw:open-org-calendar my/open-map)
+#+end_src
+
+** Ement
+#+begin_src elisp
+  (add-hook 'ement-room-compose-hook #'corfu-mode)
+
+  (after! ement
+    (setopt ement-room-use-variable-pitch t
+            ement-room-send-message-filter #'ement-room-send-org-filter))
+#+end_src
+
+* Miscellaneous
+** ¯\_(ツ)_/¯
+This is very important.
+#+begin_src elisp
+  (defun my/shruggie ()
+    "Insert ¯\\_(ツ)_/¯."
+    (interactive)
+    (insert "¯\\_(ツ)_/¯"))
+  (bind-key "C-x 8 s" #'my/shruggie)
+#+end_src
+
+** Sarcastic Text
+#+begin_src elisp
+  (defun my/sarcastic (start end)
+    "Convert active region's casing to sArCaStIc."
+    (interactive "r")
+    (unless (use-region-p)
+      (user-error "No region selected!"))
+    (let* ((text (buffer-substring start end))
+           (sarcastic-chars (cl-loop for c across text
+                                     for i from 0
+                                     if (zerop (mod i 2))
+                                     collect (downcase c)
+                                     else
+                                     collect (upcase c)))
+           (sarcastic (apply #'string sarcastic-chars)))
+      (delete-region start end)
+      (insert sarcastic)))
+#+end_src
+
+** Frame Screenshots
+Passing the image data directly to [[help:call-process-region][call-process-region]] doesn't work, and results in the clipboard data becoming corrupted for some reason.
+#+begin_src elisp
+  (defun my/screenshot-frame ()
+    "Take a screenshot of the current frame and save it to the clipboard."
+    (interactive)
+    (with-temp-buffer
+      (insert (x-export-frames nil 'png))
+      (call-process-region nil nil "wl-copy")))
+#+end_src
+
+** Toggle Translucence
+#+begin_src elisp
+  (defun my/toggle-frame-translucence ()
+    "Toggle translucence for the current frame."
+    (interactive)
+    (set-frame-parameter
+     nil 'alpha-background
+     (if (= 0.85 (frame-parameter nil 'alpha-background))
+         1.0
+       0.85)))
+           
+  (bind-key "t" #'my/toggle-frame-translucence my/toggle-map)
+#+end_src
+
+** nov.el
+#+begin_src elisp
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
+  (add-hook 'nov-mode-hook #'visual-fill-column-mode)
+
+  (after! nov
+    (setopt nov-text-width t
+            visual-fill-column-center-text t))
+#+end_src

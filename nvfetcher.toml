@@ -1,0 +1,51 @@
+[doom-snippets]
+src.git = "https://github.com/doomemacs/snippets"
+fetch.github = "doomemacs/snippets"
+
+[typst-ts-mode]
+src.git = "https://git.sr.ht/~meow_king/typst-ts-mode"
+fetch.git = "https://git.sr.ht/~meow_king/typst-ts-mode"
+
+[copilot-el]
+src.git = "https://github.com/zerolfx/copilot.el"
+fetch.github = "zerolfx/copilot.el"
+
+[syncthing-el]
+src.github_tag = "KeyWeeUsr/emacs-syncthing"
+fetch.github = "KeyWeeUsr/emacs-syncthing"
+
+[eglot-booster]
+src.git = "https://github.com/jdtsmith/eglot-booster"
+fetch.github = "jdtsmith/eglot-booster"
+
+[org-popup-posframe]
+src.git = "https://github.com/A7R7/org-popup-posframe"
+fetch.github = "A7R7/org-popup-posframe"
+
+[org-typst]
+src.git = "https://github.com/skissue/org-typst"
+fetch.github = "skissue/org-typst"
+
+[indent-bars]
+src.git = "https://github.com/jdtsmith/indent-bars"
+fetch.github = "jdtsmith/indent-bars"
+
+[treesit-fold]
+src.git = "https://github.com/emacs-tree-sitter/treesit-fold"
+fetch.github = "emacs-tree-sitter/treesit-fold"
+
+[gptel-quick]
+src.git = "https://github.com/karthink/gptel-quick"
+fetch.github = "karthink/gptel-quick"
+
+[consult-omni]
+src.git = "https://github.com/armindarvish/consult-omni"
+fetch.github = "armindarvish/consult-omni"
+
+[consult-mu]
+src.git = "https://github.com/armindarvish/consult-mu"
+fetch.github = "armindarvish/consult-mu"
+
+[revealjs]
+src.github_tag = "hakimel/reveal.js"
+fetch.github = "hakimel/reveal.js"

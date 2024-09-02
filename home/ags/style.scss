@@ -1,0 +1,159 @@
+$bg: #282c34;
+$fg: #bbc2cf;
+$base0: #1b2229;
+$base1: #1c1f24;
+$base2: #202328;
+$base3: #23272e;
+$base4: #3f444a;
+$base5: #5b6268;
+$base6: #73797e;
+$base7: #9ca0a4;
+$base8: #dfdfdf;
+$red: #ff6c6b;
+$orange: #da8548;
+$green: #98be65;
+$teal: #4db5bd;
+$yellow: #ecbe7b;
+$blue: #51afef;
+$dark-blue: #2257a0;
+$magenta: #c678dd;
+$violet: #a9a1e1;
+$cyan: #46d9ff;
+$dark-cyan: #5699af;
+
+* {
+  font-size: 16pt;
+  font-family: Iosevka SS18;
+  color: $fg;
+}
+
+window {
+  background-color: rgba($bg, 0.5);
+  border-radius: 16px;
+
+  & > box {
+    margin-top: 0.4em;
+  }
+}
+
+.workspaces {
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+
+    label {
+      color: $base5;
+      font-size: 18pt;
+    }
+  }
+
+  .focused label {
+    color: $blue;
+  }
+
+  .active label {
+    color: $fg;
+  }
+}
+
+.segment {
+  margin: 0.2em 0.0em;
+  padding: 0.1em 0;
+  min-width: 1.6em;
+  border-width: 0;
+  border-radius: 16px;
+  background: $base4;
+
+  &:last-child {
+      margin-bottom: 0;
+  }
+}
+
+.stat {
+  min-width: 5em;
+  min-height: 5em;
+  font-size: 0.25em;
+  background: $base5;
+
+  &.green {
+    color: $green;
+  }
+
+  &.red {
+    color: $red;
+  }
+
+  &.orange {
+    color: $orange;
+  }
+
+  &.yellow {
+    color: $yellow;
+  }
+}
+
+.systray {
+  padding: 0.2em 0;
+
+  button {
+    background: none;
+    border: none;
+  }
+}
+
+.clock {
+  :nth-child(2) {
+    color: $blue;
+  }
+}
+
+.player {
+    padding: 10px;
+    min-width: 350px;
+}
+
+.player .img {
+    min-width: 100px;
+    min-height: 100px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 13px;
+    margin-right: 1em;
+}
+
+.player .title {
+    font-size: 1.2em;
+}
+
+.player .artist {
+    font-size: 1.1em;
+    color: $fg;
+}
+
+.player scale.position {
+    padding: 0;
+    margin-bottom: .3em;
+}
+
+.player scale.position trough {
+    min-height: 8px;
+}
+
+.player scale.position highlight {
+    background-color: $bg;
+}
+
+.player scale.position slider {
+    all: unset;
+}
+
+.player button {
+    min-height: 1em;
+    min-width: 1em;
+    padding: .3em;
+}
+
+.player button.play-pause {
+    margin: 0 .3em;
+}

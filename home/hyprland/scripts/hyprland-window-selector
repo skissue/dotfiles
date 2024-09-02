@@ -1,0 +1,21 @@
+#!/usr/bin/env nu
+
+# Only `mapped` windows seem to be actually visible ones
+# Special workspaces have ID < 0, don't want those either
+let windows = (hyprctl clients -j 
+               | from json 
+               | where mapped
+               | where workspace.id > 0
+               | select title address)
+
+let choice = ($windows
+              | get title
+              | to text
+              | sh -c $env.DMENU)
+
+let address = ($windows
+               | where title == $choice
+               | get address
+               | to text)
+
+hyprctl dispatch focuswindow $'address:($address)'
