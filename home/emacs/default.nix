@@ -112,6 +112,7 @@ in {
         web-mode
         emmet-mode
         d2-mode
+        csv-mode
         # Org
         org-contrib
         org-modern
