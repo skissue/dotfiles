@@ -1502,8 +1502,8 @@ This function is called by `org-babel-execute-src-block'.")
   (setopt typst-ts-mode-indent-offset 2))
 (after! (typst-ts-mode eglot)
   (setf (alist-get 'typst-ts-mode eglot-server-programs)
-        ("tinymist" :initializationOptions
-         (:formatterMode "typstyle"))))
+        '("tinymist" :initializationOptions
+          (:formatterMode "typstyle"))))
 
 (setf (alist-get "\\.nu\\'" auto-mode-alist
                  nil nil #'equal)

@@ -2065,8 +2065,8 @@ Common Lisp.
     (setopt typst-ts-mode-indent-offset 2))
   (after! (typst-ts-mode eglot)
     (setf (alist-get 'typst-ts-mode eglot-server-programs)
-          ("tinymist" :initializationOptions
-           (:formatterMode "typstyle"))))
+          '("tinymist" :initializationOptions
+            (:formatterMode "typstyle"))))
 #+end_src
 
 ** Nushell
