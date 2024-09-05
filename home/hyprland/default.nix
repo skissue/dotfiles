@@ -8,6 +8,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    plugins = [inputs.hypr-dynamic-cursors.packages.${pkgs.system}.default];
     extraConfig = ''
       source = ${mutable-link ./hyprland.conf}
     '';
