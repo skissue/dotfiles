@@ -167,11 +167,11 @@
         "rocksdb": "rocksdb"
       },
       "locked": {
-        "lastModified": 1725035022,
-        "narHash": "sha256-ku4o0aXtpIcS+XMVUwBSMmBr3BvEMFPOTABJ4Sqp+MI=",
+        "lastModified": 1725209064,
+        "narHash": "sha256-ut3IWEueNR/hT7NyGfuK5IYtppC6ArSoJdEfFuD/0vE=",
         "owner": "girlbossceo",
         "repo": "conduwuit",
-        "rev": "9fde835673d3a227fd3f9740edf17076a5e01a28",
+        "rev": "8f7ade4c22533a3177bfd8f175e178573ba6c1d4",
         "type": "github"
       },
       "original": {
