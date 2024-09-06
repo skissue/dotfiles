@@ -76,6 +76,10 @@
       url = "github:VirtCode/hypr-dynamic-cursors";
       inputs.hyprland.follows = "hyprland";
     };
+    hyprscroller = {
+      url = "github:dawsers/hyprscroller";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   outputs = {
