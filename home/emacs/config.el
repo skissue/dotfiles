@@ -1126,7 +1126,9 @@ For our purposes, a note must not be a directory, must satisfy
           org-todo-keyword-faces `(("CANCELED"
                                     :foreground ,(catppuccin-get-color 'red))
                                    ("WAIT"
-                                    :foreground ,(catppuccin-get-color 'yellow))))
+                                    :foreground ,(catppuccin-get-color 'yellow)))
+          org-refile-targets     '((nil . (:maxlevel . 2))
+                                   (org-agenda-files . (:maxlevel 2))))
   (custom-set-faces
    `(org-headline-done ((t :inherit nil
                            :italic t
