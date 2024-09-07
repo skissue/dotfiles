@@ -126,6 +126,7 @@
 (setopt default-minibuffer-frame (make-frame '((window-system . pgtk)
                                                (minibuffer . only)
                                                (title . "MINIBUFFER"))))
+(defvar my/minibuffer-selected-window nil)
 
 (defsubst my/toggle-minibuffer-workspace ()
   "Toggle Hyprland's `minibuffer' special workspace."
@@ -148,6 +149,8 @@
   (let ((orig-frame (selected-frame)))
     (unwind-protect
         (progn
+          (when (zerop (minibuffer-depth))
+            (setq my/minibuffer-selected-window (selected-window)))
           ;; Could already be active if in a recursive minibuffer.
           (unless (my/minibuffer-workspace-active-p)
             (my/toggle-minibuffer-workspace))
@@ -155,8 +158,16 @@
           (apply fn args))
       (when (and (zerop (minibuffer-depth))
                  (my/minibuffer-workspace-active-p))
-        (my/toggle-minibuffer-workspace))
-      (select-frame-set-input-focus orig-frame))))
+        (my/toggle-minibuffer-workspace)
+        (select-frame-set-input-focus orig-frame)))))
+
+(define-advice minibuffer-selected-window (:override () popup-fix)
+  "Return window selected just before minibuffer window was selected.
+Return nil if the selected window is not a minibuffer window."
+  (when (and (> (minibuffer-depth) 0)
+             (minibufferp)
+             (window-live-p my/minibuffer-selected-window))
+    my/minibuffer-selected-window))
 
 (setopt comint-prompt-read-only t)
 
