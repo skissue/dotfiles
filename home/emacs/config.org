@@ -270,11 +270,49 @@ Only popup errors, don't interrupt me for mere warnings.
   (winner-mode)
 #+end_src
 
-** Recursive Minibuffer
+** Minibuffer
 Recursive minibuffers allow usage of the minibuffer when in the minibuffer, "recursing" into layers. Very useful (especially with [[*Vertico][Vertico]]), though disabled by default (probably because it could easily be confusing).
 #+begin_src elisp
   (setopt enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode)
+#+end_src
+
+I like using a lot of different frames, since it allows me to take full advantage of tiling window managers. However, this makes the minibuffer annoying to use, since it's limited to the frame size by default. This black magic allows using an entirely separate frame for the minibuffer, activating it dynamically using Hyprland's special workspaces. We manage the frame ourselves instead of using Emacs' built-in ~minibuffer~ frame parameter so that the echo area still stays on each frame.
+#+begin_src elisp
+  (setopt default-minibuffer-frame (make-frame '((window-system . pgtk)
+                                                 (minibuffer . only)
+                                                 (title . "MINIBUFFER"))))
+
+  (defsubst my/toggle-minibuffer-workspace ()
+    "Toggle Hyprland's `minibuffer' special workspace."
+    (call-process "hyprctl" nil 0 nil
+                  "dispatch" "togglespecialworkspace" "minibuffer"))
+
+  (defun my/minibuffer-workspace-active-p ()
+    "Return non-nil if the minibuffer Hyprland workspace is currently active."
+    (let* ((json (with-temp-buffer
+                   ;; `hyprctl activeworkspace' ignores special workspaces.
+                   (call-process "hyprctl" nil t nil
+                                 "activewindow" "-j")
+                   (goto-char (point-min))
+                   (json-parse-buffer :object-type 'alist)))
+           (workspace (map-nested-elt json '(workspace name))))
+      (string= workspace "special:minibuffer")))
+
+  (define-advice read-from-minibuffer (:around (fn &rest args) use-popup-frame)
+    "Activate a separate minibuffer frame while reading from the minibuffer."
+    (let ((orig-frame (selected-frame)))
+      (unwind-protect
+          (progn
+            ;; Could already be active if in a recursive minibuffer.
+            (unless (my/minibuffer-workspace-active-p)
+              (my/toggle-minibuffer-workspace))
+            (select-frame-set-input-focus default-minibuffer-frame)
+            (apply fn args))
+        (when (and (zerop (minibuffer-depth))
+                   (my/minibuffer-workspace-active-p))
+          (my/toggle-minibuffer-workspace))
+        (select-frame-set-input-focus orig-frame))))
 #+end_src
 
 ** Comint
@@ -664,7 +702,7 @@ Integrates Avy with [[*Embark][Embark]] (taken from [[https://karthinks.com/soft
              ("M-P" . vertico-repeat-previous)
              ("M-N" . vertico-repeat-nex))
 
-  (setopt vertico-count 15
+  (setopt vertico-count 30
           vertico-cycle t
           vertico-resize nil
           vertico-quick1 "arstneio"
