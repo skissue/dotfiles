@@ -41,7 +41,7 @@
     },
     "copilot-el": {
         "cargoLocks": null,
-        "date": "2024-08-16",
+        "date": "2024-09-06",
         "extract": null,
         "name": "copilot-el",
         "passthru": null,
@@ -53,11 +53,11 @@
             "name": null,
             "owner": "zerolfx",
             "repo": "copilot.el",
-            "rev": "535ef61e82f09d744cd5b097b1fc99f08cce175c",
-            "sha256": "sha256-/ZDnEZWUFcKnUtFrd/4C7LX16GAdUQncU8ZnYzntKS0=",
+            "rev": "8ddfbee370d4c6705b3bbd9532d0c722a78ba844",
+            "sha256": "sha256-iMstEFd/Des5AGJY26S1MsC/lxceVr0WGFkLJpIUUZg=",
             "type": "github"
         },
-        "version": "535ef61e82f09d744cd5b097b1fc99f08cce175c"
+        "version": "8ddfbee370d4c6705b3bbd9532d0c722a78ba844"
     },
     "doom-snippets": {
         "cargoLocks": null,
