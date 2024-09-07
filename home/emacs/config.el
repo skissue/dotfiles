@@ -123,51 +123,52 @@
 (setopt enable-recursive-minibuffers t)
 (minibuffer-depth-indicate-mode)
 
-(setopt default-minibuffer-frame (make-frame '((window-system . pgtk)
-                                               (minibuffer . only)
-                                               (title . "MINIBUFFER"))))
-(defvar my/minibuffer-selected-window nil)
+(when (daemonp)
+  (setopt default-minibuffer-frame (make-frame '((window-system . pgtk)
+                                                 (minibuffer . only)
+                                                 (title . "MINIBUFFER"))))
+  (defvar my/minibuffer-selected-window nil)
 
-(defsubst my/toggle-minibuffer-workspace ()
-  "Toggle Hyprland's `minibuffer' special workspace."
-  (call-process "hyprctl" nil 0 nil
-                "dispatch" "togglespecialworkspace" "minibuffer"))
+  (defsubst my/toggle-minibuffer-workspace ()
+    "Toggle Hyprland's `minibuffer' special workspace."
+    (call-process "hyprctl" nil 0 nil
+                  "dispatch" "togglespecialworkspace" "minibuffer"))
 
-(defun my/minibuffer-workspace-active-p ()
-  "Return non-nil if the minibuffer Hyprland workspace is currently active."
-  (let* ((json (with-temp-buffer
-                 ;; `hyprctl activeworkspace' ignores special workspaces.
-                 (call-process "hyprctl" nil t nil
-                               "activewindow" "-j")
-                 (goto-char (point-min))
-                 (json-parse-buffer :object-type 'alist)))
-         (workspace (map-nested-elt json '(workspace name))))
-    (string= workspace "special:minibuffer")))
+  (defun my/minibuffer-workspace-active-p ()
+    "Return non-nil if the minibuffer Hyprland workspace is currently active."
+    (let* ((json (with-temp-buffer
+                   ;; `hyprctl activeworkspace' ignores special workspaces.
+                   (call-process "hyprctl" nil t nil
+                                 "activewindow" "-j")
+                   (goto-char (point-min))
+                   (json-parse-buffer :object-type 'alist)))
+           (workspace (map-nested-elt json '(workspace name))))
+      (string= workspace "special:minibuffer")))
 
-(define-advice read-from-minibuffer (:around (fn &rest args) use-popup-frame)
-  "Activate a separate minibuffer frame while reading from the minibuffer."
-  (let ((orig-frame (selected-frame)))
-    (unwind-protect
-        (progn
-          (when (zerop (minibuffer-depth))
-            (setq my/minibuffer-selected-window (selected-window)))
-          ;; Could already be active if in a recursive minibuffer.
-          (unless (my/minibuffer-workspace-active-p)
-            (my/toggle-minibuffer-workspace))
-          (select-frame-set-input-focus default-minibuffer-frame)
-          (apply fn args))
-      (when (and (zerop (minibuffer-depth))
-                 (my/minibuffer-workspace-active-p))
-        (my/toggle-minibuffer-workspace)
-        (select-frame-set-input-focus orig-frame)))))
+  (define-advice read-from-minibuffer (:around (fn &rest args) use-popup-frame)
+    "Activate a separate minibuffer frame while reading from the minibuffer."
+    (let ((orig-frame (selected-frame)))
+      (unwind-protect
+           (progn
+            (when (zerop (minibuffer-depth))
+              (setq my/minibuffer-selected-window (selected-window)))
+            ;; Could already be active if in a recursive minibuffer.
+            (unless (my/minibuffer-workspace-active-p)
+              (my/toggle-minibuffer-workspace))
+            (select-frame-set-input-focus default-minibuffer-frame)
+            (apply fn args))
+        (when (and (zerop (minibuffer-depth))
+                   (my/minibuffer-workspace-active-p))
+          (my/toggle-minibuffer-workspace)
+          (select-frame-set-input-focus orig-frame)))))
 
-(define-advice minibuffer-selected-window (:override () popup-fix)
-  "Return window selected just before minibuffer window was selected.
+  (define-advice minibuffer-selected-window (:override () popup-fix)
+    "Return window selected just before minibuffer window was selected.
 Return nil if the selected window is not a minibuffer window."
-  (when (and (> (minibuffer-depth) 0)
-             (minibufferp)
-             (window-live-p my/minibuffer-selected-window))
-    my/minibuffer-selected-window))
+    (when (and (> (minibuffer-depth) 0)
+               (minibufferp)
+               (window-live-p my/minibuffer-selected-window))
+      my/minibuffer-selected-window)))
 
 (setopt comint-prompt-read-only t)
 
