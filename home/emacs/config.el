@@ -1838,7 +1838,8 @@ This function is called by `org-babel-execute-src-block'.")
 (add-hook 'ement-room-compose-hook #'corfu-mode)
 
 (after! ement
-  (setopt ement-room-use-variable-pitch t
+  (setopt ement-save-sessions t
+          ement-room-use-variable-pitch t
           ement-room-send-message-filter #'ement-room-send-org-filter))
 
 (defun my/shruggie ()
