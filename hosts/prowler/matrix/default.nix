@@ -34,6 +34,10 @@
           "@ad:matrix.adtailnet" = "admin";
         };
       };
+      matrix = {
+        delivery_receipts = true;
+        sync_direct_chat_list = true;
+      };
     };
   };
 
