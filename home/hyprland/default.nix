@@ -10,6 +10,7 @@
     enable = true;
     plugins = [
       inputs.hypr-dynamic-cursors.packages.${pkgs.system}.default
+      inputs.hyprfocus.packages.${pkgs.system}.default
       inputs.hyprscroller.packages.${pkgs.system}.default
     ];
     extraConfig = ''
