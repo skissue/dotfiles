@@ -352,6 +352,10 @@ Deal with various things that don't play nice with this setup.
   (add-to-list 'display-buffer-alist
                '((derived-mode . calendar-mode)
                  display-buffer-pop-up-window))
+  ;; Magit diff buffers
+  (add-to-list 'display-buffer-alist
+               '((major-mode . magit-diff-mode)
+                 display-buffer-pop-up-window))
 #+end_src
 
 * Appearance

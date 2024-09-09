@@ -183,6 +183,10 @@ Return nil if the selected window is not a minibuffer window."
 (add-to-list 'display-buffer-alist
              '((derived-mode . calendar-mode)
                display-buffer-pop-up-window))
+;; Magit diff buffers
+(add-to-list 'display-buffer-alist
+             '((major-mode . magit-diff-mode)
+               display-buffer-pop-up-window))
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
