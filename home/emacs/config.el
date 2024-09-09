@@ -179,6 +179,11 @@ Return nil if the selected window is not a minibuffer window."
 (setopt display-buffer-base-action '(display-buffer-pop-up-frame)
         frame-auto-hide-function #'delete-frame)
 
+;; `org-read-date'
+(add-to-list 'display-buffer-alist
+             '((derived-mode . calendar-mode)
+               display-buffer-pop-up-window))
+
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 (global-visual-line-mode)

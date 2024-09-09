@@ -346,6 +346,14 @@ I want to use frames rather than windows for most operations, so we configure [[
           frame-auto-hide-function #'delete-frame)
 #+end_src
 
+Deal with various things that don't play nice with this setup.
+#+begin_src elisp
+  ;; `org-read-date'
+  (add-to-list 'display-buffer-alist
+               '((derived-mode . calendar-mode)
+                 display-buffer-pop-up-window))
+#+end_src
+
 * Appearance
 ** Line Numbers
 #+begin_src elisp
