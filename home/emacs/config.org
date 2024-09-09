@@ -340,9 +340,10 @@ I like using a lot of different frames, since it allows me to take full advantag
 #+end_src
 
 ** Frame Usage
-I want to use frames rather than windows for most operations, so we configure [[help:display-buffer-base-action][display-buffer-base-action]] to display buffers in frames by default.
+I want to use frames rather than windows for most operations, so we configure [[help:display-buffer-base-action][display-buffer-base-action]] to display buffers in frames by default. Setting [[help:frame-auto-hide-function][frame-auto-hide-function]] fixes functions like [[help:quit-window][quit-window]] not working.
 #+begin_src elisp
-  (setopt display-buffer-base-action '(display-buffer-pop-up-frame))
+  (setopt display-buffer-base-action '(display-buffer-pop-up-frame)
+          frame-auto-hide-function #'delete-frame)
 #+end_src
 
 * Appearance
