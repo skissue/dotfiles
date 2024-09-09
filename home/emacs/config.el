@@ -176,6 +176,8 @@ Return nil if the selected window is not a minibuffer window."
         compilation-ask-about-save nil
         compilation-scroll-output 'first-error)
 
+(setopt display-buffer-base-action '(display-buffer-pop-up-frame))
+
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 (global-visual-line-mode)
