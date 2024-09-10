@@ -534,7 +534,9 @@ it by adjusting the return value of
 
 (after! embark
   ;; Needed for `eww-download-directory' in `embark-download-url'.
-  (require 'eww))
+  (require 'eww)
+  (setopt embark-verbose-indicator-display-action
+          '(display-buffer-at-bottom (window-height . fit-window-to-buffer))))
 
 (defun my/corfu-enable-in-minibuffer ()
  "Enable Corfu in the minibuffer if `completion-at-point' is bound."
