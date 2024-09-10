@@ -359,6 +359,10 @@ Deal with various things that don't play nice with this setup.
   ;; Org Src buffers
   (after! org
     (setopt org-src-window-setup 'current-window))
+  ;; Org Capture pops up a useless frame without this
+  (add-to-list 'display-buffer-alist
+               `(,(rx "*Capture*")
+                 display-buffer-pop-up-window))
 #+end_src
 
 * Appearance

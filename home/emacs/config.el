@@ -190,6 +190,10 @@ Return nil if the selected window is not a minibuffer window."
 ;; Org Src buffers
 (after! org
   (setopt org-src-window-setup 'current-window))
+;; Org Capture pops up a useless frame without this
+(add-to-list 'display-buffer-alist
+             `(,(rx "*Capture*")
+               display-buffer-pop-up-window))
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
