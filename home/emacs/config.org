@@ -339,7 +339,7 @@ I like using a lot of different frames, since it allows me to take full advantag
           compilation-scroll-output 'first-error)
 #+end_src
 
-** Frame Usage
+** Prefer Frames
 I want to use frames rather than windows for most operations, so we configure [[help:display-buffer-base-action][display-buffer-base-action]] to display buffers in frames by default. Setting [[help:frame-auto-hide-function][frame-auto-hide-function]] fixes functions like [[help:quit-window][quit-window]] not working.
 #+begin_src elisp
   (setopt display-buffer-base-action '(display-buffer-pop-up-frame)
@@ -356,6 +356,9 @@ Deal with various things that don't play nice with this setup.
   (add-to-list 'display-buffer-alist
                '((major-mode . magit-diff-mode)
                  display-buffer-pop-up-window))
+  ;; Org Src buffers
+  (after! org
+    (setopt org-src-window-setup 'current-window))
 #+end_src
 
 * Appearance
