@@ -51,39 +51,39 @@
   };
   eglot-booster = {
     pname = "eglot-booster";
-    version = "e19dd7ea81bada84c66e8bdd121408d9c0761fe6";
+    version = "3f9159a8b7fe87e2f01280a2c4c98ca6dab49d13";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "eglot-booster";
-      rev = "e19dd7ea81bada84c66e8bdd121408d9c0761fe6";
+      rev = "3f9159a8b7fe87e2f01280a2c4c98ca6dab49d13";
       fetchSubmodules = false;
-      sha256 = "sha256-vF34ZoUUj8RENyH9OeKGSPk34G6KXZhEZozQKEcRNhs=";
+      sha256 = "sha256-yRZci0foZUw2Thx1SwSoY0iPf2DmkAnRp6U+rdx1Bas=";
     };
-    date = "2024-04-11";
+    date = "2024-09-11";
   };
   gptel-quick = {
     pname = "gptel-quick";
-    version = "ae3847287c2d21fb035e15b9a250191ab16463bb";
+    version = "54f1c65b416b5a9c93640f6d2ed86734b9ae1336";
     src = fetchFromGitHub {
       owner = "karthink";
       repo = "gptel-quick";
-      rev = "ae3847287c2d21fb035e15b9a250191ab16463bb";
+      rev = "54f1c65b416b5a9c93640f6d2ed86734b9ae1336";
       fetchSubmodules = false;
-      sha256 = "sha256-IpH76pIP+JiwPnP+IchKIdKvJi7LuFafPQRKm5/jZ9g=";
+      sha256 = "sha256-ZAx8MQNdBR+n8hTZUh+eGmVJfcGu46q9d71++NzisAg=";
     };
-    date = "2024-06-28";
+    date = "2024-09-09";
   };
   indent-bars = {
     pname = "indent-bars";
-    version = "c8376cf4373a6444ca88e88736db7576dedb51d6";
+    version = "5ca30b97a758126bfcd9402bbbb3c9c990cc3fa3";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "indent-bars";
-      rev = "c8376cf4373a6444ca88e88736db7576dedb51d6";
+      rev = "5ca30b97a758126bfcd9402bbbb3c9c990cc3fa3";
       fetchSubmodules = false;
-      sha256 = "sha256-MEegS7ArIQuE0z5e4h7EAnn+V0Q5MtIgthldyMpKrcA=";
+      sha256 = "sha256-AHjESS+JfTEGAzbxWzTi/frP4YtRv8F1HZErmjFf8dM=";
     };
-    date = "2024-08-30";
+    date = "2024-09-13";
   };
   org-popup-posframe = {
     pname = "org-popup-posframe";
@@ -133,15 +133,15 @@
   };
   treesit-fold = {
     pname = "treesit-fold";
-    version = "7312871386e4b525a0ced6a03dc33062cb27f573";
+    version = "3a7760f4c953ce14f9c2607dfdc1629cdc2664c9";
     src = fetchFromGitHub {
       owner = "emacs-tree-sitter";
       repo = "treesit-fold";
-      rev = "7312871386e4b525a0ced6a03dc33062cb27f573";
+      rev = "3a7760f4c953ce14f9c2607dfdc1629cdc2664c9";
       fetchSubmodules = false;
-      sha256 = "sha256-/RtT8Fg+wb5+uakmUSRxNtv9paAM6VgqeqJUSHp0S8c=";
+      sha256 = "sha256-9Djx/M9uwn5yX+kWKIoQQbCtT8Y63w+fM8wGJ6dbnmI=";
     };
-    date = "2024-07-25";
+    date = "2024-09-09";
   };
   typst-ts-mode = {
     pname = "typst-ts-mode";
