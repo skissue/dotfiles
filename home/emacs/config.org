@@ -2222,7 +2222,8 @@ Common Lisp.
 ** BibTeX
 #+begin_src elisp
   (after! bibtex
-    (setopt bibtex-maintain-sorted-entries 'entry-class
+    (setopt bibtex-dialect 'biblatex
+            bibtex-maintain-sorted-entries 'entry-class
             bibtex-entry-format t))
 #+end_src
 

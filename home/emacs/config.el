@@ -1623,7 +1623,8 @@ This function is called by `org-babel-execute-src-block'.")
 (add-hook 'web-mode-hook #'emmet-mode)
 
 (after! bibtex
-  (setopt bibtex-maintain-sorted-entries 'entry-class
+  (setopt bibtex-dialect 'biblatex
+          bibtex-maintain-sorted-entries 'entry-class
           bibtex-entry-format t))
 
 (bind-key "m" #'osm my/open-map)
