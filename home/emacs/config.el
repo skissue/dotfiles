@@ -1625,7 +1625,18 @@ This function is called by `org-babel-execute-src-block'.")
 (after! bibtex
   (setopt bibtex-dialect 'biblatex
           bibtex-maintain-sorted-entries 'entry-class
-          bibtex-entry-format t))
+          bibtex-entry-format t
+          bibtex-autokey-expand-strings t
+          bibtex-autokey-names-stretch 1
+          bibtex-autokey-name-case-convert-function #'capitalize
+          bibtex-autokey-year-length 4
+          bibtex-autokey-titlewords 6
+          bibtex-autokey-titlewords-stretch 2
+          bibtex-autokey-titleword-length 8
+          bibtex-autokey-titleword-case-convert-function #'capitalize
+          bibtex-autokey-titleword-separator ""
+          bibtex-autokey-year-title-separator ":"
+          bibtex-autokey-edit-before-use nil))
 
 (bind-key "m" #'osm my/open-map)
 
