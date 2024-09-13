@@ -143,6 +143,7 @@ in {
         citar
         citar-embark
         citar-denote
+        biblio
         # Applications
         dirvish
         emms
