@@ -1638,6 +1638,9 @@ This function is called by `org-babel-execute-src-block'.")
           bibtex-autokey-year-title-separator ":"
           bibtex-autokey-edit-before-use nil))
 
+(after! biblio
+  (setopt biblio-bibtex-use-autokey t))
+
 (bind-key "m" #'osm my/open-map)
 
 (add-hook 'osm-mode-hook (lambda ()

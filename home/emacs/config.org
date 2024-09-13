@@ -2238,6 +2238,11 @@ Common Lisp.
             bibtex-autokey-edit-before-use nil))
 #+end_src
 
+#+begin_src elisp
+  (after! biblio
+    (setopt biblio-bibtex-use-autokey t))
+#+end_src
+
 * Applications
 ** Osm.el
 I have [[help:global-visual-line-mode][global-visual-line-mode]] enabled, which breaks stuff inside map buffers, so I undo the breaking stuff.
