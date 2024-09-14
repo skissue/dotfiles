@@ -2488,9 +2488,12 @@ Syntax highlighting.
 #+end_src
 
 ** Calc
+Calc has a weird way of storing variable settings, since I want to set them in this config rather than saving them with its own interface ¯\_(ツ)_/¯.
 #+begin_src elisp
   (after! calc
-    (bind-key "C-o" #'casual-calc-tmenu calc-mode-map))
+    (bind-key "C-o" #'casual-calc-tmenu calc-mode-map)
+    (setf (alist-get 'calc-hms-format calc-mode-var-list)
+          '("%sh %sm %ss")))
 #+end_src
 
 ** Verb

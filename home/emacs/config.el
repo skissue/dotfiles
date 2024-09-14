@@ -1848,7 +1848,9 @@ This function is called by `org-babel-execute-src-block'.")
   (eshell-syntax-highlighting-global-mode))
 
 (after! calc
-  (bind-key "C-o" #'casual-calc-tmenu calc-mode-map))
+  (bind-key "C-o" #'casual-calc-tmenu calc-mode-map)
+  (setf (alist-get 'calc-hms-format calc-mode-var-list)
+        '("%sh %sm %ss")))
 
 (after! org
   ;; Can't use `bind-keys' because we need `verb-command-map' to be evaluated.
