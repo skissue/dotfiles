@@ -945,6 +945,11 @@ Calls the function in `consult-omni-default-interactive-command'." t)
   "=" #'expreg-expand
   "+" #'expreg-contract)
 
+(bind-key [remap list-buffers] #'ibuffer)
+
+(after! ibuffer
+  (setopt ibuffer-old-time 2))
+
 (defun my/denote-ingest-file (arg)
   "Rename a file using `denote-rename-file', then move it into
 `denote-directory'. With prefix argument ARG, copy the file instead of moving
