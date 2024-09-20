@@ -75,15 +75,15 @@
   };
   indent-bars = {
     pname = "indent-bars";
-    version = "5ca30b97a758126bfcd9402bbbb3c9c990cc3fa3";
+    version = "d39b1e3e67ec74d6642bcc904a03be1e5fbf664a";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "indent-bars";
-      rev = "5ca30b97a758126bfcd9402bbbb3c9c990cc3fa3";
+      rev = "d39b1e3e67ec74d6642bcc904a03be1e5fbf664a";
       fetchSubmodules = false;
-      sha256 = "sha256-AHjESS+JfTEGAzbxWzTi/frP4YtRv8F1HZErmjFf8dM=";
+      sha256 = "sha256-bkO6Hvfssxlrc3GTYKh4LVDnT6Q+X/IEyn0xUThY7o8=";
     };
-    date = "2024-09-13";
+    date = "2024-09-19";
   };
   org-popup-posframe = {
     pname = "org-popup-posframe";
@@ -133,15 +133,15 @@
   };
   treesit-fold = {
     pname = "treesit-fold";
-    version = "3a7760f4c953ce14f9c2607dfdc1629cdc2664c9";
+    version = "f2bf438428976ae40e7710e94f6a32676f5952cf";
     src = fetchFromGitHub {
       owner = "emacs-tree-sitter";
       repo = "treesit-fold";
-      rev = "3a7760f4c953ce14f9c2607dfdc1629cdc2664c9";
+      rev = "f2bf438428976ae40e7710e94f6a32676f5952cf";
       fetchSubmodules = false;
-      sha256 = "sha256-9Djx/M9uwn5yX+kWKIoQQbCtT8Y63w+fM8wGJ6dbnmI=";
+      sha256 = "sha256-npNpjOgsAWXdD05LbRJQ2BLZAfxJXHufTSSizVYGtBI=";
     };
-    date = "2024-09-09";
+    date = "2024-09-18";
   };
   typst-ts-mode = {
     pname = "typst-ts-mode";
