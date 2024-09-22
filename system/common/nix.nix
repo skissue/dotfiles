@@ -77,4 +77,8 @@
 
   # Default `command-not-found` doesn't work with pure Flakes
   programs.command-not-found.enable = false;
+
+  # Run binaries without having to patch them. Pair with
+  # https://github.com/thiagokokada/nix-alien for maximum profit!
+  programs.nix-ld.enable = true;
 }
