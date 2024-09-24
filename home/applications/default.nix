@@ -55,6 +55,7 @@
   };
 
   services.easyeffects.enable = true;
+  services.kdeconnect.enable = true;
 
   xdg.mimeApps.defaultApplications = {
     "image/png" = "imv.desktop";
