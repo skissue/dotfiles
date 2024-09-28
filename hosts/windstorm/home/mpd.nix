@@ -1,5 +1,5 @@
-{pkgs, ...}:
-{  services.mpd = {
+{pkgs, ...}: {
+  services.mpd = {
     enable = true;
     musicDirectory = "/home/ad/BigBoiStorage/Music";
     extraConfig = ''
@@ -23,7 +23,12 @@
 
   programs.ncmpcpp = {
     enable = true;
-    package = pkgs.ncmpcpp.override {visualizerSupport = true;};
+    # TODO Remove when https://github.com/NixOS/nixpkgs/pull/344520 merged.
+    # package = pkgs.ncmpcpp.override {visualizerSupport = true;};
+    package = pkgs.ncmpcpp.overrideAttrs (oldAttrs: {
+      configureFlags = oldAttrs.configureFlags ++ ["--enable-visualizer" "--with-fftw"];
+      buildInputs = oldAttrs.buildInputs ++ [pkgs.fftw];
+    });
     settings = {
       visualizer_data_source = "/tmp/mpd.fifo";
       visualizer_output_name = "fifo";
