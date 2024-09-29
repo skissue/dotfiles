@@ -950,27 +950,13 @@ Calls the function in `consult-omni-default-interactive-command'." t)
 (after! ibuffer
   (setopt ibuffer-old-time 2))
 
-(defun my/denote-ingest-file (arg)
-  "Rename a file using `denote-rename-file', then move it into
-`denote-directory'. With prefix argument ARG, copy the file instead of moving
-it."
-  (interactive "P")
-  (let* ((fn (if arg #'copy-file #'rename-file))
-         (filename (expand-file-name (read-file-name "Ingest File: ")))
-         (basename (file-name-nondirectory filename))
-         (target (expand-file-name basename (denote-directory))))
-    (funcall fn filename target)
-    (apply #'denote-rename-file target
-           (denote--rename-get-file-info-from-prompts-or-existing target))))
-
-(bind-keys :map my/notes-map
+(bind-keys ("C-c X" . org-capture)
+           :map my/notes-map
            ("b" . denote-backlinks)
            ("f" . denote-open-or-create)
-           ("I" . my/denote-ingest-file)
            ("l" . denote-link-or-create)
            ("L" . denote-org-extras-link-to-heading)
            ("k" . denote-rename-file-keywords))
-(bind-key "C-c X" #'org-capture)
 
 (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
 
@@ -986,7 +972,7 @@ it."
                                   "reference" "thought" "journal")
           denote-date-prompt-use-org-read-date t
           denote-backlinks-show-context t
-          denote-prompts '(title date keywords template)
+          denote-prompts '(title keywords template)
           denote-dired-directories (list denote-directory)
           denote-dired-directories-include-subdirectories t
           denote-templates `((default . "")
@@ -1001,6 +987,32 @@ it."
 
 (after! org-capture
   (require 'denote))
+
+(defun my/denote-ingest-file (arg)
+  "Rename a file using `denote-rename-file', then move it into
+`denote-directory'. With prefix argument ARG, copy the file instead of moving
+it."
+  (interactive "P")
+  (require 'denote)
+  (let* ((fn (if arg #'copy-file #'rename-file))
+         (filename (expand-file-name (read-file-name "Ingest File: ")))
+         (basename (file-name-nondirectory filename))
+         (target (expand-file-name basename (denote-directory)))
+         (denote-prompts (cons 'date denote-prompts)))
+    (funcall fn filename target)
+    (apply #'denote-rename-file target
+           (denote--rename-get-file-info-from-prompts-or-existing target))))
+
+(defun my/denote-quick-create ()
+  "Create a new Denote note prompting only for title."
+  (interactive)
+  (require 'denote)
+  (let ((denote-prompts '(title)))
+    (call-interactively #'denote-create-note)))
+
+(bind-keys :map my/notes-map
+           ("n" . my/denote-quick-create)
+           ("I" . my/denote-ingest-file))
 
 (defun my/goto-thought-stack ()
   "Visit Denote thought stack file. Used by `org-capture' template."
