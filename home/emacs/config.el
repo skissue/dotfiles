@@ -364,14 +364,17 @@ it by adjusting the return value of
 (bind-key "<escape>" #'god-mode-all)
 
 (defun my/on-enter-god-mode ()
-  "Stylize mode-line when entering `god-mode'."
+  "Stylize mode-line and cursor when entering `god-mode'."
   (set-face-attribute 'mode-line-active nil
-                      :foreground (catppuccin-color 'flamingo)))
+                      :foreground (catppuccin-color 'flamingo))
+  (setopt cursor-type t))
 
 (defun my/on-exit-god-mode ()
-  "Un-stylize mode-line when exiting `god-mode'."
+  "Un-stylize mode-line and cursor when exiting `god-mode'."
   (set-face-attribute 'mode-line-active nil
-                      :foreground (catppuccin-color 'text)))
+                      :foreground (catppuccin-color 'text))
+  (when (not buffer-read-only)
+    (setopt cursor-type 'bar)))
 
 (add-hook 'god-mode-enabled-hook #'my/on-enter-god-mode)
 (add-hook 'god-mode-disabled-hook #'my/on-exit-god-mode)
