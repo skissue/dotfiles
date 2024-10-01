@@ -389,7 +389,8 @@ it by adjusting the return value of
 
   (dolist (hook '(magit-mode-hook
                   calc-mode-hook
-                  git-commit-mode-hook))
+                  git-commit-mode-hook
+                  org-agenda-mode-hook))
     (add-hook hook #'my/disable-god-mode))
 
   (custom-set-faces
