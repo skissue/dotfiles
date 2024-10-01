@@ -376,12 +376,21 @@ it by adjusting the return value of
   (when (not buffer-read-only)
     (setopt cursor-type 'bar)))
 
+(defun my/disable-god-mode ()
+    "Disable God Mode."
+    (god-mode-all -1))
+
 (add-hook 'god-mode-enabled-hook #'my/on-enter-god-mode)
 (add-hook 'god-mode-disabled-hook #'my/on-exit-god-mode)
 
 (after! god-mode
-  (setopt god-exempt-major-modes '(magit-status-mode calc-mode)
-          god-exempt-predicates '(god-exempt-mode-p))
+  (setopt god-exempt-major-modes nil
+          god-exempt-predicates nil)
+
+  (dolist (hook '(magit-mode-hook
+                  calc-mode-hook
+                  git-commit-mode-hook))
+    (add-hook hook #'my/disable-god-mode))
 
   (custom-set-faces
    '(god-mode-lighter ((t (:inherit error)))))
