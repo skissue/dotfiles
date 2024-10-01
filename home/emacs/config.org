@@ -618,8 +618,8 @@ I have no idea where else to put this, so here we are ¯\_(ツ)_/¯.
   (add-hook 'god-mode-disabled-hook #'my/on-exit-god-mode)
 
   (after! god-mode
-    (setopt god-exempt-major-modes nil
-            god-exempt-predicates nil)
+    (setopt god-exempt-major-modes '(magit-status-mode calc-mode)
+            god-exempt-predicates '(god-exempt-mode-p))
 
     (custom-set-faces
      '(god-mode-lighter ((t (:inherit error)))))
