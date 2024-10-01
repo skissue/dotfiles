@@ -367,14 +367,14 @@ it by adjusting the return value of
   "Stylize mode-line and cursor when entering `god-mode'."
   (set-face-attribute 'mode-line-active nil
                       :foreground (catppuccin-color 'flamingo))
-  (setopt cursor-type t))
+  (setq-local cursor-type t))
 
 (defun my/on-exit-god-mode ()
   "Un-stylize mode-line and cursor when exiting `god-mode'."
   (set-face-attribute 'mode-line-active nil
                       :foreground (catppuccin-color 'text))
   (when (not buffer-read-only)
-    (setopt cursor-type 'bar)))
+    (setq-local cursor-type 'bar)))
 
 (defun my/disable-god-mode ()
     "Disable God Mode."
