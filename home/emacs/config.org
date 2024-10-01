@@ -626,6 +626,13 @@ I have no idea where else to put this, so here we are ¯\_(ツ)_/¯.
 
     (after! minions
       (add-to-list 'minions-prominent-modes 'god-local-mode)))
+
+  (after! isearch
+    (require 'god-mode-isearch)
+    (bind-keys :map isearch-mode-map
+               ("<escape>" . god-mode-isearch-activate)
+               :map god-mode-isearch-map
+               ("<escape>" . god-mode-isearch-disable)))
 #+end_src
 
 ** Repeat Mode

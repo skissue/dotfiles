@@ -389,6 +389,13 @@ it by adjusting the return value of
   (after! minions
     (add-to-list 'minions-prominent-modes 'god-local-mode)))
 
+(after! isearch
+  (require 'god-mode-isearch)
+  (bind-keys :map isearch-mode-map
+             ("<escape>" . god-mode-isearch-activate)
+             :map god-mode-isearch-map
+             ("<escape>" . god-mode-isearch-disable)))
+
 (repeat-mode)
 
 (setopt repeat-exit-timeout 3)
