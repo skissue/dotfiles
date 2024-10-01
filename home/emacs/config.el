@@ -807,7 +807,8 @@ instead."
 
 (after! writeroom-mode
   (setopt writeroom-maximize-window nil
-          writeroom-fullscreen-effect 'maximized))
+          writeroom-fullscreen-effect 'maximized
+          writeroom-mode-line t))
 
 (add-hook 'text-mode-hook #'jinx-mode)
 (bind-key [remap ispell-word] #'jinx-correct)

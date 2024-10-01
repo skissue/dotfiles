@@ -1174,7 +1174,8 @@ In addition to auto-loading via filename or magic values, we also want to load t
 
   (after! writeroom-mode
     (setopt writeroom-maximize-window nil
-            writeroom-fullscreen-effect 'maximized))
+            writeroom-fullscreen-effect 'maximized
+            writeroom-mode-line t))
 #+end_src
 
 ** Jinx
