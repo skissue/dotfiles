@@ -361,13 +361,30 @@ it by adjusting the return value of
 
 (bind-key "C-`" #'previous-buffer)
 
-(global-devil-mode)
+(bind-key "<escape>" #'god-mode-all)
 
-(setopt devil-repeatable-keys nil)
+(defun my/on-enter-god-mode ()
+  "Stylize mode-line when entering `god-mode'."
+  (set-face-attribute 'mode-line-active nil
+                      :foreground (catppuccin-color 'flamingo)))
 
-(define-advice devil--update-command-loop-info
-    (:after (&rest _) set-original-command)
-  (setq this-original-command real-this-command))
+(defun my/on-exit-god-mode ()
+  "Un-stylize mode-line when exiting `god-mode'."
+  (set-face-attribute 'mode-line-active nil
+                      :foreground (catppuccin-color 'text)))
+
+(add-hook 'god-mode-enabled-hook #'my/on-enter-god-mode)
+(add-hook 'god-mode-disabled-hook #'my/on-exit-god-mode)
+
+(after! god-mode
+  (setopt god-exempt-major-modes nil
+          god-exempt-predicates nil)
+
+  (custom-set-faces
+   '(god-mode-lighter ((t (:inherit error)))))
+
+  (after! minions
+    (add-to-list 'minions-prominent-modes 'god-local-mode)))
 
 (repeat-mode)
 
@@ -413,12 +430,6 @@ it by adjusting the return value of
            ("C-<" . mc/mark-previous-like-this)
            ("C-M->" . mc/mark-all-like-this))
 
-(after! multiple-cursors-core
-  (define-advice mc/make-a-note-of-the-command-being-run
-      (:after (&rest _) dont-note-devil)
-    (when (eq mc--this-command 'devil)
-      (setq mc--this-command nil))))
-
 (bind-keys ("M-o" . ace-window)
            ([remap other-window] . ace-window))
 
@@ -430,8 +441,6 @@ it by adjusting the return value of
 
 (custom-set-faces
  '(aw-leading-char-face ((t :inherit error :height 480))))
-
-(bind-key "<escape>" #'keyboard-escape-quit)
 
 (after! transient
   (bind-key "<escape>" #'transient-quit-one transient-base-map))

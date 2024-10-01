@@ -29,7 +29,7 @@ in {
         persistent-scratch
         f
         # Keybinds
-        devil
+        god-mode
         multiple-cursors
         ace-window
         avy

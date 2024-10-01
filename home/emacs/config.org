@@ -597,19 +597,32 @@ I have no idea where else to put this, so here we are ¯\_(ツ)_/¯.
   (bind-key "C-`" #'previous-buffer)
 #+end_src
 
-** Devil
-We opt not to use Devil's repeating functionality in favor of [[*Repeat mode]] instead.
+** God Mode
 #+begin_src elisp
-  (global-devil-mode)
+  (bind-key "<escape>" #'god-mode-all)
 
-  (setopt devil-repeatable-keys nil)
-#+end_src
+  (defun my/on-enter-god-mode ()
+    "Stylize mode-line when entering `god-mode'."
+    (set-face-attribute 'mode-line-active nil
+                        :foreground (catppuccin-color 'flamingo)))
 
-I need Devil to also adjust [[help:this-original-command][this-original-command]] during translation; this is half of a fix for working with [[*Multiple Cursors][multiple-cursors.el]].
-#+begin_src elisp
-  (define-advice devil--update-command-loop-info
-      (:after (&rest _) set-original-command)
-    (setq this-original-command real-this-command))
+  (defun my/on-exit-god-mode ()
+    "Un-stylize mode-line when exiting `god-mode'."
+    (set-face-attribute 'mode-line-active nil
+                        :foreground (catppuccin-color 'text)))
+
+  (add-hook 'god-mode-enabled-hook #'my/on-enter-god-mode)
+  (add-hook 'god-mode-disabled-hook #'my/on-exit-god-mode)
+
+  (after! god-mode
+    (setopt god-exempt-major-modes nil
+            god-exempt-predicates nil)
+
+    (custom-set-faces
+     '(god-mode-lighter ((t (:inherit error)))))
+
+    (after! minions
+      (add-to-list 'minions-prominent-modes 'god-local-mode)))
 #+end_src
 
 ** Repeat Mode
@@ -662,15 +675,6 @@ I need Devil to also adjust [[help:this-original-command][this-original-command]
              ("C-M->" . mc/mark-all-like-this))
 #+end_src
 
-This is the other half for making this work with [[*Devil][Devil]]; don't record [[help:devil][devil]] as the command being run, so that it instead looks up the translated bind.
-#+begin_src elisp
-  (after! multiple-cursors-core
-    (define-advice mc/make-a-note-of-the-command-being-run
-        (:after (&rest _) dont-note-devil)
-      (when (eq mc--this-command 'devil)
-        (setq mc--this-command nil))))
-#+end_src
-
 ** ace-window
 #+begin_src elisp
   (bind-keys ("M-o" . ace-window)
@@ -688,8 +692,6 @@ This is the other half for making this work with [[*Devil][Devil]]; don't record
 
 ** Escape
 #+begin_src elisp
-  (bind-key "<escape>" #'keyboard-escape-quit)
-
   (after! transient
     (bind-key "<escape>" #'transient-quit-one transient-base-map))
 #+end_src
