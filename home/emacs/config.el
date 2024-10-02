@@ -1297,7 +1297,7 @@ For our purposes, a note must not be a directory, must satisfy
       ""))
 
   (setopt org-agenda-files (list denote-directory)
-          org-agenda-file-regexp (rx "_quest" (* any) ".org" string-end)
+          org-agenda-file-regexp (rx "_agenda" (* any) ".org" string-end)
           org-agenda-prefix-format '((agenda . " %i%-28(my/org-agenda-get-title)% t%s%b")
                                      (todo   . " %i%-28(my/org-agenda-get-title)%b")
                                      (tags   . " %i %-12:c")
@@ -1312,7 +1312,7 @@ For our purposes, a note must not be a directory, must satisfy
           org-agenda-skip-deadline-if-done t
           org-agenda-skip-scheduled-if-done t
           org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled
-          org-agenda-hide-tags-regexp (rx (or "quest" "journal" "needy"))
+          org-agenda-hide-tags-regexp (rx (or "agenda" "journal" "needy"))
           org-agenda-span 'fortnight
           org-agenda-start-on-weekday nil
           org-agenda-start-day "-3d"
