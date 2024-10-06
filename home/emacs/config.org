@@ -972,6 +972,10 @@ Eglot [[https://github.com/joaotavora/eglot/blob/bd6a1cccfe9c0f724772f846d1f4a93
 #+begin_src elisp
   (envrc-global-mode)
 
+  ;; Force org-babel blocks to inherit their buffer's environment.
+  (after! org
+    (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment))
+
   (defun my/direnv-use-nix (arg)
     "Create an .envrc file with \"use nix\" as content and enable
   direnv. With prefix argument ARG, use \"use flake\" as content
