@@ -75,15 +75,15 @@
   };
   indent-bars = {
     pname = "indent-bars";
-    version = "a50a5700e876bc11d346b6518047904ca2e427f4";
+    version = "912486722771d9ef5c6000011edf7e6d6c0cebc2";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "indent-bars";
-      rev = "a50a5700e876bc11d346b6518047904ca2e427f4";
+      rev = "912486722771d9ef5c6000011edf7e6d6c0cebc2";
       fetchSubmodules = false;
-      sha256 = "sha256-T3Cybmg3P/9fRFNs3nGvhsBSkPGZIB2tGBcGYGliNAY=";
+      sha256 = "sha256-B7igETz5NRhjHcWMkmY73Jn3+3oy8oRH7SJ50y/F4ho=";
     };
-    date = "2024-10-04";
+    date = "2024-10-09";
   };
   org-popup-posframe = {
     pname = "org-popup-posframe";

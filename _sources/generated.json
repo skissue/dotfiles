@@ -121,7 +121,7 @@
     },
     "indent-bars": {
         "cargoLocks": null,
-        "date": "2024-10-04",
+        "date": "2024-10-09",
         "extract": null,
         "name": "indent-bars",
         "passthru": null,
@@ -133,11 +133,11 @@
             "name": null,
             "owner": "jdtsmith",
             "repo": "indent-bars",
-            "rev": "a50a5700e876bc11d346b6518047904ca2e427f4",
-            "sha256": "sha256-T3Cybmg3P/9fRFNs3nGvhsBSkPGZIB2tGBcGYGliNAY=",
+            "rev": "912486722771d9ef5c6000011edf7e6d6c0cebc2",
+            "sha256": "sha256-B7igETz5NRhjHcWMkmY73Jn3+3oy8oRH7SJ50y/F4ho=",
             "type": "github"
         },
-        "version": "a50a5700e876bc11d346b6518047904ca2e427f4"
+        "version": "912486722771d9ef5c6000011edf7e6d6c0cebc2"
     },
     "org-popup-posframe": {
         "cargoLocks": null,
