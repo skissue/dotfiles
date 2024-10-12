@@ -132,6 +132,7 @@
   (defsubst my/toggle-minibuffer-workspace ()
     "Toggle Hyprland's `minibuffer' special workspace."
     (call-process "hyprctl" nil 0 nil
+                  "--instance" "0"
                   "dispatch" "togglespecialworkspace" "minibuffer"))
 
   (defun my/minibuffer-workspace-active-p ()
