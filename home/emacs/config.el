@@ -985,6 +985,11 @@ Calls the function in `consult-omni-default-interactive-command'." t)
 (after! ibuffer
   (setopt ibuffer-old-time 2))
 
+(after! flymake
+  (bind-keys :map flymake-mode-map
+             ([remap next-error] . flymake-goto-next-error)
+             ([remap previous-error] . flymake-goto-prev-error)))
+
 (bind-keys ("C-c X" . org-capture)
            :map my/notes-map
            ("b" . denote-backlinks)

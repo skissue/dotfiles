@@ -1396,6 +1396,15 @@ The repository comes with many different files for "sources", that each have var
     (setopt ibuffer-old-time 2))
 #+end_src
 
+** Flymake
+[[help:next-error][next-error]] doesn't work on Flymake's errors, so we remap the command when Flymake is active.
+#+begin_src elisp
+  (after! flymake
+    (bind-keys :map flymake-mode-map
+               ([remap next-error] . flymake-goto-next-error)
+               ([remap previous-error] . flymake-goto-prev-error)))
+#+end_src
+
 * Denote
 We set [[help:denote-directory][denote-directory]] early since other parts of my configuration use it as well.
 #+begin_src elisp
