@@ -1,7 +1,7 @@
 {config, ...}: let
   base = config.services.headscale.settings.dns_config.base_domain;
 in {
-  services.headscale.settings.dns_config.extra_records = [
+  services.headscale.settings.dns.extra_records = [
     {
       name = "notify.${base}";
       type = "AAAA";

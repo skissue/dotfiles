@@ -18,9 +18,9 @@ in {
         "fd7a:115c:a1e0::/48"
         "100.69.0.0/16"
       ];
-      dns_config = {
-        override_local_dns = true;
-        nameservers = ["100.69.0.8" "fd7a:115c:a1e0::1"]; # Unbound running on rendezvous
+      dns = {
+        magic_dns = true;
+        nameservers.global = ["100.69.0.8" "fd7a:115c:a1e0::1"]; # Unbound running on rendezvous
         base_domain = "adtailnet";
       };
     };
