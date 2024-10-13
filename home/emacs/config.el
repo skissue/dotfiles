@@ -1249,6 +1249,9 @@ For our purposes, a note must not be a directory, must satisfy
           org-enforce-todo-dependencies          t
           org-list-allow-alphabetical            t
           org-edit-src-auto-save-idle-delay      5
+          org-cycle-separator-lines              0
+          org-blank-before-new-entry             '((heading . t)
+                                                   (plain-list-item . auto))
           org-todo-keyword-faces `(("CANCELED"
                                     :foreground ,(catppuccin-get-color 'red))
                                    ("WAIT"
