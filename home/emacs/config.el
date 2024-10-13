@@ -249,6 +249,7 @@ Return nil if the selected window is not a minibuffer window."
  `(org-property-value        ((t :inherit shadow)))
  `(org-indent                ((t :inherit (fixed-pitch org-hide))))
  `(org-table                 ((t :inherit fixed-pitch)))
+ `(org-code                  ((t :inherit fixed-pitch)))
  `(org-block                 ((t :inherit fixed-pitch
                                  :foreground unspecified)))
  `(org-agenda-structure      ((t :height 1.3))))
