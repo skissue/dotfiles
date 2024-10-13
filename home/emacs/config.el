@@ -140,6 +140,7 @@
     (let* ((json (with-temp-buffer
                    ;; `hyprctl activeworkspace' ignores special workspaces.
                    (call-process "hyprctl" nil t nil
+                                 "--instance" "0"
                                  "activewindow" "-j")
                    (goto-char (point-min))
                    (json-parse-buffer :object-type 'alist)))
