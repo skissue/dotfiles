@@ -145,15 +145,15 @@
   };
   typst-ts-mode = {
     pname = "typst-ts-mode";
-    version = "a8487acfb74b93f76784651459e65e47f815cd67";
+    version = "42094eb2508f30ca2aba26786768e969476d98fa";
     src = fetchgit {
       url = "https://git.sr.ht/~meow_king/typst-ts-mode";
-      rev = "a8487acfb74b93f76784651459e65e47f815cd67";
+      rev = "42094eb2508f30ca2aba26786768e969476d98fa";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-C4BV+6wAheIMR5TRyPDwmLYx/z9TyZ4eLSiux/sPnGM=";
+      sha256 = "sha256-KYIu7nOhfeNoypOleFXzKiUm9yF/6MFQXUZllSyDiKw=";
     };
-    date = "2024-08-14";
+    date = "2024-10-12";
   };
 }
