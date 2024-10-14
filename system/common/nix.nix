@@ -39,13 +39,6 @@
       use-xdg-base-directories = true
     '';
 
-    # Automatically collect garbage
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 1w";
-    };
-
     # Make the system usable while building
     daemonIOSchedClass = "idle";
     daemonCPUSchedPolicy = "idle";
@@ -81,4 +74,13 @@
   # Run binaries without having to patch them. Pair with
   # https://github.com/thiagokokada/nix-alien for maximum profit!
   programs.nix-ld.enable = true;
+
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
+      extraArgs = "--keep 2 --keep-since 4d";
+    };
+    flake = "/etc/dotfiles";
+  };
 }
