@@ -6,7 +6,7 @@ switch:
 
 # Build and test a new configuration.
 test:
-    doas nixos-rebuild test --fast
+    doas nixos-rebuild test --fast --specialisation mutable-links
 
 # Build a new configuration and activate it next boot.
 boot:

@@ -3,13 +3,10 @@
   lib,
   pkgs,
   self,
+  osConfig,
   ...
 }: let
-  # Hack to enable when the --impure flag is passed or when using
-  # standalone home-manager; repurposing an existing option for
-  # convenience. PATH always exists (at least, it should), but
-  # `getEnv` returns an empty string when in pure evaluation mode.
-  enable = builtins.getEnv "PATH" != "";
+  enable = osConfig.my.enable-mutable-links;
   immutableRoot = self;
   mutableRoot = "/etc/dotfiles";
 
