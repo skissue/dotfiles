@@ -3,15 +3,15 @@
 {
   consult-mu = {
     pname = "consult-mu";
-    version = "c4af472297e4daf65293c64684716f478d481469";
+    version = "90db1c6e3d0ec16126a347f6c15426c2a8ce0125";
     src = fetchFromGitHub {
       owner = "armindarvish";
       repo = "consult-mu";
-      rev = "c4af472297e4daf65293c64684716f478d481469";
+      rev = "90db1c6e3d0ec16126a347f6c15426c2a8ce0125";
       fetchSubmodules = false;
-      sha256 = "sha256-lC70FB8NmDmIp+iPox78E4Z1u7E2r2vOrluiK4XBtbE=";
+      sha256 = "sha256-slq53y7Hn6rZtPMhiUnS1rHmdE300ACW343dsY3u+Vg=";
     };
-    date = "2024-09-30";
+    date = "2024-10-16";
   };
   consult-omni = {
     pname = "consult-omni";
@@ -75,15 +75,15 @@
   };
   indent-bars = {
     pname = "indent-bars";
-    version = "c82fa414caebf45e8215455e760b42af5f35f7a1";
+    version = "d5dfdea4f9e5dad8e93fd7a0cf86e6a1a8776bde";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "indent-bars";
-      rev = "c82fa414caebf45e8215455e760b42af5f35f7a1";
+      rev = "d5dfdea4f9e5dad8e93fd7a0cf86e6a1a8776bde";
       fetchSubmodules = false;
-      sha256 = "sha256-JnTz4cSRzV2HawIwGc8Yds09iX6MGXNTJk5U7WYx7Fs=";
+      sha256 = "sha256-315RoU4TjTsOjnlciBCFGwAzeNd3SAEHWv2yO0BJXbo=";
     };
-    date = "2024-10-10";
+    date = "2024-10-19";
   };
   org-popup-posframe = {
     pname = "org-popup-posframe";
