@@ -112,7 +112,7 @@
           inherit system;
           config.allowUnfreePredicate = pkg:
             builtins.elem (lib.getName pkg) [
-              "steam-original"
+              "steam-unwrapped"
               "steam-run"
             ];
         };

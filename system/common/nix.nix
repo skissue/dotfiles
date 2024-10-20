@@ -51,7 +51,7 @@
         builtins.elem (lib.getName pkg) [
           "obsidian"
           "steam"
-          "steam-original"
+          "steam-unwrapped"
           "steam-run"
           "minecraft-server"
         ];
