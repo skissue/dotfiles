@@ -1,5 +1,5 @@
 {config, ...}: let
-  base = config.services.headscale.settings.dns_config.base_domain;
+  base = config.services.headscale.settings.dns.base_domain;
 in {
   services.headscale.settings.dns.extra_records = [
     {
