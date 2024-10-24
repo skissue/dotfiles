@@ -14,10 +14,10 @@ in {
     enable = true;
     settings = {
       server_url = "https://${domain}";
-      ip_prefixes = [
-        "fd7a:115c:a1e0::/48"
-        "100.69.0.0/16"
-      ];
+      prefixes = {
+        v4 = "100.69.0.0/16";
+        v6 = "fd7a:115c:a1e0::/48";
+      };
       dns = {
         magic_dns = true;
         nameservers.global = ["100.69.0.8" "fd7a:115c:a1e0::1"]; # Unbound running on rendezvous
