@@ -13,7 +13,7 @@
 
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud29;
+    package = pkgs.nextcloud30;
     https = true;
     hostName = "cloud.${private.domain.personal}";
 
