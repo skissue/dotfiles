@@ -13,8 +13,8 @@
     package = pkgs.tailscale.overrideAttrs (oldAttrs: {
       patches = [
         # I don't want Tailscale to swallow all DNS traffic, but I still want it
-        #  to accept DNS settings for MagicDNS. So, patch Tailscale to never ask
-        #  systemd-resolved for a `~.` domain.
+        # to accept DNS settings for MagicDNS. So, patch Tailscale to never ask
+        # systemd-resolved for a `~.` domain.
         ./no-all-route.patch
         # Limit the IPv4 CGNAT range to the range that I
         # use. Specifically restricted to not interfere with the IPv4
@@ -24,16 +24,16 @@
     });
     openFirewall = true;
     authKeyFile = config.sops.secrets.tailscale-auth-key.path;
+    authKeyParameters = {
+      ephemeral = false;
+      preauthorized = true;
+    };
     extraUpFlags = [
       "--login-server"
       "https://hs.${private.domain.personal}"
     ];
+    extraDaemonFlags = ["--no-logs-no-support"];
   };
-  # Don't send traffic logs to Tailscale. I don't want your support, Tailscale.
-  # I'm not even using your coordination servers.
-  systemd.services.tailscaled.serviceConfig.Environment = [
-    "TS_NO_LOGS_NO_SUPPORT=true"
-  ];
 
   my.persist.local.directories = [
     {
