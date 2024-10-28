@@ -2,8 +2,8 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      import = [./theme.toml];
-      shell.program = "nu";
+      general.import = [./theme.toml];
+      terminal.shell.program = "nu";
       window = {
         opacity = 0.85;
         padding = {
