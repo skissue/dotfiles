@@ -18,5 +18,8 @@
         };
       };
     };
+    gamescope = {
+      enable = true;
+    };
   };
 }

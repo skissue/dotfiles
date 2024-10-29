@@ -10,7 +10,6 @@
     simple-scan
     ffmpeg
     fractal
-    gamescope
     imv
     keepassxc
     libnotify
