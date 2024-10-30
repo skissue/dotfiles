@@ -81,7 +81,7 @@
     },
     "eglot-booster": {
         "cargoLocks": null,
-        "date": "2024-09-11",
+        "date": "2024-10-29",
         "extract": null,
         "name": "eglot-booster",
         "passthru": null,
@@ -93,11 +93,11 @@
             "name": null,
             "owner": "jdtsmith",
             "repo": "eglot-booster",
-            "rev": "3f9159a8b7fe87e2f01280a2c4c98ca6dab49d13",
-            "sha256": "sha256-yRZci0foZUw2Thx1SwSoY0iPf2DmkAnRp6U+rdx1Bas=",
+            "rev": "e6daa6bcaf4aceee29c8a5a949b43eb1b89900ed",
+            "sha256": "sha256-PLfaXELkdX5NZcSmR1s/kgmU16ODF8bn56nfTh9g6bs=",
             "type": "github"
         },
-        "version": "3f9159a8b7fe87e2f01280a2c4c98ca6dab49d13"
+        "version": "e6daa6bcaf4aceee29c8a5a949b43eb1b89900ed"
     },
     "gptel-quick": {
         "cargoLocks": null,

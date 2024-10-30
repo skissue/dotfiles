@@ -51,15 +51,15 @@
   };
   eglot-booster = {
     pname = "eglot-booster";
-    version = "3f9159a8b7fe87e2f01280a2c4c98ca6dab49d13";
+    version = "e6daa6bcaf4aceee29c8a5a949b43eb1b89900ed";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "eglot-booster";
-      rev = "3f9159a8b7fe87e2f01280a2c4c98ca6dab49d13";
+      rev = "e6daa6bcaf4aceee29c8a5a949b43eb1b89900ed";
       fetchSubmodules = false;
-      sha256 = "sha256-yRZci0foZUw2Thx1SwSoY0iPf2DmkAnRp6U+rdx1Bas=";
+      sha256 = "sha256-PLfaXELkdX5NZcSmR1s/kgmU16ODF8bn56nfTh9g6bs=";
     };
-    date = "2024-09-11";
+    date = "2024-10-29";
   };
   gptel-quick = {
     pname = "gptel-quick";
