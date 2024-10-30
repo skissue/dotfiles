@@ -236,9 +236,9 @@ Return nil if the selected window is not a minibuffer window."
 (setopt catppuccin-flavor 'macchiato
         catppuccin-italic-comments t
         catppuccin-height-doc-title 2.0
-        catppuccin-height-title-1 1.5
+        catppuccin-height-title-1 1.3
         catppuccin-height-title-2 1.3
-        catppuccin-height-title-3 1.2)
+        catppuccin-height-title-3 1.3)
 (load-theme 'catppuccin :no-confirm)
 
 (custom-set-faces
