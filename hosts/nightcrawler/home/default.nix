@@ -6,6 +6,6 @@
 
     monitor = eDP-1,2256x1504@60,0x0,1.566667
 
-    bindl = ,switch:Lid Switch,exec,hyprlock --immediate
+    bindl = ,switch:on:Lid Switch,exec,hyprlock & systemctl suspend
   '';
 }

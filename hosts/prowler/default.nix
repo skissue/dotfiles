@@ -26,8 +26,6 @@
 
   security.doas.wheelNeedsPassword = false;
 
-  services.logind.lidSwitch = "ignore";
-
   services.syncthing = {
     user = "syncthing";
     dataDir = "/var/lib/syncthing";

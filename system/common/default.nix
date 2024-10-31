@@ -10,6 +10,7 @@
     ../networking
     ../ntfy-alerts
     ./doas.nix
+    ./logind.nix
     ./mutable-links.nix
     ./nix.nix
     ./secrets.nix
