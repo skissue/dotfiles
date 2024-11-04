@@ -125,9 +125,12 @@
 
 (when (daemonp)
   (setopt default-minibuffer-frame (make-frame '((window-system . pgtk)
-                                                 (minibuffer . only)
+                                                 (minibuffer . t)
                                                  (title . "MINIBUFFER"))))
-  (defvar my/minibuffer-selected-window nil)
+  (with-selected-frame default-minibuffer-frame
+    (switch-to-buffer (get-buffer-create " *empty*")))
+  (with-current-buffer " *empty*"
+    (setq-local mode-line-format nil))
 
   (defsubst my/toggle-minibuffer-workspace ()
     "Toggle Hyprland's `minibuffer' special workspace."
@@ -162,15 +165,7 @@
         (when (and (zerop (minibuffer-depth))
                    (my/minibuffer-workspace-active-p))
           (my/toggle-minibuffer-workspace)
-          (select-frame-set-input-focus orig-frame)))))
-
-  (define-advice minibuffer-selected-window (:override () popup-fix)
-    "Return window selected just before minibuffer window was selected.
-Return nil if the selected window is not a minibuffer window."
-    (when (and (> (minibuffer-depth) 0)
-               (minibufferp)
-               (window-live-p my/minibuffer-selected-window))
-      my/minibuffer-selected-window)))
+          (select-frame-set-input-focus orig-frame))))))
 
 (setopt comint-prompt-read-only t)
 
@@ -505,7 +500,7 @@ it by adjusting the return value of
            ("M-P" . vertico-repeat-previous)
            ("M-N" . vertico-repeat-nex))
 
-(setopt vertico-count 30
+(setopt vertico-count 20
         vertico-cycle t
         vertico-resize nil
         vertico-quick1 "arstneio"
