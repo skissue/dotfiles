@@ -2,13 +2,26 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  nwg-hello-hyprland-conf = pkgs.writeText "nwg-hello-hyprland-conf" ''
+    monitor = ,preferred,auto,1
+    bind = SUPER,Q,killactive
+    misc {
+        disable_hyprland_logo = true
+    }
+    animations {
+        enabled = false
+    }
+    exec-once = ${lib.getExe pkgs.nwg-hello}; hyprctl dispatch exit
+  '';
+in {
   services.greetd = {
     enable = true;
     vt = 2;
-    # Assumes that the directory containing `wayland-sessions` is first in $XDG_DATA_DIRS,
-    # which seems to be true so far.
-    settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-user-session --user-menu --asterisks --sessions \${XDG_DATA_DIRS%%:*}/wayland-sessions";
+    settings.default_session.command = "Hyprland -c ${nwg-hello-hyprland-conf}";
   };
+
   security.pam.services.greetd.enableGnomeKeyring = true;
+
+  environment.pathsToLink = ["/share/wayland-sessions"];
 }
