@@ -5,6 +5,7 @@
 let windows = (hyprctl clients -j 
                | from json 
                | where mapped
+               | where not hidden
                | where workspace.id > 0
                | select title address)
 
