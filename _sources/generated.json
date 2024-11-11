@@ -121,7 +121,7 @@
     },
     "indent-bars": {
         "cargoLocks": null,
-        "date": "2024-10-25",
+        "date": "2024-11-09",
         "extract": null,
         "name": "indent-bars",
         "passthru": null,
@@ -133,11 +133,11 @@
             "name": null,
             "owner": "jdtsmith",
             "repo": "indent-bars",
-            "rev": "aff8cf8b9fbbc6a85ee32c536d4bc8b75306e13c",
-            "sha256": "sha256-vrlhvD38Iz5E6ra7F4vCrwwW9VNBSfz5JRZyEbesyvA=",
+            "rev": "f860825f24710438b8dd95f36fdee892ffb2a245",
+            "sha256": "sha256-W9PCSgnkVzM6X10PGbJyPe+WZEv3AXsg9bXctv2XRTM=",
             "type": "github"
         },
-        "version": "aff8cf8b9fbbc6a85ee32c536d4bc8b75306e13c"
+        "version": "f860825f24710438b8dd95f36fdee892ffb2a245"
     },
     "org-popup-posframe": {
         "cargoLocks": null,
@@ -221,7 +221,7 @@
     },
     "treesit-fold": {
         "cargoLocks": null,
-        "date": "2024-09-25",
+        "date": "2024-10-31",
         "extract": null,
         "name": "treesit-fold",
         "passthru": null,
@@ -233,11 +233,11 @@
             "name": null,
             "owner": "emacs-tree-sitter",
             "repo": "treesit-fold",
-            "rev": "11add1f4ac7f7956dc5aae98571605d27a1773e2",
-            "sha256": "sha256-a3mQNkAqLdQTrcY2nP3Z/M526jDcXjcdMTeeayk3cJg=",
+            "rev": "25d0a231e0fc477ef77dfcd446d50682430c714e",
+            "sha256": "sha256-iu4dcJ/sOeHqM+jkTywwrtYA5EicQlf5cX4AuqMIhAM=",
             "type": "github"
         },
-        "version": "11add1f4ac7f7956dc5aae98571605d27a1773e2"
+        "version": "25d0a231e0fc477ef77dfcd446d50682430c714e"
     },
     "typst-ts-mode": {
         "cargoLocks": null,
