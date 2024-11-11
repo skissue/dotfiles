@@ -49,3 +49,7 @@ fetch.github = "armindarvish/consult-mu"
 [revealjs]
 src.github_tag = "hakimel/reveal.js"
 fetch.github = "hakimel/reveal.js"
+
+[org-modern-indent]
+src.git = "https://github.com/jdtsmith/org-modern-indent"
+fetch.github = "jdtsmith/org-modern-indent"

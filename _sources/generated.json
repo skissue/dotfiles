@@ -139,6 +139,26 @@
         },
         "version": "f860825f24710438b8dd95f36fdee892ffb2a245"
     },
+    "org-modern-indent": {
+        "cargoLocks": null,
+        "date": "2024-11-05",
+        "extract": null,
+        "name": "org-modern-indent",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "jdtsmith",
+            "repo": "org-modern-indent",
+            "rev": "37939645552668f0f79a76c9eccc5654f6a3ee6c",
+            "sha256": "sha256-fnaWLnXfVpPB3ggQOqLSl/ykHfrJbwdoLdFwInHmg1U=",
+            "type": "github"
+        },
+        "version": "37939645552668f0f79a76c9eccc5654f6a3ee6c"
+    },
     "org-popup-posframe": {
         "cargoLocks": null,
         "date": "2024-05-28",

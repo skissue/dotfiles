@@ -85,6 +85,18 @@
     };
     date = "2024-11-09";
   };
+  org-modern-indent = {
+    pname = "org-modern-indent";
+    version = "37939645552668f0f79a76c9eccc5654f6a3ee6c";
+    src = fetchFromGitHub {
+      owner = "jdtsmith";
+      repo = "org-modern-indent";
+      rev = "37939645552668f0f79a76c9eccc5654f6a3ee6c";
+      fetchSubmodules = false;
+      sha256 = "sha256-fnaWLnXfVpPB3ggQOqLSl/ykHfrJbwdoLdFwInHmg1U=";
+    };
+    date = "2024-11-05";
+  };
   org-popup-posframe = {
     pname = "org-popup-posframe";
     version = "d39cb7c2c9a996689b0d6519695eed3d807c0c85";

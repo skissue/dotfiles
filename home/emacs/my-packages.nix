@@ -33,4 +33,9 @@ in {
       propagatedUserEnvPkgs = with epkgs; [compat gptel];
       buildInputs = propagatedUserEnvPkgs;
     });
+  org-modern-indent = trivialBuild (sources.org-modern-indent
+    // rec {
+      propagatedUserEnvPkgs = with epkgs; [compat];
+      buildInputs = propagatedUserEnvPkgs;
+    });
 }

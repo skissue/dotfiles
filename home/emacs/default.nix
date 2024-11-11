@@ -116,6 +116,7 @@ in {
         # Org
         org-contrib
         org-modern
+        org-modern-indent
         org-roam
         org-roam-ui
         org-ql
