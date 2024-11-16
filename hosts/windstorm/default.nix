@@ -33,7 +33,6 @@
     rocmOverrideGfx = "11.0.1";
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
   networking.firewall.allowedTCPPorts = [21000 21013];
   networking.firewall.allowedUDPPorts = [21003];
 
