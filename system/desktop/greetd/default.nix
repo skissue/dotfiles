@@ -1,27 +1,13 @@
 {
-  lib,
+  config,
   pkgs,
   ...
-}: let
-  nwg-hello-hyprland-conf = pkgs.writeText "nwg-hello-hyprland-conf" ''
-    monitor = ,preferred,auto,1
-    bind = SUPER,Q,killactive
-    misc {
-        disable_hyprland_logo = true
-    }
-    animations {
-        enabled = false
-    }
-    exec-once = ${lib.getExe pkgs.nwg-hello}; hyprctl dispatch exit
-  '';
-in {
+}: {
   services.greetd = {
     enable = true;
     vt = 2;
-    settings.default_session.command = "Hyprland -c ${nwg-hello-hyprland-conf}";
+    settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-user-session --user-menu --asterisks --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions";
   };
 
   security.pam.services.greetd.enableGnomeKeyring = true;
-
-  environment.pathsToLink = ["/share/wayland-sessions"];
 }
