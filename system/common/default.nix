@@ -9,6 +9,7 @@
     ../impermanence/options.nix # Always include so we can define paths in various modules
     ../networking
     ../ntfy-alerts
+    ./chaotic.nix
     ./doas.nix
     ./logind.nix
     ./mutable-links.nix
