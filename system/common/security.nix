@@ -3,7 +3,6 @@
 {
   lib,
   pkgs,
-  configDir,
   ...
 }: let
   inherit (lib) mkOverride;
@@ -21,7 +20,7 @@ in {
   };
 
   boot = {
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_hardened;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_cachyos-hardened;
 
     tmp = {
       useTmpfs = true;
