@@ -9,7 +9,8 @@
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = [
-      inputs.hypr-dynamic-cursors.packages.${pkgs.system}.default
+      # Crashing right now and I don't feel like figuring out why.
+      # inputs.hypr-dynamic-cursors.packages.${pkgs.system}.default
       inputs.hyprfocus.packages.${pkgs.system}.default
       inputs.hyprscroller.packages.${pkgs.system}.default
     ];
