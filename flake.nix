@@ -59,7 +59,6 @@
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    conduwuit.url = "github:girlbossceo/conduwuit";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
 
     # https://github.com/hyprwm/Hyprland/issues/5891#issuecomment-2133152891

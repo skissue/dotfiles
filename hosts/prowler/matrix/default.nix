@@ -1,12 +1,12 @@
 {
   config,
   pkgs,
-  inputs,
   ...
 }: {
   services.matrix-conduit = {
     enable = true;
-    package = inputs.conduwuit.packages.${pkgs.system}.default;
+    # From chaotic-nyx
+    package = pkgs.conduwuit_git;
     settings = {
       global = {
         server_name = "matrix.adtailnet";
