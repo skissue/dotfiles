@@ -46,7 +46,6 @@ in {
         isNormalUser = true;
         createHome = true;
         hashedPasswordFile = config.sops.secrets.user-password.path;
-        linger = true;
       }
       // cfg.extraConfig;
   };
