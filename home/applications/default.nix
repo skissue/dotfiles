@@ -27,10 +27,10 @@
     my.tetrio-desktop
     nextcloud-client
     obs-studio
-    pavucontrol
     pcmanfm
     playerctl
     prismlauncher
+    pwvucontrol_git
     signal-desktop
     swappy
     swaybg
