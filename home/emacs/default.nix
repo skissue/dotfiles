@@ -37,6 +37,7 @@ in {
         casual-calc
         # Appearance
         catppuccin-theme
+        color-theme-sanityinc-tomorrow
         minions
         writeroom-mode
         diff-hl
