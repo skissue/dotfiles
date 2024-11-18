@@ -12,8 +12,7 @@
     # https://wiki.hyprland.org/Useful-Utilities/Systemd-start/
     systemd.enable = false;
     plugins = [
-      # Crashing right now and I don't feel like figuring out why.
-      # inputs.hypr-dynamic-cursors.packages.${pkgs.system}.default
+      inputs.hypr-dynamic-cursors.packages.${pkgs.system}.default
       inputs.hyprfocus.packages.${pkgs.system}.default
       inputs.hyprscroller.packages.${pkgs.system}.default
     ];
