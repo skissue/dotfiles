@@ -1936,6 +1936,46 @@ Make Org Mode pretty again!
    '(org-modern-symbol ((t (:family "Iosevka Fixed SS18")))))
 #+end_src
 
+** Org Indent
+#+begin_src elisp
+  (define-advice org-indent--compute-prefixes (:override () heading-size-fix)
+    "Compute prefix strings for regular text and headlines.
+  Account for varying headline size in text properties. Based off of
+  original function."
+    (setq org-indent--heading-line-prefixes
+          (make-vector org-indent--deepest-level nil))
+    (setq org-indent--inlinetask-line-prefixes
+          (make-vector org-indent--deepest-level nil))
+    (setq org-indent--text-line-prefixes
+          (make-vector org-indent--deepest-level nil))
+    (dotimes (n org-indent--deepest-level)
+      (let ((indentation (if (< n 1) 0 1)))
+        ;; Headlines line prefixes.
+        (let ((heading-prefix (make-string indentation ?*)))
+          ;; Inline tasks line prefixes
+          (aset org-indent--inlinetask-line-prefixes
+                n
+                (cond ((<= n 1) "")
+                      ((bound-and-true-p org-inlinetask-show-first-star)
+                       (concat org-indent-inlinetask-first-star
+                               (substring heading-prefix 1)
+                               (t (org-add-props heading-prefix nil 'face 'org-indent)))))))
+        ;; Text line prefixes.
+        (aset org-indent--text-line-prefixes
+              n
+              (org-add-props
+                  (concat (make-string indentation ?\s)
+                          (and (> n 0)
+                               (char-to-string org-indent-boundary-char)))
+                  nil 'face `(:inherit 'org-indent
+                              :height ,(if (and (> n 0) (<= n 8))
+                                           (face-attribute (intern
+                                                            (concat "org-level-"
+                                                                    (number-to-string n)))
+                                                           :height nil)
+                                         1.0)))))))
+#+end_src
+
 ** Org Appear
 Automatically toggles certain markers on and off depending on whether they're being edited.
 #+begin_src elisp
