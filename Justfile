@@ -2,15 +2,15 @@ alias u := update
 
 # Build and switch to a new configuration.
 switch:
-    doas nixos-rebuild switch --fast
+    doas nh os switch -R --no-specialisation --ask
 
 # Build and test a new configuration.
 test:
-    doas nixos-rebuild test --fast --specialisation mutable-links
+    doas nh os test -R --specialisation mutable-links --ask
 
 # Build a new configuration and activate it next boot.
 boot:
-    doas nixos-rebuild boot
+    doas nh os boot -R
 
 # Update flake inputs and nvfetcher.
 update *inputs:
