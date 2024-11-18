@@ -833,6 +833,26 @@
         "type": "github"
       }
     },
+    "nix-monitored": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1715016928,
+        "narHash": "sha256-JZx+enK1RlsMSJGmX/KTpADtxrCPDztQRKpO22LKZZM=",
+        "owner": "ners",
+        "repo": "nix-monitored",
+        "rev": "776e497a13b8b403065d59c45a3fdc07b76a0db1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ners",
+        "repo": "nix-monitored",
+        "type": "github"
+      }
+    },
     "nixos-anywhere": {
       "inputs": {
         "disko": [
@@ -1163,6 +1183,7 @@
         "lib": "lib",
         "nix-index": "nix-index",
         "nix-minecraft": "nix-minecraft",
+        "nix-monitored": "nix-monitored",
         "nixos-anywhere": "nixos-anywhere",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
