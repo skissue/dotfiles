@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   self,
@@ -6,6 +7,9 @@
   ...
 }: {
   nix = {
+    # Add Flake inputs as Nix registry + nixPath inputs (for legacy tooling)
+    registry = builtins.mapAttrs (name: val: {flake = val;}) inputs;
+    nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
     settings = {
       # Allow users of the wheel group to interact with the Nix daemon
       trusted-users = ["@wheel"];
