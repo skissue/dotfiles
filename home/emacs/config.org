@@ -482,7 +482,7 @@ This is such an important addition to Emacs.
 
   (after! eldoc-box
     (custom-set-faces
-     `(eldoc-box-border ((t :background ,(catppuccin-get-color 'base))))
+     `(eldoc-box-border ((t :background ,(doom-color 'bg))))
      '(eldoc-box-body ((t :inherit variable-pitch))))
     (setcdr (assq 'left-fringe eldoc-box-frame-parameters) 2)
     (setcdr (assq 'right-fringe eldoc-box-frame-parameters) 2))
@@ -602,13 +602,13 @@ Instead of using God Mode's exemption system, we manually disable it so that it 
   (defun my/on-enter-god-mode ()
     "Stylize mode-line and cursor when entering `god-mode'."
     (set-face-attribute 'mode-line-active nil
-                        :foreground (catppuccin-color 'flamingo))
+                        :foreground (doom-color 'orange))
     (setq-local cursor-type t))
 
   (defun my/on-exit-god-mode ()
     "Un-stylize mode-line and cursor when exiting `god-mode'."
     (set-face-attribute 'mode-line-active nil
-                        :foreground (catppuccin-color 'text))
+                        :foreground (doom-color 'fg))
     (when (not buffer-read-only)
       (setq-local cursor-type 'bar)))
 
@@ -1166,9 +1166,9 @@ In addition to auto-loading via filename or magic values, we also want to load t
 
   (after! hl-todo
     (setopt hl-todo-keyword-faces
-            `(("TODO" . ,(catppuccin-get-color 'green))
-              ("FIXME" . ,(catppuccin-get-color 'yellow))
-              ("HACK" . ,(catppuccin-get-color 'blue)))))
+            `(("TODO" . ,(doom-color 'green))
+              ("FIXME" . ,(doom-color 'yellow))
+              ("HACK" . ,(doom-color 'blue)))))
 #+end_src
 
 #+begin_src elisp
@@ -1695,9 +1695,9 @@ Ah, the crown jewel of Emacs 👑.
             org-blank-before-new-entry             '((heading . t)
                                                      (plain-list-item . auto))
             org-todo-keyword-faces `(("CANCELED"
-                                      :foreground ,(catppuccin-get-color 'red))
+                                      :foreground ,(doom-color 'red))
                                      ("WAIT"
-                                      :foreground ,(catppuccin-get-color 'yellow)))
+                                      :foreground ,(doom-color 'yellow)))
             org-refile-targets     '((nil . (:maxlevel . 2))
                                      (org-agenda-files . (:maxlevel 2))))
     (custom-set-faces
@@ -1788,9 +1788,9 @@ Ah, the crown jewel of Emacs 👑.
                                         (0.5 . org-upcoming-deadline)
                                         (0.0 . org-upcoming-distant-deadline)))
     (custom-set-faces
-     `(org-imminent-deadline         ((t (:foreground ,(catppuccin-get-color 'red) :weight semibold))))
-     `(org-upcoming-deadline         ((t (:foreground ,(catppuccin-get-color 'yellow) :weight medium))))
-     `(org-upcoming-distant-deadline ((t (:foreground ,(catppuccin-get-color 'yellow) :weight light))))))
+     `(org-imminent-deadline         ((t (:foreground ,(doom-color 'red) :weight semibold))))
+     `(org-upcoming-deadline         ((t (:foreground ,(doom-color 'yellow) :weight medium))))
+     `(org-upcoming-distant-deadline ((t (:foreground ,(doom-color 'yellow) :weight light))))))
 #+end_src
 
 Iosevka by default lets some characters be two-wide, which messes up some alignment in Org Agenda, so we force the font to be perfectly monospace.
@@ -1923,15 +1923,15 @@ Make Org Mode pretty again!
             org-modern-todo-faces `(("CANCELED"
                                      :inverse-video t
                                      :weight semibold
-                                     :foreground ,(catppuccin-get-color 'red))
+                                     :foreground ,(doom-color 'red))
                                     ("WAIT"
                                      :inverse-video t
                                      :weight semibold
-                                     :foreground ,(catppuccin-get-color 'yellow)))))
+                                     :foreground ,(doom-color 'yellow)))))
 
   (custom-set-faces
    `(org-modern-done ((t :inherit org-modern-todo
-                         :foreground ,(catppuccin-get-color 'green)))) 
+                         :foreground ,(doom-color 'green)))) 
    '(org-modern-symbol ((t (:family "Iosevka Fixed SS18")))))
 #+end_src
 
