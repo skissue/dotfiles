@@ -36,8 +36,6 @@ in {
         casual-avy
         casual-calc
         # Appearance
-        catppuccin-theme
-        color-theme-sanityinc-tomorrow
         doom-themes
         minions
         writeroom-mode
