@@ -27,15 +27,15 @@
   };
   copilot-el = {
     pname = "copilot-el";
-    version = "b5878d6a8c741138b5efbf4fe1c594f3fd69dbdd";
+    version = "88b10203705a9cdcbc232e7d2914f6b12217a885";
     src = fetchFromGitHub {
       owner = "zerolfx";
       repo = "copilot.el";
-      rev = "b5878d6a8c741138b5efbf4fe1c594f3fd69dbdd";
+      rev = "88b10203705a9cdcbc232e7d2914f6b12217a885";
       fetchSubmodules = false;
-      sha256 = "sha256-02ywlMPku1FIritZjjtxbQW6MmPvSwmRCrudYsUb8bU=";
+      sha256 = "sha256-oTAxayxrEiIu0GUtsqaL/pCY0ElU1RjZp7OXgqqJqnA=";
     };
-    date = "2024-09-25";
+    date = "2024-11-18";
   };
   doom-snippets = {
     pname = "doom-snippets";
@@ -145,15 +145,15 @@
   };
   treesit-fold = {
     pname = "treesit-fold";
-    version = "25d0a231e0fc477ef77dfcd446d50682430c714e";
+    version = "4cfea19d1f1d41d0983e26d67c94cd82a83af489";
     src = fetchFromGitHub {
       owner = "emacs-tree-sitter";
       repo = "treesit-fold";
-      rev = "25d0a231e0fc477ef77dfcd446d50682430c714e";
+      rev = "4cfea19d1f1d41d0983e26d67c94cd82a83af489";
       fetchSubmodules = false;
-      sha256 = "sha256-iu4dcJ/sOeHqM+jkTywwrtYA5EicQlf5cX4AuqMIhAM=";
+      sha256 = "sha256-6I7aQk+4aLNLBNiW6NUPUs1VCDR2Uh8CefkeOFETptg=";
     };
-    date = "2024-10-31";
+    date = "2024-11-20";
   };
   typst-ts-mode = {
     pname = "typst-ts-mode";
