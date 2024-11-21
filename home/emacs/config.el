@@ -227,14 +227,9 @@
      "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
      "\\\\" "://")))
 
-(require 'catppuccin-theme)
-(setopt catppuccin-flavor 'macchiato
-        catppuccin-italic-comments t
-        catppuccin-height-doc-title 2.0
-        catppuccin-height-title-1 1.3
-        catppuccin-height-title-2 1.3
-        catppuccin-height-title-3 1.3)
-(load-theme 'catppuccin :no-confirm)
+(require 'doom-themes)
+(load-theme 'doom-tomorrow-night :no-confirm)
+(doom-themes-org-config)
 
 (custom-set-faces
  `(org-document-info-keyword ((t :inherit (shadow fixed-pitch))))

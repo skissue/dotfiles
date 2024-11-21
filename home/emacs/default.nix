@@ -38,6 +38,7 @@ in {
         # Appearance
         catppuccin-theme
         color-theme-sanityinc-tomorrow
+        doom-themes
         minions
         writeroom-mode
         diff-hl
