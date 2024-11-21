@@ -1335,7 +1335,8 @@ For our purposes, a note must not be a directory, must satisfy
                                       (0.5 . org-upcoming-deadline)
                                       (0.0 . org-upcoming-distant-deadline)))
   (custom-set-faces
-   `(org-imminent-deadline         ((t (:foreground ,(doom-color 'red) :weight semibold))))
+   `(org-scheduled-today           ((t (:foreground ,(doom-color 'orange) :weight bold))))
+   `(org-imminent-deadline         ((t (:foreground ,(doom-color 'red)    :weight semibold))))
    `(org-upcoming-deadline         ((t (:foreground ,(doom-color 'yellow) :weight medium))))
    `(org-upcoming-distant-deadline ((t (:foreground ,(doom-color 'yellow) :weight light))))))
 
