@@ -232,6 +232,11 @@
 (doom-themes-org-config)
 
 (custom-set-faces
+ `(org-document-title        ((t :height 1.5)))
+ `(outline-1                 ((t :height 1.3)))
+ `(outline-2                 ((t :height 1.3)))
+ `(outline-3                 ((t :height 1.3)))
+ `(outline-4                 ((t :height 1.3)))
  `(org-document-info-keyword ((t :inherit (shadow fixed-pitch))))
  `(org-meta-line             ((t :inherit (shadow fixed-pitch))))
  `(org-drawer                ((t :inherit (shadow fixed-pitch))))
@@ -240,8 +245,7 @@
  `(org-indent                ((t :inherit (fixed-pitch org-hide))))
  `(org-table                 ((t :inherit fixed-pitch)))
  `(org-code                  ((t :inherit fixed-pitch)))
- `(org-block                 ((t :inherit fixed-pitch
-                                 :foreground unspecified)))
+ `(org-block                 ((t :inherit fixed-pitch)))
  `(org-agenda-structure      ((t :height 1.3))))
 
 (minions-mode)

@@ -427,10 +427,15 @@ Reduce fringe size on the right (left is used for various indicators).
 #+end_src
 
 Some extra tweaks:
++ Scale outline headings (and Org titles) to be larger.
 + Force certain faces to be fixed pitch (faces that are usually used in variable pitch prose buffers).
-+ Make ~org-block~ not horrendously filled with green text, as it is by default (makes code unbearable to read).
 #+begin_src elisp
   (custom-set-faces
+   `(org-document-title        ((t :height 1.5)))
+   `(outline-1                 ((t :height 1.3)))
+   `(outline-2                 ((t :height 1.3)))
+   `(outline-3                 ((t :height 1.3)))
+   `(outline-4                 ((t :height 1.3)))
    `(org-document-info-keyword ((t :inherit (shadow fixed-pitch))))
    `(org-meta-line             ((t :inherit (shadow fixed-pitch))))
    `(org-drawer                ((t :inherit (shadow fixed-pitch))))
@@ -439,8 +444,7 @@ Some extra tweaks:
    `(org-indent                ((t :inherit (fixed-pitch org-hide))))
    `(org-table                 ((t :inherit fixed-pitch)))
    `(org-code                  ((t :inherit fixed-pitch)))
-   `(org-block                 ((t :inherit fixed-pitch
-                                   :foreground unspecified)))
+   `(org-block                 ((t :inherit fixed-pitch)))
    `(org-agenda-structure      ((t :height 1.3))))
 #+end_src
 
