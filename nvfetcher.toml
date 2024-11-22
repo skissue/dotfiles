@@ -53,3 +53,7 @@ fetch.github = "hakimel/reveal.js"
 [org-modern-indent]
 src.git = "https://github.com/jdtsmith/org-modern-indent"
 fetch.github = "jdtsmith/org-modern-indent"
+
+[inline-anki]
+src.git = "https://github.com/meedstrom/inline-anki"
+fetch.github = "meedstrom/inline-anki"

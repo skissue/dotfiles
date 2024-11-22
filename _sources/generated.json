@@ -139,6 +139,26 @@
         },
         "version": "f860825f24710438b8dd95f36fdee892ffb2a245"
     },
+    "inline-anki": {
+        "cargoLocks": null,
+        "date": "2024-09-28",
+        "extract": null,
+        "name": "inline-anki",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "meedstrom",
+            "repo": "inline-anki",
+            "rev": "a3ae7475957c2f1e8ee873eca9b6748ec400869b",
+            "sha256": "sha256-9VPRGcHRhoPBtnER8ey/30ZCIhM0aqOQNJ2Oy/9y4VE=",
+            "type": "github"
+        },
+        "version": "a3ae7475957c2f1e8ee873eca9b6748ec400869b"
+    },
     "org-modern-indent": {
         "cargoLocks": null,
         "date": "2024-11-05",
@@ -233,15 +253,15 @@
             "name": null,
             "owner": "KeyWeeUsr",
             "repo": "emacs-syncthing",
-            "rev": "2.2.0",
-            "sha256": "sha256-F2f0QH18MijQ4mLd7/0bftVqi1EQDA0RMuEV16V9Ro8=",
+            "rev": "2.3.0",
+            "sha256": "sha256-B7IoB0E0D4QNZ3TyJ79orX9hpuvVqWGBcmDZsjD8IcU=",
             "type": "github"
         },
-        "version": "2.2.0"
+        "version": "2.3.0"
     },
     "treesit-fold": {
         "cargoLocks": null,
-        "date": "2024-11-20",
+        "date": "2024-11-21",
         "extract": null,
         "name": "treesit-fold",
         "passthru": null,
@@ -253,15 +273,15 @@
             "name": null,
             "owner": "emacs-tree-sitter",
             "repo": "treesit-fold",
-            "rev": "4cfea19d1f1d41d0983e26d67c94cd82a83af489",
-            "sha256": "sha256-6I7aQk+4aLNLBNiW6NUPUs1VCDR2Uh8CefkeOFETptg=",
+            "rev": "2b8ac9e7db92bca7f79579b9dc8aff33d6ed2ff7",
+            "sha256": "sha256-LBYt7EBoB6/Erin95IVQSBJHm5+rUm44fKgs5fPjKUo=",
             "type": "github"
         },
-        "version": "4cfea19d1f1d41d0983e26d67c94cd82a83af489"
+        "version": "2b8ac9e7db92bca7f79579b9dc8aff33d6ed2ff7"
     },
     "typst-ts-mode": {
         "cargoLocks": null,
-        "date": "2024-10-12",
+        "date": "2024-11-21",
         "extract": null,
         "name": "typst-ts-mode",
         "passthru": null,
@@ -271,11 +291,11 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "42094eb2508f30ca2aba26786768e969476d98fa",
-            "sha256": "sha256-KYIu7nOhfeNoypOleFXzKiUm9yF/6MFQXUZllSyDiKw=",
+            "rev": "d3e44b5361ed1bbb720a38dafdb29cb8d8b6d8be",
+            "sha256": "sha256-fECXfTjbckgS+kEJ3dMQ7zDotqdxxBt3WFl0sEM60Aw=",
             "type": "git",
             "url": "https://git.sr.ht/~meow_king/typst-ts-mode"
         },
-        "version": "42094eb2508f30ca2aba26786768e969476d98fa"
+        "version": "d3e44b5361ed1bbb720a38dafdb29cb8d8b6d8be"
     }
 }

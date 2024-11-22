@@ -127,6 +127,7 @@ in {
         org-download
         org-autolist
         org-anki
+        inline-anki
         org-noter
         org-sliced-images
         org-popup-posframe

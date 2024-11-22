@@ -85,6 +85,18 @@
     };
     date = "2024-11-09";
   };
+  inline-anki = {
+    pname = "inline-anki";
+    version = "a3ae7475957c2f1e8ee873eca9b6748ec400869b";
+    src = fetchFromGitHub {
+      owner = "meedstrom";
+      repo = "inline-anki";
+      rev = "a3ae7475957c2f1e8ee873eca9b6748ec400869b";
+      fetchSubmodules = false;
+      sha256 = "sha256-9VPRGcHRhoPBtnER8ey/30ZCIhM0aqOQNJ2Oy/9y4VE=";
+    };
+    date = "2024-09-28";
+  };
   org-modern-indent = {
     pname = "org-modern-indent";
     version = "37939645552668f0f79a76c9eccc5654f6a3ee6c";
@@ -134,38 +146,38 @@
   };
   syncthing-el = {
     pname = "syncthing-el";
-    version = "2.2.0";
+    version = "2.3.0";
     src = fetchFromGitHub {
       owner = "KeyWeeUsr";
       repo = "emacs-syncthing";
-      rev = "2.2.0";
+      rev = "2.3.0";
       fetchSubmodules = false;
-      sha256 = "sha256-F2f0QH18MijQ4mLd7/0bftVqi1EQDA0RMuEV16V9Ro8=";
+      sha256 = "sha256-B7IoB0E0D4QNZ3TyJ79orX9hpuvVqWGBcmDZsjD8IcU=";
     };
   };
   treesit-fold = {
     pname = "treesit-fold";
-    version = "4cfea19d1f1d41d0983e26d67c94cd82a83af489";
+    version = "2b8ac9e7db92bca7f79579b9dc8aff33d6ed2ff7";
     src = fetchFromGitHub {
       owner = "emacs-tree-sitter";
       repo = "treesit-fold";
-      rev = "4cfea19d1f1d41d0983e26d67c94cd82a83af489";
+      rev = "2b8ac9e7db92bca7f79579b9dc8aff33d6ed2ff7";
       fetchSubmodules = false;
-      sha256 = "sha256-6I7aQk+4aLNLBNiW6NUPUs1VCDR2Uh8CefkeOFETptg=";
+      sha256 = "sha256-LBYt7EBoB6/Erin95IVQSBJHm5+rUm44fKgs5fPjKUo=";
     };
-    date = "2024-11-20";
+    date = "2024-11-21";
   };
   typst-ts-mode = {
     pname = "typst-ts-mode";
-    version = "42094eb2508f30ca2aba26786768e969476d98fa";
+    version = "d3e44b5361ed1bbb720a38dafdb29cb8d8b6d8be";
     src = fetchgit {
       url = "https://git.sr.ht/~meow_king/typst-ts-mode";
-      rev = "42094eb2508f30ca2aba26786768e969476d98fa";
+      rev = "d3e44b5361ed1bbb720a38dafdb29cb8d8b6d8be";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-KYIu7nOhfeNoypOleFXzKiUm9yF/6MFQXUZllSyDiKw=";
+      sha256 = "sha256-fECXfTjbckgS+kEJ3dMQ7zDotqdxxBt3WFl0sEM60Aw=";
     };
-    date = "2024-10-12";
+    date = "2024-11-21";
   };
 }
