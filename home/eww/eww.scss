@@ -1,0 +1,61 @@
+$background:   #1d1f21;
+$current-line: #282a2e;
+$selection:    #373b41;
+$foreground:   #c5c8c6;
+$comment:      #969896;
+$red:          #cc6666;
+$orange:       #de935f;
+$yellow:       #f0c674;
+$green:        #b5bd68;
+$aqua:         #8abeb7;
+$blue:         #81a2be;
+$purple:       #b294bb;
+
+* {
+    padding: 0;
+    border: 0;
+    background: none;
+    
+    font-size: 14pt;
+    font-family: Iosevka Aile;
+}
+
+.bar {
+    padding: 4px 0;
+    background: $background;
+    color: $foreground;
+}
+
+.workspaces {
+    padding: 4px 0;
+    
+    .ws {
+        padding: 2px 0;
+        
+        & > * {
+            font-size: 16pt;
+        }
+
+        &.focused {
+            color: $aqua;
+        }
+    }
+}
+
+.bar-bottom {    
+    & > * {
+        padding: 4px 0;
+
+        &:nth-child(odd) {
+            background: $current-line;
+        }
+    }
+}
+
+.tray * {
+    padding: 4px;
+}
+
+.time > :nth-child(even) {
+    color: $blue;
+}

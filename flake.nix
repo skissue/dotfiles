@@ -69,6 +69,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+    eww.url = "github:elkowar/eww";
 
     # https://github.com/hyprwm/Hyprland/issues/5891#issuecomment-2133152891
     hyprland = {
