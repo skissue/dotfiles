@@ -10,6 +10,7 @@
            (box
             :class "bar"
             :orientation "vertical"
+            :hexpand true
             (workspaces)
             (bar-bottom)))
 
@@ -31,13 +32,32 @@
             :class "bar-bottom"
             :space-evenly false
             :orientation "vertical"
-            :halign "center"
+            :hexpand true
             :valign "end"
+            (music)
             (tray)
             (time)))
 
+(deflisten mpris `playerctl metadata --follow --format '{"player": "{{ playerName }}", "artist": "{{ artist }}", "title": "{{ title }}", "position": "{{ position }}", "position_human": "{{ duration(position) }}", "length": "{{ mpris:length }}","length_human": "{{ duration(mpris:length) }}", "status": "{{ status }}"}'`)
+(defwidget music []
+           (button
+            :onclick "playerctl play-pause"
+            :tooltip "${mpris?.artist} — ${mpris?.title}"
+            (box
+             :space-evenly false
+             :orientation "vertical"
+             (circular-progress
+              :value {mpris == "" ? 0 : mpris.position / mpris.length * 100}
+              :height 30
+              :start-at 75
+              :thickness 2.0
+              :clockwise true
+              (label :class "icon" :text {mpris?.status == "Playing" ? "" : ""}))
+             (label :class "icon" :text ""))))
+
 (defwidget tray []
            (systray :class "tray vertical"
+                    :hexpand true
                     :orientation "vertical"))
 
 (defwidget time []

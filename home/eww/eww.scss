@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $background:   #1d1f21;
 $current-line: #282a2e;
 $selection:    #373b41;
@@ -12,6 +14,8 @@ $blue:         #81a2be;
 $purple:       #b294bb;
 
 * {
+    all: unset;
+    
     padding: 0;
     border: 0;
     background: none;
@@ -20,9 +24,13 @@ $purple:       #b294bb;
     font-family: Iosevka Aile;
 }
 
+tooltip {
+    background: $background;
+}
+
 .bar {
     padding: 4px 0;
-    background: $background;
+    background: color.change($background, $alpha: 0.75);
     color: $foreground;
 }
 
@@ -44,16 +52,25 @@ $purple:       #b294bb;
 
 .bar-bottom {    
     & > * {
-        padding: 4px 0;
-
-        &:nth-child(odd) {
-            background: $current-line;
+        padding: 8px 0;
+        
+        &:nth-last-child(even) {
+            background: $selection;
         }
     }
 }
 
-.tray * {
-    padding: 4px;
+.icon {
+    padding: 2px;
+    font-family: Symbols Nerd Font;
+}
+
+.tray {
+    padding: 0;
+    
+    * {
+        padding: 4px 0;
+    }
 }
 
 .time > :nth-child(even) {
