@@ -12,9 +12,4 @@
 
   # `man -k` and other manual searchers (like Emacs)
   documentation.man.generateCaches = true;
-
-  # AGS Mpris
-  services.gvfs.enable = true;
-  # AGS Battery
-  services.upower.enable = true;
 }

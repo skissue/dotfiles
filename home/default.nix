@@ -6,7 +6,6 @@
   imports = [
     inputs.private.homeManagerModules.default
     ./alacritty
-    ./ags
     ./applications
     ./cli
     ./cursors

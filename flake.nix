@@ -64,10 +64,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ags = {
-      url = "github:Aylur/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     eww.url = "github:elkowar/eww";
 
