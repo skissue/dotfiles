@@ -73,6 +73,26 @@
     };
   };
 
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        lock_cmd = "hyprlock";
+      };
+      listener = [
+        {
+          timeout = 300;
+          on-timeout = "loginctl lock-session; hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+        {
+          timeout = 600;
+          on-timeout = "systemctl suspend";
+        }
+      ];
+    };
+  };
+
   home.sessionVariables = {
     "XDG_SESSION_TYPE" = "wayland";
     "QT_QPA_PLATFORM" = "wayland;xcb";
