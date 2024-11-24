@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   inputs,
   mutable-link,
@@ -16,7 +17,7 @@
       inputs.hyprfocus.packages.${pkgs.system}.default
       inputs.hyprscroller.packages.${pkgs.system}.default
     ];
-    extraConfig = ''
+    extraConfig = lib.mkAfter ''
       source = ${mutable-link ./hyprland.conf}
     '';
   };

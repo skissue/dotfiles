@@ -1,7 +1,10 @@
 {pkgs, ...}: {
   imports = [./mpd.nix];
 
-  home.packages = with pkgs; [blender-hip];
+  home.packages = with pkgs; [
+    blender-hip
+    ddcutil
+  ];
 
   wayland.windowManager.hyprland.extraConfig = ''
     monitor   = DP-2,2560x1440@144,0x0,1.25
@@ -20,5 +23,8 @@
     misc {
         vrr = 1
     }
+
+    $dpmsExtra = && ddcutil setvcp d6 04
+    $undpmsExtra = && ddcutil setvcp d6 01
   '';
 }
