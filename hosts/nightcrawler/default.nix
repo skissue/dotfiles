@@ -1,5 +1,4 @@
 {
-  lib,
   mkModulesList,
   pkgs,
   inputs,
@@ -20,9 +19,13 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   services.fprintd.enable = true;
-  # Only allow fprintd for unlocking, not logging in
-  security.pam.services.login.rules.auth.fprintd.enable = lib.mkForce false;
-  security.pam.services.greetd.rules.auth.fprintd.enable = lib.mkForce false;
+  # Don't allow logging in with fprint, and hyprlock has a separate parallel
+  # setup.
+  security.pam.services = {
+    login.fprintAuth = false;
+    greetd.fprintAuth = false;
+    hyprlock.fprintAuth = false;
+  };
   services.fwupd.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   security.protectKernelImage = false; # Disallows hibernation
