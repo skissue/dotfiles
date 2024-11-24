@@ -1,6 +1,5 @@
 {
   mkModulesList,
-  pkgs,
   inputs,
   ...
 }: {
@@ -27,7 +26,6 @@
     hyprlock.fprintAuth = false;
   };
   services.fwupd.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
   security.protectKernelImage = false; # Disallows hibernation
   networking.firewall.allowedTCPPorts = [19000]; # Expo CLI
 
