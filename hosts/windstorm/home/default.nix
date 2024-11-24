@@ -29,10 +29,6 @@
   '';
 
   services.hypridle.settings = {
-    general = {
-      before_sleep_cmd = "ddcutil setvcp d6 04; loginctl lock-session";
-      after_sleep_cmd = "ddcutil setvcp d6 01";
-    };
     listener = [
       {
         timeout = 300;
