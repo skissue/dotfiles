@@ -93,6 +93,10 @@
       ];
     };
   };
+  # For some reason, the default setting for this (WAYLAND_DISPLAY) results in
+  # it failing to start. Too lazy to debug my startup ordering (probably
+  # something to do with UWSM), so just gonna remove the precondition ¯\_(ツ)_/¯.
+  systemd.user.services.hypridle.Unit.ConditionEnvironment = lib.mkForce "";
 
   home.sessionVariables = {
     "XDG_SESSION_TYPE" = "wayland";
