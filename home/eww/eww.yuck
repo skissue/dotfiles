@@ -58,6 +58,7 @@
 
 (defwidget battery []
            (box
+            :visible {EWW_BATTERY != ""}
             :space-evenly false
             :orientation "vertical"
             :tooltip "${round(EWW_BATTERY?.total_avg ?: 0, 0)}%"
