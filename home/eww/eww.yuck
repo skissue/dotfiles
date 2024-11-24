@@ -42,6 +42,7 @@
 (deflisten mpris `playerctl metadata --follow --format '{"player": "{{ playerName }}", "artist": "{{ artist }}", "title": "{{ title }}", "position": "{{ position }}", "position_human": "{{ duration(position) }}", "length": "{{ mpris:length }}","length_human": "{{ duration(mpris:length) }}", "status": "{{ status }}"}'`)
 (defwidget music []
            (button
+            :visible {mpris != ""}
             :onclick "playerctl play-pause"
             :tooltip "${mpris?.artist} — ${mpris?.title}"
             (box
