@@ -78,7 +78,7 @@
     settings = {
       general = {
         lock_cmd = "hyprlock";
-        before_sleep_cmd = "loginctl lock-session";
+        before_sleep_cmd = lib.mkDefault "loginctl lock-session";
       };
       listener = [
         {
