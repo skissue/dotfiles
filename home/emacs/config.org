@@ -588,6 +588,21 @@ Window management keys.
              ("T" . transpose-frame)
              ("^" . tear-off-window))
 #+end_src
+
+** Devil
+#+begin_src elisp
+  (global-devil-mode)
+
+  (setopt devil-repeatable-keys nil)
+#+end_src
+
+I need Devil to also adjust [[help:this-original-command][this-original-command]] during translation; this is half of a fix for working with [[*Multiple Cursors][multiple-cursors.el]].
+#+begin_src elisp
+  (define-advice devil--update-command-loop-info
+      (:after (&rest _) set-original-command)
+    (setq this-original-command real-this-command))
+#+end_src
+
 ** Last Buffer
 I have no idea where else to put this, so here we are ¯\_(ツ)_/¯.
 #+begin_src elisp
@@ -644,6 +659,15 @@ I have no idea where else to put this, so here we are ¯\_(ツ)_/¯.
              ("C-M->" . mc/mark-all-like-this))
 #+end_src
 
+This is the other half for making this work with [[*Devil][Devil]]; don't record [[help:devil][devil]] as the command being run, so that it instead looks up the translated bind.
+#+begin_src elisp
+  (after! multiple-cursors-core
+    (define-advice mc/make-a-note-of-the-command-being-run
+        (:after (&rest _) dont-note-devil)
+      (when (eq mc--this-command 'devil)
+        (setq mc--this-command nil))))
+#+end_src
+
 ** ace-window
 #+begin_src elisp
   (bind-keys ("M-o" . ace-window)
@@ -661,6 +685,8 @@ I have no idea where else to put this, so here we are ¯\_(ツ)_/¯.
 
 ** Escape
 #+begin_src elisp
+  (bind-key "<escape>" #'keyboard-escape-quit)
+
   (after! transient
     (bind-key "<escape>" #'transient-quit-one transient-base-map))
 #+end_src

@@ -356,6 +356,14 @@ it by adjusting the return value of
            ("T" . transpose-frame)
            ("^" . tear-off-window))
 
+(global-devil-mode)
+
+(setopt devil-repeatable-keys nil)
+
+(define-advice devil--update-command-loop-info
+    (:after (&rest _) set-original-command)
+  (setq this-original-command real-this-command))
+
 (bind-key "C-`" #'previous-buffer)
 
 (repeat-mode)
@@ -402,6 +410,12 @@ it by adjusting the return value of
            ("C-<" . mc/mark-previous-like-this)
            ("C-M->" . mc/mark-all-like-this))
 
+(after! multiple-cursors-core
+  (define-advice mc/make-a-note-of-the-command-being-run
+      (:after (&rest _) dont-note-devil)
+    (when (eq mc--this-command 'devil)
+      (setq mc--this-command nil))))
+
 (bind-keys ("M-o" . ace-window)
            ([remap other-window] . ace-window))
 
@@ -413,6 +427,8 @@ it by adjusting the return value of
 
 (custom-set-faces
  '(aw-leading-char-face ((t :inherit error :height 480))))
+
+(bind-key "<escape>" #'keyboard-escape-quit)
 
 (after! transient
   (bind-key "<escape>" #'transient-quit-one transient-base-map))
