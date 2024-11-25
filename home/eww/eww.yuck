@@ -76,6 +76,7 @@
             :class "time"
             :orientation "vertical"
             :space-evenly false
+            :tooltip {formattime(EWW_TIME, "%B %d, %Y")}
             {formattime(EWW_TIME, "%H")}
             {formattime(EWW_TIME, "%M")}
             {formattime(EWW_TIME, "%S")}))
