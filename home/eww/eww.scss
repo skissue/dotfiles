@@ -24,7 +24,8 @@ $purple:       #b294bb;
     font-family: Iosevka Aile;
 }
 
-tooltip {
+// System tray menus get "popup" by default.
+tooltip, .popup {
     background: $background;
 }
 
