@@ -358,51 +358,6 @@ it by adjusting the return value of
 
 (bind-key "C-`" #'previous-buffer)
 
-(bind-key "<escape>" #'god-mode-all)
-
-(defun my/on-enter-god-mode ()
-  "Stylize mode-line and cursor when entering `god-mode'."
-  (set-face-attribute 'mode-line-active nil
-                      :foreground (doom-color 'orange))
-  (setq-local cursor-type t))
-
-(defun my/on-exit-god-mode ()
-  "Un-stylize mode-line and cursor when exiting `god-mode'."
-  (set-face-attribute 'mode-line-active nil
-                      :foreground (doom-color 'fg))
-  (when (not buffer-read-only)
-    (setq-local cursor-type 'bar)))
-
-(defun my/disable-god-mode ()
-    "Disable God Mode."
-    (god-mode-all -1))
-
-(add-hook 'god-mode-enabled-hook #'my/on-enter-god-mode)
-(add-hook 'god-mode-disabled-hook #'my/on-exit-god-mode)
-
-(after! god-mode
-  (setopt god-exempt-major-modes nil
-          god-exempt-predicates nil)
-
-  (dolist (hook '(magit-mode-hook
-                  calc-mode-hook
-                  git-commit-mode-hook
-                  org-agenda-mode-hook))
-    (add-hook hook #'my/disable-god-mode))
-
-  (custom-set-faces
-   '(god-mode-lighter ((t (:inherit error)))))
-
-  (after! minions
-    (add-to-list 'minions-prominent-modes 'god-local-mode)))
-
-(after! isearch
-  (require 'god-mode-isearch)
-  (bind-keys :map isearch-mode-map
-             ("<escape>" . god-mode-isearch-activate)
-             :map god-mode-isearch-map
-             ("<escape>" . god-mode-isearch-disable)))
-
 (repeat-mode)
 
 (setopt repeat-exit-timeout 3)

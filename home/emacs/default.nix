@@ -29,7 +29,6 @@ in {
         persistent-scratch
         f
         # Keybinds
-        god-mode
         multiple-cursors
         ace-window
         avy
