@@ -63,8 +63,8 @@
             :space-evenly false
             :orientation "vertical"
             :tooltip "${round(EWW_BATTERY?.total_avg ?: 0, 0)}%"
-            (label :class "icon ${EWW_BATTERY?.total_avg ?: 0 < 20 ? "red" : ""} ${EWW_BATTERY?.BAT1?.status == "Discharging" ? "" : "green"}"
-                   :text {"[\"\",\"\",\"\",\"\",\"\",\"\"]"[round(EWW_BATTERY?.total_avg ?: 0 / 20, 0)]})))
+            (label :class "icon ${(EWW_BATTERY?.total_avg ?: 0) < 20 ? "red" : ""} ${EWW_BATTERY?.BAT1?.status == "Discharging" ? "" : "green"}"
+                   :text {"[\"\",\"\",\"\",\"\",\"\",\"\"]"[round((EWW_BATTERY?.total_avg ?: 0) / 20, 0)]})))
 
 (defwidget tray []
            (systray :class "tray vertical"
