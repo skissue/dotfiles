@@ -121,7 +121,7 @@
     },
     "indent-bars": {
         "cargoLocks": null,
-        "date": "2024-11-09",
+        "date": "2024-11-26",
         "extract": null,
         "name": "indent-bars",
         "passthru": null,
@@ -133,11 +133,11 @@
             "name": null,
             "owner": "jdtsmith",
             "repo": "indent-bars",
-            "rev": "f860825f24710438b8dd95f36fdee892ffb2a245",
-            "sha256": "sha256-W9PCSgnkVzM6X10PGbJyPe+WZEv3AXsg9bXctv2XRTM=",
+            "rev": "47ae080d9b7ad03e9097dd064c760e3259fc5d66",
+            "sha256": "sha256-IpcNRo9rnT0M/e8S8couomn6icaeF7sKhadSnSw3RIQ=",
             "type": "github"
         },
-        "version": "f860825f24710438b8dd95f36fdee892ffb2a245"
+        "version": "47ae080d9b7ad03e9097dd064c760e3259fc5d66"
     },
     "inline-anki": {
         "cargoLocks": null,
@@ -253,11 +253,11 @@
             "name": null,
             "owner": "KeyWeeUsr",
             "repo": "emacs-syncthing",
-            "rev": "2.3.0",
-            "sha256": "sha256-B7IoB0E0D4QNZ3TyJ79orX9hpuvVqWGBcmDZsjD8IcU=",
+            "rev": "3.0.0",
+            "sha256": "sha256-oSry4zgPC/wA270z2ZbceA5oKJ+qA/qt9nuExwO1XoY=",
             "type": "github"
         },
-        "version": "2.3.0"
+        "version": "3.0.0"
     },
     "treesit-fold": {
         "cargoLocks": null,

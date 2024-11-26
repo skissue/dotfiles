@@ -75,15 +75,15 @@
   };
   indent-bars = {
     pname = "indent-bars";
-    version = "f860825f24710438b8dd95f36fdee892ffb2a245";
+    version = "47ae080d9b7ad03e9097dd064c760e3259fc5d66";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "indent-bars";
-      rev = "f860825f24710438b8dd95f36fdee892ffb2a245";
+      rev = "47ae080d9b7ad03e9097dd064c760e3259fc5d66";
       fetchSubmodules = false;
-      sha256 = "sha256-W9PCSgnkVzM6X10PGbJyPe+WZEv3AXsg9bXctv2XRTM=";
+      sha256 = "sha256-IpcNRo9rnT0M/e8S8couomn6icaeF7sKhadSnSw3RIQ=";
     };
-    date = "2024-11-09";
+    date = "2024-11-26";
   };
   inline-anki = {
     pname = "inline-anki";
@@ -146,13 +146,13 @@
   };
   syncthing-el = {
     pname = "syncthing-el";
-    version = "2.3.0";
+    version = "3.0.0";
     src = fetchFromGitHub {
       owner = "KeyWeeUsr";
       repo = "emacs-syncthing";
-      rev = "2.3.0";
+      rev = "3.0.0";
       fetchSubmodules = false;
-      sha256 = "sha256-B7IoB0E0D4QNZ3TyJ79orX9hpuvVqWGBcmDZsjD8IcU=";
+      sha256 = "sha256-oSry4zgPC/wA270z2ZbceA5oKJ+qA/qt9nuExwO1XoY=";
     };
   };
   treesit-fold = {
