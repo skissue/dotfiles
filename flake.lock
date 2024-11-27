@@ -442,6 +442,27 @@
         "type": "github"
       }
     },
+    "hyprchroma": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ],
+        "nix-filter": "nix-filter"
+      },
+      "locked": {
+        "lastModified": 1730127734,
+        "narHash": "sha256-0Wf+ItlDcITjPdtbIlWFfR1TC62+s6VnoTOgdKL31jM=",
+        "owner": "alexhulbert",
+        "repo": "Hyprchroma",
+        "rev": "d4754dec89a95e2c7c828af3888f72f791c6aa50",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alexhulbert",
+        "repo": "Hyprchroma",
+        "type": "github"
+      }
+    },
     "hyprcursor": {
       "inputs": {
         "hyprlang": [
@@ -476,7 +497,7 @@
         "hyprland": [
           "hyprland"
         ],
-        "nix-filter": "nix-filter"
+        "nix-filter": "nix-filter_2"
       },
       "locked": {
         "lastModified": 1731147414,
@@ -837,6 +858,21 @@
       }
     },
     "nix-filter": {
+      "locked": {
+        "lastModified": 1710156097,
+        "narHash": "sha256-1Wvk8UP7PXdf8bCCaEoMnOT1qe5/Duqgj+rL8sRQsSM=",
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "rev": "3342559a24e85fc164b295c3444e8a139924675b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "type": "github"
+      }
+    },
+    "nix-filter_2": {
       "locked": {
         "lastModified": 1694857738,
         "narHash": "sha256-bxxNyLHjhu0N8T3REINXQ2ZkJco0ABFPn6PIe2QUfqo=",
@@ -1257,6 +1293,7 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager_2",
         "hypr-dynamic-cursors": "hypr-dynamic-cursors",
+        "hyprchroma": "hyprchroma",
         "hyprfocus": "hyprfocus",
         "hyprland": "hyprland",
         "hyprlock": "hyprlock",
