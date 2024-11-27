@@ -5,7 +5,6 @@
       general.import = [./theme.toml];
       terminal.shell.program = "nu";
       window = {
-        opacity = 0.85;
         padding = {
           x = 4;
           y = 4;
