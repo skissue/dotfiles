@@ -634,11 +634,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1732614102,
-        "narHash": "sha256-vf//Fp38D3N/WKVaP6LJG4zOhynub6fq/GXiAM4umG4=",
+        "lastModified": 1732720292,
+        "narHash": "sha256-qDACgfJq2am3F5kT45uIanc/nr4ciZcsvPvOHWL3VtQ=",
         "owner": "dawsers",
         "repo": "hyprscroller",
-        "rev": "0bbbbeeb9af6deb4c1368cc35c2a2cde0492d608",
+        "rev": "e7fb4979cacae64402c7c406e60373dcbe164e62",
         "type": "github"
       },
       "original": {
