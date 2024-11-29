@@ -450,15 +450,15 @@
         "nix-filter": "nix-filter"
       },
       "locked": {
-        "lastModified": 1730127734,
-        "narHash": "sha256-0Wf+ItlDcITjPdtbIlWFfR1TC62+s6VnoTOgdKL31jM=",
-        "owner": "alexhulbert",
+        "lastModified": 1732849130,
+        "narHash": "sha256-BKcov5G5yQQiGHGu5nGNsIDnn+QP4yGr4JO/zKwNcKU=",
+        "owner": "skissue",
         "repo": "Hyprchroma",
-        "rev": "d4754dec89a95e2c7c828af3888f72f791c6aa50",
+        "rev": "3a4147ff6b0a75a8c7e9077af926559235db3333",
         "type": "github"
       },
       "original": {
-        "owner": "alexhulbert",
+        "owner": "skissue",
         "repo": "Hyprchroma",
         "type": "github"
       }

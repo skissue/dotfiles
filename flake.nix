@@ -79,7 +79,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprchroma = {
-      url = "github:alexhulbert/Hyprchroma";
+      url = "github:skissue/Hyprchroma";
       inputs.hyprland.follows = "hyprland";
     };
     hypr-dynamic-cursors = {
