@@ -17,9 +17,7 @@ in {
 
   programs.emacs = {
     enable = true;
-    package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-pgtk.overrideAttrs (oldAttrs: {
-      patches = oldAttrs.patches ++ [./transparent-box.patch];
-    });
+    package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-pgtk;
     extraPackages = epkgs:
       with epkgs;
       with myPackages; [
