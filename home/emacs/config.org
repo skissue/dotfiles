@@ -39,11 +39,6 @@ Disable these before they've loaded to save some time. Supposedly, manually adju
                 use-dialog-box nil)
 #+end_src
 
-** Translucence
-#+begin_src elisp
-  (push '(alpha-background . 0.85) default-frame-alist)
-#+end_src
-
 ** Performance
 Disable a bunch of miscellaneous things to improve both startup and redisplay performance.
 #+begin_src elisp
@@ -2617,20 +2612,6 @@ Passing the image data directly to [[help:call-process-region][call-process-regi
     (with-temp-buffer
       (insert (x-export-frames nil 'png))
       (call-process-region nil nil "wl-copy")))
-#+end_src
-
-** Toggle Translucence
-#+begin_src elisp
-  (defun my/toggle-frame-translucence ()
-    "Toggle translucence for the current frame."
-    (interactive)
-    (set-frame-parameter
-     nil 'alpha-background
-     (if (= 0.85 (frame-parameter nil 'alpha-background))
-         1.0
-       0.85)))
-           
-  (bind-key "t" #'my/toggle-frame-translucence my/toggle-map)
 #+end_src
 
 ** nov.el
