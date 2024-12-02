@@ -14,7 +14,7 @@
     coreutils
     fd
     file
-    jq
+    jaq
     just
     sd
   ];
