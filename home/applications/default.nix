@@ -5,6 +5,8 @@
 }: {
   home.packages = with pkgs; [
     anki
+    aria
+    bottom
     brave
     brightnessctl
     simple-scan
@@ -31,6 +33,8 @@
     playerctl
     prismlauncher
     pwvucontrol_git
+    ripgrep
+    ripgrep-all
     signal-desktop
     swappy
     swaybg
