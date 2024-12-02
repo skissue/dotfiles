@@ -17,7 +17,5 @@
     jq
     just
     sd
-    unzip
-    zip
   ];
 }

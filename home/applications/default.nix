@@ -29,6 +29,7 @@
     my.tetrio-desktop
     nextcloud-client
     obs-studio
+    ouch
     pcmanfm
     playerctl
     prismlauncher
