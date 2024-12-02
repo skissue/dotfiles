@@ -36,8 +36,8 @@
     pwvucontrol_git
     ripgrep
     ripgrep-all
+    satty
     signal-desktop
-    swappy
     swaybg
     tor-browser-bundle-bin
     ungoogled-chromium
@@ -70,12 +70,13 @@
     "x-scheme-handler/https" = "zen-browser.desktop";
   };
   xdg.configFile = {
-    "swappy/config".text = ''
-      [Default]
-      show_panel=true
-      paint_mode=rectangle
-      fill_shape=true
-    '';
+    "satty/config.toml".source = (pkgs.formats.toml {}).generate "satty-config" {
+      general = {
+        fullscreen = true;
+        early-exit = true;
+      };
+      font = {family = "Iosevka Aile";};
+    };
     "WebCord/Themes/theme".text = ''
       * {
         font-family: Iosevka Aile, sans-serif;
