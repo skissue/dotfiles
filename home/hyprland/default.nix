@@ -99,6 +99,8 @@
   # something to do with UWSM), so just gonna remove the precondition ¯\_(ツ)_/¯.
   systemd.user.services.hypridle.Unit.ConditionEnvironment = lib.mkForce "";
 
+  services.cliphist.enable = true;
+
   home.sessionVariables = {
     "XDG_SESSION_TYPE" = "wayland";
     "QT_QPA_PLATFORM" = "wayland;xcb";
