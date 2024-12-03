@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   inputs,
@@ -15,7 +16,7 @@
     plugins = [
       inputs.hypr-dynamic-cursors.packages.${pkgs.system}.default
       inputs.hyprfocus.packages.${pkgs.system}.default
-      inputs.hyprscroller.packages.${pkgs.system}.default
+      (pkgs.hyprlandPlugins.hyprscroller.override {hyprland = config.wayland.windowManager.hyprland.package;})
     ];
     extraConfig = lib.mkAfter ''
       source = ${mutable-link ./hyprland.conf}

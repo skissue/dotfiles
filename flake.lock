@@ -627,26 +627,6 @@
         "type": "github"
       }
     },
-    "hyprscroller": {
-      "inputs": {
-        "hyprland": [
-          "hyprland"
-        ]
-      },
-      "locked": {
-        "lastModified": 1732720292,
-        "narHash": "sha256-qDACgfJq2am3F5kT45uIanc/nr4ciZcsvPvOHWL3VtQ=",
-        "owner": "dawsers",
-        "repo": "hyprscroller",
-        "rev": "e7fb4979cacae64402c7c406e60373dcbe164e62",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dawsers",
-        "repo": "hyprscroller",
-        "type": "github"
-      }
-    },
     "hyprutils": {
       "inputs": {
         "nixpkgs": [
@@ -1260,7 +1240,6 @@
         "hyprfocus": "hyprfocus",
         "hyprland": "hyprland",
         "hyprlock": "hyprlock",
-        "hyprscroller": "hyprscroller",
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
         "lib": "lib",
