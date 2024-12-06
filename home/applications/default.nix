@@ -74,6 +74,8 @@
       general = {
         fullscreen = true;
         early-exit = true;
+        copy-command = "wl-copy";
+        initial-tool = "rectangle";
       };
       font = {family = "Iosevka Aile";};
     };
