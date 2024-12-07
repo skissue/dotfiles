@@ -111,6 +111,8 @@ in {
         emmet-mode
         d2-mode
         csv-mode
+        haskell-ts-mode
+        uiua-ts-mode
         # Org
         org-contrib
         org-modern
