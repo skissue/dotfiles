@@ -157,7 +157,7 @@
            (workspace (map-nested-elt json '(workspace name))))
       (string= workspace "special:minibuffer")))
 
-  (define-advice read-from-minibuffer (:around (fn &rest args) use-popup-frame)
+  (define-advice completing-read (:around (fn &rest args) use-popup-frame)
     "Activate a separate minibuffer frame while reading from the minibuffer."
     (let ((orig-frame (selected-frame)))
       (unwind-protect

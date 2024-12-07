@@ -279,7 +279,7 @@ Recursive minibuffers allow usage of the minibuffer when in the minibuffer, "rec
   (minibuffer-depth-indicate-mode)
 #+end_src
 
-I like using a lot of different frames, since it allows me to take full advantage of tiling window managers. However, this makes the minibuffer annoying to use, since it's limited to the frame size by default. This black magic allows using an entirely separate frame for the minibuffer, activating it dynamically using Hyprland's special workspaces. We manage the frame ourselves instead of using Emacs' built-in ~minibuffer~ frame parameter so that the echo area still stays on each frame. Additionally, this setup breaks [[help:minibuffer-selected-window][minibuffer-selected-window]] (which subsequently breaks [[*Consult][Consult]] preview), so we re-implement the C code in Emacs Lisp; this surely won't cause /any/ impossible-to-debug issues in the future 😅.
+I like using a lot of different frames, since it allows me to take full advantage of tiling window managers. However, this makes the minibuffer annoying to use, since it's limited to the frame size by default. This black magic allows using an entirely separate frame for the minibuffer, activating it dynamically using Hyprland's special workspaces. We manage the frame ourselves instead of using Emacs' built-in ~minibuffer~ frame parameter so that the echo area still stays on each frame.
 #+begin_src elisp
   (when (daemonp)
     (setopt default-minibuffer-frame (make-frame '((window-system . pgtk)
@@ -308,7 +308,7 @@ I like using a lot of different frames, since it allows me to take full advantag
              (workspace (map-nested-elt json '(workspace name))))
         (string= workspace "special:minibuffer")))
 
-    (define-advice read-from-minibuffer (:around (fn &rest args) use-popup-frame)
+    (define-advice completing-read (:around (fn &rest args) use-popup-frame)
       "Activate a separate minibuffer frame while reading from the minibuffer."
       (let ((orig-frame (selected-frame)))
         (unwind-protect
