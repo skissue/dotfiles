@@ -1163,12 +1163,6 @@ In addition to auto-loading via filename or magic values, we also want to load t
             xref-truncation-width nil))
 #+end_src
 
-** =topsy.el=
-#+begin_src elisp
-  (add-hooks (prog-mode-hook          . topsy-mode)
-             (magit-section-mode-hook . topsy-mode))
-#+end_src
-
 ** =Writeroom-mode=
 #+begin_src elisp
   (bind-key "w" #'writeroom-mode my/toggle-map)

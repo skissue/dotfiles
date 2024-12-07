@@ -67,13 +67,11 @@ in {
         auto-yasnippet
         pulsar
         pdf-tools
-        treesit-grammars.with-all-grammars
         copilot
         zoxide
         focus
         hl-todo
         consult-todo
-        topsy
         jinx
         dashboard
         # Currently fails to build
@@ -88,12 +86,12 @@ in {
         keycast
         gptel
         gptel-quick
-        transpose-frame
         expreg
         wgrep
         smartparens
         nerd-icons
         # Languages
+        treesit-grammars.with-all-grammars
         parinfer-rust-mode
         sly
         sly-macrostep
@@ -117,8 +115,6 @@ in {
         org-contrib
         org-modern
         org-modern-indent
-        org-roam
-        org-roam-ui
         org-ql
         org-appear
         org-fragtog
@@ -148,9 +144,7 @@ in {
         biblio
         # Applications
         dirvish
-        emms
         osm
-        syncthing-el
         tldr
         mu4e
         eat

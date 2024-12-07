@@ -799,9 +799,6 @@ instead."
   (setopt xref-search-program 'ripgrep
           xref-truncation-width nil))
 
-(add-hooks (prog-mode-hook          . topsy-mode)
-           (magit-section-mode-hook . topsy-mode))
-
 (bind-key "w" #'writeroom-mode my/toggle-map)
 
 (after! writeroom-mode

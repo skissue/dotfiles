@@ -10,10 +10,6 @@ fetch.git = "https://git.sr.ht/~meow_king/typst-ts-mode"
 src.git = "https://github.com/zerolfx/copilot.el"
 fetch.github = "zerolfx/copilot.el"
 
-[syncthing-el]
-src.github_tag = "KeyWeeUsr/emacs-syncthing"
-fetch.github = "KeyWeeUsr/emacs-syncthing"
-
 [eglot-booster]
 src.git = "https://github.com/jdtsmith/eglot-booster"
 fetch.github = "jdtsmith/eglot-booster"
