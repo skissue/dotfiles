@@ -382,7 +382,9 @@ it by adjusting the return value of
   "n" #'next-line
   "p" #'previous-line
   "f" #'forward-char
-  "b" #'backward-char)
+  "b" #'backward-char
+  "e" #'end-of-visual-line
+  "a" #'beginning-of-visual-line)
 
 (defvar-keymap my/word-repeat-map
   :repeat t
@@ -1233,15 +1235,19 @@ For our purposes, a note must not be a directory, must satisfy
                            :italic t
                            :strike-through t)))))
 
+(defvar-keymap my/org-movement-repeat-map
+  :repeat t
+  "n" #'next-line
+  "p" #'previous-line
+  "f" #'forward-char
+  "b" #'backward-char
+  "e" #'org-beginning-of-line
+  "a" #'org-end-of-line)
+
 (defvar-keymap my/org-sentence-repeat-map
   :repeat t
   "e" #'org-forward-sentence
   "a" #'org-backward-sentence)
-
-(defvar-keymap my/org-line-repeat-map
-  :repeat t
-  "a" #'org-beginning-of-line
-  "e" #'org-end-of-line)
 
 (defvar-keymap my/org-element-repeat-map
   :repeat t
