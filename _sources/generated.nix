@@ -85,18 +85,6 @@
     };
     date = "2024-11-26";
   };
-  inline-anki = {
-    pname = "inline-anki";
-    version = "a3ae7475957c2f1e8ee873eca9b6748ec400869b";
-    src = fetchFromGitHub {
-      owner = "meedstrom";
-      repo = "inline-anki";
-      rev = "a3ae7475957c2f1e8ee873eca9b6748ec400869b";
-      fetchSubmodules = false;
-      sha256 = "sha256-9VPRGcHRhoPBtnER8ey/30ZCIhM0aqOQNJ2Oy/9y4VE=";
-    };
-    date = "2024-09-28";
-  };
   org-modern-indent = {
     pname = "org-modern-indent";
     version = "37939645552668f0f79a76c9eccc5654f6a3ee6c";
@@ -108,6 +96,18 @@
       sha256 = "sha256-fnaWLnXfVpPB3ggQOqLSl/ykHfrJbwdoLdFwInHmg1U=";
     };
     date = "2024-11-05";
+  };
+  org-overdrive = {
+    pname = "org-overdrive";
+    version = "1e0bb30195a8c807a7e092d1979b150aa7a1f9ef";
+    src = fetchFromGitHub {
+      owner = "skissue";
+      repo = "org-overdrive";
+      rev = "1e0bb30195a8c807a7e092d1979b150aa7a1f9ef";
+      fetchSubmodules = false;
+      sha256 = "sha256-K8TFR607A/vDUZz0v6wzW8WEdleOR4wM4vxWZe3/X3E=";
+    };
+    date = "2024-11-25";
   };
   org-popup-posframe = {
     pname = "org-popup-posframe";
@@ -157,15 +157,15 @@
   };
   treesit-fold = {
     pname = "treesit-fold";
-    version = "2b8ac9e7db92bca7f79579b9dc8aff33d6ed2ff7";
+    version = "0e21e12560f0977d390e3d4af45020f0f6db1c15";
     src = fetchFromGitHub {
       owner = "emacs-tree-sitter";
       repo = "treesit-fold";
-      rev = "2b8ac9e7db92bca7f79579b9dc8aff33d6ed2ff7";
+      rev = "0e21e12560f0977d390e3d4af45020f0f6db1c15";
       fetchSubmodules = false;
-      sha256 = "sha256-LBYt7EBoB6/Erin95IVQSBJHm5+rUm44fKgs5fPjKUo=";
+      sha256 = "sha256-ZuL9k7jTUqU+/MbvzOBkJN82REbFQHRx1CpyaZKxLRQ=";
     };
-    date = "2024-11-21";
+    date = "2024-12-03";
   };
   typst-ts-mode = {
     pname = "typst-ts-mode";

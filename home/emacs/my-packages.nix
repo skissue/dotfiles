@@ -38,7 +38,7 @@ in {
       propagatedUserEnvPkgs = with epkgs; [compat];
       buildInputs = propagatedUserEnvPkgs;
     });
-  inline-anki = trivialBuild (sources.inline-anki
+  org-overdrive = trivialBuild (sources.org-overdrive
     // rec {
       propagatedUserEnvPkgs = with epkgs; [asyncloop pcre2el request dash];
       buildInputs = propagatedUserEnvPkgs;
