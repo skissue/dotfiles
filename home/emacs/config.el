@@ -187,17 +187,25 @@
 (add-to-list 'display-buffer-alist
              '((derived-mode . calendar-mode)
                display-buffer-pop-up-window))
+
 ;; Magit diff buffers
 (add-to-list 'display-buffer-alist
              '((major-mode . magit-diff-mode)
                display-buffer-pop-up-window))
+
 ;; Org Src buffers
 (after! org
   (setopt org-src-window-setup 'current-window))
+
 ;; Org Capture pops up a useless frame without this
 (add-to-list 'display-buffer-alist
              `(,(rx "*Capture*")
                display-buffer-pop-up-window))
+
+;; Sly
+(add-to-list 'display-buffer-alist
+             '((major-mode . sly-mrepl-mode)
+               display-buffer-reuse-window))
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
