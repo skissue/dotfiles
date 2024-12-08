@@ -361,21 +361,6 @@ it by adjusting the return value of
            ("k" . (lambda () (interactive) (kill-buffer)))
            ("q" . kill-buffer-and-window))
 
-(bind-keys :map my/window-map
-           ("u" . windmove-up)
-           ("n" . windmove-left)
-           ("e" . windmove-down)
-           ("i" . windmove-right)
-           ("h" . split-window-below)
-           ("v" . split-window-right)
-           ("w" . other-window)
-           ("k" . delete-window)
-           ("o" . delete-other-windows)
-           ("m" . winner-undo)
-           ("r" . winner-redo)
-           ("T" . transpose-frame)
-           ("^" . tear-off-window))
-
 (global-devil-mode)
 
 (setopt devil-repeatable-keys nil)
