@@ -202,6 +202,11 @@
              `(,(rx "*Capture*")
                display-buffer-pop-up-window))
 
+;; Org LaTeX preview spams frames without this
+(add-to-list 'display-buffer-alist
+             `(,(rx "*Org Preview LaTeX Output*")
+               display-buffer-pop-up-window))
+
 ;; Sly
 (add-to-list 'display-buffer-alist
              '((major-mode . sly-mrepl-mode)
