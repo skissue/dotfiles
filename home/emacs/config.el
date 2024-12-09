@@ -1679,6 +1679,9 @@ This function is called by `org-babel-execute-src-block'.")
 
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
 
+(after! typescript-ts-mode
+  (setopt typescript-ts-mode-indent-offset 4))
+
 (after! apheleia
   (add-to-list 'apheleia-formatters
                '(biome "apheleia-npx" "biome" "format"
