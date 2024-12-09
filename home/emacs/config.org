@@ -2278,6 +2278,21 @@ Common Lisp.
     (setopt biblio-bibtex-use-autokey t))
 #+end_src
 
+** Typescript
+#+begin_src elisp
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+
+  (after! apheleia
+    (add-to-list 'apheleia-formatters
+                 '(biome "apheleia-npx" "biome" "format"
+                         "--stdin-file-path" filepath
+                         (apheleia-formatters-js-indent
+                          "--indent-style=tab"
+                          "--indent-width")))
+    (add-to-list 'apheleia-mode-alist
+                 '(typescript-ts-mode . biome)))
+#+end_src
+
 * Applications
 ** Osm.el
 I have [[help:global-visual-line-mode][global-visual-line-mode]] enabled, which breaks stuff inside map buffers, so I undo the breaking stuff.

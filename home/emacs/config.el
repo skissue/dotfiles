@@ -1677,6 +1677,18 @@ This function is called by `org-babel-execute-src-block'.")
 (after! biblio
   (setopt biblio-bibtex-use-autokey t))
 
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+
+(after! apheleia
+  (add-to-list 'apheleia-formatters
+               '(biome "apheleia-npx" "biome" "format"
+                       "--stdin-file-path" filepath
+                       (apheleia-formatters-js-indent
+                        "--indent-style=tab"
+                        "--indent-width")))
+  (add-to-list 'apheleia-mode-alist
+               '(typescript-ts-mode . biome)))
+
 (bind-key "m" #'osm my/open-map)
 
 (add-hook 'osm-mode-hook (lambda ()
