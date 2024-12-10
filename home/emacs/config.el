@@ -211,6 +211,14 @@
 (add-to-list 'display-buffer-alist
              '((major-mode . sly-mrepl-mode)
                display-buffer-reuse-window))
+(add-to-list 'display-buffer-alist
+             '((major-mode . sly-stickers--replay-mode)
+               display-buffer-pop-up-window))
+;; Going through stickers repeatedly opens frames without this.
+(define-advice sly-stickers--find-and-flash
+    (:around (fn &rest args) popup-fix)
+  (let ((display-buffer-overriding-action '(display-buffer-reuse-window)))
+    (apply fn args)))
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
