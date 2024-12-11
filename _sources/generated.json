@@ -239,26 +239,6 @@
         },
         "version": "5.1.0"
     },
-    "syncthing-el": {
-        "cargoLocks": null,
-        "date": null,
-        "extract": null,
-        "name": "syncthing-el",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "KeyWeeUsr",
-            "repo": "emacs-syncthing",
-            "rev": "3.0.0",
-            "sha256": "sha256-oSry4zgPC/wA270z2ZbceA5oKJ+qA/qt9nuExwO1XoY=",
-            "type": "github"
-        },
-        "version": "3.0.0"
-    },
     "treesit-fold": {
         "cargoLocks": null,
         "date": "2024-12-03",
@@ -281,7 +261,7 @@
     },
     "typst-ts-mode": {
         "cargoLocks": null,
-        "date": "2024-11-21",
+        "date": "2024-12-07",
         "extract": null,
         "name": "typst-ts-mode",
         "passthru": null,
@@ -291,11 +271,11 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "d3e44b5361ed1bbb720a38dafdb29cb8d8b6d8be",
-            "sha256": "sha256-fECXfTjbckgS+kEJ3dMQ7zDotqdxxBt3WFl0sEM60Aw=",
+            "rev": "1367003e2ad55a2f6f9e43178584683028ab56e9",
+            "sha256": "sha256-0RAJ/Td3G7FDvzf7t8csNs/uc07WUPGvMo8ako5iyl0=",
             "type": "git",
             "url": "https://git.sr.ht/~meow_king/typst-ts-mode"
         },
-        "version": "d3e44b5361ed1bbb720a38dafdb29cb8d8b6d8be"
+        "version": "1367003e2ad55a2f6f9e43178584683028ab56e9"
     }
 }

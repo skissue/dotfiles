@@ -144,17 +144,6 @@
       sha256 = "sha256-L6KVBw20K67lHT07Ws+ZC2DwdURahqyuyjAaK0kTgN0=";
     };
   };
-  syncthing-el = {
-    pname = "syncthing-el";
-    version = "3.0.0";
-    src = fetchFromGitHub {
-      owner = "KeyWeeUsr";
-      repo = "emacs-syncthing";
-      rev = "3.0.0";
-      fetchSubmodules = false;
-      sha256 = "sha256-oSry4zgPC/wA270z2ZbceA5oKJ+qA/qt9nuExwO1XoY=";
-    };
-  };
   treesit-fold = {
     pname = "treesit-fold";
     version = "0e21e12560f0977d390e3d4af45020f0f6db1c15";
@@ -169,15 +158,15 @@
   };
   typst-ts-mode = {
     pname = "typst-ts-mode";
-    version = "d3e44b5361ed1bbb720a38dafdb29cb8d8b6d8be";
+    version = "1367003e2ad55a2f6f9e43178584683028ab56e9";
     src = fetchgit {
       url = "https://git.sr.ht/~meow_king/typst-ts-mode";
-      rev = "d3e44b5361ed1bbb720a38dafdb29cb8d8b6d8be";
+      rev = "1367003e2ad55a2f6f9e43178584683028ab56e9";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-fECXfTjbckgS+kEJ3dMQ7zDotqdxxBt3WFl0sEM60Aw=";
+      sha256 = "sha256-0RAJ/Td3G7FDvzf7t8csNs/uc07WUPGvMo8ako5iyl0=";
     };
-    date = "2024-11-21";
+    date = "2024-12-07";
   };
 }
