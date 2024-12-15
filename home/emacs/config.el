@@ -220,6 +220,8 @@
   (let ((display-buffer-overriding-action '(display-buffer-reuse-window)))
     (apply fn args)))
 
+(delete-selection-mode)
+
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 (global-visual-line-mode)
