@@ -383,6 +383,11 @@ Deal with various things that don't play nice with this setup.
       (:around (fn &rest args) popup-fix)
     (let ((display-buffer-overriding-action '(display-buffer-reuse-window)))
       (apply fn args)))
+
+  ;; Fixes Corfu popupinfo dialog with Emacs Lisp content.
+  (define-advice elisp--company-doc-buffer (:around (fn &rest args) popup-fix)
+    (let (display-buffer-base-action)
+      (apply fn args)))
 #+end_src
 
 ** Delete Selection

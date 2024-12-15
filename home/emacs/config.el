@@ -220,6 +220,11 @@
   (let ((display-buffer-overriding-action '(display-buffer-reuse-window)))
     (apply fn args)))
 
+;; Fixes Corfu popupinfo dialog with Emacs Lisp content.
+(define-advice elisp--company-doc-buffer (:around (fn &rest args) popup-fix)
+  (let (display-buffer-base-action)
+    (apply fn args)))
+
 (delete-selection-mode)
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
