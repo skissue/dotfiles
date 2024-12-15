@@ -1247,8 +1247,8 @@ For our purposes, a note must not be a directory, must satisfy
   "p" #'previous-line
   "f" #'forward-char
   "b" #'backward-char
-  "e" #'org-beginning-of-line
-  "a" #'org-end-of-line)
+  "a" #'org-beginning-of-line
+  "e" #'org-end-of-line)
 
 (defvar-keymap my/org-sentence-repeat-map
   :repeat t
