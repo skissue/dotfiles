@@ -1379,6 +1379,11 @@ The repository comes with many different files for "sources", that each have var
                ([remap previous-error] . flymake-goto-prev-error)))
 #+end_src
 
+** Disproject
+#+begin_src elisp
+  (bind-key "p" #'disproject-dispatch ctl-x-map)
+#+end_src
+
 * Denote
 We set [[help:denote-directory][denote-directory]] early since other parts of my configuration use it as well.
 #+begin_src elisp

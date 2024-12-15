@@ -969,6 +969,8 @@ Calls the function in `consult-omni-default-interactive-command'." t)
              ([remap next-error] . flymake-goto-next-error)
              ([remap previous-error] . flymake-goto-prev-error)))
 
+(bind-key "p" #'disproject-dispatch ctl-x-map)
+
 (bind-keys ("C-c X" . org-capture)
            :map my/notes-map
            ("b" . denote-backlinks)

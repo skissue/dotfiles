@@ -90,6 +90,7 @@ in {
         wgrep
         smartparens
         nerd-icons
+        disproject
         # Languages
         treesit-grammars.with-all-grammars
         parinfer-rust-mode
