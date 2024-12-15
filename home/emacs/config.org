@@ -565,6 +565,18 @@ Custom positioning function to put the popup above the text rather than under it
   (add-hook 'prog-mode-hook #'indent-bars-mode)
 #+end_src
 
+** Nerd Icons
+#+begin_src elisp
+  (after! marginalia
+    (nerd-icons-completion-marginalia-setup))
+
+  (after! corfu
+    (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+
+  (after! dired
+    (add-hook 'dired-mode-hook #'nerd-icons-dired-mode))
+#+end_src
+
 * Keybindings
 ** Keymaps
 Some personal prefix keymaps that I bind to throughout my config; I bind them to leader keys here for clarity.

@@ -348,6 +348,15 @@ it by adjusting the return value of
 (autoload #'indent-bars-mode "indent-bars" "Indicate indentation with configurable bars." t)
 (add-hook 'prog-mode-hook #'indent-bars-mode)
 
+(after! marginalia
+  (nerd-icons-completion-marginalia-setup))
+
+(after! corfu
+  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+
+(after! dired
+  (add-hook 'dired-mode-hook #'nerd-icons-dired-mode))
+
 (dolist (map '(my/buffer-map
                my/git-map
                my/notes-map

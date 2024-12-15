@@ -90,6 +90,9 @@ in {
         wgrep
         smartparens
         nerd-icons
+        nerd-icons-completion
+        nerd-icons-corfu
+        nerd-icons-dired
         disproject
         # Languages
         treesit-grammars.with-all-grammars
