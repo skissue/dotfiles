@@ -48,14 +48,14 @@ in {
         corfu
         cape
         marginalia
+        consult
+        consult-dir
         embark
         embark-consult
         eglot-booster
         # Tools
         helpful
         elisp-demos
-        consult
-        consult-dir
         ligature
         magit
         git-timemachine
