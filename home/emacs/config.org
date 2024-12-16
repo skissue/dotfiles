@@ -832,23 +832,6 @@ I have no idea where else to put this, so here we are ¯\_(ツ)_/¯.
     "d" #'delete-char)
 #+end_src
 
-** Multiple Cursors
-#+begin_src elisp
-  (bind-keys ("C-S-c" . mc/edit-lines)
-             ("C->" . mc/mark-next-like-this)
-             ("C-<" . mc/mark-previous-like-this)
-             ("C-M->" . mc/mark-all-like-this))
-#+end_src
-
-This is the other half for making this work with [[*Devil][Devil]]; don't record [[help:devil][devil]] as the command being run, so that it instead looks up the translated bind.
-#+begin_src elisp
-  (after! multiple-cursors-core
-    (define-advice mc/make-a-note-of-the-command-being-run
-        (:after (&rest _) dont-note-devil)
-      (when (eq mc--this-command 'devil)
-        (setq mc--this-command nil))))
-#+end_src
-
 ** ace-window
 #+begin_src elisp
   (bind-keys ("M-o" . ace-window)

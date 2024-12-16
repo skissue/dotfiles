@@ -29,7 +29,6 @@ in {
         # Keybinds
         meow
         meow-tree-sitter
-        multiple-cursors
         ace-window
         avy
         casual-avy

@@ -582,17 +582,6 @@ otherwise, yank normally."
   :repeat t
   "d" #'delete-char)
 
-(bind-keys ("C-S-c" . mc/edit-lines)
-           ("C->" . mc/mark-next-like-this)
-           ("C-<" . mc/mark-previous-like-this)
-           ("C-M->" . mc/mark-all-like-this))
-
-(after! multiple-cursors-core
-  (define-advice mc/make-a-note-of-the-command-being-run
-      (:after (&rest _) dont-note-devil)
-    (when (eq mc--this-command 'devil)
-      (setq mc--this-command nil))))
-
 (bind-keys ("M-o" . ace-window)
            ([remap other-window] . ace-window))
 
