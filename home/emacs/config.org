@@ -782,20 +782,6 @@ I wrote my own package 🎉.
     (meow-tree-sitter-register-defaults))
 #+end_src
 
-** Devil
-#+begin_src elisp
-  ;; (global-devil-mode)
-
-  (setopt devil-repeatable-keys nil)
-#+end_src
-
-I need Devil to also adjust [[help:this-original-command][this-original-command]] during translation; this is half of a fix for working with [[*Multiple Cursors][multiple-cursors.el]].
-#+begin_src elisp
-  (define-advice devil--update-command-loop-info
-      (:after (&rest _) set-original-command)
-    (setq this-original-command real-this-command))
-#+end_src
-
 ** Last Buffer
 I have no idea where else to put this, so here we are ¯\_(ツ)_/¯.
 #+begin_src elisp

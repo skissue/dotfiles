@@ -539,14 +539,6 @@ otherwise, yank normally."
   (require 'meow-tree-sitter)
   (meow-tree-sitter-register-defaults))
 
-;; (global-devil-mode)
-
-(setopt devil-repeatable-keys nil)
-
-(define-advice devil--update-command-loop-info
-    (:after (&rest _) set-original-command)
-  (setq this-original-command real-this-command))
-
 (bind-key "C-`" #'previous-buffer)
 
 (repeat-mode)
