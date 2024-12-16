@@ -225,8 +225,6 @@
   (let (display-buffer-base-action)
     (apply fn args)))
 
-(delete-selection-mode)
-
 (global-visual-line-mode)
 
 (setq-default frame-title-format '("" "%b - Emacs"))

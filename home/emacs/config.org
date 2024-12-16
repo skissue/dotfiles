@@ -395,12 +395,6 @@ Deal with various things that don't play nice with this setup.
       (apply fn args)))
 #+end_src
 
-** Delete Selection
-If a region is active, then override it if inserting text.
-#+begin_src elisp
-  (delete-selection-mode)
-#+end_src
-
 * Appearance
 ** Word-wrap
 Always word-wrap and act on visual lines.
