@@ -508,42 +508,10 @@ Calling `meow-insert-mode' when already in insert mode bugs out."
 
 (setopt repeat-exit-timeout 3)
 
-(defvar-keymap my/movement-repeat-map
-  :repeat t
-  "n" #'next-line
-  "p" #'previous-line
-  "f" #'forward-char
-  "b" #'backward-char
-  "e" #'end-of-visual-line
-  "a" #'beginning-of-visual-line)
-
-(defvar-keymap my/word-repeat-map
-  :repeat t
-  "f" #'forward-word
-  "b" #'backward-word)
-
-(defvar-keymap my/sentence-repeat-map
-  :repeat t
-  "e" #'forward-sentence
-  "a" #'backward-sentence)
-
-(defvar-keymap my/paragraph-repeat-map
-  :repeat t
-  "}" #'forward-paragraph
-  "{" #'backward-paragraph)
-
 (defvar-keymap my/sexp-repeat-map
   :repeat t
   "f" #'forward-sexp
   "b" #'backward-sexp)
-
-(defvar-keymap my/undo-repeat-map
-  :repeat t
-  "/" #'undo)
-
-(defvar-keymap my/delete-repeat-map
-  :repeat t
-  "d" #'delete-char)
 
 (bind-keys ("M-o" . ace-window)
            ([remap other-window] . ace-window))
@@ -1356,29 +1324,6 @@ For our purposes, a note must not be a directory, must satisfy
    `(org-headline-done ((t :inherit nil
                            :italic t
                            :strike-through t)))))
-
-(defvar-keymap my/org-movement-repeat-map
-  :repeat t
-  "n" #'next-line
-  "p" #'previous-line
-  "f" #'forward-char
-  "b" #'backward-char
-  "a" #'org-beginning-of-line
-  "e" #'org-end-of-line)
-
-(defvar-keymap my/org-sentence-repeat-map
-  :repeat t
-  "e" #'org-forward-sentence
-  "a" #'org-backward-sentence)
-
-(defvar-keymap my/org-element-repeat-map
-  :repeat t
-  "}" #'org-forward-element
-  "{" #'org-backward-element)
-
-(defvar-keymap my/org-delete-repeat-map
-  :repeat t
-  "d" #'org-delete-char)
 
 (defvar-keymap my/org-heading-repeat-map
   :repeat t
