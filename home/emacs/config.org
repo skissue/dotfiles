@@ -657,7 +657,8 @@ Buffer management keys.
    '("9" . meow-digit-argument)
    '("0" . meow-digit-argument)
    '("u" . meow-universal-argument)
-   `("s" . ,search-map))
+   `("s" . ,search-map)
+   '("p" . "C-x p"))
 
   (meow-normal-define-key
    '("0" . meow-expand-0)
@@ -732,6 +733,7 @@ Buffer management keys.
           #'meow-digit-argument))
 
   (meow-global-mode)
+  (meow-setup-indicator)
 #+end_src
 
 Unbind some keys that get in the way of binds that I use /far/ more often, since Meow prioritizes keys with the control modifier (e.g. =C-f= over =f=).

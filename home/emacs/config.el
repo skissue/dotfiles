@@ -421,7 +421,8 @@ Calling `meow-insert-mode' when already in insert mode bugs out."
  '("9" . meow-digit-argument)
  '("0" . meow-digit-argument)
  '("u" . meow-universal-argument)
- `("s" . ,search-map))
+ `("s" . ,search-map)
+ '("p" . "C-x p"))
 
 (meow-normal-define-key
  '("0" . meow-expand-0)
@@ -496,6 +497,7 @@ Calling `meow-insert-mode' when already in insert mode bugs out."
         #'meow-digit-argument))
 
 (meow-global-mode)
+(meow-setup-indicator)
 
 (unbind-key "C-f" 'help-map)
 (unbind-key "C-x C-n")
