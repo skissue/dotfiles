@@ -94,6 +94,7 @@ in {
         nerd-icons-corfu
         nerd-icons-dired
         disproject
+        atomic-chrome
         # Languages
         treesit-grammars.with-all-grammars
         parinfer-rust-mode

@@ -1464,6 +1464,15 @@ The repository comes with many different files for "sources", that each have var
   (bind-key "p" #'disproject-dispatch ctl-x-map)
 #+end_src
 
+** Atomic Chrome
+Allows for editing browser text areas inside Emacs 🔥.
+#+begin_src elisp
+  (after! atomic-chrome
+    (setopt atomic-chrome-url-major-mode-alist '(("github\\.com" . gfm-mode))
+            atomic-chrome-extension-type-list '(ghost-text)
+            atomic-chrome-buffer-open-style 'frame))
+#+end_src
+
 * Denote
 We set [[help:denote-directory][denote-directory]] early since other parts of my configuration use it as well.
 #+begin_src elisp
