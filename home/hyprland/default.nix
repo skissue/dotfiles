@@ -13,7 +13,6 @@
     # https://wiki.hyprland.org/Useful-Utilities/Systemd-start/
     systemd.enable = false;
     plugins = [
-      inputs.hyprchroma.packages.${pkgs.system}.default
       inputs.hypr-dynamic-cursors.packages.${pkgs.system}.default
       inputs.hyprfocus.packages.${pkgs.system}.default
       inputs.hyprscroller.packages.${pkgs.system}.default
