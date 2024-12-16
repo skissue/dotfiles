@@ -227,8 +227,6 @@
 
 (delete-selection-mode)
 
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
-
 (global-visual-line-mode)
 
 (setq-default frame-title-format '("" "%b - Emacs"))

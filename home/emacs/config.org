@@ -397,11 +397,6 @@ If a region is active, then override it if inserting text.
 #+end_src
 
 * Appearance
-** Line Numbers
-#+begin_src elisp
-  (add-hook 'prog-mode-hook #'display-line-numbers-mode)
-#+end_src
-
 ** Word-wrap
 Always word-wrap and act on visual lines.
 #+begin_src elisp
