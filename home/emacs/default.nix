@@ -27,6 +27,8 @@ in {
         persistent-scratch
         f
         # Keybinds
+        meow
+        meow-tree-sitter
         devil
         multiple-cursors
         ace-window
