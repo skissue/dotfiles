@@ -1984,6 +1984,17 @@ This function is called by `org-babel-execute-src-block'.")
     (insert (x-export-frames nil 'png))
     (call-process-region nil nil "wl-copy")))
 
+(defun my/toggle-frame-translucence ()
+  "Toggle translucence for the current frame."
+  (interactive)
+  (set-frame-parameter
+   nil 'alpha-background
+   (if (= 0.85 (frame-parameter nil 'alpha-background))
+       1.0
+     0.85)))
+         
+(bind-key "t" #'my/toggle-frame-translucence my/toggle-map)
+
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
 (add-hook 'nov-mode-hook #'visual-fill-column-mode)

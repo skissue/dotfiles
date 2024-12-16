@@ -11,6 +11,8 @@
 (setq-default use-file-dialog nil
               use-dialog-box nil)
 
+(push '(alpha-background . 0.85) default-frame-alist)
+
 (setq-default inhibit-startup-screen t
               inhibit-startup-echo-area-message user-login-name
               initial-buffer-choice nil
