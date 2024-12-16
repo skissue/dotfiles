@@ -627,7 +627,7 @@ Buffer management keys.
           meow-keypad-self-insert-undefined nil
           auto-save-visited-predicate (lambda ()
                                         (not (meow-insert-mode-p)))
-          meow-replace-state-name-list `((normal . "󰰓")
+          meow-replace-state-name-list '((normal . "󰰓")
                                          (beacon . "󰯯")
                                          (insert . "󰰄")
                                          (motion . "󰰐")
@@ -638,53 +638,14 @@ Buffer management keys.
   Calling `meow-insert-mode' when already in insert mode bugs out."
     (unless (meow-insert-mode-p)
       (meow-insert-mode)))
-  (defun my/meow-change-line ()
-    "Kill to end of line, then enter `meow-insert-mode'."
-    (interactive)
-    (kill-region (point) (pos-eol))
-    (my/meow-insert-enter))
-  (defun my/meow-yank-dwim ()
-    "Do-what-I-mean when yanking: if region is active, replace it;
-  otherwise, yank normally."
-    (interactive)
-    (if (use-region-p)
-        (meow-replace)
-      (meow-yank)))
-  (defun my/meow-yank-pop-dwim ()
-    "Just like `my/meow-yank-dwim', but for `meow-yank-pop' instead."
-    (interactive)
-    (if (use-region-p)
-        (meow-replace-pop)
-      (meow-yank-pop)))
-  (dotimes (i 10)
-    (let ((sym (intern (format "my/meow-%i-dwim" i)))
-          (expand-sym (intern (format "meow-expand-%i" i))))
-      (eval `(defun ,sym ()
-               "Expand selection if active, otherwise invoke
-   universal argument with digit."
-               (interactive)
-               (if (use-region-p)
-                   (,expand-sym)
-                 (meow-digit-argument))))))
-  (defun my/meow-reverse-dwim ()
-    "Call `meow-reverse' if a region is active, otherwise `negative-argument'."
-    (interactive)
-    (if (use-region-p)
-        (meow-reverse)
-      (call-interactively #'negative-argument)))
 
   (meow-motion-overwrite-define-key
    '("e"           . meow-next)
    '("u"           . meow-prev)
-   '("<escape>"    . keyboard-escape-quit)
-   '("\\ e"        . "H-e")
-   '("\\ u"        . "H-u")
-   '("\\ SPC"      . "H-SPC")
-   '("\\ <escape>" . "ESC"))
+   '("<escape>"    . keyboard-escape-quit))
 
   (meow-leader-define-key
    '("?" . meow-cheatsheet)
-   '("SPC" . "C-c C-c")
    '("1" . meow-digit-argument)
    '("2" . meow-digit-argument)
    '("3" . meow-digit-argument)
@@ -699,25 +660,19 @@ Buffer management keys.
    `("s" . ,search-map))
 
   (meow-normal-define-key
-   '("0" . my/meow-0-dwim)
-   '("1" . my/meow-1-dwim)
-   '("2" . my/meow-2-dwim)
-   '("3" . my/meow-3-dwim)
-   '("4" . my/meow-4-dwim)
-   '("5" . my/meow-5-dwim)
-   '("6" . my/meow-6-dwim)
-   '("7" . my/meow-7-dwim)
-   '("8" . my/meow-8-dwim)
-   '("9" . my/meow-9-dwim)
-   '("," . meow-inner-of-thing)
-   '("." . meow-bounds-of-thing)
-   '("<" . meow-beginning-of-thing)
-   '(">" . meow-end-of-thing)
-   '("/" . meow-visit)
+   '("0" . meow-expand-0)
+   '("1" . meow-expand-1)
+   '("2" . meow-expand-2)
+   '("3" . meow-expand-3)
+   '("4" . meow-expand-4)
+   '("5" . meow-expand-5)
+   '("6" . meow-expand-6)
+   '("7" . meow-expand-7)
+   '("8" . meow-expand-8)
+   '("9" . meow-expand-9)
    '("a" . meow-append)
    '("A" . meow-open-below)
    '("c" . meow-change)
-   '("C" . my/meow-change-line)
    '("d" . meow-kill)
    '("D" . meow-C-k)
    '("e" . meow-next)
@@ -739,8 +694,8 @@ Buffer management keys.
    '("N" . meow-left-expand)
    '("o" . meow-block)
    '("O" . meow-to-block)
-   '("p" . my/meow-yank-dwim)
-   '("P" . my/meow-yank-pop-dwim)
+   '("p" . meow-replace)
+   '("P" . meow-replace-pop)
    '("q" . meow-quit)
    '("r" . meow-join)
    '("s" . meow-insert)
@@ -758,13 +713,23 @@ Buffer management keys.
    '(";" . meow-reverse)
    '("=" . meow-indent)
    '("`" . meow-last-buffer)
-   '("<escape>" . meow-cancel-selection)
-   '("\\ SPC" . "H-SPC")
-   '("\\ \\" . "H-\\")
-   '("\\ <escape>" . "ESC"))
+   '("," . meow-inner-of-thing)
+   '("." . meow-bounds-of-thing)
+   '("[" . meow-beginning-of-thing)
+   '("]" . meow-end-of-thing)
+   '("/" . meow-visit)
+   '("<escape>" . meow-cancel-selection))
 
-  (setcdr (assq 'meow-kill meow-selection-command-fallback)
-          #'meow-delete)
+  (dolist (cmd '((meow-kill        . meow-delete)
+                 (meow-replace     . meow-yank)
+                 (meow-replace-pop . meow-yank-pop)
+                 (meow-reverse     . negative-argument)))
+    (setf (alist-get (car cmd) meow-selection-command-fallback)
+          (cdr cmd)))
+  (dotimes (i 10)
+    (setf (alist-get (intern (format "meow-expand-%s" i))
+                     meow-selection-command-fallback)
+          #'meow-digit-argument))
 
   (meow-global-mode)
 #+end_src
@@ -780,12 +745,6 @@ I wrote my own package 🎉.
   (after! meow
     (require 'meow-tree-sitter)
     (meow-tree-sitter-register-defaults))
-#+end_src
-
-** Last Buffer
-I have no idea where else to put this, so here we are ¯\_(ツ)_/¯.
-#+begin_src elisp
-  (bind-key "C-`" #'previous-buffer)
 #+end_src
 
 ** Repeat Mode
