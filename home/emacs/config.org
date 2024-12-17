@@ -590,8 +590,7 @@ Some personal prefix keymaps that I bind to throughout my config; I bind them to
                  my/git-map
                  my/notes-map
                  my/open-map
-                 my/toggle-map
-                 my/window-map))
+                 my/toggle-map))
     (unless (boundp map)
       (define-prefix-command map)))
 
@@ -599,16 +598,17 @@ Some personal prefix keymaps that I bind to throughout my config; I bind them to
              ("C-c g" . my/git-map)
              ("C-c n" . my/notes-map)
              ("C-c o" . my/open-map)
-             ("C-c t" . my/toggle-map)
-             ("C-c w" . my/window-map))
+             ("C-c t" . my/toggle-map))
 #+end_src
 
 Buffer management keys.
 #+begin_src elisp
   (bind-keys :map my/buffer-map
              ("b" . switch-to-buffer)
-             ("k" . (lambda () (interactive) (kill-buffer)))
-             ("q" . kill-buffer-and-window))
+             ("k" . kill-current-buffer)
+             ("K" . kill-buffer)
+             ("q" . kill-buffer-and-window)
+             ("`" . meow-last-buffer))
 #+end_src
 
 ** Meow
@@ -707,7 +707,6 @@ Buffer management keys.
    '("'" . repeat)
    '(";" . meow-reverse)
    '("=" . meow-indent)
-   '("`" . meow-last-buffer)
    '("," . meow-inner-of-thing)
    '("." . meow-bounds-of-thing)
    '("[" . meow-beginning-of-thing)

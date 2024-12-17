@@ -364,8 +364,7 @@ it by adjusting the return value of
                my/git-map
                my/notes-map
                my/open-map
-               my/toggle-map
-               my/window-map))
+               my/toggle-map))
   (unless (boundp map)
     (define-prefix-command map)))
 
@@ -373,13 +372,14 @@ it by adjusting the return value of
            ("C-c g" . my/git-map)
            ("C-c n" . my/notes-map)
            ("C-c o" . my/open-map)
-           ("C-c t" . my/toggle-map)
-           ("C-c w" . my/window-map))
+           ("C-c t" . my/toggle-map))
 
 (bind-keys :map my/buffer-map
            ("b" . switch-to-buffer)
-           ("k" . (lambda () (interactive) (kill-buffer)))
-           ("q" . kill-buffer-and-window))
+           ("k" . kill-current-buffer)
+           ("K" . kill-buffer)
+           ("q" . kill-buffer-and-window)
+           ("`" . meow-last-buffer))
 
 (require 'meow)
 
@@ -475,7 +475,6 @@ Calling `meow-insert-mode' when already in insert mode bugs out."
  '("'" . repeat)
  '(";" . meow-reverse)
  '("=" . meow-indent)
- '("`" . meow-last-buffer)
  '("," . meow-inner-of-thing)
  '("." . meow-bounds-of-thing)
  '("[" . meow-beginning-of-thing)
