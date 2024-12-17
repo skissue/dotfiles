@@ -1323,8 +1323,8 @@ For our purposes, a note must not be a directory, must satisfy
                                     :foreground ,(doom-color 'red))
                                    ("WAIT"
                                     :foreground ,(doom-color 'yellow)))
-          org-refile-targets     '((nil . (:maxlevel . 2))
-                                   (org-agenda-files . (:maxlevel 2))))
+          org-refile-targets     '((nil :maxlevel . 2)
+                                   (org-agenda-files :maxlevel . 2)))
   (custom-set-faces
    `(org-headline-done ((t :inherit nil
                            :italic t
