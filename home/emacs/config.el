@@ -768,6 +768,9 @@ instead."
           magit-bind-magit-project-status nil ;; We do this ourselves for lazy-loading
           magit-clone-default-directory "~/git/"))
 
+(after! meow
+  (add-hook 'git-commit-mode-hook #'meow-insert))
+
 (after! magit
   (add-to-list 'magit-clone-name-alist 
                `("\\`\\(?:gh-skissue:\\)?\\([^:]+\\)\\'" "gh-skissue" "skissue"))

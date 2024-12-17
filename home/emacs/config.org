@@ -1074,6 +1074,12 @@ Eglot [[https://github.com/joaotavora/eglot/blob/bd6a1cccfe9c0f724772f846d1f4a93
             magit-clone-default-directory "~/git/"))
 #+end_src
 
+Start commit buffers in insert mode to type immediately.
+#+begin_src elisp
+  (after! meow
+    (add-hook 'git-commit-mode-hook #'meow-insert))
+#+end_src
+
 Custom URLs to access my various accounts. Authentication is managed via custom SSH hostnames.
 #+begin_src elisp
   (after! magit
