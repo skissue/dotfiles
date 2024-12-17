@@ -466,6 +466,8 @@ it by adjusting the return value of
  '("W" . meow-back-symbol)
  '("x" . meow-pop-selection)
  '("y" . meow-save)
+ '("z" . meow-pop-to-global-mark)
+ '("Z" . meow-unpop-to-mark)
  '("'" . repeat)
  '(";" . meow-reverse)
  '("=" . meow-indent)

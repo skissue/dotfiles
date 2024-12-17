@@ -698,6 +698,8 @@ Buffer management keys.
    '("W" . meow-back-symbol)
    '("x" . meow-pop-selection)
    '("y" . meow-save)
+   '("z" . meow-pop-to-global-mark)
+   '("Z" . meow-unpop-to-mark)
    '("'" . repeat)
    '(";" . meow-reverse)
    '("=" . meow-indent)
