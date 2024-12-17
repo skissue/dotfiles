@@ -27,15 +27,15 @@
   };
   copilot-el = {
     pname = "copilot-el";
-    version = "88b10203705a9cdcbc232e7d2914f6b12217a885";
+    version = "b7bff7b934837744688fd74191ecffb83b3bcc05";
     src = fetchFromGitHub {
       owner = "zerolfx";
       repo = "copilot.el";
-      rev = "88b10203705a9cdcbc232e7d2914f6b12217a885";
+      rev = "b7bff7b934837744688fd74191ecffb83b3bcc05";
       fetchSubmodules = false;
-      sha256 = "sha256-oTAxayxrEiIu0GUtsqaL/pCY0ElU1RjZp7OXgqqJqnA=";
+      sha256 = "sha256-MEsjXQIeiTI6NXN5rTW7HfFPC18IZnhAssma2BZa0ks=";
     };
-    date = "2024-11-18";
+    date = "2024-12-14";
   };
   doom-snippets = {
     pname = "doom-snippets";
