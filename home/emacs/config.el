@@ -1700,13 +1700,22 @@ This function is called by `org-babel-execute-src-block'.")
 
 (after! project
   (defun my/justl-project ()
-    "Wrapper around `justl' that uses
- `project-current-directory-override'."
+    "Wrapper around `justl' that uses `project-current-directory-override'."
     (interactive)
     (let ((default-directory project-current-directory-override))
       (call-interactively #'justl)))
   (setf (alist-get 'my/justl-project project-switch-commands)
         '("Just" "j")))
+
+(after! disproject
+  (defun my/justl-disproject ()
+    "Wrapper around `justl' that uses `disproject-with-environment'."
+    (interactive)
+    (disproject-with-environment
+      (call-interactively #'justl)))
+  (transient-append-suffix
+    #'disproject-dispatch "!"
+    '("j" "Just" my/justl-disproject)))
 
 (setf (alist-get "\\.gp\\'" auto-mode-alist
                  nil nil #'equal)
