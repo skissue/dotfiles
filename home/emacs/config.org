@@ -1074,14 +1074,6 @@ Eglot [[https://github.com/joaotavora/eglot/blob/bd6a1cccfe9c0f724772f846d1f4a93
             magit-clone-default-directory "~/git/"))
 #+end_src
 
-Repeat map 🙂.
-#+begin_src elisp
-  (defvar-keymap my/magit-navigation-repeat-map
-    :repeat t
-    "n" #'magit-next-line
-    "p" #'magit-previous-line)
-#+end_src
-
 Custom URLs to access my various accounts. Authentication is managed via custom SSH hostnames.
 #+begin_src elisp
   (after! magit

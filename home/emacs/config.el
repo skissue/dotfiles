@@ -768,11 +768,6 @@ instead."
           magit-bind-magit-project-status nil ;; We do this ourselves for lazy-loading
           magit-clone-default-directory "~/git/"))
 
-(defvar-keymap my/magit-navigation-repeat-map
-  :repeat t
-  "n" #'magit-next-line
-  "p" #'magit-previous-line)
-
 (after! magit
   (add-to-list 'magit-clone-name-alist 
                `("\\`\\(?:gh-skissue:\\)?\\([^:]+\\)\\'" "gh-skissue" "skissue"))
