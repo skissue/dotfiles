@@ -395,12 +395,6 @@ it by adjusting the return value of
                                        (motion . "󰰐")
                                        (keypad . "󰰊")))
 
-(defun my/meow-insert-enter ()
-  "Enter `meow-insert-mode' if not already in insert mode.
-Calling `meow-insert-mode' when already in insert mode bugs out."
-  (unless (meow-insert-mode-p)
-    (meow-insert-mode)))
-
 (meow-motion-overwrite-define-key
  '("e"           . meow-next)
  '("u"           . meow-prev)
