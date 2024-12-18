@@ -1045,9 +1045,6 @@ Calls the function in `consult-omni-default-interactive-command'." t)
 
 (bind-key "p" #'disproject-dispatch ctl-x-map)
 
-(after! disproject
-  (require 'magit))
-
 (after! atomic-chrome
   (setopt atomic-chrome-url-major-mode-alist '(("github\\.com" . gfm-mode))
           atomic-chrome-extension-type-list '(ghost-text)

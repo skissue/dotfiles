@@ -1447,12 +1447,8 @@ The repository comes with many different files for "sources", that each have var
 #+end_src
 
 ** Disproject
-We load Magit as well so that it shows up in the Transient menu (there's a conditional screening for it).
 #+begin_src elisp
   (bind-key "p" #'disproject-dispatch ctl-x-map)
-
-  (after! disproject
-    (require 'magit))
 #+end_src
 
 ** Atomic Chrome
