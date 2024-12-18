@@ -608,11 +608,16 @@ Buffer management keys.
           meow-keypad-self-insert-undefined nil
           auto-save-visited-predicate (lambda ()
                                         (not (meow-insert-mode-p)))
-          meow-replace-state-name-list '((normal . "󰰓")
-                                         (beacon . "󰯯")
-                                         (insert . "󰰄")
-                                         (motion . "󰰐")
-                                         (keypad . "󰰊")))
+          meow-replace-state-name-list '((normal . "Ⓝ")
+                                         (insert . "Ⓘ")
+                                         (motion . "Ⓜ")
+                                         (keypad . "Ⓚ")
+                                         (beacon . "Ⓑ")))
+  (ef-themes-with-colors
+    (custom-set-faces
+     `(meow-insert-indicator ((t :foreground ,fg-added)))
+     `(meow-beacon-indicator ((t :foreground ,fg-changed)))
+     `(meow-keypad-indicator ((t :foreground ,fg-removed)))))
 
   (meow-motion-overwrite-define-key
    '("e"           . meow-next)
