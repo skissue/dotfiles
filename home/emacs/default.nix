@@ -69,6 +69,7 @@ in {
         pulsar
         pdf-tools
         copilot-bleeding
+        copilot-chat
         zoxide
         focus
         hl-todo
