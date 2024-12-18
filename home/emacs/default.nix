@@ -35,6 +35,7 @@ in {
         casual-calc
         # Appearance
         doom-themes
+        ef-themes
         minions
         writeroom-mode
         diff-hl

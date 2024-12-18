@@ -258,26 +258,17 @@
      "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
      "\\\\" "://")))
 
-(require 'doom-themes)
-(load-theme 'doom-tomorrow-night :no-confirm)
-(doom-themes-org-config)
+(require 'ef-themes)
 
-(custom-set-faces
- `(org-document-title        ((t :height 1.5)))
- `(outline-1                 ((t :height 1.3)))
- `(outline-2                 ((t :height 1.3)))
- `(outline-3                 ((t :height 1.3)))
- `(outline-4                 ((t :height 1.3)))
- `(org-document-info-keyword ((t :inherit (shadow fixed-pitch))))
- `(org-meta-line             ((t :inherit (shadow fixed-pitch))))
- `(org-drawer                ((t :inherit (shadow fixed-pitch))))
- `(org-special-keyword       ((t :inherit fixed-pitch)))
- `(org-property-value        ((t :inherit shadow)))
- `(org-indent                ((t :inherit (fixed-pitch org-hide))))
- `(org-table                 ((t :inherit fixed-pitch)))
- `(org-code                  ((t :inherit fixed-pitch)))
- `(org-block                 ((t :inherit fixed-pitch)))
- `(org-agenda-structure      ((t :height 1.3))))
+(setopt ef-themes-mixed-fonts t
+        ef-themes-headings '((0 bold 1.5)
+                             (1 light variable-pitch 1.3)
+                             (2 light variable-pitch 1.3)
+                             (3 light variable-pitch 1.3)
+                             (4 light variable-pitch 1.3)
+                             (t light variable-pitch)))
+
+(ef-themes-load-theme 'ef-owl)
 
 (minions-mode)
 
@@ -300,9 +291,10 @@
 (add-hook 'eldoc-mode-hook #'eldoc-box-hover-at-point-mode)
 
 (after! eldoc-box
-  (custom-set-faces
-   `(eldoc-box-border ((t :background ,(doom-color 'bg))))
-   '(eldoc-box-body ((t :inherit variable-pitch))))
+  (ef-themes-with-colors
+    (custom-set-faces
+     `(eldoc-box-border ((t :background ,bg-main)))
+     '(eldoc-box-body ((t :inherit variable-pitch)))))
   (setcdr (assq 'left-fringe eldoc-box-frame-parameters) 2)
   (setcdr (assq 'right-fringe eldoc-box-frame-parameters) 2))
 
@@ -869,10 +861,11 @@ instead."
 (add-hook 'prog-mode-hook #'hl-todo-mode)
 
 (after! hl-todo
-  (setopt hl-todo-keyword-faces
-          `(("TODO" . ,(doom-color 'green))
-            ("FIXME" . ,(doom-color 'yellow))
-            ("HACK" . ,(doom-color 'blue)))))
+  (ef-themes-with-colors
+    (setopt hl-todo-keyword-faces
+            `(("TODO" . ,green)
+              ("FIXME" . ,yellow)
+              ("HACK" . ,cyan)))))
 
 (bind-keys :map goto-map
            ("t" . consult-todo)
@@ -1315,10 +1308,11 @@ For our purposes, a note must not be a directory, must satisfy
           org-cycle-separator-lines              0
           org-blank-before-new-entry             '((heading . t)
                                                    (plain-list-item . auto))
-          org-todo-keyword-faces `(("CANCELED"
-                                    :foreground ,(doom-color 'red))
-                                   ("WAIT"
-                                    :foreground ,(doom-color 'yellow)))
+          org-todo-keyword-faces (ef-themes-with-colors
+                                   `(("CANCELED"
+                                      :foreground ,red)
+                                     ("WAIT"
+                                      :foreground ,yellow)))
           org-refile-targets     '((nil :maxlevel . 2)
                                    (org-agenda-files :maxlevel . 2)))
   (custom-set-faces
@@ -1383,11 +1377,12 @@ For our purposes, a note must not be a directory, must satisfy
           org-agenda-deadline-faces '((0.8 . org-imminent-deadline)
                                       (0.5 . org-upcoming-deadline)
                                       (0.0 . org-upcoming-distant-deadline)))
-  (custom-set-faces
-   `(org-scheduled-today           ((t (:foreground ,(doom-color 'orange) :weight bold))))
-   `(org-imminent-deadline         ((t (:foreground ,(doom-color 'red)    :weight semibold))))
-   `(org-upcoming-deadline         ((t (:foreground ,(doom-color 'yellow) :weight medium))))
-   `(org-upcoming-distant-deadline ((t (:foreground ,(doom-color 'yellow) :weight light))))))
+  (ef-themes-with-colors
+    (custom-set-faces
+     `(org-scheduled-today           ((t (:foreground ,magenta :weight bold))))
+     `(org-imminent-deadline         ((t (:foreground ,red    :weight semibold))))
+     `(org-upcoming-deadline         ((t (:foreground ,yellow :weight medium))))
+     `(org-upcoming-distant-deadline ((t (:foreground ,yellow :weight light)))))))
 
 (add-hook 'org-agenda-mode-hook (lambda ()
                                   (face-remap-add-relative 'default 'fixed-pitch)))
@@ -1492,19 +1487,21 @@ For our purposes, a note must not be a directory, must satisfy
                             (?* . "•"))
           org-modern-progress 8
    ;; For some reason, inheriting from `org-modern-todo' messes with the size
-          org-modern-todo-faces `(("CANCELED"
-                                   :inverse-video t
-                                   :weight semibold
-                                   :foreground ,(doom-color 'red))
-                                  ("WAIT"
-                                   :inverse-video t
-                                   :weight semibold
-                                   :foreground ,(doom-color 'yellow)))))
+          org-modern-todo-faces (ef-themes-with-colors
+                                  `(("CANCELED"
+                                     :inverse-video t
+                                     :weight semibold
+                                     :foreground ,red)
+                                    ("WAIT"
+                                     :inverse-video t
+                                     :weight semibold
+                                     :foreground ,yellow)))))
 
-(custom-set-faces
- `(org-modern-done ((t :inherit org-modern-todo
-                       :foreground ,(doom-color 'green)))) 
- '(org-modern-symbol ((t (:family "Iosevka Fixed SS18")))))
+(ef-themes-with-colors
+  (custom-set-faces
+   `(org-modern-done ((t :inherit org-modern-todo
+                         :foreground ,green))) 
+   '(org-modern-symbol ((t (:family "Iosevka Fixed SS18"))))))
 
 (add-hook 'org-mode-hook #'org-appear-mode)
 
