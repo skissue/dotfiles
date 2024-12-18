@@ -1806,11 +1806,6 @@ This function is called by `org-babel-execute-src-block'.")
 
   (setopt dired-dwim-target t))
 
-(bind-key "s" #'syncthing my/open-map)
-
-(after! syncthing
-  (setopt syncthing-default-server-token "iPy5Nbp6JFhjPcECDTAvfxhuabgjjVQU"))
-
 (bind-key "e" #'mu4e my/open-map)
 
 (setopt mail-user-agent #'mu4e-user-agent

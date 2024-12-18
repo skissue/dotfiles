@@ -6,7 +6,6 @@
 in {
   typst-ts-mode = trivialBuild sources.typst-ts-mode;
   copilot-bleeding = epkgs.copilot.overrideAttrs {inherit (sources.copilot-el) src;};
-  syncthing-el = trivialBuild sources.syncthing-el;
   eglot-booster = trivialBuild (sources.eglot-booster
     // rec {
       propagatedUserEnvPkgs = with epkgs; [jsonrpc eglot seq];

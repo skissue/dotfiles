@@ -2421,14 +2421,6 @@ Add a function to publish ~geo:~ links as URLs that lead to OpenStreetMap's webs
     (setopt dired-dwim-target t))
 #+end_src
 
-** Syncthing
-#+begin_src elisp
-  (bind-key "s" #'syncthing my/open-map)
-
-  (after! syncthing
-    (setopt syncthing-default-server-token "iPy5Nbp6JFhjPcECDTAvfxhuabgjjVQU"))
-#+end_src
-
 ** mu4e
 #+begin_src elisp
   (bind-key "e" #'mu4e my/open-map)
