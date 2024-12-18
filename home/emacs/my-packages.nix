@@ -5,11 +5,7 @@
   trivialBuild = epkgs.trivialBuild;
 in {
   typst-ts-mode = trivialBuild sources.typst-ts-mode;
-  copilot = trivialBuild (sources.copilot-el
-    // rec {
-      propagatedUserEnvPkgs = with epkgs; [s f dash editorconfig jsonrpc];
-      buildInputs = propagatedUserEnvPkgs;
-    });
+  copilot-bleeding = epkgs.copilot.overrideAttrs {inherit (sources.copilot-el) src;};
   syncthing-el = trivialBuild sources.syncthing-el;
   eglot-booster = trivialBuild (sources.eglot-booster
     // rec {

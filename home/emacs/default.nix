@@ -68,7 +68,7 @@ in {
         auto-yasnippet
         pulsar
         pdf-tools
-        copilot
+        copilot-bleeding
         zoxide
         focus
         hl-todo
@@ -173,7 +173,6 @@ in {
 
   home.packages = with pkgs; [
     imagemagick # For dirvish image preview
-    nodejs # Copilot
     nil
     alejandra
     ltex-ls
