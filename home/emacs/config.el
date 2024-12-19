@@ -632,28 +632,21 @@ it by adjusting the return value of
   (setopt embark-verbose-indicator-display-action
           '(display-buffer-at-bottom (window-height . fit-window-to-buffer))))
 
-(defun my/corfu-enable-in-minibuffer ()
- "Enable Corfu in the minibuffer if `completion-at-point' is bound."
- (when (where-is-internal #'completion-at-point
-                          (list (current-local-map)))
-   (corfu-mode)))
+(require 'corfu)
 
-(add-hooks   (prog-mode-hook        . corfu-mode)
-             (text-mode-hook        . corfu-mode)
-             (minibuffer-setup-hook . my/corfu-enable-in-minibuffer))
+(bind-key "RET" nil 'corfu-map)
+(setopt tab-always-indent 'complete
+        corfu-auto t
+        corfu-auto-prefix 2
+        corfu-cycle t
+        corfu-preview-current t)
 
-(after! corfu
-  (bind-key "RET" nil 'corfu-map)
-  (setopt tab-always-indent 'complete
-          corfu-auto t
-          corfu-auto-prefix 2
-          corfu-cycle t
-          corfu-preview-current t)
-  (corfu-popupinfo-mode)
-  (corfu-history-mode))
-   
 (custom-set-faces
  '(corfu-default ((t (:inherit fixed-pitch)))))
+
+(global-corfu-mode)
+(corfu-popupinfo-mode)
+(corfu-history-mode)
 
 (defvar-keymap my/corfu-repeat-map
   :repeat t

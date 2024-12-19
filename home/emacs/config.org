@@ -906,28 +906,21 @@ Repeat map for candidate navigation.
 ** Corfu
 =Corfu='s completion does not take effect in the minibuffer by default; I stole a snippet from an [[https://github.com/minad/corfu#completing-in-the-minibuffer][upstream example]].
 #+begin_src elisp
-  (defun my/corfu-enable-in-minibuffer ()
-   "Enable Corfu in the minibuffer if `completion-at-point' is bound."
-   (when (where-is-internal #'completion-at-point
-                            (list (current-local-map)))
-     (corfu-mode)))
+  (require 'corfu)
 
-  (add-hooks   (prog-mode-hook        . corfu-mode)
-               (text-mode-hook        . corfu-mode)
-               (minibuffer-setup-hook . my/corfu-enable-in-minibuffer))
+  (bind-key "RET" nil 'corfu-map)
+  (setopt tab-always-indent 'complete
+          corfu-auto t
+          corfu-auto-prefix 2
+          corfu-cycle t
+          corfu-preview-current t)
 
-  (after! corfu
-    (bind-key "RET" nil 'corfu-map)
-    (setopt tab-always-indent 'complete
-            corfu-auto t
-            corfu-auto-prefix 2
-            corfu-cycle t
-            corfu-preview-current t)
-    (corfu-popupinfo-mode)
-    (corfu-history-mode))
-     
   (custom-set-faces
    '(corfu-default ((t (:inherit fixed-pitch)))))
+
+  (global-corfu-mode)
+  (corfu-popupinfo-mode)
+  (corfu-history-mode)
 #+end_src
 
 Repeat maps to simplify candidate selection 🙂.
