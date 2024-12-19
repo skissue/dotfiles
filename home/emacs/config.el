@@ -634,11 +634,19 @@ it by adjusting the return value of
 
 (require 'corfu)
 
-(bind-key "RET" nil 'corfu-map)
+(bind-keys :map corfu-map
+           ("<tab>" . corfu-next)
+           ("<backtab>" . corfu-previous)
+           ("M-q" . corfu-quick-insert))
 (setopt tab-always-indent 'complete
+        corfu-min-width 20
         corfu-quit-no-match nil
-        corfu-quit-at-boundary nil
-        corfu-preview-current 'insert)
+        corfu-quit-at-boundary 'separator
+        corfu-preview-current 'insert
+        corfu-preselect 'prompt
+        corfu-popupinfo-delay '(1.25 . 0.5)
+        corfu-quick1 "arstneio"
+        corfu-quick2 corfu-quick1)
 
 (custom-set-faces
  '(corfu-default ((t (:inherit fixed-pitch)))))
@@ -646,11 +654,6 @@ it by adjusting the return value of
 (global-corfu-mode)
 (corfu-popupinfo-mode)
 (corfu-history-mode)
-
-(defvar-keymap my/corfu-repeat-map
-  :repeat t
-  "n" #'corfu-next
-  "p" #'corfu-previous)
 
 (defun my/add-cape-capfs ()
   (dolist (f #'(cape-file cape-elisp-block cape-emoji cape-tex))
