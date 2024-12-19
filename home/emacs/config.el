@@ -636,10 +636,9 @@ it by adjusting the return value of
 
 (bind-key "RET" nil 'corfu-map)
 (setopt tab-always-indent 'complete
-        corfu-auto t
-        corfu-auto-prefix 2
-        corfu-cycle t
-        corfu-preview-current t)
+        corfu-quit-no-match nil
+        corfu-quit-at-boundary nil
+        corfu-preview-current 'insert)
 
 (custom-set-faces
  '(corfu-default ((t (:inherit fixed-pitch)))))
