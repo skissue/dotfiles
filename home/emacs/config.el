@@ -556,9 +556,9 @@ it by adjusting the return value of
            ("RET" . vertico-directory-enter)
            ("DEL" . vertico-directory-delete-char)
            ("M-DEL" . vertico-directory-delete-word)
-           ("M-j" . vertico-quick-jump)
+           ("M-q" . vertico-quick-jump)
            ("M-P" . vertico-repeat-previous)
-           ("M-N" . vertico-repeat-nex))
+           ("M-N" . vertico-repeat-next))
 
 (setopt vertico-count 20
         vertico-cycle t
