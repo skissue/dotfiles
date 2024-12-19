@@ -1606,9 +1606,6 @@ This function is called by `org-babel-execute-src-block'.")
                  nil nil #'equal)
       #'nix-ts-mode)
 
-(add-hook 'nix-ts-mode-hook (lambda ()
-                              (yas-activate-extra-mode 'nix-mode)))
-
 (after! (nix-ts-mode eglot)
   (setf (alist-get 'nix-ts-mode eglot-server-programs)
         '("nil" :initializationOptions
