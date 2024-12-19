@@ -63,9 +63,6 @@ in {
         magit-todos
         forge
         envrc
-        yasnippet
-        yasnippet-snippets
-        auto-yasnippet
         pulsar
         pdf-tools
         copilot-bleeding
@@ -186,14 +183,12 @@ in {
       substituteAll {
         src = ./config.el;
         # See explanations in ./config.org
-        doom_snippets_src = sources.doom-snippets.src;
         consult_mu_src = sources.consult-mu.src;
         consult_omni_src = sources.consult-omni.src;
       };
     "emacs/private.json".text = builtins.toJSON private;
     # Custom icon because webp can be properly transparent
     "emacs/logo.webp".source = ./logo.webp;
-    "emacs/snippets".source = mutable-link ./snippets;
   };
   xdg.dataFile = {
     "revealjs".source = sources.revealjs.src;

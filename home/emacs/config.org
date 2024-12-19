@@ -1091,38 +1091,6 @@ Currently disabled cause it throws a cryptic error that I don't feel like tracki
             '("api.github.com" "github.com" forge-github-repository))))
 #+end_src
 
-** YASnippet
-#+begin_src elisp
-  (add-hooks (text-mode-hook . yas-minor-mode)
-             (prog-mode-hook . yas-minor-mode))
-  (after! yasnippet
-    (defun my/corfu-active-p ()
-      (and (frame-live-p corfu--frame) (frame-visible-p corfu--frame)))
-    (cl-pushnew #'my/corfu-active-p yas-keymap-disable-hook))
-#+end_src
-
-#+begin_src elisp
-  (after! yasnippet
-    (require 'yasnippet-snippets))
-#+end_src
-
-Because the repository has a bunch of folders (for snippets), it can't be built with NixOS' default setup, so we clone and load it from the source folder instead.
-#+begin_src elisp
-  (cl-pushnew "@doom_snippets_src@" load-path
-              :test #'equal)
-  (after! yasnippet
-    (require 'doom-snippets))
-#+end_src
-
-Order [[help:yas-snippet-dirs][yas-snippet-dirs]] correctly.
-#+begin_src elisp
-  (after! doom-snippets
-    (setopt yas-snippet-dirs `(,(expand-file-name "snippets/"
-                                                  user-emacs-directory)
-                               doom-snippets-dir
-                               yasnippet-snippets-dir)))
-#+end_src
-
 ** Pulsar
 #+begin_src elisp
   (idle-load 'pulsar)

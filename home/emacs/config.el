@@ -775,27 +775,6 @@ instead."
                      nil nil #'equal)
           '("api.github.com" "github.com" forge-github-repository))))
 
-(add-hooks (text-mode-hook . yas-minor-mode)
-           (prog-mode-hook . yas-minor-mode))
-(after! yasnippet
-  (defun my/corfu-active-p ()
-    (and (frame-live-p corfu--frame) (frame-visible-p corfu--frame)))
-  (cl-pushnew #'my/corfu-active-p yas-keymap-disable-hook))
-
-(after! yasnippet
-  (require 'yasnippet-snippets))
-
-(cl-pushnew "@doom_snippets_src@" load-path
-            :test #'equal)
-(after! yasnippet
-  (require 'doom-snippets))
-
-(after! doom-snippets
-  (setopt yas-snippet-dirs `(,(expand-file-name "snippets/"
-                                                user-emacs-directory)
-                             doom-snippets-dir
-                             yasnippet-snippets-dir)))
-
 (idle-load 'pulsar)
 (after! pulsar
   (setopt pulsar-face 'highlight
