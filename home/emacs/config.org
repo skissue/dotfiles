@@ -961,6 +961,12 @@ Eglot [[https://github.com/joaotavora/eglot/blob/bd6a1cccfe9c0f724772f846d1f4a93
           '((styles orderless basic))))
 #+end_src
 
+Wrap Eglot to ensure that completions aren't cached (since LSPs usually don't return all possible candidates at once). See [[https://github.com/minad/corfu/wiki#continuously-update-the-candidates][the Corfu wiki]].
+#+begin_src elisp
+  (after! eglot
+    (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
+#+end_src
+
 #+begin_src elisp
   (after! eglot
     (require 'eglot-booster)

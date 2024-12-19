@@ -675,6 +675,9 @@ it by adjusting the return value of
         '((styles orderless basic))))
 
 (after! eglot
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
+
+(after! eglot
   (require 'eglot-booster)
   (eglot-booster-mode))
 
