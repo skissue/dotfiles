@@ -729,6 +729,21 @@ instead."
                 "use nix")))
     (envrc-allow)))
 
+(defun my/add-tempel-capf ()
+  (push #'tempel-complete completion-at-point-functions))
+  
+(add-hook 'prog-mode-hook #'my/add-tempel-capf)
+(add-hook 'text-mode-hook #'my/add-tempel-capf)
+
+(after! tempel
+  (setopt tempel-trigger-prefix "<")
+  (bind-keys :map tempel-map
+             ("M-n" . tempel-next)
+             ("M-p" . tempel-previous)))
+
+(after! eglot
+  (eglot-tempel-mode))
+
 (bind-keys :map my/git-map
            ("b" . magit-branch)
            ("B" . magit-blame)

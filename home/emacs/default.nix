@@ -64,6 +64,8 @@ in {
         forge
         envrc
         pulsar
+        tempel
+        eglot-tempel
         pdf-tools
         copilot-bleeding
         copilot-chat
@@ -189,6 +191,7 @@ in {
     "emacs/private.json".text = builtins.toJSON private;
     # Custom icon because webp can be properly transparent
     "emacs/logo.webp".source = ./logo.webp;
+    "emacs/tempel".source = mutable-link ./snippets;
   };
   xdg.dataFile = {
     "revealjs".source = sources.revealjs.src;

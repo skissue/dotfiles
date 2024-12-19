@@ -1024,6 +1024,26 @@ Wrap Eglot to ensure that completions aren't cached (since LSPs usually don't re
       (envrc-allow)))
 #+end_src
 
+** Tempel
+#+begin_src elisp
+  (defun my/add-tempel-capf ()
+    (push #'tempel-complete completion-at-point-functions))
+    
+  (add-hook 'prog-mode-hook #'my/add-tempel-capf)
+  (add-hook 'text-mode-hook #'my/add-tempel-capf)
+
+  (after! tempel
+    (setopt tempel-trigger-prefix "<")
+    (bind-keys :map tempel-map
+               ("M-n" . tempel-next)
+               ("M-p" . tempel-previous)))
+#+end_src
+
+#+begin_src elisp
+  (after! eglot
+    (eglot-tempel-mode))
+#+end_src
+
 ** Git
 #+begin_src elisp
   (bind-keys :map my/git-map
