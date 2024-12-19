@@ -492,7 +492,7 @@ This is such an important addition to Emacs.
 
 ** ElDoc Box
 #+begin_src elisp
-  (add-hook 'eldoc-mode-hook #'eldoc-box-hover-at-point-mode)
+  (add-hook 'eldoc-mode-hook #'eldoc-box-hover-mode)
 
   (after! eldoc-box
     (ef-themes-with-colors
@@ -501,21 +501,6 @@ This is such an important addition to Emacs.
        '(eldoc-box-body ((t :inherit variable-pitch)))))
     (setcdr (assq 'left-fringe eldoc-box-frame-parameters) 2)
     (setcdr (assq 'right-fringe eldoc-box-frame-parameters) 2))
-#+end_src
-
-Custom positioning function to put the popup above the text rather than under it, since under it is taken by my [[*Corfu][Corfu]] completions.
-#+begin_src elisp
-  (after! eldoc-box
-    (defun my/eldoc-box-at-point-position-function (width height)
-      "Positions the `eldoc-box' popup above the text rather than below
-  it by adjusting the return value of
-  `eldoc-box--default-at-point-position-function-1'."
-      (cl-destructuring-bind (x . y)
-          (eldoc-box--default-at-point-position-function-1 width height)
-        (let* ((ch (frame-char-height)))
-          ;; Up is negative
-          (cons x (max 0 (- y ch height))))))
-    (setopt eldoc-box-at-point-position-function #'my/eldoc-box-at-point-position-function))
 #+end_src
 
 ** Dashboard

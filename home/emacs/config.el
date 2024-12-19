@@ -288,7 +288,7 @@
 
 (spacious-padding-mode)
 
-(add-hook 'eldoc-mode-hook #'eldoc-box-hover-at-point-mode)
+(add-hook 'eldoc-mode-hook #'eldoc-box-hover-mode)
 
 (after! eldoc-box
   (ef-themes-with-colors
@@ -297,18 +297,6 @@
      '(eldoc-box-body ((t :inherit variable-pitch)))))
   (setcdr (assq 'left-fringe eldoc-box-frame-parameters) 2)
   (setcdr (assq 'right-fringe eldoc-box-frame-parameters) 2))
-
-(after! eldoc-box
-  (defun my/eldoc-box-at-point-position-function (width height)
-    "Positions the `eldoc-box' popup above the text rather than below
-it by adjusting the return value of
-`eldoc-box--default-at-point-position-function-1'."
-    (cl-destructuring-bind (x . y)
-        (eldoc-box--default-at-point-position-function-1 width height)
-      (let* ((ch (frame-char-height)))
-        ;; Up is negative
-        (cons x (max 0 (- y ch height))))))
-  (setopt eldoc-box-at-point-position-function #'my/eldoc-box-at-point-position-function))
 
 (dashboard-setup-startup-hook)
 
