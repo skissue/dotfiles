@@ -744,6 +744,12 @@ instead."
 (after! eglot
   (eglot-tempel-mode))
 
+(defun my/eglot-setup-capf ()
+  "Add `tempel-complete' to `completion-at-point-functions' on Eglot activation.
+Needed since Eglot overrides my original default."
+  (push #'tempel-complete completion-at-point-functions))
+(add-hook 'eglot-managed-mode-hook #'my/eglot-setup-capf)
+
 (bind-keys :map my/git-map
            ("b" . magit-branch)
            ("B" . magit-blame)

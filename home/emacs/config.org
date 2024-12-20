@@ -1042,6 +1042,12 @@ Wrap Eglot to ensure that completions aren't cached (since LSPs usually don't re
 #+begin_src elisp
   (after! eglot
     (eglot-tempel-mode))
+
+  (defun my/eglot-setup-capf ()
+    "Add `tempel-complete' to `completion-at-point-functions' on Eglot activation.
+  Needed since Eglot overrides my original default."
+    (push #'tempel-complete completion-at-point-functions))
+  (add-hook 'eglot-managed-mode-hook #'my/eglot-setup-capf)
 #+end_src
 
 ** Git
