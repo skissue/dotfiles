@@ -745,8 +745,6 @@ I wrote my own package 🎉.
 
 ** Escape
 #+begin_src elisp
-  (bind-key "<escape>" #'keyboard-escape-quit)
-
   (after! transient
     (bind-key "<escape>" #'transient-quit-one transient-base-map))
 #+end_src

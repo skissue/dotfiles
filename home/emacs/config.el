@@ -506,8 +506,6 @@
 (custom-set-faces
  '(aw-leading-char-face ((t :inherit error :height 480))))
 
-(bind-key "<escape>" #'keyboard-escape-quit)
-
 (after! transient
   (bind-key "<escape>" #'transient-quit-one transient-base-map))
 
