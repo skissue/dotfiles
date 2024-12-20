@@ -632,6 +632,7 @@
         corfu-quit-at-boundary 'separator
         corfu-preview-current 'insert
         corfu-preselect 'prompt
+        corfu-cycle t
         corfu-popupinfo-delay '(1.25 . 0.5)
         corfu-quick1 "arstneio"
         corfu-quick2 corfu-quick1)
