@@ -1279,6 +1279,8 @@ For our purposes, a note must not be a directory, must satisfy
 (add-hook 'org-mode-hook (lambda () (setq-local line-spacing 0.1)))
 (add-hook 'org-mode-hook #'org-autolist-mode)
 
+(add-hook 'org-capture-mode-hook #'meow-insert)
+
 (after! org
   (setopt org-directory                          denote-directory
           org-hide-emphasis-markers              t
