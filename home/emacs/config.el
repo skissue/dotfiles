@@ -295,7 +295,19 @@ The DWIM behaviour of this command is as follows:
 
 (ef-themes-load-theme 'ef-owl)
 
+(require 'doom-modeline)
+
+(setopt doom-modeline-height 30
+        doom-modeline-icon t
+        doom-modeline-project-detection 'project
+        doom-modeline-buffer-file-name-style 'relative-from-project
+        doom-modeline-percent-position nil
+        doom-modeline-enable-word-count t
+        doom-modeline-minor-modes t
+        doom-modeline-buffer-encoding nil)
+
 (minions-mode)
+(doom-modeline-mode)
 
 (require 'nyan-mode)
 (setopt nyan-bar-length 24
