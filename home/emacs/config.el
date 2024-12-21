@@ -837,10 +837,11 @@ Needed since Eglot overrides my original default."
     (cl-pushnew f pulsar-pulse-functions))
   (pulsar-global-mode))
 
-(autoload #'copilot-mode "copilot" "Minor mode for Copilot." t)
 (bind-key "c" #'copilot-mode my/toggle-map)
 
 (after! copilot
+  (setopt copilot-node-executable (let ((exec-path (default-value 'exec-path)))
+                                    (executable-find "node")))
   (bind-keys :map copilot-completion-map
              ("M-RET"   . copilot-accept-completion)
              ("M-n"     . copilot-next-completion)

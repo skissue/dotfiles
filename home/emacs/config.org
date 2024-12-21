@@ -1165,12 +1165,14 @@ Currently disabled cause it throws a cryptic error that I don't feel like tracki
     (pulsar-global-mode))
 #+end_src
 
-** =copilot.el=
+** Copilot
+Because of the weird way that NixOS wraps the path environment for Emacs for Copilot, [[*Direnv][Direnv]] actually makes it unable to find the ~node~ executable. Thus, after first loading Copilot, find the executable with [[help:exec-path][exec-path]] bound to the global value.
 #+begin_src elisp
-  (autoload #'copilot-mode "copilot" "Minor mode for Copilot." t)
   (bind-key "c" #'copilot-mode my/toggle-map)
 
   (after! copilot
+    (setopt copilot-node-executable (let ((exec-path (default-value 'exec-path)))
+                                      (executable-find "node")))
     (bind-keys :map copilot-completion-map
                ("M-RET"   . copilot-accept-completion)
                ("M-n"     . copilot-next-completion)
