@@ -21,7 +21,7 @@
     },
     "consult-omni": {
         "cargoLocks": null,
-        "date": "2024-09-27",
+        "date": "2024-12-20",
         "extract": null,
         "name": "consult-omni",
         "passthru": null,
@@ -33,11 +33,11 @@
             "name": null,
             "owner": "armindarvish",
             "repo": "consult-omni",
-            "rev": "87b5bcf0e55c01e6a4a24ae74ce691f55d1455a2",
-            "sha256": "sha256-x5rNTNEDLoHzIlA1y+VsQ+Y0Pa1QXbybt2rIUBJ+VtM=",
+            "rev": "f6d6b3e135d663967454e46804346d887d829775",
+            "sha256": "sha256-FguCx2/COVvjOOZfqQCNMlNisSQeZmSFuUKDt5RjEqs=",
             "type": "github"
         },
-        "version": "87b5bcf0e55c01e6a4a24ae74ce691f55d1455a2"
+        "version": "f6d6b3e135d663967454e46804346d887d829775"
     },
     "copilot-el": {
         "cargoLocks": null,
@@ -58,26 +58,6 @@
             "type": "github"
         },
         "version": "b7bff7b934837744688fd74191ecffb83b3bcc05"
-    },
-    "doom-snippets": {
-        "cargoLocks": null,
-        "date": "2024-08-09",
-        "extract": null,
-        "name": "doom-snippets",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "doomemacs",
-            "repo": "snippets",
-            "rev": "b672e69bbf5623e8af0fed27b23a1093fa217315",
-            "sha256": "sha256-t0jgXdfO5V/u5GOd1tkXGtgeTiezu6/NOK8IhkH6WY0=",
-            "type": "github"
-        },
-        "version": "b672e69bbf5623e8af0fed27b23a1093fa217315"
     },
     "eglot-booster": {
         "cargoLocks": null,
@@ -141,7 +121,7 @@
     },
     "org-modern-indent": {
         "cargoLocks": null,
-        "date": "2024-11-05",
+        "date": "2024-12-16",
         "extract": null,
         "name": "org-modern-indent",
         "passthru": null,
@@ -153,11 +133,11 @@
             "name": null,
             "owner": "jdtsmith",
             "repo": "org-modern-indent",
-            "rev": "37939645552668f0f79a76c9eccc5654f6a3ee6c",
-            "sha256": "sha256-fnaWLnXfVpPB3ggQOqLSl/ykHfrJbwdoLdFwInHmg1U=",
+            "rev": "52b46c6ecd63e627ab5bfb83c580b51f68a23774",
+            "sha256": "sha256-9aaaPGCvt51FknRKB5zT8AdHjhH/sQMc1IyQS3KnJsU=",
             "type": "github"
         },
-        "version": "37939645552668f0f79a76c9eccc5654f6a3ee6c"
+        "version": "52b46c6ecd63e627ab5bfb83c580b51f68a23774"
     },
     "org-overdrive": {
         "cargoLocks": null,

@@ -15,15 +15,15 @@
   };
   consult-omni = {
     pname = "consult-omni";
-    version = "87b5bcf0e55c01e6a4a24ae74ce691f55d1455a2";
+    version = "f6d6b3e135d663967454e46804346d887d829775";
     src = fetchFromGitHub {
       owner = "armindarvish";
       repo = "consult-omni";
-      rev = "87b5bcf0e55c01e6a4a24ae74ce691f55d1455a2";
+      rev = "f6d6b3e135d663967454e46804346d887d829775";
       fetchSubmodules = false;
-      sha256 = "sha256-x5rNTNEDLoHzIlA1y+VsQ+Y0Pa1QXbybt2rIUBJ+VtM=";
+      sha256 = "sha256-FguCx2/COVvjOOZfqQCNMlNisSQeZmSFuUKDt5RjEqs=";
     };
-    date = "2024-09-27";
+    date = "2024-12-20";
   };
   copilot-el = {
     pname = "copilot-el";
@@ -36,18 +36,6 @@
       sha256 = "sha256-MEsjXQIeiTI6NXN5rTW7HfFPC18IZnhAssma2BZa0ks=";
     };
     date = "2024-12-14";
-  };
-  doom-snippets = {
-    pname = "doom-snippets";
-    version = "b672e69bbf5623e8af0fed27b23a1093fa217315";
-    src = fetchFromGitHub {
-      owner = "doomemacs";
-      repo = "snippets";
-      rev = "b672e69bbf5623e8af0fed27b23a1093fa217315";
-      fetchSubmodules = false;
-      sha256 = "sha256-t0jgXdfO5V/u5GOd1tkXGtgeTiezu6/NOK8IhkH6WY0=";
-    };
-    date = "2024-08-09";
   };
   eglot-booster = {
     pname = "eglot-booster";
@@ -87,15 +75,15 @@
   };
   org-modern-indent = {
     pname = "org-modern-indent";
-    version = "37939645552668f0f79a76c9eccc5654f6a3ee6c";
+    version = "52b46c6ecd63e627ab5bfb83c580b51f68a23774";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "org-modern-indent";
-      rev = "37939645552668f0f79a76c9eccc5654f6a3ee6c";
+      rev = "52b46c6ecd63e627ab5bfb83c580b51f68a23774";
       fetchSubmodules = false;
-      sha256 = "sha256-fnaWLnXfVpPB3ggQOqLSl/ykHfrJbwdoLdFwInHmg1U=";
+      sha256 = "sha256-9aaaPGCvt51FknRKB5zT8AdHjhH/sQMc1IyQS3KnJsU=";
     };
-    date = "2024-11-05";
+    date = "2024-12-16";
   };
   org-overdrive = {
     pname = "org-overdrive";
