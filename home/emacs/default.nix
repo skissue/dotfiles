@@ -1,24 +1,22 @@
 {
-  config,
   pkgs,
   inputs,
   private,
   sources,
   mutable-link,
   ...
-}: let
-  myPackages = import ./my-packages.nix {
-    inherit sources;
-    epkgs = pkgs.emacsPackagesFor config.programs.emacs.package;
-  };
-in {
+}: {
   # Fresh versions of packages
   nixpkgs.overlays = [inputs.emacs-overlay.overlays.package];
 
   programs.emacs = {
     enable = true;
     package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-pgtk;
-    extraPackages = epkgs:
+    extraPackages = epkgs: let
+      myPackages = import ./my-packages.nix {
+        inherit epkgs sources;
+      };
+    in
       with epkgs;
       with myPackages; [
         # Essentials
