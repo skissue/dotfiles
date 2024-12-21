@@ -34,7 +34,6 @@ in {
         casual-avy
         casual-calc
         # Appearance
-        doom-themes
         ef-themes
         minions
         writeroom-mode
