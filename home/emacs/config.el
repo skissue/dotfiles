@@ -405,12 +405,7 @@ The DWIM behaviour of this command is as follows:
         meow-keypad-ctrl-meta-prefix ?G
         meow-keypad-self-insert-undefined nil
         auto-save-visited-predicate (lambda ()
-                                      (not (meow-insert-mode-p)))
-        meow-replace-state-name-list '((normal . "Ⓝ")
-                                       (insert . "Ⓘ")
-                                       (motion . "Ⓜ")
-                                       (keypad . "Ⓚ")
-                                       (beacon . "Ⓑ")))
+                                      (not (meow-insert-mode-p))))
 (ef-themes-with-colors
   (custom-set-faces
    `(meow-insert-indicator ((t :foreground ,fg-added)))
@@ -513,7 +508,6 @@ The DWIM behaviour of this command is as follows:
         #'meow-digit-argument))
 
 (meow-global-mode)
-(meow-setup-indicator)
 
 (unbind-key "C-f" 'help-map)
 (unbind-key "C-x C-n")

@@ -633,12 +633,7 @@ Buffer management keys.
           meow-keypad-ctrl-meta-prefix ?G
           meow-keypad-self-insert-undefined nil
           auto-save-visited-predicate (lambda ()
-                                        (not (meow-insert-mode-p)))
-          meow-replace-state-name-list '((normal . "Ⓝ")
-                                         (insert . "Ⓘ")
-                                         (motion . "Ⓜ")
-                                         (keypad . "Ⓚ")
-                                         (beacon . "Ⓑ")))
+                                        (not (meow-insert-mode-p))))
   (ef-themes-with-colors
     (custom-set-faces
      `(meow-insert-indicator ((t :foreground ,fg-added)))
@@ -741,7 +736,6 @@ Buffer management keys.
           #'meow-digit-argument))
 
   (meow-global-mode)
-  (meow-setup-indicator)
 #+end_src
 
 Unbind some keys that get in the way of binds that I use /far/ more often, since Meow prioritizes keys with the control modifier (e.g. =C-f= over =f=).
