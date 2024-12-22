@@ -1041,11 +1041,16 @@ Wrap Eglot to ensure that completions aren't cached (since LSPs usually don't re
 ** Direnv
 #+begin_src elisp
   (envrc-global-mode)
+#+end_src
 
-  ;; Force org-babel blocks to inherit their buffer's environment.
+Force Org Babel blocks to inherit their buffer's environment.
+#+begin_src elisp
   (after! org
     (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment))
+#+end_src
 
+Command to enable Direnv for Nix.
+#+begin_src elisp
   (defun my/direnv-use-nix (arg)
     "Create an .envrc file with \"use nix\" as content and enable
   direnv. With prefix argument ARG, use \"use flake\" as content

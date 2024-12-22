@@ -741,7 +741,6 @@ uses the symbol name as the default description, as well as a
 
 (envrc-global-mode)
 
-;; Force org-babel blocks to inherit their buffer's environment.
 (after! org
   (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment))
 
