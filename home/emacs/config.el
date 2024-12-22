@@ -311,9 +311,9 @@ The DWIM behaviour of this command is as follows:
 (minions-mode)
 
 (require 'nyan-mode)
-(setopt nyan-bar-length 24
+(setopt nyan-bar-length 20
         nyan-minimum-window-width 48
-        nyan-wavy-trail t)
+        nyan-animate-nyancat t)
 (nyan-mode)
 
 (require 'spacious-padding)
