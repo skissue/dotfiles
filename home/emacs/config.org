@@ -773,7 +773,6 @@ I wrote my own package 🎉.
              ([remap other-window] . ace-window))
 
   (after! ace-window
-    (ace-window-display-mode)
     (ace-window-posframe-mode)
     (setopt aw-keys '(?a ?r ?s ?t ?g ?m ?n ?e ?i ?o)
             aw-scope 'frame))

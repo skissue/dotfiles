@@ -530,7 +530,6 @@ The DWIM behaviour of this command is as follows:
            ([remap other-window] . ace-window))
 
 (after! ace-window
-  (ace-window-display-mode)
   (ace-window-posframe-mode)
   (setopt aw-keys '(?a ?r ?s ?t ?g ?m ?n ?e ?i ?o)
           aw-scope 'frame))
