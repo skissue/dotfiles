@@ -744,19 +744,22 @@ uses the symbol name as the default description, as well as a
 (after! org
   (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment))
 
-(defun my/direnv-use-nix (arg)
-  "Create an .envrc file with \"use nix\" as content and enable
-direnv. With prefix argument ARG, use \"use flake\" as content
-instead."
-  (interactive "P")
-  (let* ((dir (if-let ((proj (project-current)))
+(defun my/direnv-use-nix ()
+  "Create an .envrc file to enable Direnv for Nix."
+  (interactive)
+  (let* ((dir (if-let* ((proj (project-current)))
                   (project-root proj)
                 default-directory))
-         (path (expand-file-name ".envrc" dir)))
+         (path (expand-file-name ".envrc" dir))
+         (shell (expand-file-name "shell.nix" dir))
+         (flake (expand-file-name "flake.nix" dir)))
+    (when (file-exists-p path)
+      (user-error ".envrc file already exists"))
     (with-temp-file path
-      (insert (if arg
-                  "use flake"
-                "use nix")))
+      (insert (cond
+               ((file-exists-p flake) "use flake")
+               ((file-exists-p shell) "use nix")
+               (t (user-error "Could not find Nix environment file")))))
     (envrc-allow)))
 
 (defun my/add-tempel-capf ()
