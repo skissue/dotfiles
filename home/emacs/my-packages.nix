@@ -17,11 +17,6 @@ in {
       buildInputs = propagatedUserEnvPkgs;
     });
   org-typst = trivialBuild sources.org-typst;
-  indent-bars = trivialBuild (sources.indent-bars
-    // rec {
-      propagatedUserEnvPkgs = with epkgs; [compat];
-      buildInputs = propagatedUserEnvPkgs;
-    });
   treesit-fold = trivialBuild sources.treesit-fold;
   gptel-quick = trivialBuild (sources.gptel-quick
     // rec {

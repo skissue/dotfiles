@@ -61,18 +61,6 @@
     };
     date = "2024-09-09";
   };
-  indent-bars = {
-    pname = "indent-bars";
-    version = "47ae080d9b7ad03e9097dd064c760e3259fc5d66";
-    src = fetchFromGitHub {
-      owner = "jdtsmith";
-      repo = "indent-bars";
-      rev = "47ae080d9b7ad03e9097dd064c760e3259fc5d66";
-      fetchSubmodules = false;
-      sha256 = "sha256-IpcNRo9rnT0M/e8S8couomn6icaeF7sKhadSnSw3RIQ=";
-    };
-    date = "2024-11-26";
-  };
   org-modern-indent = {
     pname = "org-modern-indent";
     version = "52b46c6ecd63e627ab5bfb83c580b51f68a23774";

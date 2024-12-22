@@ -18,10 +18,6 @@ fetch.github = "A7R7/org-popup-posframe"
 src.git = "https://github.com/skissue/org-typst"
 fetch.github = "skissue/org-typst"
 
-[indent-bars]
-src.git = "https://github.com/jdtsmith/indent-bars"
-fetch.github = "jdtsmith/indent-bars"
-
 [treesit-fold]
 src.git = "https://github.com/emacs-tree-sitter/treesit-fold"
 fetch.github = "emacs-tree-sitter/treesit-fold"
