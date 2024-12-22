@@ -26,7 +26,6 @@
     (hyprshot.override {hyprland = config.wayland.windowManager.hyprland.package;})
     mangohud
     mullvad-browser
-    my.tetrio-desktop
     nextcloud-client
     obs-studio
     ouch
