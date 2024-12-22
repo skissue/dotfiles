@@ -306,8 +306,9 @@ The DWIM behaviour of this command is as follows:
         doom-modeline-minor-modes t
         doom-modeline-buffer-encoding nil)
 
-(minions-mode)
 (doom-modeline-mode)
+
+(minions-mode)
 
 (require 'nyan-mode)
 (setopt nyan-bar-length 24
@@ -848,6 +849,13 @@ Needed since Eglot overrides my original default."
              ("M-p"     . copilot-previous-completion)
              ("M-<tab>" . copilot-accept-completion-by-line)
              ("M-f"     . copilot-accept-completion-by-word)))
+
+(after! copilot
+  (push #'copilot-mode minions-prominent-modes)  
+  (setf (cdr (assq 'copilot-mode minor-mode-alist))
+        (list `(" " (:propertize
+                     ,(nerd-icons-octicon "nf-oct-copilot"
+                                          :face 'nerd-icons-green))))))
 
 (setf (alist-get "\\.pdf\\'" auto-mode-alist
                  nil nil #'equal)

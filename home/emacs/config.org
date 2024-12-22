@@ -504,8 +504,12 @@ Reduce fringe size on the right (left is used for various indicators).
           doom-modeline-minor-modes t
           doom-modeline-buffer-encoding nil)
 
-  (minions-mode)
   (doom-modeline-mode)
+#+end_src
+
+Minions provides a clean minor mode menu implementation that allows customizing the lighters that are displayed directly on the mode line. Works well with [[help:doom-modeline-minor-modes][doom-modeline-minor-modes]] set to ~t~.
+#+begin_src elisp
+  (minions-mode)
 #+end_src
 
 ** Nyan Mode
@@ -1178,7 +1182,17 @@ Because of the weird way that NixOS wraps the path environment for Emacs for Cop
                ("M-n"     . copilot-next-completion)
                ("M-p"     . copilot-previous-completion)
                ("M-<tab>" . copilot-accept-completion-by-line)
-               ("M-f"     . copilot-accept-completion-by-word)))
+               ("M-f"     . copilot-accept-completion-by-word)))    
+#+end_src
+
+Show a little pilot icon from Nerd Fonts in the modeline when enabled.
+#+begin_src elisp
+  (after! copilot
+    (push #'copilot-mode minions-prominent-modes)  
+    (setf (cdr (assq 'copilot-mode minor-mode-alist))
+          (list `(" " (:propertize
+                       ,(nerd-icons-octicon "nf-oct-copilot"
+                                            :face 'nerd-icons-green))))))
 #+end_src
 
 ** PDF Tools
