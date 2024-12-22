@@ -17,7 +17,14 @@
     libnotify
     libreoffice
     libsecret
-    lutris
+    (lutris.override {
+      extraLibraries = ps:
+        with ps; [
+          # TETR.IO
+          nspr
+          xorg.libXdamage
+        ];
+    })
     helvum
     # For spellcheck; see https://nixos.wiki/wiki/LibreOffice
     hunspell
