@@ -828,6 +828,12 @@ Needed since Eglot overrides my original default."
                      nil nil #'equal)
           '("api.github.com" "github.com" forge-github-repository))))
 
+(bind-key "l" #'git-link-dispatch my/git-map)
+
+(after! git-link
+  (setopt git-link-consider-ssh-config t
+          git-link-use-commit t))
+
 (idle-load 'pulsar)
 (after! pulsar
   (setopt pulsar-face 'highlight

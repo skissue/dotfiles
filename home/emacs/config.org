@@ -1162,6 +1162,14 @@ Currently disabled cause it throws a cryptic error that I don't feel like tracki
             '("api.github.com" "github.com" forge-github-repository))))
 #+end_src
 
+#+begin_src elisp
+  (bind-key "l" #'git-link-dispatch my/git-map)
+
+  (after! git-link
+    (setopt git-link-consider-ssh-config t
+            git-link-use-commit t))
+#+end_src
+
 ** Pulsar
 #+begin_src elisp
   (idle-load 'pulsar)

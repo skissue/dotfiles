@@ -60,6 +60,7 @@
         git-timemachine
         magit-todos
         forge
+        git-link
         envrc
         pulsar
         tempel
