@@ -30,10 +30,10 @@
       ];
     };
 
-    # Enable Flakes, respect XDG
     extraOptions = ''
       experimental-features = nix-command flakes
       use-xdg-base-directories = true
+      keep-going = true
     '';
 
     # Make the system usable while building
