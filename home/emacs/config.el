@@ -1306,6 +1306,7 @@ For our purposes, a note must not be a directory, must satisfy
 (add-hook 'org-mode-hook #'org-autolist-mode)
 
 (add-hook 'org-capture-mode-hook #'meow-insert)
+(add-hook 'org-tab-first-hook #'completion-at-point)
 
 (after! org
   (setopt org-directory                          denote-directory
