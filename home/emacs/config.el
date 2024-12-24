@@ -592,7 +592,10 @@ The DWIM behaviour of this command is as follows:
 
 (require 'orderless)
 (setopt completion-styles '(orderless basic)
-        completion-category-overrides '((file (styles basic partial-completion))))
+        completion-category-overrides '((file (styles basic partial-completion)))
+        orderless-matching-styles '(orderless-literal
+                                    orderless-regexp
+                                    orderless-initialism))
 
 (bind-keys ([remap yank-pop] . consult-yank-pop)
            ([remap switch-to-buffer] . consult-buffer)
