@@ -122,7 +122,6 @@
         org-modern-indent
         org-ql
         org-appear
-        org-fragtog
         org-auto-tangle
         org-make-toc
         org-download

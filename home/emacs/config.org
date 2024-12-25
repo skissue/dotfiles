@@ -2040,11 +2040,6 @@ Automatically toggles certain markers on and off depending on whether they're be
             org-appear-autoentities   t))
 #+end_src
 
-** =org-fragtog=
-#+begin_src elisp
-  (add-hook 'org-mode-hook #'org-fragtog-mode)
-#+end_src
-
 ** Org Download
 #+begin_src elisp
   (after! org-download

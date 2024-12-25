@@ -1552,8 +1552,6 @@ For our purposes, a note must not be a directory, must satisfy
           org-appear-autosubmarkers t
           org-appear-autoentities   t))
 
-(add-hook 'org-mode-hook #'org-fragtog-mode)
-
 (after! org-download
   (setopt org-download-backend "curl \"%s\" -o \"%s\""
           org-download-delete-image-after-download t
