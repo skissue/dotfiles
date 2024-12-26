@@ -12,13 +12,14 @@
   programs.emacs = {
     enable = true;
     package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-pgtk;
-    extraPackages = epkgs: let
-      myPackages = import ./my-packages.nix {
-        inherit epkgs sources;
+    overrides = self: super:
+      import ./my-packages.nix {
+        inherit sources;
+        # Use `super` since some packages are overrides.
+        epkgs = super;
       };
-    in
-      with epkgs;
-      with myPackages; [
+    extraPackages = epkgs:
+      with epkgs; [
         # Essentials
         no-littering
         gcmh
