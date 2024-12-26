@@ -2040,6 +2040,17 @@ Automatically toggles certain markers on and off depending on whether they're be
             org-appear-autoentities   t))
 #+end_src
 
+** LaTeX Previews
+#+begin_src elisp
+  (add-hook 'org-mode-hook #'org-latex-preview-auto-mode)
+
+  (after! org-latex-preview
+    (setopt org-latex-preview-process-default 'dvisvgm
+            org-latex-preview-live t
+            org-latex-preview-live-debounce 0.25)
+    (plist-put org-latex-preview-appearance-options :page-width 0.8))
+#+end_src
+
 ** Org Download
 #+begin_src elisp
   (after! org-download
