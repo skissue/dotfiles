@@ -27,15 +27,15 @@
   };
   copilot-el = {
     pname = "copilot-el";
-    version = "b7bff7b934837744688fd74191ecffb83b3bcc05";
+    version = "fd68d2e79e11939f5c2024671f67602bb2b34b4a";
     src = fetchFromGitHub {
       owner = "zerolfx";
       repo = "copilot.el";
-      rev = "b7bff7b934837744688fd74191ecffb83b3bcc05";
+      rev = "fd68d2e79e11939f5c2024671f67602bb2b34b4a";
       fetchSubmodules = false;
-      sha256 = "sha256-MEsjXQIeiTI6NXN5rTW7HfFPC18IZnhAssma2BZa0ks=";
+      sha256 = "sha256-XH4wtac1sHcjREENjs4BkWhI1VgH8SaiYelt/No7VDU=";
     };
-    date = "2024-12-14";
+    date = "2024-12-23";
   };
   eglot-booster = {
     pname = "eglot-booster";
@@ -60,6 +60,19 @@
       sha256 = "sha256-ZAx8MQNdBR+n8hTZUh+eGmVJfcGu46q9d71++NzisAg=";
     };
     date = "2024-09-09";
+  };
+  org-bleeding-latex = {
+    pname = "org-bleeding-latex";
+    version = "119426b1dde3f5bf9a1b180fe4344fc31ae82f9e";
+    src = fetchgit {
+      url = "https://code.tecosaur.net/tec/org-mode.git";
+      rev = "119426b1dde3f5bf9a1b180fe4344fc31ae82f9e";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sha256 = "sha256-0JSm9FpNDRxjkN00tRH1BRfjzyrcYTQMUjpodsKUqLc=";
+    };
+    date = "2024-12-02";
   };
   org-modern-indent = {
     pname = "org-modern-indent";

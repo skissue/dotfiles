@@ -41,7 +41,7 @@
     },
     "copilot-el": {
         "cargoLocks": null,
-        "date": "2024-12-14",
+        "date": "2024-12-23",
         "extract": null,
         "name": "copilot-el",
         "passthru": null,
@@ -53,11 +53,11 @@
             "name": null,
             "owner": "zerolfx",
             "repo": "copilot.el",
-            "rev": "b7bff7b934837744688fd74191ecffb83b3bcc05",
-            "sha256": "sha256-MEsjXQIeiTI6NXN5rTW7HfFPC18IZnhAssma2BZa0ks=",
+            "rev": "fd68d2e79e11939f5c2024671f67602bb2b34b4a",
+            "sha256": "sha256-XH4wtac1sHcjREENjs4BkWhI1VgH8SaiYelt/No7VDU=",
             "type": "github"
         },
-        "version": "b7bff7b934837744688fd74191ecffb83b3bcc05"
+        "version": "fd68d2e79e11939f5c2024671f67602bb2b34b4a"
     },
     "eglot-booster": {
         "cargoLocks": null,
@@ -98,6 +98,25 @@
             "type": "github"
         },
         "version": "54f1c65b416b5a9c93640f6d2ed86734b9ae1336"
+    },
+    "org-bleeding-latex": {
+        "cargoLocks": null,
+        "date": "2024-12-02",
+        "extract": null,
+        "name": "org-bleeding-latex",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "119426b1dde3f5bf9a1b180fe4344fc31ae82f9e",
+            "sha256": "sha256-0JSm9FpNDRxjkN00tRH1BRfjzyrcYTQMUjpodsKUqLc=",
+            "type": "git",
+            "url": "https://code.tecosaur.net/tec/org-mode.git"
+        },
+        "version": "119426b1dde3f5bf9a1b180fe4344fc31ae82f9e"
     },
     "org-modern-indent": {
         "cargoLocks": null,

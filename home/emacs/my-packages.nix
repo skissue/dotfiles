@@ -2,8 +2,16 @@
   epkgs,
   sources,
 }: let
-  trivialBuild = epkgs.trivialBuild;
+  inherit (epkgs) trivialBuild melpaBuild;
 in {
+  # Org Mode source with new async LaTeX preview support.
+  # TODO Remove when this is merged.
+  org = melpaBuild (sources.org-bleeding-latex
+    // {
+      pname = "org";
+      version = "9.7.69";
+      files = ''(:defaults "etc")'';
+    });
   typst-ts-mode = trivialBuild sources.typst-ts-mode;
   copilot-bleeding = epkgs.copilot.overrideAttrs (oldAttrs: {inherit (sources.copilot-el) src version;});
   eglot-booster = trivialBuild (sources.eglot-booster
