@@ -13,7 +13,7 @@ in {
       files = ''(:defaults "etc")'';
     });
   typst-ts-mode = trivialBuild sources.typst-ts-mode;
-  copilot-bleeding = epkgs.copilot.overrideAttrs (oldAttrs: {inherit (sources.copilot-el) src version;});
+  copilot = epkgs.copilot.overrideAttrs (oldAttrs: {inherit (sources.copilot-el) src version;});
   eglot-booster = trivialBuild (sources.eglot-booster
     // rec {
       propagatedUserEnvPkgs = with epkgs; [jsonrpc eglot seq];

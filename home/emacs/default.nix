@@ -67,7 +67,7 @@
         tempel
         eglot-tempel
         pdf-tools
-        copilot-bleeding
+        copilot
         copilot-chat
         zoxide
         focus
