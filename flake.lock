@@ -480,15 +480,15 @@
         "nix-filter": "nix-filter"
       },
       "locked": {
-        "lastModified": 1731147414,
-        "narHash": "sha256-qIl7opF7fA1ZmC91TGQ7D12tB7kHc6Sn9DrfUN6sbBY=",
-        "owner": "pyt0xic",
+        "lastModified": 1733916161,
+        "narHash": "sha256-o8uDSynpHAgpQZMjXyDiyQbxi+QgxY62uZeB08PcL/A=",
+        "owner": "daxisunder",
         "repo": "hyprfocus",
-        "rev": "bead5b77d80f222c006d1a6c6f44ee8b02021d73",
+        "rev": "29ac1172e7e897484f364d1df41176e7465251e4",
         "type": "github"
       },
       "original": {
-        "owner": "pyt0xic",
+        "owner": "daxisunder",
         "repo": "hyprfocus",
         "type": "github"
       }

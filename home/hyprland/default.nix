@@ -15,8 +15,7 @@
     systemd.enable = false;
     plugins = [
       inputs.hypr-dynamic-cursors.packages.${pkgs.system}.default
-      # Failing to build right now (update, probably).
-      # inputs.hyprfocus.packages.${pkgs.system}.default
+      inputs.hyprfocus.packages.${pkgs.system}.default
       (pkgs.hyprlandPlugins.hyprscroller.override {hyprland = config.wayland.windowManager.hyprland.package;})
     ];
     extraConfig = lib.mkAfter ''

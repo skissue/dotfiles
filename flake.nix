@@ -83,7 +83,9 @@
       inputs.hyprland.follows = "hyprland";
     };
     hyprfocus = {
-      url = "github:pyt0xic/hyprfocus";
+      # TODO Go back to original if the PR fixing the build is fixed.
+      # url = "github:pyt0xic/hyprfocus";
+      url = "github:daxisunder/hyprfocus";
       inputs.hyprland.follows = "hyprland";
     };
   };
