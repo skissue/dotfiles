@@ -30,8 +30,8 @@
         meow-tree-sitter
         ace-window
         avy
+        casual
         casual-avy
-        casual-calc
         # Appearance
         ef-themes
         doom-modeline
