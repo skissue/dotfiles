@@ -15,7 +15,11 @@
     systemd.enable = false;
     plugins = [
       inputs.hypr-dynamic-cursors.packages.${pkgs.system}.default
-      inputs.hyprfocus.packages.${pkgs.system}.default
+      # TODO Massive overriding hack because the upstream flake's derivation is
+      # broken.
+      ((pkgs.hyprlandPlugins.hyprfocus.override {hyprland = config.wayland.windowManager.hyprland.package;}).overrideAttrs {
+        src = inputs.hyprfocus;
+      })
       (pkgs.hyprlandPlugins.hyprscroller.override {hyprland = config.wayland.windowManager.hyprland.package;})
     ];
     extraConfig = lib.mkAfter ''
