@@ -1552,6 +1552,85 @@ For our purposes, a note must not be a directory, must satisfy
                          :foreground ,green))) 
    '(org-modern-symbol ((t (:family "Iosevka Fixed SS18"))))))
 
+(after! org-indent
+  (setopt org-indent-indentation-per-level 2)
+  
+  (defvar my/org-indent--pixel-prefixes
+    (cl-coerce (cl-loop for i upto org-indent--deepest-level
+                        for current = (string-pixel-width
+                                       (org-fontify-like-in-org-mode
+                                        (concat (make-string i ?*) " ")))
+                        for running = 0 then (+ running current)
+                        collect running)
+               'vector)
+    "Array of pixel widths of Org heading prefixes (star and space) per level.")
+
+  (define-advice org-indent--compute-prefixes (:override () heading-size-fix)
+    "Compute prefix strings for regular text and headlines.
+Account for varying headline size in text properties. Based off of
+original function."
+    (setq org-indent--heading-line-prefixes
+          (make-vector org-indent--deepest-level nil))
+    (setq org-indent--inlinetask-line-prefixes
+          (make-vector org-indent--deepest-level nil))
+    (setq org-indent--text-line-prefixes
+          (make-vector org-indent--deepest-level nil))
+    (dotimes (n org-indent--deepest-level)
+      (let ((indentation (if (<= n 1)
+                             0
+                           (* org-indent-indentation-per-level
+                              (1- n)))))
+        ;; Headlines line prefixes.
+        (let ((heading-prefix (make-string indentation ?*)))
+          (aset org-indent--heading-line-prefixes
+                n
+                (org-add-props heading-prefix nil
+                  'face 'org-indent
+                  'display `(space :align-to (,(if (> n 0)
+                                                   (aref my/org-indent--pixel-prefixes (1- n))
+                                                 0)))))
+          ;; Inline tasks line prefixes
+          (aset org-indent--inlinetask-line-prefixes
+                n
+                (cond ((<= n 1) "")
+                      ((bound-and-true-p org-inlinetask-show-first-star)
+                       (concat org-indent-inlinetask-first-star
+                               (substring heading-prefix 1)
+                               (t (org-add-props heading-prefix nil 'face 'org-indent)))))))
+        ;; Text line prefixes.
+        (aset org-indent--text-line-prefixes
+              n
+              (org-add-props (make-string (+ n indentation) ?\s) nil
+                'face 'org-indent
+                'display `(space :align-to (,(1+ (aref my/org-indent--pixel-prefixes n)))))))))
+
+  (defvar my/org-indent--space-width
+    (string-pixel-width " ")
+    "Width in pixels of a single space character.")
+
+  (define-advice org-indent-set-line-properties (:override (level indentation &optional heading) use-pixel-sizes)
+    "Set prefix properties on current line and move to next one.
+Use `my/org-indent--pixel-prefixes' to account for varying heading sizes.
+
+LEVEL is the current level of heading.  INDENTATION is the
+expected indentation when wrapping line.
+
+When optional argument HEADING is non-nil, assume line is at
+a heading.  Moreover, if it is `inlinetask', the first star will
+have `org-warning' face."
+    (let* ((line (aref (pcase heading
+                         (`nil org-indent--text-line-prefixes)
+                         (`inlinetask org-indent--inlinetask-line-prefixes)
+                         (_ org-indent--heading-line-prefixes))
+                       level))
+           (wrap `(space :align-to (,(+ 1
+                                        (aref my/org-indent--pixel-prefixes level)
+                                        (* indentation my/org-indent--space-width))))))
+      ;; Add properties down to the next line to indent empty lines.
+      (add-text-properties (line-beginning-position) (line-beginning-position 2)
+                           `(line-prefix ,line wrap-prefix ,wrap)))
+    (forward-line)))
+
 (add-hook 'org-mode-hook #'org-appear-mode)
 
 (after! org-appear
