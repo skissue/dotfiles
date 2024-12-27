@@ -1758,7 +1758,6 @@ Ah, the crown jewel of Emacs 👑.
   (add-hook 'org-mode-hook #'org-autolist-mode)
 
   (add-hook 'org-capture-mode-hook #'meow-insert)
-  (add-hook 'org-tab-first-hook #'completion-at-point)
 
   (after! org
     (setopt org-directory                          denote-directory
@@ -1831,6 +1830,17 @@ Ah, the crown jewel of Emacs 👑.
     :repeat t
     "f" #'org-next-block
     "b" #'org-previous-block)
+#+end_src
+
+** Completion
+#+begin_src elisp
+  (defun my/org-maybe-completion-at-point ()
+    "Call `completion-at-point' if point is at the end of the line."
+    (interactive)
+    (when (eolp)
+      (call-interactively #'completion-at-point)))
+
+  (add-hook 'org-tab-first-hook #'my/org-maybe-completion-at-point)
 #+end_src
 
 ** Org Agenda

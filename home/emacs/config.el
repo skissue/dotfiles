@@ -1306,7 +1306,6 @@ For our purposes, a note must not be a directory, must satisfy
 (add-hook 'org-mode-hook #'org-autolist-mode)
 
 (add-hook 'org-capture-mode-hook #'meow-insert)
-(add-hook 'org-tab-first-hook #'completion-at-point)
 
 (after! org
   (setopt org-directory                          denote-directory
@@ -1376,6 +1375,14 @@ For our purposes, a note must not be a directory, must satisfy
   :repeat t
   "f" #'org-next-block
   "b" #'org-previous-block)
+
+(defun my/org-maybe-completion-at-point ()
+  "Call `completion-at-point' if point is at the end of the line."
+  (interactive)
+  (when (eolp)
+    (call-interactively #'completion-at-point)))
+
+(add-hook 'org-tab-first-hook #'my/org-maybe-completion-at-point)
 
 (bind-key "C-c a" #'org-agenda)
 
