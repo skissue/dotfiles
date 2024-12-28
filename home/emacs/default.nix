@@ -52,7 +52,6 @@
         consult-dir
         embark
         embark-consult
-        eglot-booster
         # Tools
         helpful
         elisp-demos
@@ -173,7 +172,6 @@
     nil
     alejandra
     ltex-ls
-    emacs-lsp-booster
   ];
 
   xdg.configFile = {

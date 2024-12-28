@@ -14,11 +14,6 @@ in {
     });
   typst-ts-mode = trivialBuild sources.typst-ts-mode;
   copilot = epkgs.copilot.overrideAttrs (oldAttrs: {inherit (sources.copilot-el) src version;});
-  eglot-booster = trivialBuild (sources.eglot-booster
-    // rec {
-      propagatedUserEnvPkgs = with epkgs; [jsonrpc eglot seq];
-      buildInputs = propagatedUserEnvPkgs;
-    });
   org-popup-posframe = trivialBuild (sources.org-popup-posframe
     // rec {
       propagatedUserEnvPkgs = with epkgs; [posframe];

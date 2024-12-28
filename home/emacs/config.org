@@ -959,12 +959,6 @@ Wrap Eglot to ensure that completions aren't cached (since LSPs usually don't re
     (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
 #+end_src
 
-#+begin_src elisp
-  (after! eglot
-    (require 'eglot-booster)
-    (eglot-booster-mode))
-#+end_src
-
 * Tools
 ** Helpful
 #+begin_src elisp

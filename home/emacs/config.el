@@ -671,10 +671,6 @@ The DWIM behaviour of this command is as follows:
 (after! eglot
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
 
-(after! eglot
-  (require 'eglot-booster)
-  (eglot-booster-mode))
-
 (bind-keys ("C-c C-d"                 . helpful-at-point)
            ([remap describe-function] . helpful-callable)
            ([remap describe-variable] . helpful-variable)
