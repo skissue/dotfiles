@@ -2003,7 +2003,7 @@ Make Org Mode pretty! Star replacement symbols are taken from [[https://github.c
 #+end_src
 
 ** Org Indent
-This is a highly custom and probably fragile setup for ~org-indent~ that uses pixel widths instead of column number for indentation. This allows indentation to line up with headings even when heading sizes are adjusted (as I do). Pixel widths are precomputed and saved in arrays since computing them is supposedly expensive. Computing pixel widths is done in a temporary buffer that has [[help:org-modern-mode][org-modern-mode]] manually enabled since the measurements would be wrong otherwise if Org Mode is first loaded from a [[*Consult][Consult]] preview; other logic is taken from [[help:org-fontify-like-in-org-mode][org-fontify-like-in-org-mode]]. Two functions are overriden to use the ~:align-to~ property of ~display~ with an absolute number of pixels for indentation.
+This is a highly custom and probably fragile setup for ~org-indent~ that uses pixel widths instead of column number for indentation. This allows indentation to line up with headings even when heading sizes are adjusted (as I do). Pixel widths are precomputed and saved in arrays since computing them is supposedly expensive. Computing pixel widths is done in a temporary buffer that has [[help:org-modern-mode][org-modern-mode]] manually enabled since the measurements would be wrong otherwise if Org Mode is first loaded from a [[*Consult][Consult]] preview; other logic is taken from [[help:org-fontify-like-in-org-mode][org-fontify-like-in-org-mode]]. Two functions are overriden to use the ~:align-to~ or ~:width~ space property of ~display~ with an absolute number of pixels for indentation (see [[info:elisp#Specified Space][elisp#Specified Space]]). This property is quite finnicky though, and seems to require the string to be a certain size, which is why I've left the string-joining-stuff the same as the original implementation.
 #+begin_src elisp
   (after! org-indent
     (setopt org-indent-indentation-per-level 2)
@@ -2082,9 +2082,14 @@ This is a highly custom and probably fragile setup for ~org-indent~ that uses pi
                            (`inlinetask org-indent--inlinetask-line-prefixes)
                            (_ org-indent--heading-line-prefixes))
                          level))
-             (wrap `(space :align-to (,(+ 1
-                                          (aref my/org-indent--pixel-prefixes level)
-                                          (* indentation my/org-indent--space-width))))))
+             (wrap (org-add-props
+                       (concat line (make-string indentation ?\s))
+                       nil 'face 'org-indent
+                       ;; For some reason, `:align-to' doesn't work here, but
+                       ;; `:width' does.
+                       'display `(space :width (,(+ 1
+                                                    (aref my/org-indent--pixel-prefixes level)
+                                                    (* indentation my/org-indent--space-width)))))))
         ;; Add properties down to the next line to indent empty lines.
         (add-text-properties (line-beginning-position) (line-beginning-position 2)
                              `(line-prefix ,line wrap-prefix ,wrap)))

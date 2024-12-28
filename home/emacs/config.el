@@ -1597,9 +1597,14 @@ have `org-warning' face."
                          (`inlinetask org-indent--inlinetask-line-prefixes)
                          (_ org-indent--heading-line-prefixes))
                        level))
-           (wrap `(space :align-to (,(+ 1
-                                        (aref my/org-indent--pixel-prefixes level)
-                                        (* indentation my/org-indent--space-width))))))
+           (wrap (org-add-props
+                     (concat line (make-string indentation ?\s))
+                     nil 'face 'org-indent
+                     ;; For some reason, `:align-to' doesn't work here, but
+                     ;; `:width' does.
+                     'display `(space :width (,(+ 1
+                                                  (aref my/org-indent--pixel-prefixes level)
+                                                  (* indentation my/org-indent--space-width)))))))
       ;; Add properties down to the next line to indent empty lines.
       (add-text-properties (line-beginning-position) (line-beginning-position 2)
                            `(line-prefix ,line wrap-prefix ,wrap)))
