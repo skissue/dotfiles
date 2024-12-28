@@ -1280,7 +1280,7 @@ For our purposes, a note must not be a directory, must satisfy
           org-startup-indented                   t
           org-indent-indentation-per-level       0
           org-startup-folded                     'content
-          org-ellipsis                           " "
+          org-ellipsis                           " ▼"
           org-pretty-entities                    t
           org-log-done                           'note
           org-log-into-drawer                    t
@@ -1323,7 +1323,9 @@ For our purposes, a note must not be a directory, must satisfy
           org-refile-targets     '((nil :maxlevel . 2)
                                    (org-agenda-files :maxlevel . 2)))
   (custom-set-faces
-   `(org-headline-done ((t :inherit nil
+   '(org-ellipsis      ((t :height 0.8
+                           :inherit shadow)))
+   '(org-headline-done ((t :inherit nil
                            :italic t
                            :strike-through t)))))
 
