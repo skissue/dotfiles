@@ -1501,7 +1501,9 @@ For our purposes, a note must not be a directory, must satisfy
                             (?- . "–")
                             (?* . "•"))
           org-modern-progress 8
-   ;; For some reason, inheriting from `org-modern-todo' messes with the size
+          org-modern-star 'replace
+          org-modern-replace-stars "∯∮∇σ𝛼∞𝜺"
+          ;; For some reason, inheriting from `org-modern-todo' messes with the size
           org-modern-todo-faces (ef-themes-with-colors
                                   `(("CANCELED"
                                      :inverse-video t
@@ -1510,13 +1512,12 @@ For our purposes, a note must not be a directory, must satisfy
                                     ("WAIT"
                                      :inverse-video t
                                      :weight semibold
-                                     :foreground ,yellow)))))
-
-(ef-themes-with-colors
-  (custom-set-faces
-   `(org-modern-done ((t :inherit org-modern-todo
-                         :foreground ,green))) 
-   '(org-modern-symbol ((t (:family "Iosevka Fixed SS18"))))))
+                                     :foreground ,yellow))))
+  (ef-themes-with-colors
+    (custom-set-faces
+     `(org-modern-done ((t :inherit org-modern-todo
+                           :foreground ,green)))
+     '(org-modern-symbol ((t (:family "Iosevka Aile" :height 1.1)))))))
 
 (after! org-indent
   (setopt org-indent-indentation-per-level 2)

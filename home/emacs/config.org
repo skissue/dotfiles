@@ -1972,7 +1972,7 @@ Habits.
 #+end_src
 
 ** Org Modern
-Make Org Mode pretty again!
+Make Org Mode pretty! Star replacement symbols are taken from [[https://github.com/psionic-k][psionic-k]].
 #+begin_src elisp
   (after! org
     (global-org-modern-mode))
@@ -1982,7 +1982,9 @@ Make Org Mode pretty again!
                               (?- . "–")
                               (?* . "•"))
             org-modern-progress 8
-     ;; For some reason, inheriting from `org-modern-todo' messes with the size
+            org-modern-star 'replace
+            org-modern-replace-stars "∯∮∇σ𝛼∞𝜺"
+            ;; For some reason, inheriting from `org-modern-todo' messes with the size
             org-modern-todo-faces (ef-themes-with-colors
                                     `(("CANCELED"
                                        :inverse-video t
@@ -1991,13 +1993,12 @@ Make Org Mode pretty again!
                                       ("WAIT"
                                        :inverse-video t
                                        :weight semibold
-                                       :foreground ,yellow)))))
-
-  (ef-themes-with-colors
-    (custom-set-faces
-     `(org-modern-done ((t :inherit org-modern-todo
-                           :foreground ,green))) 
-     '(org-modern-symbol ((t (:family "Iosevka Fixed SS18"))))))
+                                       :foreground ,yellow))))
+    (ef-themes-with-colors
+      (custom-set-faces
+       `(org-modern-done ((t :inherit org-modern-todo
+                             :foreground ,green)))
+       '(org-modern-symbol ((t (:family "Iosevka Aile" :height 1.1)))))))
 #+end_src
 
 ** Org Indent
