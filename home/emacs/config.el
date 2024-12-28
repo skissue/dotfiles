@@ -336,36 +336,6 @@ The DWIM behaviour of this command is as follows:
   (setcdr (assq 'left-fringe eldoc-box-frame-parameters) 2)
   (setcdr (assq 'right-fringe eldoc-box-frame-parameters) 2))
 
-(dashboard-setup-startup-hook)
-
-(setopt initial-buffer-choice
-        (lambda ()
-          (get-buffer-create dashboard-buffer-name)))
-
-(setopt dashboard-startup-banner (expand-file-name "logo.webp"
-                                                   user-emacs-directory)
-        dashboard-center-content t
-        dashboard-items '((recents   . 5)
-                          (projects  . 5)
-                          (bookmarks . 5)
-                          (registers . 5))
-        dashboard-display-icons-p t
-        dashboard-icon-type 'nerd-icons
-        dashboard-set-heading-icons t
-        ;; For some reason this is getting set to 'nil'
-        dashboard-heading-icons '((recents . "nf-oct-history")
-                                  (bookmarks . "nf-oct-bookmark")
-                                  (agenda . "nf-oct-calendar")
-                                  (projects . "nf-oct-rocket")
-                                  (registers . "nf-oct-database"))
-        dashboard-set-file-icons t
-        dashboard-projects-backend 'project-el
-        dashboard-projects-switch-function #'project-switch-project
-        dashboard-remove-missing-entry t)
-
-(after! org
-  (setf (alist-get 'agenda dashboard-items) 5))
-
 (autoload #'indent-bars-mode "indent-bars" "Indicate indentation with configurable bars." t)
 (add-hook 'prog-mode-hook #'indent-bars-mode)
 

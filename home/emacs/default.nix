@@ -74,7 +74,6 @@
         hl-todo
         consult-todo
         jinx
-        dashboard
         # Currently fails to build
         # el-easydraw
         package-lint-flymake
@@ -187,8 +186,6 @@
         consult_omni_src = sources.consult-omni.src;
       };
     "emacs/private.json".text = builtins.toJSON private;
-    # Custom icon because webp can be properly transparent
-    "emacs/logo.webp".source = ./logo.webp;
     "emacs/tempel".source = mutable-link ./snippets;
   };
   xdg.dataFile = {
