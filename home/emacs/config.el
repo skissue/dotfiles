@@ -1503,7 +1503,7 @@ For our purposes, a note must not be a directory, must satisfy
                             (?* . "•"))
           org-modern-progress 8
           org-modern-star 'replace
-          org-modern-replace-stars "∯∮∇σ𝛼∞𝜺"
+          org-modern-replace-stars "§∯δσ𝛼∞𝜺"
           ;; For some reason, inheriting from `org-modern-todo' messes with the size
           org-modern-todo-faces (ef-themes-with-colors
                                   `(("CANCELED"
