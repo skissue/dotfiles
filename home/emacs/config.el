@@ -286,12 +286,12 @@ The DWIM behaviour of this command is as follows:
 (require 'ef-themes)
 
 (setopt ef-themes-mixed-fonts t
-        ef-themes-headings '((0 1.5)
-                             (1 variable-pitch light 1.3)
-                             (2 variable-pitch light 1.3)
+        ef-themes-headings '((0 1.8)
+                             (1 variable-pitch light 1.5)
+                             (2 variable-pitch light 1.4)
                              (3 variable-pitch light 1.3)
-                             (4 variable-pitch light 1.3)
-                             (t variable-pitch light)))
+                             (4 variable-pitch light 1.2)
+                             (t variable-pitch light 1.1)))
 
 (ef-themes-load-theme 'ef-owl)
 
