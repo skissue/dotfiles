@@ -2161,7 +2161,8 @@ Automatically toggles certain markers on and off depending on whether they're be
 
 ** Auto Tangling
 #+begin_src elisp
-  (add-hook 'org-mode-hook #'org-auto-tangle-mode)
+  (add-to-list 'safe-local-variable-values
+               '(eval . (add-hook 'after-save-hook #'org-babel-tangle)))
 #+end_src
 
 ** Table of Contents
@@ -2874,3 +2875,7 @@ Passing the image data directly to [[help:call-process-region][call-process-regi
     (setopt nov-text-width t
             visual-fill-column-center-text t))
 #+end_src
+
+# Local Variables:
+# eval: (add-hook 'after-save-hook #'org-babel-tangle)
+# End:

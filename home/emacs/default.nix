@@ -123,7 +123,6 @@
         org-modern-indent
         org-ql
         org-appear
-        org-auto-tangle
         org-make-toc
         org-download
         org-autolist
