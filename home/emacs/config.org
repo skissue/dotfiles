@@ -2003,19 +2003,25 @@ Make Org Mode pretty! Star replacement symbols are taken from [[https://github.c
 #+end_src
 
 ** Org Indent
-This is a highly custom and probably fragile setup for ~org-indent~ that uses pixel widths instead of column number for indentation. This allows indentation to line up with headings even when heading sizes are adjusted (as I do). Pixel widths are precomputed and saved in arrays since computing them is supposedly expensive. Two functions are overriden to use the ~:align-to~ property of ~display~ with an absolute number of pixels for indentation.
+This is a highly custom and probably fragile setup for ~org-indent~ that uses pixel widths instead of column number for indentation. This allows indentation to line up with headings even when heading sizes are adjusted (as I do). Pixel widths are precomputed and saved in arrays since computing them is supposedly expensive. Computing pixel widths is done in a temporary buffer that has [[help:org-modern-mode][org-modern-mode]] manually enabled since the measurements would be wrong otherwise if Org Mode is first loaded from a [[*Consult][Consult]] preview; other logic is taken from [[help:org-fontify-like-in-org-mode][org-fontify-like-in-org-mode]]. Two functions are overriden to use the ~:align-to~ property of ~display~ with an absolute number of pixels for indentation.
 #+begin_src elisp
   (after! org-indent
     (setopt org-indent-indentation-per-level 2)
-    
+
     (defvar my/org-indent--pixel-prefixes
-      (cl-coerce (cl-loop for i upto org-indent--deepest-level
-                          for current = (string-pixel-width
-                                         (org-fontify-like-in-org-mode
-                                          (concat (make-string i ?*) " ")))
-                          for running = 0 then (+ running current)
-                          collect running)
-                 'vector)
+      (with-temp-buffer
+        (org-mode)
+        (org-modern-mode)
+        (cl-coerce
+         (cl-loop for i upto org-indent--deepest-level
+                  for current = (progn
+                                  (erase-buffer)
+                                  (insert (concat (make-string i ?*) " "))
+                                  (font-lock-ensure)
+                                  (string-pixel-width (buffer-string)))
+                  for running = 0 then (+ running current)
+                  collect running)
+         'vector))
       "Array of pixel widths of Org heading prefixes (star and space) per level.")
 
     (define-advice org-indent--compute-prefixes (:override () heading-size-fix)

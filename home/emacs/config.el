@@ -1522,15 +1522,21 @@ For our purposes, a note must not be a directory, must satisfy
 
 (after! org-indent
   (setopt org-indent-indentation-per-level 2)
-  
+
   (defvar my/org-indent--pixel-prefixes
-    (cl-coerce (cl-loop for i upto org-indent--deepest-level
-                        for current = (string-pixel-width
-                                       (org-fontify-like-in-org-mode
-                                        (concat (make-string i ?*) " ")))
-                        for running = 0 then (+ running current)
-                        collect running)
-               'vector)
+    (with-temp-buffer
+      (org-mode)
+      (org-modern-mode)
+      (cl-coerce
+       (cl-loop for i upto org-indent--deepest-level
+                for current = (progn
+                                (erase-buffer)
+                                (insert (concat (make-string i ?*) " "))
+                                (font-lock-ensure)
+                                (string-pixel-width (buffer-string)))
+                for running = 0 then (+ running current)
+                collect running)
+       'vector))
     "Array of pixel widths of Org heading prefixes (star and space) per level.")
 
   (define-advice org-indent--compute-prefixes (:override () heading-size-fix)
