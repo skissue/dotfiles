@@ -1533,7 +1533,7 @@ For our purposes, a note must not be a directory, must satisfy
                                 (erase-buffer)
                                 (insert (concat (make-string i ?*) " "))
                                 (font-lock-ensure)
-                                (string-pixel-width (buffer-string)))
+                                (car (buffer-text-pixel-size)))
                 for running = 0 then (+ running current)
                 collect running)
        'vector))

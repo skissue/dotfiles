@@ -2018,7 +2018,7 @@ This is a highly custom and probably fragile setup for ~org-indent~ that uses pi
                                   (erase-buffer)
                                   (insert (concat (make-string i ?*) " "))
                                   (font-lock-ensure)
-                                  (string-pixel-width (buffer-string)))
+                                  (car (buffer-text-pixel-size)))
                   for running = 0 then (+ running current)
                   collect running)
          'vector))
