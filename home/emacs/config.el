@@ -1496,9 +1496,8 @@ For our purposes, a note must not be a directory, must satisfy
                          org-directory))))
 
 (after! org
-  (global-org-modern-mode))
+  (global-org-modern-mode)
 
-(after! org-modern
   (setopt org-modern-list '((?+ . "➤")
                             (?- . "–")
                             (?* . "•"))

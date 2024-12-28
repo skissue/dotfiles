@@ -1977,9 +1977,8 @@ Habits.
 Make Org Mode pretty! Star replacement symbols are taken from [[https://github.com/psionic-k][psionic-k]].
 #+begin_src elisp
   (after! org
-    (global-org-modern-mode))
+    (global-org-modern-mode)
 
-  (after! org-modern
     (setopt org-modern-list '((?+ . "➤")
                               (?- . "–")
                               (?* . "•"))
