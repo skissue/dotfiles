@@ -1528,7 +1528,7 @@ For our purposes, a note must not be a directory, must satisfy
       (org-mode)
       (org-modern-mode)
       (cl-coerce
-       (cl-loop for i upto org-indent--deepest-level
+       (cl-loop for i below org-indent--deepest-level
                 for current = (progn
                                 (erase-buffer)
                                 (insert (concat (make-string i ?*) " "))
