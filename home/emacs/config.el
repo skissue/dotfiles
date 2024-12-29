@@ -1345,9 +1345,9 @@ For our purposes, a note must not be a directory, must satisfy
   "b" #'org-previous-block)
 
 (defun my/org-maybe-completion-at-point ()
-  "Call `completion-at-point' if point is at the end of the line."
+  "Call `completion-at-point' if in Meow insert mode."
   (interactive)
-  (when (eolp)
+  (when (meow-insert-mode-p)
     (call-interactively #'completion-at-point)))
 
 (add-hook 'org-tab-first-hook #'my/org-maybe-completion-at-point)
