@@ -2083,7 +2083,10 @@ This is a highly custom and probably fragile setup for ~org-indent~ that uses pi
                            (_ org-indent--heading-line-prefixes))
                          level))
              (wrap (org-add-props
-                       (concat line (make-string indentation ?\s))
+                       (concat line
+                               (if heading
+                                   (concat (make-string level ?*) " ")
+                                 (make-string indentation ?\s)))
                        nil 'face 'org-indent
                        ;; For some reason, `:align-to' doesn't work here, but
                        ;; `:width' does.

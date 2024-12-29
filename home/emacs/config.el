@@ -1598,7 +1598,10 @@ have `org-warning' face."
                          (_ org-indent--heading-line-prefixes))
                        level))
            (wrap (org-add-props
-                     (concat line (make-string indentation ?\s))
+                     (concat line
+                             (if heading
+                                 (concat (make-string level ?*) " ")
+                               (make-string indentation ?\s)))
                      nil 'face 'org-indent
                      ;; For some reason, `:align-to' doesn't work here, but
                      ;; `:width' does.
