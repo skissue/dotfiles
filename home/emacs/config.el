@@ -1638,7 +1638,7 @@ have `org-warning' face."
   (setopt org-anki-default-deck "Default"))
 
 (add-to-list 'safe-local-variable-values
-             '(eval . (add-hook 'after-save-hook #'org-babel-tangle)))
+             '(eval . (add-hook 'after-save-hook #'org-babel-tangle nil t)))
 
 (add-hook 'org-mode-hook #'org-make-toc-mode)
 
