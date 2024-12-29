@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  sources,
   ...
 }: {
   home.packages = with pkgs; [
@@ -61,6 +62,7 @@
       modernx
       thumbfast
       mpv-cheatsheet
+      (buildLua sources.mpv-skipsilence)
     ];
   };
 

@@ -21,7 +21,7 @@
     },
     "consult-omni": {
         "cargoLocks": null,
-        "date": "2024-12-26",
+        "date": "2024-12-29",
         "extract": null,
         "name": "consult-omni",
         "passthru": null,
@@ -33,15 +33,15 @@
             "name": null,
             "owner": "armindarvish",
             "repo": "consult-omni",
-            "rev": "01f43c9604bffd58fdd837dd4015d3d1dfdc6cdb",
-            "sha256": "sha256-kuC0a1ozNNtgZgmg4PZErD63XsdmSkXtFs/7+BzQENo=",
+            "rev": "4c2f2c4566b8de829ad510a1ae8c99a850cf99cb",
+            "sha256": "sha256-hDmRhWzFRm8R1YK05ELxNU3yOol8L0g8PZQ2jq46t5c=",
             "type": "github"
         },
-        "version": "01f43c9604bffd58fdd837dd4015d3d1dfdc6cdb"
+        "version": "4c2f2c4566b8de829ad510a1ae8c99a850cf99cb"
     },
     "copilot-el": {
         "cargoLocks": null,
-        "date": "2024-12-23",
+        "date": "2024-12-27",
         "extract": null,
         "name": "copilot-el",
         "passthru": null,
@@ -53,31 +53,11 @@
             "name": null,
             "owner": "zerolfx",
             "repo": "copilot.el",
-            "rev": "fd68d2e79e11939f5c2024671f67602bb2b34b4a",
-            "sha256": "sha256-XH4wtac1sHcjREENjs4BkWhI1VgH8SaiYelt/No7VDU=",
+            "rev": "c5dfa99f05878db5e6a6a378dc7ed09f11e803d4",
+            "sha256": "sha256-FzI08AW7a7AleEM7kSQ8LsWsDYID8SW1SmSN6/mIB/A=",
             "type": "github"
         },
-        "version": "fd68d2e79e11939f5c2024671f67602bb2b34b4a"
-    },
-    "eglot-booster": {
-        "cargoLocks": null,
-        "date": "2024-10-29",
-        "extract": null,
-        "name": "eglot-booster",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "jdtsmith",
-            "repo": "eglot-booster",
-            "rev": "e6daa6bcaf4aceee29c8a5a949b43eb1b89900ed",
-            "sha256": "sha256-PLfaXELkdX5NZcSmR1s/kgmU16ODF8bn56nfTh9g6bs=",
-            "type": "github"
-        },
-        "version": "e6daa6bcaf4aceee29c8a5a949b43eb1b89900ed"
+        "version": "c5dfa99f05878db5e6a6a378dc7ed09f11e803d4"
     },
     "gptel-quick": {
         "cargoLocks": null,
@@ -98,6 +78,25 @@
             "type": "github"
         },
         "version": "79c33058e605b4fbdb1d1f98d1ab428d6eed111d"
+    },
+    "mpv-skipsilence": {
+        "cargoLocks": null,
+        "date": "2024-05-06",
+        "extract": null,
+        "name": "mpv-skipsilence",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "5ae7c3b6f927e728c22fc13007265682d1ecf98c",
+            "sha256": "sha256-fg8vfeb68nr0bTBIvr0FnRnoB48/kV957pn22tWcz1g=",
+            "type": "git",
+            "url": "https://codeberg.org/ferreum/mpv-skipsilence"
+        },
+        "version": "5ae7c3b6f927e728c22fc13007265682d1ecf98c"
     },
     "org-bleeding-latex": {
         "cargoLocks": null,
@@ -220,7 +219,7 @@
     },
     "treesit-fold": {
         "cargoLocks": null,
-        "date": "2024-12-03",
+        "date": "2024-12-28",
         "extract": null,
         "name": "treesit-fold",
         "passthru": null,
@@ -232,11 +231,11 @@
             "name": null,
             "owner": "emacs-tree-sitter",
             "repo": "treesit-fold",
-            "rev": "0e21e12560f0977d390e3d4af45020f0f6db1c15",
-            "sha256": "sha256-ZuL9k7jTUqU+/MbvzOBkJN82REbFQHRx1CpyaZKxLRQ=",
+            "rev": "7aa6f5d1e23dda4708e286977d7f4a6a7a5b441f",
+            "sha256": "sha256-PXNbBoo3+BoyTUZc8Fn61TiLF4WeqXa5s/H0QWbi0wk=",
             "type": "github"
         },
-        "version": "0e21e12560f0977d390e3d4af45020f0f6db1c15"
+        "version": "7aa6f5d1e23dda4708e286977d7f4a6a7a5b441f"
     },
     "typst-ts-mode": {
         "cargoLocks": null,

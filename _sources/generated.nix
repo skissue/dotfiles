@@ -15,39 +15,27 @@
   };
   consult-omni = {
     pname = "consult-omni";
-    version = "01f43c9604bffd58fdd837dd4015d3d1dfdc6cdb";
+    version = "4c2f2c4566b8de829ad510a1ae8c99a850cf99cb";
     src = fetchFromGitHub {
       owner = "armindarvish";
       repo = "consult-omni";
-      rev = "01f43c9604bffd58fdd837dd4015d3d1dfdc6cdb";
+      rev = "4c2f2c4566b8de829ad510a1ae8c99a850cf99cb";
       fetchSubmodules = false;
-      sha256 = "sha256-kuC0a1ozNNtgZgmg4PZErD63XsdmSkXtFs/7+BzQENo=";
+      sha256 = "sha256-hDmRhWzFRm8R1YK05ELxNU3yOol8L0g8PZQ2jq46t5c=";
     };
-    date = "2024-12-26";
+    date = "2024-12-29";
   };
   copilot-el = {
     pname = "copilot-el";
-    version = "fd68d2e79e11939f5c2024671f67602bb2b34b4a";
+    version = "c5dfa99f05878db5e6a6a378dc7ed09f11e803d4";
     src = fetchFromGitHub {
       owner = "zerolfx";
       repo = "copilot.el";
-      rev = "fd68d2e79e11939f5c2024671f67602bb2b34b4a";
+      rev = "c5dfa99f05878db5e6a6a378dc7ed09f11e803d4";
       fetchSubmodules = false;
-      sha256 = "sha256-XH4wtac1sHcjREENjs4BkWhI1VgH8SaiYelt/No7VDU=";
+      sha256 = "sha256-FzI08AW7a7AleEM7kSQ8LsWsDYID8SW1SmSN6/mIB/A=";
     };
-    date = "2024-12-23";
-  };
-  eglot-booster = {
-    pname = "eglot-booster";
-    version = "e6daa6bcaf4aceee29c8a5a949b43eb1b89900ed";
-    src = fetchFromGitHub {
-      owner = "jdtsmith";
-      repo = "eglot-booster";
-      rev = "e6daa6bcaf4aceee29c8a5a949b43eb1b89900ed";
-      fetchSubmodules = false;
-      sha256 = "sha256-PLfaXELkdX5NZcSmR1s/kgmU16ODF8bn56nfTh9g6bs=";
-    };
-    date = "2024-10-29";
+    date = "2024-12-27";
   };
   gptel-quick = {
     pname = "gptel-quick";
@@ -60,6 +48,19 @@
       sha256 = "sha256-4ZhPL3+X83a4dfMZY7uclCLTBQESZCy4JKcw/6/8gy8=";
     };
     date = "2024-12-26";
+  };
+  mpv-skipsilence = {
+    pname = "mpv-skipsilence";
+    version = "5ae7c3b6f927e728c22fc13007265682d1ecf98c";
+    src = fetchgit {
+      url = "https://codeberg.org/ferreum/mpv-skipsilence";
+      rev = "5ae7c3b6f927e728c22fc13007265682d1ecf98c";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sha256 = "sha256-fg8vfeb68nr0bTBIvr0FnRnoB48/kV957pn22tWcz1g=";
+    };
+    date = "2024-05-06";
   };
   org-bleeding-latex = {
     pname = "org-bleeding-latex";
@@ -135,15 +136,15 @@
   };
   treesit-fold = {
     pname = "treesit-fold";
-    version = "0e21e12560f0977d390e3d4af45020f0f6db1c15";
+    version = "7aa6f5d1e23dda4708e286977d7f4a6a7a5b441f";
     src = fetchFromGitHub {
       owner = "emacs-tree-sitter";
       repo = "treesit-fold";
-      rev = "0e21e12560f0977d390e3d4af45020f0f6db1c15";
+      rev = "7aa6f5d1e23dda4708e286977d7f4a6a7a5b441f";
       fetchSubmodules = false;
-      sha256 = "sha256-ZuL9k7jTUqU+/MbvzOBkJN82REbFQHRx1CpyaZKxLRQ=";
+      sha256 = "sha256-PXNbBoo3+BoyTUZc8Fn61TiLF4WeqXa5s/H0QWbi0wk=";
     };
-    date = "2024-12-03";
+    date = "2024-12-28";
   };
   typst-ts-mode = {
     pname = "typst-ts-mode";
