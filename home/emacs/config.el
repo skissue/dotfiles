@@ -56,7 +56,7 @@
     (json-parse-buffer :object-type 'alist))
   "My private configuration data.")
 
-(defun my/private (keys)
+(defun my/private (&rest keys)
   "Return value of `my/private' by recursively following KEYS."
   (map-nested-elt my/private keys))
 
@@ -781,7 +781,7 @@ Needed since Eglot overrides my original default."
   (add-to-list 'magit-clone-name-alist 
                `("\\`\\(?:cb-skissue:\\)?\\([^:]+\\)\\'" "cb-skissue" "skissue"))
   (add-to-list 'magit-clone-name-alist 
-               `("\\`\\(?:work:\\)?\\([^:]+\\)\\'" "gh-work" ,(my/private '(user work)))))
+               `("\\`\\(?:work:\\)?\\([^:]+\\)\\'" "gh-work" ,(my/private 'user 'work))))
 
 (bind-key "t" #'git-timemachine my/git-map)
 
@@ -1947,7 +1947,7 @@ This function is called by `org-babel-execute-src-block'.")
           mu4e-context-policy 'pick-first
           mu4e-contexts
           `(,(make-mu4e-context
-              :name (my/private '(user public))
+              :name (my/private 'user 'public)
               :match-func
               (lambda (msg)
                 (and msg
@@ -1955,19 +1955,19 @@ This function is called by `org-babel-execute-src-block'.")
                       (lambda (email)
                         (string-match-p
                          (rx "@"
-                             (literal (my/private '(domain public)))
+                             (literal (my/private 'domain 'public))
                              string-end)
                          email))
                       (append (mu4e-message-field msg :to)
                               (mu4e-message-field msg :from))
                       :key (lambda (x) (plist-get x :email)))))
-              :vars `((user-mail-address . ,(my/private '(email public)))
+              :vars `((user-mail-address . ,(my/private 'email 'public))
                       (user-full-name . "Ad")
                       (mu4e-sent-folder . "/mailbox/Sent")
                       (mu4e-drafts-folder . "/mailbox/Drafts")
                       (mu4e-trash-folder . "/mailbox/Trash")))
             ,(make-mu4e-context
-              :name (my/private '(user personal))
+              :name (my/private 'user 'personal)
               :match-func
               (lambda (msg)
                 (and msg
@@ -1975,14 +1975,14 @@ This function is called by `org-babel-execute-src-block'.")
                       (lambda (email)
                         (string-match-p
                          (rx "@"
-                             (literal (my/private '(domain personal)))
+                             (literal (my/private 'domain 'personal))
                              string-end)
                          email))
                       (append (mu4e-message-field msg :to)
                               (mu4e-message-field msg :from))
                       :key (lambda (x) (plist-get x :email)))))
-              :vars `((user-mail-address . ,(my/private '(email personal)))
-                      (user-full-name . ,(my/private '(name)))
+              :vars `((user-mail-address . ,(my/private 'email 'personal))
+                      (user-full-name . ,(my/private 'name))
                       (mu4e-sent-folder . "/mailbox/Sent")
                       (mu4e-drafts-folder . "/mailbox/Drafts")
                       (mu4e-trash-folder . "/mailbox/Trash"))))))
@@ -1996,8 +1996,8 @@ This function is called by `org-babel-execute-src-block'.")
                              (lambda (email)
                                (string-match-p
                                 (rx "@"
-                                    (or (literal (my/private '(domain public)))
-                                        (literal (my/private '(domain personal))))
+                                    (or (literal (my/private 'domain 'public))
+                                        (literal (my/private 'domain 'personal)))
                                     string-end)
                                 email))
                              parent-to
