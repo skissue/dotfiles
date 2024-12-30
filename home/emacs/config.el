@@ -68,7 +68,8 @@
               (expand-file-name "emacs/" (getenv "XDG_CONFIG_HOME"))
               no-littering-var-directory
               (expand-file-name "emacs/" (getenv "XDG_DATA_HOME")))
-(require 'no-littering)
+(cl-eval-when (load eval)
+  (require 'no-littering))
 
 (setq-default make-backup-files nil
               create-lockfiles nil)

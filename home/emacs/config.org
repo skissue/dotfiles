@@ -156,13 +156,14 @@ Convenience function to access nested elements.
 
 * Behavior
 ** No Littering
-Don't leave random files everywhere in the filesystem. Paths must be set before loading the package. This has to be loaded before most the packages that it configures, so it's pretty early.
+Don't leave random files everywhere in the filesystem. Paths must be set before loading the package. This has to be loaded before most of the packages that it configures, so it's pretty early. Only require the package during load or evaluation; during byte-compilation it fails since it tries to create directories within the read-only part of the Nix sandbox.
 #+begin_src elisp
   (setq-default no-littering-etc-directory
                 (expand-file-name "emacs/" (getenv "XDG_CONFIG_HOME"))
                 no-littering-var-directory
                 (expand-file-name "emacs/" (getenv "XDG_DATA_HOME")))
-  (require 'no-littering)
+  (cl-eval-when (load eval)
+    (require 'no-littering))
 #+end_src
 
 Again, don't leave random backup files and lockfiles everywhere.
