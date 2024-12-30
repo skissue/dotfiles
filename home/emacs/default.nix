@@ -1,11 +1,20 @@
 {
+  config,
+  lib,
   pkgs,
   inputs,
   private,
   sources,
   mutable-link,
   ...
-}: {
+}: let
+  quickstart-file = pkgs.runCommandNoCCLocal "emacs-quickstart-file" {emacs = lib.getExe config.programs.emacs.finalPackage;} ''
+    $emacs --batch \
+      --eval "(setq package-quickstart-file \"$out\")" \
+      -f package-activate-all \
+      -f package-quickstart-refresh
+  '';
+in {
   # Fresh versions of packages
   nixpkgs.overlays = [inputs.emacs-overlay.overlays.package];
 
@@ -185,6 +194,7 @@
         consult_mu_src = sources.consult-mu.src;
         consult_omni_src = sources.consult-omni.src;
       };
+    "emacs/package-quickstart.el".source = quickstart-file;
     "emacs/private.json".text = builtins.toJSON private;
     "emacs/tempel".source = mutable-link ./snippets;
   };
