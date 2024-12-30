@@ -134,7 +134,9 @@ Configure ~gcmh~ with values stolen from [[https://github.com/doomemacs/doomemac
 There's personal information that I'd rather not be in my public dotfiles, so they're set in a private NixOS module. I convert that information from a Nix attrset into JSON, and then load it into a nested alist in Emacs here.
 #+begin_src elisp
   (defvar my/private
-    (json-read-file (expand-file-name "private.json" user-emacs-directory))
+    (with-temp-buffer
+      (insert-file-contents (expand-file-name "private.json" user-emacs-directory))
+      (json-parse-buffer :object-type 'alist))
     "My private configuration data.")
 #+end_src
 

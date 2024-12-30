@@ -51,7 +51,9 @@
           gcmh-high-cons-threshold (* 16 1024 1024)))
 
 (defvar my/private
-  (json-read-file (expand-file-name "private.json" user-emacs-directory))
+  (with-temp-buffer
+    (insert-file-contents (expand-file-name "private.json" user-emacs-directory))
+    (json-parse-buffer :object-type 'alist))
   "My private configuration data.")
 
 (defun my/private (keys)
