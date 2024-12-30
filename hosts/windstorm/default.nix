@@ -33,11 +33,13 @@
 
   nixpkgs.config.rocmSupport = true;
 
-  services.ollama = {
-    enable = true;
-    host = "0.0.0.0";
-    rocmOverrideGfx = "11.0.1";
-  };
+  # TODO Re-enable when https://github.com/NixOS/nixpkgs/issues/368672 is
+  # fixed.
+  # services.ollama = {
+  #   enable = true;
+  #   host = "0.0.0.0";
+  #   rocmOverrideGfx = "11.0.1";
+  # };
 
   networking.firewall.allowedTCPPorts = [21000 21013];
   networking.firewall.allowedUDPPorts = [21003];
