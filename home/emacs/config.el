@@ -1,6 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 
-(require 'f)
 (eval-when-compile
   (require 'cl-lib))
 

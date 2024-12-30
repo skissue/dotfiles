@@ -61,8 +61,8 @@ Disable a bunch of miscellaneous things to improve both startup and redisplay pe
 #+end_src
 
 * Libraries
+Load ~cl-lib~ only at compile time (I like a few of Common Lisp's macros 🙃).
 #+begin_src elisp
-  (require 'f)
   (eval-when-compile
     (require 'cl-lib))
 #+end_src

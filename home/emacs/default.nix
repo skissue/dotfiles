@@ -47,7 +47,6 @@ in {
         no-littering
         gcmh
         persistent-scratch
-        f
         el-patch
         # Keybinds
         meow
