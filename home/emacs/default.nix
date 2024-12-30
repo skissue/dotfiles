@@ -46,7 +46,6 @@ in {
         # Essentials
         no-littering
         gcmh
-        persistent-scratch
         el-patch
         # Keybinds
         meow

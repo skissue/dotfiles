@@ -305,11 +305,6 @@ Don't make me type an entire word and hit enter for confirmation prompts, I know
                 comment-empty-lines 'eol)
 #+end_src
 
-** Persistent Scratch Buffer
-#+begin_src elisp
-  (persistent-scratch-setup-default)
-#+end_src
-
 ** Sub-word Navigation
 Navigate through sub-units of words (e.g. CamelCase).
 #+begin_src elisp

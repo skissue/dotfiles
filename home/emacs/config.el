@@ -169,8 +169,6 @@ where it was when you previously visited the same file."
               require-final-newline t
               comment-empty-lines 'eol)
 
-(persistent-scratch-setup-default)
-
 (add-hook 'prog-mode-hook #'subword-mode)
 
 (setopt auth-sources '(default))
