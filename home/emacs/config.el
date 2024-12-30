@@ -110,6 +110,30 @@ The DWIM behaviour of this command is as follows:
 (recentf-mode)
 (setopt recentf-max-saved-items 200)
 
+(autoload-many "saveplace" nil
+               #'save-place-find-file-hook
+               #'save-place-dired-hook
+               #'save-place-kill-emacs-hook
+               #'save-place-to-alist)
+
+(el-patch-defun save-place--setup-hooks (add)
+  (cond
+   (add
+    (add-hook 'find-file-hook #'save-place-find-file-hook t)
+    (add-hook 'dired-initial-position-hook #'save-place-dired-hook)
+    (unless noninteractive
+      (add-hook 'kill-emacs-hook #'save-place-kill-emacs-hook))
+    (add-hook 'kill-buffer-hook #'save-place-to-alist))
+   (t)))
+
+(el-patch-define-minor-mode save-place-mode
+  "Non-nil means automatically save place in each file.
+This means when you visit a file, point goes to the last place
+where it was when you previously visited the same file."
+  :global t
+  :group 'save-place
+  (save-place--setup-hooks save-place-mode))
+
 (save-place-mode)
 
 (savehist-mode)
