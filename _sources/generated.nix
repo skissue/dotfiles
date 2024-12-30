@@ -15,13 +15,13 @@
   };
   consult-omni = {
     pname = "consult-omni";
-    version = "4c2f2c4566b8de829ad510a1ae8c99a850cf99cb";
+    version = "c8cf29a138e5430363bf489b68ae284cf1409169";
     src = fetchFromGitHub {
       owner = "armindarvish";
       repo = "consult-omni";
-      rev = "4c2f2c4566b8de829ad510a1ae8c99a850cf99cb";
+      rev = "c8cf29a138e5430363bf489b68ae284cf1409169";
       fetchSubmodules = false;
-      sha256 = "sha256-hDmRhWzFRm8R1YK05ELxNU3yOol8L0g8PZQ2jq46t5c=";
+      sha256 = "sha256-9FI8BQ21EMNbrL1popqi2oyrZSNdgvMaV+BDElweZEY=";
     };
     date = "2024-12-29";
   };
@@ -64,16 +64,16 @@
   };
   org-bleeding-latex = {
     pname = "org-bleeding-latex";
-    version = "119426b1dde3f5bf9a1b180fe4344fc31ae82f9e";
+    version = "ce4a745b0aa746686376c5927b3165fe4cb4b4d7";
     src = fetchgit {
       url = "https://code.tecosaur.net/tec/org-mode.git";
-      rev = "119426b1dde3f5bf9a1b180fe4344fc31ae82f9e";
+      rev = "ce4a745b0aa746686376c5927b3165fe4cb4b4d7";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-0JSm9FpNDRxjkN00tRH1BRfjzyrcYTQMUjpodsKUqLc=";
+      sha256 = "sha256-jotNr6F2AWzQv4XM931Hb3Imc3jCM1fVZe2+Y+YhJrg=";
     };
-    date = "2024-12-02";
+    date = "2024-12-29";
   };
   org-modern-indent = {
     pname = "org-modern-indent";

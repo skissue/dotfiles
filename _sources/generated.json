@@ -33,11 +33,11 @@
             "name": null,
             "owner": "armindarvish",
             "repo": "consult-omni",
-            "rev": "4c2f2c4566b8de829ad510a1ae8c99a850cf99cb",
-            "sha256": "sha256-hDmRhWzFRm8R1YK05ELxNU3yOol8L0g8PZQ2jq46t5c=",
+            "rev": "c8cf29a138e5430363bf489b68ae284cf1409169",
+            "sha256": "sha256-9FI8BQ21EMNbrL1popqi2oyrZSNdgvMaV+BDElweZEY=",
             "type": "github"
         },
-        "version": "4c2f2c4566b8de829ad510a1ae8c99a850cf99cb"
+        "version": "c8cf29a138e5430363bf489b68ae284cf1409169"
     },
     "copilot-el": {
         "cargoLocks": null,
@@ -100,7 +100,7 @@
     },
     "org-bleeding-latex": {
         "cargoLocks": null,
-        "date": "2024-12-02",
+        "date": "2024-12-29",
         "extract": null,
         "name": "org-bleeding-latex",
         "passthru": null,
@@ -110,12 +110,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "119426b1dde3f5bf9a1b180fe4344fc31ae82f9e",
-            "sha256": "sha256-0JSm9FpNDRxjkN00tRH1BRfjzyrcYTQMUjpodsKUqLc=",
+            "rev": "ce4a745b0aa746686376c5927b3165fe4cb4b4d7",
+            "sha256": "sha256-jotNr6F2AWzQv4XM931Hb3Imc3jCM1fVZe2+Y+YhJrg=",
             "type": "git",
             "url": "https://code.tecosaur.net/tec/org-mode.git"
         },
-        "version": "119426b1dde3f5bf9a1b180fe4344fc31ae82f9e"
+        "version": "ce4a745b0aa746686376c5927b3165fe4cb4b4d7"
     },
     "org-modern-indent": {
         "cargoLocks": null,
