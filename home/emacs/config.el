@@ -1,5 +1,12 @@
 ;; -*- lexical-binding: t; -*-
 
+(require 'f)
+(eval-when-compile
+  (require 'cl-lib))
+
+(eval-when-compile
+  (require 'el-patch))
+
 (defmacro after! (files &rest body)
   "Evaluate BODY after FILES have been loaded. Thin wrapper
  around `with-eval-after-load', inspired by Doom."
@@ -59,13 +66,6 @@
 (defun my/private (&rest keys)
   "Return value of `my/private' by recursively following KEYS."
   (map-nested-elt my/private keys))
-
-(require 'f)
-(eval-when-compile
-  (require 'cl-lib))
-
-(eval-when-compile
-  (require 'el-patch))
 
 (setq-default no-littering-etc-directory
               (expand-file-name "emacs/" (getenv "XDG_CONFIG_HOME"))

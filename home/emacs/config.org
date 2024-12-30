@@ -60,6 +60,19 @@ Disable a bunch of miscellaneous things to improve both startup and redisplay pe
                 auto-mode-case-fold nil)
 #+end_src
 
+* Libraries
+#+begin_src elisp
+  (require 'f)
+  (eval-when-compile
+    (require 'cl-lib))
+#+end_src
+
+~el-patch~ must be loaded during byte compilation for the macros, else errors occur when trying to use the byte-compiled file.
+#+begin_src elisp
+  (eval-when-compile
+    (require 'el-patch))
+#+end_src
+
 * Convenience Definitions
 Some macros  to make configuration more concise (basically, emulating some of ~use-package~'s features, since I'm not using it).
 
@@ -145,19 +158,6 @@ Convenience function to access nested elements.
   (defun my/private (&rest keys)
     "Return value of `my/private' by recursively following KEYS."
     (map-nested-elt my/private keys))
-#+end_src
-
-* Libraries
-#+begin_src elisp
-  (require 'f)
-  (eval-when-compile
-    (require 'cl-lib))
-#+end_src
-
-~el-patch~ must be loaded during byte compilation for the macros, else errors occur when trying to use the byte-compiled file.
-#+begin_src elisp
-  (eval-when-compile
-    (require 'el-patch))
 #+end_src
 
 * Behavior
