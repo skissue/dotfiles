@@ -25,6 +25,7 @@
         gcmh
         persistent-scratch
         f
+        el-patch
         # Keybinds
         meow
         meow-tree-sitter
