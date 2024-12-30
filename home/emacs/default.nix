@@ -94,6 +94,7 @@
         nerd-icons-dired
         disproject
         atomic-chrome
+        esup
         # Languages
         treesit-grammars.with-all-grammars
         parinfer-rust-mode

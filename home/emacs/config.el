@@ -1054,6 +1054,18 @@ Calls the function in `consult-omni-default-interactive-command'." t)
           atomic-chrome-extension-type-list '(ghost-text)
           atomic-chrome-buffer-open-style 'frame))
 
+(defun my/esup ()
+  "Run `esup' with extra parameters to fix `load-path' issues with Nix."
+  (interactive)
+  (apply #'esup
+         nil
+         `("--eval" "(package-activate-all)"
+           ,@(cl-loop for dir in load-path
+                      append (list "-L" dir)))))
+
+(after! esup
+  (setopt esup-depth 0))
+
 (bind-keys ("C-c X" . org-capture)
            :map my/notes-map
            ("b" . denote-backlinks)

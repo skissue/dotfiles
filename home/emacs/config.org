@@ -1469,6 +1469,22 @@ Allows for editing browser text areas inside Emacs 🔥.
             atomic-chrome-buffer-open-style 'frame))
 #+end_src
 
+** Esup
+Esup is an Emacs startup profiler that uses a child process to step through the init file and measure each form. However, the package load path and autoloads are broken out-of-the-box (presumably because of the weird way that Nix does things), so we add every directory from [[help:load-path][load-path]] to the command-line to fix it. Setting [[help:esup-depth][esup-depth]] to ~0~ works around [[https://github.com/jschaf/esup/issues/85][this issue]].
+#+begin_src elisp
+  (defun my/esup ()
+    "Run `esup' with extra parameters to fix `load-path' issues with Nix."
+    (interactive)
+    (apply #'esup
+           nil
+           `("--eval" "(package-activate-all)"
+             ,@(cl-loop for dir in load-path
+                        append (list "-L" dir)))))
+
+  (after! esup
+    (setopt esup-depth 0))
+#+end_src
+
 * Denote
 We set [[help:denote-directory][denote-directory]] early since other parts of my configuration use it as well.
 #+begin_src elisp
