@@ -154,6 +154,12 @@ Convenience function to access nested elements.
     (require 'cl-lib))
 #+end_src
 
+~el-patch~ must be loaded during byte compilation for the macros, else errors occur when trying to use the byte-compiled file.
+#+begin_src elisp
+  (eval-when-compile
+    (require 'el-patch))
+#+end_src
+
 * Behavior
 ** No Littering
 Don't leave random files everywhere in the filesystem. Paths must be set before loading the package. This has to be loaded before most of the packages that it configures, so it's pretty early. Only require the package during load or evaluation; during byte-compilation it fails since it tries to create directories within the read-only part of the Nix sandbox.

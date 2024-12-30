@@ -64,6 +64,9 @@
 (eval-when-compile
   (require 'cl-lib))
 
+(eval-when-compile
+  (require 'el-patch))
+
 (setq-default no-littering-etc-directory
               (expand-file-name "emacs/" (getenv "XDG_CONFIG_HOME"))
               no-littering-var-directory
