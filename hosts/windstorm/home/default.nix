@@ -2,7 +2,9 @@
   imports = [./mpd.nix];
 
   home.packages = with pkgs; [
-    blender-hip
+    # TODO Re-enable when https://github.com/NixOS/nixpkgs/issues/368672 is
+    # resolved.
+    # blender-hip
     ddcutil
   ];
 
