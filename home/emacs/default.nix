@@ -15,6 +15,19 @@
       -f package-quickstart-refresh
     cp package-quickstart.elc $out
   '';
+  init-substituted = pkgs.substituteAll {
+    src = ./config.el;
+    # See explanations in ./config.org
+    consult_mu_src = sources.consult-mu.src;
+    consult_omni_src = sources.consult-omni.src;
+  };
+  init = pkgs.runCommandNoCCLocal "emacs-byte-compile-init" {emacs = lib.getExe config.programs.emacs.finalPackage;} ''
+    cp ${init-substituted} config.el
+    $emacs --batch \
+      -f batch-byte-compile \
+      config.el
+    cp config.elc $out
+  '';
 in {
   # Fresh versions of packages
   nixpkgs.overlays = [inputs.emacs-overlay.overlays.package];
@@ -188,13 +201,8 @@ in {
 
   xdg.configFile = {
     "emacs/early-init.el".source = ./early-init.el;
-    "emacs/init.el".source = with pkgs;
-      substituteAll {
-        src = ./config.el;
-        # See explanations in ./config.org
-        consult_mu_src = sources.consult-mu.src;
-        consult_omni_src = sources.consult-omni.src;
-      };
+    "emacs/init.el".source = init-substituted;
+    "emacs/init.elc".source = init;
     "emacs/package-quickstart.elc".source = quickstart-file;
     "emacs/private.json".text = builtins.toJSON private;
     "emacs/tempel".source = mutable-link ./snippets;
