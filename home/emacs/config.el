@@ -1563,12 +1563,11 @@ For our purposes, a note must not be a directory, must satisfy
      '(org-modern-symbol ((t (:family "Iosevka Aile" :height 1.1)))))))
 
 (after! org-indent
-  (setopt org-indent-indentation-per-level 2)
-
-  (defvar my/org-indent--pixel-prefixes
+  (defvar my/org-indent--heading-pixel-widths
     (with-temp-buffer
       (org-mode)
       (org-modern-mode)
+      (org-indent-mode -1)
       (cl-coerce
        (cl-loop for i below org-indent--deepest-level
                 for current = (progn
@@ -1576,15 +1575,15 @@ For our purposes, a note must not be a directory, must satisfy
                                 (insert (concat (make-string i ?*) " "))
                                 (font-lock-ensure)
                                 (car (buffer-text-pixel-size)))
-                for running = 0 then (+ running current)
-                collect running)
+                for result = 0 then current
+                collect result)
        'vector))
     "Array of pixel widths of Org heading prefixes (star and space) per level.")
 
   (define-advice org-indent--compute-prefixes (:override () heading-size-fix)
     "Compute prefix strings for regular text and headlines.
-Account for varying headline size in text properties. Based off of
-original function."
+Account for varying headline sizes. Based off of original function, but
+instead aligns each headline at the right edge of its symbol."
     (setq org-indent--heading-line-prefixes
           (make-vector org-indent--deepest-level nil))
     (setq org-indent--inlinetask-line-prefixes
@@ -1592,10 +1591,11 @@ original function."
     (setq org-indent--text-line-prefixes
           (make-vector org-indent--deepest-level nil))
     (dotimes (n org-indent--deepest-level)
-      (let ((indentation (if (<= n 1)
-                             0
-                           (* org-indent-indentation-per-level
-                              (1- n)))))
+      (let* ((max-indentation (aref my/org-indent--heading-pixel-widths 1))
+             (cur-indentation (aref my/org-indent--heading-pixel-widths n))
+             (indentation (if (<= n 1)
+                              0
+                            2)))
         ;; Headlines line prefixes.
         (let ((heading-prefix (make-string indentation ?*)))
           (aset org-indent--heading-line-prefixes
@@ -1603,7 +1603,8 @@ original function."
                 (org-add-props heading-prefix nil
                   'face 'org-indent
                   'display `(space :align-to (,(if (> n 0)
-                                                   (aref my/org-indent--pixel-prefixes (1- n))
+                                                   (- max-indentation
+                                                      cur-indentation)
                                                  0)))))
           ;; Inline tasks line prefixes
           (aset org-indent--inlinetask-line-prefixes
@@ -1618,7 +1619,7 @@ original function."
               n
               (org-add-props (make-string (+ n indentation) ?\s) nil
                 'face 'org-indent
-                'display `(space :align-to (,(1+ (aref my/org-indent--pixel-prefixes n)))))))))
+                'display `(space :align-to (,(1+ max-indentation))))))))
 
   (defvar my/org-indent--space-width
     (string-pixel-width " ")
@@ -1626,7 +1627,7 @@ original function."
 
   (define-advice org-indent-set-line-properties (:override (level indentation &optional heading) use-pixel-sizes)
     "Set prefix properties on current line and move to next one.
-Use `my/org-indent--pixel-prefixes' to account for varying heading sizes.
+Use `my/org-indent--heading-pixel-widths' to account for varying heading sizes.
 
 LEVEL is the current level of heading.  INDENTATION is the
 expected indentation when wrapping line.
@@ -1648,7 +1649,7 @@ have `org-warning' face."
                      ;; For some reason, `:align-to' doesn't work here, but
                      ;; `:width' does.
                      'display `(space :width (,(+ 1
-                                                  (aref my/org-indent--pixel-prefixes level)
+                                                  (aref my/org-indent--heading-pixel-widths 1)
                                                   (* indentation my/org-indent--space-width)))))))
       ;; Add properties down to the next line to indent empty lines.
       (add-text-properties (line-beginning-position) (line-beginning-position 2)

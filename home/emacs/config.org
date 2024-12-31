@@ -2056,12 +2056,11 @@ Make Org Mode pretty! Star replacement symbols are taken from [[https://github.c
 This is a highly custom and probably fragile setup for ~org-indent~ that uses pixel widths instead of column number for indentation. This allows indentation to line up with headings even when heading sizes are adjusted (as I do). Pixel widths are precomputed and saved in arrays since computing them is supposedly expensive. Computing pixel widths is done in a temporary buffer that has [[help:org-modern-mode][org-modern-mode]] manually enabled since the measurements would be wrong otherwise if Org Mode is first loaded from a [[*Consult][Consult]] preview; other logic is taken from [[help:org-fontify-like-in-org-mode][org-fontify-like-in-org-mode]]. Two functions are overriden to use the ~:align-to~ or ~:width~ space property of ~display~ with an absolute number of pixels for indentation (see [[info:elisp#Specified Space][elisp#Specified Space]]). This property is quite finnicky though, and seems to require the string to be a certain size, which is why I've left the string-joining-stuff the same as the original implementation.
 #+begin_src elisp
   (after! org-indent
-    (setopt org-indent-indentation-per-level 2)
-
-    (defvar my/org-indent--pixel-prefixes
+    (defvar my/org-indent--heading-pixel-widths
       (with-temp-buffer
         (org-mode)
         (org-modern-mode)
+        (org-indent-mode -1)
         (cl-coerce
          (cl-loop for i below org-indent--deepest-level
                   for current = (progn
@@ -2069,15 +2068,15 @@ This is a highly custom and probably fragile setup for ~org-indent~ that uses pi
                                   (insert (concat (make-string i ?*) " "))
                                   (font-lock-ensure)
                                   (car (buffer-text-pixel-size)))
-                  for running = 0 then (+ running current)
-                  collect running)
+                  for result = 0 then current
+                  collect result)
          'vector))
       "Array of pixel widths of Org heading prefixes (star and space) per level.")
 
     (define-advice org-indent--compute-prefixes (:override () heading-size-fix)
       "Compute prefix strings for regular text and headlines.
-  Account for varying headline size in text properties. Based off of
-  original function."
+  Account for varying headline sizes. Based off of original function, but
+  instead aligns each headline at the right edge of its symbol."
       (setq org-indent--heading-line-prefixes
             (make-vector org-indent--deepest-level nil))
       (setq org-indent--inlinetask-line-prefixes
@@ -2085,10 +2084,11 @@ This is a highly custom and probably fragile setup for ~org-indent~ that uses pi
       (setq org-indent--text-line-prefixes
             (make-vector org-indent--deepest-level nil))
       (dotimes (n org-indent--deepest-level)
-        (let ((indentation (if (<= n 1)
-                               0
-                             (* org-indent-indentation-per-level
-                                (1- n)))))
+        (let* ((max-indentation (aref my/org-indent--heading-pixel-widths 1))
+               (cur-indentation (aref my/org-indent--heading-pixel-widths n))
+               (indentation (if (<= n 1)
+                                0
+                              2)))
           ;; Headlines line prefixes.
           (let ((heading-prefix (make-string indentation ?*)))
             (aset org-indent--heading-line-prefixes
@@ -2096,7 +2096,8 @@ This is a highly custom and probably fragile setup for ~org-indent~ that uses pi
                   (org-add-props heading-prefix nil
                     'face 'org-indent
                     'display `(space :align-to (,(if (> n 0)
-                                                     (aref my/org-indent--pixel-prefixes (1- n))
+                                                     (- max-indentation
+                                                        cur-indentation)
                                                    0)))))
             ;; Inline tasks line prefixes
             (aset org-indent--inlinetask-line-prefixes
@@ -2111,7 +2112,7 @@ This is a highly custom and probably fragile setup for ~org-indent~ that uses pi
                 n
                 (org-add-props (make-string (+ n indentation) ?\s) nil
                   'face 'org-indent
-                  'display `(space :align-to (,(1+ (aref my/org-indent--pixel-prefixes n)))))))))
+                  'display `(space :align-to (,(1+ max-indentation))))))))
 
     (defvar my/org-indent--space-width
       (string-pixel-width " ")
@@ -2119,7 +2120,7 @@ This is a highly custom and probably fragile setup for ~org-indent~ that uses pi
 
     (define-advice org-indent-set-line-properties (:override (level indentation &optional heading) use-pixel-sizes)
       "Set prefix properties on current line and move to next one.
-  Use `my/org-indent--pixel-prefixes' to account for varying heading sizes.
+  Use `my/org-indent--heading-pixel-widths' to account for varying heading sizes.
 
   LEVEL is the current level of heading.  INDENTATION is the
   expected indentation when wrapping line.
@@ -2141,7 +2142,7 @@ This is a highly custom and probably fragile setup for ~org-indent~ that uses pi
                        ;; For some reason, `:align-to' doesn't work here, but
                        ;; `:width' does.
                        'display `(space :width (,(+ 1
-                                                    (aref my/org-indent--pixel-prefixes level)
+                                                    (aref my/org-indent--heading-pixel-widths 1)
                                                     (* indentation my/org-indent--space-width)))))))
         ;; Add properties down to the next line to indent empty lines.
         (add-text-properties (line-beginning-position) (line-beginning-position 2)
