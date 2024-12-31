@@ -111,16 +111,6 @@
         inputs',
         ...
       }: {
-        # TODO Why is this needed?
-        _module.args.pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfreePredicate = pkg:
-            builtins.elem (lib.getName pkg) [
-              "steam-unwrapped"
-              "steam-run"
-            ];
-        };
-
         packages = lib.genAttrs (lib.attrNames (builtins.readDir ./packages)) (p: pkgs.callPackage (import ./packages/${p}) {});
 
         devshells.default = with pkgs; {
