@@ -146,6 +146,9 @@ where it was when you previously visited the same file."
 
 (setq-default use-short-answers t)
 
+(eval-when-compile
+  (require 'smartparens))
+
 (add-hook 'prog-mode-hook #'smartparens-mode)
 
 (after! smartparens

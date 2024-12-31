@@ -274,6 +274,12 @@ Don't make me type an entire word and hit enter for confirmation prompts, I know
 #+end_src
 
 ** Smartparens
+For the [[help:sp-with-modes][sp-with-modes]] macro.
+#+begin_src elisp
+  (eval-when-compile
+    (require 'smartparens))
+#+end_src
+
 #+begin_src elisp
   (add-hook 'prog-mode-hook #'smartparens-mode)
 
