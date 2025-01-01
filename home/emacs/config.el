@@ -570,6 +570,25 @@ where it was when you previously visited the same file."
 
 (autoload #'vertico--advice "vertico")
 
+(el-patch-defvar-keymap vertico-map
+  :doc "Vertico minibuffer keymap derived from `minibuffer-local-map'."
+  :parent minibuffer-local-map
+  "<remap> <beginning-of-buffer>" #'vertico-first
+  "<remap> <minibuffer-beginning-of-buffer>" #'vertico-first
+  "<remap> <end-of-buffer>" #'vertico-last
+  "<remap> <scroll-down-command>" #'vertico-scroll-down
+  "<remap> <scroll-up-command>" #'vertico-scroll-up
+  "<remap> <next-line>" #'vertico-next
+  "<remap> <previous-line>" #'vertico-previous
+  "<remap> <next-line-or-history-element>" #'vertico-next
+  "<remap> <previous-line-or-history-element>" #'vertico-previous
+  "<remap> <backward-paragraph>" #'vertico-previous-group
+  "<remap> <forward-paragraph>" #'vertico-next-group
+  "<remap> <exit-minibuffer>" #'vertico-exit
+  "<remap> <kill-ring-save>" #'vertico-save
+  "M-RET" #'vertico-exit-input
+  "TAB" #'vertico-insert)
+
 (el-patch-define-minor-mode vertico-mode
   "VERTical Interactive COmpletion."
   :global t :group 'vertico
