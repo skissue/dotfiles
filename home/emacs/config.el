@@ -714,7 +714,7 @@ where it was when you previously visited the same file."
             display-buffer-alist
             :test #'equal)
 
-(after! helpful
+(after! (helpful org)
   (defun my/org-help-link-make-nicer ()
     "Add an :insert-description property to \"help\" links in Org that
 uses the symbol name as the default description, as well as a

@@ -1009,7 +1009,7 @@ Wrap Eglot to ensure that completions aren't cached (since LSPs usually don't re
               display-buffer-alist
               :test #'equal)
 
-  (after! helpful
+  (after! (helpful org)
     (defun my/org-help-link-make-nicer ()
       "Add an :insert-description property to \"help\" links in Org that
   uses the symbol name as the default description, as well as a
