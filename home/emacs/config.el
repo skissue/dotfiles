@@ -485,7 +485,7 @@ where it was when you previously visited the same file."
  '("x" . meow-swap-grab)
  '("X" . meow-pop-selection)
  '("y" . meow-save)
- '("z" . meow-pop-to-global-mark)
+ '("z" . meow-pop-to-mark)
  '("Z" . meow-unpop-to-mark)
  '("'" . repeat)
  '(";" . meow-reverse)
