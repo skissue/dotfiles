@@ -1492,6 +1492,12 @@ The repository comes with many different files for "sources", that each have var
   (bind-key "p" #'disproject-dispatch ctl-x-map)
 #+end_src
 
+Load when compiling for the [[help:disproject-with-environment][disproject-with-environment]] macro.
+#+begin_src elisp
+  (eval-when-compile
+    (require 'disproject))
+#+end_src
+
 ** Atomic Chrome
 Allows for editing browser text areas inside Emacs 🔥.
 #+begin_src elisp
