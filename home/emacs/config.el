@@ -562,33 +562,43 @@ where it was when you previously visited the same file."
 (after! avy
   (setf (alist-get ?. avy-dispatch-alist) #'my/avy-action-embark))
 
-(require 'vertico)
+(autoload #'vertico--advice "vertico")
 
-(add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
-(add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
-
-(bind-keys ("M-S-s" . vertico-suspend)
-           ("M-S-r" . vertico-repeat)
-           :map vertico-map
-           ("RET" . vertico-directory-enter)
-           ("DEL" . vertico-directory-delete-char)
-           ("M-DEL" . vertico-directory-delete-word)
-           ("M-q" . vertico-quick-jump)
-           ("M-P" . vertico-repeat-previous)
-           ("M-N" . vertico-repeat-next))
-
-(setopt vertico-count 20
-        vertico-cycle t
-        vertico-resize nil
-        vertico-quick1 "arstneio"
-        vertico-quick2 vertico-quick1)
+(el-patch-define-minor-mode vertico-mode
+  "VERTical Interactive COmpletion."
+  :global t :group 'vertico
+  (dolist (fun '(completing-read-default completing-read-multiple))
+    (if vertico-mode
+        (advice-add fun :around #'vertico--advice)
+      (advice-remove fun #'vertico--advice))))
 
 (vertico-mode)
 
-(defvar-keymap my/vertico-repeat-map
-  :repeat t
-  "n" #'vertico-next
-  "p" #'vertico-previous)
+(after! vertico
+  (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
+  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
+
+  (bind-keys ("M-S-s" . vertico-suspend)
+             ("M-S-r" . vertico-repeat)
+             :map vertico-map
+             ("RET" . vertico-directory-enter)
+             ("DEL" . vertico-directory-delete-char)
+             ("M-DEL" . vertico-directory-delete-word)
+             ("M-q" . vertico-quick-jump)
+             ("M-P" . vertico-repeat-previous)
+             ("M-N" . vertico-repeat-next))
+
+  (setopt vertico-count 20
+          vertico-cycle t
+          vertico-resize nil
+          vertico-quick1 "arstneio"
+          vertico-quick2 vertico-quick1))
+
+(after! vertico
+  (defvar-keymap my/vertico-repeat-map
+    :repeat t
+    "n" #'vertico-next
+    "p" #'vertico-previous))
 
 (require 'orderless)
 (setopt completion-styles '(orderless basic)
@@ -637,9 +647,9 @@ where it was when you previously visited the same file."
     "Source for `consult-dir' using `zoxide.el'.")
   (cl-pushnew 'my/consult-dir-source-zoxide consult-dir-sources))
 
-(require 'marginalia)
-(bind-key "M-A" #'marginalia-cycle)
-(marginalia-mode)
+(after! vertico
+  (marginalia-mode)
+  (bind-key "M-A" #'marginalia-cycle))
 
 (bind-keys ("C-." . embark-act)
            ("C-;" . embark-dwim))
