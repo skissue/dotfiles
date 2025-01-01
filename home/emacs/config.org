@@ -972,7 +972,6 @@ Repeat map for candidate navigation.
 #+end_src
 
 ** Corfu
-=Corfu='s completion does not take effect in the minibuffer by default; I stole a snippet from an [[https://github.com/minad/corfu#completing-in-the-minibuffer][upstream example]].
 #+begin_src elisp
   (require 'corfu)
 
