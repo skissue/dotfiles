@@ -148,9 +148,9 @@ We create a function that echoes to us the time it took for Emacs to start, alon
 Configure ~gcmh~ with values stolen from [[https://github.com/doomemacs/doomemacs/blob/9620bb45ac4cd7b0274c497b2d9d93c4ad9364ee/lisp/doom-start.el#L95][Doom Emacs]].
 #+begin_src elisp
   (after! gcmh
-    (setopt gcmh-idle-delay 'auto
-            gcmh-auto-idle-delay-factor 10
-            gcmh-high-cons-threshold (* 16 1024 1024)))
+    (setq gcmh-idle-delay 'auto
+          gcmh-auto-idle-delay-factor 10
+          gcmh-high-cons-threshold (* 16 1024 1024)))
 #+end_src
 
 * Private Config
@@ -190,7 +190,7 @@ Again, don't leave random backup files and lockfiles everywhere.
 
 ** Auto-save
 #+begin_src elisp
-  (setopt auto-save-default nil)
+  (setq auto-save-default nil)
   (auto-save-visited-mode)
 #+end_src
 
@@ -236,7 +236,7 @@ Taken from [[https://protesilaos.com/codelog/2024-11-28-basic-emacs-configuratio
 ** Track Recent Files
 #+begin_src elisp
   (recentf-mode)
-  (setopt recentf-max-saved-items 200)
+  (setq recentf-max-saved-items 200)
 #+end_src
 
 ** Save Place
@@ -272,7 +272,7 @@ Saves location in visited files, so re-opening a file brings point back to the l
 ** Savehist
 #+begin_src elisp
   (savehist-mode)
-  (setopt history-length 250
+  (setq history-length 250
           history-delete-duplicates t)
   (add-to-list 'savehist-additional-variables 'corfu-history)
 #+end_src
@@ -330,19 +330,19 @@ Navigate through sub-units of words (e.g. CamelCase).
 ** Auth Source
 GPG is a pain to work with, so tell Auth Source to just use the default Secret Service settings, which is much easier to deal with.
 #+begin_src elisp
-  (setopt auth-sources '(default))
+  (setq auth-sources '(default))
 #+end_src
 
 ** Clipboard
 If there is something on the clipboard, save it to the kill ring before overriding it with some killed text.
 #+begin_src elisp
-  (setopt save-interprogram-paste-before-kill t)
+  (setq save-interprogram-paste-before-kill t)
 #+end_src
 
 ** Warnings
 Only popup errors, don't interrupt me for mere warnings.
 #+begin_src elisp
-  (setopt warning-minimum-level :error)
+  (setq warning-minimum-level :error)
 #+end_src
 
 ** Winner
@@ -353,16 +353,16 @@ Only popup errors, don't interrupt me for mere warnings.
 ** Minibuffer
 Recursive minibuffers allow usage of the minibuffer when in the minibuffer, "recursing" into layers. Very useful (especially with [[*Vertico][Vertico]]), though disabled by default (probably because it could easily be confusing).
 #+begin_src elisp
-  (setopt enable-recursive-minibuffers t)
+  (setq enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode)
 #+end_src
 
 I like using a lot of different frames, since it allows me to take full advantage of tiling window managers. However, this makes the minibuffer annoying to use, since it's limited to the frame size by default. This black magic allows using an entirely separate frame for the minibuffer, activating it dynamically using Hyprland's special workspaces. We manage the frame ourselves instead of using Emacs' built-in ~minibuffer~ frame parameter so that the echo area still stays on each frame.
 #+begin_src elisp
   (when (daemonp)
-    (setopt default-minibuffer-frame (make-frame '((window-system . pgtk)
-                                                   (minibuffer . t)
-                                                   (title . "MINIBUFFER"))))
+    (setq default-minibuffer-frame (make-frame '((window-system . pgtk)
+                                                 (minibuffer . t)
+                                                 (title . "MINIBUFFER"))))
     (with-selected-frame default-minibuffer-frame
       (switch-to-buffer (get-buffer-create " *empty*")))
     (with-current-buffer " *empty*"
@@ -406,21 +406,21 @@ I like using a lot of different frames, since it allows me to take full advantag
 
 ** Comint
 #+begin_src elisp
-  (setopt comint-prompt-read-only t)
+  (setq comint-prompt-read-only t)
 #+end_src
 
 ** Compilation
 #+begin_src elisp
-  (setopt compilation-always-kill t
-          compilation-ask-about-save nil
-          compilation-scroll-output 'first-error)
+  (setq compilation-always-kill t
+        compilation-ask-about-save nil
+        compilation-scroll-output 'first-error)
 #+end_src
 
 ** Prefer Frames
 I want to use frames rather than windows for most operations, so we configure [[help:display-buffer-base-action][display-buffer-base-action]] to display buffers in frames by default. Setting [[help:frame-auto-hide-function][frame-auto-hide-function]] fixes functions like [[help:quit-window][quit-window]] not working.
 #+begin_src elisp
-  (setopt display-buffer-base-action '(display-buffer-pop-up-frame)
-          frame-auto-hide-function #'delete-frame)
+  (setq display-buffer-base-action '(display-buffer-pop-up-frame)
+        frame-auto-hide-function #'delete-frame)
 #+end_src
 
 Deal with various things that don't play nice with this setup.
@@ -524,13 +524,13 @@ Reduce fringe size on the right (left is used for various indicators).
 #+begin_src elisp
   (require 'ef-themes)
 
-  (setopt ef-themes-mixed-fonts t
-          ef-themes-headings '((0 1.8)
-                               (1 variable-pitch light 1.5)
-                               (2 variable-pitch light 1.4)
-                               (3 variable-pitch light 1.3)
-                               (4 variable-pitch light 1.2)
-                               (t variable-pitch light 1.1)))
+  (setq ef-themes-mixed-fonts t
+        ef-themes-headings '((0 1.8)
+                             (1 variable-pitch light 1.5)
+                             (2 variable-pitch light 1.4)
+                             (3 variable-pitch light 1.3)
+                             (4 variable-pitch light 1.2)
+                             (t variable-pitch light 1.1)))
 
   (ef-themes-load-theme 'ef-owl)
 #+end_src
@@ -540,14 +540,14 @@ Reduce fringe size on the right (left is used for various indicators).
   (add-hook 'window-setup-hook #'doom-modeline-mode)
 
   (after! doom-modeline
-    (setopt doom-modeline-height 30
-            doom-modeline-icon t
-            doom-modeline-project-detection 'project
-            doom-modeline-buffer-file-name-style 'relative-from-project
-            doom-modeline-percent-position nil
-            doom-modeline-enable-word-count t
-            doom-modeline-minor-modes t
-            doom-modeline-buffer-encoding nil))
+    (setq doom-modeline-height 30
+          doom-modeline-icon t
+          doom-modeline-project-detection 'project
+          doom-modeline-buffer-file-name-style 'relative-from-project
+          doom-modeline-percent-position nil
+          doom-modeline-enable-word-count t
+          doom-modeline-minor-modes t
+          doom-modeline-buffer-encoding nil))
 #+end_src
 
 Minions provides a clean minor mode menu implementation that allows customizing the lighters that are displayed directly on the mode line. Works well with [[help:doom-modeline-minor-modes][doom-modeline-minor-modes]] set to ~t~.
@@ -560,9 +560,9 @@ Minions provides a clean minor mode menu implementation that allows customizing 
 This is such an important addition to Emacs.
 #+begin_src elisp
   (require 'nyan-mode)
-  (setopt nyan-bar-length 20
-          nyan-minimum-window-width 48
-          nyan-animate-nyancat t)
+  (setq nyan-bar-length 20
+        nyan-minimum-window-width 48
+        nyan-animate-nyancat t)
   (nyan-mode)
 #+end_src
 
@@ -570,11 +570,11 @@ This is such an important addition to Emacs.
 #+begin_src elisp
   (require 'spacious-padding)
 
-  (setopt spacious-padding-subtle-mode-line
-          '(:mode-line-active error)
-          spacious-padding-widths
-          (plist-put spacious-padding-widths
-                     :right-divider-width 0))
+  (setq spacious-padding-subtle-mode-line
+        '(:mode-line-active error)
+        spacious-padding-widths
+        (plist-put spacious-padding-widths
+                   :right-divider-width 0))
 
   (spacious-padding-mode)
 #+end_src
@@ -643,12 +643,12 @@ Buffer management keys.
 #+begin_src elisp
   (require 'meow)
 
-  (setopt meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh
-          meow-use-clipboard t
-          meow-keypad-ctrl-meta-prefix ?G
-          meow-keypad-self-insert-undefined nil
-          auto-save-visited-predicate (lambda ()
-                                        (not (meow-insert-mode-p))))
+  (setq meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh
+        meow-use-clipboard t
+        meow-keypad-ctrl-meta-prefix ?G
+        meow-keypad-self-insert-undefined nil
+        auto-save-visited-predicate (lambda ()
+                                      (not (meow-insert-mode-p))))
   (ef-themes-with-colors
     (custom-set-faces
      `(meow-insert-indicator ((t :foreground ,fg-added)))
@@ -770,7 +770,7 @@ I wrote my own package 🎉.
 #+begin_src elisp
   (repeat-mode)
 
-  (setopt repeat-exit-timeout 3)
+  (setq repeat-exit-timeout 3)
 
   (defvar-keymap my/sexp-repeat-map
     :repeat t
@@ -897,11 +897,11 @@ Repeat map for candidate navigation.
 ** Orderless
 #+begin_src elisp
   (require 'orderless)
-  (setopt completion-styles '(orderless basic)
-          completion-category-overrides '((file (styles basic partial-completion)))
-          orderless-matching-styles '(orderless-literal
-                                      orderless-regexp
-                                      orderless-initialism))
+  (setq completion-styles '(orderless basic)
+        completion-category-overrides '((file (styles basic partial-completion)))
+        orderless-matching-styles '(orderless-literal
+                                    orderless-regexp
+                                    orderless-initialism))
 #+end_src
 
 ** Consult
@@ -962,7 +962,7 @@ Repeat map for candidate navigation.
   (bind-keys ("C-." . embark-act)
              ("C-;" . embark-dwim))
 
-  (setopt prefix-help-command #'embark-prefix-help-command)
+  (setq prefix-help-command #'embark-prefix-help-command)
 
   (after! embark
     ;; Needed for `eww-download-directory' in `embark-download-url'.
@@ -979,16 +979,16 @@ Repeat map for candidate navigation.
              ("<tab>" . corfu-next)
              ("<backtab>" . corfu-previous)
              ("M-q" . corfu-quick-insert))
-  (setopt tab-always-indent 'complete
-          corfu-min-width 20
-          corfu-quit-no-match nil
-          corfu-quit-at-boundary 'separator
-          corfu-preview-current 'insert
-          corfu-preselect 'prompt
-          corfu-cycle t
-          corfu-popupinfo-delay '(1.25 . 0.5)
-          corfu-quick1 "arstneio"
-          corfu-quick2 corfu-quick1)
+  (setq tab-always-indent 'complete
+        corfu-min-width 20
+        corfu-quit-no-match nil
+        corfu-quit-at-boundary 'separator
+        corfu-preview-current 'insert
+        corfu-preselect 'prompt
+        corfu-cycle t
+        corfu-popupinfo-delay '(1.25 . 0.5)
+        corfu-quick1 "arstneio"
+        corfu-quick2 corfu-quick1)
 
   (custom-set-faces
    '(corfu-default ((t (:inherit fixed-pitch)))))
@@ -1381,8 +1381,8 @@ Persist undo history; despite the name, this works independently of Undo Fu and 
 #+begin_src elisp
   (undo-fu-session-global-mode)
 
-  (setopt undo-fu-session-compression 'zst
-          undo-fu-session-file-limit 100)
+  (setq undo-fu-session-compression 'zst
+        undo-fu-session-file-limit 100)
 #+end_src
 
 ** gptel
@@ -1578,7 +1578,7 @@ We set [[help:denote-directory][denote-directory]] early since other parts of my
 
   (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
 
-  (setopt denote-directory "~/denote/")
+  (setq denote-directory "~/denote/")
 
   (after! denote
     (denote-rename-buffer-mode)
@@ -2449,7 +2449,7 @@ Common Lisp.
                    nil nil #'equal)
         #'rustic-mode)
 
-  (setopt rust-mode-treesitter-derive t)
+  (setq rust-mode-treesitter-derive t)
 
   (after! rustic
     (setopt rustic-lsp-client 'eglot))
@@ -2647,8 +2647,8 @@ Add a function to publish ~geo:~ links as URLs that lead to OpenStreetMap's webs
 #+begin_src elisp
   (bind-key "e" #'mu4e my/open-map)
 
-  (setopt mail-user-agent #'mu4e-user-agent
-          read-mail-command #'mu4e)
+  (setq mail-user-agent #'mu4e-user-agent
+        read-mail-command #'mu4e)
 
   (after! mu4e
     (bind-key "b" #'mu4e-search-bookmark mu4e-main-mode-map)

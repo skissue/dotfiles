@@ -60,9 +60,9 @@
 (add-hook 'emacs-startup-hook #'my/display-startup-time 50)
 
 (after! gcmh
-  (setopt gcmh-idle-delay 'auto
-          gcmh-auto-idle-delay-factor 10
-          gcmh-high-cons-threshold (* 16 1024 1024)))
+  (setq gcmh-idle-delay 'auto
+        gcmh-auto-idle-delay-factor 10
+        gcmh-high-cons-threshold (* 16 1024 1024)))
 
 (defvar my/private
   (with-temp-buffer
@@ -84,7 +84,7 @@
 (setq-default make-backup-files nil
               create-lockfiles nil)
 
-(setopt auto-save-default nil)
+(setq auto-save-default nil)
 (auto-save-visited-mode)
 
 (idle-load 'autorevert)
@@ -119,7 +119,7 @@ The DWIM behaviour of this command is as follows:
 (bind-key [remap keyboard-quit] #'prot/keyboard-quit-dwim)
 
 (recentf-mode)
-(setopt recentf-max-saved-items 200)
+(setq recentf-max-saved-items 200)
 
 (autoload-many "saveplace" nil
                #'save-place-find-file-hook
@@ -148,7 +148,7 @@ where it was when you previously visited the same file."
 (save-place-mode)
 
 (savehist-mode)
-(setopt history-length 250
+(setq history-length 250
         history-delete-duplicates t)
 (add-to-list 'savehist-additional-variables 'corfu-history)
 
@@ -182,21 +182,21 @@ where it was when you previously visited the same file."
 
 (add-hook 'prog-mode-hook #'subword-mode)
 
-(setopt auth-sources '(default))
+(setq auth-sources '(default))
 
-(setopt save-interprogram-paste-before-kill t)
+(setq save-interprogram-paste-before-kill t)
 
-(setopt warning-minimum-level :error)
+(setq warning-minimum-level :error)
 
 (winner-mode)
 
-(setopt enable-recursive-minibuffers t)
+(setq enable-recursive-minibuffers t)
 (minibuffer-depth-indicate-mode)
 
 (when (daemonp)
-  (setopt default-minibuffer-frame (make-frame '((window-system . pgtk)
-                                                 (minibuffer . t)
-                                                 (title . "MINIBUFFER"))))
+  (setq default-minibuffer-frame (make-frame '((window-system . pgtk)
+                                               (minibuffer . t)
+                                               (title . "MINIBUFFER"))))
   (with-selected-frame default-minibuffer-frame
     (switch-to-buffer (get-buffer-create " *empty*")))
   (with-current-buffer " *empty*"
@@ -237,14 +237,14 @@ where it was when you previously visited the same file."
           (my/toggle-minibuffer-workspace)
           (select-frame-set-input-focus orig-frame))))))
 
-(setopt comint-prompt-read-only t)
+(setq comint-prompt-read-only t)
 
-(setopt compilation-always-kill t
-        compilation-ask-about-save nil
-        compilation-scroll-output 'first-error)
+(setq compilation-always-kill t
+      compilation-ask-about-save nil
+      compilation-scroll-output 'first-error)
 
-(setopt display-buffer-base-action '(display-buffer-pop-up-frame)
-        frame-auto-hide-function #'delete-frame)
+(setq display-buffer-base-action '(display-buffer-pop-up-frame)
+      frame-auto-hide-function #'delete-frame)
 
 ;; `org-read-date'
 (add-to-list 'display-buffer-alist
@@ -323,44 +323,44 @@ where it was when you previously visited the same file."
 
 (require 'ef-themes)
 
-(setopt ef-themes-mixed-fonts t
-        ef-themes-headings '((0 1.8)
-                             (1 variable-pitch light 1.5)
-                             (2 variable-pitch light 1.4)
-                             (3 variable-pitch light 1.3)
-                             (4 variable-pitch light 1.2)
-                             (t variable-pitch light 1.1)))
+(setq ef-themes-mixed-fonts t
+      ef-themes-headings '((0 1.8)
+                           (1 variable-pitch light 1.5)
+                           (2 variable-pitch light 1.4)
+                           (3 variable-pitch light 1.3)
+                           (4 variable-pitch light 1.2)
+                           (t variable-pitch light 1.1)))
 
 (ef-themes-load-theme 'ef-owl)
 
 (add-hook 'window-setup-hook #'doom-modeline-mode)
 
 (after! doom-modeline
-  (setopt doom-modeline-height 30
-          doom-modeline-icon t
-          doom-modeline-project-detection 'project
-          doom-modeline-buffer-file-name-style 'relative-from-project
-          doom-modeline-percent-position nil
-          doom-modeline-enable-word-count t
-          doom-modeline-minor-modes t
-          doom-modeline-buffer-encoding nil))
+  (setq doom-modeline-height 30
+        doom-modeline-icon t
+        doom-modeline-project-detection 'project
+        doom-modeline-buffer-file-name-style 'relative-from-project
+        doom-modeline-percent-position nil
+        doom-modeline-enable-word-count t
+        doom-modeline-minor-modes t
+        doom-modeline-buffer-encoding nil))
 
 (after! doom-modeline
   (minions-mode))
 
 (require 'nyan-mode)
-(setopt nyan-bar-length 20
-        nyan-minimum-window-width 48
-        nyan-animate-nyancat t)
+(setq nyan-bar-length 20
+      nyan-minimum-window-width 48
+      nyan-animate-nyancat t)
 (nyan-mode)
 
 (require 'spacious-padding)
 
-(setopt spacious-padding-subtle-mode-line
-        '(:mode-line-active error)
-        spacious-padding-widths
-        (plist-put spacious-padding-widths
-                   :right-divider-width 0))
+(setq spacious-padding-subtle-mode-line
+      '(:mode-line-active error)
+      spacious-padding-widths
+      (plist-put spacious-padding-widths
+                 :right-divider-width 0))
 
 (spacious-padding-mode)
 
@@ -409,12 +409,12 @@ where it was when you previously visited the same file."
 
 (require 'meow)
 
-(setopt meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh
-        meow-use-clipboard t
-        meow-keypad-ctrl-meta-prefix ?G
-        meow-keypad-self-insert-undefined nil
-        auto-save-visited-predicate (lambda ()
-                                      (not (meow-insert-mode-p))))
+(setq meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh
+      meow-use-clipboard t
+      meow-keypad-ctrl-meta-prefix ?G
+      meow-keypad-self-insert-undefined nil
+      auto-save-visited-predicate (lambda ()
+                                    (not (meow-insert-mode-p))))
 (ef-themes-with-colors
   (custom-set-faces
    `(meow-insert-indicator ((t :foreground ,fg-added)))
@@ -527,7 +527,7 @@ where it was when you previously visited the same file."
 
 (repeat-mode)
 
-(setopt repeat-exit-timeout 3)
+(setq repeat-exit-timeout 3)
 
 (defvar-keymap my/sexp-repeat-map
   :repeat t
@@ -628,11 +628,11 @@ where it was when you previously visited the same file."
     "p" #'vertico-previous))
 
 (require 'orderless)
-(setopt completion-styles '(orderless basic)
-        completion-category-overrides '((file (styles basic partial-completion)))
-        orderless-matching-styles '(orderless-literal
-                                    orderless-regexp
-                                    orderless-initialism))
+(setq completion-styles '(orderless basic)
+      completion-category-overrides '((file (styles basic partial-completion)))
+      orderless-matching-styles '(orderless-literal
+                                  orderless-regexp
+                                  orderless-initialism))
 
 (bind-keys ([remap yank-pop] . consult-yank-pop)
            ([remap switch-to-buffer] . consult-buffer)
@@ -681,7 +681,7 @@ where it was when you previously visited the same file."
 (bind-keys ("C-." . embark-act)
            ("C-;" . embark-dwim))
 
-(setopt prefix-help-command #'embark-prefix-help-command)
+(setq prefix-help-command #'embark-prefix-help-command)
 
 (after! embark
   ;; Needed for `eww-download-directory' in `embark-download-url'.
@@ -695,16 +695,16 @@ where it was when you previously visited the same file."
            ("<tab>" . corfu-next)
            ("<backtab>" . corfu-previous)
            ("M-q" . corfu-quick-insert))
-(setopt tab-always-indent 'complete
-        corfu-min-width 20
-        corfu-quit-no-match nil
-        corfu-quit-at-boundary 'separator
-        corfu-preview-current 'insert
-        corfu-preselect 'prompt
-        corfu-cycle t
-        corfu-popupinfo-delay '(1.25 . 0.5)
-        corfu-quick1 "arstneio"
-        corfu-quick2 corfu-quick1)
+(setq tab-always-indent 'complete
+      corfu-min-width 20
+      corfu-quit-no-match nil
+      corfu-quit-at-boundary 'separator
+      corfu-preview-current 'insert
+      corfu-preselect 'prompt
+      corfu-cycle t
+      corfu-popupinfo-delay '(1.25 . 0.5)
+      corfu-quick1 "arstneio"
+      corfu-quick2 corfu-quick1)
 
 (custom-set-faces
  '(corfu-default ((t (:inherit fixed-pitch)))))
@@ -991,8 +991,8 @@ Needed since Eglot overrides my original default."
 
 (undo-fu-session-global-mode)
 
-(setopt undo-fu-session-compression 'zst
-        undo-fu-session-file-limit 100)
+(setq undo-fu-session-compression 'zst
+      undo-fu-session-file-limit 100)
 
 (bind-key "C-c A" #'gptel-send)
 
@@ -1144,7 +1144,7 @@ Calls the function in `consult-omni-default-interactive-command'." t)
 
 (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
 
-(setopt denote-directory "~/denote/")
+(setq denote-directory "~/denote/")
 
 (after! denote
   (denote-rename-buffer-mode)
@@ -1852,7 +1852,7 @@ This function is called by `org-babel-execute-src-block'.")
                  nil nil #'equal)
       #'rustic-mode)
 
-(setopt rust-mode-treesitter-derive t)
+(setq rust-mode-treesitter-derive t)
 
 (after! rustic
   (setopt rustic-lsp-client 'eglot))
@@ -2002,8 +2002,8 @@ This function is called by `org-babel-execute-src-block'.")
 
 (bind-key "e" #'mu4e my/open-map)
 
-(setopt mail-user-agent #'mu4e-user-agent
-        read-mail-command #'mu4e)
+(setq mail-user-agent #'mu4e-user-agent
+      read-mail-command #'mu4e)
 
 (after! mu4e
   (bind-key "b" #'mu4e-search-bookmark mu4e-main-mode-map)
