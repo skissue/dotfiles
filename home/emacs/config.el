@@ -4,7 +4,13 @@
   (require 'cl-lib))
 
 (eval-when-compile
-  (require 'el-patch))
+  (require 'el-patch)
+  
+  (el-patch-deftype defvar-keymap
+    :classify el-patch-classify-variable
+    :locate el-patch-locate-variable
+    :font-lock el-patch-fontify-as-variable
+    :declare ((indent defun))))
 
 (defmacro after! (files &rest body)
   "Evaluate BODY after FILES have been loaded. Thin wrapper
