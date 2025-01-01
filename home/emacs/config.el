@@ -498,9 +498,9 @@ where it was when you previously visited the same file."
  '("/" . meow-visit)
  '("<escape>" . meow-cancel-selection))
 
-(dolist (cmd '((meow-kill        . meow-delete)
-               (meow-replace     . meow-yank)
-               (meow-reverse     . negative-argument)))
+(dolist (cmd '((meow-kill    . meow-delete)
+               (meow-replace . meow-yank)
+               (meow-reverse . negative-argument)))
   (setf (alist-get (car cmd) meow-selection-command-fallback)
         (cdr cmd)))
 (dotimes (i 10)
