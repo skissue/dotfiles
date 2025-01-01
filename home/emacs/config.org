@@ -60,27 +60,6 @@ Disable a bunch of miscellaneous things to improve both startup and redisplay pe
                 auto-mode-case-fold nil)
 #+end_src
 
-* Libraries
-** cl-lib
-Load only at compile time (I like a few of Common Lisp's macros 🙃).
-#+begin_src elisp
-  (eval-when-compile
-    (require 'cl-lib))
-#+end_src
-
-** el-patch
-~el-patch~ must be loaded during byte compilation for the macros, else errors occur when trying to use the byte-compiled file.
-#+begin_src elisp
-  (eval-when-compile
-    (require 'el-patch)
-    
-    (el-patch-deftype defvar-keymap
-      :classify el-patch-classify-variable
-      :locate el-patch-locate-variable
-      :font-lock el-patch-fontify-as-variable
-      :declare ((indent defun))))
-#+end_src
-
 * Definitions
 Some macros to make configuration more concise (basically, emulating some of ~use-package~'s features, since I'm not using it).
 
@@ -128,6 +107,29 @@ Some macros to make configuration more concise (basically, emulating some of ~us
     `(lambda ()
        (interactive)
        ,@body))
+#+end_src
+
+* Libraries
+** cl-lib
+Load only at compile time (I like a few of Common Lisp's macros 🙃).
+#+begin_src elisp
+  (eval-when-compile
+    (require 'cl-lib))
+#+end_src
+
+** el-patch
+~el-patch~ must be loaded during byte compilation for the macros, else errors occur when trying to use the byte-compiled file. Defining new types must also be wrapped in [[help:eval-and-compile][eval-and-compile]], since macros need be defined at compilation time, but the definition must also be evaluated inside the session in order for validation to work properly.
+#+begin_src elisp
+  (eval-when-compile
+    (require 'el-patch))
+
+  (eval-and-compile
+    (after! el-patch
+      (el-patch-deftype defvar-keymap
+        :classify el-patch-classify-variable
+        :locate el-patch-locate-variable
+        :font-lock el-patch-fontify-as-variable
+        :declare ((indent defun)))))
 #+end_src
 
 * Startup Performance

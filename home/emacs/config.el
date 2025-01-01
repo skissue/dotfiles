@@ -1,17 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 
-(eval-when-compile
-  (require 'cl-lib))
-
-(eval-when-compile
-  (require 'el-patch)
-  
-  (el-patch-deftype defvar-keymap
-    :classify el-patch-classify-variable
-    :locate el-patch-locate-variable
-    :font-lock el-patch-fontify-as-variable
-    :declare ((indent defun))))
-
 (defmacro after! (files &rest body)
   "Evaluate BODY after FILES have been loaded. Thin wrapper
  around `with-eval-after-load', inspired by Doom."
@@ -47,6 +35,20 @@
   `(lambda ()
      (interactive)
      ,@body))
+
+(eval-when-compile
+  (require 'cl-lib))
+
+(eval-when-compile
+  (require 'el-patch))
+
+(eval-and-compile
+  (after! el-patch
+    (el-patch-deftype defvar-keymap
+      :classify el-patch-classify-variable
+      :locate el-patch-locate-variable
+      :font-lock el-patch-fontify-as-variable
+      :declare ((indent defun)))))
 
 (defun my/display-startup-time ()
   (message "Emacs loaded in %s with %d garbage collections."
