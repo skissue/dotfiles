@@ -325,20 +325,20 @@ where it was when you previously visited the same file."
 
 (ef-themes-load-theme 'ef-owl)
 
-(require 'doom-modeline)
+(add-hook 'window-setup-hook #'doom-modeline-mode)
 
-(setopt doom-modeline-height 30
-        doom-modeline-icon t
-        doom-modeline-project-detection 'project
-        doom-modeline-buffer-file-name-style 'relative-from-project
-        doom-modeline-percent-position nil
-        doom-modeline-enable-word-count t
-        doom-modeline-minor-modes t
-        doom-modeline-buffer-encoding nil)
+(after! doom-modeline
+  (setopt doom-modeline-height 30
+          doom-modeline-icon t
+          doom-modeline-project-detection 'project
+          doom-modeline-buffer-file-name-style 'relative-from-project
+          doom-modeline-percent-position nil
+          doom-modeline-enable-word-count t
+          doom-modeline-minor-modes t
+          doom-modeline-buffer-encoding nil))
 
-(doom-modeline-mode)
-
-(minions-mode)
+(after! doom-modeline
+  (minions-mode))
 
 (require 'nyan-mode)
 (setopt nyan-bar-length 20

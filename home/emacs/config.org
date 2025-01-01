@@ -527,23 +527,23 @@ Reduce fringe size on the right (left is used for various indicators).
 
 ** Modeline
 #+begin_src elisp
-  (require 'doom-modeline)
+  (add-hook 'window-setup-hook #'doom-modeline-mode)
 
-  (setopt doom-modeline-height 30
-          doom-modeline-icon t
-          doom-modeline-project-detection 'project
-          doom-modeline-buffer-file-name-style 'relative-from-project
-          doom-modeline-percent-position nil
-          doom-modeline-enable-word-count t
-          doom-modeline-minor-modes t
-          doom-modeline-buffer-encoding nil)
-
-  (doom-modeline-mode)
+  (after! doom-modeline
+    (setopt doom-modeline-height 30
+            doom-modeline-icon t
+            doom-modeline-project-detection 'project
+            doom-modeline-buffer-file-name-style 'relative-from-project
+            doom-modeline-percent-position nil
+            doom-modeline-enable-word-count t
+            doom-modeline-minor-modes t
+            doom-modeline-buffer-encoding nil))
 #+end_src
 
 Minions provides a clean minor mode menu implementation that allows customizing the lighters that are displayed directly on the mode line. Works well with [[help:doom-modeline-minor-modes][doom-modeline-minor-modes]] set to ~t~.
 #+begin_src elisp
-  (minions-mode)
+  (after! doom-modeline
+    (minions-mode))
 #+end_src
 
 ** Nyan Mode
