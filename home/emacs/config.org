@@ -73,8 +73,8 @@ Load ~cl-lib~ only at compile time (I like a few of Common Lisp's macros 🙃).
     (require 'el-patch))
 #+end_src
 
-* Convenience Definitions
-Some macros  to make configuration more concise (basically, emulating some of ~use-package~'s features, since I'm not using it).
+* Definitions
+Some macros to make configuration more concise (basically, emulating some of ~use-package~'s features, since I'm not using it).
 
 #+begin_src elisp
   (defmacro after! (files &rest body)
