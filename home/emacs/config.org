@@ -61,12 +61,14 @@ Disable a bunch of miscellaneous things to improve both startup and redisplay pe
 #+end_src
 
 * Libraries
-Load ~cl-lib~ only at compile time (I like a few of Common Lisp's macros 🙃).
+** cl-lib
+Load only at compile time (I like a few of Common Lisp's macros 🙃).
 #+begin_src elisp
   (eval-when-compile
     (require 'cl-lib))
 #+end_src
 
+** el-patch
 ~el-patch~ must be loaded during byte compilation for the macros, else errors occur when trying to use the byte-compiled file.
 #+begin_src elisp
   (eval-when-compile
