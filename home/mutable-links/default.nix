@@ -17,7 +17,10 @@
   createPath = path: let
     relative = relativePath path;
     full = mutableRoot + relative;
-    mutable = pkgs.runCommand "mutable-link-${relative}" {} "ln -s ${full} $out";
+    mutable =
+      pkgs.runCommandNoCCLocal "mutable-link-${relative}"
+      {inherit full;}
+      "ln -s $full $out";
   in
     if enable
     then mutable
