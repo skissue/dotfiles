@@ -1736,8 +1736,8 @@ instead aligns each headline at the right edge of its symbol."
                 (cond ((<= n 1) "")
                       ((bound-and-true-p org-inlinetask-show-first-star)
                        (concat org-indent-inlinetask-first-star
-                               (substring heading-prefix 1)
-                               (t (org-add-props heading-prefix nil 'face 'org-indent)))))))
+                               (substring heading-prefix 1)))
+                      (t (org-add-props heading-prefix nil 'face 'org-indent)))))
         ;; Text line prefixes.
         (aset org-indent--text-line-prefixes
               n
