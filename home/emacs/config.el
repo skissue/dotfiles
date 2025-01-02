@@ -196,7 +196,7 @@ where it was when you previously visited the same file."
     (sp-local-pair "'" nil :actions nil)
     (sp-local-pair "`" "'" :when '(sp-in-string-p sp-in-comment-p))))
 
-(setq-default scroll-conservatively 10
+(setq-default scroll-conservatively 101
               scroll-margin 4
               scroll-preserve-screen-position t
               next-screen-context-lines 4
