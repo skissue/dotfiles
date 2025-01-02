@@ -36,6 +36,29 @@
      (interactive)
      ,@body))
 
+(defvar my/first-input-hook nil
+  "Functions to run after the first command is run.
+Only run once.")
+
+(defvar my/first-file-hook nil
+  "Functions to run after the first file is opened.
+Only run once.")
+
+(defun my/run-first-input-hook ()
+  "Run `my/first-input-hook' and remove it."
+  (run-hooks 'my/first-input-hook)
+  (remove-hook 'pre-command-hook #'my/run-first-input-hook))
+
+(defun my/run-first-file-hook ()
+  "Run `my/first-file-hook' and remove it."
+  (run-hooks 'my/first-file-hook)
+  (remove-hook 'find-file-hook #'my/run-first-file-hook)
+  (remove-hook 'dired-initial-position-hook #'my/run-first-file-hook))
+
+(add-hook 'pre-command-hook #'my/run-first-input-hook -101)
+(add-hook 'find-file-hook #'my/run-first-file-hook -101)
+(add-hook 'dired-initial-position-hook #'my/run-first-file-hook -101)
+
 (eval-when-compile
   (require 'cl-lib))
 
