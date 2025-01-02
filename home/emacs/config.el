@@ -141,8 +141,10 @@ The DWIM behaviour of this command is as follows:
     (keyboard-quit))))
 (bind-key [remap keyboard-quit] #'prot/keyboard-quit-dwim)
 
-(recentf-mode)
-(setq recentf-max-saved-items 200)
+(add-hook 'my/first-file-hook #'recentf-mode)
+
+(after! recentf
+  (setq recentf-max-saved-items 200))
 
 (autoload-many "saveplace" nil
                #'save-place-find-file-hook
@@ -170,10 +172,15 @@ where it was when you previously visited the same file."
 
 (save-place-mode)
 
-(savehist-mode)
-(setq history-length 250
+(idle-load 'savehist)
+(after! vertico
+  (require 'savehist))
+
+(after! savehist
+  (savehist-mode)
+  (setq history-length 250
         history-delete-duplicates t)
-(add-to-list 'savehist-additional-variables 'corfu-history)
+  (add-to-list 'savehist-additional-variables 'corfu-history))
 
 (setq use-short-answers t)
 
@@ -211,7 +218,7 @@ where it was when you previously visited the same file."
 
 (setq warning-minimum-level :error)
 
-(winner-mode)
+(add-hook 'my/first-input-hook #'winner-mode)
 
 (setq enable-recursive-minibuffers t)
 (minibuffer-depth-indicate-mode)
@@ -1058,10 +1065,11 @@ Needed since Eglot overrides my original default."
 
 (bind-key "C-x u" #'vundo)
 
-(undo-fu-session-global-mode)
+(add-hook 'my/first-input-hook #'undo-fu-session-global-mode)
 
-(setq undo-fu-session-compression 'zst
-      undo-fu-session-file-limit 100)
+(after! undo-fu-session
+  (setq undo-fu-session-compression 'zst
+        undo-fu-session-file-limit 100))
 
 (bind-key "C-c A" #'gptel-send)
 

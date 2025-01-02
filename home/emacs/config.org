@@ -263,8 +263,10 @@ Taken from [[https://protesilaos.com/codelog/2024-11-28-basic-emacs-configuratio
 
 ** Track Recent Files
 #+begin_src elisp
-  (recentf-mode)
-  (setq recentf-max-saved-items 200)
+  (add-hook 'my/first-file-hook #'recentf-mode)
+
+  (after! recentf
+    (setq recentf-max-saved-items 200))
 #+end_src
 
 ** Save Place
@@ -298,11 +300,17 @@ Saves location in visited files, so re-opening a file brings point back to the l
 #+end_src
 
 ** Savehist
+Yes, [[*Corfu][Corfu]] is eagerly loaded, and technically lazy-loading ~savehist~ means it could miss some Corfu completions (or just other generic input from the minibuffer such as [[help:eval-expression][eval-expression]], but in reality, when is that ever going to happen if it's loaded with [[*Vertico][Vertico]]/idly ¯\_(ツ)_/¯.
 #+begin_src elisp
-  (savehist-mode)
-  (setq history-length 250
+  (idle-load 'savehist)
+  (after! vertico
+    (require 'savehist))
+
+  (after! savehist
+    (savehist-mode)
+    (setq history-length 250
           history-delete-duplicates t)
-  (add-to-list 'savehist-additional-variables 'corfu-history)
+    (add-to-list 'savehist-additional-variables 'corfu-history))
 #+end_src
 
 ** Quick Confirmation
@@ -375,7 +383,7 @@ Only popup errors, don't interrupt me for mere warnings.
 
 ** Winner
 #+begin_src elisp
-  (winner-mode)
+  (add-hook 'my/first-input-hook #'winner-mode)
 #+end_src
 
 ** Minibuffer
@@ -1460,10 +1468,11 @@ There are already multiple keys for undoing; let's give the least convenient one
 
 Persist undo history; despite the name, this works independently of Undo Fu and works on the built-in Emacs undo system, which plays perfectly with Vundo.
 #+begin_src elisp
-  (undo-fu-session-global-mode)
+  (add-hook 'my/first-input-hook #'undo-fu-session-global-mode)
 
-  (setq undo-fu-session-compression 'zst
-        undo-fu-session-file-limit 100)
+  (after! undo-fu-session
+    (setq undo-fu-session-compression 'zst
+          undo-fu-session-file-limit 100))
 #+end_src
 
 ** gptel
