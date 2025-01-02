@@ -3,6 +3,7 @@
 (defmacro after! (files &rest body)
   "Evaluate BODY after FILES have been loaded. Thin wrapper
  around `with-eval-after-load', inspired by Doom."
+  (declare (indent defun))
   (cond
    ((null files)
     `(progn ,@body))
@@ -12,7 +13,6 @@
    (t
     `(with-eval-after-load ',files
        ,@body))))
-(put 'after! 'lisp-indent-function 'defun)
 
 (defmacro idle-load (package)
   "Load PACKAGE after Emacs has been idle for a second."
