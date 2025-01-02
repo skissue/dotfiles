@@ -3,6 +3,8 @@ org-mode
 (s "#+begin_src " p n r> n "#+end_src"
    :post (org-edit-src-code))
 
+(q "#+begin_quote" n r> n "#+end_quote")
+
 nix-ts-mode
 
 (shell "{pkgs ? import <nixpkgs> {}}:" n n
