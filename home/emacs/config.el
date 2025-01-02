@@ -199,6 +199,7 @@ where it was when you previously visited the same file."
 (setq-default scroll-conservatively 10
               scroll-margin 4
               scroll-preserve-screen-position t
+              next-screen-context-lines 4
               auto-window-vscroll nil
               fast-but-imprecise-scrolling t)
 
