@@ -796,10 +796,13 @@ I wrote my own package 🎉.
 
 ** Repeat Mode
 #+begin_src elisp
-  (repeat-mode)
+  (add-hook 'my/first-input-hook #'repeat-mode)
 
-  (setq repeat-exit-timeout 3)
+  (after! repeat
+    (setq repeat-exit-timeout 3))
+#+end_src
 
+#+begin_src elisp
   (defvar-keymap my/sexp-repeat-map
     :repeat t
     "f" #'forward-sexp
@@ -1107,7 +1110,7 @@ Wrap Eglot to ensure that completions aren't cached (since LSPs usually don't re
 
 ** Direnv
 #+begin_src elisp
-  (envrc-global-mode)
+  (add-hook 'my/first-file-hook #'envrc-global-mode)
 #+end_src
 
 Force Org Babel blocks to inherit their buffer's environment.

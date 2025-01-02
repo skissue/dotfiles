@@ -548,9 +548,10 @@ where it was when you previously visited the same file."
   (require 'meow-tree-sitter)
   (meow-tree-sitter-register-defaults))
 
-(repeat-mode)
+(add-hook 'my/first-input-hook #'repeat-mode)
 
-(setq repeat-exit-timeout 3)
+(after! repeat
+  (setq repeat-exit-timeout 3))
 
 (defvar-keymap my/sexp-repeat-map
   :repeat t
@@ -797,7 +798,7 @@ uses the symbol name as the default description, as well as a
   (advice-add 'helpful-update
               :after #'elisp-demos-advice-helpful-update))
 
-(envrc-global-mode)
+(add-hook 'my/first-file-hook #'envrc-global-mode)
 
 (after! org
   (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment))
