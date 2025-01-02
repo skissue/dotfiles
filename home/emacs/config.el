@@ -364,6 +364,16 @@ where it was when you previously visited the same file."
 
 (ef-themes-load-theme 'ef-owl)
 
+(require 'spacious-padding)
+
+(setq spacious-padding-subtle-mode-line
+      '(:mode-line-active error)
+      spacious-padding-widths
+      (plist-put spacious-padding-widths
+                 :right-divider-width 0))
+
+(spacious-padding-mode)
+
 (add-hook 'window-setup-hook #'doom-modeline-mode)
 
 (after! doom-modeline
@@ -384,16 +394,6 @@ where it was when you previously visited the same file."
       nyan-minimum-window-width 48
       nyan-animate-nyancat t)
 (nyan-mode)
-
-(require 'spacious-padding)
-
-(setq spacious-padding-subtle-mode-line
-      '(:mode-line-active error)
-      spacious-padding-widths
-      (plist-put spacious-padding-widths
-                 :right-divider-width 0))
-
-(spacious-padding-mode)
 
 (add-hook 'eldoc-mode-hook #'eldoc-box-hover-mode)
 

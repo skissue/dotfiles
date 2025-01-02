@@ -572,6 +572,19 @@ Reduce fringe size on the right (left is used for various indicators).
   (ef-themes-load-theme 'ef-owl)
 #+end_src
 
+** Spacious Padding
+#+begin_src elisp
+  (require 'spacious-padding)
+
+  (setq spacious-padding-subtle-mode-line
+        '(:mode-line-active error)
+        spacious-padding-widths
+        (plist-put spacious-padding-widths
+                   :right-divider-width 0))
+
+  (spacious-padding-mode)
+#+end_src
+
 ** Modeline
 #+begin_src elisp
   (add-hook 'window-setup-hook #'doom-modeline-mode)
@@ -601,19 +614,6 @@ This is such an important addition to Emacs.
         nyan-minimum-window-width 48
         nyan-animate-nyancat t)
   (nyan-mode)
-#+end_src
-
-** Spacious Padding
-#+begin_src elisp
-  (require 'spacious-padding)
-
-  (setq spacious-padding-subtle-mode-line
-        '(:mode-line-active error)
-        spacious-padding-widths
-        (plist-put spacious-padding-widths
-                   :right-divider-width 0))
-
-  (spacious-padding-mode)
 #+end_src
 
 ** ElDoc Box
