@@ -208,6 +208,12 @@ in {
   xdg.dataFile = {
     "revealjs".source = sources.revealjs.src;
   };
+  xdg.mimeApps.defaultApplications = {
+    "text/plain" = "emacsclient.desktop";
+    "text/org" = "emacsclient.desktop";
+    "application/pdf" = "emacsclient.desktop";
+    "x-scheme-handler/mailto" = "emacsclient.desktop";
+  };
 
   # For `consult-omni-man`
   programs.man.generateCaches = true;

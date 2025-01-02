@@ -72,7 +72,6 @@
   xdg.mimeApps.defaultApplications = {
     "image/png" = "imv.desktop";
     "image/jpeg" = "imv.desktop";
-    "application/pdf" = "emacsclient.desktop";
     "text/html" = "zen-browser.desktop";
     "x-scheme-handler/http" = "zen-browser.desktop";
     "x-scheme-handler/https" = "zen-browser.desktop";
