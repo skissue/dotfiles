@@ -364,15 +364,14 @@ where it was when you previously visited the same file."
 
 (ef-themes-load-theme 'ef-owl)
 
-(require 'spacious-padding)
+(add-hook 'window-setup-hook #'spacious-padding-mode)
 
-(setq spacious-padding-subtle-mode-line
-      '(:mode-line-active error)
-      spacious-padding-widths
-      (plist-put spacious-padding-widths
-                 :right-divider-width 0))
-
-(spacious-padding-mode)
+(after! spacious-padding
+  (setq spacious-padding-subtle-mode-line
+        '(:mode-line-active error)
+        spacious-padding-widths
+        (plist-put spacious-padding-widths
+                   :right-divider-width 0)))
 
 (add-hook 'window-setup-hook #'doom-modeline-mode)
 

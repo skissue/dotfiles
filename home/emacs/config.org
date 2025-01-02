@@ -574,15 +574,14 @@ Reduce fringe size on the right (left is used for various indicators).
 
 ** Spacious Padding
 #+begin_src elisp
-  (require 'spacious-padding)
+  (add-hook 'window-setup-hook #'spacious-padding-mode)
 
-  (setq spacious-padding-subtle-mode-line
-        '(:mode-line-active error)
-        spacious-padding-widths
-        (plist-put spacious-padding-widths
-                   :right-divider-width 0))
-
-  (spacious-padding-mode)
+  (after! spacious-padding
+    (setq spacious-padding-subtle-mode-line
+          '(:mode-line-active error)
+          spacious-padding-widths
+          (plist-put spacious-padding-widths
+                     :right-divider-width 0)))
 #+end_src
 
 ** Modeline
