@@ -156,7 +156,8 @@ Load only at compile time (I like a few of Common Lisp's macros 🙃).
 ~el-patch~ must be loaded during byte compilation for the macros, else errors occur when trying to use the byte-compiled file. Defining new types must also be wrapped in [[help:eval-and-compile][eval-and-compile]], since macros need be defined at compilation time, but the definition must also be evaluated inside the session in order for validation to work properly.
 #+begin_src elisp
   (eval-when-compile
-    (require 'el-patch))
+    (require 'el-patch)
+    (require 'el-patch-template))
 
   (eval-and-compile
     (after! el-patch
@@ -2322,6 +2323,20 @@ Automatically toggles certain markers on and off depending on whether they're be
     (setopt org-latex-preview-process-default 'dvisvgm
             org-latex-preview-live t
             org-latex-preview-live-debounce 0.5))
+#+end_src
+
+For some reason, the new machinery scatters temporary ~tex~ files around in the directory from which its invoked. I assume this is a bug, here's a quick boolean swap to fix it ¯\_(ツ)_/¯.
+#+begin_src elisp
+  (el-patch-feature org-latex-preview)
+  (after! org-latex-preview
+    (el-patch-define-and-eval-template
+     (defun org-latex-preview--create-tex-file)
+     (tex-temp-name
+      (expand-file-name
+       (concat (make-temp-name "org-tex-") ".tex")
+       (and (el-patch-wrap 1
+              (not remote-file-p))
+            temporary-file-directory)))))
 #+end_src
 
 ** Org Download

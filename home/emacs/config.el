@@ -69,7 +69,8 @@ Only run once.")
   (require 'cl-lib))
 
 (eval-when-compile
-  (require 'el-patch))
+  (require 'el-patch)
+  (require 'el-patch-template))
 
 (eval-and-compile
   (after! el-patch
@@ -1797,6 +1798,17 @@ have `org-warning' face."
   (setopt org-latex-preview-process-default 'dvisvgm
           org-latex-preview-live t
           org-latex-preview-live-debounce 0.5))
+
+(el-patch-feature org-latex-preview)
+(after! org-latex-preview
+  (el-patch-define-and-eval-template
+   (defun org-latex-preview--create-tex-file)
+   (tex-temp-name
+    (expand-file-name
+     (concat (make-temp-name "org-tex-") ".tex")
+     (and (el-patch-wrap 1
+            (not remote-file-p))
+          temporary-file-directory)))))
 
 (after! org-download
   (setopt org-download-backend "curl \"%s\" -o \"%s\""
