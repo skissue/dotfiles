@@ -1780,12 +1780,15 @@ have `org-warning' face."
           org-appear-autosubmarkers t
           org-appear-autoentities   t))
 
+(after! org
+  (setopt org-latex-packages-alist '(("" "tikz" t))))
+
 (add-hook 'org-mode-hook #'org-latex-preview-auto-mode)
 
 (after! org-latex-preview
   (setopt org-latex-preview-process-default 'dvisvgm
           org-latex-preview-live t
-          org-latex-preview-live-debounce 0.25)
+          org-latex-preview-live-debounce 0.5)
   (plist-put org-latex-preview-appearance-options :page-width 0.8))
 
 (after! org-download
