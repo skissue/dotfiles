@@ -1550,10 +1550,11 @@ For some reason, this package is failing to byte-compile, so I'm just going to i
 ** =consult-omni=
 The repository comes with many different files for "sources", that each have various dependencies; I don't need all of them, nor want to install all dependencies, so I'm installing the package manually.
 #+begin_src elisp
-  (cl-pushnew "@consult_omni_src@" load-path
-              :test #'equal)
-  (cl-pushnew "@consult_omni_src@/sources" load-path
-              :test #'equal)
+  (eval-and-compile
+    (cl-pushnew "@consult_omni_src@" load-path
+                :test #'equal)
+    (cl-pushnew "@consult_omni_src@/sources" load-path
+                :test #'equal))
 
   (autoload #'consult-omni "consult-omni" "Convinient wrapper function for favorite interactive command.
 

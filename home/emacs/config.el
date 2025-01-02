@@ -1130,10 +1130,11 @@ word count of the response." t)
 (cl-pushnew "@consult_mu_src@" load-path
             :test #'equal)
 
-(cl-pushnew "@consult_omni_src@" load-path
-            :test #'equal)
-(cl-pushnew "@consult_omni_src@/sources" load-path
-            :test #'equal)
+(eval-and-compile
+  (cl-pushnew "@consult_omni_src@" load-path
+              :test #'equal)
+  (cl-pushnew "@consult_omni_src@/sources" load-path
+              :test #'equal))
 
 (autoload #'consult-omni "consult-omni" "Convinient wrapper function for favorite interactive command.
 
