@@ -548,7 +548,51 @@ where it was when you previously visited the same file."
   (require 'meow-tree-sitter)
   (meow-tree-sitter-register-defaults))
 
-(add-hook 'my/first-input-hook #'repeat-mode)
+(autoload-many "repeat" nil
+               #'repeat-pre-hook
+               #'repeat-post-hook)
+
+(el-patch-defcustom repeat-keep-prefix nil
+  "Whether to keep the prefix arg of the previous command when repeating."
+  :type 'boolean
+  :initialize #'custom-initialize-default
+  :set (lambda (sym val)
+         (set-default sym val)
+         (when repeat-mode
+           (if repeat-keep-prefix
+               (add-hook 'pre-command-hook 'repeat-pre-hook)
+             (remove-hook 'pre-command-hook 'repeat-pre-hook))))
+  :group 'repeat
+  :version "28.1")
+
+(el-patch-define-minor-mode repeat-mode
+  "Toggle Repeat mode.
+When Repeat mode is enabled, certain commands bound to multi-key
+sequences can be repeated by typing a single key, after typing the
+full key sequence once.
+The commands which can be repeated like that are those whose symbol
+ has the property `repeat-map' which specifies a keymap of single
+keys for repeating.
+See `describe-repeat-maps' for a list of all repeatable commands."
+  :global t :group 'repeat
+  (if (not repeat-mode)
+      (progn
+        (remove-hook 'pre-command-hook 'repeat-pre-hook)
+        (remove-hook 'post-command-hook 'repeat-post-hook))
+    (when repeat-keep-prefix
+      (add-hook 'pre-command-hook 'repeat-pre-hook))
+    (add-hook 'post-command-hook 'repeat-post-hook)
+    (let* ((keymaps nil)
+           (commands (all-completions
+                      "" obarray (lambda (s)
+                                   (and (commandp s)
+                                        (get s 'repeat-map)
+                                        (push (get s 'repeat-map) keymaps))))))
+      (message "Repeat mode is enabled for %d commands and %d keymaps; see `describe-repeat-maps'"
+               (length commands)
+               (length (delete-dups keymaps))))))
+
+(repeat-mode)
 
 (after! repeat
   (setq repeat-exit-timeout 3))
