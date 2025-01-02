@@ -64,6 +64,7 @@ Disable a bunch of miscellaneous things to improve both startup and redisplay pe
 ** Macros
 Some macros to make configuration more concise (basically, emulating some of ~use-package~'s features, since I'm not using it).
 
+Convenience wrapper around [[help:with-eval-after-load][with-eval-after-load]]. In addition to just wrapping, also load the library at compile time to pacify the byte compiler.
 #+begin_src elisp
   (defmacro after! (files &rest body)
     "Evaluate BODY after FILES have been loaded. Thin wrapper
@@ -73,11 +74,17 @@ Some macros to make configuration more concise (basically, emulating some of ~us
      ((null files)
       `(progn ,@body))
      ((listp files)
-      `(with-eval-after-load ',(car files)
-         (after! ,(cdr files) ,@body)))
+      `(progn
+         (eval-when-compile
+           (require ',(car files)))
+         (with-eval-after-load ',(car files)
+           (after! ,(cdr files) ,@body))))
      (t
-      `(with-eval-after-load ',files
-         ,@body))))
+      `(progn
+         (eval-when-compile
+           (require ',files))
+         (with-eval-after-load ',files
+           ,@body)))))
 #+end_src
 
 #+begin_src elisp

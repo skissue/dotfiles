@@ -8,11 +8,17 @@
    ((null files)
     `(progn ,@body))
    ((listp files)
-    `(with-eval-after-load ',(car files)
-       (after! ,(cdr files) ,@body)))
+    `(progn
+       (eval-when-compile
+         (require ',(car files)))
+       (with-eval-after-load ',(car files)
+         (after! ,(cdr files) ,@body))))
    (t
-    `(with-eval-after-load ',files
-       ,@body))))
+    `(progn
+       (eval-when-compile
+         (require ',files))
+       (with-eval-after-load ',files
+         ,@body)))))
 
 (defmacro idle-load (package)
   "Load PACKAGE after Emacs has been idle for a second."
