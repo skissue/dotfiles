@@ -582,15 +582,16 @@ See `describe-repeat-maps' for a list of all repeatable commands."
     (when repeat-keep-prefix
       (add-hook 'pre-command-hook 'repeat-pre-hook))
     (add-hook 'post-command-hook 'repeat-post-hook)
-    (let* ((keymaps nil)
-           (commands (all-completions
-                      "" obarray (lambda (s)
-                                   (and (commandp s)
-                                        (get s 'repeat-map)
-                                        (push (get s 'repeat-map) keymaps))))))
-      (message "Repeat mode is enabled for %d commands and %d keymaps; see `describe-repeat-maps'"
-               (length commands)
-               (length (delete-dups keymaps))))))
+    (el-patch-remove
+      (let* ((keymaps nil)
+             (commands (all-completions
+                        "" obarray (lambda (s)
+                                     (and (commandp s)
+                                          (get s 'repeat-map)
+                                          (push (get s 'repeat-map) keymaps))))))
+        (message "Repeat mode is enabled for %d commands and %d keymaps; see `describe-repeat-maps'"
+                 (length commands)
+                 (length (delete-dups keymaps)))))))
 
 (repeat-mode)
 
