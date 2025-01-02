@@ -2302,7 +2302,8 @@ Automatically toggles certain markers on and off depending on whether they're be
 ** LaTeX
 #+begin_src elisp
   (after! org
-    (setopt org-latex-packages-alist '(("" "tikz" t))))
+    (setopt org-latex-compiler "lualatex"
+            org-latex-packages-alist '(("" "tikz" t))))
 #+end_src
 
 *** Previews

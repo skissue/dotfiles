@@ -1781,7 +1781,8 @@ have `org-warning' face."
           org-appear-autoentities   t))
 
 (after! org
-  (setopt org-latex-packages-alist '(("" "tikz" t))))
+  (setopt org-latex-compiler "lualatex"
+          org-latex-packages-alist '(("" "tikz" t))))
 
 (add-hook 'org-mode-hook #'org-latex-preview-auto-mode)
 
