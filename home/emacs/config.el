@@ -74,15 +74,15 @@
   "Return value of `my/private' by recursively following KEYS."
   (map-nested-elt my/private keys))
 
-(setq-default no-littering-etc-directory
-              (expand-file-name "emacs/" (getenv "XDG_CONFIG_HOME"))
-              no-littering-var-directory
-              (expand-file-name "emacs/" (getenv "XDG_DATA_HOME")))
+(setq no-littering-etc-directory
+      (expand-file-name "emacs/" (getenv "XDG_CONFIG_HOME"))
+      no-littering-var-directory
+      (expand-file-name "emacs/" (getenv "XDG_DATA_HOME")))
 (cl-eval-when (load eval)
   (require 'no-littering))
 
-(setq-default make-backup-files nil
-              create-lockfiles nil)
+(setq make-backup-files nil
+      create-lockfiles nil)
 
 (setq auto-save-default nil)
 (auto-save-visited-mode)
@@ -152,7 +152,7 @@ where it was when you previously visited the same file."
         history-delete-duplicates t)
 (add-to-list 'savehist-additional-variables 'corfu-history)
 
-(setq-default use-short-answers t)
+(setq use-short-answers t)
 
 (eval-when-compile
   (require 'smartparens))
@@ -290,7 +290,7 @@ where it was when you previously visited the same file."
 
 (global-visual-line-mode)
 
-(setq-default frame-title-format '("" "%b - Emacs"))
+(setq frame-title-format '("" "%b - Emacs"))
 
 (set-fringe-mode '(6 . 2))
 

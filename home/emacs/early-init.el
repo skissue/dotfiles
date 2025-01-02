@@ -1,4 +1,4 @@
-(setq-default gc-cons-threshold most-positive-fixnum)
+(setq gc-cons-threshold most-positive-fixnum)
 
 (when (fboundp 'startup-redirect-eln-cache)
   (startup-redirect-eln-cache
@@ -8,19 +8,19 @@
 (push '(tool-bar-lines . 0) default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
 
-(setq-default use-file-dialog nil
-              use-dialog-box nil)
+(setq use-file-dialog nil
+      use-dialog-box nil)
 
 (push '(alpha-background . 0.85) default-frame-alist)
 
-(setq-default inhibit-startup-screen t
-              inhibit-startup-echo-area-message user-login-name
-              initial-buffer-choice nil
-              inhibit-startup-buffer-menu t
-              inhibit-x-resources t
-              bidi-paragraph-direction 'left-to-right
-              bidi-inhibit-bpa t
-              initial-major-mode #'fundamental-mode
-              initial-scratch-message nil
-              frame-inhibit-implied-resize t
-              auto-mode-case-fold nil)
+(setq inhibit-startup-screen t
+      inhibit-startup-echo-area-message user-login-name
+      initial-buffer-choice nil
+      inhibit-startup-buffer-menu t
+      inhibit-x-resources t
+      bidi-paragraph-direction 'left-to-right
+      bidi-inhibit-bpa t
+      initial-major-mode #'fundamental-mode
+      initial-scratch-message nil
+      frame-inhibit-implied-resize t
+      auto-mode-case-fold nil)

@@ -17,7 +17,7 @@ I want lexical scoping, so this has to be the first line in the file.
 ** GC
 To optimize startup time, we max out the heap size as early as possible to avoid wasting time collecting garbage.
 #+begin_src elisp :tangle early-init.el
-  (setq-default gc-cons-threshold most-positive-fixnum)
+  (setq gc-cons-threshold most-positive-fixnum)
 #+end_src
 
 ** Native Compilation Cache
@@ -35,8 +35,8 @@ Disable these before they've loaded to save some time. Supposedly, manually adju
   (push '(tool-bar-lines . 0) default-frame-alist)
   (push '(vertical-scroll-bars) default-frame-alist)
 
-  (setq-default use-file-dialog nil
-                use-dialog-box nil)
+  (setq use-file-dialog nil
+        use-dialog-box nil)
 #+end_src
 
 ** Translucence
@@ -47,17 +47,17 @@ Disable these before they've loaded to save some time. Supposedly, manually adju
 ** Performance
 Disable a bunch of miscellaneous things to improve both startup and redisplay performance.
 #+begin_src elisp
-  (setq-default inhibit-startup-screen t
-                inhibit-startup-echo-area-message user-login-name
-                initial-buffer-choice nil
-                inhibit-startup-buffer-menu t
-                inhibit-x-resources t
-                bidi-paragraph-direction 'left-to-right
-                bidi-inhibit-bpa t
-                initial-major-mode #'fundamental-mode
-                initial-scratch-message nil
-                frame-inhibit-implied-resize t
-                auto-mode-case-fold nil)
+  (setq inhibit-startup-screen t
+        inhibit-startup-echo-area-message user-login-name
+        initial-buffer-choice nil
+        inhibit-startup-buffer-menu t
+        inhibit-x-resources t
+        bidi-paragraph-direction 'left-to-right
+        bidi-inhibit-bpa t
+        initial-major-mode #'fundamental-mode
+        initial-scratch-message nil
+        frame-inhibit-implied-resize t
+        auto-mode-case-fold nil)
 #+end_src
 
 * Definitions
@@ -174,18 +174,18 @@ Convenience function to access nested elements.
 ** No Littering
 Don't leave random files everywhere in the filesystem. Paths must be set before loading the package. This has to be loaded before most of the packages that it configures, so it's pretty early. Only require the package during load or evaluation; during byte-compilation it fails since it tries to create directories within the read-only part of the Nix sandbox.
 #+begin_src elisp
-  (setq-default no-littering-etc-directory
-                (expand-file-name "emacs/" (getenv "XDG_CONFIG_HOME"))
-                no-littering-var-directory
-                (expand-file-name "emacs/" (getenv "XDG_DATA_HOME")))
+  (setq no-littering-etc-directory
+        (expand-file-name "emacs/" (getenv "XDG_CONFIG_HOME"))
+        no-littering-var-directory
+        (expand-file-name "emacs/" (getenv "XDG_DATA_HOME")))
   (cl-eval-when (load eval)
     (require 'no-littering))
 #+end_src
 
 Again, don't leave random backup files and lockfiles everywhere.
 #+begin_src elisp
-  (setq-default make-backup-files nil
-                create-lockfiles nil)
+  (setq make-backup-files nil
+        create-lockfiles nil)
 #+end_src
 
 ** Auto-save
@@ -280,7 +280,7 @@ Saves location in visited files, so re-opening a file brings point back to the l
 ** Quick Confirmation
 Don't make me type an entire word and hit enter for confirmation prompts, I know what I'm doing™.
 #+begin_src elisp
-  (setq-default use-short-answers t)
+  (setq use-short-answers t)
 #+end_src
 
 ** Smartparens
@@ -477,7 +477,7 @@ Always word-wrap and act on visual lines.
 
 ** Window Title
 #+begin_src elisp
-  (setq-default frame-title-format '("" "%b - Emacs"))
+  (setq frame-title-format '("" "%b - Emacs"))
 #+end_src
 
 ** Fringe Size
