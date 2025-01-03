@@ -15,15 +15,15 @@
   };
   consult-omni = {
     pname = "consult-omni";
-    version = "c8cf29a138e5430363bf489b68ae284cf1409169";
+    version = "f0c5f07b9ffe25d0deca42b650f6e0c1c85e9759";
     src = fetchFromGitHub {
       owner = "armindarvish";
       repo = "consult-omni";
-      rev = "c8cf29a138e5430363bf489b68ae284cf1409169";
+      rev = "f0c5f07b9ffe25d0deca42b650f6e0c1c85e9759";
       fetchSubmodules = false;
-      sha256 = "sha256-9FI8BQ21EMNbrL1popqi2oyrZSNdgvMaV+BDElweZEY=";
+      sha256 = "sha256-1+ES4Z7x53aZ7fGNKJ4uYuKHubaDpX3ro3XitGUDR+M=";
     };
-    date = "2024-12-29";
+    date = "2025-01-03";
   };
   copilot-el = {
     pname = "copilot-el";
