@@ -8,13 +8,16 @@
   mutable-link,
   ...
 }: let
-  quickstart-file = pkgs.runCommandNoCCLocal "emacs-quickstart-file" {emacs = lib.getExe config.programs.emacs.finalPackage;} ''
-    $emacs --batch \
-      --eval "(setq package-quickstart-file \"$(pwd)/package-quickstart.el\")" \
-      -f package-activate-all \
-      -f package-quickstart-refresh
-    cp package-quickstart.elc $out
-  '';
+  quickstart-file =
+    pkgs.runCommandNoCCLocal "emacs-quickstart-file" {
+      nativeBuildInputs = [config.programs.emacs.finalPackage];
+    } ''
+      emacs --batch \
+        --eval "(setq package-quickstart-file \"$(pwd)/package-quickstart.el\")" \
+        -f package-activate-all \
+        -f package-quickstart-refresh
+      cp package-quickstart.elc $out
+    '';
   init-substituted = pkgs.substituteAll {
     src = ./config.el;
     # See explanations in ./config.org
