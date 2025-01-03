@@ -38,6 +38,7 @@
     consult_mu_src = sources.consult-mu.src;
     consult_omni_src = sources.consult-omni.src;
   };
+  early-init = compile ./early-init.el [];
   # Git needed to load Magit at compile-time.
   init = compile init-substituted [pkgs.git];
 in {
@@ -211,6 +212,7 @@ in {
 
   xdg.configFile = {
     "emacs/early-init.el".source = ./early-init.el;
+    "emacs/early-init.elc".source = early-init;
     "emacs/init.el".source = init-substituted;
     "emacs/init.elc".source = init;
     "emacs/package-quickstart.elc".source = quickstart-file;
