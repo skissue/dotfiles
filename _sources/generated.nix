@@ -136,15 +136,15 @@
   };
   treesit-fold = {
     pname = "treesit-fold";
-    version = "7aa6f5d1e23dda4708e286977d7f4a6a7a5b441f";
+    version = "a40907676b705c7a1a51ef585b2db11e5021084b";
     src = fetchFromGitHub {
       owner = "emacs-tree-sitter";
       repo = "treesit-fold";
-      rev = "7aa6f5d1e23dda4708e286977d7f4a6a7a5b441f";
+      rev = "a40907676b705c7a1a51ef585b2db11e5021084b";
       fetchSubmodules = false;
-      sha256 = "sha256-PXNbBoo3+BoyTUZc8Fn61TiLF4WeqXa5s/H0QWbi0wk=";
+      sha256 = "sha256-wexgxD1Gdn+BN6DwME6qOUigj2N+ZXGlVoM8gJDNUpw=";
     };
-    date = "2024-12-28";
+    date = "2025-01-01";
   };
   typst-ts-mode = {
     pname = "typst-ts-mode";
