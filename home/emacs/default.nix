@@ -102,8 +102,7 @@ in {
         eglot-tempel
         pdf-tools
         copilot
-        # Currently fails to build (chatgpt-shell failing to byte-compile)
-        # copilot-chat
+        copilot-chat
         zoxide
         focus
         hl-todo
