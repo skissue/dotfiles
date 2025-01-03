@@ -23,11 +23,14 @@
   };
   init = with pkgs;
     runCommandNoCCLocal "emacs-byte-compile-init" {
-      nativeBuildInputs = [git];
-      emacs = lib.getExe config.programs.emacs.finalPackage;
+      nativeBuildInputs = [
+        config.programs.emacs.finalPackage
+        # Needed to load Magit
+        git
+      ];
     } ''
       cp ${init-substituted} config.el
-      $emacs --batch \
+      emacs --batch \
         -f batch-byte-compile \
         config.el
       cp config.elc $out
