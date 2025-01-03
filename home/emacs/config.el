@@ -949,9 +949,10 @@ Needed since Eglot overrides my original default."
 
 (bind-key "t" #'git-timemachine my/git-map)
 
-(autoload-many "diff-hl" nil #'diff-hl-magit-pre-refresh #'diff-hl-magit-post-refresh)
-(add-hook 'find-file-hook #'diff-hl--global-turn-on)
-(add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+(autoload #'diff-hl-magit-post-refresh "diff-hl")
+
+(add-hook 'find-file-hook #'turn-on-diff-hl-mode)
+(add-hook 'dired-mode-hook #'diff-hl-dired-mode)
 (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
 
 (after! magit
