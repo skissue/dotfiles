@@ -24,11 +24,27 @@
   "Load PACKAGE after Emacs has been idle for a second."
   `(run-with-idle-timer 1 nil #'require ,package))
 
-(defmacro add-hooks (&rest hooks)
+(defmacro add-hooks! (hooks functions)
+  "Behaves like `add-hook', except that HOOKS and FUNCTIONS can be lists.
+If they are lists, add every function in FUNCTIONS to every hook in
+HOOKS."
+  ;; Let symbols be quoted to line up with `add-hook' API.
+  (setq hooks (eval hooks))
+  (setq functions (eval functions))
+  (unless (listp hooks)
+    (setq hooks (list hooks)))
+  (unless (listp functions)
+    (setq functions (list functions)))
+  (message "%S, %S" hooks functions)
   `(progn
-     ,@(mapcar (lambda (hook)
-                 `(add-hook ',(car hook) #',(cdr hook)))
-               hooks)))
+     ,@(mapcar
+        (lambda (hook)
+          `(progn
+             ,@(mapcar
+                (lambda (func)
+                  `(add-hook ',hook #',func))
+                functions)))
+        hooks)))
 
 (defmacro autoload-many (filename interactive &rest funcs)
   `(progn
@@ -934,9 +950,9 @@ Needed since Eglot overrides my original default."
 (bind-key "t" #'git-timemachine my/git-map)
 
 (autoload-many "diff-hl" nil #'diff-hl-magit-pre-refresh #'diff-hl-magit-post-refresh)
-(add-hooks (find-file-hook          . diff-hl--global-turn-on)
-           (magit-pre-refresh-hook  . diff-hl-magit-pre-refresh)
-           (magit-post-refresh-hook . diff-hl-magit-post-refresh))
+(add-hook 'find-file-hook #'diff-hl--global-turn-on)
+(add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+(add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
 
 (after! magit
   (require 'forge))
@@ -1009,9 +1025,10 @@ Needed since Eglot overrides my original default."
   (when (file-exists-p path)
     (zoxide-add path)))
 
-(add-hooks (find-file-hook . my/zoxide-add-safe)
-           (eshell-directory-change-hook . my/zoxide-add-safe)
-           (dirvish-find-entry-hook . my/zoxide-add-safe))
+(add-hooks! '(find-file-hook
+              eshell-directory-change-hook
+              dirvish-find-entry-hook)
+            #'my/zoxide-add-safe)
 
 (bind-key "f" #'focus-mode my/toggle-map)
 

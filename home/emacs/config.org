@@ -94,11 +94,27 @@ Convenience wrapper around [[help:with-eval-after-load][with-eval-after-load]]. 
 #+end_src
 
 #+begin_src elisp
-  (defmacro add-hooks (&rest hooks)
+  (defmacro add-hooks! (hooks functions)
+    "Behaves like `add-hook', except that HOOKS and FUNCTIONS can be lists.
+  If they are lists, add every function in FUNCTIONS to every hook in
+  HOOKS."
+    ;; Let symbols be quoted to line up with `add-hook' API.
+    (setq hooks (eval hooks))
+    (setq functions (eval functions))
+    (unless (listp hooks)
+      (setq hooks (list hooks)))
+    (unless (listp functions)
+      (setq functions (list functions)))
+    (message "%S, %S" hooks functions)
     `(progn
-       ,@(mapcar (lambda (hook)
-                   `(add-hook ',(car hook) #',(cdr hook)))
-                 hooks)))
+       ,@(mapcar
+          (lambda (hook)
+            `(progn
+               ,@(mapcar
+                  (lambda (func)
+                    `(add-hook ',hook #',func))
+                  functions)))
+          hooks)))
 #+end_src
 
 #+begin_src elisp
@@ -1283,9 +1299,9 @@ Currently disabled cause it throws a cryptic error that I don't feel like tracki
 
 #+begin_src elisp
   (autoload-many "diff-hl" nil #'diff-hl-magit-pre-refresh #'diff-hl-magit-post-refresh)
-  (add-hooks (find-file-hook          . diff-hl--global-turn-on)
-             (magit-pre-refresh-hook  . diff-hl-magit-pre-refresh)
-             (magit-post-refresh-hook . diff-hl-magit-post-refresh))
+  (add-hook 'find-file-hook #'diff-hl--global-turn-on)
+  (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+  (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
 #+end_src
 
 #+begin_src elisp
@@ -1369,7 +1385,7 @@ In addition to auto-loading via filename or magic values, we also want to load t
     "p" #'pdf-view-previous-line-or-previous-page)
 #+end_src
 
-** =zoxide.el=
+** Zoxide
 #+begin_src elisp
   (defun my/zoxide-add-safe (&optional path &rest _)
     "Call `zoxide-add' if PATH exists."
@@ -1379,9 +1395,10 @@ In addition to auto-loading via filename or magic values, we also want to load t
     (when (file-exists-p path)
       (zoxide-add path)))
 
-  (add-hooks (find-file-hook . my/zoxide-add-safe)
-             (eshell-directory-change-hook . my/zoxide-add-safe)
-             (dirvish-find-entry-hook . my/zoxide-add-safe))
+  (add-hooks! '(find-file-hook
+                eshell-directory-change-hook
+                dirvish-find-entry-hook)
+              #'my/zoxide-add-safe)
 #+end_src
 
 ** Focus
