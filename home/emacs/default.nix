@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   inputs,
   private,
@@ -8,6 +7,21 @@
   mutable-link,
   ...
 }: let
+  compile = file: extraInputs:
+    with pkgs;
+      runCommandNoCCLocal "emacs-compile-${baseNameOf file}" {
+        nativeBuildInputs =
+          [
+            config.programs.emacs.finalPackage
+          ]
+          ++ extraInputs;
+      } ''
+        cp ${file} input.el
+        emacs --batch \
+          -f batch-byte-compile \
+          input.el
+        cp input.elc $out
+      '';
   quickstart-file =
     pkgs.runCommandNoCCLocal "emacs-quickstart-file" {
       nativeBuildInputs = [config.programs.emacs.finalPackage];
@@ -24,20 +38,8 @@
     consult_mu_src = sources.consult-mu.src;
     consult_omni_src = sources.consult-omni.src;
   };
-  init = with pkgs;
-    runCommandNoCCLocal "emacs-byte-compile-init" {
-      nativeBuildInputs = [
-        config.programs.emacs.finalPackage
-        # Needed to load Magit
-        git
-      ];
-    } ''
-      cp ${init-substituted} config.el
-      emacs --batch \
-        -f batch-byte-compile \
-        config.el
-      cp config.elc $out
-    '';
+  # Git needed to load Magit at compile-time.
+  init = compile init-substituted [pkgs.git];
 in {
   # Fresh versions of packages
   nixpkgs.overlays = [inputs.emacs-overlay.overlays.package];
