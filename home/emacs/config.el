@@ -799,29 +799,30 @@ See `describe-repeat-maps' for a list of all repeatable commands."
   (setopt embark-verbose-indicator-display-action
           '(display-buffer-at-bottom (window-height . fit-window-to-buffer))))
 
-(require 'corfu)
+(add-hook 'my/first-input-hook #'global-corfu-mode)
 
-(bind-keys :map corfu-map
-           ("<tab>" . corfu-next)
-           ("<backtab>" . corfu-previous)
-           ("M-q" . corfu-quick-insert))
-(setq tab-always-indent 'complete
-      corfu-min-width 20
-      corfu-quit-no-match nil
-      corfu-quit-at-boundary 'separator
-      corfu-preview-current 'insert
-      corfu-preselect 'prompt
-      corfu-cycle t
-      corfu-popupinfo-delay '(1.25 . 0.5)
-      corfu-quick1 "arstneio"
-      corfu-quick2 corfu-quick1)
+(after! corfu
+  (bind-keys :map corfu-map
+             ("<tab>" . corfu-next)
+             ("<backtab>" . corfu-previous)
+             ("M-q" . corfu-quick-insert))
+  
+  (setq tab-always-indent 'complete
+        corfu-min-width 20
+        corfu-quit-no-match nil
+        corfu-quit-at-boundary 'separator
+        corfu-preview-current 'insert
+        corfu-preselect 'prompt
+        corfu-cycle t
+        corfu-popupinfo-delay '(1.25 . 0.5)
+        corfu-quick1 "arstneio"
+        corfu-quick2 corfu-quick1)
 
-(custom-set-faces
- '(corfu-default ((t (:inherit fixed-pitch)))))
+  (custom-set-faces
+   '(corfu-default ((t (:inherit fixed-pitch)))))
 
-(global-corfu-mode)
-(corfu-popupinfo-mode)
-(corfu-history-mode)
+  (corfu-popupinfo-mode)
+  (corfu-history-mode))
 
 (defun my/add-cape-capfs ()
   (dolist (f #'(cape-file cape-elisp-block cape-emoji cape-tex))
