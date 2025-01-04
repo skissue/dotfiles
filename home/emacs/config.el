@@ -453,8 +453,19 @@ where it was when you previously visited the same file."
            ("C-c o" . my/open-map)
            ("C-c t" . my/toggle-map))
 
+(defun my/delete-this-file ()
+  "Delete the current buffer's file and kill the buffer."
+  (interactive)
+  (unless buffer-file-name
+    (user-error "Current buffer is not visiting a file"))
+  (when (yes-or-no-p (concat "Really delete " buffer-file-name "?"))
+    (delete-file buffer-file-name)
+    (kill-buffer)
+    (message "Deleted %s" buffer-file-name)))
+
 (bind-keys :map my/buffer-map
            ("b" . switch-to-buffer)
+           ("D" . my/delete-this-file)
            ("k" . kill-current-buffer)
            ("K" . kill-buffer)
            ("q" . kill-buffer-and-window)
