@@ -248,7 +248,8 @@ where it was when you previously visited the same file."
 (add-hook 'my/first-input-hook #'winner-mode)
 
 (setq enable-recursive-minibuffers t)
-(minibuffer-depth-indicate-mode)
+(after! vertico
+  (minibuffer-depth-indicate-mode))
 
 (when (daemonp)
   (setq default-minibuffer-frame (make-frame '((window-system . pgtk)

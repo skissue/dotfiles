@@ -418,7 +418,8 @@ Only popup errors, don't interrupt me for mere warnings.
 Recursive minibuffers allow usage of the minibuffer when in the minibuffer, "recursing" into layers. Very useful (especially with [[*Vertico][Vertico]]), though disabled by default (probably because it could easily be confusing).
 #+begin_src elisp
   (setq enable-recursive-minibuffers t)
-  (minibuffer-depth-indicate-mode)
+  (after! vertico
+    (minibuffer-depth-indicate-mode))
 #+end_src
 
 I like using a lot of different frames, since it allows me to take full advantage of tiling window managers. However, this makes the minibuffer annoying to use, since it's limited to the frame size by default. This black magic allows using an entirely separate frame for the minibuffer, activating it dynamically using Hyprland's special workspaces. We manage the frame ourselves instead of using Emacs' built-in ~minibuffer~ frame parameter so that the echo area still stays on each frame.
