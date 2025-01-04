@@ -134,11 +134,11 @@ Only run once.")
 
 (add-hook 'my/first-file-hook #'auto-save-visited-mode)
 
-(idle-load 'autorevert)
+(add-hook 'my/first-file-hook #'global-auto-revert-mode)
+
 (after! autorevert
   (setopt global-auto-revert-non-file-buffers t
-          auto-revert-interval 1)
-  (global-auto-revert-mode))
+          auto-revert-interval 2))
 
 (defun prot/keyboard-quit-dwim ()
   "Do-What-I-Mean behaviour for a general `keyboard-quit'.

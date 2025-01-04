@@ -250,11 +250,11 @@ Again, don't leave random backup files and lockfiles everywhere.
 ** Auto-reload
 Automatically reload files when they're changed on the filesystem.
 #+begin_src elisp
-  (idle-load 'autorevert)
+  (add-hook 'my/first-file-hook #'global-auto-revert-mode)
+
   (after! autorevert
     (setopt global-auto-revert-non-file-buffers t
-            auto-revert-interval 1)
-    (global-auto-revert-mode))
+            auto-revert-interval 2))
 #+end_src
 
 ** ~keyboard-quit~ DWIM
