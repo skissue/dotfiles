@@ -991,16 +991,14 @@ Needed since Eglot overrides my original default."
   (setopt git-link-consider-ssh-config t
           git-link-use-commit t))
 
-(idle-load 'pulsar)
+(add-hook 'my/first-input-hook #'pulsar-global-mode)
+
 (after! pulsar
   (setopt pulsar-face 'highlight
           pulsar-delay 0.04
           pulsar-iterations 8)
-  (dolist (f '(my/smooth-scroll-up-command
-               my/smooth-scroll-down-command
-               org-edit-special))
-    (cl-pushnew f pulsar-pulse-functions))
-  (pulsar-global-mode))
+  (dolist (f '(org-edit-special))
+    (cl-pushnew f pulsar-pulse-functions)))
 
 (bind-key "c" #'copilot-mode my/toggle-map)
 

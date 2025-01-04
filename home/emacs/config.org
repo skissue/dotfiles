@@ -1350,16 +1350,14 @@ Currently disabled cause it throws a cryptic error that I don't feel like tracki
 
 ** Pulsar
 #+begin_src elisp
-  (idle-load 'pulsar)
+  (add-hook 'my/first-input-hook #'pulsar-global-mode)
+
   (after! pulsar
     (setopt pulsar-face 'highlight
             pulsar-delay 0.04
             pulsar-iterations 8)
-    (dolist (f '(my/smooth-scroll-up-command
-                 my/smooth-scroll-down-command
-                 org-edit-special))
-      (cl-pushnew f pulsar-pulse-functions))
-    (pulsar-global-mode))
+    (dolist (f '(org-edit-special))
+      (cl-pushnew f pulsar-pulse-functions)))
 #+end_src
 
 ** Copilot
