@@ -2330,7 +2330,9 @@ Automatically toggles certain markers on and off depending on whether they're be
 #+begin_src elisp
   (after! org
     (setopt org-latex-compiler "lualatex"
-            org-latex-packages-alist '(("" "tikz" t))))
+            org-latex-packages-alist '(("" "tikz" t))
+            org-latex-pdf-process '("latexmk -f -pdf -%latex -interaction=nonstopmode -output-directory=%o %f"
+                                    "latexmk -c -output-directory=%o %f")))
 #+end_src
 
 *** Previews

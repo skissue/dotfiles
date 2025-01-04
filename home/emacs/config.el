@@ -1808,7 +1808,9 @@ have `org-warning' face."
 
 (after! org
   (setopt org-latex-compiler "lualatex"
-          org-latex-packages-alist '(("" "tikz" t))))
+          org-latex-packages-alist '(("" "tikz" t))
+          org-latex-pdf-process '("latexmk -f -pdf -%latex -interaction=nonstopmode -output-directory=%o %f"
+                                  "latexmk -c -output-directory=%o %f")))
 
 (add-hook 'org-mode-hook #'org-latex-preview-auto-mode)
 
