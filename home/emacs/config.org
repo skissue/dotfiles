@@ -1389,23 +1389,18 @@ Show a little pilot icon from Nerd Fonts in the modeline when enabled.
 ** PDF Tools
 In addition to auto-loading via filename or magic values, we also want to load the package if [[*Dirvish][Dirvish]] is opened, since it requires PDF Tools to be loaded for PDF previews to work.
 #+begin_src elisp
-  (setf (alist-get "\\.pdf\\'" auto-mode-alist
-                   nil nil #'equal)
-        #'pdf-tools-install
-        (alist-get "%PDF" magic-mode-alist
-                   nil nil #'equal)
-        #'pdf-tools-install)
+  (pdf-loader-install)
 
   (after! dirvish
     (add-hook 'dirvish-directory-view-mode-hook #'pdf-tools-install))
 
   (after! pdf-tools
-    (bind-key "?" #'gptel-quick pdf-view-mode-map))
+    (bind-key "?" #'gptel-quick pdf-view-mode-map)
 
-  (defvar-keymap my/pdf-view-repeat-map
-    :repeat t
-    "n" #'pdf-view-next-line-or-next-page
-    "p" #'pdf-view-previous-line-or-previous-page)
+    (defvar-keymap my/pdf-view-repeat-map
+      :repeat t
+      "n" #'pdf-view-next-line-or-next-page
+      "p" #'pdf-view-previous-line-or-previous-page))
 #+end_src
 
 ** Zoxide

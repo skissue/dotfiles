@@ -1019,23 +1019,18 @@ Needed since Eglot overrides my original default."
                      ,(nerd-icons-octicon "nf-oct-copilot"
                                           :face 'nerd-icons-green))))))
 
-(setf (alist-get "\\.pdf\\'" auto-mode-alist
-                 nil nil #'equal)
-      #'pdf-tools-install
-      (alist-get "%PDF" magic-mode-alist
-                 nil nil #'equal)
-      #'pdf-tools-install)
+(pdf-loader-install)
 
 (after! dirvish
   (add-hook 'dirvish-directory-view-mode-hook #'pdf-tools-install))
 
 (after! pdf-tools
-  (bind-key "?" #'gptel-quick pdf-view-mode-map))
+  (bind-key "?" #'gptel-quick pdf-view-mode-map)
 
-(defvar-keymap my/pdf-view-repeat-map
-  :repeat t
-  "n" #'pdf-view-next-line-or-next-page
-  "p" #'pdf-view-previous-line-or-previous-page)
+  (defvar-keymap my/pdf-view-repeat-map
+    :repeat t
+    "n" #'pdf-view-next-line-or-next-page
+    "p" #'pdf-view-previous-line-or-previous-page))
 
 (defun my/zoxide-add-safe (&optional path &rest _)
   "Call `zoxide-add' if PATH exists."
