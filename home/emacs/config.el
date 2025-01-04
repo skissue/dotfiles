@@ -1246,6 +1246,7 @@ Calls the function in `consult-omni-default-interactive-command'." t)
 (bind-keys ("C-c X" . org-capture)
            :map my/notes-map
            ("b" . denote-backlinks)
+           ("B" . denote-org-extras-backlinks-for-heading)
            ("f" . denote-open-or-create)
            ("l" . denote-link-or-create)
            ("L" . denote-org-extras-link-to-heading)
