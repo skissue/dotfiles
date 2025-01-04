@@ -198,6 +198,8 @@ where it was when you previously visited the same file."
 (idle-load 'savehist)
 (after! vertico
   (require 'savehist))
+(after! corfu
+  (require 'savehist))
 
 (after! savehist
   (savehist-mode)
@@ -737,12 +739,17 @@ See `describe-repeat-maps' for a list of all repeatable commands."
     "n" #'vertico-next
     "p" #'vertico-previous))
 
-(require 'orderless)
-(setq completion-styles '(orderless basic)
-      completion-category-overrides '((file (styles basic partial-completion)))
-      orderless-matching-styles '(orderless-literal
-                                  orderless-regexp
-                                  orderless-initialism))
+(after! vertico
+  (require 'orderless))
+(after! corfu
+  (require 'orderless))
+
+(after! orderless
+  (setq completion-styles '(orderless basic)
+        completion-category-overrides '((file (styles basic partial-completion)))
+        orderless-matching-styles '(orderless-literal
+                                    orderless-regexp
+                                    orderless-initialism)))
 
 (bind-keys ([remap yank-pop] . consult-yank-pop)
            ([remap switch-to-buffer] . consult-buffer)

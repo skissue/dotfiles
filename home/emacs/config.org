@@ -329,6 +329,8 @@ Yes, [[*Corfu][Corfu]] is eagerly loaded, and technically lazy-loading ~savehist
   (idle-load 'savehist)
   (after! vertico
     (require 'savehist))
+  (after! corfu
+    (require 'savehist))
 
   (after! savehist
     (savehist-mode)
@@ -1023,12 +1025,17 @@ Repeat map for candidate navigation.
 
 ** Orderless
 #+begin_src elisp
-  (require 'orderless)
-  (setq completion-styles '(orderless basic)
-        completion-category-overrides '((file (styles basic partial-completion)))
-        orderless-matching-styles '(orderless-literal
-                                    orderless-regexp
-                                    orderless-initialism))
+  (after! vertico
+    (require 'orderless))
+  (after! corfu
+    (require 'orderless))
+
+  (after! orderless
+    (setq completion-styles '(orderless basic)
+          completion-category-overrides '((file (styles basic partial-completion)))
+          orderless-matching-styles '(orderless-literal
+                                      orderless-regexp
+                                      orderless-initialism)))
 #+end_src
 
 ** Consult
