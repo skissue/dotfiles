@@ -120,7 +120,6 @@ in {
         keycast
         gptel
         gptel-quick
-        expreg
         wgrep
         smartparens
         nerd-icons

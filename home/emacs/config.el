@@ -1210,14 +1210,6 @@ Calls the function in `consult-omni-default-interactive-command'." t)
           consult-omni-notes-backend-command "rga"
           consult-omni--notes-new-func #'consult-omni--notes-new-create-denote))
 
-(bind-keys ("C-=" . expreg-expand)
-           ("C-+" . expreg-contract))
-
-(defvar-keymap my/expreg-repeat-map
-  :repeat t
-  "=" #'expreg-expand
-  "+" #'expreg-contract)
-
 (bind-key [remap list-buffers] #'ibuffer)
 
 (after! ibuffer

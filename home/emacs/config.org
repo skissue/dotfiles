@@ -1634,17 +1634,6 @@ The repository comes with many different files for "sources", that each have var
             consult-omni--notes-new-func #'consult-omni--notes-new-create-denote))
 #+end_src
 
-** Expreg
-#+begin_src elisp
-  (bind-keys ("C-=" . expreg-expand)
-             ("C-+" . expreg-contract))
-
-  (defvar-keymap my/expreg-repeat-map
-    :repeat t
-    "=" #'expreg-expand
-    "+" #'expreg-contract)
-#+end_src
-
 ** Ibuffer
 #+begin_src elisp
   (bind-key [remap list-buffers] #'ibuffer)
