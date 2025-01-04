@@ -131,7 +131,8 @@ Only run once.")
       create-lockfiles nil)
 
 (setq auto-save-default nil)
-(auto-save-visited-mode)
+
+(add-hook 'my/first-file-hook #'auto-save-visited-mode)
 
 (idle-load 'autorevert)
 (after! autorevert
