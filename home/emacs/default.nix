@@ -17,6 +17,10 @@
           ++ extraInputs;
       } ''
         cp ${file} input.el
+        # Some packages are annoying and create directories in $HOME when
+        # loaded. To deal with them, set home to this temporary build directory
+        # so it doesn't error out.
+        export HOME=$(pwd)
         emacs --batch \
           -f batch-byte-compile \
           input.el
