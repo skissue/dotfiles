@@ -51,6 +51,7 @@
           "steam-unwrapped"
           "steam-run"
           "minecraft-server"
+          "copilot-node-server"
         ];
       permittedInsecurePackages = [
         "nodejs-14.21.3" # WebCord I think
