@@ -2091,6 +2091,11 @@ This function is called by `org-babel-execute-src-block'.")
   (add-to-list 'apheleia-mode-alist
                '(typescript-ts-mode . biome)))
 
+(after! tex
+  (setopt TeX-engine 'luatex
+          TeX-parse-self t
+          TeX-auto-save t))
+
 (bind-key "m" #'osm my/open-map)
 
 (add-hook 'osm-mode-hook (lambda ()
