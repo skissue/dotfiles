@@ -2745,10 +2745,13 @@ Common Lisp.
 
 ** LaTeX
 #+begin_src elisp
+  (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
   (after! tex
     (setopt TeX-engine 'luatex
             TeX-parse-self t
-            TeX-auto-save t))
+            TeX-auto-save t
+            TeX-view-program-selection '((output-pdf "PDF Tools"))
+            TeX-source-correlate-start-server t))
 #+end_src
 
 * Applications
