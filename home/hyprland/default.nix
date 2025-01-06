@@ -19,6 +19,9 @@
       # broken.
       ((pkgs.hyprlandPlugins.hyprfocus.override {hyprland = config.wayland.windowManager.hyprland.package;}).overrideAttrs {
         src = inputs.hyprfocus;
+        # They vendored a patch to fix the build, and then it immediately got
+        # merged upstream 💀.
+        patches = [];
       })
       (pkgs.hyprlandPlugins.hyprscroller.override {hyprland = config.wayland.windowManager.hyprland.package;})
     ];
