@@ -2091,13 +2091,19 @@ This function is called by `org-babel-execute-src-block'.")
   (add-to-list 'apheleia-mode-alist
                '(typescript-ts-mode . biome)))
 
+(add-hook 'LaTeX-mode-hook #'turn-on-cdlatex)
 (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+
 (after! tex
   (setopt TeX-engine 'luatex
           TeX-parse-self t
           TeX-auto-save t
+          TeX-electric-math '("\\(" . "\\)")
           TeX-view-program-selection '((output-pdf "PDF Tools"))
           TeX-source-correlate-start-server t))
+
+(after! cdlatex
+  (unbind-key "$" cdlatex-mode-map))
 
 (bind-key "m" #'osm my/open-map)
 
