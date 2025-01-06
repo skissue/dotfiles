@@ -2746,7 +2746,7 @@ Common Lisp.
 ** LaTeX
 Using AUCTeX with the LuaTeX engine and [[*PDF Tools][PDF Tools]] for viewing.
 #+begin_src elisp
-  (add-hook 'LaTeX-mode-hook #'turn-on-cdlatex)
+  (add-hooks! 'LaTeX-mode-hook '(turn-on-cdlatex turn-on-auto-fill))
   (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
 
   (after! tex
@@ -2754,6 +2754,7 @@ Using AUCTeX with the LuaTeX engine and [[*PDF Tools][PDF Tools]] for viewing.
             TeX-parse-self t
             TeX-auto-save t
             TeX-electric-math '("\\(" . "\\)")
+            TeX-newline-function #'reindent-then-newline-and-indent
             TeX-view-program-selection '((output-pdf "PDF Tools"))
             TeX-source-correlate-start-server t))
 #+end_src
