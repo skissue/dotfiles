@@ -27,15 +27,15 @@
   };
   copilot-el = {
     pname = "copilot-el";
-    version = "c5dfa99f05878db5e6a6a378dc7ed09f11e803d4";
+    version = "be6c274562e150e4acf5253968d1b434c40d368b";
     src = fetchFromGitHub {
       owner = "zerolfx";
       repo = "copilot.el";
-      rev = "c5dfa99f05878db5e6a6a378dc7ed09f11e803d4";
+      rev = "be6c274562e150e4acf5253968d1b434c40d368b";
       fetchSubmodules = false;
-      sha256 = "sha256-FzI08AW7a7AleEM7kSQ8LsWsDYID8SW1SmSN6/mIB/A=";
+      sha256 = "sha256-QYlFzh/rzIK0lTtj60rGxJtWr9JaGoVzfALeJltVOdU=";
     };
-    date = "2024-12-27";
+    date = "2025-01-05";
   };
   gptel-quick = {
     pname = "gptel-quick";
