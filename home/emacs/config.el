@@ -1122,7 +1122,8 @@ Needed since Eglot overrides my original default."
     :host "models.inference.ai.azure.com"
     :endpoint "/chat/completions"
     :stream t
-    :key (lambda () (secrets-get-secret "KeePassXC" "GitHub AI"))
+    :key (lambda () (or (secrets-get-secret "KeePassXC" "GitHub AI")
+                        (user-error "Unable to retrieve GitHub AI key")))
     :models '(gpt-4o
               gpt-4o-mini
               o1
@@ -1132,7 +1133,8 @@ Needed since Eglot overrides my original default."
     :host "openrouter.ai"
     :endpoint "/api/v1/chat/completions"
     :stream t
-    :key (lambda () (secrets-get-secret "KeePassXC" "OpenRouter"))
+    :key (lambda () (or (secrets-get-secret "KeePassXC" "OpenRouter")
+                        (user-error "Unable to retrieve OpenRouter key")))
     :models '(google/gemini-2.0-flash-exp:free
               deepseek/deepseek-chat
               anthropic/claude-3-haiku:beta
