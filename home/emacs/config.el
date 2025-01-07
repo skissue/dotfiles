@@ -1109,7 +1109,7 @@ Needed since Eglot overrides my original default."
   (setq undo-fu-session-compression 'zst
         undo-fu-session-file-limit 100))
 
-(bind-key "C-c A" #'gptel-menu)
+(bind-key "C-c a" #'gptel-menu)
 
 (add-hook 'gptel-post-stream-hook #'gptel-auto-scroll)
 (add-hook 'gptel-post-response-functions #'gptel-end-of-response)
