@@ -1147,7 +1147,7 @@ Needed since Eglot overrides my original default."
   (setf (alist-get 'org-mode gptel-prompt-prefix-alist)
         "@me:\n-----\n")
   (setf (alist-get 'org-mode gptel-response-prefix-alist)
-        "@me:\n-----\n"))
+        "@ai:\n-----\n"))
 
 (autoload #'gptel-quick "gptel-quick" "Explain or summarize region or thing at point with an LLM.
 
