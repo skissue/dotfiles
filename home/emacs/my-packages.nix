@@ -15,25 +15,21 @@ in {
   typst-ts-mode = trivialBuild sources.typst-ts-mode;
   copilot = epkgs.copilot.overrideAttrs (oldAttrs: {inherit (sources.copilot-el) src version;});
   org-popup-posframe = trivialBuild (sources.org-popup-posframe
-    // rec {
-      propagatedUserEnvPkgs = with epkgs; [posframe];
-      buildInputs = propagatedUserEnvPkgs;
+    // {
+      packageRequires = with epkgs; [posframe];
     });
   org-typst = trivialBuild sources.org-typst;
   treesit-fold = trivialBuild sources.treesit-fold;
   gptel-quick = trivialBuild (sources.gptel-quick
-    // rec {
-      propagatedUserEnvPkgs = with epkgs; [compat gptel];
-      buildInputs = propagatedUserEnvPkgs;
+    // {
+      packageRequires = with epkgs; [compat gptel];
     });
   org-modern-indent = trivialBuild (sources.org-modern-indent
-    // rec {
-      propagatedUserEnvPkgs = with epkgs; [compat];
-      buildInputs = propagatedUserEnvPkgs;
+    // {
+      packageRequires = with epkgs; [compat];
     });
   org-overdrive = trivialBuild (sources.org-overdrive
-    // rec {
-      propagatedUserEnvPkgs = with epkgs; [asyncloop pcre2el request dash];
-      buildInputs = propagatedUserEnvPkgs;
+    // {
+      packageRequires = with epkgs; [asyncloop pcre2el request dash];
     });
 }
