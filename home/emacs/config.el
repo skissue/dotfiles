@@ -1554,7 +1554,7 @@ For our purposes, a note must not be a directory, must satisfy
 
 (add-hook 'org-tab-first-hook #'my/org-maybe-completion-at-point)
 
-(bind-key "C-c a" #'org-agenda)
+(bind-key "a" #'org-agenda my/open-map)
 
 (after! org-agenda
   (defun my/org-agenda-get-title ()

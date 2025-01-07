@@ -2040,7 +2040,7 @@ Ah, the crown jewel of Emacs 👑.
 
 ** Org Agenda
 #+begin_src elisp
-  (bind-key "C-c a" #'org-agenda)
+  (bind-key "a" #'org-agenda my/open-map)
 
   (after! org-agenda
     (defun my/org-agenda-get-title ()
