@@ -38,6 +38,7 @@
             inherit (private) name;
             email = private.email.work;
           };
+          github.user = private.user.work;
         };
       }
     ];
