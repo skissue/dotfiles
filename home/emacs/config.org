@@ -403,7 +403,7 @@ If there is something on the clipboard, save it to the kill ring before overridi
 #+end_src
 
 ** Warnings
-Only popup errors, don't interrupt me for mere warnings.
+Only popup w errors, don't interrupt me for mere warnings.
 #+begin_src elisp
   (setq warning-minimum-level :error)
 #+end_src
@@ -1519,34 +1519,45 @@ Persist undo history; despite the name, this works independently of Undo Fu and 
 
 ** gptel
 #+begin_src elisp
-  (bind-key "C-c A" #'gptel-send)
+  (bind-key "C-c A" #'gptel-menu)
 
-  (autoload #'gptel-context-add "gptel-context" "Add context to gptel in a DWIM fashion.
+  (add-hook 'gptel-post-stream-hook #'gptel-auto-scroll)
+  (add-hook 'gptel-post-response-functions #'gptel-end-of-response)
 
-  - If a region is selected, add the selected region to the
-    context.  If there is already a gptel context at point, remove it
-    instead.
-
-  - If in Dired, add marked files or file at point to the context.
-    With negative prefix ARG, remove them from the context instead.
-
-  - Otherwise add the current buffer to the context.  With positive
-    prefix ARG, prompt for a buffer name and add it to the context.
-
-  - With negative prefix ARG, remove all gptel contexts from the
-    current buffer." t)
-
-  (after! embark
-    (bind-key "C" #'gptel-context-add embark-general-map))
+  (after! pulsar
+    (add-to-list 'pulsar-pulse-functions #'gptel-end-of-response))
 
   (after! gptel
-    (setopt gptel-model "llama3.1:latest"
-            gptel-backend (gptel-make-ollama "Ollama"
-                            :host "windstorm:11434"
-                            :stream t
-                            :models '("llama3.1:latest" "mistral:latest" "gemma2:latest"))
-            gptel-default-mode #'org-mode
-            gptel-use-context 'user))
+    (gptel-make-openai "Github Models"
+      :host "models.inference.ai.azure.com"
+      :endpoint "/chat/completions"
+      :stream t
+      :key (lambda () (secrets-get-secret "KeePassXC" "GitHub AI"))
+      :models '(gpt-4o
+                gpt-4o-mini
+                o1
+                o1-mini
+                Llama-3.3-70B-Instruct))
+    (gptel-make-openai "OpenRouter"
+      :host "openrouter.ai"
+      :endpoint "/api/v1/chat/completions"
+      :stream t
+      :key (lambda () (secrets-get-secret "KeePassXC" "OpenRouter"))
+      :models '(google/gemini-2.0-flash-exp:free
+                deepseek/deepseek-chat
+                anthropic/claude-3-haiku:beta
+                anthropic/claude-3.5-sonnet:beta))
+    (setopt gptel-model        'granite3.1-dense:latest
+            gptel-backend      (gptel-make-ollama "Ollama"
+                                 :host "windstorm:11434"
+                                 :stream t
+                                 :models '(llama3.1:latest
+                                           granite3.1-dense:latest))
+            gptel-default-mode #'org-mode)
+    (setf (alist-get 'org-mode gptel-prompt-prefix-alist)
+          "@me:\n-----\n")
+    (setf (alist-get 'org-mode gptel-response-prefix-alist)
+          "@me:\n-----\n"))
 #+end_src
 
 #+begin_src elisp
