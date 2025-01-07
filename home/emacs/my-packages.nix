@@ -2,7 +2,7 @@
   epkgs,
   sources,
 }: let
-  inherit (epkgs) trivialBuild melpaBuild;
+  inherit (epkgs) melpaBuild;
 in {
   # Org Mode source with new async LaTeX preview support.
   # TODO Remove when this is merged.
@@ -12,24 +12,28 @@ in {
       version = "9.7.69";
       files = ''(:defaults "etc")'';
     });
-  typst-ts-mode = trivialBuild sources.typst-ts-mode;
+  typst-ts-mode = melpaBuild (sources.typst-ts-mode // {version = "0.10.0";});
   copilot = epkgs.copilot.overrideAttrs (oldAttrs: {inherit (sources.copilot-el) src version;});
-  org-popup-posframe = trivialBuild (sources.org-popup-posframe
+  org-popup-posframe = melpaBuild (sources.org-popup-posframe
     // {
+      version = "0.0.1";
       packageRequires = with epkgs; [posframe];
     });
-  org-typst = trivialBuild sources.org-typst;
-  treesit-fold = trivialBuild sources.treesit-fold;
-  gptel-quick = trivialBuild (sources.gptel-quick
+  org-typst = melpaBuild (sources.org-typst // {version = "0.1.0";});
+  treesit-fold = melpaBuild (sources.treesit-fold // {version = "0.1.0";});
+  gptel-quick = melpaBuild (sources.gptel-quick
     // {
+      version = "0.0.5";
       packageRequires = with epkgs; [compat gptel];
     });
-  org-modern-indent = trivialBuild (sources.org-modern-indent
+  org-modern-indent = melpaBuild (sources.org-modern-indent
     // {
+      version = "0.1.4";
       packageRequires = with epkgs; [compat];
     });
-  org-overdrive = trivialBuild (sources.org-overdrive
+  org-overdrive = melpaBuild (sources.org-overdrive
     // {
+      version = "0.1.0";
       packageRequires = with epkgs; [asyncloop pcre2el request dash];
     });
 }
