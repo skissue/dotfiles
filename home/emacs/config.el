@@ -1707,6 +1707,8 @@ For our purposes, a note must not be a directory, must satisfy
                                      :foreground ,yellow))))
   (ef-themes-with-colors
     (custom-set-faces
+     '(org-modern-label ((t :height 0.8
+                            :inherit fixed-pitch)))
      `(org-modern-done ((t :inherit org-modern-todo
                            :foreground ,green)))
      '(org-modern-symbol ((t (:family "Iosevka Aile" :height 1.1)))))))
