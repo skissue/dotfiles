@@ -1519,7 +1519,9 @@ Persist undo history; despite the name, this works independently of Undo Fu and 
 
 ** gptel
 #+begin_src elisp
-  (bind-key "C-c a" #'gptel-menu)
+  (bind-keys ("C-c a" . gptel-menu)
+             :map my/buffer-map
+             ("A" . gptel-add))
 
   (add-hook 'gptel-post-stream-hook #'gptel-auto-scroll)
   (add-hook 'gptel-post-response-functions #'gptel-end-of-response)
@@ -1528,7 +1530,7 @@ Persist undo history; despite the name, this works independently of Undo Fu and 
     (add-to-list 'pulsar-pulse-functions #'gptel-end-of-response))
 
   (after! gptel
-    (gptel-make-openai "Github Models"
+    (gptel-make-openai "GitHub Models"
       :host "models.inference.ai.azure.com"
       :endpoint "/chat/completions"
       :stream t

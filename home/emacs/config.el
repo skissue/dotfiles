@@ -1109,7 +1109,9 @@ Needed since Eglot overrides my original default."
   (setq undo-fu-session-compression 'zst
         undo-fu-session-file-limit 100))
 
-(bind-key "C-c a" #'gptel-menu)
+(bind-keys ("C-c a" . gptel-menu)
+           :map my/buffer-map
+           ("A" . gptel-add))
 
 (add-hook 'gptel-post-stream-hook #'gptel-auto-scroll)
 (add-hook 'gptel-post-response-functions #'gptel-end-of-response)
@@ -1118,7 +1120,7 @@ Needed since Eglot overrides my original default."
   (add-to-list 'pulsar-pulse-functions #'gptel-end-of-response))
 
 (after! gptel
-  (gptel-make-openai "Github Models"
+  (gptel-make-openai "GitHub Models"
     :host "models.inference.ai.azure.com"
     :endpoint "/chat/completions"
     :stream t
