@@ -49,6 +49,18 @@
     };
     date = "2024-12-26";
   };
+  gptel-tooluse = {
+    pname = "gptel-tooluse";
+    version = "f1f65def27dd12f53e2523f4edf2994112356653";
+    src = fetchFromGitHub {
+      owner = "karthink";
+      repo = "gptel";
+      rev = "f1f65def27dd12f53e2523f4edf2994112356653";
+      fetchSubmodules = false;
+      sha256 = "sha256-7ITffw/XdqeMSVuE6al2wplDmkxE60rbBoH70hSskG8=";
+    };
+    date = "2025-01-06";
+  };
   mpv-skipsilence = {
     pname = "mpv-skipsilence";
     version = "5ae7c3b6f927e728c22fc13007265682d1ecf98c";

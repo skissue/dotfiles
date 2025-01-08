@@ -49,3 +49,8 @@ fetch.github = "skissue/org-overdrive"
 [mpv-skipsilence]
 src.git = "https://codeberg.org/ferreum/mpv-skipsilence"
 fetch.git = "https://codeberg.org/ferreum/mpv-skipsilence"
+
+[gptel-tooluse]
+src.git = "https://github.com/karthink/gptel"
+src.branch = "feature-tool-use"
+fetch.github = "karthink/gptel"
