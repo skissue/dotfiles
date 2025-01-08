@@ -1140,6 +1140,88 @@ uses the symbol name as the default description, as well as a
   (setf (alist-get 'org-mode gptel-response-prefix-alist)
         "-----\n=@ai:=\n"))
 
+(after! gptel
+  (gptel-make-tool
+   :name "read_file"
+   :description "Read the contents of a file"
+   :args (list '(:name "path"
+                       :type "string"
+                       :description "Path to the file to read. Supports relative paths and ~."))
+   :category "filesystem"
+   :include t
+   :confirm t
+   :function (lambda (path)
+               (with-temp-buffer
+                 (insert-file-contents (expand-file-name path))
+                 (buffer-string))))
+  (gptel-make-tool
+   :name "create_file"
+   :description "Create a new file with specified content"
+   :args (list '(:name "path"
+                       :type "string"
+                       :description "Path to the new file. Supports relative paths and ~.")
+               '(:name "content"
+                       :type "string"
+                       :description "Content to write to the file"))
+   :category "filesystem"
+   :confirm t
+   :function (lambda (path content)
+               (let ((expanded-path (expand-file-name path)))
+                 (if (file-exists-p expanded-path)
+                     (error "File already exists: %s" expanded-path)
+                   (with-temp-file expanded-path
+                     (insert content))
+                   (format "File created successfully: %s" path)))))
+  (gptel-make-tool
+   :name "create_directory"
+   :description "Create a new directory at the specified path"
+   :args (list '(:name "path"
+                       :type "string"
+                       :description "Path to the new directory. Supports relative paths and ~."))
+   :category "filesystem"
+   :confirm t
+   :function (lambda (path)
+               (let ((expanded-path (expand-file-name path)))
+                 (if (file-exists-p expanded-path)
+                     (error "Directory already exists: %s" expanded-path)
+                   (make-directory expanded-path t)
+                   (format "Directory created successfully: %s" path)))))
+  (gptel-make-tool
+   :name "list_directory"
+   :description "List the contents of a specified directory"
+   :args (list '(:name "path"
+                       :type "string"
+                       :description "Path to the directory. Supports relative paths and ~."))
+   :category "filesystem"
+   :include t
+   :confirm t
+   :function (lambda (path)
+               (let ((expanded-path (expand-file-name path)))
+                 (if (file-directory-p expanded-path)
+                     (string-join `(,(format "Contents of %s:" path)
+                                    ,@(directory-files expanded-path))
+                                  "\n")
+                   (error "%s is not a directory" expanded-path)))))
+
+  (gptel-make-tool
+   :name "clone_repository"
+   :description "Clone a Git repository"
+   :args (list '(:name "repo_uri"
+                       :type "string"
+                       :description "The URI of the Git repository to clone."))
+   :category "Programming"
+   :confirm t
+   :function (lambda (repo-uri)
+               (let* ((repo-name (file-name-nondirectory
+                                  (string-trim-right repo-uri "\\.git")))
+                      (target-dir (expand-file-name repo-name "~/git")))
+                 (if (file-exists-p target-dir)
+                     (error "Directory already exists: %s" target-dir)
+                   (unless (zerop (call-process "git" nil nil nil
+                                                "clone" repo-uri target-dir))
+                     (error "Failed to clone repository"))
+                   (format "Repository cloned successfully: %s" target-dir))))))
+
 (autoload #'gptel-quick "gptel-quick" "Explain or summarize region or thing at point with an LLM.
 
 QUERY-TEXT is the text being explained.  COUNT is the approximate
