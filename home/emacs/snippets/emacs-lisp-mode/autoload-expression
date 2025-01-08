@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: autoload expression
+# key: ale
+# --
+(autoload #'$1 "$2" "$3" $4)$0
