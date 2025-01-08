@@ -153,6 +153,7 @@ in {
         csv-mode
         haskell-ts-mode
         uiua-ts-mode
+        hyprlang-ts-mode
         # Org
         org-contrib
         org-modern

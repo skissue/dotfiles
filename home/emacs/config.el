@@ -2109,6 +2109,12 @@ This function is called by `org-babel-execute-src-block'.")
 (after! cdlatex
   (unbind-key "$" cdlatex-mode-map))
 
+(autoload #'hyprlang-ts-mode "hyprlang-ts-mode" "A mode for editing Hyprland configuration file." t)
+(add-to-list 'auto-mode-alist '("/hypr.*\\.conf\\'" . hyprlang-ts-mode))
+
+(after! hyprlang-ts-mode
+  (setopt hyprlang-ts-mode-indent-offset 4))
+
 (bind-key "m" #'osm my/open-map)
 
 (add-hook 'osm-mode-hook (lambda ()
