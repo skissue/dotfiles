@@ -916,26 +916,11 @@ uses the symbol name as the default description, as well as a
                (t (user-error "Could not find Nix environment file")))))
     (envrc-allow)))
 
-(defun my/add-tempel-capf ()
-  (push #'tempel-complete completion-at-point-functions))
-  
-(add-hook 'prog-mode-hook #'my/add-tempel-capf)
-(add-hook 'text-mode-hook #'my/add-tempel-capf)
+(add-hooks! '(prog-mode-hook text-mode-hook) #'yas-minor-mode)
 
-(after! tempel
-  (setopt tempel-trigger-prefix "<")
-  (bind-keys :map tempel-map
-             ("M-n" . tempel-next)
-             ("M-p" . tempel-previous)))
-
-(after! eglot
-  (eglot-tempel-mode))
-
-(defun my/eglot-setup-capf ()
-  "Add `tempel-complete' to `completion-at-point-functions' on Eglot activation.
-Needed since Eglot overrides my original default."
-  (push #'tempel-complete completion-at-point-functions))
-(add-hook 'eglot-managed-mode-hook #'my/eglot-setup-capf)
+(after! yasnippet
+  (setopt yas-snippet-dirs (list (expand-file-name
+                                  "snippets" user-emacs-directory))))
 
 (bind-keys :map my/git-map
            ("b" . magit-branch)

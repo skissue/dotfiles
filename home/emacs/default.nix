@@ -102,8 +102,7 @@ in {
         git-link
         envrc
         pulsar
-        tempel
-        eglot-tempel
+        yasnippet
         pdf-tools
         copilot
         copilot-chat
@@ -220,7 +219,7 @@ in {
     "emacs/init.elc".source = init;
     "emacs/package-quickstart.elc".source = quickstart-file;
     "emacs/private.json".text = builtins.toJSON private;
-    "emacs/tempel".source = mutable-link ./snippets;
+    "emacs/snippets".source = mutable-link ./snippets;
   };
   xdg.dataFile = {
     "revealjs".source = sources.revealjs.src;
