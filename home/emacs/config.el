@@ -1096,7 +1096,9 @@ uses the symbol name as the default description, as well as a
 
 (bind-keys ("C-c a" . gptel-menu)
            :map my/buffer-map
-           ("A" . gptel-add))
+           ("A" . gptel-add)
+           :map my/open-map
+           ("g" . gptel))
 
 (add-hook 'gptel-post-stream-hook #'gptel-auto-scroll)
 (add-hook 'gptel-post-response-functions #'gptel-end-of-response)
@@ -1134,9 +1136,9 @@ uses the symbol name as the default description, as well as a
                                          granite3.1-dense:latest))
           gptel-default-mode #'org-mode)
   (setf (alist-get 'org-mode gptel-prompt-prefix-alist)
-        "@me:\n-----\n")
+        "-----\n=@me:=\n")
   (setf (alist-get 'org-mode gptel-response-prefix-alist)
-        "@ai:\n-----\n"))
+        "-----\n=@ai:=\n"))
 
 (autoload #'gptel-quick "gptel-quick" "Explain or summarize region or thing at point with an LLM.
 
