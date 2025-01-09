@@ -1550,6 +1550,7 @@ Persist undo history; despite the name, this works independently of Undo Fu and 
 #+end_src
 
 *** Tools
+Tools for manipulating the filesystem.
 #+begin_src elisp
   (after! gptel
     (gptel-make-tool
@@ -1612,9 +1613,10 @@ Persist undo history; despite the name, this works independently of Undo Fu and 
                        (string-join `(,(format "Contents of %s:" path)
                                       ,@(directory-files expanded-path))
                                     "\n")
-                     (error "%s is not a directory" expanded-path)))))
+                     (error "%s is not a directory" expanded-path))))))
 #+end_src
 
+Tools related to programming.
 #+begin_src elisp
   (after! gptel
     (gptel-make-tool
@@ -1666,6 +1668,32 @@ Persist undo history; despite the name, this works independently of Undo Fu and 
                    (add-hook 'compilation-start-hook #'setup 50)
                    (recompile)
                    (remove-hook 'compilation-start-hook #'setup)))))
+#+end_src
+
+Tools for accessing the Internet.
+#+begin_src elisp
+  (after! gptel
+    (gptel-make-tool
+     :name "fetch"
+     :description "Fetch a URL from the Internet and extract its content as Markdown"
+     :args (list '(:name "url"
+                         :type "string"
+                         :description "URL to fetch"))
+     :category "Internet"
+     :async t
+     :function (lambda (callback url)
+                 (url-retrieve
+                  (concat
+                   "https://urltomarkdown.herokuapp.com/?title=true&links=true&url="
+                   (url-hexify-string url))
+                  (lambda (status)
+                   (goto-char (point-min))
+                   (re-search-forward "\n\n" nil t)
+                   (thread-last
+                     (buffer-substring (point) (point-max))
+                     (string-trim)
+                     (funcall callback)))
+                  nil :silent :no-cookies))))
 #+end_src
 
 *** gptel-quick

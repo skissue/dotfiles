@@ -1201,7 +1201,7 @@ uses the symbol name as the default description, as well as a
                      (string-join `(,(format "Contents of %s:" path)
                                     ,@(directory-files expanded-path))
                                   "\n")
-                   (error "%s is not a directory" expanded-path)))))
+                   (error "%s is not a directory" expanded-path))))))
 
 (after! gptel
   (gptel-make-tool
@@ -1253,6 +1253,29 @@ uses the symbol name as the default description, as well as a
                  (add-hook 'compilation-start-hook #'setup 50)
                  (recompile)
                  (remove-hook 'compilation-start-hook #'setup)))))
+
+(after! gptel
+  (gptel-make-tool
+   :name "fetch"
+   :description "Fetch a URL from the Internet and extract its content as Markdown"
+   :args (list '(:name "url"
+                       :type "string"
+                       :description "URL to fetch"))
+   :category "Internet"
+   :async t
+   :function (lambda (callback url)
+               (url-retrieve
+                (concat
+                 "https://urltomarkdown.herokuapp.com/?title=true&links=true&url="
+                 (url-hexify-string url))
+                (lambda (status)
+                 (goto-char (point-min))
+                 (re-search-forward "\n\n" nil t)
+                 (thread-last
+                   (buffer-substring (point) (point-max))
+                   (string-trim)
+                   (funcall callback)))
+                nil :silent :no-cookies))))
 
 (autoload #'gptel-quick "gptel-quick" "Explain or summarize region or thing at point with an LLM.
 
