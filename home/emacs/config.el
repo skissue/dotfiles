@@ -2237,13 +2237,14 @@ This function is called by `org-babel-execute-src-block'.")
 
 (after! tex
   (TeX-source-correlate-mode)
-  (setopt TeX-engine 'luatex
-          TeX-parse-self t
-          TeX-auto-save t
-          TeX-electric-math '("\\(" . "\\)")
-          TeX-newline-function #'reindent-then-newline-and-indent
-          TeX-clean-confirm nil
-          TeX-view-program-selection '((output-pdf "PDF Tools"))
+  (setopt TeX-engine                        'luatex
+          TeX-parse-self                    t
+          TeX-auto-save                     t
+          TeX-output-dir                    "build"
+          TeX-electric-math                 '("\\(" . "\\)")
+          TeX-newline-function              #'reindent-then-newline-and-indent
+          TeX-clean-confirm                 nil
+          TeX-view-program-selection        '((output-pdf "PDF Tools"))
           TeX-source-correlate-start-server t))
 
 (after! cdlatex
