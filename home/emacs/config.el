@@ -1203,12 +1203,13 @@ uses the symbol name as the default description, as well as a
                                   "\n")
                    (error "%s is not a directory" expanded-path)))))
 
+(after! gptel
   (gptel-make-tool
    :name "clone_repository"
    :description "Clone a Git repository"
    :args (list '(:name "repo_uri"
                        :type "string"
-                       :description "The URI of the Git repository to clone."))
+                       :description "The URI of the Git repository to clone"))
    :category "Programming"
    :confirm t
    :function (lambda (repo-uri)
@@ -1220,7 +1221,38 @@ uses the symbol name as the default description, as well as a
                    (unless (zerop (call-process "git" nil nil nil
                                                 "clone" repo-uri target-dir))
                      (error "Failed to clone repository"))
-                   (format "Repository cloned successfully: %s" target-dir))))))
+                   (format "Repository cloned successfully: %s" target-dir)))))
+  (gptel-make-tool
+   :name "compile"
+   :description "Run a user-specified compile command and return the output"
+   :args nil
+   :category "Programming"
+   :include t
+   :async t
+   :function (lambda (callback)
+               (cl-flet
+                   ((setup (proc)
+                      ;; Wrap sentinel to invoke callback with content on exit.
+                      (let* ((orig-sen (process-sentinel proc))
+                             (sen
+                              (lambda (prog msg)
+                                (funcall orig-sen proc msg)
+                                (when (eq (process-status proc) 'exit)
+                                  (with-current-buffer (process-buffer proc)
+                                    (goto-char (point-min))
+                                    ;; Skip header line.
+                                    (re-search-forward
+                                     "^-\\*- mode: compilation.* -\\*-$"
+                                     nil t)
+                                    (thread-last
+                                      (buffer-substring (point) (point-max))
+                                      (string-trim)
+                                      (funcall callback)))))))
+                        (set-process-sentinel proc sen))))
+                 ;; Temporarily add setup function to process start hook.
+                 (add-hook 'compilation-start-hook #'setup 50)
+                 (recompile)
+                 (remove-hook 'compilation-start-hook #'setup)))))
 
 (autoload #'gptel-quick "gptel-quick" "Explain or summarize region or thing at point with an LLM.
 
