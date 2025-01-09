@@ -1128,13 +1128,14 @@ uses the symbol name as the default description, as well as a
               deepseek/deepseek-chat
               anthropic/claude-3-haiku:beta
               anthropic/claude-3.5-sonnet:beta))
-  (setopt gptel-model        'granite3.1-dense:latest
-          gptel-backend      (gptel-make-ollama "Ollama"
-                               :host "windstorm:11434"
-                               :stream t
-                               :models '(llama3.1:latest
-                                         granite3.1-dense:latest))
-          gptel-default-mode #'org-mode)
+  (setopt gptel-model           'granite3.1-dense:latest
+          gptel-backend         (gptel-make-ollama "Ollama"
+                                  :host "windstorm:11434"
+                                  :stream t
+                                  :models '(llama3.1:latest
+                                            granite3.1-dense:latest))
+          gptel-default-mode    #'org-mode
+          gptel-expert-commands t)
   (setf (alist-get 'org-mode gptel-prompt-prefix-alist)
         "-----\n=@me:=\n")
   (setf (alist-get 'org-mode gptel-response-prefix-alist)
