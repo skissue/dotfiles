@@ -553,8 +553,8 @@ Reduce fringe size on the right (left is used for various indicators).
 #+begin_src elisp
   (custom-set-faces
    '(default           ((t (:font "Iosevka SS18"       :height 140))))
-   '(fixed-pitch       ((t (:font "Iosevka Fixed SS18" :height 140))))
-   '(fixed-pitch-serif ((t (:font "Iosevka Slab"       :height 140))))
+   '(fixed-pitch       ((t (:font "Iosevka Fixed SS18" :height unspecified))))
+   '(fixed-pitch-serif ((t (:font "Iosevka Slab"       :height unspecified))))
    '(variable-pitch    ((t (:font "Iosevka Aile"       :height 140)))))
 #+end_src
 

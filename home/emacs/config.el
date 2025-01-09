@@ -353,8 +353,8 @@ where it was when you previously visited the same file."
 
 (custom-set-faces
  '(default           ((t (:font "Iosevka SS18"       :height 140))))
- '(fixed-pitch       ((t (:font "Iosevka Fixed SS18" :height 140))))
- '(fixed-pitch-serif ((t (:font "Iosevka Slab"       :height 140))))
+ '(fixed-pitch       ((t (:font "Iosevka Fixed SS18" :height unspecified))))
+ '(fixed-pitch-serif ((t (:font "Iosevka Slab"       :height unspecified))))
  '(variable-pitch    ((t (:font "Iosevka Aile"       :height 140)))))
 
 (autoload #'nerd-icons-set-font "nerd-icons" "Modify nerd font charsets to use FONT-FAMILY for FRAME." nil)
