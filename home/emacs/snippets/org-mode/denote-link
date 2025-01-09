@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: denote link
+# key: dl
+# type: command
+# --
+(call-interactively #'denote-link)
