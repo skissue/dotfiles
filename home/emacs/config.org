@@ -701,7 +701,7 @@ Some personal prefix keymaps that I bind to throughout my config; I bind them to
       (define-prefix-command map)))
 
   (bind-keys ("C-c b" . my/buffer-map)
-             ("C-c g" . my/git-map)
+             ("C-c v" . my/git-map)
              ("C-c n" . my/notes-map)
              ("C-c o" . my/open-map)
              ("C-c t" . my/toggle-map))
@@ -737,7 +737,6 @@ There's no built-in function to delete the current file, so here's mine.
 
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh
         meow-use-clipboard t
-        meow-keypad-ctrl-meta-prefix ?G
         meow-keypad-self-insert-undefined nil
         auto-save-visited-predicate (lambda ()
                                       (not (meow-insert-mode-p))))
@@ -1270,7 +1269,7 @@ Command to enable Direnv for Nix.
              ("B" . magit-blame)
              ("c" . magit-commit)
              ("C" . magit-clone)
-             ("g" . magit-status)
+             ("v" . magit-status)
              :map project-prefix-map
              ("m" . magit-project-status))
 

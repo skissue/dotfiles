@@ -459,7 +459,7 @@ where it was when you previously visited the same file."
     (define-prefix-command map)))
 
 (bind-keys ("C-c b" . my/buffer-map)
-           ("C-c g" . my/git-map)
+           ("C-c v" . my/git-map)
            ("C-c n" . my/notes-map)
            ("C-c o" . my/open-map)
            ("C-c t" . my/toggle-map))
@@ -486,7 +486,6 @@ where it was when you previously visited the same file."
 
 (setq meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh
       meow-use-clipboard t
-      meow-keypad-ctrl-meta-prefix ?G
       meow-keypad-self-insert-undefined nil
       auto-save-visited-predicate (lambda ()
                                     (not (meow-insert-mode-p))))
@@ -932,7 +931,7 @@ uses the symbol name as the default description, as well as a
            ("B" . magit-blame)
            ("c" . magit-commit)
            ("C" . magit-clone)
-           ("g" . magit-status)
+           ("v" . magit-status)
            :map project-prefix-map
            ("m" . magit-project-status))
 
