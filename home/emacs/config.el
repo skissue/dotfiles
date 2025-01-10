@@ -250,50 +250,6 @@ where it was when you previously visited the same file."
 (after! vertico
   (minibuffer-depth-indicate-mode))
 
-(when (daemonp)
-  (setq default-minibuffer-frame (make-frame '((window-system . pgtk)
-                                               (minibuffer . t)
-                                               (title . "MINIBUFFER"))))
-  (with-selected-frame default-minibuffer-frame
-    (switch-to-buffer (get-buffer-create " *empty*")))
-  (with-current-buffer " *empty*"
-    (setq-local mode-line-format nil))
-
-  (defsubst my/toggle-minibuffer-workspace ()
-    "Toggle Hyprland's `minibuffer' special workspace."
-    (call-process "hyprctl" nil 0 nil
-                  "--instance" "0"
-                  "dispatch" "togglespecialworkspace" "minibuffer"))
-
-  (defun my/minibuffer-workspace-active-p ()
-    "Return non-nil if the minibuffer Hyprland workspace is currently active."
-    (let* ((json (with-temp-buffer
-                   ;; `hyprctl activeworkspace' ignores special workspaces.
-                   (call-process "hyprctl" nil t nil
-                                 "--instance" "0"
-                                 "activewindow" "-j")
-                   (goto-char (point-min))
-                   (json-parse-buffer :object-type 'alist)))
-           (workspace (map-nested-elt json '(workspace name))))
-      (string= workspace "special:minibuffer")))
-
-  (define-advice completing-read (:around (fn &rest args) use-popup-frame)
-    "Activate a separate minibuffer frame while reading from the minibuffer."
-    (let ((orig-frame (selected-frame)))
-      (unwind-protect
-           (progn
-            (when (zerop (minibuffer-depth))
-              (setq my/minibuffer-selected-window (selected-window)))
-            ;; Could already be active if in a recursive minibuffer.
-            (unless (my/minibuffer-workspace-active-p)
-              (my/toggle-minibuffer-workspace))
-            (select-frame-set-input-focus default-minibuffer-frame)
-            (apply fn args))
-        (when (and (zerop (minibuffer-depth))
-                   (my/minibuffer-workspace-active-p))
-          (my/toggle-minibuffer-workspace)
-          (select-frame-set-input-focus orig-frame))))))
-
 (setq comint-prompt-read-only t)
 
 (setq compilation-always-kill t
