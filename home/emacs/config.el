@@ -674,9 +674,39 @@ See `describe-repeat-maps' for a list of all repeatable commands."
 
 (vertico-mode)
 
+(defvar my/vertico-popup--frame nil
+    "Popup frame currently showing Vertico.")
+
+(define-minor-mode my/vertico-popup-mode
+  "Display Vertico in a popup frame."
+  :global t)
+
+(defun my/vertico-popup--delete-frame ()
+  "Delete frame after minibuffer exit."
+  ;; Runs before minibuffer is closed, so depth will still be one on last
+  ;; minibuffer.
+  (when (and (= 1 (minibuffer-depth))
+             my/vertico-popup--frame)
+    (delete-frame my/vertico-popup--frame)
+    (setq my/vertico-popup--frame nil)))
+
+(defun my/vertico-popup--setup ()
+  "Setup frame display."
+  (unless my/vertico-popup--frame
+    (setq my/vertico-popup--frame
+          (make-frame '((name . "*vertico*")
+                        (minibuffer . only)))))
+  (select-frame-set-input-focus my/vertico-popup--frame)
+  (add-hook 'minibuffer-exit-hook #'my/vertico-popup--delete-frame))
+
+(after! vertico
+  (cl-defmethod vertico--setup :after (&context (my/vertico-popup-mode (eql t)))
+      (my/vertico-popup--setup)))
+
 (after! vertico
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
   (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
+  (my/vertico-popup-mode)
 
   (bind-keys ("M-S-s" . vertico-suspend)
              ("M-S-r" . vertico-repeat)
@@ -688,7 +718,7 @@ See `describe-repeat-maps' for a list of all repeatable commands."
              ("M-P" . vertico-repeat-previous)
              ("M-N" . vertico-repeat-next))
 
-  (setopt vertico-count 20
+  (setopt vertico-count 12
           vertico-cycle t
           vertico-resize nil
           vertico-quick1 "arstneio"
