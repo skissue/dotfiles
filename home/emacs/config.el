@@ -2265,6 +2265,9 @@ This function is called by `org-babel-execute-src-block'.")
 (autoload #'hyprlang-ts-mode "hyprlang-ts-mode" "A mode for editing Hyprland configuration file." t)
 (add-to-list 'auto-mode-alist '("/hypr.*\\.conf\\'" . hyprlang-ts-mode))
 
+(after! org
+  (push '("hypr" . hyprlang-ts) org-src-lang-modes))
+
 (after! hyprlang-ts-mode
   (setopt hyprlang-ts-mode-indent-offset 4))
 
