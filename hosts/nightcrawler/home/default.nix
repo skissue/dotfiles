@@ -10,8 +10,6 @@
   '';
 
   programs.hyprlock.settings = {
-    general = {
-      enable_fingerprint = true;
-    };
+    auth.fingerprint.enabled = true;
   };
 }
