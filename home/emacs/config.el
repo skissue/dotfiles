@@ -1145,6 +1145,14 @@ uses the symbol name as the default description, as well as a
   (setf (alist-get 'org-mode gptel-response-prefix-alist)
         "-----\n=@ai:=\n"))
 
+(el-patch-feature gptel)
+(el-patch-defvar gptel--openai
+  (el-patch-remove (gptel-make-openai
+                       "ChatGPT"
+                     :key 'gptel-api-key
+                     :stream t
+                     :models gptel--openai-models)))
+
 (after! gptel
   (gptel-make-tool
    :name "read_file"
