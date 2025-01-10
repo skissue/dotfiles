@@ -673,6 +673,21 @@ This is such an important addition to Emacs.
     (add-hook 'dired-mode-hook #'nerd-icons-dired-mode))
 #+end_src
 
+** Transient
+Bind escape to exiting one level of transient menus.
+#+begin_src elisp
+  (after! transient
+    (bind-key "<escape>" #'transient-quit-one transient-base-map))
+#+end_src
+
+Display buffer action to show transients in a new popup frame. Hyprland window rules are then used to position it floating at the bottom-right of the screen.
+#+begin_src elisp
+  (after! transient
+    (setopt transient-display-buffer-action
+            '(display-buffer-pop-up-frame
+              (pop-up-frame-parameters (name . "*transient*")))))
+#+end_src
+
 * Keybindings
 ** Keymaps
 Some personal prefix keymaps that I bind to throughout my config; I bind them to leader keys here for clarity.
@@ -920,12 +935,6 @@ Map to repeat sexp-jumping binds.
 
   (custom-set-faces
    '(aw-leading-char-face ((t :inherit error :height 480))))
-#+end_src
-
-** Escape
-#+begin_src elisp
-  (after! transient
-    (bind-key "<escape>" #'transient-quit-one transient-base-map))
 #+end_src
 
 ** Avy

@@ -442,6 +442,14 @@ where it was when you previously visited the same file."
 (after! dired
   (add-hook 'dired-mode-hook #'nerd-icons-dired-mode))
 
+(after! transient
+  (bind-key "<escape>" #'transient-quit-one transient-base-map))
+
+(after! transient
+  (setopt transient-display-buffer-action
+          '(display-buffer-pop-up-frame
+            (pop-up-frame-parameters (name . "*transient*")))))
+
 (dolist (map '(my/buffer-map
                my/git-map
                my/notes-map
@@ -657,9 +665,6 @@ See `describe-repeat-maps' for a list of all repeatable commands."
 
 (custom-set-faces
  '(aw-leading-char-face ((t :inherit error :height 480))))
-
-(after! transient
-  (bind-key "<escape>" #'transient-quit-one transient-base-map))
 
 (bind-keys ([remap goto-char] . avy-goto-char-timer)
            :map goto-map
