@@ -221,6 +221,37 @@ where it was when you previously visited the same file."
     (sp-local-pair "'" nil :actions nil)
     (sp-local-pair "`" "'" :when '(sp-in-string-p sp-in-comment-p))))
 
+(defvar-keymap my/sp-repeat-map
+  :repeat (:continue (negative-argument meow-universal-argument))
+  "f" #'sp-forward-sexp
+  "b" #'sp-backward-sexp
+  "d" #'sp-down-sexp
+  "a" #'sp-backward-down-sexp
+  "D" #'sp-beginning-of-sexp
+  "A" #'sp-end-of-sexp
+  "e" #'sp-up-sexp
+  "u" #'sp-backward-up-sexp
+  "n" #'sp-next-sexp
+  "p" #'sp-previous-sexp
+  "k" #'sp-kill-sexp
+  "w" #'sp-copy-sexp
+  "M-<delete>" #'sp-unwrap-sexp
+  "M-<backspace>" #'sp-backward-unwrap-sexp
+  "<right>" #'sp-forward-slurp-sexp
+  "<left>" #'sp-forward-barf-sexp
+  "M-D" #'sp-splice-sexp
+  "<delete>" #'sp-splice-sexp-killing-forward
+  "S-<backspace>" #'sp-splice-sexp-killing-around
+  "]" #'sp-select-next-thing
+  "SPC" #'sp-mark-sexp
+  "F" #'sp-forward-symbol
+  "B" #'sp-backward-symbol
+  "(" #'sp-wrap-round
+  "[" #'sp-wrap-square
+  "{" #'sp-wrap-curl
+  ";" #'negative-argument
+  "U" #'meow-universal-argument)
+
 (setq-default scroll-conservatively 101
               scroll-margin 4
               scroll-preserve-screen-position t
