@@ -722,13 +722,20 @@ See `describe-repeat-maps' for a list of all repeatable commands."
   :global t)
 
 (defun my/vertico-popup--delete-frame ()
-  "Delete frame after minibuffer exit."
+  "Delete frame and cleanup after minibuffer exit."
   ;; Runs before minibuffer is closed, so depth will still be one on last
   ;; minibuffer.
   (when (and my/vertico-popup--frame
              (= 1 (minibuffer-depth)))
     (delete-frame my/vertico-popup--frame)
-    (setq my/vertico-popup--frame nil)))
+    (setq my/vertico-popup--frame nil)
+    (remove-hook 'pre-redisplay-functions #'my/vertico-popup--no-resize)))
+
+(defun my/vertico-popup--no-resize (_win)
+  "Prevent resizing of minibuffer on original frame.
+Hooks in to `pre-redisplay-functions' during completion."
+  (when (minibufferp)
+    (setq-local resize-mini-windows nil)))
 
 (defun my/vertico-popup--setup ()
   "Setup frame display."
@@ -744,10 +751,11 @@ See `describe-repeat-maps' for a list of all repeatable commands."
     ;; (since that would trigger redisplay).
     (sit-for 0.01)
     (setq-local vertico-count (window-text-height)))
-  (add-hook 'minibuffer-exit-hook #'my/vertico-popup--delete-frame))
+  (add-hook 'minibuffer-exit-hook #'my/vertico-popup--delete-frame)
+  (add-hook 'pre-redisplay-functions #'my/vertico-popup--no-resize))
 
 (after! vertico
-  (cl-defmethod vertico--setup :after (&context (my/vertico-popup-mode (eql t)))
+  (cl-defmethod vertico--setup :before (&context (my/vertico-popup-mode (eql t)))
     (my/vertico-popup--setup)))
 
 (after! vertico
