@@ -701,7 +701,9 @@ See `describe-repeat-maps' for a list of all repeatable commands."
 
 (after! vertico
   (cl-defmethod vertico--setup :after (&context (my/vertico-popup-mode (eql t)))
-      (my/vertico-popup--setup)))
+    (my/vertico-popup--setup))
+  (cl-defmethod vertico--resize (&context (my/vertico-popup-mode (eql t)))
+    (setq vertico-count (window-text-height))))
 
 (after! vertico
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
@@ -718,8 +720,7 @@ See `describe-repeat-maps' for a list of all repeatable commands."
              ("M-P" . vertico-repeat-previous)
              ("M-N" . vertico-repeat-next))
 
-  (setopt vertico-count 12
-          vertico-cycle t
+  (setopt vertico-cycle t
           vertico-resize nil
           vertico-quick1 "arstneio"
           vertico-quick2 vertico-quick1))
