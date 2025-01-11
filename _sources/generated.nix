@@ -51,15 +51,15 @@
   };
   gptel-tooluse = {
     pname = "gptel-tooluse";
-    version = "f1f65def27dd12f53e2523f4edf2994112356653";
+    version = "3fefce47be1d14a7966bb175148cec6938d60f80";
     src = fetchFromGitHub {
       owner = "karthink";
       repo = "gptel";
-      rev = "f1f65def27dd12f53e2523f4edf2994112356653";
+      rev = "3fefce47be1d14a7966bb175148cec6938d60f80";
       fetchSubmodules = false;
-      sha256 = "sha256-7ITffw/XdqeMSVuE6al2wplDmkxE60rbBoH70hSskG8=";
+      sha256 = "sha256-IzYU0V+z3PFY3yT2IKYiPv9x0DGmAu7Ha5PlTfS4sMs=";
     };
-    date = "2025-01-06";
+    date = "2025-01-10";
   };
   mpv-skipsilence = {
     pname = "mpv-skipsilence";
@@ -170,5 +170,17 @@
       sha256 = "sha256-0RAJ/Td3G7FDvzf7t8csNs/uc07WUPGvMo8ako5iyl0=";
     };
     date = "2024-12-07";
+  };
+  ultra-scroll = {
+    pname = "ultra-scroll";
+    version = "c01f304c0d6c80a0db684887d1bd4131bd7943a6";
+    src = fetchFromGitHub {
+      owner = "jdtsmith";
+      repo = "ultra-scroll";
+      rev = "c01f304c0d6c80a0db684887d1bd4131bd7943a6";
+      fetchSubmodules = false;
+      sha256 = "sha256-CP/WoLpN2oAT/NKNk/tmzlCqkzT1WbadwTYzqaSM/vc=";
+    };
+    date = "2025-01-11";
   };
 }

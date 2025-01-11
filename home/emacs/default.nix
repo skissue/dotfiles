@@ -81,6 +81,7 @@ in {
         spacious-padding
         eldoc-box
         indent-bars
+        ultra-scroll
         # Completion
         vertico
         orderless

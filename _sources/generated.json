@@ -81,7 +81,7 @@
     },
     "gptel-tooluse": {
         "cargoLocks": null,
-        "date": "2025-01-06",
+        "date": "2025-01-10",
         "extract": null,
         "name": "gptel-tooluse",
         "passthru": null,
@@ -93,11 +93,11 @@
             "name": null,
             "owner": "karthink",
             "repo": "gptel",
-            "rev": "f1f65def27dd12f53e2523f4edf2994112356653",
-            "sha256": "sha256-7ITffw/XdqeMSVuE6al2wplDmkxE60rbBoH70hSskG8=",
+            "rev": "3fefce47be1d14a7966bb175148cec6938d60f80",
+            "sha256": "sha256-IzYU0V+z3PFY3yT2IKYiPv9x0DGmAu7Ha5PlTfS4sMs=",
             "type": "github"
         },
-        "version": "f1f65def27dd12f53e2523f4edf2994112356653"
+        "version": "3fefce47be1d14a7966bb175148cec6938d60f80"
     },
     "mpv-skipsilence": {
         "cargoLocks": null,
@@ -275,5 +275,25 @@
             "url": "https://git.sr.ht/~meow_king/typst-ts-mode"
         },
         "version": "1367003e2ad55a2f6f9e43178584683028ab56e9"
+    },
+    "ultra-scroll": {
+        "cargoLocks": null,
+        "date": "2025-01-11",
+        "extract": null,
+        "name": "ultra-scroll",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "jdtsmith",
+            "repo": "ultra-scroll",
+            "rev": "c01f304c0d6c80a0db684887d1bd4131bd7943a6",
+            "sha256": "sha256-CP/WoLpN2oAT/NKNk/tmzlCqkzT1WbadwTYzqaSM/vc=",
+            "type": "github"
+        },
+        "version": "c01f304c0d6c80a0db684887d1bd4131bd7943a6"
     }
 }

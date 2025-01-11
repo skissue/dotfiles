@@ -332,6 +332,8 @@ where it was when you previously visited the same file."
   (let (display-buffer-base-action)
     (apply fn args)))
 
+(add-hook 'my/first-input-hook #'ultra-scroll-mode)
+
 (global-visual-line-mode)
 
 (setq frame-title-format '("" "%b - Emacs"))

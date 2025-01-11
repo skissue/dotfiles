@@ -54,3 +54,7 @@ fetch.git = "https://codeberg.org/ferreum/mpv-skipsilence"
 src.git = "https://github.com/karthink/gptel"
 src.branch = "feature-tool-use"
 fetch.github = "karthink/gptel"
+
+[ultra-scroll]
+src.git = "https://github.com/jdtsmith/ultra-scroll"
+fetch.github = "jdtsmith/ultra-scroll"

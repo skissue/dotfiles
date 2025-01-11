@@ -39,4 +39,5 @@ in {
       version = "0.1.0";
       packageRequires = with epkgs; [asyncloop pcre2el request dash];
     });
+  ultra-scroll = melpaBuild (sources.ultra-scroll // {version = "0.2.1";});
 }

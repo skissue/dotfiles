@@ -519,6 +519,11 @@ Deal with various things that don't play nice with this setup.
       (apply fn args)))
 #+end_src
 
+** =ultra-scroll=
+#+begin_src elisp
+  (add-hook 'my/first-input-hook #'ultra-scroll-mode)
+#+end_src
+
 * Appearance
 ** Word-wrap
 Always word-wrap and act on visual lines.
