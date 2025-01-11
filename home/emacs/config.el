@@ -252,12 +252,21 @@ where it was when you previously visited the same file."
   ";" #'negative-argument
   "U" #'meow-universal-argument)
 
-(setq-default scroll-conservatively 101
-              scroll-margin 4
-              scroll-preserve-screen-position t
-              next-screen-context-lines 4
-              auto-window-vscroll nil
-              fast-but-imprecise-scrolling t)
+(setq scroll-conservatively 101
+      scroll-margin 0
+      scroll-preserve-screen-position t
+      next-screen-context-lines 4
+      redisplay-skip-fontification-on-input t
+      fast-but-imprecise-scrolling t)
+
+(add-hook 'my/first-input-hook #'ultra-scroll-mode)
+
+(after! pixel-scroll
+  (bind-keys :map pixel-scroll-precision-mode-map
+             ;; For some reason, these are swapped 💀.
+             ([remap scroll-up-command] . pixel-scroll-interpolate-down)
+             ([remap scroll-down-command] . pixel-scroll-interpolate-up))
+  (setq pixel-scroll-precision-interpolate-page t))
 
 (setq-default indent-tabs-mode nil
               sentence-end-double-space nil
@@ -331,8 +340,6 @@ where it was when you previously visited the same file."
 (define-advice elisp--company-doc-buffer (:around (fn &rest args) popup-fix)
   (let (display-buffer-base-action)
     (apply fn args)))
-
-(add-hook 'my/first-input-hook #'ultra-scroll-mode)
 
 (global-visual-line-mode)
 
