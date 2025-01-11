@@ -725,8 +725,8 @@ See `describe-repeat-maps' for a list of all repeatable commands."
   "Delete frame after minibuffer exit."
   ;; Runs before minibuffer is closed, so depth will still be one on last
   ;; minibuffer.
-  (when (and (= 1 (minibuffer-depth))
-             my/vertico-popup--frame)
+  (when (and my/vertico-popup--frame
+             (= 1 (minibuffer-depth)))
     (delete-frame my/vertico-popup--frame)
     (setq my/vertico-popup--frame nil)))
 
@@ -735,15 +735,20 @@ See `describe-repeat-maps' for a list of all repeatable commands."
   (unless my/vertico-popup--frame
     (setq my/vertico-popup--frame
           (make-frame '((name . "*vertico*")
-                        (minibuffer . only)))))
-  (select-frame-set-input-focus my/vertico-popup--frame)
+                        (minibuffer . only))))
+    (select-window (minibuffer-window my/vertico-popup--frame))
+    ;; HACK: force a redisplay and wait for the WM so that Emacs gets updated
+    ;; information on the actual frame/window size. This allows for computing
+    ;; `vertico-count' as well as preventing jarring repositioning of elements,
+    ;; which would otherwise get updated information only after the first input
+    ;; (since that would trigger redisplay).
+    (sit-for 0.01)
+    (setq-local vertico-count (window-text-height)))
   (add-hook 'minibuffer-exit-hook #'my/vertico-popup--delete-frame))
 
 (after! vertico
   (cl-defmethod vertico--setup :after (&context (my/vertico-popup-mode (eql t)))
-    (my/vertico-popup--setup))
-  (cl-defmethod vertico--resize (&context (my/vertico-popup-mode (eql t)))
-    (setq vertico-count (window-text-height))))
+    (my/vertico-popup--setup)))
 
 (after! vertico
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
