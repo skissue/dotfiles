@@ -643,7 +643,10 @@ See `describe-repeat-maps' for a list of all repeatable commands."
 (repeat-mode)
 
 (after! repeat
-  (setq repeat-exit-timeout 3))
+  (setq repeat-exit-timeout 3
+        repeat-echo-function (lambda (&rest args)
+                               (when (= 0 (minibuffer-depth))
+                                 (apply #'repeat-echo-message args)))))
 
 (defvar-keymap my/sexp-repeat-map
   :repeat t

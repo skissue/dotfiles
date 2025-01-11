@@ -910,10 +910,13 @@ Force lazy-load via ~el-patch~.
   (repeat-mode)
 #+end_src
 
-Customizations.
+Customizations. Only show a message when outside the minibuffer, since inside the minibuffer it's distracting.
 #+begin_src elisp
   (after! repeat
-    (setq repeat-exit-timeout 3))
+    (setq repeat-exit-timeout 3
+          repeat-echo-function (lambda (&rest args)
+                                 (when (= 0 (minibuffer-depth))
+                                   (apply #'repeat-echo-message args)))))
 #+end_src
 
 Map to repeat sexp-jumping binds.
