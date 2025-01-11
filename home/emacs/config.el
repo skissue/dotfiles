@@ -710,8 +710,8 @@ See `describe-repeat-maps' for a list of all repeatable commands."
   (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
   (my/vertico-popup-mode)
 
-  (bind-keys ("M-S-s" . vertico-suspend)
-             ("M-S-r" . vertico-repeat)
+  (bind-keys ("M-S" . vertico-suspend)
+             ("M-R" . vertico-repeat)
              :map vertico-map
              ("RET" . vertico-directory-enter)
              ("DEL" . vertico-directory-delete-char)
