@@ -2632,6 +2632,29 @@ Don't evaluate code blocks when exporting, and include both the code and results
           "both"))
 #+end_src
 
+*** Patches
+The bleeding-edge development branch of Org that I'm using has a small bug in these functions that doesn't account for export backends that have a parent that's defined inline rather than being a symbol key, which occurs with [[*Gnuplot][Gnuplot babel blocks]] (alpha software, alpha problems ¯\_(ツ)_/¯). Two quick patches to fix them 👍.
+#+begin_src elisp
+  (el-patch-feature ox)
+  (after! ox
+    (el-patch-define-and-eval-template
+     (defun org-export-get-all-feature-conditions)
+     (while ...
+       (setq backend (el-patch-wrap 2 1
+                       (if (symbolp parent)
+                           (org-export-get-backend parent)
+                         parent)))
+       ...))
+    (el-patch-define-and-eval-template
+     (defun org-export-get-all-feature-implementations)
+     (while ...
+       (setq backend (el-patch-wrap 2 1
+                       (if (symbolp parent)
+                           (org-export-get-backend parent)
+                         parent)))
+       ...)))
+#+end_src
+
 *** Reveal.js
 #+begin_src elisp
   (after! ox
