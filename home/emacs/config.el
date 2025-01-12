@@ -753,7 +753,8 @@ Hooks in to `pre-redisplay-functions' during completion."
     ;; which would otherwise get updated information only after the first input
     ;; (since that would trigger redisplay).
     (sit-for 0.01)
-    (setq-local vertico-count (window-text-height)))
+    ;; One line is taken by the prompt.
+    (setq-local vertico-count (1- (window-text-height))))
   (add-hook 'minibuffer-exit-hook #'my/vertico-popup--delete-frame)
   (add-hook 'pre-redisplay-functions #'my/vertico-popup--no-resize))
 
