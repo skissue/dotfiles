@@ -2325,6 +2325,12 @@ This function is called by `org-babel-execute-src-block'.")
 (after! cdlatex
   (unbind-key "$" cdlatex-mode-map))
 
+(after! cdlatex
+  (push '(?B "\\mathbb" nil t t nil)
+        cdlatex-math-modify-alist)
+  (push '(?n "\\lVert ? \\rVert" nil nil nil nil)
+        cdlatex-math-modify-alist))
+
 (autoload #'hyprlang-ts-mode "hyprlang-ts-mode" "A mode for editing Hyprland configuration file." t)
 (add-to-list 'auto-mode-alist '("/hypr.*\\.conf\\'" . hyprlang-ts-mode))
 

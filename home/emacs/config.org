@@ -3017,6 +3017,15 @@ Unbind =$= from CDLaTeX's map because I want to use [[help:TeX-electric-math][Te
     (unbind-key "$" cdlatex-mode-map))
 #+end_src
 
+More CDLaTeX hotkeys.
+#+begin_src elisp
+  (after! cdlatex
+    (push '(?B "\\mathbb" nil t t nil)
+          cdlatex-math-modify-alist)
+    (push '(?n "\\lVert ? \\rVert" nil nil nil nil)
+          cdlatex-math-modify-alist))
+#+end_src
+
 ** Hyprlang
 #+begin_src elisp
   (autoload #'hyprlang-ts-mode "hyprlang-ts-mode" "A mode for editing Hyprland configuration file." t)
