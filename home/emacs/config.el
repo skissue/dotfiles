@@ -235,6 +235,7 @@ where it was when you previously visited the same file."
   "p" #'sp-previous-sexp
   "k" #'sp-kill-sexp
   "w" #'sp-copy-sexp
+  "t" #'sp-transpose-sexp
   "M-<delete>" #'sp-unwrap-sexp
   "M-<backspace>" #'sp-backward-unwrap-sexp
   "<right>" #'sp-forward-slurp-sexp
