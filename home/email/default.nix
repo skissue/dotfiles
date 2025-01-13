@@ -20,7 +20,7 @@
         mbsync = {
           enable = true;
           create = "both";
-          expunge = "both";
+          extraConfig.channel.ExpungeSolo = "both";
         };
         imapnotify = {
           enable = true;
