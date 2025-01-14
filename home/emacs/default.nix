@@ -124,6 +124,7 @@ in {
         keycast
         gptel
         gptel-quick
+        inline-diff
         wgrep
         smartparens
         nerd-icons

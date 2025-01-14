@@ -99,6 +99,25 @@
         },
         "version": "7cac2195e653ea3b960af1986d4a758a84209bda"
     },
+    "inline-diff": {
+        "cargoLocks": null,
+        "date": "2024-10-15",
+        "extract": null,
+        "name": "inline-diff",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "5ee85842d230d07b31413ddf0ec610b306f1be37",
+            "sha256": "sha256-CAb/vY4s8j7YaA8jZ2VxBOS2gVhOxqNl6lgAGM1QL1w=",
+            "type": "git",
+            "url": "https://code.tecosaur.net/tec/inline-diff.git"
+        },
+        "version": "5ee85842d230d07b31413ddf0ec610b306f1be37"
+    },
     "mpv-skipsilence": {
         "cargoLocks": null,
         "date": "2024-05-06",

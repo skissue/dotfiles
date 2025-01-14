@@ -58,3 +58,7 @@ fetch.github = "karthink/gptel"
 [ultra-scroll]
 src.git = "https://github.com/jdtsmith/ultra-scroll"
 fetch.github = "jdtsmith/ultra-scroll"
+
+[inline-diff]
+src.git = "https://code.tecosaur.net/tec/inline-diff.git"
+fetch.git = "https://code.tecosaur.net/tec/inline-diff.git"

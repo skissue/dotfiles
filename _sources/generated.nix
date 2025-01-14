@@ -61,6 +61,19 @@
     };
     date = "2025-01-13";
   };
+  inline-diff = {
+    pname = "inline-diff";
+    version = "5ee85842d230d07b31413ddf0ec610b306f1be37";
+    src = fetchgit {
+      url = "https://code.tecosaur.net/tec/inline-diff.git";
+      rev = "5ee85842d230d07b31413ddf0ec610b306f1be37";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sha256 = "sha256-CAb/vY4s8j7YaA8jZ2VxBOS2gVhOxqNl6lgAGM1QL1w=";
+    };
+    date = "2024-10-15";
+  };
   mpv-skipsilence = {
     pname = "mpv-skipsilence";
     version = "5ae7c3b6f927e728c22fc13007265682d1ecf98c";
