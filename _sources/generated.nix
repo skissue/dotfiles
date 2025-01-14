@@ -51,15 +51,15 @@
   };
   gptel-tooluse = {
     pname = "gptel-tooluse";
-    version = "3fefce47be1d14a7966bb175148cec6938d60f80";
+    version = "7cac2195e653ea3b960af1986d4a758a84209bda";
     src = fetchFromGitHub {
       owner = "karthink";
       repo = "gptel";
-      rev = "3fefce47be1d14a7966bb175148cec6938d60f80";
+      rev = "7cac2195e653ea3b960af1986d4a758a84209bda";
       fetchSubmodules = false;
-      sha256 = "sha256-IzYU0V+z3PFY3yT2IKYiPv9x0DGmAu7Ha5PlTfS4sMs=";
+      sha256 = "sha256-WFC5MFUt1zrXGoflBjxNozzlns8tjjyd7zkWlkVlrC0=";
     };
-    date = "2025-01-10";
+    date = "2025-01-13";
   };
   mpv-skipsilence = {
     pname = "mpv-skipsilence";
@@ -148,15 +148,15 @@
   };
   treesit-fold = {
     pname = "treesit-fold";
-    version = "a40907676b705c7a1a51ef585b2db11e5021084b";
+    version = "d144eaed8191d1c0dc55f5ab22c5f5c6ae25650b";
     src = fetchFromGitHub {
       owner = "emacs-tree-sitter";
       repo = "treesit-fold";
-      rev = "a40907676b705c7a1a51ef585b2db11e5021084b";
+      rev = "d144eaed8191d1c0dc55f5ab22c5f5c6ae25650b";
       fetchSubmodules = false;
-      sha256 = "sha256-wexgxD1Gdn+BN6DwME6qOUigj2N+ZXGlVoM8gJDNUpw=";
+      sha256 = "sha256-5zGO1u3oh7dbvrqUrr8cGv2+dSVsKdsLiqUONBLJYyc=";
     };
-    date = "2025-01-01";
+    date = "2025-01-13";
   };
   typst-ts-mode = {
     pname = "typst-ts-mode";
@@ -173,14 +173,14 @@
   };
   ultra-scroll = {
     pname = "ultra-scroll";
-    version = "c01f304c0d6c80a0db684887d1bd4131bd7943a6";
+    version = "64ad7be02e11317576498dabb15c92cf31e2c04c";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "ultra-scroll";
-      rev = "c01f304c0d6c80a0db684887d1bd4131bd7943a6";
+      rev = "64ad7be02e11317576498dabb15c92cf31e2c04c";
       fetchSubmodules = false;
-      sha256 = "sha256-CP/WoLpN2oAT/NKNk/tmzlCqkzT1WbadwTYzqaSM/vc=";
+      sha256 = "sha256-lHz0AypoMYdlOQ/7hMw2Jy7LVG8S1CmK60PH1x5dJnM=";
     };
-    date = "2025-01-11";
+    date = "2025-01-13";
   };
 }

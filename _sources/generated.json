@@ -81,7 +81,7 @@
     },
     "gptel-tooluse": {
         "cargoLocks": null,
-        "date": "2025-01-10",
+        "date": "2025-01-13",
         "extract": null,
         "name": "gptel-tooluse",
         "passthru": null,
@@ -93,11 +93,11 @@
             "name": null,
             "owner": "karthink",
             "repo": "gptel",
-            "rev": "3fefce47be1d14a7966bb175148cec6938d60f80",
-            "sha256": "sha256-IzYU0V+z3PFY3yT2IKYiPv9x0DGmAu7Ha5PlTfS4sMs=",
+            "rev": "7cac2195e653ea3b960af1986d4a758a84209bda",
+            "sha256": "sha256-WFC5MFUt1zrXGoflBjxNozzlns8tjjyd7zkWlkVlrC0=",
             "type": "github"
         },
-        "version": "3fefce47be1d14a7966bb175148cec6938d60f80"
+        "version": "7cac2195e653ea3b960af1986d4a758a84209bda"
     },
     "mpv-skipsilence": {
         "cargoLocks": null,
@@ -239,7 +239,7 @@
     },
     "treesit-fold": {
         "cargoLocks": null,
-        "date": "2025-01-01",
+        "date": "2025-01-13",
         "extract": null,
         "name": "treesit-fold",
         "passthru": null,
@@ -251,11 +251,11 @@
             "name": null,
             "owner": "emacs-tree-sitter",
             "repo": "treesit-fold",
-            "rev": "a40907676b705c7a1a51ef585b2db11e5021084b",
-            "sha256": "sha256-wexgxD1Gdn+BN6DwME6qOUigj2N+ZXGlVoM8gJDNUpw=",
+            "rev": "d144eaed8191d1c0dc55f5ab22c5f5c6ae25650b",
+            "sha256": "sha256-5zGO1u3oh7dbvrqUrr8cGv2+dSVsKdsLiqUONBLJYyc=",
             "type": "github"
         },
-        "version": "a40907676b705c7a1a51ef585b2db11e5021084b"
+        "version": "d144eaed8191d1c0dc55f5ab22c5f5c6ae25650b"
     },
     "typst-ts-mode": {
         "cargoLocks": null,
@@ -278,7 +278,7 @@
     },
     "ultra-scroll": {
         "cargoLocks": null,
-        "date": "2025-01-11",
+        "date": "2025-01-13",
         "extract": null,
         "name": "ultra-scroll",
         "passthru": null,
@@ -290,10 +290,10 @@
             "name": null,
             "owner": "jdtsmith",
             "repo": "ultra-scroll",
-            "rev": "c01f304c0d6c80a0db684887d1bd4131bd7943a6",
-            "sha256": "sha256-CP/WoLpN2oAT/NKNk/tmzlCqkzT1WbadwTYzqaSM/vc=",
+            "rev": "64ad7be02e11317576498dabb15c92cf31e2c04c",
+            "sha256": "sha256-lHz0AypoMYdlOQ/7hMw2Jy7LVG8S1CmK60PH1x5dJnM=",
             "type": "github"
         },
-        "version": "c01f304c0d6c80a0db684887d1bd4131bd7943a6"
+        "version": "64ad7be02e11317576498dabb15c92cf31e2c04c"
     }
 }
