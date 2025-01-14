@@ -732,14 +732,7 @@ See `describe-repeat-maps' for a list of all repeatable commands."
   (when (and my/vertico-popup--frame
              (= 1 (minibuffer-depth)))
     (delete-frame my/vertico-popup--frame)
-    (setq my/vertico-popup--frame nil)
-    (remove-hook 'pre-redisplay-functions #'my/vertico-popup--no-resize)))
-
-(defun my/vertico-popup--no-resize (_win)
-  "Prevent resizing of minibuffer on original frame.
-Hooks in to `pre-redisplay-functions' during completion."
-  (when (minibufferp)
-    (setq-local resize-mini-windows nil)))
+    (setq my/vertico-popup--frame nil)))
 
 (defun my/vertico-popup--setup ()
   "Setup frame display."
@@ -757,7 +750,11 @@ Hooks in to `pre-redisplay-functions' during completion."
     ;; One line is taken by the prompt.
     (setq-local vertico-count (1- (window-text-height))))
   (add-hook 'minibuffer-exit-hook #'my/vertico-popup--delete-frame)
-  (add-hook 'pre-redisplay-functions #'my/vertico-popup--no-resize))
+  ;; Prevent resizing of minibuffer on original frame.
+  (dolist (buf (buffer-list))
+    (when (minibufferp buf)
+      (with-current-buffer buf
+        (setq-local resize-mini-windows nil)))))
 
 (after! vertico
   (cl-defmethod vertico--setup :before (&context (my/vertico-popup-mode (eql t)))
