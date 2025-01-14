@@ -747,13 +747,13 @@ Hooks in to `pre-redisplay-functions' during completion."
     (setq my/vertico-popup--frame
           (make-frame '((name . "*vertico*")
                         (minibuffer . only))))
-    (select-window (minibuffer-window my/vertico-popup--frame))
+    (select-frame-set-input-focus my/vertico-popup--frame)
     ;; HACK: force a redisplay and wait for the WM so that Emacs gets updated
     ;; information on the actual frame/window size. This allows for computing
     ;; `vertico-count' as well as preventing jarring repositioning of elements,
     ;; which would otherwise get updated information only after the first input
     ;; (since that would trigger redisplay).
-    (sit-for 0.01)
+    (sit-for 0.1)
     ;; One line is taken by the prompt.
     (setq-local vertico-count (1- (window-text-height))))
   (add-hook 'minibuffer-exit-hook #'my/vertico-popup--delete-frame)
