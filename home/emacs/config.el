@@ -1332,6 +1332,26 @@ uses the symbol name as the default description, as well as a
                    (funcall callback)))
                 nil :silent :no-cookies))))
 
+(after! gptel-rewrite
+  (defun my/gptel-rewrite-inline-diff (&optional ovs)
+    "Start an inline-diff session on OVS."
+    (interactive (list (gptel--rewrite-overlay-at)))
+    (require 'inline-diff)
+    (when-let* ((ov-buf (overlay-buffer (or (car-safe ovs) ovs)))
+                ((buffer-live-p ov-buf)))
+      (with-current-buffer ov-buf
+        (cl-loop for ov in (ensure-list ovs)
+                 for ov-beg = (overlay-start ov)
+                 for ov-end = (overlay-end ov)
+                 for response = (overlay-get ov 'gptel-rewrite)
+                 do
+                 (delete-overlay ov)
+                 (inline-diff-words
+                  ov-beg ov-end response)))))
+  
+  (bind-key "C-c C-i" #'my/gptel-rewrite-inline-diff
+            gptel-rewrite-actions-map))
+
 (autoload #'gptel-quick "gptel-quick" "Explain or summarize region or thing at point with an LLM.
 
 QUERY-TEXT is the text being explained.  COUNT is the approximate
