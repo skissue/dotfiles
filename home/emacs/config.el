@@ -2400,7 +2400,7 @@ This function is called by `org-babel-execute-src-block'.")
 
 (after! mu4e
   (bind-key "b" #'mu4e-search-bookmark mu4e-main-mode-map)
-  
+
   (setopt send-mail-function #'sendmail-send-it
           message-confirm-send t
           message-signature 'user-full-name
@@ -2481,6 +2481,15 @@ This function is called by `org-babel-execute-src-block'.")
       (message-replace-header "From"
                               (format "%s <%s>" name email))))
   (add-hook 'mu4e-compose-mode-hook #'my/mu4e-use-to-address))
+
+(after! mu4e
+  (defun my/mu4e-mark-read-on-trash (mark msg)
+    "Mark MSG read if MARK is trash.
+Added to `mu4e-mark-execute-pre-hook'."
+    (when (eq mark 'trash)
+      (mu4e--server-move (mu4e-message-field msg :docid)
+                         nil "+S-u-N")))
+  (add-hook 'mu4e-mark-execute-pre-hook #'my/mu4e-mark-read-on-trash))
 
 (bind-key "s" #'eshell my/open-map)
 
