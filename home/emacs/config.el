@@ -1321,15 +1321,15 @@ uses the symbol name as the default description, as well as a
    :function (lambda (callback url)
                (url-retrieve
                 (concat
-                 "https://urltomarkdown.herokuapp.com/?title=true&links=true&url="
-                 (url-hexify-string url))
+                 "https://urltomarkdown.herokuapp.com/?title=true&links=true&url=" url)
                 (lambda (status)
-                 (goto-char (point-min))
-                 (re-search-forward "\n\n" nil t)
-                 (thread-last
-                   (buffer-substring (point) (point-max))
-                   (string-trim)
-                   (funcall callback)))
+                  (set-buffer-multibyte t)
+                  (goto-char (point-min))
+                  (re-search-forward "\n\n" nil t)
+                  (thread-last
+                    (buffer-substring (point) (point-max))
+                    (string-trim)
+                    (funcall callback)))
                 nil :silent :no-cookies))))
 
 (after! gptel-rewrite
