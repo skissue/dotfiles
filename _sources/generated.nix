@@ -3,15 +3,15 @@
 {
   consult-mu = {
     pname = "consult-mu";
-    version = "90db1c6e3d0ec16126a347f6c15426c2a8ce0125";
+    version = "f0d41cc6e86a181941ffa78f81b6b1815a2f20cd";
     src = fetchFromGitHub {
       owner = "armindarvish";
       repo = "consult-mu";
-      rev = "90db1c6e3d0ec16126a347f6c15426c2a8ce0125";
+      rev = "f0d41cc6e86a181941ffa78f81b6b1815a2f20cd";
       fetchSubmodules = false;
-      sha256 = "sha256-slq53y7Hn6rZtPMhiUnS1rHmdE300ACW343dsY3u+Vg=";
+      sha256 = "sha256-jxzxAjSY/JDJNbQWmJdEsgcfKlf+UFYQmegZd6c8hI0=";
     };
-    date = "2024-10-16";
+    date = "2025-01-14";
   };
   consult-omni = {
     pname = "consult-omni";
@@ -27,15 +27,15 @@
   };
   copilot-el = {
     pname = "copilot-el";
-    version = "be6c274562e150e4acf5253968d1b434c40d368b";
+    version = "867a3debf907cbd7c5b0eb8837354a1efc7c2db9";
     src = fetchFromGitHub {
       owner = "zerolfx";
       repo = "copilot.el";
-      rev = "be6c274562e150e4acf5253968d1b434c40d368b";
+      rev = "867a3debf907cbd7c5b0eb8837354a1efc7c2db9";
       fetchSubmodules = false;
-      sha256 = "sha256-QYlFzh/rzIK0lTtj60rGxJtWr9JaGoVzfALeJltVOdU=";
+      sha256 = "sha256-BEA5cQSNgAMOULM3uNMATYHtFwV7CXAsZYi5IT1kB8A=";
     };
-    date = "2025-01-05";
+    date = "2025-01-15";
   };
   gptel-quick = {
     pname = "gptel-quick";
@@ -51,15 +51,15 @@
   };
   gptel-tooluse = {
     pname = "gptel-tooluse";
-    version = "7cac2195e653ea3b960af1986d4a758a84209bda";
+    version = "6724b299544b11b2272ab9db0eb03f1f285fa4b7";
     src = fetchFromGitHub {
       owner = "karthink";
       repo = "gptel";
-      rev = "7cac2195e653ea3b960af1986d4a758a84209bda";
+      rev = "6724b299544b11b2272ab9db0eb03f1f285fa4b7";
       fetchSubmodules = false;
-      sha256 = "sha256-WFC5MFUt1zrXGoflBjxNozzlns8tjjyd7zkWlkVlrC0=";
+      sha256 = "sha256-yumywe/6bRhpTLYzaYN2+OY005u2cgRb5xD7tY4Lyzk=";
     };
-    date = "2025-01-13";
+    date = "2025-01-16";
   };
   inline-diff = {
     pname = "inline-diff";

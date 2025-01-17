@@ -1,7 +1,7 @@
 {
     "consult-mu": {
         "cargoLocks": null,
-        "date": "2024-10-16",
+        "date": "2025-01-14",
         "extract": null,
         "name": "consult-mu",
         "passthru": null,
@@ -13,11 +13,11 @@
             "name": null,
             "owner": "armindarvish",
             "repo": "consult-mu",
-            "rev": "90db1c6e3d0ec16126a347f6c15426c2a8ce0125",
-            "sha256": "sha256-slq53y7Hn6rZtPMhiUnS1rHmdE300ACW343dsY3u+Vg=",
+            "rev": "f0d41cc6e86a181941ffa78f81b6b1815a2f20cd",
+            "sha256": "sha256-jxzxAjSY/JDJNbQWmJdEsgcfKlf+UFYQmegZd6c8hI0=",
             "type": "github"
         },
-        "version": "90db1c6e3d0ec16126a347f6c15426c2a8ce0125"
+        "version": "f0d41cc6e86a181941ffa78f81b6b1815a2f20cd"
     },
     "consult-omni": {
         "cargoLocks": null,
@@ -41,7 +41,7 @@
     },
     "copilot-el": {
         "cargoLocks": null,
-        "date": "2025-01-05",
+        "date": "2025-01-15",
         "extract": null,
         "name": "copilot-el",
         "passthru": null,
@@ -53,11 +53,11 @@
             "name": null,
             "owner": "zerolfx",
             "repo": "copilot.el",
-            "rev": "be6c274562e150e4acf5253968d1b434c40d368b",
-            "sha256": "sha256-QYlFzh/rzIK0lTtj60rGxJtWr9JaGoVzfALeJltVOdU=",
+            "rev": "867a3debf907cbd7c5b0eb8837354a1efc7c2db9",
+            "sha256": "sha256-BEA5cQSNgAMOULM3uNMATYHtFwV7CXAsZYi5IT1kB8A=",
             "type": "github"
         },
-        "version": "be6c274562e150e4acf5253968d1b434c40d368b"
+        "version": "867a3debf907cbd7c5b0eb8837354a1efc7c2db9"
     },
     "gptel-quick": {
         "cargoLocks": null,
@@ -81,7 +81,7 @@
     },
     "gptel-tooluse": {
         "cargoLocks": null,
-        "date": "2025-01-13",
+        "date": "2025-01-16",
         "extract": null,
         "name": "gptel-tooluse",
         "passthru": null,
@@ -93,11 +93,11 @@
             "name": null,
             "owner": "karthink",
             "repo": "gptel",
-            "rev": "7cac2195e653ea3b960af1986d4a758a84209bda",
-            "sha256": "sha256-WFC5MFUt1zrXGoflBjxNozzlns8tjjyd7zkWlkVlrC0=",
+            "rev": "6724b299544b11b2272ab9db0eb03f1f285fa4b7",
+            "sha256": "sha256-yumywe/6bRhpTLYzaYN2+OY005u2cgRb5xD7tY4Lyzk=",
             "type": "github"
         },
-        "version": "7cac2195e653ea3b960af1986d4a758a84209bda"
+        "version": "6724b299544b11b2272ab9db0eb03f1f285fa4b7"
     },
     "inline-diff": {
         "cargoLocks": null,
