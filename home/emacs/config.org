@@ -1334,8 +1334,10 @@ Command to enable Direnv for Nix.
   (after! magit
     (setopt magit-save-repository-buffers 'dontask
             magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1
-            magit-bind-magit-project-status nil ;; We do this ourselves for lazy-loading
-            magit-clone-default-directory "~/git/"))
+            ;; We do this ourselves for lazy-loading
+            magit-bind-magit-project-status nil
+            magit-clone-default-directory "~/git/"
+            magit-diff-refine-hunk t))
 #+end_src
 
 Start commit buffers in insert mode to type immediately.

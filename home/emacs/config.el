@@ -984,8 +984,10 @@ uses the symbol name as the default description, as well as a
 (after! magit
   (setopt magit-save-repository-buffers 'dontask
           magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1
-          magit-bind-magit-project-status nil ;; We do this ourselves for lazy-loading
-          magit-clone-default-directory "~/git/"))
+          ;; We do this ourselves for lazy-loading
+          magit-bind-magit-project-status nil
+          magit-clone-default-directory "~/git/"
+          magit-diff-refine-hunk t))
 
 (after! meow
   (add-hook 'git-commit-mode-hook #'meow-insert))
