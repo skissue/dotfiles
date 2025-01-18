@@ -8,7 +8,6 @@
       ./anki-sync-server
       ./disko.nix
       ./remote-luks-unlock
-      ./matrix
       ./media
       ./minecraft
       ./wireless
