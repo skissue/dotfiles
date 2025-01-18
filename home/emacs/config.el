@@ -2488,14 +2488,15 @@ This function is called by `org-babel-execute-src-block'.")
                               (format "%s <%s>" name email))))
   (add-hook 'mu4e-compose-mode-hook #'my/mu4e-use-to-address))
 
+(el-patch-feature mu4e)
 (after! mu4e
-  (defun my/mu4e-mark-read-on-trash (mark msg)
-    "Mark MSG read if MARK is trash.
-Added to `mu4e-mark-execute-pre-hook'."
-    (when (eq mark 'trash)
-      (mu4e--server-move (mu4e-message-field msg :docid)
-                         nil "+S-u-N")))
-  (add-hook 'mu4e-mark-execute-pre-hook #'my/mu4e-mark-read-on-trash))
+  (el-patch-define-and-eval-template
+   (defconst mu4e-marks)
+   (mu4e--server-move docid
+                      (mu4e--mark-check-target target)
+                      (if mu4e-trash-without-flag
+                          "-N"
+                        (el-patch-swap "+T-N" "+T-N+S-u")))))
 
 (bind-key "s" #'eshell my/open-map)
 
