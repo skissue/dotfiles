@@ -1174,13 +1174,17 @@ uses the symbol name as the default description, as well as a
               deepseek/deepseek-chat
               anthropic/claude-3-haiku:beta
               anthropic/claude-3.5-sonnet:beta))
-  (setopt gptel-model           'granite3.1-dense:latest
+  (setopt gptel-model           'phi4:latest
           gptel-backend         (gptel-make-ollama "Ollama"
                                   :host "windstorm:11434"
-                                  :stream t
-                                  :models '(llama3.1:latest
-                                            granite3.1-dense:latest))
+                                  :stream nil
+                                  :models '(phi4:latest
+                                            llama3.1:latest
+                                            (minicpm-v:latest
+                                             :capabilities (media)
+                                             :mime-types ("image/png"))))
           gptel-default-mode    #'org-mode
+          gptel-track-media     t
           gptel-expert-commands t)
   (setf (alist-get 'org-mode gptel-prompt-prefix-alist)
         "-----\n=@me:=\n")
