@@ -1407,19 +1407,22 @@ Currently disabled cause it throws a cryptic error that I don't feel like tracki
 #+end_src
 
 ** Copilot
-Because of the weird way that NixOS wraps the path environment for Emacs for Copilot, [[*Direnv][Direnv]] actually makes it unable to find the ~node~ executable. Thus, after first loading Copilot, find the executable with [[help:exec-path][exec-path]] bound to the global value.
+The Nix package for this package provides a Copilot executable. However, [[*No Littering][no-littering]] then changes the default value which is set through a patch. Thus, to get the original value, we have to do some weird fishing for the original value (which is thankfully saved by Customize). Also, because of the weird way that NixOS wraps the path environment for Emacs for Copilot, [[*Direnv][Direnv]] actually makes it unable to find the ~node~ executable. Thus, after first loading Copilot, find the executable with [[help:exec-path][exec-path]] bound to the global value.
 #+begin_src elisp
   (bind-key "c" #'copilot-mode my/toggle-map)
 
   (after! copilot
-    (setopt copilot-node-executable (let ((exec-path (default-value 'exec-path)))
+    (setopt copilot-install-dir (eval
+                                 (car
+                                  (get 'copilot-install-dir 'standard-value)))
+            copilot-node-executable (let ((exec-path (default-value 'exec-path)))
                                       (executable-find "node")))
     (bind-keys :map copilot-completion-map
                ("M-RET"   . copilot-accept-completion)
                ("M-n"     . copilot-next-completion)
                ("M-p"     . copilot-previous-completion)
                ("M-<tab>" . copilot-accept-completion-by-line)
-               ("M-f"     . copilot-accept-completion-by-word)))    
+               ("M-f"     . copilot-accept-completion-by-word)))
 #+end_src
 
 Show a little pilot icon from Nerd Fonts in the modeline when enabled.

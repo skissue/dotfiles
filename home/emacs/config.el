@@ -1035,7 +1035,10 @@ uses the symbol name as the default description, as well as a
 (bind-key "c" #'copilot-mode my/toggle-map)
 
 (after! copilot
-  (setopt copilot-node-executable (let ((exec-path (default-value 'exec-path)))
+  (setopt copilot-install-dir (eval
+                               (car
+                                (get 'copilot-install-dir 'standard-value)))
+          copilot-node-executable (let ((exec-path (default-value 'exec-path)))
                                     (executable-find "node")))
   (bind-keys :map copilot-completion-map
              ("M-RET"   . copilot-accept-completion)
