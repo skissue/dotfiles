@@ -16,7 +16,6 @@ in {
   # TODO Remove when this is merged.
   gptel = epkgs.gptel.overrideAttrs (oldAttrs: {inherit (sources.gptel-tooluse) src;});
   typst-ts-mode = melpaBuild (sources.typst-ts-mode // {version = "0.10.0";});
-  copilot = epkgs.copilot.overrideAttrs (oldAttrs: {inherit (sources.copilot-el) src version;});
   org-popup-posframe = melpaBuild (sources.org-popup-posframe
     // {
       version = "0.0.1";

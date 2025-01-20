@@ -6,10 +6,6 @@ fetch.git = "https://code.tecosaur.net/tec/org-mode.git"
 src.git = "https://git.sr.ht/~meow_king/typst-ts-mode"
 fetch.git = "https://git.sr.ht/~meow_king/typst-ts-mode"
 
-[copilot-el]
-src.git = "https://github.com/zerolfx/copilot.el"
-fetch.github = "zerolfx/copilot.el"
-
 [org-popup-posframe]
 src.git = "https://github.com/A7R7/org-popup-posframe"
 fetch.github = "A7R7/org-popup-posframe"

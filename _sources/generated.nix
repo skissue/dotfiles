@@ -25,18 +25,6 @@
     };
     date = "2025-01-03";
   };
-  copilot-el = {
-    pname = "copilot-el";
-    version = "867a3debf907cbd7c5b0eb8837354a1efc7c2db9";
-    src = fetchFromGitHub {
-      owner = "zerolfx";
-      repo = "copilot.el";
-      rev = "867a3debf907cbd7c5b0eb8837354a1efc7c2db9";
-      fetchSubmodules = false;
-      sha256 = "sha256-BEA5cQSNgAMOULM3uNMATYHtFwV7CXAsZYi5IT1kB8A=";
-    };
-    date = "2025-01-15";
-  };
   gptel-quick = {
     pname = "gptel-quick";
     version = "79c33058e605b4fbdb1d1f98d1ab428d6eed111d";
@@ -51,15 +39,15 @@
   };
   gptel-tooluse = {
     pname = "gptel-tooluse";
-    version = "6724b299544b11b2272ab9db0eb03f1f285fa4b7";
+    version = "ca66e8f42f20c8ebdd95830457ada3a506264583";
     src = fetchFromGitHub {
       owner = "karthink";
       repo = "gptel";
-      rev = "6724b299544b11b2272ab9db0eb03f1f285fa4b7";
+      rev = "ca66e8f42f20c8ebdd95830457ada3a506264583";
       fetchSubmodules = false;
-      sha256 = "sha256-yumywe/6bRhpTLYzaYN2+OY005u2cgRb5xD7tY4Lyzk=";
+      sha256 = "sha256-52P/oR1uqrregEc0mHgZ9fmk22Tq9JEp8lFwFW/dxCY=";
     };
-    date = "2025-01-16";
+    date = "2025-01-19";
   };
   inline-diff = {
     pname = "inline-diff";
@@ -161,15 +149,15 @@
   };
   treesit-fold = {
     pname = "treesit-fold";
-    version = "d144eaed8191d1c0dc55f5ab22c5f5c6ae25650b";
+    version = "fe10708cf9bd7df36e017c1a3561ae371d6d5ea7";
     src = fetchFromGitHub {
       owner = "emacs-tree-sitter";
       repo = "treesit-fold";
-      rev = "d144eaed8191d1c0dc55f5ab22c5f5c6ae25650b";
+      rev = "fe10708cf9bd7df36e017c1a3561ae371d6d5ea7";
       fetchSubmodules = false;
-      sha256 = "sha256-5zGO1u3oh7dbvrqUrr8cGv2+dSVsKdsLiqUONBLJYyc=";
+      sha256 = "sha256-PZmHc/riC7OWtV0mSd7OnGJtUbqOqP17f3nVzZLa78A=";
     };
-    date = "2025-01-13";
+    date = "2025-01-18";
   };
   typst-ts-mode = {
     pname = "typst-ts-mode";
@@ -186,14 +174,14 @@
   };
   ultra-scroll = {
     pname = "ultra-scroll";
-    version = "64ad7be02e11317576498dabb15c92cf31e2c04c";
+    version = "2e3b9997ae1a469e878feaa0af23a23685a0fbed";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "ultra-scroll";
-      rev = "64ad7be02e11317576498dabb15c92cf31e2c04c";
+      rev = "2e3b9997ae1a469e878feaa0af23a23685a0fbed";
       fetchSubmodules = false;
-      sha256 = "sha256-lHz0AypoMYdlOQ/7hMw2Jy7LVG8S1CmK60PH1x5dJnM=";
+      sha256 = "sha256-9+3T5tXPRuRtENt/Rr0Ss3LZJlTOwpGePbREqofN2j0=";
     };
-    date = "2025-01-13";
+    date = "2025-01-18";
   };
 }
