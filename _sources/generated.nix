@@ -37,18 +37,6 @@
     };
     date = "2025-01-21";
   };
-  gptel-tooluse = {
-    pname = "gptel-tooluse";
-    version = "da66b37c75a48d1db075ce9dd525121e58a2c9af";
-    src = fetchFromGitHub {
-      owner = "karthink";
-      repo = "gptel";
-      rev = "da66b37c75a48d1db075ce9dd525121e58a2c9af";
-      fetchSubmodules = false;
-      sha256 = "sha256-L3IPB5ru+JOJDfyTMKUPNBngGEWI2epBnYvcfssqUeg=";
-    };
-    date = "2025-01-20";
-  };
   inline-diff = {
     pname = "inline-diff";
     version = "5ee85842d230d07b31413ddf0ec610b306f1be37";

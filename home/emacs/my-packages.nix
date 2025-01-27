@@ -12,9 +12,6 @@ in {
       version = "9.7.69";
       files = ''(:defaults "etc")'';
     });
-  # gptel with support for tool-use.
-  # TODO Remove when this is merged.
-  gptel = epkgs.gptel.overrideAttrs (oldAttrs: {inherit (sources.gptel-tooluse) src;});
   typst-ts-mode = melpaBuild (sources.typst-ts-mode // {version = "0.10.0";});
   org-popup-posframe = melpaBuild (sources.org-popup-posframe
     // {
