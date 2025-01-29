@@ -11,13 +11,13 @@
   networking.nftables.tables.mullvad-tailscale = {
     family = "inet";
     content = ''
-      chain excludeOutgoing {
+      chain allowOutgoing {
         type route hook output priority 0; policy accept;
         ip  daddr 100.69.0.0/16       ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
         ip6 daddr fd7a:115c:a1e0::/48 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
       }
 
-      chain excludeDns {
+      chain allowDns {
         type filter hook output priority -10; policy accept;
         ip daddr 100.100.100.100 udp dport 53 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
       }
