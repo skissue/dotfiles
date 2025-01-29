@@ -29,6 +29,14 @@
     '';
   };
 
+  # For some reason (complicated routing table shenanigans), incoming Tailscale
+  # packets fail the reverse path check when Mullvad is enabled. Instead of
+  # disabling reverse path filtering entirely, this allows all incoming
+  # Tailscale traffic to pass the reverse path chain.
+  networking.firewall.extraReversePathFilterRules = ''
+    iifname "tailscale0" ip saddr 100.69.0.0/16 accept;
+  '';
+
   # Exclude Tailscale from Mullvad tunnel
   systemd.services.mullvad-exclude-tailscale = {
     wantedBy = ["multi-user.target"];
