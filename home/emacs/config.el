@@ -1691,6 +1691,7 @@ For our purposes, a note must not be a directory, must satisfy
   (setopt org-directory                          denote-directory
           org-hide-emphasis-markers              t
           org-confirm-babel-evaluate             nil
+          org-ctrl-k-protect-subtree             'error
           org-startup-indented                   t
           org-indent-indentation-per-level       0
           org-startup-folded                     'content
