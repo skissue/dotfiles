@@ -2589,6 +2589,10 @@ This function is called by `org-babel-execute-src-block'.")
   ;; Originally bound to C-c C-r
   (bind-key "C-c C-S-r" #'org-fold-reveal org-mode-map))
 
+(after! verb
+  (setopt verb-auto-kill-response-buffers 5
+          verb-trim-body-end "[ \t\n]+"))
+
 (autoload #'org-babel-execute:verb "ob-verb")
 
 (after! ob-verb

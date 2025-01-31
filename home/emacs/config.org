@@ -3336,6 +3336,12 @@ Calc has a weird way of storing variable settings, since I want to set them in t
     (bind-key "C-c C-S-r" #'org-fold-reveal org-mode-map))
 #+end_src
 
+#+begin_src elisp
+  (after! verb
+    (setopt verb-auto-kill-response-buffers 5
+            verb-trim-body-end "[ \t\n]+"))
+#+end_src
+
 Org Babel integration.
 #+begin_src elisp
   (autoload #'org-babel-execute:verb "ob-verb")
