@@ -1168,7 +1168,7 @@ uses the symbol name as the default description, as well as a
               gpt-4o-mini
               o1
               o1-mini
-              Llama-3.3-70B-Instruct))
+              o3-mini))
   (gptel-make-openai "OpenRouter"
     :host "openrouter.ai"
     :endpoint "/api/v1/chat/completions"
@@ -1176,7 +1176,9 @@ uses the symbol name as the default description, as well as a
     :key (lambda () (or (secrets-get-secret "KeePassXC" "OpenRouter")
                         (user-error "Unable to retrieve OpenRouter key")))
     :models '(google/gemini-2.0-flash-exp:free
+              deepseek/deepseek-r1:free
               deepseek/deepseek-chat
+              deepseek/deepseek-r1
               anthropic/claude-3-haiku:beta
               anthropic/claude-3.5-sonnet:beta))
   (setopt gptel-model           'phi4:latest
@@ -1184,6 +1186,7 @@ uses the symbol name as the default description, as well as a
                                   :host "windstorm:11434"
                                   :stream nil
                                   :models '(phi4:latest
+                                            deepseek-r1:14b
                                             llama3.1:latest
                                             (minicpm-v:latest
                                              :capabilities (media)
