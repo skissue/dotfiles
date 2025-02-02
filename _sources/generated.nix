@@ -3,15 +3,15 @@
 {
   consult-mu = {
     pname = "consult-mu";
-    version = "003017a8e02a8052b4e5e5acc426f77b680139ef";
+    version = "5ee542f8a7d98cba454f02dcbe4513fba40ea8e7";
     src = fetchFromGitHub {
       owner = "armindarvish";
       repo = "consult-mu";
-      rev = "003017a8e02a8052b4e5e5acc426f77b680139ef";
+      rev = "5ee542f8a7d98cba454f02dcbe4513fba40ea8e7";
       fetchSubmodules = false;
-      sha256 = "sha256-WhLhpNAd7oS1hLgUJdIP1Vt2LMnDfeYYcsxYop3X3aw=";
+      sha256 = "sha256-tYeo/nsKrtsklDuR553CH3nvv9S3slhyDmoRXFVwMnw=";
     };
-    date = "2025-01-23";
+    date = "2025-02-01";
   };
   consult-omni = {
     pname = "consult-omni";
