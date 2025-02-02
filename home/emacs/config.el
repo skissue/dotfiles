@@ -2113,6 +2113,13 @@ have `org-warning' face."
                                                (getenv "XDG_DATA_HOME"))
           org-re-reveal-extra-options "controlsTutorial: false"))
 
+(after! nice-org-html
+  (setopt nice-org-html-theme-alist `((light . ef-light)
+                                      (dark  . ,(ef-themes--current-theme)))
+          nice-org-html-default-mode 'dark
+          nice-org-html-options '(:collapsing t
+                                              :src-lang t)))
+
 (autoload #'org-babel-execute:C "ob-C" "Execute a block of C code with org-babel.
 This function is called by `org-babel-execute-src-block'." nil)
 (autoload #'org-babel-execute:C++ "ob-C" "Execute a block of C++ code with org-babel.

@@ -2700,6 +2700,18 @@ The bleeding-edge development branch of Org that I'm using has a small bug in th
             org-re-reveal-extra-options "controlsTutorial: false"))
 #+end_src
 
+*** Nice Org to HTML
+[[https://github.com/ewantown/nice-org-html][nice-org-html]] provides a pre-packaged preset export backend that generates much nicer-looking HTML exports compared to the bare-bones built-in backend. Nice, because I don't want to spend forever tweaking the built-in one when someone has already done it for me ❤️.
+
+#+begin_src elisp
+  (after! nice-org-html
+    (setopt nice-org-html-theme-alist `((light . ef-light)
+                                        (dark  . ,(ef-themes--current-theme)))
+            nice-org-html-default-mode 'dark
+            nice-org-html-options '(:collapsing t
+                                                :src-lang t)))
+#+end_src
+
 ** Babel Languages
 *** C/C++
 #+begin_src elisp

@@ -171,6 +171,7 @@ in {
         org-sliced-images
         org-popup-posframe
         org-typst
+        nice-org-html
         htmlize
         git-auto-commit-mode
         dslide
