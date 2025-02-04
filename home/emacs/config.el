@@ -492,10 +492,10 @@ where it was when you previously visited the same file."
    `(meow-beacon-indicator ((t :foreground ,fg-changed)))
    `(meow-keypad-indicator ((t :foreground ,fg-removed)))))
 
-(meow-motion-overwrite-define-key
- '("e"           . meow-next)
- '("u"           . meow-prev)
- '("<escape>"    . keyboard-escape-quit))
+(meow-motion-define-key
+ '("e"        . meow-next)
+ '("u"        . meow-prev)
+ '("<escape>" . keyboard-escape-quit))
 
 (meow-leader-define-key
  '("?" . meow-cheatsheet)
@@ -509,7 +509,7 @@ where it was when you previously visited the same file."
  '("8" . meow-digit-argument)
  '("9" . meow-digit-argument)
  '("0" . meow-digit-argument)
- '("u" . meow-universal-argument)
+ '("l" . meow-universal-argument)
  `("s" . ,search-map)
  '("p" . "C-x p"))
 
