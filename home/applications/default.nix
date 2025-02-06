@@ -13,6 +13,7 @@
     simple-scan
     ffmpeg
     fractal
+    gpu-screen-recorder
     imv
     keepassxc
     libnotify
