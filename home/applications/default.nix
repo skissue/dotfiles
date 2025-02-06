@@ -14,6 +14,12 @@
     ffmpeg
     fractal
     gpu-screen-recorder
+    helvum
+    # For spellcheck; see https://nixos.wiki/wiki/LibreOffice
+    hunspell
+    hunspellDicts.en_US
+    # Avoid building two copies of Hyprland
+    (hyprshot.override {hyprland = config.wayland.windowManager.hyprland.package;})
     imv
     keepassxc
     libnotify
@@ -27,12 +33,6 @@
           xorg.libXdamage
         ];
     })
-    helvum
-    # For spellcheck; see https://nixos.wiki/wiki/LibreOffice
-    hunspell
-    hunspellDicts.en_US
-    # Avoid building two copies of Hyprland
-    (hyprshot.override {hyprland = config.wayland.windowManager.hyprland.package;})
     mangohud
     mullvad-browser
     nextcloud-client
