@@ -51,7 +51,6 @@
     ungoogled-chromium
     waypipe
     webcord
-    wf-recorder
     wl-clipboard
     my.zen-browser
   ];
