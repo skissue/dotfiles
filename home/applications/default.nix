@@ -40,6 +40,7 @@
     ouch
     pcmanfm
     playerctl
+    plover.dev
     prismlauncher
     pwvucontrol_git
     ripgrep
