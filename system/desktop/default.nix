@@ -11,4 +11,7 @@
 
   # For `setcap` permissions. Does NOT install the actual executable.
   programs.gpu-screen-recorder.enable = true;
+
+  # Allow Plover to access serial (Gemini PR) devices.
+  my.user.extraGroups = ["dialout"];
 }
