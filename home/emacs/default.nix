@@ -200,6 +200,9 @@ in {
         calfw-org
         nov
         ement
+        elfeed
+        elfeed-protocol
+        elfeed-org
       ];
   };
 
