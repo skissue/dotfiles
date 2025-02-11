@@ -15,15 +15,15 @@
   };
   consult-omni = {
     pname = "consult-omni";
-    version = "f0c5f07b9ffe25d0deca42b650f6e0c1c85e9759";
+    version = "cd9a945e1bceddddec3d1f4f44af4b63e366adfd";
     src = fetchFromGitHub {
       owner = "armindarvish";
       repo = "consult-omni";
-      rev = "f0c5f07b9ffe25d0deca42b650f6e0c1c85e9759";
+      rev = "cd9a945e1bceddddec3d1f4f44af4b63e366adfd";
       fetchSubmodules = false;
-      sha256 = "sha256-1+ES4Z7x53aZ7fGNKJ4uYuKHubaDpX3ro3XitGUDR+M=";
+      sha256 = "sha256-Qg8lLjFkCi+MJlOTaybxwNyn+4JwTHrxDaSwf7Wp4A4=";
     };
-    date = "2025-01-03";
+    date = "2025-02-03";
   };
   gptel-quick = {
     pname = "gptel-quick";
@@ -46,6 +46,7 @@
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
+      sparseCheckout = [ ];
       sha256 = "sha256-CAb/vY4s8j7YaA8jZ2VxBOS2gVhOxqNl6lgAGM1QL1w=";
     };
     date = "2024-10-15";
@@ -59,6 +60,7 @@
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
+      sparseCheckout = [ ];
       sha256 = "sha256-fg8vfeb68nr0bTBIvr0FnRnoB48/kV957pn22tWcz1g=";
     };
     date = "2024-05-06";
@@ -72,6 +74,7 @@
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
+      sparseCheckout = [ ];
       sha256 = "sha256-jotNr6F2AWzQv4XM931Hb3Imc3jCM1fVZe2+Y+YhJrg=";
     };
     date = "2024-12-29";
@@ -137,15 +140,15 @@
   };
   treesit-fold = {
     pname = "treesit-fold";
-    version = "fe10708cf9bd7df36e017c1a3561ae371d6d5ea7";
+    version = "ea39768092311b857d7b46498eae93cc43807acf";
     src = fetchFromGitHub {
       owner = "emacs-tree-sitter";
       repo = "treesit-fold";
-      rev = "fe10708cf9bd7df36e017c1a3561ae371d6d5ea7";
+      rev = "ea39768092311b857d7b46498eae93cc43807acf";
       fetchSubmodules = false;
-      sha256 = "sha256-PZmHc/riC7OWtV0mSd7OnGJtUbqOqP17f3nVzZLa78A=";
+      sha256 = "sha256-3rQIMMN3tvAvblyZryobMys+w3lo2FZwyQdzdBerG1k=";
     };
-    date = "2025-01-18";
+    date = "2025-02-10";
   };
   typst-ts-mode = {
     pname = "typst-ts-mode";
@@ -156,6 +159,7 @@
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
+      sparseCheckout = [ ];
       sha256 = "sha256-0RAJ/Td3G7FDvzf7t8csNs/uc07WUPGvMo8ako5iyl0=";
     };
     date = "2024-12-07";

@@ -15,13 +15,14 @@
             "repo": "consult-mu",
             "rev": "5ee542f8a7d98cba454f02dcbe4513fba40ea8e7",
             "sha256": "sha256-tYeo/nsKrtsklDuR553CH3nvv9S3slhyDmoRXFVwMnw=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "5ee542f8a7d98cba454f02dcbe4513fba40ea8e7"
     },
     "consult-omni": {
         "cargoLocks": null,
-        "date": "2025-01-03",
+        "date": "2025-02-03",
         "extract": null,
         "name": "consult-omni",
         "passthru": null,
@@ -33,11 +34,12 @@
             "name": null,
             "owner": "armindarvish",
             "repo": "consult-omni",
-            "rev": "f0c5f07b9ffe25d0deca42b650f6e0c1c85e9759",
-            "sha256": "sha256-1+ES4Z7x53aZ7fGNKJ4uYuKHubaDpX3ro3XitGUDR+M=",
+            "rev": "cd9a945e1bceddddec3d1f4f44af4b63e366adfd",
+            "sha256": "sha256-Qg8lLjFkCi+MJlOTaybxwNyn+4JwTHrxDaSwf7Wp4A4=",
+            "sparseCheckout": [],
             "type": "github"
         },
-        "version": "f0c5f07b9ffe25d0deca42b650f6e0c1c85e9759"
+        "version": "cd9a945e1bceddddec3d1f4f44af4b63e366adfd"
     },
     "gptel-quick": {
         "cargoLocks": null,
@@ -55,6 +57,7 @@
             "repo": "gptel-quick",
             "rev": "d7a3aedefdc656a136d5664f2dac165a1f6ebf0e",
             "sha256": "sha256-ajqLLCIsvej9BlbyH8JnyfpntRWGcuqMIehFVVRucBY=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "d7a3aedefdc656a136d5664f2dac165a1f6ebf0e"
@@ -73,6 +76,7 @@
             "name": null,
             "rev": "5ee85842d230d07b31413ddf0ec610b306f1be37",
             "sha256": "sha256-CAb/vY4s8j7YaA8jZ2VxBOS2gVhOxqNl6lgAGM1QL1w=",
+            "sparseCheckout": [],
             "type": "git",
             "url": "https://code.tecosaur.net/tec/inline-diff.git"
         },
@@ -92,6 +96,7 @@
             "name": null,
             "rev": "5ae7c3b6f927e728c22fc13007265682d1ecf98c",
             "sha256": "sha256-fg8vfeb68nr0bTBIvr0FnRnoB48/kV957pn22tWcz1g=",
+            "sparseCheckout": [],
             "type": "git",
             "url": "https://codeberg.org/ferreum/mpv-skipsilence"
         },
@@ -111,6 +116,7 @@
             "name": null,
             "rev": "ce4a745b0aa746686376c5927b3165fe4cb4b4d7",
             "sha256": "sha256-jotNr6F2AWzQv4XM931Hb3Imc3jCM1fVZe2+Y+YhJrg=",
+            "sparseCheckout": [],
             "type": "git",
             "url": "https://code.tecosaur.net/tec/org-mode.git"
         },
@@ -132,6 +138,7 @@
             "repo": "org-modern-indent",
             "rev": "52b46c6ecd63e627ab5bfb83c580b51f68a23774",
             "sha256": "sha256-9aaaPGCvt51FknRKB5zT8AdHjhH/sQMc1IyQS3KnJsU=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "52b46c6ecd63e627ab5bfb83c580b51f68a23774"
@@ -152,6 +159,7 @@
             "repo": "org-overdrive",
             "rev": "1e0bb30195a8c807a7e092d1979b150aa7a1f9ef",
             "sha256": "sha256-K8TFR607A/vDUZz0v6wzW8WEdleOR4wM4vxWZe3/X3E=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "1e0bb30195a8c807a7e092d1979b150aa7a1f9ef"
@@ -172,6 +180,7 @@
             "repo": "org-popup-posframe",
             "rev": "d39cb7c2c9a996689b0d6519695eed3d807c0c85",
             "sha256": "sha256-yZJBx/uJ9W9ZAdYieZ7ArRvigt0391rIyTt+DEIHHjU=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "d39cb7c2c9a996689b0d6519695eed3d807c0c85"
@@ -192,6 +201,7 @@
             "repo": "org-typst",
             "rev": "367f23c9db3c80f75be6c407470ba71d5c34f709",
             "sha256": "sha256-ynuUyRdZRvmUq/zejkGyZSpHDKd7R34olAfqMoqU7Ic=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "367f23c9db3c80f75be6c407470ba71d5c34f709"
@@ -212,13 +222,14 @@
             "repo": "reveal.js",
             "rev": "5.1.0",
             "sha256": "sha256-L6KVBw20K67lHT07Ws+ZC2DwdURahqyuyjAaK0kTgN0=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "5.1.0"
     },
     "treesit-fold": {
         "cargoLocks": null,
-        "date": "2025-01-18",
+        "date": "2025-02-10",
         "extract": null,
         "name": "treesit-fold",
         "passthru": null,
@@ -230,11 +241,12 @@
             "name": null,
             "owner": "emacs-tree-sitter",
             "repo": "treesit-fold",
-            "rev": "fe10708cf9bd7df36e017c1a3561ae371d6d5ea7",
-            "sha256": "sha256-PZmHc/riC7OWtV0mSd7OnGJtUbqOqP17f3nVzZLa78A=",
+            "rev": "ea39768092311b857d7b46498eae93cc43807acf",
+            "sha256": "sha256-3rQIMMN3tvAvblyZryobMys+w3lo2FZwyQdzdBerG1k=",
+            "sparseCheckout": [],
             "type": "github"
         },
-        "version": "fe10708cf9bd7df36e017c1a3561ae371d6d5ea7"
+        "version": "ea39768092311b857d7b46498eae93cc43807acf"
     },
     "typst-ts-mode": {
         "cargoLocks": null,
@@ -250,6 +262,7 @@
             "name": null,
             "rev": "1367003e2ad55a2f6f9e43178584683028ab56e9",
             "sha256": "sha256-0RAJ/Td3G7FDvzf7t8csNs/uc07WUPGvMo8ako5iyl0=",
+            "sparseCheckout": [],
             "type": "git",
             "url": "https://git.sr.ht/~meow_king/typst-ts-mode"
         },
@@ -271,6 +284,7 @@
             "repo": "ultra-scroll",
             "rev": "2c517bf9b61bf432f706ff8a585ba453c7476be2",
             "sha256": "sha256-U2QTbxkch/oGdXXnzf2EPX3Ga3VYmQlnjC/JKBq5DEI=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "2c517bf9b61bf432f706ff8a585ba453c7476be2"
