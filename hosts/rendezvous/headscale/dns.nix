@@ -32,5 +32,15 @@ in {
       type = "AAAA";
       value = "fd7a:115c:a1e0::e";
     }
+    {
+      name = "feeds.${base}";
+      type = "A";
+      value = "100.69.0.14";
+    }
+    {
+      name = "feeds.${base}";
+      type = "AAAA";
+      value = "fd7a:115c:a1e0::e";
+    }
   ];
 }
