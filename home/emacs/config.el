@@ -2628,6 +2628,31 @@ This function is called by `org-babel-execute-src-block'.")
           ement-room-use-variable-pitch t
           ement-room-send-message-filter #'ement-room-send-org-filter))
 
+(bind-key "f" #'elfeed my/open-map)
+
+(after! elfeed
+  (bind-key "U" #'elfeed-search-update elfeed-search-mode-map)
+  (setopt elfeed-use-curl t))
+
+(after! elfeed
+  (require 'elfeed-protocol)
+
+  (setopt elfeed-protocol-enabled-protocols '(ttrss)
+          elfeed-protocol-feeds '(("ttrss+http://ad@feeds.adtailnet"
+                                          :password (secrets-get-secret)
+                                              "KeePassXC" "Tiny Tiny RSS"))
+          elfeed-protocol-ttrss-maxsize 200
+          elfeed-protocol-ttrss-fetch-category-as-tag t)
+
+  (elfeed-protocol-enable))
+
+(after! elfeed-org
+  (require 'denote)
+  (setopt rmh-elfeed-org-files
+          (seq-filter
+           (apply-partially #'string-match-p "-elfeed-feeds")
+           (denote-directory-files))))
+
 (defun my/shruggie ()
   "Insert ¯\\_(ツ)_/¯."
   (interactive)

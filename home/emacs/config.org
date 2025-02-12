@@ -3395,6 +3395,41 @@ Spritz-like speedreading for Emacs 💨.
             ement-room-send-message-filter #'ement-room-send-org-filter))
 #+end_src
 
+** Elfeed
+Set up some keybinds. I like "U" to update to mirror [[*mu4e][mu4e]]'s behavior 🙃.
+#+begin_src elisp
+  (bind-key "f" #'elfeed my/open-map)
+
+  (after! elfeed
+    (bind-key "U" #'elfeed-search-update elfeed-search-mode-map)
+    (setopt elfeed-use-curl t))
+#+end_src
+
+Fetch feeds from my Tiny Tiny RSS server via [[https://github.com/fasheng/elfeed-protocol][elfeed-protocol]].
+#+begin_src elisp
+  (after! elfeed
+    (require 'elfeed-protocol)
+
+    (setopt elfeed-protocol-enabled-protocols '(ttrss)
+            elfeed-protocol-feeds '(("ttrss+http://ad@feeds.adtailnet"
+                                            :password (secrets-get-secret)
+                                                "KeePassXC" "Tiny Tiny RSS"))
+            elfeed-protocol-ttrss-maxsize 200
+            elfeed-protocol-ttrss-fetch-category-as-tag t)
+
+    (elfeed-protocol-enable))
+#+end_src
+
+I manage my feeds with [[https://github.com/remyhonig/elfeed-org][elfeed-org]], but sync the exported list to my Tiny Tiny RSS server instead of directly hooking it into Elfeed. All I need is for it to know which Org file to use 👍.
+#+begin_src elisp
+  (after! elfeed-org
+    (require 'denote)
+    (setopt rmh-elfeed-org-files
+            (seq-filter
+             (apply-partially #'string-match-p "-elfeed-feeds")
+             (denote-directory-files))))
+#+end_src
+
 * Miscellaneous
 ** ¯\_(ツ)_/¯
 This is very important.
