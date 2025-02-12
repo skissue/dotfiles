@@ -10,6 +10,7 @@
       ./remote-luks-unlock
       ./media
       ./minecraft
+      ./tt-rss
       ./wireless
     ]
     ++ mkModulesList [
