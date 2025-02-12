@@ -17,5 +17,18 @@ in {
       group = "tt_rss";
       mode = "700";
     }
+    # TODO Should this be moved elsewhere for if something else uses PostgreSQL?
+    #
+    # NOTE Currently nothing super important here, so putting it in local
+    # instead of data. If important data is stored here in the future, either
+    # migrate to data or use the `postgresqlBackup` service from nixpkgs.
+    {
+      directory = config.services.postgresql.dataDir;
+      # Hardcoded:
+      # https://github.com/NixOS/nixpkgs/blob/64e75cd44acf21c7933d61d7721e812eac1b5a0a/nixos/modules/services/databases/postgresql.nix#L586-L593
+      user = config.users.users.postgres.name;
+      group = config.users.users.postgres.group;
+      mode = "700";
+    }
   ];
 }
