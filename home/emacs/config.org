@@ -1483,7 +1483,8 @@ In addition to auto-loading via filename or magic values, we also want to load t
       (setopt hl-todo-keyword-faces
               `(("TODO" . ,green)
                 ("FIXME" . ,yellow)
-                ("HACK" . ,cyan)))))
+                ("HACK" . ,cyan)
+                ("NOTE" . ,blue)))))
 #+end_src
 
 #+begin_src elisp

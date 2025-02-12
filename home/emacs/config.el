@@ -1090,7 +1090,8 @@ uses the symbol name as the default description, as well as a
     (setopt hl-todo-keyword-faces
             `(("TODO" . ,green)
               ("FIXME" . ,yellow)
-              ("HACK" . ,cyan)))))
+              ("HACK" . ,cyan)
+              ("NOTE" . ,blue)))))
 
 (bind-keys :map goto-map
            ("t" . consult-todo)
