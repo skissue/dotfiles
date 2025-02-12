@@ -3401,7 +3401,7 @@ Set up some keybinds. I like "U" to update to mirror [[*mu4e][mu4e]]'s behavior 
   (bind-key "f" #'elfeed my/open-map)
 
   (after! elfeed
-    (bind-key "U" #'elfeed-search-update elfeed-search-mode-map)
+    (bind-key "U" #'elfeed-search-fetch elfeed-search-mode-map)
     (setopt elfeed-use-curl t))
 #+end_src
 

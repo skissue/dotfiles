@@ -2631,7 +2631,7 @@ This function is called by `org-babel-execute-src-block'.")
 (bind-key "f" #'elfeed my/open-map)
 
 (after! elfeed
-  (bind-key "U" #'elfeed-search-update elfeed-search-mode-map)
+  (bind-key "U" #'elfeed-search-fetch elfeed-search-mode-map)
   (setopt elfeed-use-curl t))
 
 (after! elfeed
