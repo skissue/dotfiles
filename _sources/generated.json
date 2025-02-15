@@ -22,7 +22,7 @@
     },
     "consult-omni": {
         "cargoLocks": null,
-        "date": "2025-02-03",
+        "date": "2025-02-12",
         "extract": null,
         "name": "consult-omni",
         "passthru": null,
@@ -34,12 +34,12 @@
             "name": null,
             "owner": "armindarvish",
             "repo": "consult-omni",
-            "rev": "cd9a945e1bceddddec3d1f4f44af4b63e366adfd",
-            "sha256": "sha256-Qg8lLjFkCi+MJlOTaybxwNyn+4JwTHrxDaSwf7Wp4A4=",
+            "rev": "cc96e1032eac88349de1ff355f00e6ff557dd78e",
+            "sha256": "sha256-1fh6Snpog/kDW39evaUWPCdPs61WZReKSGvzyYJBibQ=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "cd9a945e1bceddddec3d1f4f44af4b63e366adfd"
+        "version": "cc96e1032eac88349de1ff355f00e6ff557dd78e"
     },
     "gptel-quick": {
         "cargoLocks": null,
@@ -229,7 +229,7 @@
     },
     "treesit-fold": {
         "cargoLocks": null,
-        "date": "2025-02-10",
+        "date": "2025-02-14",
         "extract": null,
         "name": "treesit-fold",
         "passthru": null,
@@ -241,12 +241,12 @@
             "name": null,
             "owner": "emacs-tree-sitter",
             "repo": "treesit-fold",
-            "rev": "ea39768092311b857d7b46498eae93cc43807acf",
-            "sha256": "sha256-3rQIMMN3tvAvblyZryobMys+w3lo2FZwyQdzdBerG1k=",
+            "rev": "6162769f7642946c5cfb54c92fedc8b13f7fb7ac",
+            "sha256": "sha256-Up4Y/1IXO8fyhgG5etq09ff0tH8u93fKjge1p1bScso=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "ea39768092311b857d7b46498eae93cc43807acf"
+        "version": "6162769f7642946c5cfb54c92fedc8b13f7fb7ac"
     },
     "typst-ts-mode": {
         "cargoLocks": null,

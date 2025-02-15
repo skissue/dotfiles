@@ -15,15 +15,15 @@
   };
   consult-omni = {
     pname = "consult-omni";
-    version = "cd9a945e1bceddddec3d1f4f44af4b63e366adfd";
+    version = "cc96e1032eac88349de1ff355f00e6ff557dd78e";
     src = fetchFromGitHub {
       owner = "armindarvish";
       repo = "consult-omni";
-      rev = "cd9a945e1bceddddec3d1f4f44af4b63e366adfd";
+      rev = "cc96e1032eac88349de1ff355f00e6ff557dd78e";
       fetchSubmodules = false;
-      sha256 = "sha256-Qg8lLjFkCi+MJlOTaybxwNyn+4JwTHrxDaSwf7Wp4A4=";
+      sha256 = "sha256-1fh6Snpog/kDW39evaUWPCdPs61WZReKSGvzyYJBibQ=";
     };
-    date = "2025-02-03";
+    date = "2025-02-12";
   };
   gptel-quick = {
     pname = "gptel-quick";
@@ -140,15 +140,15 @@
   };
   treesit-fold = {
     pname = "treesit-fold";
-    version = "ea39768092311b857d7b46498eae93cc43807acf";
+    version = "6162769f7642946c5cfb54c92fedc8b13f7fb7ac";
     src = fetchFromGitHub {
       owner = "emacs-tree-sitter";
       repo = "treesit-fold";
-      rev = "ea39768092311b857d7b46498eae93cc43807acf";
+      rev = "6162769f7642946c5cfb54c92fedc8b13f7fb7ac";
       fetchSubmodules = false;
-      sha256 = "sha256-3rQIMMN3tvAvblyZryobMys+w3lo2FZwyQdzdBerG1k=";
+      sha256 = "sha256-Up4Y/1IXO8fyhgG5etq09ff0tH8u93fKjge1p1bScso=";
     };
-    date = "2025-02-10";
+    date = "2025-02-14";
   };
   typst-ts-mode = {
     pname = "typst-ts-mode";
