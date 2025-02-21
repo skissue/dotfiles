@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   cfg = config.services.tt-rss;
   url = "http://feeds.adtailnet";
 in {
@@ -6,6 +10,7 @@ in {
     enable = true;
     selfUrlPath = url;
     virtualHost = url;
+    pluginPackages = with pkgs; [my.tt-rss-af-youtube-remove-updated];
   };
 
   my.persist.local.directories = [
