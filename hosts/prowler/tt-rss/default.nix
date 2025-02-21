@@ -10,7 +10,13 @@ in {
     enable = true;
     selfUrlPath = url;
     virtualHost = url;
+
     pluginPackages = with pkgs; [my.tt-rss-af-youtube-remove-updated];
+    # This overrides default plugins, so add those too!
+    plugins = [
+      "auth_internal"
+      "af_youtube_remove_updated"
+    ];
   };
 
   my.persist.local.directories = [
