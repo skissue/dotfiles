@@ -1,7 +1,7 @@
 {
     "consult-mu": {
         "cargoLocks": null,
-        "date": "2025-02-01",
+        "date": "2025-02-17",
         "extract": null,
         "name": "consult-mu",
         "passthru": null,
@@ -13,16 +13,16 @@
             "name": null,
             "owner": "armindarvish",
             "repo": "consult-mu",
-            "rev": "5ee542f8a7d98cba454f02dcbe4513fba40ea8e7",
-            "sha256": "sha256-tYeo/nsKrtsklDuR553CH3nvv9S3slhyDmoRXFVwMnw=",
+            "rev": "e1dc63674b924698b30a9ecc0400a05864711c85",
+            "sha256": "sha256-XvzI/8lT8UscIQvjubbG72Sh4jzm3t1e3uKtHkACTZ0=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "5ee542f8a7d98cba454f02dcbe4513fba40ea8e7"
+        "version": "e1dc63674b924698b30a9ecc0400a05864711c85"
     },
     "consult-omni": {
         "cargoLocks": null,
-        "date": "2025-02-12",
+        "date": "2025-02-18",
         "extract": null,
         "name": "consult-omni",
         "passthru": null,
@@ -34,12 +34,12 @@
             "name": null,
             "owner": "armindarvish",
             "repo": "consult-omni",
-            "rev": "cc96e1032eac88349de1ff355f00e6ff557dd78e",
-            "sha256": "sha256-1fh6Snpog/kDW39evaUWPCdPs61WZReKSGvzyYJBibQ=",
+            "rev": "d0a24058bf0dda823e5f1efcae5da7dc0efe6bda",
+            "sha256": "sha256-dzKkJ+3lMRkHRuwe43wpzqnFvF8Tl6j+6XHUsDhMX4o=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "cc96e1032eac88349de1ff355f00e6ff557dd78e"
+        "version": "d0a24058bf0dda823e5f1efcae5da7dc0efe6bda"
     },
     "gptel-quick": {
         "cargoLocks": null,
@@ -229,7 +229,7 @@
     },
     "treesit-fold": {
         "cargoLocks": null,
-        "date": "2025-02-14",
+        "date": "2025-02-21",
         "extract": null,
         "name": "treesit-fold",
         "passthru": null,
@@ -241,12 +241,12 @@
             "name": null,
             "owner": "emacs-tree-sitter",
             "repo": "treesit-fold",
-            "rev": "6162769f7642946c5cfb54c92fedc8b13f7fb7ac",
-            "sha256": "sha256-Up4Y/1IXO8fyhgG5etq09ff0tH8u93fKjge1p1bScso=",
+            "rev": "864e79cce4873c854ffea993d984dc15a56b6419",
+            "sha256": "sha256-ZhR5xpR6D5nRp5QiSqApcUwQvK/+BMAnFE2/HBb1fmQ=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "6162769f7642946c5cfb54c92fedc8b13f7fb7ac"
+        "version": "864e79cce4873c854ffea993d984dc15a56b6419"
     },
     "typst-ts-mode": {
         "cargoLocks": null,
