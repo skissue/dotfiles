@@ -51,7 +51,7 @@ in {
 
   programs.emacs = {
     enable = true;
-    package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-pgtk;
+    package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-igc-pgtk;
     overrides = self: super:
       import ./my-packages.nix {
         inherit sources;
