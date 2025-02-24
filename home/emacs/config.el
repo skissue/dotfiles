@@ -101,14 +101,8 @@ Only run once.")
            (format "%.3f seconds"
                    (float-time
                     (time-subtract after-init-time before-init-time)))
-           gcs-done)
-  (gcmh-mode))
+           gcs-done))
 (add-hook 'emacs-startup-hook #'my/display-startup-time 50)
-
-(after! gcmh
-  (setq gcmh-idle-delay 'auto
-        gcmh-auto-idle-delay-factor 10
-        gcmh-high-cons-threshold (* 16 1024 1024)))
 
 (defvar my/private
   (with-temp-buffer

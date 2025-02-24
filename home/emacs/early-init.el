@@ -1,5 +1,3 @@
-(setq gc-cons-threshold most-positive-fixnum)
-
 (when (fboundp 'startup-redirect-eln-cache)
   (startup-redirect-eln-cache
     (expand-file-name  "emacs/eln-cache/" (getenv "XDG_CACHE_HOME"))))

@@ -14,12 +14,6 @@ I want lexical scoping, so this has to be the first line in the file.
 :PROPERTIES:
 :header-args: :results none :tangle early-init.el
 :END:
-** GC
-To optimize startup time, we max out the heap size as early as possible to avoid wasting time collecting garbage.
-#+begin_src elisp :tangle early-init.el
-  (setq gc-cons-threshold most-positive-fixnum)
-#+end_src
-
 ** Native Compilation Cache
 Put the native compilation cache in ~XDG_CACHE_HOME~, where it belongs. This has to be loaded early, so we throw it into ~early-init.el~.
 #+begin_src elisp
@@ -185,24 +179,15 @@ Load only at compile time (I like a few of Common Lisp's macros 🙃).
 #+end_src
 
 * Startup Performance
-We create a function that echoes to us the time it took for Emacs to start, along with the number of garbage collections (for optimization). We then enable [[https://github.com/emacsmirror/gcmh][gcmh]] to optimize garbage collection (and reset ~gc-cons-threshold~, which we maxed out in ~early-init.el~ to prevent garbage collections). Shamelessly stolen from [[https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org#startup-performance][here]].
+We create a function that echoes to us the time it took for Emacs to start, along with the number of garbage collections (for optimization). Shamelessly stolen from [[https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org#startup-performance][here]].
 #+begin_src elisp
   (defun my/display-startup-time ()
     (message "Emacs loaded in %s with %d garbage collections."
              (format "%.3f seconds"
                      (float-time
                       (time-subtract after-init-time before-init-time)))
-             gcs-done)
-    (gcmh-mode))
+             gcs-done))
   (add-hook 'emacs-startup-hook #'my/display-startup-time 50)
-#+end_src
-
-Configure ~gcmh~ with values stolen from [[https://github.com/doomemacs/doomemacs/blob/9620bb45ac4cd7b0274c497b2d9d93c4ad9364ee/lisp/doom-start.el#L95][Doom Emacs]].
-#+begin_src elisp
-  (after! gcmh
-    (setq gcmh-idle-delay 'auto
-          gcmh-auto-idle-delay-factor 10
-          gcmh-high-cons-threshold (* 16 1024 1024)))
 #+end_src
 
 * Private Config

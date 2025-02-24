@@ -62,7 +62,6 @@ in {
       with epkgs; [
         # Essentials
         no-littering
-        gcmh
         el-patch
         # Keybinds
         meow
