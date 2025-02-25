@@ -3257,6 +3257,12 @@ Modify [[help:mu4e-marks][mu4e-marks]] to mark messages read upon trashing them 
                           (el-patch-swap "+T-N" "+T-N+S-u")))))
 #+end_src
 
+Put viewing buffers into [[*Meow][Meow]]'s motion state, since they're not meant to be modified and they have their own bindings I'd like access to.
+#+begin_src elisp
+  (after! meow
+    (push '(mu4e-view-mode . motion) meow-mode-state-list))
+#+end_src
+
 ** Eshell
 #+begin_src elisp
   (bind-key "s" #'eshell my/open-map)
