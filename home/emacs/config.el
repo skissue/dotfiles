@@ -294,6 +294,11 @@ where it was when you previously visited the same file."
 (setq display-buffer-base-action '(display-buffer-pop-up-frame)
       frame-auto-hide-function #'delete-frame)
 
+;; `async-shell-command'
+(add-to-list 'display-buffer-alist
+             `(,(regexp-quote shell-command-buffer-name-async)
+               display-buffer-same-window))
+
 ;; `org-read-date'
 (add-to-list 'display-buffer-alist
              '((derived-mode . calendar-mode)

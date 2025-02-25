@@ -477,6 +477,11 @@ I want to use frames rather than windows for most operations, so we configure [[
 
 Deal with various things that don't play nice with this setup.
 #+begin_src elisp
+  ;; `async-shell-command'
+  (add-to-list 'display-buffer-alist
+               `(,(regexp-quote shell-command-buffer-name-async)
+                 display-buffer-same-window))
+
   ;; `org-read-date'
   (add-to-list 'display-buffer-alist
                '((derived-mode . calendar-mode)
