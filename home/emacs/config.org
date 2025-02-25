@@ -3261,7 +3261,6 @@ Modify [[help:mu4e-marks][mu4e-marks]] to mark messages read upon trashing them 
 #+begin_src elisp
   (bind-key "s" #'eshell my/open-map)
 
-  (add-hook 'eshell-mode-hook #'corfu-mode)
   (add-hook 'eshell-mode-hook #'electric-pair-local-mode)
 
   (after! eshell

@@ -2529,7 +2529,6 @@ This function is called by `org-babel-execute-src-block'.")
 
 (bind-key "s" #'eshell my/open-map)
 
-(add-hook 'eshell-mode-hook #'corfu-mode)
 (add-hook 'eshell-mode-hook #'electric-pair-local-mode)
 
 (after! eshell
