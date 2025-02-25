@@ -533,6 +533,12 @@ These variants of the functions are objectively better, no idea why they're not 
              ([remap upcase-word] . upcase-dwim))
 #+end_src
 
+** Shell Commands
+Only show the buffer for async commands if/when there is output.
+#+begin_src elisp
+  (setq async-shell-command-display-buffer nil)
+#+end_src
+
 * Appearance
 ** Word-wrap
 Always word-wrap and act on visual lines.

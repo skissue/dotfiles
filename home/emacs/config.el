@@ -344,6 +344,8 @@ where it was when you previously visited the same file."
 (bind-keys ([remap downcase-word] . downcase-dwim)
            ([remap upcase-word] . upcase-dwim))
 
+(setq async-shell-command-display-buffer nil)
+
 (global-visual-line-mode)
 
 (setq frame-title-format '("" "%b - Emacs"))
