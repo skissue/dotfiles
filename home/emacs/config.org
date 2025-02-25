@@ -520,6 +520,14 @@ Deal with various things that don't play nice with this setup.
       (apply fn args)))
 #+end_src
 
+** Capitalization
+These variants of the functions are objectively better, no idea why they're not the defaults ¯\_(ツ)_/¯.
+
+#+begin_src elisp
+  (bind-keys ([remap downcase-word] . downcase-dwim)
+             ([remap upcase-word] . upcase-dwim))
+#+end_src
+
 * Appearance
 ** Word-wrap
 Always word-wrap and act on visual lines.
