@@ -2414,6 +2414,10 @@ This function is called by `org-babel-execute-src-block'.")
 (setq mail-user-agent #'mu4e-user-agent
       read-mail-command #'mu4e)
 
+(add-hook 'mu4e-headers-mode-hook (lambda ()
+                                    (visual-line-mode -1)
+                                    (setq truncate-lines t)))
+
 (after! mu4e
   (bind-key "b" #'mu4e-search-bookmark mu4e-main-mode-map)
 
