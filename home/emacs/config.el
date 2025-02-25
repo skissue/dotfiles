@@ -2536,10 +2536,14 @@ This function is called by `org-babel-execute-src-block'.")
   (eat-eshell-mode)
   ;; Since we have Eat emulating a true terminal, we don't want any commands to
   ;; defer to an external `term' buffer.
-  (setopt eshell-visual-commands nil)
-  ;; God Mode key
-  (add-to-list 'eat-semi-char-non-bound-keys [escape])
-  (add-to-list 'eat-eshell-semi-char-non-bound-keys [escape])
+  (setopt eshell-visual-commands nil))
+
+(after! meow
+  (push '(eshell-mode . insert) meow-mode-state-list))
+
+(after! eshell
+  (push [escape] eat-semi-char-non-bound-keys)
+  (push [escape] eat-eshell-semi-char-non-bound-keys)
   (eat-update-semi-char-mode-map)
   (eat-eshell-update-semi-char-mode-map))
 
