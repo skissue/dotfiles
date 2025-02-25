@@ -53,6 +53,7 @@
     waypipe
     webcord
     wl-clipboard
+    yt-dlp
     my.zen-browser
   ];
 

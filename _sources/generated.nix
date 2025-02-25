@@ -25,6 +25,18 @@
     };
     date = "2025-02-18";
   };
+  elfeed-tube-ytdlp = {
+    pname = "elfeed-tube-ytdlp";
+    version = "d7e56c6e793576f9a1699b15d6f6db73d9f913ba";
+    src = fetchFromGitHub {
+      owner = "shimeike";
+      repo = "elfeed-tube";
+      rev = "d7e56c6e793576f9a1699b15d6f6db73d9f913ba";
+      fetchSubmodules = false;
+      sha256 = "sha256-XHLr4bnpSBZwkhJ584KAlnmtUm7RluFB5ps9I4tx8ro=";
+    };
+    date = "2025-02-18";
+  };
   gptel-quick = {
     pname = "gptel-quick";
     version = "d7a3aedefdc656a136d5664f2dac165a1f6ebf0e";
@@ -67,17 +79,17 @@
   };
   org-bleeding-latex = {
     pname = "org-bleeding-latex";
-    version = "ce4a745b0aa746686376c5927b3165fe4cb4b4d7";
+    version = "4bb159ae7834fa1f4d76153fbee85c7c5518ba66";
     src = fetchgit {
       url = "https://code.tecosaur.net/tec/org-mode.git";
-      rev = "ce4a745b0aa746686376c5927b3165fe4cb4b4d7";
+      rev = "4bb159ae7834fa1f4d76153fbee85c7c5518ba66";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-jotNr6F2AWzQv4XM931Hb3Imc3jCM1fVZe2+Y+YhJrg=";
+      sha256 = "sha256-8S4F2xH3xVa6nXL74sR8y3VPXG4tk+0wiwSa4Ep0Dr4=";
     };
-    date = "2024-12-29";
+    date = "2025-02-24";
   };
   org-modern-indent = {
     pname = "org-modern-indent";
@@ -140,15 +152,15 @@
   };
   treesit-fold = {
     pname = "treesit-fold";
-    version = "864e79cce4873c854ffea993d984dc15a56b6419";
+    version = "d0aa3d8015b8ff852e68f2b68afa63f3110f3e15";
     src = fetchFromGitHub {
       owner = "emacs-tree-sitter";
       repo = "treesit-fold";
-      rev = "864e79cce4873c854ffea993d984dc15a56b6419";
+      rev = "d0aa3d8015b8ff852e68f2b68afa63f3110f3e15";
       fetchSubmodules = false;
-      sha256 = "sha256-ZhR5xpR6D5nRp5QiSqApcUwQvK/+BMAnFE2/HBb1fmQ=";
+      sha256 = "sha256-F61jg52+r8K0Q8MSIAf7Ht4SpGEPn5WG2pc+Kz1FY6s=";
     };
-    date = "2025-02-21";
+    date = "2025-02-24";
   };
   typst-ts-mode = {
     pname = "typst-ts-mode";

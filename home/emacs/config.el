@@ -2662,12 +2662,9 @@ This function is called by `org-babel-execute-src-block'.")
              ("C-c C-w" . elfeed-tube-mpv-where)))
 
 (after! elfeed-tube
-  (setopt elfeed-tube-invidious-url "https://nyc1.iv.ggtyler.dev/"
+  (setopt elfeed-tube-use-ytdlp-p t
           elfeed-tube-auto-fetch-p t
           elfeed-tube-auto-save-p nil))
-
-(after! elfeed-tube-mpv
-  (setq elfeed-tube-mpv--available-p t))
 
 (defun my/shruggie ()
   "Insert ¯\\_(ツ)_/¯."

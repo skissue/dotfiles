@@ -3444,15 +3444,9 @@ Keybinds:
 Configuration:
 #+begin_src elisp
   (after! elfeed-tube
-    (setopt elfeed-tube-invidious-url "https://nyc1.iv.ggtyler.dev/"
+    (setopt elfeed-tube-use-ytdlp-p t
             elfeed-tube-auto-fetch-p t
             elfeed-tube-auto-save-p nil))
-#+end_src
-
-This detection isn't appropriate for my (very weird NixOS) system.
-#+begin_src elisp
-  (after! elfeed-tube-mpv
-    (setq elfeed-tube-mpv--available-p t))
 #+end_src
 
 * Miscellaneous

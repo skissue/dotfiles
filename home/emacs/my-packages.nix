@@ -12,6 +12,11 @@ in {
       version = "9.7.69";
       files = ''(:defaults "etc")'';
     });
+  # Elfeed Tube with yt-dlp metadata support.
+  # TODO Remove when this is merged.
+  elfeed-tube = epkgs.elfeed-tube.overrideAttrs (oldAttrs: {
+    inherit (sources.elfeed-tube-ytdlp) src;
+  });
   typst-ts-mode = melpaBuild (sources.typst-ts-mode // {version = "0.10.0";});
   org-popup-posframe = melpaBuild (sources.org-popup-posframe
     // {
