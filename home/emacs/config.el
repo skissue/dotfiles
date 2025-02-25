@@ -2647,6 +2647,28 @@ This function is called by `org-babel-execute-src-block'.")
            (apply-partially #'string-match-p "-elfeed-feeds")
            (denote-directory-files))))
 
+(after! elfeed
+  (require 'elfeed-tube)
+  (elfeed-tube-setup))
+
+(after! elfeed
+  (bind-keys :map elfeed-search-mode-map
+             ("F" . elfeed-tube-fetch)
+             ([remap save-buffer] . elfeed-tube-save)
+             :map elfeed-show-mode-map
+             ("F" . elfeed-tube-fetch)
+             ([remap save-buffer] . elfeed-tube-save)
+             ("C-c C-f" . elfeed-tube-mpv-follow-mode)
+             ("C-c C-w" . elfeed-tube-mpv-where)))
+
+(after! elfeed-tube
+  (setopt elfeed-tube-invidious-url "https://nyc1.iv.ggtyler.dev/"
+          elfeed-tube-auto-fetch-p t
+          elfeed-tube-auto-save-p nil))
+
+(after! elfeed-tube-mpv
+  (setq elfeed-tube-mpv--available-p t))
+
 (defun my/shruggie ()
   "Insert ¯\\_(ツ)_/¯."
   (interactive)

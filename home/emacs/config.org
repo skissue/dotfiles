@@ -3390,6 +3390,7 @@ Set up some keybinds. I like "U" to update to mirror [[*mu4e][mu4e]]'s behavior 
     (setopt elfeed-use-curl t))
 #+end_src
 
+*** =elfeed-protocol=
 Fetch feeds from my Tiny Tiny RSS server via [[https://github.com/fasheng/elfeed-protocol][elfeed-protocol]].
 #+begin_src elisp
   (after! elfeed
@@ -3405,6 +3406,7 @@ Fetch feeds from my Tiny Tiny RSS server via [[https://github.com/fasheng/elfeed
     (elfeed-protocol-enable))
 #+end_src
 
+*** =elfeed-org=
 I manage my feeds with [[https://github.com/remyhonig/elfeed-org][elfeed-org]], but sync the exported list to my Tiny Tiny RSS server instead of directly hooking it into Elfeed. All I need is for it to know which Org file to use 👍.
 #+begin_src elisp
   (after! elfeed-org
@@ -3413,6 +3415,44 @@ I manage my feeds with [[https://github.com/remyhonig/elfeed-org][elfeed-org]], 
             (seq-filter
              (apply-partially #'string-match-p "-elfeed-feeds")
              (denote-directory-files))))
+#+end_src
+
+*** Elfeed Tube
+A YouTube client for Elfeed 🔥!
+
+Setup (this function isn't autoloaded, for some reason):
+#+begin_src elisp
+  (after! elfeed
+    (require 'elfeed-tube)
+    (elfeed-tube-setup))
+#+end_src
+
+Keybinds:
+#+begin_src elisp
+  (after! elfeed
+    (bind-keys :map elfeed-search-mode-map
+               ("F" . elfeed-tube-fetch)
+               ([remap save-buffer] . elfeed-tube-save)
+               :map elfeed-show-mode-map
+               ("F" . elfeed-tube-fetch)
+               ([remap save-buffer] . elfeed-tube-save)
+               ("C-c C-f" . elfeed-tube-mpv-follow-mode)
+               ("C-c C-w" . elfeed-tube-mpv-where)))
+     
+#+end_src
+
+Configuration:
+#+begin_src elisp
+  (after! elfeed-tube
+    (setopt elfeed-tube-invidious-url "https://nyc1.iv.ggtyler.dev/"
+            elfeed-tube-auto-fetch-p t
+            elfeed-tube-auto-save-p nil))
+#+end_src
+
+This detection isn't appropriate for my (very weird NixOS) system.
+#+begin_src elisp
+  (after! elfeed-tube-mpv
+    (setq elfeed-tube-mpv--available-p t))
 #+end_src
 
 * Miscellaneous

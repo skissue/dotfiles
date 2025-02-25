@@ -202,6 +202,8 @@ in {
         elfeed
         elfeed-protocol
         elfeed-org
+        elfeed-tube
+        elfeed-tube-mpv
       ];
   };
 
