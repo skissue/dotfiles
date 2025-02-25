@@ -463,10 +463,11 @@ where it was when you previously visited the same file."
   (interactive)
   (unless buffer-file-name
     (user-error "Current buffer is not visiting a file"))
-  (when (yes-or-no-p (concat "Really delete " buffer-file-name "?"))
+  (when-let* (((yes-or-no-p (concat "Really delete " buffer-file-name "?")))
+              (file-name buffer-file-name))
     (delete-file buffer-file-name)
     (kill-buffer)
-    (message "Deleted %s" buffer-file-name)))
+    (message "Deleted %s" file-name)))
 
 (bind-keys :map my/buffer-map
            ("b" . switch-to-buffer)
