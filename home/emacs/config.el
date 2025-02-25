@@ -966,6 +966,10 @@ uses the symbol name as the default description, as well as a
   (setopt yas-snippet-dirs (list (expand-file-name
                                   "snippets" user-emacs-directory))))
 
+(after! yasnippet
+  (custom-set-faces
+   '(yas-field-highlight-face ((t :inherit highlight)))))
+
 (bind-keys :map my/git-map
            ("b" . magit-branch)
            ("B" . magit-blame)

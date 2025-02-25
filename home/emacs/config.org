@@ -1310,6 +1310,13 @@ Command to enable Direnv for Nix.
                                     "snippets" user-emacs-directory))))
 #+end_src
 
+Make the face used for fields more visible.
+#+begin_src elisp
+  (after! yasnippet
+    (custom-set-faces
+     '(yas-field-highlight-face ((t :inherit highlight)))))
+#+end_src
+
 ** Git
 #+begin_src elisp
   (bind-keys :map my/git-map
