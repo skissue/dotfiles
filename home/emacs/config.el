@@ -2689,7 +2689,7 @@ This function is called by `org-babel-execute-src-block'.")
 (after! elfeed-tube
   (setopt elfeed-tube-use-ytdlp-p t
           elfeed-tube-auto-fetch-p t
-          elfeed-tube-auto-save-p nil))
+          elfeed-tube-auto-save-p t))
 
 (defun my/shruggie ()
   "Insert ¯\\_(ツ)_/¯."
