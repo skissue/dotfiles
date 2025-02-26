@@ -17,14 +17,12 @@ in {
   elfeed-tube = epkgs.elfeed-tube.overrideAttrs (oldAttrs: {
     inherit (sources.elfeed-tube-ytdlp) src;
   });
-  typst-ts-mode = melpaBuild (sources.typst-ts-mode // {version = "0.10.0";});
   org-popup-posframe = melpaBuild (sources.org-popup-posframe
     // {
       version = "0.0.1";
       packageRequires = with epkgs; [posframe];
     });
   org-typst = melpaBuild (sources.org-typst // {version = "0.1.0";});
-  treesit-fold = melpaBuild (sources.treesit-fold // {version = "0.1.0";});
   gptel-quick = melpaBuild (sources.gptel-quick
     // {
       version = "0.0.5";

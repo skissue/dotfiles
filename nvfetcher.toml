@@ -2,10 +2,6 @@
 src.git = "https://code.tecosaur.net/tec/org-mode.git"
 fetch.git = "https://code.tecosaur.net/tec/org-mode.git"
 
-[typst-ts-mode]
-src.git = "https://git.sr.ht/~meow_king/typst-ts-mode"
-fetch.git = "https://git.sr.ht/~meow_king/typst-ts-mode"
-
 [org-popup-posframe]
 src.git = "https://github.com/A7R7/org-popup-posframe"
 fetch.github = "A7R7/org-popup-posframe"
@@ -13,10 +9,6 @@ fetch.github = "A7R7/org-popup-posframe"
 [org-typst]
 src.git = "https://github.com/skissue/org-typst"
 fetch.github = "skissue/org-typst"
-
-[treesit-fold]
-src.git = "https://github.com/emacs-tree-sitter/treesit-fold"
-fetch.github = "emacs-tree-sitter/treesit-fold"
 
 [gptel-quick]
 src.git = "https://github.com/karthink/gptel-quick"
