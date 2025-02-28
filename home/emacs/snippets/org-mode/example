@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: example
+# key: ble
+# --
+#+begin_example $1
+  $0
+#+end_example
