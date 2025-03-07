@@ -1830,9 +1830,6 @@ For our purposes, a note must not be a directory, must satisfy
      `(org-upcoming-deadline         ((t (:foreground ,yellow :weight medium))))
      `(org-upcoming-distant-deadline ((t (:foreground ,yellow :weight light)))))))
 
-(add-hook 'org-agenda-mode-hook (lambda ()
-                                  (face-remap-add-relative 'default 'fixed-pitch)))
-
 (after! org
   (require 'org-habit)
   (setopt org-habit-preceding-days 14

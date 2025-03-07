@@ -2353,12 +2353,6 @@ Ah, the crown jewel of Emacs 👑.
        `(org-upcoming-distant-deadline ((t (:foreground ,yellow :weight light)))))))
 #+end_src
 
-Iosevka by default lets some characters be two-wide, which messes up some alignment in Org Agenda, so we force the font to be perfectly monospace.
-#+begin_src elisp
-  (add-hook 'org-agenda-mode-hook (lambda ()
-                                    (face-remap-add-relative 'default 'fixed-pitch)))
-#+end_src
-
 Habits.
 #+begin_src elisp
   (after! org
