@@ -356,7 +356,7 @@ where it was when you previously visited the same file."
  '(default           ((t (:font "MonoLisa"     :height 140))))
  '(fixed-pitch       ((t (:font "MonoLisa"     :height unspecified))))
  '(fixed-pitch-serif ((t (:font "MonoLisa"     :height unspecified))))
- '(variable-pitch    ((t (:font "Iosevka Aile" :height 140)))))
+ '(variable-pitch    ((t (:font "Atkinson Hyperlegible" :height 140)))))
 
 (autoload #'nerd-icons-set-font "nerd-icons" "Modify nerd font charsets to use FONT-FAMILY for FRAME." nil)
 (add-hook 'server-after-make-frame-hook #'nerd-icons-set-font)

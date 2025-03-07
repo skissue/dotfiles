@@ -14,6 +14,9 @@
     my.monolisa
     nerd-fonts.symbols-only
     (google-fonts.override {fonts = ["Karla"];})
+    atkinson-hyperlegible
+    # TODO Switch to this when nixpkgs input is updated.
+    # atkinson-hyperlegible-next
     twitter-color-emoji
   ];
 }
