@@ -559,9 +559,9 @@ Reduce fringe size on the right (left is used for various indicators).
 ** Fonts
 #+begin_src elisp
   (custom-set-faces
-   '(default           ((t (:font "MonoLisa"     :height 140))))
-   '(fixed-pitch       ((t (:font "MonoLisa"     :height unspecified))))
-   '(fixed-pitch-serif ((t (:font "MonoLisa"     :height unspecified))))
+   '(default           ((t (:font "MonoLisa"              :height 120))))
+   '(fixed-pitch       ((t (:font "MonoLisa"              :height 120))))
+   '(fixed-pitch-serif ((t (:font "MonoLisa"              :height 120))))
    '(variable-pitch    ((t (:font "Atkinson Hyperlegible" :height 140)))))
 #+end_src
 

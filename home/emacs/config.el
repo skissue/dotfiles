@@ -353,9 +353,9 @@ where it was when you previously visited the same file."
 (set-fringe-mode '(6 . 2))
 
 (custom-set-faces
- '(default           ((t (:font "MonoLisa"     :height 140))))
- '(fixed-pitch       ((t (:font "MonoLisa"     :height unspecified))))
- '(fixed-pitch-serif ((t (:font "MonoLisa"     :height unspecified))))
+ '(default           ((t (:font "MonoLisa"              :height 120))))
+ '(fixed-pitch       ((t (:font "MonoLisa"              :height 120))))
+ '(fixed-pitch-serif ((t (:font "MonoLisa"              :height 120))))
  '(variable-pitch    ((t (:font "Atkinson Hyperlegible" :height 140)))))
 
 (autoload #'nerd-icons-set-font "nerd-icons" "Modify nerd font charsets to use FONT-FAMILY for FRAME." nil)
