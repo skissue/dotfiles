@@ -11,6 +11,7 @@
     (iosevka-bin.override {variant = "Slab";})
     (iosevka-bin.override {variant = "Aile";})
     (iosevka-bin.override {variant = "Etoile";})
+    my.monolisa
     nerd-fonts.symbols-only
     (google-fonts.override {fonts = ["Karla"];})
     twitter-color-emoji
