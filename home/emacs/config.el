@@ -353,10 +353,10 @@ where it was when you previously visited the same file."
 (set-fringe-mode '(6 . 2))
 
 (custom-set-faces
- '(default           ((t (:font "Iosevka SS18"       :height 140))))
- '(fixed-pitch       ((t (:font "Iosevka Fixed SS18" :height unspecified))))
- '(fixed-pitch-serif ((t (:font "Iosevka Slab"       :height unspecified))))
- '(variable-pitch    ((t (:font "Iosevka Aile"       :height 140)))))
+ '(default           ((t (:font "MonoLisa"     :height 140))))
+ '(fixed-pitch       ((t (:font "MonoLisa"     :height unspecified))))
+ '(fixed-pitch-serif ((t (:font "MonoLisa"     :height unspecified))))
+ '(variable-pitch    ((t (:font "Iosevka Aile" :height 140)))))
 
 (autoload #'nerd-icons-set-font "nerd-icons" "Modify nerd font charsets to use FONT-FAMILY for FRAME." nil)
 (add-hook 'server-after-make-frame-hook #'nerd-icons-set-font)
