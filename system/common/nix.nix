@@ -61,9 +61,7 @@
     };
     overlays = [
       inputs.lix-module.overlays.default
-      (final: prev: {
-        my = self.packages.${pkgs.system};
-      })
+      self.overlays.default
     ];
   };
 

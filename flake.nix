@@ -95,14 +95,20 @@
         ./hosts
       ];
 
+      flake.overlays.default = final: prev: {
+        my-sources-private = inputs.private.sources;
+        my =
+          lib.genAttrs
+          (lib.attrNames (builtins.readDir ./packages))
+          (p: final.callPackage (import ./packages/${p}) {});
+      };
+
       perSystem = {
         pkgs,
         system,
         inputs',
         ...
       }: {
-        packages = lib.genAttrs (lib.attrNames (builtins.readDir ./packages)) (p: pkgs.callPackage (import ./packages/${p}) {});
-
         devshells.default = with pkgs; {
           commands = [
             {
