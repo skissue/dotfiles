@@ -21,6 +21,9 @@
         # CGNAT range that Mullvad uses for DNS (100.64.0.0/24).
         ./limit-ipv4-cgnat.patch
       ];
+
+      # A lot of tests fail with a custom CGNAT range.
+      doCheck = false;
     });
     openFirewall = true;
     authKeyFile = config.sops.secrets.tailscale-auth-key.path;
