@@ -1946,7 +1946,7 @@ For our purposes, a note must not be a directory, must satisfy
                             :inherit fixed-pitch)))
      `(org-modern-done ((t :inherit org-modern-todo
                            :foreground ,green)))
-     '(org-modern-symbol ((t (:family "Iosevka Aile" :height 1.1)))))))
+     '(org-modern-symbol ((t (:family "MonoLisa" :height 1.1)))))))
 
 (after! org-indent
   (defvar my/org-indent--heading-pixel-widths
