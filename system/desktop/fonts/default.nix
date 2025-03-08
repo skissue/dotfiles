@@ -9,7 +9,6 @@
 
     my.monolisa
     nerd-fonts.symbols-only
-    (google-fonts.override {fonts = ["Karla"];})
     atkinson-hyperlegible-next
     twitter-color-emoji
   ];
