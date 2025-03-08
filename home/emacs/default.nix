@@ -105,7 +105,6 @@ in {
         yasnippet
         pdf-tools
         copilot
-        copilot-chat
         zoxide
         focus
         hl-todo
