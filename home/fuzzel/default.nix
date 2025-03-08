@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       main = {
-        font = "Iosevka Aile:size=18";
+        font = "Atkinson Hyperlegible Next:size=18";
         dpi-aware = "no";
         prompt = "❯ ";
         lines = 20;

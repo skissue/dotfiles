@@ -86,11 +86,11 @@
         copy-command = "wl-copy";
         initial-tool = "rectangle";
       };
-      font = {family = "Iosevka Aile";};
+      font = {family = "Atkinson Hyperlegible Next";};
     };
     "WebCord/Themes/theme".text = ''
       * {
-        font-family: Iosevka Aile, sans-serif;
+        font-family: Atkinson Hyperlegible Next, sans-serif;
       }
     '';
   };

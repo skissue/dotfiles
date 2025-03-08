@@ -30,7 +30,7 @@
     group-by=app-name,summary
     layer=overlay
 
-    font=Iosevka Aile 16
+    font=Atkinson Hyperlegible Next 16
     background-color=#24273ad9
     text-color=#cad3f5
 
@@ -65,7 +65,7 @@
         text = "$TIME";
         text_align = "center";
         font_size = 36;
-        font_family = "Iosevka Aile";
+        font_family = "Atkinson Hyperlegible Next";
         position = "0, 80";
         halign = "center";
         valign = "center";

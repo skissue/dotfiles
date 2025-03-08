@@ -6,7 +6,7 @@
   gtk = {
     enable = true;
     font = {
-      name = "Iosevka Aile";
+      name = "Atkinson Hyperlegible Next";
       size = 12;
     };
     theme = {
