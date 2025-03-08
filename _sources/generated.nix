@@ -93,15 +93,15 @@
   };
   org-modern-indent = {
     pname = "org-modern-indent";
-    version = "52b46c6ecd63e627ab5bfb83c580b51f68a23774";
+    version = "2b3ee1f8cb8be859970ffaee62f12e635f161cd3";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "org-modern-indent";
-      rev = "52b46c6ecd63e627ab5bfb83c580b51f68a23774";
+      rev = "2b3ee1f8cb8be859970ffaee62f12e635f161cd3";
       fetchSubmodules = false;
-      sha256 = "sha256-9aaaPGCvt51FknRKB5zT8AdHjhH/sQMc1IyQS3KnJsU=";
+      sha256 = "sha256-Fd6PhvgqUaxc6VIOVPd/eXryNdj5g3xGbLLuZomJsxg=";
     };
-    date = "2024-12-16";
+    date = "2025-02-25";
   };
   org-overdrive = {
     pname = "org-overdrive";
@@ -149,32 +149,6 @@
       fetchSubmodules = false;
       sha256 = "sha256-L6KVBw20K67lHT07Ws+ZC2DwdURahqyuyjAaK0kTgN0=";
     };
-  };
-  treesit-fold = {
-    pname = "treesit-fold";
-    version = "d0aa3d8015b8ff852e68f2b68afa63f3110f3e15";
-    src = fetchFromGitHub {
-      owner = "emacs-tree-sitter";
-      repo = "treesit-fold";
-      rev = "d0aa3d8015b8ff852e68f2b68afa63f3110f3e15";
-      fetchSubmodules = false;
-      sha256 = "sha256-F61jg52+r8K0Q8MSIAf7Ht4SpGEPn5WG2pc+Kz1FY6s=";
-    };
-    date = "2025-02-24";
-  };
-  typst-ts-mode = {
-    pname = "typst-ts-mode";
-    version = "1367003e2ad55a2f6f9e43178584683028ab56e9";
-    src = fetchgit {
-      url = "https://git.sr.ht/~meow_king/typst-ts-mode";
-      rev = "1367003e2ad55a2f6f9e43178584683028ab56e9";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sparseCheckout = [ ];
-      sha256 = "sha256-0RAJ/Td3G7FDvzf7t8csNs/uc07WUPGvMo8ako5iyl0=";
-    };
-    date = "2024-12-07";
   };
   ultra-scroll = {
     pname = "ultra-scroll";
