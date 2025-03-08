@@ -14,7 +14,7 @@
       };
       colors.transparent_background_colors = true;
       font = {
-        normal.family = "Iosevka Term SS18";
+        normal.family = "MonoLisa";
         size = 14;
         builtin_box_drawing = false;
       };
