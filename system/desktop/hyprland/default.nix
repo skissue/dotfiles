@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   inputs,
   ...
@@ -9,17 +7,7 @@
     programs.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.default;
-    };
-
-    programs.uwsm = {
-      enable = true;
-      waylandCompositors = {
-        hyprland = {
-          prettyName = "Hyprland";
-          comment = "Hyprland compositor managed by UWSM";
-          binPath = lib.getExe config.programs.hyprland.package;
-        };
-      };
+      withUWSM = true;
     };
 
     # Needed for file pickers and stuff
