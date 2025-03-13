@@ -1196,10 +1196,10 @@ uses the symbol name as the default description, as well as a
           gptel-backend         (gptel-make-ollama "Ollama"
                                   :host "windstorm:11434"
                                   :stream nil
-                                  :models '(phi4:latest
+                                  :models '(phi4-mini:latest
                                             deepseek-r1:14b
-                                            llama3.1:latest
-                                            (minicpm-v:latest
+                                            qwen2.5-coder:14b
+                                            (gemma3:12b
                                              :capabilities (media)
                                              :mime-types ("image/png"))))
           gptel-default-mode    #'org-mode
