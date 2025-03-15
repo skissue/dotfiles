@@ -125,6 +125,7 @@ in {
         keycast
         gptel
         gptel-quick
+        gptel-aibo
         inline-diff
         wgrep
         smartparens
