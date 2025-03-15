@@ -63,6 +63,9 @@ in {
         # Essentials
         no-littering
         el-patch
+        # Elisp
+        aio
+        plz
         # Keybinds
         meow
         meow-tree-sitter
