@@ -2103,6 +2103,15 @@ have `org-warning' face."
         (alist-get :exports org-babel-default-header-args)
         "both"))
 
+(after! ox
+  (define-advice org-export-output-file-name
+      (:around (fn ext &optional subtreep pub-dir) set-default-dir)
+    (when-let* (((null pub-dir))
+                (buf-file (buffer-file-name (buffer-base-buffer)))
+                ((string-prefix-p my/brain2 buf-file)))
+      (setq pub-dir (expand-file-name "export/" my/brain2)))
+    (funcall fn ext subtreep pub-dir)))
+
 (el-patch-feature ox)
 (after! ox
   (el-patch-define-and-eval-template

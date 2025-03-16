@@ -2687,6 +2687,20 @@ Don't evaluate code blocks when exporting, and include both the code and results
           "both"))
 #+end_src
 
+*** Default directory
+When exporting files in my =brain2= directory, default to the =export/= subdirectory.
+#+begin_src elisp
+  (after! ox
+    (define-advice org-export-output-file-name
+        (:around (fn ext &optional subtreep pub-dir) set-default-dir)
+      (when-let* (((null pub-dir))
+                  (buf-file (buffer-file-name (buffer-base-buffer)))
+                  ((string-prefix-p my/brain2 buf-file)))
+        (setq pub-dir (expand-file-name "export/" my/brain2)))
+      (funcall fn ext subtreep pub-dir)))
+      
+#+end_src
+
 *** Patches
 The bleeding-edge development branch of Org that I'm using has a small bug in these functions that doesn't account for export backends that have a parent that's defined inline rather than being a symbol key, which occurs with [[*Gnuplot][Gnuplot babel blocks]] (alpha software, alpha problems ¯\_(ツ)_/¯). Two quick patches to fix them 👍.
 #+begin_src elisp
