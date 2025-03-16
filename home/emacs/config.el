@@ -114,6 +114,11 @@ Only run once.")
   "Return value of `my/private' by recursively following KEYS."
   (map-nested-elt my/private keys))
 
+(defvar my/theuniverse "~/theuniverse/"
+  "Path for `theuniverse'.")
+(defvar my/brain2 (expand-file-name "brain2/" my/theuniverse)
+  "Path for `theuniverse'.")
+
 (setq no-littering-etc-directory
       (expand-file-name "emacs/" (getenv "XDG_CONFIG_HOME"))
       no-littering-var-directory
@@ -1445,7 +1450,7 @@ Calls the function in `consult-omni-default-interactive-command'." t)
                                        "man"
                                        "Org Agenda"
                                        "Notes Search")
-          consult-omni-notes-files (list denote-directory)
+          consult-omni-notes-files (list my/brain2)
           consult-omni-notes-backend-command "rga"
           consult-omni--notes-new-func #'consult-omni--notes-new-create-denote))
 
@@ -1493,13 +1498,12 @@ Calls the function in `consult-omni-default-interactive-command'." t)
 
 (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
 
-(setq denote-directory "~/denote/")
-
 (after! denote
   (denote-rename-buffer-mode)
   (consult-denote-mode)
-  ;; Illegal characters on Android
-  (setopt denote-excluded-punctuation-extra-regexp (rx (* (or "<" ">")))
+  (setopt denote-directory my/brain2
+          ;; Illegal characters on Android
+          denote-excluded-punctuation-extra-regexp (rx (* (or "<" ">")))
           denote-excluded-directories-regexp "publish/"
           denote-known-keywords '("agenda" "person" "needy" "private"
                                   "reference" "thought" "journal")
@@ -1694,7 +1698,7 @@ For our purposes, a note must not be a directory, must satisfy
 (after! citar
   (citar-denote-mode)
   (setopt citar-bibliography (list
-                              (expand-file-name "refs.bib" denote-directory))
+                              (expand-file-name "refs.bib" my/brain2))
           org-cite-global-bibliography citar-bibliography))
 
 (add-hook 'org-mode-hook #'variable-pitch-mode)
@@ -1705,7 +1709,7 @@ For our purposes, a note must not be a directory, must satisfy
 (add-hook 'org-capture-mode-hook #'meow-insert)
 
 (after! org
-  (setopt org-directory                          denote-directory
+  (setopt org-directory                          my/brain2
           org-hide-emphasis-markers              t
           org-confirm-babel-evaluate             nil
           org-ctrl-k-protect-subtree             'error
@@ -1797,7 +1801,7 @@ For our purposes, a note must not be a directory, must satisfy
         (format "%s: " title)
       ""))
 
-  (setopt org-agenda-files (list denote-directory)
+  (setopt org-agenda-files (list my/brain2)
           org-agenda-file-regexp (rx "_agenda" (* any) ".org" string-end)
           org-agenda-prefix-format '((agenda . " %i%-28(my/org-agenda-get-title)% t%s%b")
                                      (todo   . " %i%-28(my/org-agenda-get-title)%b")

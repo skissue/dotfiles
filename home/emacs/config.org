@@ -207,6 +207,16 @@ Convenience function to access nested elements.
     (map-nested-elt my/private keys))
 #+end_src
 
+* =theuniverse=
+Paths for my main Folders of Everything™, to make them convenient to reference elsewhere.
+
+#+begin_src elisp
+  (defvar my/theuniverse "~/theuniverse/"
+    "Path for `theuniverse'.")
+  (defvar my/brain2 (expand-file-name "brain2/" my/theuniverse)
+    "Path for `theuniverse'.")
+#+end_src
+
 * Behavior
 ** No Littering
 Don't leave random files everywhere in the filesystem. Paths must be set before loading the package. This has to be loaded before most of the packages that it configures, so it's pretty early.
@@ -1904,7 +1914,7 @@ The repository comes with many different files for "sources", that each have var
                                          "man"
                                          "Org Agenda"
                                          "Notes Search")
-            consult-omni-notes-files (list denote-directory)
+            consult-omni-notes-files (list my/brain2)
             consult-omni-notes-backend-command "rga"
             consult-omni--notes-new-func #'consult-omni--notes-new-create-denote))
 #+end_src
@@ -1964,7 +1974,6 @@ Esup is an Emacs startup profiler that uses a child process to step through the 
 #+end_src
 
 * Denote
-We set [[help:denote-directory][denote-directory]] early since other parts of my configuration use it as well.
 #+begin_src elisp
   (bind-keys ("C-c X" . org-capture)
              :map my/notes-map
@@ -1977,13 +1986,12 @@ We set [[help:denote-directory][denote-directory]] early since other parts of my
 
   (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
 
-  (setq denote-directory "~/denote/")
-
   (after! denote
     (denote-rename-buffer-mode)
     (consult-denote-mode)
-    ;; Illegal characters on Android
-    (setopt denote-excluded-punctuation-extra-regexp (rx (* (or "<" ">")))
+    (setopt denote-directory my/brain2
+            ;; Illegal characters on Android
+            denote-excluded-punctuation-extra-regexp (rx (* (or "<" ">")))
             denote-excluded-directories-regexp "publish/"
             denote-known-keywords '("agenda" "person" "needy" "private"
                                     "reference" "thought" "journal")
@@ -2203,7 +2211,7 @@ We set [[help:denote-directory][denote-directory]] early since other parts of my
   (after! citar
     (citar-denote-mode)
     (setopt citar-bibliography (list
-                                (expand-file-name "refs.bib" denote-directory))
+                                (expand-file-name "refs.bib" my/brain2))
             org-cite-global-bibliography citar-bibliography))
 #+end_src
 
@@ -2218,7 +2226,7 @@ Ah, the crown jewel of Emacs 👑.
   (add-hook 'org-capture-mode-hook #'meow-insert)
 
   (after! org
-    (setopt org-directory                          denote-directory
+    (setopt org-directory                          my/brain2
             org-hide-emphasis-markers              t
             org-confirm-babel-evaluate             nil
             org-ctrl-k-protect-subtree             'error
@@ -2319,7 +2327,7 @@ Ah, the crown jewel of Emacs 👑.
           (format "%s: " title)
         ""))
 
-    (setopt org-agenda-files (list denote-directory)
+    (setopt org-agenda-files (list my/brain2)
             org-agenda-file-regexp (rx "_agenda" (* any) ".org" string-end)
             org-agenda-prefix-format '((agenda . " %i%-28(my/org-agenda-get-title)% t%s%b")
                                        (todo   . " %i%-28(my/org-agenda-get-title)%b")
