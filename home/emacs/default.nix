@@ -101,8 +101,10 @@ in {
         magit
         git-timemachine
         magit-todos
+        magit-annex
         forge
         git-link
+        git-annex
         envrc
         pulsar
         yasnippet

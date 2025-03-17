@@ -1038,6 +1038,18 @@ uses the symbol name as the default description, as well as a
   (setopt git-link-consider-ssh-config t
           git-link-use-commit t))
 
+(after! dired
+  (require 'git-annex))
+
+(after! git-annex
+  (setopt git-annex-commit nil))
+
+(autoload #'magit-annex-file-action "magit-annex"
+  "Invoke a git-annex file command." t)
+
+(after! git-annex
+  (bind-key "f" #'magit-annex-file-action git-annex-dired-map))
+
 (add-hook 'my/first-input-hook #'pulsar-global-mode)
 
 (after! pulsar

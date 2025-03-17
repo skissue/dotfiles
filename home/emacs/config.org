@@ -1417,6 +1417,25 @@ Currently disabled cause it throws a cryptic error that I don't feel like tracki
             git-link-use-commit t))
 #+end_src
 
+*** Annex
+Dired integration for [[https://git-annex.branchable.com/][git-annex]].
+#+begin_src elisp
+  (after! dired
+    (require 'git-annex))
+
+  (after! git-annex
+    (setopt git-annex-commit nil))
+#+end_src
+
+Bind the file Transient sub-menu from [[https://github.com/magit/magit-annex/][magit-annex]] in Dired as well (this is documented as a feature in the commentary). The function's not autoloaded, so we also have to do that in case it's used before Magit gets loaded.
+#+begin_src elisp
+  (autoload #'magit-annex-file-action "magit-annex"
+    "Invoke a git-annex file command." t)
+
+  (after! git-annex
+    (bind-key "f" #'magit-annex-file-action git-annex-dired-map))
+#+end_src
+
 ** Pulsar
 #+begin_src elisp
   (add-hook 'my/first-input-hook #'pulsar-global-mode)
