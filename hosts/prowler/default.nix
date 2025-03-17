@@ -6,6 +6,7 @@
   imports =
     [
       ./anki-sync-server
+      ./annex
       ./disko.nix
       ./remote-luks-unlock
       ./media
