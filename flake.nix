@@ -62,6 +62,10 @@
 
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     eww.url = "github:elkowar/eww";
+    git-annex-backend-XBLAKE3 = {
+      url = "github:skissue/git-annex-backend-XBLAKE3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # https://github.com/hyprwm/Hyprland/issues/5891#issuecomment-2133152891
     hyprland = {
