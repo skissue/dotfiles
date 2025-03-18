@@ -1499,6 +1499,9 @@ Calls the function in `consult-omni-default-interactive-command'." t)
 (after! esup
   (setopt esup-depth 0))
 
+(after! whisper
+  (setopt whisper-install-whispercpp nil))
+
 (bind-keys ("C-c X" . org-capture)
            :map my/notes-map
            ("b" . denote-backlinks)

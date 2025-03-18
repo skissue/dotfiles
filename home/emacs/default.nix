@@ -138,6 +138,7 @@ in {
         disproject
         atomic-chrome
         esup
+        whisper-el
         # Languages
         treesit-grammars.with-all-grammars
         parinfer-rust-mode

@@ -49,3 +49,7 @@ fetch.git = "https://code.tecosaur.net/tec/inline-diff.git"
 [elfeed-tube-ytdlp]
 src.git = "https://github.com/shimeike/elfeed-tube"
 fetch.github = "shimeike/elfeed-tube"
+
+[whisper-el]
+src.git = "https://github.com/natrys/whisper.el"
+fetch.github = "natrys/whisper.el"

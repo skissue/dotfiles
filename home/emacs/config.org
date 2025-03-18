@@ -1992,6 +1992,14 @@ Esup is an Emacs startup profiler that uses a child process to step through the 
     (setopt esup-depth 0))
 #+end_src
 
+** Whisper
+Local, fast speech-to-text! Don't compile it, use the build installed via Nix instead.
+
+#+begin_src elisp
+  (after! whisper
+    (setopt whisper-install-whispercpp nil))
+#+end_src
+
 * Denote
 #+begin_src elisp
   (bind-keys ("C-c X" . org-capture)

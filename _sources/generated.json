@@ -268,5 +268,26 @@
             "type": "github"
         },
         "version": "b72c507f6702db18d971a6b6bdc692e260f21159"
+    },
+    "whisper-el": {
+        "cargoLocks": null,
+        "date": "2025-02-06",
+        "extract": null,
+        "name": "whisper-el",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "natrys",
+            "repo": "whisper.el",
+            "rev": "fc122657bfb8d5faf6aedaefdc1687193f456d1f",
+            "sha256": "sha256-Tuw+5ksKnSK0x+gZ4Yh7MxxHWOK/IsO+RNvVcGZj6c4=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "fc122657bfb8d5faf6aedaefdc1687193f456d1f"
     }
 }

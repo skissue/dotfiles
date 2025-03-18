@@ -162,4 +162,16 @@
     };
     date = "2025-03-12";
   };
+  whisper-el = {
+    pname = "whisper-el";
+    version = "fc122657bfb8d5faf6aedaefdc1687193f456d1f";
+    src = fetchFromGitHub {
+      owner = "natrys";
+      repo = "whisper.el";
+      rev = "fc122657bfb8d5faf6aedaefdc1687193f456d1f";
+      fetchSubmodules = false;
+      sha256 = "sha256-Tuw+5ksKnSK0x+gZ4Yh7MxxHWOK/IsO+RNvVcGZj6c4=";
+    };
+    date = "2025-02-06";
+  };
 }
