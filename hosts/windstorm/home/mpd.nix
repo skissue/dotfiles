@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   services.mpd = {
     enable = true;
-    musicDirectory = "/home/ad/BigBoiStorage/Music";
+    musicDirectory = "/home/ad/BigBoiStorage/theuniverse/libraries/music";
     extraConfig = ''
       audio_output {
         type       "pipewire"
