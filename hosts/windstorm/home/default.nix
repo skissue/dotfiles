@@ -3,6 +3,7 @@
 
   home.packages = with pkgs; [
     blender-hip
+    whisper-cpp
     ddcutil
   ];
 
