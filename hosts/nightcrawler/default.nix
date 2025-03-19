@@ -11,7 +11,6 @@
       "hardware/secure-boot"
       "networking/wireless"
       "networking/mullvad"
-      "syncthing"
     ];
 
   boot.loader.systemd-boot.enable = true;

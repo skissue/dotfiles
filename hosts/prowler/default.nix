@@ -16,7 +16,6 @@
     ++ mkModulesList [
       "hardware/secure-boot"
       "impermanence"
-      "syncthing"
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -25,11 +24,6 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   security.doas.wheelNeedsPassword = false;
-
-  services.syncthing = {
-    user = "syncthing";
-    dataDir = "/var/lib/syncthing";
-  };
 
   services.nginx = {
     enable = true;
