@@ -17,8 +17,8 @@
     ./git
     ./gtk
     ./hyprland
-    ./languages
     ./mutable-links
+    ./programming
     ./secrets
     ./ssh
     ./xdg
