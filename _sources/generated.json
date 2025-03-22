@@ -125,7 +125,7 @@
     },
     "org-bleeding-latex": {
         "cargoLocks": null,
-        "date": "2025-02-24",
+        "date": "2022-08-28",
         "extract": null,
         "name": "org-bleeding-latex",
         "passthru": null,
@@ -135,13 +135,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "4bb159ae7834fa1f4d76153fbee85c7c5518ba66",
-            "sha256": "sha256-8S4F2xH3xVa6nXL74sR8y3VPXG4tk+0wiwSa4Ep0Dr4=",
+            "rev": "06373a64387330d5bbdcbb3417cea7c2638713df",
+            "sha256": "sha256-OnQ87/dMRs7EqatEjMNiYejp2/3yAxQwo4tr6I9VoAE=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://code.tecosaur.net/tec/org-mode.git"
         },
-        "version": "4bb159ae7834fa1f4d76153fbee85c7c5518ba66"
+        "version": "06373a64387330d5bbdcbb3417cea7c2638713df"
     },
     "org-modern-indent": {
         "cargoLocks": null,
@@ -241,12 +241,12 @@
             "name": null,
             "owner": "hakimel",
             "repo": "reveal.js",
-            "rev": "5.1.0",
-            "sha256": "sha256-L6KVBw20K67lHT07Ws+ZC2DwdURahqyuyjAaK0kTgN0=",
+            "rev": "5.2.0",
+            "sha256": "sha256-UxSnweLk3KZP5/H88ZRhe6SZWENs/Ghbxe7m76ACZS0=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "5.1.0"
+        "version": "5.2.0"
     },
     "ultra-scroll": {
         "cargoLocks": null,

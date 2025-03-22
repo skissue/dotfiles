@@ -79,17 +79,17 @@
   };
   org-bleeding-latex = {
     pname = "org-bleeding-latex";
-    version = "4bb159ae7834fa1f4d76153fbee85c7c5518ba66";
+    version = "06373a64387330d5bbdcbb3417cea7c2638713df";
     src = fetchgit {
       url = "https://code.tecosaur.net/tec/org-mode.git";
-      rev = "4bb159ae7834fa1f4d76153fbee85c7c5518ba66";
+      rev = "06373a64387330d5bbdcbb3417cea7c2638713df";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-8S4F2xH3xVa6nXL74sR8y3VPXG4tk+0wiwSa4Ep0Dr4=";
+      sha256 = "sha256-OnQ87/dMRs7EqatEjMNiYejp2/3yAxQwo4tr6I9VoAE=";
     };
-    date = "2025-02-24";
+    date = "2022-08-28";
   };
   org-modern-indent = {
     pname = "org-modern-indent";
@@ -141,13 +141,13 @@
   };
   revealjs = {
     pname = "revealjs";
-    version = "5.1.0";
+    version = "5.2.0";
     src = fetchFromGitHub {
       owner = "hakimel";
       repo = "reveal.js";
-      rev = "5.1.0";
+      rev = "5.2.0";
       fetchSubmodules = false;
-      sha256 = "sha256-L6KVBw20K67lHT07Ws+ZC2DwdURahqyuyjAaK0kTgN0=";
+      sha256 = "sha256-UxSnweLk3KZP5/H88ZRhe6SZWENs/Ghbxe7m76ACZS0=";
     };
   };
   ultra-scroll = {
