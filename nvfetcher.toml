@@ -1,5 +1,6 @@
 [org-bleeding-latex]
 src.git = "https://code.tecosaur.net/tec/org-mode.git"
+src.branch = "dev"
 fetch.git = "https://code.tecosaur.net/tec/org-mode.git"
 
 [org-popup-posframe]
