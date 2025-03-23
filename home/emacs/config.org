@@ -569,9 +569,9 @@ Reduce fringe size on the right (left is used for various indicators).
 ** Fonts
 #+begin_src elisp
   (custom-set-faces
-   '(default           ((t (:font "MonoLisa" :height 120))))
-   '(fixed-pitch       ((t (:font "MonoLisa" :height 120))))
-   '(fixed-pitch-serif ((t (:font "MonoLisa" :height 120))))
+   '(default           ((t (:font "Maple Mono NF" :height 140))))
+   '(fixed-pitch       ((t (:font "Maple Mono NF" :height 140))))
+   '(fixed-pitch-serif ((t (:font "Maple Mono NF" :height 140))))
    '(variable-pitch    ((t (:font "Atkinson Hyperlegible Next" :height 140)))))
 #+end_src
 
@@ -2520,7 +2520,7 @@ Make Org Mode pretty! Star replacement symbols are taken from [[https://github.c
                               :inherit fixed-pitch)))
        `(org-modern-done ((t :inherit org-modern-todo
                              :foreground ,green)))
-       '(org-modern-symbol ((t (:family "MonoLisa" :height 1.1)))))))
+       '(org-modern-symbol ((t (:family "Maple Mono NF" :height 1.1)))))))
 #+end_src
 
 ** Org Indent

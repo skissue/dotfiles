@@ -9,6 +9,7 @@
 
     my.monolisa
     nerd-fonts.symbols-only
+    maple-mono.NF
     atkinson-hyperlegible-next
     twitter-color-emoji
   ];

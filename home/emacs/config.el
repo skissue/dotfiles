@@ -358,9 +358,9 @@ where it was when you previously visited the same file."
 (set-fringe-mode '(6 . 2))
 
 (custom-set-faces
- '(default           ((t (:font "MonoLisa" :height 120))))
- '(fixed-pitch       ((t (:font "MonoLisa" :height 120))))
- '(fixed-pitch-serif ((t (:font "MonoLisa" :height 120))))
+ '(default           ((t (:font "Maple Mono NF" :height 140))))
+ '(fixed-pitch       ((t (:font "Maple Mono NF" :height 140))))
+ '(fixed-pitch-serif ((t (:font "Maple Mono NF" :height 140))))
  '(variable-pitch    ((t (:font "Atkinson Hyperlegible Next" :height 140)))))
 
 (autoload #'nerd-icons-set-font "nerd-icons" "Modify nerd font charsets to use FONT-FAMILY for FRAME." nil)
@@ -1965,7 +1965,7 @@ For our purposes, a note must not be a directory, must satisfy
                             :inherit fixed-pitch)))
      `(org-modern-done ((t :inherit org-modern-todo
                            :foreground ,green)))
-     '(org-modern-symbol ((t (:family "MonoLisa" :height 1.1)))))))
+     '(org-modern-symbol ((t (:family "Maple Mono NF" :height 1.1)))))))
 
 (after! org-indent
   (defvar my/org-indent--heading-pixel-widths

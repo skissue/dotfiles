@@ -14,8 +14,8 @@
       };
       colors.transparent_background_colors = true;
       font = {
-        normal.family = "MonoLisa";
-        size = 12;
+        normal.family = "Maple Mono NF";
+        size = 14;
         builtin_box_drawing = false;
       };
       bell = {
