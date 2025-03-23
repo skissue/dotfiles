@@ -25,18 +25,6 @@
     };
     date = "2025-02-18";
   };
-  elfeed-tube-ytdlp = {
-    pname = "elfeed-tube-ytdlp";
-    version = "d7e56c6e793576f9a1699b15d6f6db73d9f913ba";
-    src = fetchFromGitHub {
-      owner = "shimeike";
-      repo = "elfeed-tube";
-      rev = "d7e56c6e793576f9a1699b15d6f6db73d9f913ba";
-      fetchSubmodules = false;
-      sha256 = "sha256-XHLr4bnpSBZwkhJ584KAlnmtUm7RluFB5ps9I4tx8ro=";
-    };
-    date = "2025-02-18";
-  };
   gptel-quick = {
     pname = "gptel-quick";
     version = "d7a3aedefdc656a136d5664f2dac165a1f6ebf0e";
@@ -51,17 +39,17 @@
   };
   inline-diff = {
     pname = "inline-diff";
-    version = "5ee85842d230d07b31413ddf0ec610b306f1be37";
+    version = "d1c13190dd9d8f5d14b52499ddfbcadba2a60e94";
     src = fetchgit {
       url = "https://code.tecosaur.net/tec/inline-diff.git";
-      rev = "5ee85842d230d07b31413ddf0ec610b306f1be37";
+      rev = "d1c13190dd9d8f5d14b52499ddfbcadba2a60e94";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-CAb/vY4s8j7YaA8jZ2VxBOS2gVhOxqNl6lgAGM1QL1w=";
+      sha256 = "sha256-DbInB73UmMoqU1nJWJocKinJSUqxbY8tzLS0j8gq4FU=";
     };
-    date = "2024-10-15";
+    date = "2025-03-23";
   };
   mpv-skipsilence = {
     pname = "mpv-skipsilence";

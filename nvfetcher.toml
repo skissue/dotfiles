@@ -46,7 +46,3 @@ fetch.github = "jdtsmith/ultra-scroll"
 [inline-diff]
 src.git = "https://code.tecosaur.net/tec/inline-diff.git"
 fetch.git = "https://code.tecosaur.net/tec/inline-diff.git"
-
-[elfeed-tube-ytdlp]
-src.git = "https://github.com/shimeike/elfeed-tube"
-fetch.github = "shimeike/elfeed-tube"
