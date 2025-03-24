@@ -129,6 +129,7 @@ in {
         gptel-quick
         gptel-aibo
         inline-diff
+        aidermacs
         wgrep
         smartparens
         nerd-icons

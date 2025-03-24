@@ -1499,6 +1499,19 @@ Calls the function in `consult-omni-default-interactive-command'." t)
 (after! esup
   (setopt esup-depth 0))
 
+(bind-key "C-c A" #'aidermacs-transient-menu)
+
+(add-hook 'aidermacs-before-run-backend-hook
+          (lambda ()
+            (setenv "OPENROUTER_API_KEY"
+                    (secrets-get-secret "KeePassXC" "OpenRouter"))
+            (setenv "GITHUB_API_KEY"
+                    (secrets-get-secret "KeePassXC" "GitHub AI"))))
+
+(after! aidermacs
+  (setopt aidermacs-default-model "github/gpt-4o"
+          aidermacs-weak-model "github/gpt-4o-mini"))
+
 (bind-keys ("C-c X" . org-capture)
            :map my/notes-map
            ("b" . denote-backlinks)
