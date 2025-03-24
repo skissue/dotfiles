@@ -15,7 +15,7 @@
       colors.transparent_background_colors = true;
       font = {
         normal.family = "Maple Mono NF";
-        size = 14;
+        size = 12;
         builtin_box_drawing = false;
       };
       bell = {

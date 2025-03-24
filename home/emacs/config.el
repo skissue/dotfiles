@@ -358,8 +358,8 @@ where it was when you previously visited the same file."
 (set-fringe-mode '(6 . 2))
 
 (custom-set-faces
- '(default           ((t (:font "Maple Mono NF" :height 140))))
- '(fixed-pitch       ((t (:font "Maple Mono NF" :height 140))))
+ '(default           ((t (:font "Maple Mono NF" :height 120))))
+ '(fixed-pitch       ((t (:font "Maple Mono NF" :height 120))))
  '(fixed-pitch-serif ((t (:font "Maple Mono NF" :height 140))))
  '(variable-pitch    ((t (:font "Atkinson Hyperlegible Next" :height 140)))))
 
