@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   inputs,
   ...
 }: {
@@ -24,5 +23,5 @@
 
   system.configurationRevision = inputs.self.rev or "dirty";
   # I'm using Flakes, there's no time I don't want Git
-  environment.systemPackages = [pkgs.git];
+  programs.git.enable = true;
 }
