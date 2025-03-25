@@ -2689,7 +2689,8 @@ This function is called by `org-babel-execute-src-block'.")
 
 (after! elfeed
   (bind-key "U" #'elfeed-search-fetch elfeed-search-mode-map)
-  (setopt elfeed-use-curl t))
+  (setopt elfeed-use-curl t
+          elfeed-search-filter "@6-months-ago +unread "))
 
 (after! elfeed
   (require 'elfeed-protocol)

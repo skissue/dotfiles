@@ -3491,7 +3491,8 @@ Set up some keybinds. I like "U" to update to mirror [[*mu4e][mu4e]]'s behavior 
 
   (after! elfeed
     (bind-key "U" #'elfeed-search-fetch elfeed-search-mode-map)
-    (setopt elfeed-use-curl t))
+    (setopt elfeed-use-curl t
+            elfeed-search-filter "@6-months-ago +unread "))
 #+end_src
 
 *** =elfeed-protocol=
