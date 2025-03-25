@@ -13,6 +13,15 @@ in {
     inputs.git-annex-backend-XBLAKE3.packages.${pkgs.system}.default
   ];
 
+  # Otherwise Git complains when trying to make commits on the tracking branch
+  # (I think).
+  programs.git.config = {
+    user = {
+      name = "Ad";
+      email = "ad@prowler.adtailnet";
+    };
+  };
+
   # Data here (presumably) gets backed up from other places, so leave it in
   # local.
   my.persist.local.directories = [
