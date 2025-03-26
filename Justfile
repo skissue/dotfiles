@@ -2,15 +2,15 @@ alias u := update
 
 # Build and switch to a new configuration.
 switch:
-    doas nh os switch -R --no-specialisation --ask
+    nh os switch --no-specialisation --ask
 
 # Build and test a new configuration.
 test:
-    doas nh os test -R --specialisation mutable-links --ask
+    nh os test --specialisation mutable-links --ask
 
 # Build a new configuration and activate it next boot.
 boot:
-    doas nh os boot -R
+    nh os boot
 
 # Update flake inputs and nvfetcher.
 update *inputs:
