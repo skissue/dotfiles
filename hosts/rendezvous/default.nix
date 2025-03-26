@@ -14,7 +14,8 @@
       ./unbound
     ];
 
-  security.doas.wheelNeedsPassword = false;
+  security.sudo-rs.wheelNeedsPassword = false;
+  
   services.tailscale = {
     useRoutingFeatures = "server";
     extraUpFlags = ["--advertise-exit-node"];
