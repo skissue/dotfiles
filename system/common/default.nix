@@ -9,13 +9,13 @@
     ../networking
     ../ntfy-alerts
     ./chaotic.nix
-    ./doas.nix
     ./logind.nix
     ./mutable-links.nix
     ./nix.nix
     ./secrets.nix
     ./security.nix
     ./ssh.nix
+    ./sudo.nix
     ./user.nix
   ];
 
