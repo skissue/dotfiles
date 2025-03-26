@@ -23,7 +23,7 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  security.doas.wheelNeedsPassword = false;
+  security.sudo-rs.wheelNeedsPassword = false;
 
   services.nginx = {
     enable = true;
