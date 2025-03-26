@@ -1842,7 +1842,7 @@ For our purposes, a note must not be a directory, must satisfy
           org-agenda-skip-deadline-if-done t
           org-agenda-skip-scheduled-if-done t
           org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled
-          org-agenda-hide-tags-regexp (rx (or "agenda" "journal" "needy"))
+          org-agenda-hide-tags-regexp (rx (or "agenda" "journal" "brew"))
           org-agenda-span 'fortnight
           org-agenda-start-on-weekday nil
           org-agenda-start-day "-3d"
