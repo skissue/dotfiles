@@ -32,7 +32,6 @@ in {
         };
       };
     in {
-      sudo = "doas -u";
       nodes = lib.genAttrs (builtins.attrNames self.nixosConfigurations) mkDeploy;
     };
 
