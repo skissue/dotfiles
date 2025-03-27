@@ -3425,6 +3425,17 @@ Syntax highlighting.
     (eshell-syntax-highlighting-global-mode))
 #+end_src
 
+** Vterm
+#+begin_src elisp
+  (bind-key "t" #'vterm my/open-map)
+
+  (after! meow
+    (push '(vterm-mode . insert) meow-mode-state-list))
+
+  (after! vterm
+    (setopt vterm-shell (executable-find "nu")))
+#+end_src
+
 ** Calc
 Calc has a weird way of storing variable settings, since I want to set them in this config rather than saving them with its own interface ¯\_(ツ)_/¯.
 #+begin_src elisp

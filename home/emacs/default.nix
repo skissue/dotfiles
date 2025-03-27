@@ -199,6 +199,7 @@ in {
         eat
         eshell-atuin
         eshell-syntax-highlighting
+        vterm
         verb
         spray
         calfw

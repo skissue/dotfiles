@@ -2648,6 +2648,14 @@ This function is called by `org-babel-execute-src-block'.")
 (after! eshell
   (eshell-syntax-highlighting-global-mode))
 
+(bind-key "t" #'vterm my/open-map)
+
+(after! meow
+  (push '(vterm-mode . insert) meow-mode-state-list))
+
+(after! vterm
+  (setopt vterm-shell (executable-find "nu")))
+
 (after! calc
   (bind-key "C-o" #'casual-calc-tmenu calc-mode-map)
   (setf (alist-get 'calc-hms-format calc-mode-var-list)
