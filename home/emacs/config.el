@@ -1509,7 +1509,8 @@ Calls the function in `consult-omni-default-interactive-command'." t)
                     (secrets-get-secret "KeePassXC" "GitHub AI"))))
 
 (after! aidermacs
-  (setopt aidermacs-default-model "github/gpt-4o"
+  (setopt aidermacs-backend 'vterm
+          aidermacs-default-model "github/gpt-4o"
           aidermacs-weak-model "github/gpt-4o-mini"))
 
 (bind-keys ("C-c X" . org-capture)

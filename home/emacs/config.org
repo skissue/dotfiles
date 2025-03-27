@@ -2011,7 +2011,8 @@ Set up API keys before starting Aider from KeePassXC database.
 Configuration:
 #+begin_src elisp
   (after! aidermacs
-    (setopt aidermacs-default-model "github/gpt-4o"
+    (setopt aidermacs-backend 'vterm
+            aidermacs-default-model "github/gpt-4o"
             aidermacs-weak-model "github/gpt-4o-mini"))
 #+end_src
 
