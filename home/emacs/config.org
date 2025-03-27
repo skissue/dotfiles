@@ -3436,6 +3436,16 @@ Syntax highlighting.
     (setopt vterm-shell (executable-find "nu")))
 #+end_src
 
+Automatically enable/disable [[help:vterm-copy-mode][vterm-copy-mode]] when entering/leaving Meow's insert mode.
+#+begin_src elisp
+  (defun my/setup-meow-toggle-vterm-copy-mode ()
+    "Add hooks to enable/disable `vterm-copy-mode' with Meow's insert mode."
+    (add-hook 'meow-insert-exit-hook #'vterm-copy-mode nil t)
+    (add-hook 'meow-insert-enter-hook (lambda () (vterm-copy-mode -1)) nil t))
+
+  (add-hook 'vterm-mode-hook #'my/setup-meow-toggle-vterm-copy-mode)
+#+end_src
+
 ** Calc
 Calc has a weird way of storing variable settings, since I want to set them in this config rather than saving them with its own interface ¯\_(ツ)_/¯.
 #+begin_src elisp

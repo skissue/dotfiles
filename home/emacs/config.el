@@ -2656,6 +2656,13 @@ This function is called by `org-babel-execute-src-block'.")
 (after! vterm
   (setopt vterm-shell (executable-find "nu")))
 
+(defun my/setup-meow-toggle-vterm-copy-mode ()
+  "Add hooks to enable/disable `vterm-copy-mode' with Meow's insert mode."
+  (add-hook 'meow-insert-exit-hook #'vterm-copy-mode nil t)
+  (add-hook 'meow-insert-enter-hook (lambda () (vterm-copy-mode -1)) nil t))
+
+(add-hook 'vterm-mode-hook #'my/setup-meow-toggle-vterm-copy-mode)
+
 (after! calc
   (bind-key "C-o" #'casual-calc-tmenu calc-mode-map)
   (setf (alist-get 'calc-hms-format calc-mode-var-list)
