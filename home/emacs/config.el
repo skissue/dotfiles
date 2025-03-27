@@ -2337,6 +2337,11 @@ This function is called by `org-babel-execute-src-block'.")
     #'disproject-dispatch "!"
     '("j" "Just" my/justl-disproject)))
 
+(after! justl
+  (bind-keys :map justl-mode-map
+             ("v" . justl-exec-vterm)
+             ("V" . justl-no-exec-vterm)))
+
 (setf (alist-get "\\.gp\\'" auto-mode-alist
                  nil nil #'equal)
       #'gnuplot-mode)

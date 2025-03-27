@@ -3034,6 +3034,14 @@ Common Lisp.
       '("j" "Just" my/justl-disproject)))
 #+end_src
 
+Add a bind to run a recipe with [[*Vterm][Vterm]] in justl.el.
+#+begin_src elisp
+  (after! justl
+    (bind-keys :map justl-mode-map
+               ("v" . justl-exec-vterm)
+               ("V" . justl-no-exec-vterm)))
+#+end_src
+
 ** Gnuplot
 #+begin_src elisp
   (setf (alist-get "\\.gp\\'" auto-mode-alist
