@@ -10,5 +10,6 @@
     "AIDER_WATCH_FILES" = "true";
     "AIDER_ANALYTICS_DISABLE" = "true";
     "AIDER_NOTIFICATIONS" = "true";
+    "AIDER_SHOW_MODEL_WARNINGS" = "false";
   };
 }
