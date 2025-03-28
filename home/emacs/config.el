@@ -1531,7 +1531,7 @@ Calls the function in `consult-omni-default-interactive-command'." t)
           ;; Illegal characters on Android
           denote-excluded-punctuation-extra-regexp (rx (* (or "<" ">")))
           denote-excluded-directories-regexp "publish/"
-          denote-known-keywords '("agenda" "person" "needy" "private"
+          denote-known-keywords '("agenda" "person" "brew" "private"
                                   "reference" "thought" "journal")
           denote-date-prompt-use-org-read-date t
           denote-backlinks-show-context t
