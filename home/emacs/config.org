@@ -2013,7 +2013,8 @@ Configuration:
   (after! aidermacs
     (setopt aidermacs-backend 'vterm
             aidermacs-default-model "github/gpt-4o"
-            aidermacs-weak-model "github/gpt-4o-mini"))
+            aidermacs-weak-model "github/gpt-4o-mini"
+            aidermacs-watch-files t))
 #+end_src
 
 * Denote

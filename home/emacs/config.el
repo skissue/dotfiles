@@ -1511,7 +1511,8 @@ Calls the function in `consult-omni-default-interactive-command'." t)
 (after! aidermacs
   (setopt aidermacs-backend 'vterm
           aidermacs-default-model "github/gpt-4o"
-          aidermacs-weak-model "github/gpt-4o-mini"))
+          aidermacs-weak-model "github/gpt-4o-mini"
+          aidermacs-watch-files t))
 
 (bind-keys ("C-c X" . org-capture)
            :map my/notes-map
