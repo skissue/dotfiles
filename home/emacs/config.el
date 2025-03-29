@@ -85,6 +85,9 @@ Only run once.")
   (require 'cl-lib))
 
 (eval-when-compile
+  (require 'llama))
+
+(eval-when-compile
   (require 'el-patch)
   (require 'el-patch-template))
 
@@ -496,8 +499,7 @@ where it was when you previously visited the same file."
 (setq meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh
       meow-use-clipboard t
       meow-keypad-self-insert-undefined nil
-      auto-save-visited-predicate (lambda ()
-                                    (not (meow-insert-mode-p))))
+      auto-save-visited-predicate (##not (meow-insert-mode-p)))
 (ef-themes-with-colors
   (custom-set-faces
    `(meow-insert-indicator ((t :foreground ,fg-added)))
@@ -845,7 +847,7 @@ See `describe-repeat-maps' for a list of all repeatable commands."
             :category file
             :face consult-file
             :history file-name-history
-            :enabled ,(lambda () (featurep 'zoxide))
+            :enabled ,(##featurep 'zoxide)
             :items ,#'zoxide-query)
     "Source for `consult-dir' using `zoxide.el'.")
   (cl-pushnew 'my/consult-dir-source-zoxide consult-dir-sources))
@@ -935,15 +937,13 @@ uses the symbol name as the default description, as well as a
 :complete property to create links with completion."
     (org-link-set-parameters
      "help"
-     :insert-description (lambda (url desc)
-                           (or desc
-                               (substring url 5)))
-     :complete (lambda (&optional arg)
-                 (concat "help:"
+     :insert-description (##or %2 (substring %1 5))
+     :complete (##concat _&1
+                         "help:"
                          (symbol-name (helpful--read-symbol
                                        "Symbol: "
                                        (helpful--symbol-at-point)
-                                       #'always))))))
+                                       #'always)))))
   (advice-add #'helpful--add-support-for-org-links
               :after #'my/org-help-link-make-nicer))
 
@@ -1192,8 +1192,8 @@ uses the symbol name as the default description, as well as a
     :host "models.inference.ai.azure.com"
     :endpoint "/chat/completions"
     :stream t
-    :key (lambda () (or (secrets-get-secret "KeePassXC" "GitHub AI")
-                        (user-error "Unable to retrieve GitHub AI key")))
+    :key (##or (secrets-get-secret "KeePassXC" "GitHub AI")
+               (user-error "Unable to retrieve GitHub AI key"))
     :models '(gpt-4o
               gpt-4o-mini
               o1
@@ -1203,8 +1203,8 @@ uses the symbol name as the default description, as well as a
     :host "openrouter.ai"
     :endpoint "/api/v1/chat/completions"
     :stream t
-    :key (lambda () (or (secrets-get-secret "KeePassXC" "OpenRouter")
-                        (user-error "Unable to retrieve OpenRouter key")))
+    :key (##or (secrets-get-secret "KeePassXC" "OpenRouter")
+               (user-error "Unable to retrieve OpenRouter key"))
     :models '(google/gemini-2.0-flash-exp:free
               deepseek/deepseek-chat:free
               deepseek/deepseek-r1:free
@@ -1542,13 +1542,12 @@ Calls the function in `consult-omni-default-interactive-command'." t)
           denote-dired-directories (list denote-directory)
           denote-dired-directories-include-subdirectories t
           denote-templates `((default . "")
-                             (person . ,(lambda ()
-                                          (with-temp-buffer
-                                            (insert-file-contents
-                                             (expand-file-name
-                                              "template/person.org"
-                                               denote-directory))
-                                            (buffer-string)))))
+                             (person . ,(##with-temp-buffer
+                                          (insert-file-contents
+                                           (expand-file-name
+                                            "template/person.org"
+                                            denote-directory))
+                                          (buffer-string))))
           consult-denote-grep-command #'consult-ripgrep))
 
 (after! org-capture
@@ -1583,8 +1582,7 @@ it."
 (defun my/goto-thought-stack ()
   "Visit Denote thought stack file. Used by `org-capture' template."
   (let ((path (car
-               (seq-filter (lambda (x)
-                             (string-match-p "--thought-stack" x))
+               (seq-filter (##string-match-p "--thought-stack" %1)
                            (denote-directory-files)))))
     (find-file path)
     (goto-char (point-min))))
@@ -1640,16 +1638,15 @@ the end of the file."
   (setopt denote-journal-extras-directory (expand-file-name "journal/" denote-directory)
           denote-journal-extras-title-format "%Y-%m-%d %a")
   (setf (alist-get 'journal denote-templates)
-        (lambda ()
-          (with-temp-buffer
-            (insert-file-contents
-             (expand-file-name "template/journal.org"
-                               ;; We have to use `default-toplevel-value' here
-                               ;; because the journal code let-binds
-                               ;; `denote-directory' to the journal
-                               ;; subdirectory.
-                               (default-toplevel-value 'denote-directory))) 
-            (buffer-string)))))
+        (##with-temp-buffer
+          (insert-file-contents
+           (expand-file-name "template/journal.org"
+                             ;; We have to use `default-toplevel-value' here
+                             ;; because the journal code let-binds
+                             ;; `denote-directory' to the journal
+                             ;; subdirectory.
+                             (default-toplevel-value 'denote-directory)))
+          (buffer-string))))
 
 (bind-keys :map my/notes-map
            :prefix "e"
@@ -1732,7 +1729,7 @@ For our purposes, a note must not be a directory, must satisfy
 
 (add-hook 'org-mode-hook #'variable-pitch-mode)
 (add-hook 'org-mode-hook #'writeroom-mode)
-(add-hook 'org-mode-hook (lambda () (setq-local line-spacing 0.1)))
+(add-hook 'org-mode-hook (##setq-local line-spacing 0.1))
 (add-hook 'org-mode-hook #'org-autolist-mode)
 
 (add-hook 'org-capture-mode-hook #'meow-insert)
@@ -2258,7 +2255,7 @@ This function is called by `org-babel-execute-src-block'.")
   (org-popup-posframe-mode))
 
 (add-hook 'lisp-data-mode-hook #'parinfer-rust-mode)
-(add-hook 'parinfer-rust-mode-hook (lambda () (electric-pair-local-mode -1)))
+(add-hook 'parinfer-rust-mode-hook (##electric-pair-local-mode -1))
 
 (after! parinfer-rust-mode
   (setopt parinfer-rust-auto-download t
@@ -2502,26 +2499,23 @@ This function is called by `org-babel-execute-src-block'.")
           mu4e-completing-read-function #'completing-read
           mu4e-compose-format-flowed t
           mu4e-confirm-quit nil
-          mu4e-search-hide-predicate (lambda (msg)
-                                       (member 'trashed
-                                               (mu4e-message-field msg :flags)))
+          mu4e-search-hide-predicate (##member 'trashed
+                                               (mu4e-message-field %1 :flags))
           mu4e-context-policy 'pick-first
           mu4e-contexts
           `(,(make-mu4e-context
               :name (my/private 'user 'public)
               :match-func
-              (lambda (msg)
-                (and msg
+              (##and %1
                      (cl-find-if
-                      (lambda (email)
-                        (string-match-p
-                         (rx "@"
-                             (literal (my/private 'domain 'public))
-                             string-end)
-                         email))
-                      (append (mu4e-message-field msg :to)
-                              (mu4e-message-field msg :from))
-                      :key (lambda (x) (plist-get x :email)))))
+                      (##string-match-p
+                       (rx "@"
+                           (literal (my/private 'domain 'public))
+                           string-end)
+                       %1)
+                      (append (mu4e-message-field %1 :to)
+                              (mu4e-message-field %1 :from))
+                      :key (##plist-get %1 :email)))
               :vars `((user-mail-address . ,(my/private 'email 'public))
                       (user-full-name . "Ad")
                       (mu4e-sent-folder . "/mailbox/Sent")
@@ -2530,18 +2524,16 @@ This function is called by `org-babel-execute-src-block'.")
             ,(make-mu4e-context
               :name (my/private 'user 'personal)
               :match-func
-              (lambda (msg)
-                (and msg
+              (##and %1
                      (cl-find-if
-                      (lambda (email)
-                        (string-match-p
-                         (rx "@"
-                             (literal (my/private 'domain 'personal))
-                             string-end)
-                         email))
-                      (append (mu4e-message-field msg :to)
-                              (mu4e-message-field msg :from))
-                      :key (lambda (x) (plist-get x :email)))))
+                      (##string-match-p
+                       (rx "@"
+                           (literal (my/private 'domain 'personal))
+                           string-end)
+                       %1)
+                      (append (mu4e-message-field %1 :to)
+                              (mu4e-message-field %1 :from))
+                      :key (##plist-get %1 :email)))
               :vars `((user-mail-address . ,(my/private 'email 'personal))
                       (user-full-name . ,(my/private 'name))
                       (mu4e-sent-folder . "/mailbox/Sent")
@@ -2554,15 +2546,14 @@ This function is called by `org-babel-execute-src-block'.")
     (when-let* ((msg mu4e-compose-parent-message)
                 (parent-to (mu4e-message-field msg :to))
                 (my-address (cl-find-if
-                             (lambda (email)
-                               (string-match-p
-                                (rx "@"
-                                    (or (literal (my/private 'domain 'public))
-                                        (literal (my/private 'domain 'personal)))
-                                    string-end)
-                                email))
+                             (##string-match-p
+                              (rx "@"
+                                  (or (literal (my/private 'domain 'public))
+                                      (literal (my/private 'domain 'personal)))
+                                  string-end)
+                              %1)
                              parent-to
-                             :key (lambda (x) (plist-get x :email))))
+                             :key (##plist-get %1 :email)))
                 (name (plist-get my-address :name))
                 (email (plist-get my-address :email)))
       (message-replace-header "From"
@@ -2673,7 +2664,7 @@ This function is called by `org-babel-execute-src-block'.")
 (defun my/setup-meow-toggle-vterm-copy-mode ()
   "Add hooks to enable/disable `vterm-copy-mode' with Meow's insert mode."
   (add-hook 'meow-insert-exit-hook #'vterm-copy-mode nil t)
-  (add-hook 'meow-insert-enter-hook (lambda () (vterm-copy-mode -1)) nil t))
+  (add-hook 'meow-insert-enter-hook (##vterm-copy-mode -1) nil t))
 
 (add-hook 'vterm-mode-hook #'my/setup-meow-toggle-vterm-copy-mode)
 

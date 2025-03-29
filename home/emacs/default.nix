@@ -64,6 +64,7 @@ in {
         no-littering
         el-patch
         # Elisp
+        llama
         aio
         plz
         # Keybinds
