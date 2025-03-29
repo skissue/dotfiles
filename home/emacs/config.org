@@ -2348,6 +2348,11 @@ Ah, the crown jewel of Emacs 👑.
     :repeat t
     "f" #'org-next-block
     "b" #'org-previous-block)
+
+  (defvar-keymap my/org-babel-block-repeat-map
+    :repeat t
+    "n" #'org-babel-next-src-block
+    "p" #'org-babel-previous-src-block)
 #+end_src
 
 ** Completion

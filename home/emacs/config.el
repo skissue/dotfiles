@@ -1809,6 +1809,11 @@ For our purposes, a note must not be a directory, must satisfy
   "f" #'org-next-block
   "b" #'org-previous-block)
 
+(defvar-keymap my/org-babel-block-repeat-map
+  :repeat t
+  "n" #'org-babel-next-src-block
+  "p" #'org-babel-previous-src-block)
+
 (defun my/org-maybe-completion-at-point ()
   "Call `completion-at-point' if in Meow insert mode."
   (interactive)
