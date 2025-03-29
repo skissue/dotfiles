@@ -1516,6 +1516,10 @@ Calls the function in `consult-omni-default-interactive-command'." t)
           aidermacs-weak-model "github/gpt-4o-mini"
           aidermacs-watch-files t))
 
+(after! ediff
+  (setopt ediff-window-setup-function #'ediff-setup-windows-plain
+          ediff-split-window-function #'split-window-horizontally))
+
 (bind-keys ("C-c X" . org-capture)
            :map my/notes-map
            ("b" . denote-backlinks)

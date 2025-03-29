@@ -2027,6 +2027,13 @@ Configuration:
             aidermacs-watch-files t))
 #+end_src
 
+** Ediff
+#+begin_src elisp
+  (after! ediff
+    (setopt ediff-window-setup-function #'ediff-setup-windows-plain
+            ediff-split-window-function #'split-window-horizontally))
+#+end_src
+
 * Denote
 #+begin_src elisp
   (bind-keys ("C-c X" . org-capture)
