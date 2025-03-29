@@ -129,13 +129,13 @@
   };
   revealjs = {
     pname = "revealjs";
-    version = "5.2.0";
+    version = "5.2.1";
     src = fetchFromGitHub {
       owner = "hakimel";
       repo = "reveal.js";
-      rev = "5.2.0";
+      rev = "5.2.1";
       fetchSubmodules = false;
-      sha256 = "sha256-UxSnweLk3KZP5/H88ZRhe6SZWENs/Ghbxe7m76ACZS0=";
+      sha256 = "sha256-f5g09Xj4XF+v6Y6zW13R4PUTWkAt3wwGpa9nSypUV6w=";
     };
   };
   ultra-scroll = {
