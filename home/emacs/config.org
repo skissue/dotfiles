@@ -601,6 +601,11 @@ Reduce fringe size on the right (left is used for various indicators).
        "\\\\" "://")))
 #+end_src
 
+Increase Treesit's fontification level (I like my editor to look like a rainbow 🌈).
+#+begin_src elisp
+  (setq treesit-font-lock-level 4)
+#+end_src
+
 ** Theme
 #+begin_src elisp
   (require 'ef-themes)

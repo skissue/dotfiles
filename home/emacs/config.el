@@ -384,6 +384,8 @@ where it was when you previously visited the same file."
      "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
      "\\\\" "://")))
 
+(setq treesit-font-lock-level 4)
+
 (require 'ef-themes)
 
 (setq ef-themes-mixed-fonts t
