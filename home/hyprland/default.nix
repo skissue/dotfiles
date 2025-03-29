@@ -14,7 +14,8 @@
     # https://wiki.hyprland.org/Useful-Utilities/Systemd-start/
     systemd.enable = false;
     plugins = [
-      inputs.hypr-dynamic-cursors.packages.${pkgs.system}.default
+      # Should be good to re-enable after next nixos-unstable merge.
+      # inputs.hypr-dynamic-cursors.packages.${pkgs.system}.default
       (pkgs.hyprlandPlugins.hyprscroller.override {hyprland = config.wayland.windowManager.hyprland.package;})
     ];
     extraConfig = lib.mkAfter ''
