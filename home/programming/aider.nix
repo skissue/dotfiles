@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [aider-chat.withPlaywright];
+  home.packages = with pkgs; [aider-chat-with-playwright];
 
   programs.git.ignores = ["/.aider*"];
 
