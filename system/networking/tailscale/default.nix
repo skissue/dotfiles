@@ -11,7 +11,7 @@
   services.tailscale = {
     enable = true;
     package = pkgs.tailscale.overrideAttrs (oldAttrs: {
-      patches = oldAttrs.patches ++ [
+      patches = oldAttrs.patches or [] ++ [
         # I don't want Tailscale to swallow all DNS traffic, but I still want it
         # to accept DNS settings for MagicDNS. So, patch Tailscale to never ask
         # systemd-resolved for a `~.` domain.
