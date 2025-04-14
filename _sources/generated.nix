@@ -81,15 +81,15 @@
   };
   org-modern-indent = {
     pname = "org-modern-indent";
-    version = "fcd4368476a9c4eadfac4d6f51159d90a15de15a";
+    version = "9973bd3b91e4733a3edd1fca232208c837c05473";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "org-modern-indent";
-      rev = "fcd4368476a9c4eadfac4d6f51159d90a15de15a";
+      rev = "9973bd3b91e4733a3edd1fca232208c837c05473";
       fetchSubmodules = false;
-      sha256 = "sha256-obx83T90LoVor5O5bniXCtWhNV7GmF3fYpNhCNgSm1M=";
+      sha256 = "sha256-st3338Jk9kZ5BLEPRJZhjqdncMpLoWNwp60ZwKEObyU=";
     };
-    date = "2025-03-23";
+    date = "2025-04-12";
   };
   org-overdrive = {
     pname = "org-overdrive";
