@@ -186,6 +186,9 @@ in {
         ob-d2
         # Notes
         denote
+        denote-org
+        denote-journal
+        denote-sequence
         denote-explore
         consult-denote
         citar

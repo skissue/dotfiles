@@ -1523,10 +1523,10 @@ Calls the function in `consult-omni-default-interactive-command'." t)
 (bind-keys ("C-c X" . org-capture)
            :map my/notes-map
            ("b" . denote-backlinks)
-           ("B" . denote-org-extras-backlinks-for-heading)
+           ("B" . denote-org-backlinks-for-heading)
            ("f" . denote-open-or-create)
            ("l" . denote-link-or-create)
-           ("L" . denote-org-extras-link-to-heading)
+           ("L" . denote-org-link-to-heading)
            ("k" . denote-rename-file-keywords))
 
 (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
@@ -1605,7 +1605,7 @@ it."
   "Visit or create yesterday's Denote journal entry.
 If FORWARD is non-nil, go to tomorrow instead."
   (interactive)
-  (denote-journal-extras-new-or-existing-entry
+  (denote-journal-new-or-existing-entry
    (time-add nil (* 60 60 24 (if forward 1 -1)))))
 
 (defun my/denote-journal-tomorrow ()
@@ -1616,8 +1616,8 @@ If FORWARD is non-nil, go to tomorrow instead."
 (bind-keys :map my/notes-map
            :prefix "d"
            :prefix-map my/denote-journal-map
-           ("d" . denote-journal-extras-new-or-existing-entry)
-           ("l" . denote-journal-extras-link-or-create-entry)
+           ("d" . denote-journal-new-or-existing-entry)
+           ("l" . denote-journal-link-or-create-entry)
            ("t" . my/denote-journal-tomorrow)
            ("y" . my/denote-journal-yesterday))
 
@@ -1625,7 +1625,7 @@ If FORWARD is non-nil, go to tomorrow instead."
   "Function called by `org-capture' to prepare for a check-in entry
 capture. Visits the journal entry for today and moves point to
 the end of the file."
-  (denote-journal-extras-new-or-existing-entry)
+  (denote-journal-new-or-existing-entry)
   (goto-char (point-max)))
 
 (after! org-capture
@@ -1638,9 +1638,9 @@ the end of the file."
               org-capture-templates
               :test #'equal))
 
-(after! denote-journal-extras
-  (setopt denote-journal-extras-directory (expand-file-name "journal/" denote-directory)
-          denote-journal-extras-title-format "%Y-%m-%d %a")
+(after! denote-journal
+  (setopt denote-journal-directory (expand-file-name "journal/" denote-directory)
+          denote-journal-title-format "%Y-%m-%d %a")
   (setf (alist-get 'journal denote-templates)
         (##with-temp-buffer
           (insert-file-contents
@@ -1879,7 +1879,7 @@ For our purposes, a note must not be a directory, must satisfy
           org-habit-graph-column 100))
 
 (after! org-agenda
-  (require 'denote-journal-extras)
+  (require 'denote-journal)
   (org-super-agenda-mode)
 
   (defun my/agenda-transform-daily-plan-line (line)
@@ -1911,7 +1911,7 @@ For our purposes, a note must not be a directory, must satisfy
    '(("c" "Custom super view"
       ((agenda "" ((org-agenda-files
                      (append org-agenda-files
-                             (denote-journal-extras--entry-today)))
+                             (denote-journal--entry-today)))
                    (org-agenda-span 'day)
                    (org-agenda-start-day nil)
                    (org-super-agenda-groups
