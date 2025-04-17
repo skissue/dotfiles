@@ -43,7 +43,7 @@
     },
     "gptel-quick": {
         "cargoLocks": null,
-        "date": "2025-01-21",
+        "date": "2025-04-14",
         "extract": null,
         "name": "gptel-quick",
         "passthru": null,
@@ -55,12 +55,12 @@
             "name": null,
             "owner": "karthink",
             "repo": "gptel-quick",
-            "rev": "d7a3aedefdc656a136d5664f2dac165a1f6ebf0e",
-            "sha256": "sha256-ajqLLCIsvej9BlbyH8JnyfpntRWGcuqMIehFVVRucBY=",
+            "rev": "34acd437a7af8a387c14428bd1abdb3cd9e95d9d",
+            "sha256": "sha256-/Hf6ztFovZYObtz6YgS0GRcANcwmAlrmBRvSdARwNEw=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "d7a3aedefdc656a136d5664f2dac165a1f6ebf0e"
+        "version": "34acd437a7af8a387c14428bd1abdb3cd9e95d9d"
     },
     "inline-diff": {
         "cargoLocks": null,
