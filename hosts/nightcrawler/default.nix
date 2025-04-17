@@ -16,6 +16,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  
   services.fprintd.enable = true;
   # Don't allow logging in with fprint, and hyprlock has a separate parallel
   # setup.
@@ -24,9 +25,10 @@
     greetd.fprintAuth = false;
     hyprlock.fprintAuth = false;
   };
+  
   services.fwupd.enable = true;
+  
   security.protectKernelImage = false; # Disallows hibernation
-  networking.firewall.allowedTCPPorts = [19000]; # Expo CLI
 
   boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/96a003b2-3726-4c70-ad21-dd775eeb2b89";
   fileSystems."/" = {
@@ -48,8 +50,8 @@
     device = "/dev/disk/by-uuid/8642-5A9A";
     fsType = "vfat";
   };
+  
   swapDevices = [{device = "/swap/swapfile";}];
-
   boot.kernelParams = [
     "resume=UUID=7ac56432-cbd8-46cd-9a7d-227ff13607f2"
     "resume_offset=31897344"
