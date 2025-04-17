@@ -1,5 +1,12 @@
 {
-  imports = [./fonts ./gaming ./greetd ./hyprland ./pipewire];
+  imports = [
+    ./fonts
+    ./gaming
+    ./greetd
+    ./hyprland
+    ./pipewire
+    ./usbs
+  ];
 
   services.logind.powerKey = "suspend";
 
