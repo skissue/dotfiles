@@ -29,7 +29,7 @@
         bcachefs mount \
           -f ${config.sops.secrets."usbs/${name}".path} \
           -o noatime,nodev,nosuid,noexec \
-          /dev/disk/by-uuid/${uuid} /media/${name}
+          UUID=${uuid} /media/${name}
       '';
       postStop = ''
         umount /media/${name}
