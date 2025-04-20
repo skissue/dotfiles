@@ -1,8 +1,19 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   cfg = config.services.jellyfin;
 in {
   services.jellyfin.enable = true;
   users.users.${cfg.user}.extraGroups = ["media"];
+
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-vaapi-driver
+    ];
+  };
 
   services.nginx.virtualHosts."media.adtailnet" = {
     locations."/" = {
