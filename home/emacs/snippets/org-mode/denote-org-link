@@ -3,4 +3,4 @@
 # key: dL
 # type: command
 # --
-(call-interactively #'denote-org-extras-link-to-heading)
+(call-interactively #'denote-org-link-to-heading)
