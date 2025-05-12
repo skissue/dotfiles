@@ -1102,7 +1102,10 @@ uses the symbol name as the default description, as well as a
   (unless path
     (setq path (funcall zoxide-get-path-function 'add)))
   (when (file-exists-p path)
-    (zoxide-add path)))
+    (zoxide-add path))
+  ;; Return nil, otherwise running inside `dirvish-find-entry-hook' inhibits
+  ;; `dirvish--find-entry'.
+  nil)
 
 (add-hooks! '(find-file-hook
               eshell-directory-change-hook
