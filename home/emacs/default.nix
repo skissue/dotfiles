@@ -75,7 +75,7 @@ in {
         casual
         casual-avy
         # Appearance
-        doric-themes
+        ef-themes
         doom-modeline
         minions
         writeroom-mode
