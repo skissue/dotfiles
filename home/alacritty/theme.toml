@@ -1,30 +1,30 @@
-# https://codeberg.org/anhsirk0/alacritty-themes/src/branch/main/themes/ef-owl.toml
+# https://codeberg.org/anhsirk0/alacritty-themes/src/branch/main/themes/doric-obsidian.toml
 
-# Colors Ef-Owl
+# Colors Doric-Obsidian
 [colors.normal]
-black = '#373b3d'
-red = '#d67869'
-green = '#70bb70'
-yellow = '#c09f6f'
-blue = '#80a4e0'
-magenta = '#e5a0ea'
-cyan = '#8fb8ea'
-white = '#d0d0d0'
+black = '#2f2f2f'
+red = '#dba2a2'
+green = '#85c397'
+yellow = '#c4a992'
+blue = '#95afd2'
+magenta = '#c5a3b2'
+cyan = '#a5bfce'
+white = '#e7e7e7'
 [colors.bright]
-black = '#60676b'
-red = '#e4959f'
-green = '#60bd90'
-yellow = '#cf9f90'
-blue = '#72aff0'
-magenta = '#cfa0e8'
-cyan = '#7ac0b9'
-white = '#857f8f'
+black = '#2f2f2f'
+red = '#dba2a2'
+green = '#85c397'
+yellow = '#c4a992'
+blue = '#95afd2'
+magenta = '#c5a3b2'
+cyan = '#a5bfce'
+white = '#e7e7e7'
 [colors.cursor]
-cursor = '#afe6ef'
-text = '#292c2f'
+cursor = '#eeddbb'
+text = '#181818'
 [colors.primary]
-background = '#292c2f'
-foreground = '#d0d0d0'
+background = '#181818'
+foreground = '#e7e7e7'
 [colors.selection]
-background = '#404f66'
-text = '#d0d0d0'
+background = '#505050'
+text = '#e7e7e7'
