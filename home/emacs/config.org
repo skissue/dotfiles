@@ -3235,7 +3235,7 @@ Add a function to publish ~geo:~ links as URLs that lead to OpenStreetMap's webs
     (dirvish-override-dired-mode)
     (dired-async-mode)
 
-    (setopt dired-dwim-target t))
+    (setopt dired-dwim-target #'dired-dwim-target-next-visible))
 #+end_src
 
 ** mu4e

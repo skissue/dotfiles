@@ -2478,7 +2478,7 @@ This function is called by `org-babel-execute-src-block'.")
   (dirvish-override-dired-mode)
   (dired-async-mode)
 
-  (setopt dired-dwim-target t))
+  (setopt dired-dwim-target #'dired-dwim-target-next-visible))
 
 (bind-key "e" #'mu4e my/open-map)
 
