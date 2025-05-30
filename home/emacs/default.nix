@@ -36,8 +36,7 @@
         -f package-quickstart-refresh
       cp package-quickstart.elc $out
     '';
-  init-substituted = pkgs.substituteAll {
-    src = ./config.el;
+  init-substituted = pkgs.replaceVars ./config.el {
     # See explanations in ./config.org
     consult_mu_src = sources.consult-mu.src;
     consult_omni_src = sources.consult-omni.src;
