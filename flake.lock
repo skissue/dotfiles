@@ -946,11 +946,11 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1746827286,
-        "narHash": "sha256-qCRBy8Bbh5XhPalPkhonxNgfsbw3lP0UIXBLSrhxAvI=",
-        "rev": "dcb0a97000d50b2868ed4f8d9fd465c5a5b8eb3a",
+        "lastModified": 1748525112,
+        "narHash": "sha256-dV38lWAd2nECc0zielYnsi4VhnyP/IhM7c/0UEkIQlo=",
+        "rev": "0c2ced0224bd419b7b792b3935846177fe76b251",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/dcb0a97000d50b2868ed4f8d9fd465c5a5b8eb3a.tar.gz?rev=dcb0a97000d50b2868ed4f8d9fd465c5a5b8eb3a"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/0c2ced0224bd419b7b792b3935846177fe76b251.tar.gz?rev=0c2ced0224bd419b7b792b3935846177fe76b251"
       },
       "original": {
         "type": "tarball",
@@ -961,7 +961,9 @@
       "inputs": {
         "flake-utils": "flake-utils_2",
         "flakey-profile": "flakey-profile",
-        "lix": "lix",
+        "lix": [
+          "lix"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -1334,6 +1336,7 @@
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
         "lib": "lib",
+        "lix": "lix",
         "lix-module": "lix-module",
         "nix-index": "nix-index",
         "nix-monitored": "nix-monitored",
