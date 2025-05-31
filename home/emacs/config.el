@@ -1544,6 +1544,7 @@ Calls the function in `consult-omni-default-interactive-command'." t)
           denote-known-keywords '("agenda" "person" "brew" "private"
                                   "reference" "thought" "journal")
           denote-date-prompt-use-org-read-date t
+          denote-org-store-link-to-heading t
           denote-backlinks-show-context t
           denote-prompts '(title keywords template)
           denote-dired-directories (list denote-directory)
