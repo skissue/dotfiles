@@ -10,6 +10,7 @@
       ./disko.nix
       ./remote-luks-unlock
       ./media
+      ./notes-publish
       ./tt-rss
       ./wireless
     ]
