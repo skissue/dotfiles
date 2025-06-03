@@ -43,12 +43,12 @@ in {
       value = "fd7a:115c:a1e0::e";
     }
     {
-      name = "notes.${base}";
+      name = "brain2.${base}";
       type = "AAAA";
       value = "fd7a:115c:a1e0::e";
     }
     {
-      name = "notes.${base}";
+      name = "brain2.${base}";
       type = "A";
       value = "100.69.0.14";
     }

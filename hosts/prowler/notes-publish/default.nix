@@ -1,6 +1,6 @@
 {
-  services.nginx.virtualHosts."notes.adtailnet".locations."/" = {
-    root = "/etc/notes";
+  services.nginx.virtualHosts."brain2.adtailnet".locations."/" = {
+    root = "/etc/brain2";
     extraConfig = ''
       allow 100.69.0.7 ;
       allow fd7a:115c:a1e0::4 ;
