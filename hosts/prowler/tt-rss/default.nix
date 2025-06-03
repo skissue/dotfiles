@@ -4,12 +4,12 @@
   ...
 }: let
   cfg = config.services.tt-rss;
-  url = "http://feeds.adtailnet";
+  host = "feeds.adtailnet";
 in {
   services.tt-rss = {
     enable = true;
-    selfUrlPath = url;
-    virtualHost = url;
+    selfUrlPath = "http://${host}";
+    virtualHost = host;
 
     pluginPackages = with pkgs; [my.tt-rss-af-youtube-remove-updated];
     # This overrides default plugins, so add those too!
