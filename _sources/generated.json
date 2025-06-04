@@ -43,7 +43,7 @@
     },
     "gptel-quick": {
         "cargoLocks": null,
-        "date": "2025-04-14",
+        "date": "2025-06-01",
         "extract": null,
         "name": "gptel-quick",
         "passthru": null,
@@ -55,12 +55,12 @@
             "name": null,
             "owner": "karthink",
             "repo": "gptel-quick",
-            "rev": "34acd437a7af8a387c14428bd1abdb3cd9e95d9d",
-            "sha256": "sha256-/Hf6ztFovZYObtz6YgS0GRcANcwmAlrmBRvSdARwNEw=",
+            "rev": "495b5e0b5348dbced1448bd12cbf8847e30b5175",
+            "sha256": "sha256-xMrzeWG5L+MpGAhPFlV8KV+xa7CWC1D48osRrioGlsw=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "34acd437a7af8a387c14428bd1abdb3cd9e95d9d"
+        "version": "495b5e0b5348dbced1448bd12cbf8847e30b5175"
     },
     "inline-diff": {
         "cargoLocks": null,
@@ -229,7 +229,7 @@
     },
     "ultra-scroll": {
         "cargoLocks": null,
-        "date": "2025-05-29",
+        "date": "2025-06-03",
         "extract": null,
         "name": "ultra-scroll",
         "passthru": null,
@@ -241,11 +241,11 @@
             "name": null,
             "owner": "jdtsmith",
             "repo": "ultra-scroll",
-            "rev": "2b90a7f7af81bea120da9ac8b8e202452ef077b6",
-            "sha256": "sha256-xUI9ueOnF5InBmKcmlZ5kaF6C4jPElULfpeZso/gSYE=",
+            "rev": "489adeda7380b97d8f5d61d43082cd2d96b55b58",
+            "sha256": "sha256-KklbdVv584m+zEANeSYQ9xgRIJDYPgmQQsfCwKmuzzA=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "2b90a7f7af81bea120da9ac8b8e202452ef077b6"
+        "version": "489adeda7380b97d8f5d61d43082cd2d96b55b58"
     }
 }

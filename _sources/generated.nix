@@ -27,15 +27,15 @@
   };
   gptel-quick = {
     pname = "gptel-quick";
-    version = "34acd437a7af8a387c14428bd1abdb3cd9e95d9d";
+    version = "495b5e0b5348dbced1448bd12cbf8847e30b5175";
     src = fetchFromGitHub {
       owner = "karthink";
       repo = "gptel-quick";
-      rev = "34acd437a7af8a387c14428bd1abdb3cd9e95d9d";
+      rev = "495b5e0b5348dbced1448bd12cbf8847e30b5175";
       fetchSubmodules = false;
-      sha256 = "sha256-/Hf6ztFovZYObtz6YgS0GRcANcwmAlrmBRvSdARwNEw=";
+      sha256 = "sha256-xMrzeWG5L+MpGAhPFlV8KV+xa7CWC1D48osRrioGlsw=";
     };
-    date = "2025-04-14";
+    date = "2025-06-01";
   };
   inline-diff = {
     pname = "inline-diff";
@@ -140,14 +140,14 @@
   };
   ultra-scroll = {
     pname = "ultra-scroll";
-    version = "2b90a7f7af81bea120da9ac8b8e202452ef077b6";
+    version = "489adeda7380b97d8f5d61d43082cd2d96b55b58";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "ultra-scroll";
-      rev = "2b90a7f7af81bea120da9ac8b8e202452ef077b6";
+      rev = "489adeda7380b97d8f5d61d43082cd2d96b55b58";
       fetchSubmodules = false;
-      sha256 = "sha256-xUI9ueOnF5InBmKcmlZ5kaF6C4jPElULfpeZso/gSYE=";
+      sha256 = "sha256-KklbdVv584m+zEANeSYQ9xgRIJDYPgmQQsfCwKmuzzA=";
     };
-    date = "2025-05-29";
+    date = "2025-06-03";
   };
 }
