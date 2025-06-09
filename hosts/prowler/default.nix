@@ -8,6 +8,7 @@
       ./anki-sync-server
       ./annex
       ./disko.nix
+      ./iperf
       ./remote-luks-unlock
       ./media
       ./notes-publish
