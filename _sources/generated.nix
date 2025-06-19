@@ -3,15 +3,15 @@
 {
   consult-mu = {
     pname = "consult-mu";
-    version = "e1dc63674b924698b30a9ecc0400a05864711c85";
+    version = "4958fb651917b0f9f79f436f7a753263c8003537";
     src = fetchFromGitHub {
       owner = "armindarvish";
       repo = "consult-mu";
-      rev = "e1dc63674b924698b30a9ecc0400a05864711c85";
+      rev = "4958fb651917b0f9f79f436f7a753263c8003537";
       fetchSubmodules = false;
-      sha256 = "sha256-XvzI/8lT8UscIQvjubbG72Sh4jzm3t1e3uKtHkACTZ0=";
+      sha256 = "sha256-cRFYTnfwWz4bxCirDHJ43Vw3eAYthJ5auRHLd+Cgo5c=";
     };
-    date = "2025-02-17";
+    date = "2025-06-17";
   };
   consult-omni = {
     pname = "consult-omni";
@@ -67,17 +67,17 @@
   };
   org-bleeding-latex = {
     pname = "org-bleeding-latex";
-    version = "cd2269ddb64bda7203acf2ee2e26188237a578ea";
+    version = "9c1c2c639410607693ee401ba28be5f0b12bf6b1";
     src = fetchgit {
       url = "https://code.tecosaur.net/tec/org-mode.git";
-      rev = "cd2269ddb64bda7203acf2ee2e26188237a578ea";
+      rev = "9c1c2c639410607693ee401ba28be5f0b12bf6b1";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-c74hMH2BSMB4jg+2rxL30Y7wFAnL4SOakElFjO3Rro4=";
+      sha256 = "sha256-jd6fA0Gi5hZPTh6SoFC1Go+X23l0q/7o/aSSyZLPiAU=";
     };
-    date = "2025-03-31";
+    date = "2025-06-16";
   };
   org-modern-indent = {
     pname = "org-modern-indent";
@@ -140,14 +140,14 @@
   };
   ultra-scroll = {
     pname = "ultra-scroll";
-    version = "b447044b9de68068139da9ab367126e973a6a0b0";
+    version = "4ca8cf0cff4209886fe841c3e62f8f12c3be89ff";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "ultra-scroll";
-      rev = "b447044b9de68068139da9ab367126e973a6a0b0";
+      rev = "4ca8cf0cff4209886fe841c3e62f8f12c3be89ff";
       fetchSubmodules = false;
-      sha256 = "sha256-GnAn6LjxrfzrNZP2bYSsWuDifKuIbSgKe4ES7906Ig4=";
+      sha256 = "sha256-pkYqfRwFa/+L3m1s8cxTWQSicH+oMGPATB5n0QJullc=";
     };
-    date = "2025-06-09";
+    date = "2025-06-17";
   };
 }
