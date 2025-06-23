@@ -4,6 +4,7 @@
     ./gaming
     ./greetd
     ./hyprland
+    ./kanata
     ./pipewire
     ./usbs
   ];
