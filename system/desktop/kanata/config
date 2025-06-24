@@ -1,12 +1,12 @@
 ;; Kanata config: Map QWERTY letters to Colemak Mod-DH.
 
+(defcfg
+ linux-dev-names-exclude ("MoErgo Glove80 Left Keyboard"))
+
 (defsrc
  q w e r t y u i o p
  a s d f g h j k l ;
  z x c v b n m)
-
-
-(defcfg)
 
 (deflayer base
           q w f p b j l u y ;
