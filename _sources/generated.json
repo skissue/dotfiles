@@ -229,7 +229,7 @@
     },
     "ultra-scroll": {
         "cargoLocks": null,
-        "date": "2025-06-17",
+        "date": "2025-06-21",
         "extract": null,
         "name": "ultra-scroll",
         "passthru": null,
@@ -241,11 +241,11 @@
             "name": null,
             "owner": "jdtsmith",
             "repo": "ultra-scroll",
-            "rev": "4ca8cf0cff4209886fe841c3e62f8f12c3be89ff",
-            "sha256": "sha256-pkYqfRwFa/+L3m1s8cxTWQSicH+oMGPATB5n0QJullc=",
+            "rev": "3dd35e9a2aa327ddf889bd0f3341a81d3215862b",
+            "sha256": "sha256-u+KTitHqtwn0jAoseFXUzH7psv1b6D07QupdZQfhgto=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "4ca8cf0cff4209886fe841c3e62f8f12c3be89ff"
+        "version": "3dd35e9a2aa327ddf889bd0f3341a81d3215862b"
     }
 }
