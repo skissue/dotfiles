@@ -71,6 +71,7 @@
       url = "github:skissue/git-annex-backend-XBLAKE3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri.url = "github:sodiboo/niri-flake";
 
     # https://github.com/hyprwm/Hyprland/issues/5891#issuecomment-2133152891
     hyprland = {

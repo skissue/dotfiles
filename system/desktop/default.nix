@@ -5,6 +5,7 @@
     ./greetd
     ./hyprland
     ./kanata
+    ./niri
     ./pipewire
     ./usbs
   ];
