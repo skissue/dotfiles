@@ -161,6 +161,7 @@ in {
         haskell-ts-mode
         uiua-ts-mode
         hyprlang-ts-mode
+        kdl-mode
         # Org
         org-contrib
         org-modern
