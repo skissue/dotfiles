@@ -18,6 +18,7 @@
     ./gtk
     ./hyprland
     ./mutable-links
+    ./niri
     ./programming
     ./secrets
     ./ssh
