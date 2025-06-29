@@ -3,7 +3,6 @@
     ./fonts
     ./gaming
     ./greetd
-    ./hyprland
     ./kanata
     ./niri
     ./pipewire

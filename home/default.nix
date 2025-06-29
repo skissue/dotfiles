@@ -16,7 +16,6 @@
     ./fuzzel
     ./git
     ./gtk
-    ./hyprland
     ./mutable-links
     ./niri
     ./programming
