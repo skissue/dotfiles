@@ -12,5 +12,8 @@
       enable = true;
       package = pkgs.niri-unstable;
     };
+
+    # Needed for hyprlock
+    security.pam.services.hyprlock = {};
   };
 }
