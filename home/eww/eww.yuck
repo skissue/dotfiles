@@ -14,18 +14,17 @@
             (workspaces)
             (bar-bottom)))
 
-(deflisten hyprland-workspaces "hyprland-workspaces ALL")
+(deflisten niri-workspaces "niri-workspaces")
 (defwidget workspaces []
            (box
             :class "workspaces"
             :orientation "vertical"
             :space-evenly false
-            ;; TODO This is super scuffed, perhaps write my own monitoring program?
-            (for ws in {jq(hyprland-workspaces ?: "[]", "[. as $in | range(1; 11) | . as $i | if any($in[]; .id == $i) then $in[] | select(.id == $i) | {id: .id, active: true, focus: .active} else {id: $i, active: false, focus: false} end]")}
+            (for ws in {niri-workspaces}
                  (button
-                  :class "ws ${ws.active ? "active" : ""} ${ws.focus ? "focused" : ""}"
-                  :onclick "hyprctl dispatch workspace ${ws.id}"
-                  {ws.active ? "●" : "○"}))))
+                  :class "ws ${ws.is_active ? "active" : ""} ${ws.is_focused ? "focused" : ""}"
+                  :onclick "niri msg action focus-workspace -- ${ws.idx}"
+                  {ws.is_focused ? "●" : "○"}))))
 
 (defwidget bar-bottom []
            (box

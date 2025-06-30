@@ -5,6 +5,8 @@
 }: {
   home.packages = with pkgs; [xwayland-satellite-unstable mako];
 
+  home.sessionPath = [(toString ./scripts)];
+
   xdg.configFile."mako/config".text = ''
     default-timeout=5000
     group-by=app-name,summary
