@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  home.packages = with pkgs; [xwayland-satellite mako];
+  home.packages = with pkgs; [xwayland-satellite-unstable mako];
 
   xdg.configFile."mako/config".text = ''
     default-timeout=5000
