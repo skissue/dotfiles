@@ -24,7 +24,7 @@
                  (button
                   :class "ws ${ws.is_active ? "active" : ""} ${ws.is_focused ? "focused" : ""}"
                   :onclick "niri msg action focus-workspace -- ${ws.idx}"
-                  {ws.is_focused ? "●" : "○"}))))
+                  {ws.active_window_id != "null" || ws.is_focused ? "●" : "○"}))))
 
 (defwidget bar-bottom []
            (box
