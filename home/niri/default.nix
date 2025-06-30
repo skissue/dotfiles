@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   ...
 }: {
   home.packages = with pkgs; [xwayland-satellite-unstable mako];
@@ -26,7 +25,6 @@
 
   programs.hyprlock = {
     enable = true;
-    package = inputs.hyprlock.packages.${pkgs.system}.default;
     settings = {
       background = {
         monitor = "";

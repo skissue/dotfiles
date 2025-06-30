@@ -71,11 +71,6 @@
       url = "github:skissue/git-annex-backend-XBLAKE3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      # Without this, Mesa version mismatches happen every so often.
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     niri.url = "github:sodiboo/niri-flake";
   };
 
