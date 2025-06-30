@@ -1,0 +1,30 @@
+#!/usr/bin/env nu
+
+mut workspaces = []
+
+def output-workspaces (workspaces: list) {
+    let monitor = ($workspaces | where is_focused | first | get output)
+
+    print ($workspaces | group-by output | get $monitor | sort-by idx | to json --raw)
+}
+
+for event in (niri msg --json event-stream | from json --objects) {
+  if $event.WorkspacesChanged? != null {
+    $workspaces = $event.WorkspacesChanged.workspaces
+
+    output-workspaces $workspaces
+  } else if $event.WorkspaceActivated? != null {
+    let id      = $event.WorkspaceActivated.id
+    let focused = $event.WorkspaceActivated.focused
+ 
+    $workspaces = ($workspaces | each {|it|
+      if $it.id == $id {
+        $it | merge { is_focused: $focused }
+      } else {
+        $it | merge { is_focused: false }
+      }
+    })
+
+    output-workspaces $workspaces
+  }
+}
