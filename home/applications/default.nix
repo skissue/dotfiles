@@ -35,10 +35,10 @@
     })
     mangohud
     mullvad-browser
+    nautilus
     nextcloud-client
     obs-studio
     ouch
-    pcmanfm
     playerctl
     plover.dev
     prismlauncher
