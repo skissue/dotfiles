@@ -1,8 +1,11 @@
 {
   pkgs,
+  mutable-link,
   ...
 }: {
   home.packages = with pkgs; [xwayland-satellite-unstable mako];
+
+  xdg.configFile."niri/config.kdl".source = mutable-link ./config.kdl;
 
   home.sessionPath = [(toString ./scripts)];
 
