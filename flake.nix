@@ -71,23 +71,12 @@
       url = "github:skissue/git-annex-backend-XBLAKE3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri.url = "github:sodiboo/niri-flake";
-
-    # https://github.com/hyprwm/Hyprland/issues/5891#issuecomment-2133152891
-    hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
-    };
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       # Without this, Mesa version mismatches happen every so often.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hypr-dynamic-cursors = {
-      url = "github:VirtCode/hypr-dynamic-cursors";
-      inputs.hyprland.follows = "hyprland";
-    };
+    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs = {
