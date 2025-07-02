@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   self,
   inputs,
   ...
@@ -42,6 +41,9 @@
   };
 
   nixpkgs = {
+    overlays = [
+      self.overlays.default
+    ];
     config = {
       # Wall of shame.
       allowUnfreePredicate = pkg:
@@ -59,10 +61,6 @@
         "olm-3.2.16" # https://github.com/mautrix/go/issues/262
       ];
     };
-    overlays = [
-      inputs.lix-module.overlays.default
-      self.overlays.default
-    ];
   };
 
   # Default `command-not-found` doesn't work with pure Flakes
