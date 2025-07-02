@@ -38,6 +38,8 @@
     rocmOverrideGfx = "11.0.1";
   };
 
+  virtualisation.waydroid.enable = true;
+
   networking.firewall.allowedTCPPorts = [21000 21013];
   networking.firewall.allowedUDPPorts = [21003];
 
