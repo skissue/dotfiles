@@ -3,7 +3,6 @@
 
   home.packages = with pkgs; [
     blender-hip
-    ddcutil
   ];
 
   wayland.windowManager.hyprland.extraConfig = ''
@@ -27,14 +26,4 @@
     $dpmsExtra = && ddcutil setvcp d6 04
     $undpmsExtra = && ddcutil setvcp d6 01
   '';
-
-  services.hypridle.settings = {
-    listener = [
-      {
-        timeout = 300;
-        on-timeout = "ddcutil setvcp d6 04";
-        on-resume = "ddcutil setvcp d6 01";
-      }
-    ];
-  };
 }
