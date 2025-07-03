@@ -29,6 +29,8 @@
   programs.hyprlock = {
     enable = true;
     settings = {
+      # Disable fade-in, which causes a red flash on niri.
+      animation = ["fadeIn,0"];
       background = {
         monitor = "";
         path = "screenshot";
