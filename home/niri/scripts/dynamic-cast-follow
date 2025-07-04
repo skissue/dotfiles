@@ -1,0 +1,20 @@
+#!/usr/bin/env nu
+def main [--window] {
+    if $window {
+        niri msg action set-dynamic-cast-window
+
+        for event in (niri msg --json event-stream | from json -o) {
+            if $event.WindowFocusChanged? != null {
+                niri msg action set-dynamic-cast-window
+            }
+        }
+    } else {
+        niri msg action set-dynamic-cast-monitor
+        
+        for event in (niri msg --json event-stream | from json -o) {
+            if $event.WorkspaceActivated? != null {
+                niri msg action set-dynamic-cast-monitor
+            }
+        }
+    }
+}
