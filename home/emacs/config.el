@@ -2325,6 +2325,11 @@ This function is called by `org-babel-execute-src-block'.")
                  nil nil #'equal)
       #'nushell-mode)
 
+(after! org
+  (setf (alist-get "nu" org-src-lang-modes
+                   nil nil #'equal)
+        'nushell))
+
 (setf (alist-get "[Jj]ustfile\\'" auto-mode-alist
                  nil nil #'equal)
       #'just-mode)
