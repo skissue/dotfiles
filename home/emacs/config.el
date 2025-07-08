@@ -2320,15 +2320,15 @@ This function is called by `org-babel-execute-src-block'.")
 
 (setf (alist-get "\\.nu\\'" auto-mode-alist
                  nil nil #'equal)
-      #'nushell-mode
+      #'nushell-ts-mode
       (alist-get "nu" interpreter-mode-alist
                  nil nil #'equal)
-      #'nushell-mode)
+      #'nushell-ts-mode)
 
 (after! org
   (setf (alist-get "nu" org-src-lang-modes
                    nil nil #'equal)
-        'nushell))
+        'nushell-ts))
 
 (setf (alist-get "[Jj]ustfile\\'" auto-mode-alist
                  nil nil #'equal)

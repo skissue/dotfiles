@@ -3022,15 +3022,15 @@ Common Lisp.
 #+begin_src elisp
   (setf (alist-get "\\.nu\\'" auto-mode-alist
                    nil nil #'equal)
-        #'nushell-mode
+        #'nushell-ts-mode
         (alist-get "nu" interpreter-mode-alist
                    nil nil #'equal)
-        #'nushell-mode)
+        #'nushell-ts-mode)
 
   (after! org
     (setf (alist-get "nu" org-src-lang-modes
                      nil nil #'equal)
-          'nushell))
+          'nushell-ts))
 #+end_src
 
 ** Just

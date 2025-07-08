@@ -148,7 +148,7 @@ in {
         rustic
         nix-ts-mode
         typst-ts-mode
-        nushell-mode
+        nushell-ts-mode
         just-mode
         justl
         gnuplot
