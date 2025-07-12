@@ -40,6 +40,10 @@
 
   virtualisation.waydroid.enable = true;
 
+  # When I need a single Flatpak that's not available any other way because it's
+  # not open-source 💔.
+  services.flatpak.enable = true;
+
   networking.firewall.allowedTCPPorts = [21000 21013];
   networking.firewall.allowedUDPPorts = [21003];
 
