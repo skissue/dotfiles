@@ -1,6 +1,6 @@
 {
   services.kanata = {
     enable = true;
-    keyboards.default.configFile = ./config;
+    keyboards.colemak-dh.configFile = ./colemak-dh;
   };
 }
