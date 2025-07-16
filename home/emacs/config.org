@@ -616,17 +616,14 @@ Increase Treesit's fontification level (I like my editor to look like a rainbow 
 
 ** Theme
 #+begin_src elisp
-  (require 'ef-themes)
+  (require 'doom-themes)
 
-  (setq ef-themes-mixed-fonts t
-        ef-themes-headings '((0 1.8)
-                             (1 variable-pitch light 1.5)
-                             (2 variable-pitch light 1.4)
-                             (3 variable-pitch light 1.3)
-                             (4 variable-pitch light 1.2)
-                             (t variable-pitch light 1.1)))
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (load-theme 'doom-nord :no-confirm)
 
-  (ef-themes-load-theme 'ef-owl)
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config)
 #+end_src
 
 ** Spacious Padding
@@ -677,10 +674,9 @@ This is such an important addition to Emacs.
   (add-hook 'eldoc-mode-hook #'eldoc-box-hover-mode)
 
   (after! eldoc-box
-    (ef-themes-with-colors
-      (custom-set-faces
-       `(eldoc-box-border ((t :background ,bg-main)))
-       '(eldoc-box-body ((t :inherit variable-pitch)))))
+    (custom-set-faces
+     `(eldoc-box-border ((t :background ,(doom-color 'bg))))
+     '(eldoc-box-body ((t :inherit variable-pitch))))
     (setcdr (assq 'left-fringe eldoc-box-frame-parameters) 2)
     (setcdr (assq 'right-fringe eldoc-box-frame-parameters) 2))
 #+end_src
@@ -770,11 +766,10 @@ There's no built-in function to delete the current file, so here's mine.
         meow-use-clipboard t
         meow-keypad-self-insert-undefined nil
         auto-save-visited-predicate (##not (meow-insert-mode-p)))
-  (ef-themes-with-colors
-    (custom-set-faces
-     `(meow-insert-indicator ((t :foreground ,fg-added)))
-     `(meow-beacon-indicator ((t :foreground ,fg-changed)))
-     `(meow-keypad-indicator ((t :foreground ,fg-removed)))))
+  (custom-set-faces
+   `(meow-insert-indicator ((t :foreground ,(doom-color 'blue))))
+   `(meow-beacon-indicator ((t :foreground ,(doom-color 'green))))
+   `(meow-keypad-indicator ((t :foreground ,(doom-color 'red)))))
 
   (meow-motion-define-key
    '("e"        . meow-next)
@@ -1533,12 +1528,11 @@ In addition to auto-loading via filename or magic values, we also want to load t
   (add-hook 'prog-mode-hook #'hl-todo-mode)
 
   (after! hl-todo
-    (ef-themes-with-colors
-      (setopt hl-todo-keyword-faces
-              `(("TODO" . ,green)
-                ("FIXME" . ,yellow)
-                ("HACK" . ,cyan)
-                ("NOTE" . ,blue)))))
+    (setopt hl-todo-keyword-faces
+            `(("TODO" . ,(doom-color 'green))
+              ("FIXME" . ,(doom-color 'yellow))
+              ("HACK" . ,(doom-color 'cyan))
+              ("NOTE" . ,(doom-color 'blue)))))
 #+end_src
 
 #+begin_src elisp
@@ -2330,11 +2324,10 @@ Ah, the crown jewel of Emacs 👑.
             org-cycle-separator-lines              0
             org-blank-before-new-entry             '((heading . t)
                                                      (plain-list-item . auto))
-            org-todo-keyword-faces (ef-themes-with-colors
-                                     `(("CANCELED"
-                                        :foreground ,red)
-                                       ("WAIT"
-                                        :foreground ,yellow)))
+            org-todo-keyword-faces `(("CANCELED"
+                                      :foreground ,(doom-color 'red))
+                                     ("WAIT"
+                                      :foreground ,(doom-color 'yellow)))
             org-refile-targets     '((nil :maxlevel . 2)
                                      (org-agenda-files :maxlevel . 2)))
     (custom-set-faces
@@ -2423,12 +2416,11 @@ Ah, the crown jewel of Emacs 👑.
             org-agenda-deadline-faces '((0.8 . org-imminent-deadline)
                                         (0.5 . org-upcoming-deadline)
                                         (0.0 . org-upcoming-distant-deadline)))
-    (ef-themes-with-colors
-      (custom-set-faces
-       `(org-scheduled-today           ((t (:foreground ,magenta :weight bold))))
-       `(org-imminent-deadline         ((t (:foreground ,red    :weight semibold))))
-       `(org-upcoming-deadline         ((t (:foreground ,yellow :weight medium))))
-       `(org-upcoming-distant-deadline ((t (:foreground ,yellow :weight light)))))))
+    (custom-set-faces
+     `(org-scheduled-today           ((t (:foreground ,(doom-color 'magenta) :weight bold))))
+     `(org-imminent-deadline         ((t (:foreground ,(doom-color 'red)     :weight semibold))))
+     `(org-upcoming-deadline         ((t (:foreground ,(doom-color 'yellow)  :weight medium))))
+     `(org-upcoming-distant-deadline ((t (:foreground ,(doom-color 'yellow)  :weight light))))))
 #+end_src
 
 Habits.
@@ -2553,22 +2545,20 @@ Make Org Mode pretty! Star replacement symbols are taken from [[https://github.c
             org-modern-star 'replace
             org-modern-replace-stars "§∯δσ𝛼∞𝜺"
             ;; For some reason, inheriting from `org-modern-todo' messes with the size
-            org-modern-todo-faces (ef-themes-with-colors
-                                    `(("CANCELED"
-                                       :inverse-video t
-                                       :weight semibold
-                                       :foreground ,red)
-                                      ("WAIT"
-                                       :inverse-video t
-                                       :weight semibold
-                                       :foreground ,yellow))))
-    (ef-themes-with-colors
-      (custom-set-faces
-       '(org-modern-label ((t :height 1.0
-                              :inherit fixed-pitch)))
-       `(org-modern-done ((t :inherit org-modern-todo
-                             :foreground ,green)))
-       '(org-modern-symbol ((t (:family "Maple Mono NF" :height 1.1)))))))
+            org-modern-todo-faces `(("CANCELED"
+                                     :inverse-video t
+                                     :weight semibold
+                                     :foreground ,(doom-color 'red))
+                                    ("WAIT"
+                                     :inverse-video t
+                                     :weight semibold
+                                     :foreground ,(doom-color 'yellow))))
+    (custom-set-faces
+     '(org-modern-label ((t :height 1.0
+                            :inherit fixed-pitch)))
+     `(org-modern-done ((t :inherit org-modern-todo
+                           :foreground ,(doom-color 'green))))
+     '(org-modern-symbol ((t (:family "Maple Mono NF" :height 1.1))))))
 #+end_src
 
 ** Org Indent
@@ -2805,8 +2795,8 @@ The bleeding-edge development branch of Org that I'm using has a small bug in th
 
 #+begin_src elisp
   (after! nice-org-html
-    (setopt nice-org-html-theme-alist `((light . ef-light)
-                                        (dark  . ,(ef-themes--current-theme)))
+    (setopt nice-org-html-theme-alist '((light . doom-nord-light)
+                                        (dark  . doom-nord))
             nice-org-html-default-mode 'dark
             nice-org-html-options '(:collapsing t
                                                 :src-lang t)))

@@ -389,17 +389,14 @@ where it was when you previously visited the same file."
 
 (setq treesit-font-lock-level 4)
 
-(require 'ef-themes)
+(require 'doom-themes)
 
-(setq ef-themes-mixed-fonts t
-      ef-themes-headings '((0 1.8)
-                           (1 variable-pitch light 1.5)
-                           (2 variable-pitch light 1.4)
-                           (3 variable-pitch light 1.3)
-                           (4 variable-pitch light 1.2)
-                           (t variable-pitch light 1.1)))
+(setq doom-themes-enable-bold t
+      doom-themes-enable-italic t)
+(load-theme 'doom-nord :no-confirm)
 
-(ef-themes-load-theme 'ef-owl)
+(doom-themes-visual-bell-config)
+(doom-themes-org-config)
 
 (add-hook 'window-setup-hook #'spacious-padding-mode)
 
@@ -434,10 +431,9 @@ where it was when you previously visited the same file."
 (add-hook 'eldoc-mode-hook #'eldoc-box-hover-mode)
 
 (after! eldoc-box
-  (ef-themes-with-colors
-    (custom-set-faces
-     `(eldoc-box-border ((t :background ,bg-main)))
-     '(eldoc-box-body ((t :inherit variable-pitch)))))
+  (custom-set-faces
+   `(eldoc-box-border ((t :background ,(doom-color 'bg))))
+   '(eldoc-box-body ((t :inherit variable-pitch))))
   (setcdr (assq 'left-fringe eldoc-box-frame-parameters) 2)
   (setcdr (assq 'right-fringe eldoc-box-frame-parameters) 2))
 
@@ -500,11 +496,10 @@ where it was when you previously visited the same file."
       meow-use-clipboard t
       meow-keypad-self-insert-undefined nil
       auto-save-visited-predicate (##not (meow-insert-mode-p)))
-(ef-themes-with-colors
-  (custom-set-faces
-   `(meow-insert-indicator ((t :foreground ,fg-added)))
-   `(meow-beacon-indicator ((t :foreground ,fg-changed)))
-   `(meow-keypad-indicator ((t :foreground ,fg-removed)))))
+(custom-set-faces
+ `(meow-insert-indicator ((t :foreground ,(doom-color 'blue))))
+ `(meow-beacon-indicator ((t :foreground ,(doom-color 'green))))
+ `(meow-keypad-indicator ((t :foreground ,(doom-color 'red)))))
 
 (meow-motion-define-key
  '("e"        . meow-next)
@@ -1117,12 +1112,11 @@ uses the symbol name as the default description, as well as a
 (add-hook 'prog-mode-hook #'hl-todo-mode)
 
 (after! hl-todo
-  (ef-themes-with-colors
-    (setopt hl-todo-keyword-faces
-            `(("TODO" . ,green)
-              ("FIXME" . ,yellow)
-              ("HACK" . ,cyan)
-              ("NOTE" . ,blue)))))
+  (setopt hl-todo-keyword-faces
+          `(("TODO" . ,(doom-color 'green))
+            ("FIXME" . ,(doom-color 'yellow))
+            ("HACK" . ,(doom-color 'cyan))
+            ("NOTE" . ,(doom-color 'blue)))))
 
 (bind-keys :map goto-map
            ("t" . consult-todo)
@@ -1785,11 +1779,10 @@ For our purposes, a note must not be a directory, must satisfy
           org-cycle-separator-lines              0
           org-blank-before-new-entry             '((heading . t)
                                                    (plain-list-item . auto))
-          org-todo-keyword-faces (ef-themes-with-colors
-                                   `(("CANCELED"
-                                      :foreground ,red)
-                                     ("WAIT"
-                                      :foreground ,yellow)))
+          org-todo-keyword-faces `(("CANCELED"
+                                    :foreground ,(doom-color 'red))
+                                   ("WAIT"
+                                    :foreground ,(doom-color 'yellow)))
           org-refile-targets     '((nil :maxlevel . 2)
                                    (org-agenda-files :maxlevel . 2)))
   (custom-set-faces
@@ -1869,12 +1862,11 @@ For our purposes, a note must not be a directory, must satisfy
           org-agenda-deadline-faces '((0.8 . org-imminent-deadline)
                                       (0.5 . org-upcoming-deadline)
                                       (0.0 . org-upcoming-distant-deadline)))
-  (ef-themes-with-colors
-    (custom-set-faces
-     `(org-scheduled-today           ((t (:foreground ,magenta :weight bold))))
-     `(org-imminent-deadline         ((t (:foreground ,red    :weight semibold))))
-     `(org-upcoming-deadline         ((t (:foreground ,yellow :weight medium))))
-     `(org-upcoming-distant-deadline ((t (:foreground ,yellow :weight light)))))))
+  (custom-set-faces
+   `(org-scheduled-today           ((t (:foreground ,(doom-color 'magenta) :weight bold))))
+   `(org-imminent-deadline         ((t (:foreground ,(doom-color 'red)     :weight semibold))))
+   `(org-upcoming-deadline         ((t (:foreground ,(doom-color 'yellow)  :weight medium))))
+   `(org-upcoming-distant-deadline ((t (:foreground ,(doom-color 'yellow)  :weight light))))))
 
 (after! org
   (require 'org-habit)
@@ -1977,22 +1969,20 @@ For our purposes, a note must not be a directory, must satisfy
           org-modern-star 'replace
           org-modern-replace-stars "§∯δσ𝛼∞𝜺"
           ;; For some reason, inheriting from `org-modern-todo' messes with the size
-          org-modern-todo-faces (ef-themes-with-colors
-                                  `(("CANCELED"
-                                     :inverse-video t
-                                     :weight semibold
-                                     :foreground ,red)
-                                    ("WAIT"
-                                     :inverse-video t
-                                     :weight semibold
-                                     :foreground ,yellow))))
-  (ef-themes-with-colors
-    (custom-set-faces
-     '(org-modern-label ((t :height 1.0
-                            :inherit fixed-pitch)))
-     `(org-modern-done ((t :inherit org-modern-todo
-                           :foreground ,green)))
-     '(org-modern-symbol ((t (:family "Maple Mono NF" :height 1.1)))))))
+          org-modern-todo-faces `(("CANCELED"
+                                   :inverse-video t
+                                   :weight semibold
+                                   :foreground ,(doom-color 'red))
+                                  ("WAIT"
+                                   :inverse-video t
+                                   :weight semibold
+                                   :foreground ,(doom-color 'yellow))))
+  (custom-set-faces
+   '(org-modern-label ((t :height 1.0
+                          :inherit fixed-pitch)))
+   `(org-modern-done ((t :inherit org-modern-todo
+                         :foreground ,(doom-color 'green))))
+   '(org-modern-symbol ((t (:family "Maple Mono NF" :height 1.1))))))
 
 (after! org-indent
   (defvar my/org-indent--heading-pixel-widths
@@ -2177,8 +2167,8 @@ have `org-warning' face."
           org-re-reveal-extra-options "controlsTutorial: false"))
 
 (after! nice-org-html
-  (setopt nice-org-html-theme-alist `((light . ef-light)
-                                      (dark  . ,(ef-themes--current-theme)))
+  (setopt nice-org-html-theme-alist '((light . doom-nord-light)
+                                      (dark  . doom-nord))
           nice-org-html-default-mode 'dark
           nice-org-html-options '(:collapsing t
                                               :src-lang t)))
