@@ -4,8 +4,8 @@
   ...
 }: {
   home.pointerCursor = {
-    package = pkgs.catppuccin-cursors.macchiatoPink;
-    name = "catppuccin-macchiato-pink-cursors";
+    package = pkgs.nordzy-cursor-theme;
+    name = "Nordzy-cursors-white";
     size = 36;
     gtk.enable = true;
   };
