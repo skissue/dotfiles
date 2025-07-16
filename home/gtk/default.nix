@@ -10,11 +10,8 @@
       size = 12;
     };
     theme = {
-      name = "catppuccin-macchiato-pink-standard";
-      package = pkgs.catppuccin-gtk.override {
-        accents = ["pink"];
-        variant = "macchiato";
-      };
+      name = "Nordic-darker";
+      package = pkgs.nordic;
     };
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   };
