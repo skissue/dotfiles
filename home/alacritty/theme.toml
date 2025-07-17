@@ -1,30 +1,60 @@
-# https://codeberg.org/anhsirk0/alacritty-themes/src/branch/main/themes/ef-owl.toml
+# https://gist.github.com/candidtim/6097565040a3aec839a8a2d28cb8887d
 
-# Colors Ef-Owl
-[colors.normal]
-black = '#373b3d'
-red = '#d67869'
-green = '#70bb70'
-yellow = '#c09f6f'
-blue = '#80a4e0'
-magenta = '#e5a0ea'
-cyan = '#8fb8ea'
-white = '#d0d0d0'
-[colors.bright]
-black = '#60676b'
-red = '#e4959f'
-green = '#60bd90'
-yellow = '#cf9f90'
-blue = '#72aff0'
-magenta = '#cfa0e8'
-cyan = '#7ac0b9'
-white = '#857f8f'
-[colors.cursor]
-cursor = '#afe6ef'
-text = '#292c2f'
+# TOML interpretation of the https://github.com/nordtheme/alacritty
+# See also: https://github.com/nordtheme/alacritty/issues/40
+# (if the above is resolved, you may not need this Gist)
+
 [colors.primary]
-background = '#292c2f'
-foreground = '#d0d0d0'
+background = "#2e3440"
+foreground = "#d8dee9"
+dim_foreground = "#a5abb6"
+
+[colors.cursor]
+text = "#2e3440"
+cursor = "#d8dee9"
+
+[colors.vi_mode_cursor]
+text = "#2e3440"
+cursor = "#d8dee9"
+
 [colors.selection]
-background = '#404f66'
-text = '#d0d0d0'
+text = "CellForeground"
+background = "#4c566a"
+
+[colors.search.matches]
+foreground = "CellBackground"
+background = "#88c0d0"
+
+[colors.footer_bar]
+background = "#434c5e"
+foreground = "#d8dee9"
+
+[colors.normal]
+black = "#3b4252"
+red = "#bf616a"
+green = "#a3be8c"
+yellow = "#ebcb8b"
+blue = "#81a1c1"
+magenta = "#b48ead"
+cyan = "#88c0d0"
+white = "#e5e9f0"
+
+[colors.bright]
+black = "#4c566a"
+red = "#bf616a"
+green = "#a3be8c"
+yellow = "#ebcb8b"
+blue = "#81a1c1"
+magenta = "#b48ead"
+cyan = "#8fbcbb"
+white = "#eceff4"
+
+[colors.dim]
+black = "#373e4d"
+red = "#94545d"
+green = "#809575"
+yellow = "#b29e75"
+blue = "#68809a"
+magenta = "#8c738c"
+cyan = "#6d96a5"
+white = "#aeb3bb"
