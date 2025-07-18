@@ -2441,6 +2441,10 @@ This function is called by `org-babel-execute-src-block'.")
 (after! hyprlang-ts-mode
   (setopt hyprlang-ts-mode-indent-offset 4))
 
+(after! eglot
+  (setf (alist-get 'nim-mode eglot-server-programs)
+        '("nimlangserver")))
+
 (bind-key "m" #'osm my/open-map)
 
 (add-hook 'osm-mode-hook (lambda ()

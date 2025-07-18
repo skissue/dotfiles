@@ -3188,6 +3188,13 @@ More CDLaTeX hotkeys.
     (setopt hyprlang-ts-mode-indent-offset 4))
 #+end_src
 
+** Nim
+#+begin_src elisp
+  (after! eglot
+    (setf (alist-get 'nim-mode eglot-server-programs)
+          '("nimlangserver")))
+#+end_src
+
 * Applications
 ** Osm.el
 I have [[help:global-visual-line-mode][global-visual-line-mode]] enabled, which breaks stuff inside map buffers, so I undo the breaking stuff.

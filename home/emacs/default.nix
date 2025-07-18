@@ -162,6 +162,7 @@ in {
         uiua-ts-mode
         hyprlang-ts-mode
         kdl-mode
+        nim-mode
         # Org
         org-contrib
         org-modern
