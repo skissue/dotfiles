@@ -1,3 +1,7 @@
 {
-  imports = [./aider.nix ./lisp.nix ./rust.nix];
+  imports = [
+    # ./aider.nix
+    ./lisp.nix
+    ./rust.nix
+  ];
 }
