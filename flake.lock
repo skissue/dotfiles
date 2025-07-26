@@ -783,11 +783,11 @@
     },
     "private": {
       "locked": {
-        "lastModified": 1741351820,
-        "narHash": "sha256-YyUoPomnW8oxbGhrCK2fgqye//uDrkQko8B8Av9o8wk=",
+        "lastModified": 1753546640,
+        "narHash": "sha256-I5EJXuQAOIF9RPe68OFK/tgRa5QvugmycFKmWzYOs9s=",
         "ref": "refs/heads/main",
-        "rev": "13ef280419c0a320688d91889bf2c63fb2a75c36",
-        "revCount": 13,
+        "rev": "b4eec124e8d07ccfa68494981e54a74ac343c0b6",
+        "revCount": 14,
         "type": "git",
         "url": "ssh://ad@rendezvous/home/ad/dotfiles.private"
       },
