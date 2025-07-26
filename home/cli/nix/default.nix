@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    inputs.nix-index.hmModules.nix-index
+    inputs.nix-index.homeModules.nix-index
   ];
 
   programs.nix-index-database.comma.enable = true;
