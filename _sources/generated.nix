@@ -140,14 +140,14 @@
   };
   ultra-scroll = {
     pname = "ultra-scroll";
-    version = "3dd35e9a2aa327ddf889bd0f3341a81d3215862b";
+    version = "8c92a17743af05fedc76beeb58da5eab48398035";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "ultra-scroll";
-      rev = "3dd35e9a2aa327ddf889bd0f3341a81d3215862b";
+      rev = "8c92a17743af05fedc76beeb58da5eab48398035";
       fetchSubmodules = false;
-      sha256 = "sha256-u+KTitHqtwn0jAoseFXUzH7psv1b6D07QupdZQfhgto=";
+      sha256 = "sha256-UzFH+LXZ1ui9Wh9mlRYcZcpLBx0nSzNTtKGB8JI0r9Q=";
     };
-    date = "2025-06-21";
+    date = "2025-07-25";
   };
 }
