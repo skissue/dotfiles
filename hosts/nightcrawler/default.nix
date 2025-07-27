@@ -33,6 +33,9 @@
 
   chaotic.mesa-git.extraPackages = with pkgs; [intel-media-driver];
 
+  # The default value of this option causes infinite recursion right now.
+  hardware.framework.enableKmod = false;
+
   boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/96a003b2-3726-4c70-ad21-dd775eeb2b89";
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/7ac56432-cbd8-46cd-9a7d-227ff13607f2";
