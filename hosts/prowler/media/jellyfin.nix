@@ -8,7 +8,6 @@
     intel-media-driver
     libva-vdpau-driver
     intel-compute-runtime-legacy1
-    intel-media-sdk
   ];
 in {
   services.jellyfin.enable = true;
