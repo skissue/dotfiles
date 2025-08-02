@@ -196,6 +196,7 @@ in {
         citar-embark
         citar-denote
         biblio
+        howm
         # Applications
         dirvish
         osm

@@ -1735,6 +1735,25 @@ For our purposes, a note must not be a directory, must satisfy
                               (expand-file-name "refs.bib" my/brain2))
           org-cite-global-bibliography citar-bibliography))
 
+(add-hook 'my/first-input-hook (lambda ()
+                                (require 'howm-org)
+                                (require 'howm)))
+
+(after! howm
+  (setopt howm-directory (expand-file-name "howm" my/brain2)
+          howm-keyword-file (expand-file-name ".howm-keys" howm-directory)
+          howm-history-file (expand-file-name ".howm-history" howm-directory)
+          ;; Match with Denote
+          howm-file-name-format "%Y%m%dT%H%M%S.org"
+
+          howm-view-use-grep t
+          howm-view-grep-command "rg"
+          howm-view-grep-option "-nH --no-heading --color never"
+          howm-view-grep-extended-option nil
+          howm-view-grep-fixed-option "-F"
+          howm-view-grep-expr-option nil
+          howm-view-grep-file-stdin-option nil))
+
 (add-hook 'org-mode-hook #'variable-pitch-mode)
 (add-hook 'org-mode-hook #'writeroom-mode)
 (add-hook 'org-mode-hook (##setq-local line-spacing 0.1))

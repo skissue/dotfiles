@@ -2277,6 +2277,28 @@ Configuration:
             org-cite-global-bibliography citar-bibliography))
 #+end_src
 
+* Howm
+#+begin_src elisp
+  (add-hook 'my/first-input-hook (lambda ()
+                                  (require 'howm-org)
+                                  (require 'howm)))
+
+  (after! howm
+    (setopt howm-directory (expand-file-name "howm" my/brain2)
+            howm-keyword-file (expand-file-name ".howm-keys" howm-directory)
+            howm-history-file (expand-file-name ".howm-history" howm-directory)
+            ;; Match with Denote
+            howm-file-name-format "%Y%m%dT%H%M%S.org"
+
+            howm-view-use-grep t
+            howm-view-grep-command "rg"
+            howm-view-grep-option "-nH --no-heading --color never"
+            howm-view-grep-extended-option nil
+            howm-view-grep-fixed-option "-F"
+            howm-view-grep-expr-option nil
+            howm-view-grep-file-stdin-option nil))
+#+end_src
+
 * Org Mode
 Ah, the crown jewel of Emacs 👑.
 #+begin_src elisp
