@@ -1739,6 +1739,9 @@ For our purposes, a note must not be a directory, must satisfy
                                 (require 'howm-org)
                                 (require 'howm)))
 
+;; Variables that must be set before load.
+(setq howm-follow-theme t)
+
 (after! howm
   (setopt howm-directory (expand-file-name "howm" my/brain2)
           howm-keyword-file (expand-file-name ".howm-keys" howm-directory)
