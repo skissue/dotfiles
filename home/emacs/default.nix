@@ -217,6 +217,7 @@ in {
         elfeed-org
         elfeed-tube
         elfeed-tube-mpv
+        yeetube
       ];
   };
 
