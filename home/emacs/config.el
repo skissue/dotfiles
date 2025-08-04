@@ -1740,7 +1740,16 @@ For our purposes, a note must not be a directory, must satisfy
                                 (require 'howm)))
 
 ;; Variables that must be set before load.
-(setq howm-follow-theme t)
+(setq howm-follow-theme t
+      ;; Allow including weekday in task timestamps (matches Org Mode better).
+      howm-date-regexp (rx (group (any "1-2") (= 3 digit))
+                           "-"
+                           (group (any "0-1") digit)
+                           "-"
+                           (group (any "0-3") digit)
+                           (? " " (or "Sun" "Mon" "Tue" "Wed"
+                                      "Thu" "Fri" "Sat")))
+      howm-date-regexp-grep "[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9](?: [A-Z][a-z]{2})?")
 
 (after! howm
   (setopt howm-directory (expand-file-name "howm" my/brain2)
