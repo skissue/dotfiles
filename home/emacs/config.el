@@ -1757,6 +1757,7 @@ For our purposes, a note must not be a directory, must satisfy
           howm-history-file (expand-file-name ".howm-history" howm-directory)
           ;; Match with Denote
           howm-file-name-format "%Y%m%dT%H%M%S.org"
+          howm-date-format "%Y-%m-%d %a"
 
           howm-view-use-grep t
           howm-view-grep-command "rg"
