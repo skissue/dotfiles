@@ -84,7 +84,7 @@
     },
     "mpv-skipsilence": {
         "cargoLocks": null,
-        "date": "2024-05-06",
+        "date": "2025-08-03",
         "extract": null,
         "name": "mpv-skipsilence",
         "passthru": null,
@@ -94,17 +94,17 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "5ae7c3b6f927e728c22fc13007265682d1ecf98c",
-            "sha256": "sha256-fg8vfeb68nr0bTBIvr0FnRnoB48/kV957pn22tWcz1g=",
+            "rev": "42e511c52c68c1aa9678e18caea41e43eee9149b",
+            "sha256": "sha256-+sOMWFFumJUk5gFE1iCTvWub3PWzYOkulXJLCGS4fYA=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://codeberg.org/ferreum/mpv-skipsilence"
         },
-        "version": "5ae7c3b6f927e728c22fc13007265682d1ecf98c"
+        "version": "42e511c52c68c1aa9678e18caea41e43eee9149b"
     },
     "org-bleeding-latex": {
         "cargoLocks": null,
-        "date": "2025-07-12",
+        "date": "2025-08-05",
         "extract": null,
         "name": "org-bleeding-latex",
         "passthru": null,
@@ -114,13 +114,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "bfecf6658900f3b0f1939627ddf3514ad2e21d90",
-            "sha256": "sha256-uKvI3woYHzKQvl6ReWoHbuFv68n4rdXYpGmE4Gvnf7U=",
+            "rev": "29cfbd900f811270e802297b5a33165a4f436781",
+            "sha256": "sha256-TocBKDdYexRSmbEpF83I4tseZTrZSub0aL0Oc+zzQ1g=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://code.tecosaur.net/tec/org-mode.git"
         },
-        "version": "bfecf6658900f3b0f1939627ddf3514ad2e21d90"
+        "version": "29cfbd900f811270e802297b5a33165a4f436781"
     },
     "org-modern-indent": {
         "cargoLocks": null,

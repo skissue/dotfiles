@@ -53,31 +53,31 @@
   };
   mpv-skipsilence = {
     pname = "mpv-skipsilence";
-    version = "5ae7c3b6f927e728c22fc13007265682d1ecf98c";
+    version = "42e511c52c68c1aa9678e18caea41e43eee9149b";
     src = fetchgit {
       url = "https://codeberg.org/ferreum/mpv-skipsilence";
-      rev = "5ae7c3b6f927e728c22fc13007265682d1ecf98c";
+      rev = "42e511c52c68c1aa9678e18caea41e43eee9149b";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-fg8vfeb68nr0bTBIvr0FnRnoB48/kV957pn22tWcz1g=";
+      sha256 = "sha256-+sOMWFFumJUk5gFE1iCTvWub3PWzYOkulXJLCGS4fYA=";
     };
-    date = "2024-05-06";
+    date = "2025-08-03";
   };
   org-bleeding-latex = {
     pname = "org-bleeding-latex";
-    version = "bfecf6658900f3b0f1939627ddf3514ad2e21d90";
+    version = "29cfbd900f811270e802297b5a33165a4f436781";
     src = fetchgit {
       url = "https://code.tecosaur.net/tec/org-mode.git";
-      rev = "bfecf6658900f3b0f1939627ddf3514ad2e21d90";
+      rev = "29cfbd900f811270e802297b5a33165a4f436781";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-uKvI3woYHzKQvl6ReWoHbuFv68n4rdXYpGmE4Gvnf7U=";
+      sha256 = "sha256-TocBKDdYexRSmbEpF83I4tseZTrZSub0aL0Oc+zzQ1g=";
     };
-    date = "2025-07-12";
+    date = "2025-08-05";
   };
   org-modern-indent = {
     pname = "org-modern-indent";
