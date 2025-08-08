@@ -2308,6 +2308,15 @@ Make Howm's menu properly start in Meow's motion state. Note that normally this 
     (advice-add 'howm-menu-mode :after #'meow-motion-mode))
 #+end_src
 
+Fix file name size in Howm's "list" buffer, since inheriting from Org Mode's "title" face makes them too big by default (since my titles are sized up).
+#+begin_src elisp
+  (after! howm
+    (custom-set-faces
+     `(howm-view-name-face
+       ((t :height ,(face-attribute 'default :height)
+           :inherit org-document-title)))))
+#+end_src
+
 * Org Mode
 Ah, the crown jewel of Emacs 👑.
 #+begin_src elisp
