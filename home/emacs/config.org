@@ -2280,8 +2280,8 @@ Configuration:
 * Howm
 #+begin_src elisp
   (add-hook 'my/first-input-hook (lambda ()
-                                  (require 'howm-org)
-                                  (require 'howm)))
+                                   (require 'howm-org)
+                                   (require 'howm)))
 
   ;; Variables that must be set before load.
   (setq howm-follow-theme t)
@@ -2300,6 +2300,12 @@ Configuration:
             howm-view-grep-fixed-option "-F"
             howm-view-grep-expr-option nil
             howm-view-grep-file-stdin-option nil))
+#+end_src
+
+Make Howm's menu properly start in Meow's motion state. Note that normally this would happen via [[help:meow-mode-state-list][meow-mode-state-list]], or, failing that, a major mode hook, but Howm does weird things when creating its menu buffer, and doesn't use a proper major mode for the menu, so we have to resort to advice instead 🤷.
+#+begin_src elisp
+  (after! meow
+    (advice-add 'howm-menu-mode :after #'meow-motion-mode))
 #+end_src
 
 * Org Mode

@@ -1736,8 +1736,8 @@ For our purposes, a note must not be a directory, must satisfy
           org-cite-global-bibliography citar-bibliography))
 
 (add-hook 'my/first-input-hook (lambda ()
-                                (require 'howm-org)
-                                (require 'howm)))
+                                 (require 'howm-org)
+                                 (require 'howm)))
 
 ;; Variables that must be set before load.
 (setq howm-follow-theme t)
@@ -1756,6 +1756,9 @@ For our purposes, a note must not be a directory, must satisfy
           howm-view-grep-fixed-option "-F"
           howm-view-grep-expr-option nil
           howm-view-grep-file-stdin-option nil))
+
+(after! meow
+  (advice-add 'howm-menu-mode :after #'meow-motion-mode))
 
 (add-hook 'org-mode-hook #'variable-pitch-mode)
 (add-hook 'org-mode-hook #'writeroom-mode)
