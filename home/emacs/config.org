@@ -2302,10 +2302,11 @@ Configuration:
             howm-view-grep-file-stdin-option nil))
 #+end_src
 
-Make Howm's menu properly start in Meow's motion state. Note that normally this would happen via [[help:meow-mode-state-list][meow-mode-state-list]], or, failing that, a major mode hook, but Howm does weird things when creating its menu buffer, and doesn't use a proper major mode for the menu, so we have to resort to advice instead 🤷.
+Make Howm's menu and list view properly start in Meow's motion state. Note that normally this would happen via [[help:meow-mode-state-list][meow-mode-state-list]], or, failing that, a major mode hook, but Howm does weird things when creating its buffers, and doesn't use a proper major mode, so we have to resort to advice instead 🤷.
 #+begin_src elisp
   (after! meow
-    (advice-add 'howm-menu-mode :after #'meow-motion-mode))
+    (advice-add 'howm-menu-mode :after #'meow-motion-mode)
+    (advice-add 'howm-view-summary-mode :after #'meow-motion-mode))
 #+end_src
 
 Fix file name size in Howm's "list" buffer, since inheriting from Org Mode's "title" face makes them too big by default (since my titles are sized up).

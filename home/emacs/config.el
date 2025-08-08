@@ -1758,7 +1758,8 @@ For our purposes, a note must not be a directory, must satisfy
           howm-view-grep-file-stdin-option nil))
 
 (after! meow
-  (advice-add 'howm-menu-mode :after #'meow-motion-mode))
+  (advice-add 'howm-menu-mode :after #'meow-motion-mode)
+  (advice-add 'howm-view-summary-mode :after #'meow-motion-mode))
 
 (after! howm
   (custom-set-faces
