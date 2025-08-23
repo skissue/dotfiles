@@ -2133,12 +2133,12 @@ have `org-warning' face."
           org-latex-pdf-process '("latexmk -f -pdf -%latex -interaction=nonstopmode -output-directory=%o %f"
                                   "latexmk -c -output-directory=%o %f")))
 
-(add-hook 'org-mode-hook #'org-latex-preview-auto-mode)
+(add-hook 'org-mode-hook #'org-latex-preview-mode)
 
 (after! org-latex-preview
   (setopt org-latex-preview-process-default 'dvisvgm
-          org-latex-preview-live t
-          org-latex-preview-live-debounce 0.5))
+          org-latex-preview-display-live t
+          org-latex-preview-mode-update-delay 0.5))
 
 (el-patch-feature org-latex-preview)
 (after! org-latex-preview

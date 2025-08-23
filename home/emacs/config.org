@@ -2732,12 +2732,12 @@ Automatically toggles certain markers on and off depending on whether they're be
 
 *** Previews
 #+begin_src elisp
-  (add-hook 'org-mode-hook #'org-latex-preview-auto-mode)
+  (add-hook 'org-mode-hook #'org-latex-preview-mode)
 
   (after! org-latex-preview
     (setopt org-latex-preview-process-default 'dvisvgm
-            org-latex-preview-live t
-            org-latex-preview-live-debounce 0.5))
+            org-latex-preview-display-live t
+            org-latex-preview-mode-update-delay 0.5))
 #+end_src
 
 For some reason, the new machinery scatters temporary ~tex~ files around in the directory from which its invoked. I assume this is a bug, here's a quick boolean swap to fix it ¯\_(ツ)_/¯.
