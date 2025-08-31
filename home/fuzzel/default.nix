@@ -7,7 +7,7 @@
         dpi-aware = "no";
         prompt = "❯ ";
         lines = 20;
-        width = 40;
+        width = 80;
         tabs = 4;
         horizontal-pad = 8;
         vertical-pad = 8;
