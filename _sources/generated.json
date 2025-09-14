@@ -84,7 +84,7 @@
     },
     "mpv-skipsilence": {
         "cargoLocks": null,
-        "date": "2025-08-03",
+        "date": "2025-09-06",
         "extract": null,
         "name": "mpv-skipsilence",
         "passthru": null,
@@ -94,13 +94,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "42e511c52c68c1aa9678e18caea41e43eee9149b",
-            "sha256": "sha256-+sOMWFFumJUk5gFE1iCTvWub3PWzYOkulXJLCGS4fYA=",
+            "rev": "75e1334e513682f0ece6790c614c1fcbd82257cc",
+            "sha256": "sha256-XmrVZRJAQctIiuznw/fQzs+9+QKOyTnJI2JOEWBWnVA=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://codeberg.org/ferreum/mpv-skipsilence"
         },
-        "version": "42e511c52c68c1aa9678e18caea41e43eee9149b"
+        "version": "75e1334e513682f0ece6790c614c1fcbd82257cc"
     },
     "org-bleeding-latex": {
         "cargoLocks": null,

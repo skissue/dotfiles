@@ -53,17 +53,17 @@
   };
   mpv-skipsilence = {
     pname = "mpv-skipsilence";
-    version = "42e511c52c68c1aa9678e18caea41e43eee9149b";
+    version = "75e1334e513682f0ece6790c614c1fcbd82257cc";
     src = fetchgit {
       url = "https://codeberg.org/ferreum/mpv-skipsilence";
-      rev = "42e511c52c68c1aa9678e18caea41e43eee9149b";
+      rev = "75e1334e513682f0ece6790c614c1fcbd82257cc";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-+sOMWFFumJUk5gFE1iCTvWub3PWzYOkulXJLCGS4fYA=";
+      sha256 = "sha256-XmrVZRJAQctIiuznw/fQzs+9+QKOyTnJI2JOEWBWnVA=";
     };
-    date = "2025-08-03";
+    date = "2025-09-06";
   };
   org-bleeding-latex = {
     pname = "org-bleeding-latex";
