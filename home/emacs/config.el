@@ -2623,6 +2623,9 @@ This function is called by `org-babel-execute-src-block'.")
 (after! meow
   (push '(mu4e-view-mode . motion) meow-mode-state-list))
 
+(after! mm-decode
+  (add-to-list 'mm-discouraged-alternatives "text/html"))
+
 (bind-key "s" #'eshell my/open-map)
 
 (add-hook 'eshell-mode-hook #'electric-pair-local-mode)

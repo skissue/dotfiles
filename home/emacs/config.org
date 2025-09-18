@@ -3405,6 +3405,12 @@ Put viewing buffers into [[*Meow][Meow]]'s motion state, since they're not meant
     (push '(mu4e-view-mode . motion) meow-mode-state-list))
 #+end_src
 
+Don't default to viewing emails as =text/html= if there are other alternatives.
+#+begin_src elisp
+  (after! mm-decode
+    (add-to-list 'mm-discouraged-alternatives "text/html"))
+#+end_src
+
 ** Eshell
 #+begin_src elisp
   (bind-key "s" #'eshell my/open-map)
