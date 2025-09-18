@@ -1762,12 +1762,6 @@ For our purposes, a note must not be a directory, must satisfy
   (advice-add 'howm-menu-mode :after #'meow-motion-mode)
   (advice-add 'howm-view-summary-mode :after #'meow-motion-mode))
 
-(after! howm
-  (custom-set-faces
-   `(howm-view-name-face
-     ((t :height ,(face-attribute 'default :height)
-         :inherit org-document-title)))))
-
 (add-hook 'org-mode-hook #'variable-pitch-mode)
 (add-hook 'org-mode-hook #'writeroom-mode)
 (add-hook 'org-mode-hook (##setq-local line-spacing 0.1))
