@@ -33,6 +33,11 @@
 
   chaotic.mesa-git.extraPackages = with pkgs; [intel-media-driver];
 
+  programs.firejail.enable = true;
+  hardware.flipperzero.enable = true;
+  programs.adb.enable = true;
+  services.usbmuxd.enable = true;
+
   # The default value of this option causes infinite recursion right now.
   hardware.framework.enableKmod = false;
 
