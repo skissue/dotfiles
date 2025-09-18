@@ -2798,6 +2798,22 @@ This function is called by `org-babel-execute-src-block'.")
           elfeed-tube-auto-fetch-p t
           elfeed-tube-auto-save-p t))
 
+(after! yeetube
+  (defun my/yeetube-kill-url ()
+    "Kill URL for video at point in *yeetube* buffer."
+    (interactive)
+    (save-excursion
+      ;; When point is on thumbnail, id will be nil.
+      (and (null (tabulated-list-get-id)) (end-of-line))
+      (let* ((id (tabulated-list-get-id))
+             (entry-content (cadr (assoc id yeetube-content)))
+             (video-url (yeetube-get-url id))
+             (video-title (aref entry-content (if yeetube-display-thumbnails-p 1 0))))
+        (kill-new video-url)
+        (message "Killed URL for: %s" video-title))))
+
+  (bind-key "y" #'my/yeetube-kill-url yeetube-mode-map))
+
 (defun my/shruggie ()
   "Insert ¯\\_(ツ)_/¯."
   (interactive)
