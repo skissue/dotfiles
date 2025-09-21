@@ -1746,9 +1746,9 @@ For our purposes, a note must not be a directory, must satisfy
   (setopt howm-directory (expand-file-name "howm" my/brain2)
           howm-keyword-file (expand-file-name ".howm-keys" howm-directory)
           howm-history-file (expand-file-name ".howm-history" howm-directory)
-          ;; Match with Denote
-          howm-file-name-format "%Y%m%dT%H%M%S.org"
+          howm-file-name-format "%Y%m%dT%H%M%S.org" ; Match with Denote
           howm-view-split-horizontally t
+          howm-menu-todo-num 20
 
           howm-view-use-grep t
           howm-view-grep-command "rg"
