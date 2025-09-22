@@ -25,10 +25,6 @@
   boot.initrd.systemd.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_cachyos;
-  services.scx = {
-    enable = true;
-    scheduler = "scx_lavd";
-  };
 
   nixpkgs.config.rocmSupport = true;
 
