@@ -1,25 +1,20 @@
 {
-  config,
   pkgs,
   sources,
   ...
 }: {
   home.packages = with pkgs; [
-    anki
     aria
     bottom
     brave
     brightnessctl
     simple-scan
+    feishin
     ffmpeg
-    fractal
     gpu-screen-recorder
-    helvum
     # For spellcheck; see https://nixos.wiki/wiki/LibreOffice
     hunspell
     hunspellDicts.en_US
-    # Avoid building two copies of Hyprland
-    (hyprshot.override {hyprland = config.wayland.windowManager.hyprland.package;})
     imv
     keepassxc
     libnotify
@@ -40,15 +35,15 @@
     obs-studio
     ouch
     playerctl
-    plover.dev
     prismlauncher
     pwvucontrol_git
+    qpwgraph
     ripgrep
     ripgrep-all
     satty
     signal-desktop
     swaybg
-    tor-browser-bundle-bin
+    tor-browser
     ungoogled-chromium
     waypipe
     webcord
