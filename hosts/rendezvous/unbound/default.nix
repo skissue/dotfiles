@@ -22,21 +22,26 @@ in {
       };
       remote-control.control-enable = true;
 
-      include = ["${dataDir}/oisd-big-blocklist.conf"];
+      include = [
+        "${dataDir}/oisd-big-blocklist.conf"
+        "${dataDir}/energized-social-blocklist.conf"
+      ];
     };
   };
-  # In case this is the first run, and the file doesn't exist yet
+  # In case this is the first run, and the files don't exist yet
   # (cannot run the update first, since, well, it needs Unbound to
-  # resolve the domain)
+  # resolve the domains)
   systemd.services.unbound.preStart = ''
     touch ${dataDir}/oisd-big-blocklist.conf
+    touch ${dataDir}/energized-social-blocklist.conf
   '';
 
-  systemd.services.update-oisd-list = {
-    description = "Update big.oisd.nl blocklist for Unbound";
+  systemd.services.update-blocklists = {
+    description = "Update blocklists for Unbound";
     path = with pkgs; [curl unbound];
     script = ''
       curl https://big.oisd.nl/unbound -o ${dataDir}/oisd-big-blocklist.conf
+      curl https://energized.pro/social/unbound.txt -o ${dataDir}/energized-social-blocklist.conf
       unbound-control reload
     '';
     serviceConfig = {
@@ -44,8 +49,8 @@ in {
       Group = "unbound";
     };
   };
-  systemd.timers.update-oisd-list = {
-    description = "Update big.oisd.nL blocklist every day";
+  systemd.timers.update-blocklists = {
+    description = "Update blocklists every day";
     wantedBy = ["timers.target"];
     timerConfig = {
       OnCalendar = "*-*-* 00:00:00";
