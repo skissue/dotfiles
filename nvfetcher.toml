@@ -31,10 +31,6 @@ fetch.github = "hakimel/reveal.js"
 src.git = "https://github.com/jdtsmith/org-modern-indent"
 fetch.github = "jdtsmith/org-modern-indent"
 
-[mpv-skipsilence]
-src.git = "https://codeberg.org/ferreum/mpv-skipsilence"
-fetch.git = "https://codeberg.org/ferreum/mpv-skipsilence"
-
 [ultra-scroll]
 src.git = "https://github.com/jdtsmith/ultra-scroll"
 fetch.github = "jdtsmith/ultra-scroll"

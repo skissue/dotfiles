@@ -59,7 +59,7 @@
       modernx
       thumbfast
       mpv-cheatsheet
-      (buildLua sources.mpv-skipsilence)
+      skipsilence
     ];
   };
 
