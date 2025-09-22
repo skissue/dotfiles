@@ -28,11 +28,6 @@ in {
       version = "0.1.4";
       packageRequires = with epkgs; [compat];
     });
-  org-overdrive = melpaBuild (sources.org-overdrive
-    // {
-      version = "0.1.0";
-      packageRequires = with epkgs; [asyncloop pcre2el request dash];
-    });
   ultra-scroll = melpaBuild (sources.ultra-scroll // {version = "0.2.1";});
   inline-diff = melpaBuild (sources.inline-diff // {version = "0.0.1";});
 }

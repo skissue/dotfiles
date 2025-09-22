@@ -91,18 +91,6 @@
     };
     date = "2025-04-12";
   };
-  org-overdrive = {
-    pname = "org-overdrive";
-    version = "1e0bb30195a8c807a7e092d1979b150aa7a1f9ef";
-    src = fetchFromGitHub {
-      owner = "skissue";
-      repo = "org-overdrive";
-      rev = "1e0bb30195a8c807a7e092d1979b150aa7a1f9ef";
-      fetchSubmodules = false;
-      sha256 = "sha256-K8TFR607A/vDUZz0v6wzW8WEdleOR4wM4vxWZe3/X3E=";
-    };
-    date = "2024-11-25";
-  };
   org-popup-posframe = {
     pname = "org-popup-posframe";
     version = "d39cb7c2c9a996689b0d6519695eed3d807c0c85";
