@@ -1,7 +1,7 @@
 {
-  services.logind = {
-    powerKeyLongPress = "poweroff";
+  services.logind.settings.Login = {
+    HandlePowerKeyLongPress = "poweroff";
     # Handle this in userspace when it matters.
-    lidSwitch = "ignore";
+    HandleLidSwitch = "ignore";
   };
 }

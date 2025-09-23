@@ -9,7 +9,7 @@
     ./usbs
   ];
 
-  services.logind.powerKey = "suspend";
+  services.logind.settings.Login.HandlePowerKey = "suspend";
 
   # Emacs ispell
   environment.wordlist.enable = true;
