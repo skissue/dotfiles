@@ -326,7 +326,7 @@ switch-events {
 // See the binds section below for more spawn examples.
 
 // TODO systemd unit?
-spawn-at-startup "sh" "-c" "exec swaybg -m fill -i ~/nc/pictures/wallpapers/0015.png"
+spawn-at-startup "sh" "-c" "exec swaybg -m fill -i ~/nc/pictures/wallpapers/0018.jpg"
 spawn-at-startup "sh" "-c" "exec eww open bar --size 40x$(niri msg --json outputs | jaq '.[] | select(.logical.x == 0 and .logical.y == 0) | .logical.height - 16')"
 // TODO systemd unit?
 spawn-at-startup "playerctld" "daemon"
