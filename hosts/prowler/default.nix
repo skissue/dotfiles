@@ -5,7 +5,6 @@
 }: {
   imports =
     [
-      ./anki-sync-server
       ./annex
       ./disko.nix
       ./iperf
