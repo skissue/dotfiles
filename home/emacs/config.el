@@ -1776,7 +1776,7 @@ For our purposes, a note must not be a directory, must satisfy
           org-ctrl-k-protect-subtree             'error
           org-startup-indented                   t
           org-indent-indentation-per-level       0
-          org-startup-folded                     'content
+          org-startup-folded                     'nofold
           org-ellipsis                           " ▼"
           org-pretty-entities                    t
           org-log-done                           'note
