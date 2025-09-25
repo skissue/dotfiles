@@ -14,6 +14,7 @@
     ./email
     ./eww
     ./fuzzel
+    ./ghostty
     ./git
     ./gtk
     ./mutable-links
