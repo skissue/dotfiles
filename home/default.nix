@@ -5,7 +5,6 @@
 }: {
   imports = [
     inputs.private.homeManagerModules.default
-    ./alacritty
     ./annex
     ./applications
     ./cli
