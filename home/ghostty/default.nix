@@ -5,6 +5,8 @@
     settings = {
       font-family = "Maple Mono NF";
       font-size = 12;
+      background-opacity = 0.85;
+      command = "nu";
     };
   };
 }
