@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   programs.ghostty = {
     enable = true;
     installBatSyntax = true;
@@ -9,4 +9,8 @@
       command = "nu";
     };
   };
+
+  # Needed for proper D-Bus integration.
+  # See https://ghostty.org/docs/linux/systemd
+  dbus.packages = [config.programs.ghostty.package];
 }
