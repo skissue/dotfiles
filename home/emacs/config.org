@@ -588,27 +588,6 @@ Reduce fringe size on the right (left is used for various indicators).
   (add-hook 'server-after-make-frame-hook #'nerd-icons-set-font)
 #+end_src
 
-[[https://github.com/mickeynp/ligature.el][ligature.el]] provides support for ligatures in Emacs. However, they must be explicitly specified, so I shamelessly stole [[https://github.com/doomemacs/doomemacs/blob/986398504d09e585c7d1a8d73a6394024fe6f164/modules/ui/ligatures/config.el#L50][Doom Emacs']] list.
-#+begin_src elisp
-  (add-hook 'prog-mode-hook #'ligature-mode)
-  (after! ligature
-    (ligature-set-ligatures
-     'prog-mode
-     '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
-       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-       "\\\\" "://")))
-#+end_src
-
 Increase Treesit's fontification level (I like my editor to look like a rainbow 🌈).
 #+begin_src elisp
   (setq treesit-font-lock-level 4)

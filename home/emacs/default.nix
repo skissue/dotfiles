@@ -97,7 +97,6 @@ in {
         # Tools
         helpful
         elisp-demos
-        ligature
         magit
         git-timemachine
         magit-todos
