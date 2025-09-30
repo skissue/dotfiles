@@ -8,6 +8,7 @@
     unifont
 
     my.monolisa
+    my.pragmatapro
     nerd-fonts.symbols-only
     maple-mono.NF
     atkinson-hyperlegible-next
