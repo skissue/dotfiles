@@ -656,8 +656,9 @@ Only difference is to compose symbols in comments as well. See
   (setq-local prettify-symbols-compose-predicate
               #'pragmatapro/prettify-symbols-compose-p))
 
-(add-hook 'my/first-input-hook #'global-prettify-symbols-mode)
-(add-hook 'prettify-symbols-mode-hook #'pragmatapro/setup-prettify-hook)
+(dolist (hook '(prog-mode-hook text-mode-hook))
+  (add-hook hook #'pragmatapro/setup-prettify-hook -1)
+  (add-hook hook #'prettify-symbols-mode))
 
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 

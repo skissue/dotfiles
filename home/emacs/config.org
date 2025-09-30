@@ -886,10 +886,11 @@ Scaffolding functions to configure settings with PragmataPro's mappings.
                 #'pragmatapro/prettify-symbols-compose-p))
 #+end_src
 
-Enable [[help:prettify-symbols-mode][prettify-symbols-mode]] globally, and set up PragmataPro in every buffer when enabled.
+Set up PragmataPro and enable [[help:prettify-symbols-mode][prettify-symbols-mode]] for [[help:prog-mode][prog-mode]] and [[help:text-mode][text-mode]]. The setup hook has to run first, so set its depth to one earlier than default.
 #+begin_src elisp
-  (add-hook 'my/first-input-hook #'global-prettify-symbols-mode)
-  (add-hook 'prettify-symbols-mode-hook #'pragmatapro/setup-prettify-hook)
+  (dolist (hook '(prog-mode-hook text-mode-hook))
+    (add-hook hook #'pragmatapro/setup-prettify-hook -1)
+    (add-hook hook #'prettify-symbols-mode))
 #+end_src
 
 "Un-prettify" symbols when point is over it or at its right edge. This has to be set /before/ enabling the mode.
