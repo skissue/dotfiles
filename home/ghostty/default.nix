@@ -4,7 +4,7 @@
     installBatSyntax = true;
     settings = {
       theme = "ef-owl";
-      font-family = "PragmataPro Mono";
+      font-family = "PragmataPro Mono Liga";
       font-size = 14;
       background-opacity = 0.85;
       command = "nu";
