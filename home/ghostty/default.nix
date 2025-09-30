@@ -4,8 +4,8 @@
     installBatSyntax = true;
     settings = {
       theme = "ef-owl";
-      font-family = "Maple Mono NF";
-      font-size = 12;
+      font-family = "PragmataPro Mono";
+      font-size = 14;
       background-opacity = 0.85;
       command = "nu";
     };
