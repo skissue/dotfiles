@@ -361,9 +361,9 @@ where it was when you previously visited the same file."
 (set-fringe-mode '(6 . 2))
 
 (custom-set-faces
- '(default           ((t (:font "PragmataPro" :height 140))))
- '(fixed-pitch       ((t (:font "PragmataPro"))))
- '(fixed-pitch-serif ((t (:font "PragmataPro"))))
+ '(default           ((t (:font "PragmataPro Liga" :height 140))))
+ '(fixed-pitch       ((t (:font "PragmataPro Liga"))))
+ '(fixed-pitch-serif ((t (:font "PragmataPro Liga"))))
  '(variable-pitch    ((t (:font "Atkinson Hyperlegible Next")))))
 
 (autoload #'nerd-icons-set-font "nerd-icons" "Modify nerd font charsets to use FONT-FAMILY for FRAME." nil)

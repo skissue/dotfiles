@@ -577,9 +577,9 @@ Reduce fringe size on the right (left is used for various indicators).
 ** Fonts
 #+begin_src elisp
   (custom-set-faces
-   '(default           ((t (:font "PragmataPro" :height 140))))
-   '(fixed-pitch       ((t (:font "PragmataPro"))))
-   '(fixed-pitch-serif ((t (:font "PragmataPro"))))
+   '(default           ((t (:font "PragmataPro Liga" :height 140))))
+   '(fixed-pitch       ((t (:font "PragmataPro Liga"))))
+   '(fixed-pitch-serif ((t (:font "PragmataPro Liga"))))
    '(variable-pitch    ((t (:font "Atkinson Hyperlegible Next")))))
 #+end_src
 
