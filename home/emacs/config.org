@@ -3938,6 +3938,10 @@ Configuration:
 #+end_src
 
 ** YeeTube
+#+begin_src elisp
+  (bind-key "y" #'yeetube-search my/open-map)
+#+end_src
+
 Command to kill the URL for the current video. Based on [[help:yeetube-play][yeetube-play]] 🙃.
 #+begin_src elisp
   (after! yeetube

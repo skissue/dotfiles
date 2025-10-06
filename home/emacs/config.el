@@ -3071,6 +3071,8 @@ This function is called by `org-babel-execute-src-block'.")
           elfeed-tube-auto-fetch-p t
           elfeed-tube-auto-save-p t))
 
+(bind-key "y" #'yeetube-search my/open-map)
+
 (after! yeetube
   (defun my/yeetube-kill-url ()
     "Kill URL for video at point in *yeetube* buffer."
