@@ -1796,6 +1796,9 @@ Calls the function in `consult-omni-default-interactive-command'." t)
   (setopt ediff-window-setup-function #'ediff-setup-windows-plain
           ediff-split-window-function #'split-window-horizontally))
 
+(autoload #'uniline-mode "uniline-transient" "" t)
+(bind-key "C-<insert>" #'uniline-mode)
+
 (bind-keys ("C-c X" . org-capture)
            :map my/notes-map
            ("b" . denote-backlinks)
