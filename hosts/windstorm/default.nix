@@ -28,12 +28,6 @@
 
   nixpkgs.config.rocmSupport = true;
 
-  services.ollama = {
-    enable = true;
-    host = "0.0.0.0";
-    rocmOverrideGfx = "11.0.1";
-  };
-
   virtualisation.waydroid.enable = true;
 
   # When I need a single Flatpak that's not available any other way because it's
