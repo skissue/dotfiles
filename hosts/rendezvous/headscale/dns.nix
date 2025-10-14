@@ -52,5 +52,15 @@ in {
       type = "A";
       value = "100.69.0.14";
     }
+    {
+      name = "scrobbles.${base}";
+      type = "A";
+      value = "100.69.0.14";
+    }
+    {
+      name = "scrobbles.${base}";
+      type = "AAAA";
+      value = "fd7a:115c:a1e0::e";
+    }
   ];
 }
