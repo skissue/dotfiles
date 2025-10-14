@@ -8,6 +8,7 @@
       ./annex
       ./disko.nix
       ./iperf
+      ./koito
       ./remote-luks-unlock
       ./media
       ./notes-publish

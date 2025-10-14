@@ -61,6 +61,10 @@
       url = "github:skissue/git-annex-backend-XBLAKE3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    koito = {
+      url="github:skissue/gxy?dir=koito-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     niri.url = "github:sodiboo/niri-flake";
   };
 

@@ -360,6 +360,28 @@
         "type": "github"
       }
     },
+    "koito": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "koito-flake",
+        "lastModified": 1760413830,
+        "narHash": "sha256-xAxJWeVYbe7U7EAIx2Lejz1z1eFWRdB7y5yLcAf/CLM=",
+        "owner": "skissue",
+        "repo": "gxy",
+        "rev": "c89ad1bc04bc26b1c2da8aaf2de622b2be2672b2",
+        "type": "github"
+      },
+      "original": {
+        "dir": "koito-flake",
+        "owner": "skissue",
+        "repo": "gxy",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -808,6 +830,7 @@
         "git-annex-backend-XBLAKE3": "git-annex-backend-XBLAKE3",
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
+        "koito": "koito",
         "lanzaboote": "lanzaboote",
         "lib": "lib",
         "niri": "niri",
