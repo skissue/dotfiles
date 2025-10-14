@@ -19,4 +19,13 @@
       proxyWebsockets = true;
     };
   };
+
+  my.persist.local.directories = [
+    {
+      directory = "/var/lib/koito";
+      user = "koito";
+      group = "koito";
+      mode = "700";
+    }
+  ];
 }
