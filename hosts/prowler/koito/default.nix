@@ -1,8 +1,11 @@
 {
   config,
   inputs,
+  private,
   ...
-}: {
+}: let
+  domain = "scrobbles.${private.domain.tailnet}";
+in {
   imports = [inputs.koito.nixosModules.default];
 
   nixpkgs.overlays = [inputs.koito.overlays.default];
@@ -10,10 +13,11 @@
   services.koito = {
     enable = true;
     bindAddress = "0.0.0.0";
-    allowedHosts = ["scrobbles.adtailnet"];
+    allowedHosts = [domain];
   };
 
-  services.nginx.virtualHosts."scrobbles.adtailnet" = {
+  services.nginx.virtualHosts.${domain} = {
+    useACMEHost = "tailnet";
     locations."/" = {
       proxyPass = "http://localhost:${toString config.services.koito.port}";
       proxyWebsockets = true;
