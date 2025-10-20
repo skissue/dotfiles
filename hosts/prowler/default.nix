@@ -11,6 +11,7 @@
       ./iperf
       ./koito
       ./media
+      ./nginx
       ./notes-publish
       ./postgresql
       ./remote-luks-unlock
@@ -27,12 +28,6 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   security.sudo-rs.wheelNeedsPassword = false;
-
-  services.nginx = {
-    enable = true;
-    recommendedTlsSettings = true;
-    recommendedProxySettings = true;
-  };
 
   # State version (copy from auto-generated configuration.nix during install)
   # This value determines the NixOS release from which the default
