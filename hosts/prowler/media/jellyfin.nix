@@ -1,9 +1,11 @@
 {
   config,
   pkgs,
+  private,
   ...
 }: let
   cfg = config.services.jellyfin;
+  domain = "media.${private.domain.tailnet}";
   graphicsPackages = with pkgs; [
     intel-media-driver
     libva-vdpau-driver
@@ -21,7 +23,9 @@ in {
   };
   chaotic.mesa-git.extraPackages = graphicsPackages;
 
-  services.nginx.virtualHosts."media.adtailnet" = {
+  services.nginx.virtualHosts.${domain} = {
+    addSSL = true;
+    useACMEHost = "tailnet";
     locations."/" = {
       proxyPass = "http://localhost:8096";
       proxyWebsockets = true;
