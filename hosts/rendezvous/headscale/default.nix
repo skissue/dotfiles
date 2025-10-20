@@ -31,7 +31,7 @@ in {
   # https://github.com/kradalby/dotfiles/blob/4489cdbb19cddfbfae82cd70448a38fde5a76711/machines/headscale.oracldn/headscale.nix#L61-L91
   services.nginx.virtualHosts."${domain}" = {
     forceSSL = true;
-    enableACME = true;
+    useACMEHost = "personal";
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString port}";
       proxyWebsockets = true;
