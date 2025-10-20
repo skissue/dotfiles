@@ -7,12 +7,13 @@
     [
       ./annex
       ./disko.nix
+      ./freshrss
       ./iperf
       ./koito
-      ./remote-luks-unlock
       ./media
       ./notes-publish
-      ./tt-rss
+      ./postgresql
+      ./remote-luks-unlock
       ./wireless
     ]
     ++ mkModulesList [
