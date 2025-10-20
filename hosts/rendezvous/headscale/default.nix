@@ -1,11 +1,11 @@
 {
   config,
-  lib,
   pkgs,
   private,
   ...
 }: let
   domain = "hs.${private.domain.personal}";
+  tailnetDomain = private.domain.tailnet;
   port = config.services.headscale.port;
 in {
   imports = [./dns.nix];
@@ -20,8 +20,9 @@ in {
       };
       dns = {
         magic_dns = true;
-        nameservers.global = ["100.69.0.8" "fd7a:115c:a1e0::1"]; # Unbound running on rendezvous
-        base_domain = "adtailnet";
+        # Unbound running on rendezvous
+        nameservers.global = ["100.69.0.8" "fd7a:115c:a1e0::1"];
+        base_domain = tailnetDomain;
       };
     };
   };
