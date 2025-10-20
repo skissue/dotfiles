@@ -1,17 +1,24 @@
 {
   config,
   pkgs,
+  private,
   ...
 }: let
   cfg = config.services.freshrss;
+  domain = "feeds.${private.domain.tailnet}";
 in {
   services.freshrss = {
     enable = true;
     webserver = "nginx";
-    virtualHost = "feeds.adtailnet";
-    baseUrl = "http://feeds.adtailnet";
+    virtualHost = domain;
+    baseUrl = "http://${domain}";
     # Don't worry, this instance isn't public.
     passwordFile = pkgs.writeText "freshrss-default-password" "admin";
+  };
+
+  services.nginx.virtualHosts.${domain} = {
+    addSSL = true;
+    useACMEHost = "tailnet";
   };
 
   my.persist.local.directories = [

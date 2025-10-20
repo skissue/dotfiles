@@ -17,6 +17,7 @@ in {
   };
 
   services.nginx.virtualHosts.${domain} = {
+    addSSL = true;
     useACMEHost = "tailnet";
     locations."/" = {
       proxyPass = "http://localhost:${toString config.services.koito.port}";
