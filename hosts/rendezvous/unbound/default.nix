@@ -24,8 +24,6 @@ in {
 
       include = [
         "${dataDir}/oisd-big-blocklist.conf"
-        "${dataDir}/energized-social-blocklist.conf"
-        "${dataDir}/energized-extreme-blocklist.conf"
       ];
     };
   };
@@ -43,8 +41,6 @@ in {
     path = with pkgs; [curl unbound];
     script = ''
       curl https://big.oisd.nl/unbound -o ${dataDir}/oisd-big-blocklist.conf
-      curl https://energized.pro/social/unbound.txt -o ${dataDir}/energized-social-blocklist.conf
-      curl https://energized.pro/extreme/unbound.txt -o ${dataDir}/energized-extreme-blocklist.conf
       unbound-control reload
     '';
     serviceConfig = {
