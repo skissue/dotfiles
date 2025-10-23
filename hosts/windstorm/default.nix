@@ -30,6 +30,8 @@
 
   virtualisation.waydroid.enable = true;
 
+  services.hardware.openrgb.enable = true;
+
   # When I need a single Flatpak that's not available any other way because it's
   # not open-source 💔.
   services.flatpak.enable = true;
