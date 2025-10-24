@@ -497,12 +497,12 @@ binds {
 
     Mod+N       { focus-column-left; }
     Mod+E       { focus-window-down; }
-    Mod+U       { focus-window-up; }
-    Mod+I       { focus-column-right; }
+    Mod+I       { focus-window-up; }
+    Mod+O       { focus-column-right; }
     Mod+Shift+N { move-column-left; }
     Mod+Shift+E { move-window-down; }
-    Mod+Shift+U { move-window-up; }
-    Mod+Shift+I { move-column-right; }
+    Mod+Shift+I { move-window-up; }
+    Mod+Shift+O { move-column-right; }
 
     // Alternative commands that move across workspaces when reaching
     // the first or last window in a column.
