@@ -32,8 +32,6 @@ in {
   # resolve the domains)
   systemd.services.unbound.preStart = ''
     touch ${dataDir}/oisd-big-blocklist.conf
-    touch ${dataDir}/energized-social-blocklist.conf
-    touch ${dataDir}/energized-extreme-blocklist.conf
   '';
 
   systemd.services.update-blocklists = {
