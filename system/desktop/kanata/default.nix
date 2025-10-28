@@ -1,6 +1,6 @@
 {
   services.kanata = {
     enable = true;
-    keyboards.colemak-dh.configFile = ./colemak-dh;
+    keyboards.glorious-lite.configFile = ./glorious-lite;
   };
 }

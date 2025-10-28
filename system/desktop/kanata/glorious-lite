@@ -1,0 +1,77 @@
+;; My opinionated, adapted, lite version of Glorious Engrammer for a standard
+;; laptop keyboard (Framework 13).
+;; 
+;; https://github.com/sunaku/glove80-keymaps
+
+(defcfg
+ process-unmapped-keys yes
+ linux-dev-names-exclude ("MoErgo Glove80 Left Keyboard"))
+
+(defvar
+  tap-repress-timeout 150
+  hold-timeout 200
+  tt $tap-repress-timeout
+  ht $hold-timeout)
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    scln '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rctl)
+
+(deftemplate home-row-mods (l1 l2 l3 l4 r1 r2 r3 r4)
+  (defalias
+    (concat $l1 "ml") (tap-hold $tt $ht $l1 lmet)
+    (concat $l2 "al") (tap-hold $tt $ht $l2 lalt)
+    (concat $l3 "cl") (tap-hold $tt $ht $l3 lctl)
+    (concat $l4 "sl") (tap-hold $tt $ht $l4 lsft)
+    (concat $r1 "mr") (tap-hold $tt $ht $r1 rmet)
+    (concat $r2 "ar") (tap-hold $tt $ht $r2 ralt)
+    (concat $r3 "cr") (tap-hold $tt $ht $r3 rctl)
+    (concat $r4 "sr") (tap-hold $tt $ht $r4 rsft)))
+
+(defalias
+  hlw (layer-while-held lower))
+
+;; Letter-modifier-handiness
+(t! home-row-mods c i e a s n t h)
+(deflayer base
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
+  grv  1    2    3    4    5    6    7    8    9    0    caps ralt bspc
+  tab  z    y    u    o    scln q    l    d    p    x    [    ]    \
+  w    @cml @ial @ecl @asl ,    k    @hsr @tcr @nar @smr f    ret
+  lsft '    -    =    .    /    j    m    g    b    v    rsft
+  @hlw lmet lalt           spc            r    rctl)
+
+(t! home-row-mods a s d f ; l k j)
+(deflayer qwerty
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps @aml @sal @dcl @fsl g    h    @jsr @kcr @lar @;mr '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  @hlw lmet lalt           spc            ralt rctl)
+
+;; aml is already bound from the other layout, so just no-op it.
+(t! home-row-mods XX r s t o i e n)
+(deflayer colemak-dh
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    f    p    b    j    l    u    y    scln [    ]    \
+  esc  @aml @ral @scl @tsl g    m    @nsr @ecr @iar @omr '    ret
+  lsft x    c    d    v    z    k    h    ,    .    /    rsft
+  @hlw lmet lalt           spc            ralt rctl)
+
+(defalias
+  sbs (layer-switch base)
+  sqw (layer-switch qwerty)
+  sdh (layer-switch colemak-dh))
+(deflayer lower
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   @sbs @sqw @sdh XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX             XX             XX   XX)
