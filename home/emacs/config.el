@@ -2216,10 +2216,7 @@ For our purposes, a note must not be a directory, must satisfy
    org-super-agenda-unmatched-name "Other"
    org-agenda-custom-commands
    '(("c" "Custom super view"
-      ((agenda "" ((org-agenda-files
-                     (append org-agenda-files
-                             (denote-journal--entry-today)))
-                   (org-agenda-span 'day)
+      ((agenda "" ((org-agenda-span 'day)
                    (org-agenda-start-day nil)
                    (org-super-agenda-groups
                     '((:habit t
