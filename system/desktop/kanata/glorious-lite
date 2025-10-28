@@ -43,7 +43,7 @@
   tab  z    y    u    o    scln q    l    d    p    x    [    ]    \
   w    @cml @ial @ecl @asl ,    k    @hsr @tcr @nar @smr f    ret
   lsft '    -    =    .    /    j    m    g    b    v    rsft
-  @hlw lmet lalt           spc            r    rctl)
+  @hlw lmet esc            spc            r    bspc)
 
 (t! home-row-mods a s d f ; l k j)
 (deflayer qwerty
@@ -52,7 +52,7 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps @aml @sal @dcl @fsl g    h    @jsr @kcr @lar @;mr '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  @hlw lmet lalt           spc            ralt rctl)
+  @hlw lmet esc            bspc           spc  rctl)
 
 ;; aml is already bound from the other layout, so just no-op it.
 (t! home-row-mods XX r s t o i e n)
@@ -60,9 +60,9 @@
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    f    p    b    j    l    u    y    scln [    ]    \
-  esc  @aml @ral @scl @tsl g    m    @nsr @ecr @iar @omr '    ret
+  =    @aml @ral @scl @tsl g    m    @nsr @ecr @iar @omr '    ret
   lsft x    c    d    v    z    k    h    ,    .    /    rsft
-  @hlw lmet lalt           spc            ralt rctl)
+  @hlw lmet esc            bspc           spc  rctl)
 
 (defalias
   sbs (layer-switch base)
