@@ -33,17 +33,32 @@
     (concat $r4 "sr") (tap-hold $tt $ht $r4 rsft)))
 
 (defalias
-  hlw (layer-while-held lower))
+  hlw (layer-while-held lower)
+  sgm (layer-switch gaming)
+  sbs (layer-switch base))
+
+(defchords gaming-enter 200
+  (a  ) r
+  (  b) bspc
+  (a b) @sgm)
+
+(defchords gaming-exit 200
+  (a  ) ralt
+  (  b) rctl
+  (a b) @sbs)
 
 ;; Letter-modifier-handiness
 (t! home-row-mods c i e a s n t h)
+(defalias
+  rge (chord gaming-enter a)
+  bge (chord gaming-enter b))
 (deflayer base
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
   grv  1    2    3    4    5    6    7    8    9    0    caps ralt bspc
   tab  z    y    u    o    scln q    l    d    p    x    [    ]    \
   w    @cml @ial @ecl @asl ,    k    @hsr @tcr @nar @smr f    ret
-  lsft '    -    =    .    /    j    m    g    b    v    rsft
-  @hlw lmet esc            spc            r    bspc)
+  lsft '    -    =    .    /    j    m    g    b    v    lsft
+  @hlw lmet esc            spc            @rge @bge)
 
 (t! home-row-mods a s d f ; l k j)
 (deflayer qwerty
@@ -65,7 +80,6 @@
   @hlw lmet esc            bspc           spc  rctl)
 
 (defalias
-  sbs (layer-switch base)
   sqw (layer-switch qwerty)
   sdh (layer-switch colemak-dh))
 (deflayer lower
@@ -75,3 +89,14 @@
   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX   XX   XX             XX             XX   XX)
+
+(defalias
+  agx (chord gaming-exit a)
+  cgx (chord gaming-exit b))
+(deflayer gaming
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    scln '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            @agx @cgx)
