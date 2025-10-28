@@ -15,6 +15,7 @@
       ./notes-publish
       ./postgresql
       ./remote-luks-unlock
+      ./unbound
       ./wireless
     ]
     ++ mkModulesList [
