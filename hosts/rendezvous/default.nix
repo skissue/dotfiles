@@ -6,6 +6,7 @@
     ++ [
       ./headscale
       ./iodine
+      ./iperf
       ./nginx
       ./ntfy-server
     ];

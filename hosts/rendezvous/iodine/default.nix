@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   private,
   ...
 }: {
@@ -32,6 +33,7 @@
     '';
   };
   networking.firewall.allowedUDPPorts = [5354];
-  # Allow SSH through tunnel.
-  networking.firewall.interfaces."dns0".allowedTCPPorts = [22];
+  networking.firewall.interfaces."dns0".allowedTCPPorts =
+    config.services.openssh.ports
+    ++ lib.optional config.services.iperf3.enable config.services.iperf3.port;
 }
