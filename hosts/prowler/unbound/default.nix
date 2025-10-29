@@ -24,6 +24,15 @@ in {
           "fd7a:115c:a1e0::/48 allow"
         ];
       };
+
+      forward-zone = [
+        {
+          name = ".";
+          forward-addr = config.networking.nameservers;
+          forward-tls-upstream = true;
+        }
+      ];
+
       remote-control.control-enable = true;
 
       include = [
