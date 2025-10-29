@@ -20,8 +20,8 @@ in {
       };
       dns = {
         magic_dns = true;
-        # Unbound running on rendezvous
-        nameservers.global = ["100.69.0.8" "fd7a:115c:a1e0::1"];
+        # Unbound running on prowler.
+        nameservers.global = ["100.69.0.14" "fd7a:115c:a1e0::4"];
         base_domain = tailnetDomain;
       };
     };
