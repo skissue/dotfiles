@@ -32,4 +32,6 @@
     '';
   };
   networking.firewall.allowedUDPPorts = [5354];
+  # Allow SSH through tunnel.
+  networking.firewall.interfaces."dns0".allowedTCPPorts = [22];
 }
