@@ -14,10 +14,13 @@ in {
       server = {
         # 5353 is already used by systemd-resolved for whatever the
         # hell mDNS is 🗿.
-        interface = ["127.0.0.1@5354"];
+        interface = [
+          "0.0.0.0@5354"
+          "::0@5354"
+        ];
         # Tailscale IPs
         access-control = [
-          "100.64.0.0/10 allow"
+          "100.69.0.0/16 allow"
           "fd7a:115c:a1e0::/48 allow"
         ];
       };
@@ -62,4 +65,18 @@ in {
       mode = "0700";
     }
   ];
+
+  # Since this doesn't run on port 53, DNAT all traffic from my tailnet to it.
+  networking.nftables.tables.unbound-nat = {
+    family = "inet";
+    content = ''
+      chain prerouting {
+        type nat hook prerouting priority 0;
+        ip  saddr 100.69.0.0/16       tcp dport 53 redirect to 5354
+        ip  saddr 100.69.0.0/16       udp dport 53 redirect to 5354
+        ip6 saddr fd7a:115c:a1e0::/48 tcp dport 53 redirect to 5354
+        ip6 saddr fd7a:115c:a1e0::/48 udp dport 53 redirect to 5354
+      }
+    '';
+  };
 }
