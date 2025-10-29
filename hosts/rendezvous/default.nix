@@ -1,19 +1,17 @@
-{
-  mkModulesList,
-  ...
-}: {
+{mkModulesList, ...}: {
   imports =
     mkModulesList [
       # "ntfy-alerts/syslog"
     ]
     ++ [
       ./headscale
+      ./iodine
       ./nginx
       ./ntfy-server
     ];
 
   security.sudo-rs.wheelNeedsPassword = false;
-  
+
   services.tailscale = {
     useRoutingFeatures = "server";
     extraUpFlags = ["--advertise-exit-node"];
