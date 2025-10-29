@@ -36,4 +36,11 @@
   networking.firewall.interfaces."dns0".allowedTCPPorts =
     config.services.openssh.ports
     ++ lib.optional config.services.iperf3.enable config.services.iperf3.port;
+  # Mosh
+  networking.firewall.interfaces."dns0".allowedUDPPortRanges = [
+    {
+      from = 60000;
+      to = 61000;
+    }
+  ];
 }
