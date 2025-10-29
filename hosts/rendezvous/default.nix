@@ -4,13 +4,12 @@
 }: {
   imports =
     mkModulesList [
-      "ntfy-alerts/syslog"
+      # "ntfy-alerts/syslog"
     ]
     ++ [
       ./headscale
       ./nginx
       ./ntfy-server
-      ./unbound
     ];
 
   security.sudo-rs.wheelNeedsPassword = false;
