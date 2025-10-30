@@ -27,8 +27,6 @@
     hyprlock.fprintAuth = false;
   };
 
-  services.fwupd.enable = true;
-
   security.protectKernelImage = false; # Disallows hibernation
 
   chaotic.mesa-git.extraPackages = with pkgs; [intel-media-driver];

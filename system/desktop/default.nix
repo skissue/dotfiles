@@ -11,6 +11,8 @@
 
   services.logind.settings.Login.HandlePowerKey = "suspend";
 
+  services.fwupd.enable = true;
+
   # Emacs ispell
   environment.wordlist.enable = true;
 
