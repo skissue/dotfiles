@@ -67,7 +67,7 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps @aml @sal @dcl @fsl g    h    @jsr @kcr @lar @;mr '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  @hlw lmet esc            bspc           spc  rctl)
+  @hlw lmet esc            spc            bspc rctl)
 
 ;; aml is already bound from the other layout, so just no-op it.
 (t! home-row-mods XX r s t o i e n)
@@ -77,7 +77,7 @@
   tab  q    w    f    p    b    j    l    u    y    scln [    ]    \
   =    @aml @ral @scl @tsl g    m    @nsr @ecr @iar @omr '    ret
   lsft x    c    d    v    z    k    h    ,    .    /    rsft
-  @hlw lmet esc            bspc           spc  rctl)
+  @hlw lmet esc            spc            bspc rctl)
 
 (defalias
   sqw (layer-switch qwerty)
