@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; [
-    aria
+    aria2
     bottom
     brave
     brightnessctl
