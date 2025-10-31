@@ -9,7 +9,7 @@
 }: let
   compile = file: extraInputs:
     with pkgs;
-      runCommandNoCCLocal "emacs-compile-${baseNameOf file}" {
+      runCommandLocal "emacs-compile-${baseNameOf file}" {
         nativeBuildInputs =
           [
             config.programs.emacs.finalPackage
@@ -27,7 +27,7 @@
         cp input.elc $out
       '';
   quickstart-file =
-    pkgs.runCommandNoCCLocal "emacs-quickstart-file" {
+    pkgs.runCommandLocal "emacs-quickstart-file" {
       nativeBuildInputs = [config.programs.emacs.finalPackage];
     } ''
       emacs --batch \

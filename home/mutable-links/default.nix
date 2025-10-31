@@ -18,7 +18,7 @@
     relative = relativePath path;
     full = mutableRoot + relative;
     mutable =
-      pkgs.runCommandNoCCLocal "mutable-link-${relative}"
+      pkgs.runCommandLocal "mutable-link-${relative}"
       {inherit full;}
       "ln -s $full $out";
   in
