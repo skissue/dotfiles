@@ -75,12 +75,4 @@
     enable = true;
     git.enable = true;
   };
-
-  home.shellAliases = {
-    g = "git";
-    gs = "git status";
-    gl = "git log";
-    gp = "git pull";
-    gpu = "git push";
-  };
 }
