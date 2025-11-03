@@ -6,12 +6,16 @@
 }: {
   programs.git = {
     enable = true;
-    difftastic.enable = true;
 
     userName = "Ad";
     userEmail = "me@skissue.xyz";
 
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Ad";
+        email = "me@skissue.xyz";
+      };
+
       init.defaultBranch = "main";
       merge.conflictstyle = "zdiff3";
       diff.algorithm = "histogram";
@@ -65,6 +69,11 @@
       hostname = "github.com";
       identityFile = "~/.ssh/work";
     };
+  };
+
+  programs.difftastic = {
+    enable = true;
+    git.enable = true;
   };
 
   home.shellAliases = {
