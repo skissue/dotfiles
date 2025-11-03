@@ -48,16 +48,16 @@
   (a b) @sbs)
 
 ;; Letter-modifier-handiness
-(t! home-row-mods c i e a s n t h)
+(t! home-row-mods c i a e s n t h)
 (defalias
   rge (chord gaming-enter a)
   bge (chord gaming-enter b))
 (deflayer base
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
   grv  1    2    3    4    5    6    7    8    9    0    caps ralt bspc
-  tab  z    y    u    o    scln q    l    d    p    x    [    ]    \
-  w    @cml @ial @ecl @asl ,    k    @hsr @tcr @nar @smr f    ret
-  lsft '    -    =    .    /    j    m    g    b    v    lsft
+  tab  z    y    o    u    =    q    l    d    p    x    [    ]    \
+  w    @cml @ial @acl @esl scln k    @hsr @tcr @nar @smr f    ret
+  lsft '    -    ,    .    /    j    m    g    b    v    lsft
   @hlw lmet esc            spc            @rge @bge)
 
 (t! home-row-mods a s d f ; l k j)
