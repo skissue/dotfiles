@@ -33,8 +33,12 @@
   services.fwupd.enable = true;
 
   services.tailscale = {
-    useRoutingFeatures = "server";
-    extraUpFlags = ["--advertise-exit-node"];
+    useRoutingFeatures = "both";
+    extraSetFlags = [
+      "--advertise-exit-node"
+      "--advertise-routes"
+      "fd7a:115c:a1e0:b1a:0:1:a00:0/120"
+    ];
   };
 
   # State version (copy from auto-generated configuration.nix during install)
