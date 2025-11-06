@@ -24,7 +24,6 @@
 
       path = with pkgs; [bcachefs-tools util-linux];
       script = ''
-        #!${pkgs.runtimeShell}
         mkdir -p /media/${name}
         bcachefs mount \
           -f ${config.sops.secrets."usbs/${name}".path} \
