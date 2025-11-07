@@ -27,15 +27,15 @@
   };
   gptel-quick = {
     pname = "gptel-quick";
-    version = "495b5e0b5348dbced1448bd12cbf8847e30b5175";
+    version = "018ff2be8f860a1e8fe3966eec418ad635620c38";
     src = fetchFromGitHub {
       owner = "karthink";
       repo = "gptel-quick";
-      rev = "495b5e0b5348dbced1448bd12cbf8847e30b5175";
+      rev = "018ff2be8f860a1e8fe3966eec418ad635620c38";
       fetchSubmodules = false;
-      sha256 = "sha256-xMrzeWG5L+MpGAhPFlV8KV+xa7CWC1D48osRrioGlsw=";
+      sha256 = "sha256-7a5+YQifwtVYHP6qQXS1yxA42bVGXmErirra0TrSSQ0=";
     };
-    date = "2025-06-01";
+    date = "2025-11-05";
   };
   inline-diff = {
     pname = "inline-diff";
