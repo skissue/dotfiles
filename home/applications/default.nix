@@ -36,7 +36,7 @@
     ouch
     playerctl
     prismlauncher
-    pwvucontrol_git
+    pwvucontrol
     qpwgraph
     ripgrep
     ripgrep-all
