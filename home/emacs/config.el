@@ -833,7 +833,7 @@ Only difference is to compose symbols in comments as well. See
  '("M" . meow-undo-in-selection)
  '("n" . meow-left)
  '("N" . meow-left-expand)
- '("o" . meow-block)
+ '("o" . meow-tree-sitter-node)
  '("O" . meow-to-block)
  '("p" . meow-replace)
  '("P" . meow-yank-pop)
