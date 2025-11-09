@@ -45,7 +45,6 @@
     tor-browser
     ungoogled-chromium
     waypipe
-    webcord
     wl-clipboard
     yt-dlp
     my.zen-browser
@@ -82,10 +81,5 @@
       };
       font = {family = "Atkinson Hyperlegible Next";};
     };
-    "WebCord/Themes/theme".text = ''
-      * {
-        font-family: Atkinson Hyperlegible Next, sans-serif;
-      }
-    '';
   };
 }
