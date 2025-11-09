@@ -7,9 +7,6 @@
   programs.git = {
     enable = true;
 
-    userName = "Ad";
-    userEmail = "me@skissue.xyz";
-
     settings = {
       user = {
         name = "Ad";
