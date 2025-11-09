@@ -9,7 +9,6 @@
     brave
     brightnessctl
     simple-scan
-    feishin
     ffmpeg
     gpu-screen-recorder
     # For spellcheck; see https://nixos.wiki/wiki/LibreOffice
