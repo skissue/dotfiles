@@ -9,7 +9,6 @@
     ++ [
       ./headscale
       ./nginx
-      ./nextcloud
       ./ntfy-server
       ./unbound
     ];
