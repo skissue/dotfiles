@@ -45,7 +45,7 @@ in {
     accounts);
 
   accounts.email = {
-    maildirBasePath = "nc/mail";
+    maildirBasePath = "theuniverse/mail";
     accounts = mkAccount "mailbox" private.email.personal {
       primary = true;
       realName = "Ad";
