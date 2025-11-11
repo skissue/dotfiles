@@ -10,7 +10,7 @@ in {
     # For `git-annex-shell`.
     git-annex
     # `git-annex` complains if it's not present.
-    inputs.git-annex-backend-XBLAKE3.packages.${pkgs.system}.default
+    inputs.git-annex-backend-XBLAKE3.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   # Otherwise Git complains when trying to make commits on the tracking branch

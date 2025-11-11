@@ -6,7 +6,7 @@
 }: {
   programs.eww = {
     enable = true;
-    package = inputs.eww.packages.${pkgs.system}.default;
+    package = inputs.eww.packages.${pkgs.stdenv.hostPlatform.system}.default;
     configDir = mutable-link ./.;
   };
 
