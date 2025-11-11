@@ -55,11 +55,6 @@
           "minecraft-server"
           "copilot-language-server"
         ];
-      permittedInsecurePackages = [
-        "nodejs-14.21.3" # WebCord I think
-        "electron-25.9.0" # Obsidian
-        "olm-3.2.16" # https://github.com/mautrix/go/issues/262
-      ];
     };
   };
 
