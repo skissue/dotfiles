@@ -30,7 +30,6 @@
     mangohud
     mullvad-browser
     nautilus
-    nextcloud-client
     obs-studio
     ouch
     playerctl
