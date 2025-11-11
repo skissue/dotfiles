@@ -63,7 +63,7 @@ in
 
     src = fetchzip {
       url = "https://github.com/zen-browser/desktop/releases/download/${finalAttrs.version}/zen.linux-x86_64.tar.xz";
-      hash = "sha256-8nkjVQeo/GEpkK/JZQHctzku/mAC7zwY/nXz1SmQw6U=";
+      hash = "sha256-q1IK39GdPhO+/baGOO9A3aUehwCtwBfRkDVFXCthC54=";
     };
 
     desktopItems = [
