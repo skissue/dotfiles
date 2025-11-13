@@ -31,16 +31,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # TODO https://github.com/nix-community/lanzaboote/issues/485
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.rust-overlay.follows = "rust-overlay";
     };
     nix-index = {
       url = "github:Mic92/nix-index-database";
