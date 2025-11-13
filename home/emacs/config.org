@@ -902,7 +902,9 @@ Set up PragmataPro and enable [[help:prettify-symbols-mode][prettify-symbols-mod
 #+begin_src elisp
   (require 'ef-themes)
 
-  (setq ef-themes-mixed-fonts t
+  (setq ef-themes-bold-constructs t
+        ef-themes-italic-constructs t
+        ef-themes-mixed-fonts t
         ef-themes-headings '((0 1.8)
                              (1 variable-pitch light 1.5)
                              (2 variable-pitch light 1.4)

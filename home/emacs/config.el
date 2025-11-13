@@ -664,7 +664,9 @@ Only difference is to compose symbols in comments as well. See
 
 (require 'ef-themes)
 
-(setq ef-themes-mixed-fonts t
+(setq ef-themes-bold-constructs t
+      ef-themes-italic-constructs t
+      ef-themes-mixed-fonts t
       ef-themes-headings '((0 1.8)
                            (1 variable-pitch light 1.5)
                            (2 variable-pitch light 1.4)
