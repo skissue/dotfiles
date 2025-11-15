@@ -2249,10 +2249,21 @@ The repository comes with many different files for "sources", that each have var
 [[help:next-error][next-error]] doesn't work on Flymake's errors, so we remap the command when Flymake is active.
 #+begin_src elisp
   (after! flymake
-    (setopt flymake-show-diagnostics-at-end-of-line 'short)
     (bind-keys :map flymake-mode-map
                ([remap next-error] . flymake-goto-next-error)
                ([remap previous-error] . flymake-goto-prev-error)))
+#+end_src
+
+[[https://github.com/konrad1977/flyover][Flyover]] provides beautiful overlays for Flymake errors 😍.
+#+begin_src elisp
+  (add-hook 'flymake-mode-hook #'flyover-mode)
+
+  (after! flyover
+    (setopt flyover-checkers '(flymake)
+            flyover-levels '(error warning info)
+            flyover-hide-checker-name t
+            flyover-use-theme-colors t
+            flyover-virtual-line-type 'curved-line-no-arrow))
 #+end_src
 
 ** Disproject

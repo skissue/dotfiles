@@ -1752,10 +1752,18 @@ Calls the function in `consult-omni-default-interactive-command'." t)
   (setopt ibuffer-old-time 2))
 
 (after! flymake
-  (setopt flymake-show-diagnostics-at-end-of-line 'short)
   (bind-keys :map flymake-mode-map
              ([remap next-error] . flymake-goto-next-error)
              ([remap previous-error] . flymake-goto-prev-error)))
+
+(add-hook 'flymake-mode-hook #'flyover-mode)
+
+(after! flyover
+  (setopt flyover-checkers '(flymake)
+          flyover-levels '(error warning info)
+          flyover-hide-checker-name t
+          flyover-use-theme-colors t
+          flyover-virtual-line-type 'curved-line-no-arrow))
 
 (bind-key "p" #'disproject-dispatch ctl-x-map)
 
