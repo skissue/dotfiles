@@ -8,7 +8,7 @@
     port = 11434;
     settings = {
       macros = {
-        "server" = "${lib.getExe' pkgs.llama-cpp "llama-server"} --port \${PORT} --no-webui";
+        "server" = "${lib.getExe' pkgs.llama-cpp "llama-server"} --port \${PORT} -fa on --jinja --no-webui";
       };
       models = {
         "qwen3:14b" = {
