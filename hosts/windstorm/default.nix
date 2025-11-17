@@ -4,7 +4,12 @@
   ...
 }: {
   imports =
-    [./disko.nix ./printing.nix ./sunshine.nix]
+    [
+      ./disko.nix
+      ./llama-swap.nix
+      ./printing.nix
+      ./sunshine.nix
+    ]
     ++ mkModulesList [
       "home-manager"
       "desktop"
