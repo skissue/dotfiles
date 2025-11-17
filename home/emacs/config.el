@@ -2049,6 +2049,13 @@ For our purposes, a note must not be a directory, must satisfy
   (advice-add 'howm-menu-mode :after #'meow-motion-mode)
   (advice-add 'howm-view-summary-mode :after #'meow-motion-mode))
 
+(el-patch-feature howm)
+(after! howm
+  (el-patch-define-and-eval-template
+   (defun howm-menu-format-reminder)
+   (format (el-patch-swap "%s%3s%s" "%s%4s%s")
+           dow-str late priority)))
+
 (add-hook 'org-mode-hook #'variable-pitch-mode)
 (add-hook 'org-mode-hook #'writeroom-mode)
 (add-hook 'org-mode-hook (##setq-local line-spacing 0.1))

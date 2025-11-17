@@ -2618,6 +2618,16 @@ Make Howm's menu and list view properly start in Meow's motion state. Note that 
     (advice-add 'howm-view-summary-mode :after #'meow-motion-mode))
 #+end_src
 
+Change the formatting of reminders in the menu to allocate four characters for the "elapsed"/"late" number.
+#+begin_src elisp
+  (el-patch-feature howm)
+  (after! howm
+    (el-patch-define-and-eval-template
+     (defun howm-menu-format-reminder)
+     (format (el-patch-swap "%s%3s%s" "%s%4s%s")
+             dow-str late priority)))
+#+end_src
+
 * Org Mode
 Ah, the crown jewel of Emacs 👑.
 #+begin_src elisp
