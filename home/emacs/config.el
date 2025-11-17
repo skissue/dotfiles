@@ -1483,25 +1483,23 @@ uses the symbol name as the default description, as well as a
     :stream t
     :key (##or (secrets-get-secret "KeePassXC" "OpenRouter")
                (user-error "Unable to retrieve OpenRouter key"))
-    :models '(google/gemini-2.0-flash-exp:free
-              deepseek/deepseek-chat:free
-              deepseek/deepseek-r1:free
-              deepseek/deepseek-chat
-              deepseek/deepseek-r1
-              anthropic/claude-3-haiku:beta
-              anthropic/claude-3.5-sonnet:beta
-              anthropic/claude-3.7-sonnet
-              anthropic/claude-3.7-sonnet:thinking))
-  (setopt gptel-model           'gemma3:12b
-          gptel-backend         (gptel-make-ollama "Ollama"
+    :models '(kwaipilot/kat-coder-pro:free
+              z-ai/glm-4.5-air:free
+              qwen/qwen3-coder:free
+              qwen/qwen3-235b-a22b:free
+              deepseek/deepseek-chat-v3.1
+              inception/mercury-coder
+              x-ai/grok-code-fast-1
+              z-ai/glm-4.6
+              google/gemini-2.5-flash
+              anthropic/claude-haiku-4.5
+              anthropic/claude-sonnet-4.5))
+  (setopt gptel-model           'qwen3:14b
+          gptel-backend         (gptel-make-openai "Local"
+                                  :protocol "http"
                                   :host "windstorm:11434"
-                                  :stream nil
-                                  :models '(phi4-mini:latest
-                                            deepseek-r1:14b
-                                            qwen2.5-coder:14b
-                                            (gemma3:12b
-                                             :capabilities (media)
-                                             :mime-types ("image/png" "image/jpeg"))))
+                                  :stream t
+                                  :models '(qwen3:14b))
           gptel-default-mode    #'org-mode
           gptel-track-media     t
           gptel-expert-commands t)
