@@ -7,6 +7,8 @@
     enable = true;
     port = 11434;
     settings = {
+      # Give adequate time to auto-download models.
+      healthCheckTimeout = 500;
       macros = {
         "server" = "${lib.getExe' pkgs.llama-cpp "llama-server"} --port \${PORT} --ctx-size 8192 -fa on --jinja --no-webui";
       };
