@@ -19,6 +19,10 @@
           cmd = "\${server} -hf unsloth/Qwen3-30B-A3B-Thinking-2507-GGUF:UD-IQ3_XXS --temp 0.6 --top-k 20 --top-p 0.95 --min-p 0 --presence-penalty 1.0";
           ttl = 120;
         };
+        "qwen3:30b-instruct" = {
+          cmd = "\${server} -hf unsloth/Qwen3-30B-A3B-Instruct-2507-GGUF:UD-IQ3_XXS --temp 0.7 --top-k 20 --top-p 0.8 --min-p 0 --presence-penalty 1.0";
+          ttl = 120;
+        };
       };
     };
   };
