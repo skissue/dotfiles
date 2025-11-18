@@ -12,7 +12,7 @@
       };
       models = {
         "qwen3:14b" = {
-          cmd = "\${server} -hf Qwen/Qwen3-14B-GGUF:Q6_K";
+          cmd = "\${server} -hf Qwen/Qwen3-14B-GGUF:Q6_K --temp 0.6 --top-k 20 --top-p 0.95 --min-p 0 --presence-penalty 1.5";
           ttl = 120;
         };
       };
