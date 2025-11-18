@@ -13,6 +13,7 @@
       models = {
         "qwen3:14b" = {
           cmd = "\${server} -hf Qwen/Qwen3-14B-GGUF:Q6_K";
+          ttl = 120;
         };
       };
     };
