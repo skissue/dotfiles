@@ -34,7 +34,6 @@
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
     };
     nix-index = {
       url = "github:Mic92/nix-index-database";
