@@ -178,6 +178,7 @@ in {
         org-sliced-images
         org-popup-posframe
         org-typst
+        org-srs
         nice-org-html
         htmlize
         git-auto-commit-mode
