@@ -1499,7 +1499,16 @@ uses the symbol name as the default description, as well as a
                                   :protocol "http"
                                   :host "windstorm:11434"
                                   :stream t
-                                  :models '(qwen3:14b))
+                                  :models '((qwen3-vl:8b
+                                             :capabilities (media)
+                                             :mime-types ("image/png"))
+                                            (qwen3-vl:8b-instruct
+                                             :capabilities (media)
+                                             :mime-types ("image/png"))
+                                            qwen3:14b
+                                            qwen3:30b
+                                            qwen3:30b-instruct
+                                            qwen3-coder:30b))
           gptel-default-mode    #'org-mode
           gptel-track-media     t
           gptel-expert-commands t)
