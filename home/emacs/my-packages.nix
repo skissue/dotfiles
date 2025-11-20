@@ -12,8 +12,6 @@ in {
       version = "9.7.69";
       files = ''(:defaults "etc")'';
     });
-  # Currently fails to byte-compile.
-  fsrs = epkgs.fsrs.overrideAttrs (oldAttrs: {ignoreCompilationError = true;});
   org-popup-posframe = melpaBuild (sources.org-popup-posframe
     // {
       version = "0.0.1";
