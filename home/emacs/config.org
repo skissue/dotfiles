@@ -3083,6 +3083,14 @@ For some reason, the new machinery scatters temporary ~tex~ files around in the 
     (setopt org-anki-default-deck "Default"))
 #+end_src
 
+** Org-srs
+Org-srs is a complete spaced repetition system, 100% in Org Mode!
+
+#+begin_src elisp
+  (after! org-srs
+    (setopt org-srs-item-cloze-visibility t))
+#+end_src
+
 ** Auto Tangling
 #+begin_src elisp
   (add-to-list 'safe-local-variable-values
