@@ -103,7 +103,6 @@
               package = inputs'.deploy-rs.packages.default;
             }
             {package = inputs'.nixos-anywhere.packages.default;}
-            {package = inputs'.home-manager.packages.default;}
             {package = sops;}
             {package = ssh-to-age;}
             {package = nvfetcher;}
