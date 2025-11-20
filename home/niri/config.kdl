@@ -689,3 +689,27 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Escape { power-off-monitors; }
 }
+
+recent-windows {
+    // off
+    open-delay-ms 150
+
+    highlight {
+        active-color "#999999ff"
+        urgent-color "#ff9999ff"
+        padding 24
+        corner-radius 8
+    }
+
+    previews {
+        max-height 720
+        max-scale 0.8
+    }
+
+    binds {
+        Mod+Space            { next-window; }
+        Mod+Shift+Space      { previous-window; }
+        Mod+Ctrl+Space       { next-window     filter="app-id"; }
+        Mod+Ctrl+Shift+Space { previous-window filter="app-id"; }
+    }
+}
