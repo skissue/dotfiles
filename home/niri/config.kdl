@@ -405,7 +405,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="emacs" title="transient"
+    match app-id="emacs" title=r#"^\*transient\*"#
 
     open-floating true
     open-focused false
@@ -418,7 +418,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="emacs" title="vertico"
+    match app-id="emacs" title=r#"^\*vertico\*$"#
 
     open-floating true
     open-focused true
