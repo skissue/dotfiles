@@ -368,11 +368,11 @@
       },
       "locked": {
         "dir": "koito-flake",
-        "lastModified": 1760413830,
-        "narHash": "sha256-xAxJWeVYbe7U7EAIx2Lejz1z1eFWRdB7y5yLcAf/CLM=",
+        "lastModified": 1763699161,
+        "narHash": "sha256-4ZwB3q8kIxVNxubliSWYB13dFZ1FKCQQfEr4HrXfKrk=",
         "owner": "skissue",
         "repo": "gxy",
-        "rev": "c89ad1bc04bc26b1c2da8aaf2de622b2be2672b2",
+        "rev": "ff7fae2f3a72ccc5548aa45f418006f0e1ded395",
         "type": "github"
       },
       "original": {
