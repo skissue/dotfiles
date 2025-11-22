@@ -1010,52 +1010,9 @@ See `describe-repeat-maps' for a list of all repeatable commands."
 
 (vertico-mode)
 
-(defvar my/vertico-popup--frame nil
-    "Popup frame currently showing Vertico.")
-
-(define-minor-mode my/vertico-popup-mode
-  "Display Vertico in a popup frame."
-  :global t)
-
-(defun my/vertico-popup--delete-frame ()
-  "Delete frame and cleanup after minibuffer exit."
-  ;; Runs before minibuffer is closed, so depth will still be one on last
-  ;; minibuffer.
-  (when (and my/vertico-popup--frame
-             (= 1 (minibuffer-depth)))
-    (delete-frame my/vertico-popup--frame)
-    (setq my/vertico-popup--frame nil)))
-
-(defun my/vertico-popup--setup ()
-  "Setup frame display."
-  (unless my/vertico-popup--frame
-    (setq my/vertico-popup--frame
-          (make-frame '((name . "*vertico*")
-                        (minibuffer . only))))
-    (select-frame-set-input-focus my/vertico-popup--frame)
-    ;; HACK: force a redisplay and wait for the WM so that Emacs gets updated
-    ;; information on the actual frame/window size. This allows for computing
-    ;; `vertico-count' as well as preventing jarring repositioning of elements,
-    ;; which would otherwise get updated information only after the first input
-    ;; (since that would trigger redisplay).
-    (sit-for 0.1)
-    ;; One line is taken by the prompt.
-    (setq-local vertico-count (1- (window-text-height))))
-  (add-hook 'minibuffer-exit-hook #'my/vertico-popup--delete-frame)
-  ;; Prevent resizing of minibuffer on original frame.
-  (dolist (buf (buffer-list))
-    (when (minibufferp buf)
-      (with-current-buffer buf
-        (setq-local resize-mini-windows nil)))))
-
-(after! vertico
-  (cl-defmethod vertico--setup :before (&context (my/vertico-popup-mode (eql t)))
-    (my/vertico-popup--setup)))
-
 (after! vertico
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
   (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
-  (my/vertico-popup-mode)
 
   (bind-keys ("M-S" . vertico-suspend)
              ("M-R" . vertico-repeat)
@@ -1067,7 +1024,8 @@ See `describe-repeat-maps' for a list of all repeatable commands."
              ("M-P" . vertico-repeat-previous)
              ("M-N" . vertico-repeat-next))
 
-  (setopt vertico-cycle t
+  (setopt vertico-count 15
+          vertico-cycle t
           vertico-resize nil
           vertico-quick1 "arstneio"
           vertico-quick2 vertico-quick1))
