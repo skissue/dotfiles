@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: implementation
+# key: impl
+# --
+impl ${1:Type}${2:<${3:T}>} {
+     $0
+}

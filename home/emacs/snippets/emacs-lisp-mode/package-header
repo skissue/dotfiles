@@ -1,11 +1,10 @@
 # -*- mode: snippet; -*-
 # name: package header
-# key: pkgh
 # --
 ;;; ${1:`(file-name-sans-extension (file-name-nondirectory buffer-file-name))`}.el --- ${2:summary} -*- lexical-binding: t -*-
 
-;; Author: ${3:`(user-full-name)`}
-;; Maintainer: ${4:`(user-full-name)`}
+;; Author: ${3:Ad <me@skissue.xyz>}
+;; Maintainer: ${4:Ad <me@skissue.xyz>}
 ;; Version: ${5:version}
 ;; Package-Requires: (${6:dependencies})
 ;; Homepage: ${7:homepage}

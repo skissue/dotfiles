@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: async main
+# key: amain
+# --
+${1:#[tokio::main]}
+async fn main() ${2:-> Result<(), Error> }{
+    $0
+}
