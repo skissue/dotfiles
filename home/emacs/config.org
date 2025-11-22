@@ -990,13 +990,15 @@ This is such an important addition to Emacs.
 #+end_src
 
 ** Transient
-Bind escape to exiting one level of transient menus.
+Bind escape to exiting one level of Transient menus.
 #+begin_src elisp
   (after! transient
     (bind-key "<escape>" #'transient-quit-one transient-base-map))
 #+end_src
 
-Display buffer action to show transients in a new popup frame. Window rules (via the compositor) are then used to position it floating at the bottom-left of the screen. Frankly, I have no idea how the =width= and =height= parameters play with the Wayland compositor, but through trial-and-error, these values seem to allow the frame to size itself to a reasonable degree.
+Display buffer action to show Transients in a new popup frame. Window rules (via the compositor) are then used to position it floating at the bottom-left of the screen. Frankly, I have no idea how the =width= and =height= parameters play with the Wayland compositor, but through trial-and-error, these values seem to allow the frame to size itself to a reasonable degree.
+
+Also, since showing a frame can be slow sometimes, delay showing a Transient menu for half a second, for the common case in which the target key is already known.
 #+begin_src elisp
   (after! transient
     (setopt transient-display-buffer-action
@@ -1004,7 +1006,8 @@ Display buffer action to show transients in a new popup frame. Window rules (via
               (pop-up-frame-parameters
                (name . "*transient*")
                (width . 80)
-               (height . 15)))))
+               (height . 15)))
+            transient-show-popup 0.5))
 #+end_src
 
 * Keybindings
