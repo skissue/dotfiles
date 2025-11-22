@@ -734,7 +734,10 @@ Only difference is to compose symbols in comments as well. See
 (after! transient
   (setopt transient-display-buffer-action
           '(display-buffer-pop-up-frame
-            (pop-up-frame-parameters (name . "*transient*")))))
+            (pop-up-frame-parameters
+             (name . "*transient*")
+             (width . 80)
+             (height . 15)))))
 
 (dolist (map '(my/buffer-map
                my/git-map

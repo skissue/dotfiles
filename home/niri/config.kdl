@@ -410,10 +410,8 @@ window-rule {
     open-floating true
     open-focused false
     
-    default-floating-position x=0 y=0 relative-to="bottom-right"
-    // Sizing isn't working
-    // default-column-width { proportion 0.75; }
-    // default-window-height { proportion 0.4; }
+    default-floating-position x=0 y=0 relative-to="bottom-left"
+    // No size rules, let the window size itself.
     baba-is-float true
 }
 

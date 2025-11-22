@@ -996,12 +996,15 @@ Bind escape to exiting one level of transient menus.
     (bind-key "<escape>" #'transient-quit-one transient-base-map))
 #+end_src
 
-Display buffer action to show transients in a new popup frame. Hyprland window rules are then used to position it floating at the bottom-right of the screen.
+Display buffer action to show transients in a new popup frame. Window rules (via the compositor) are then used to position it floating at the bottom-left of the screen. Frankly, I have no idea how the =width= and =height= parameters play with the Wayland compositor, but through trial-and-error, these values seem to allow the frame to size itself to a reasonable degree.
 #+begin_src elisp
   (after! transient
     (setopt transient-display-buffer-action
             '(display-buffer-pop-up-frame
-              (pop-up-frame-parameters (name . "*transient*")))))
+              (pop-up-frame-parameters
+               (name . "*transient*")
+               (width . 80)
+               (height . 15)))))
 #+end_src
 
 * Keybindings
