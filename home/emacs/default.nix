@@ -87,6 +87,7 @@ in {
         flyover
         # Completion
         vertico
+        vertico-popup-frame
         orderless
         corfu
         cape
@@ -115,8 +116,7 @@ in {
         hl-todo
         consult-todo
         jinx
-        # Currently fails to build
-        # el-easydraw
+        el-easydraw
         package-lint-flymake
         llm
         treesit-fold

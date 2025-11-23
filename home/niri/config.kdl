@@ -416,15 +416,15 @@ window-rule {
 }
 
 window-rule {
-    match app-id="emacs" title=r#"^\*vertico\*$"#
+    match app-id="emacs" title=r#"^\*vertico-popup-\d+\*$"#
 
     open-floating true
     open-focused true
     
     default-column-width { proportion 0.98; }
-    default-window-height { proportion 0.4; }
+    default-window-height { proportion 0.32; }
     default-floating-position x=0 y=10 relative-to="bottom"
-    
+
     baba-is-float true
 }
 

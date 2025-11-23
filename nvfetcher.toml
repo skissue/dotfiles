@@ -38,3 +38,7 @@ fetch.github = "jdtsmith/ultra-scroll"
 [inline-diff]
 src.git = "https://code.tecosaur.net/tec/inline-diff.git"
 fetch.git = "https://code.tecosaur.net/tec/inline-diff.git"
+
+[vertico-popup-frame]
+src.git = "https://github.com/skissue/vertico-popup-frame"
+fetch.github = "skissue/vertico-popup-frame"

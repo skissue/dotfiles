@@ -114,14 +114,26 @@
   };
   ultra-scroll = {
     pname = "ultra-scroll";
-    version = "19fd73e0ee71558c7770d8daecdbe1793d54c9ae";
+    version = "203178269451177e07d19f1e200a726217b6b436";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "ultra-scroll";
-      rev = "19fd73e0ee71558c7770d8daecdbe1793d54c9ae";
+      rev = "203178269451177e07d19f1e200a726217b6b436";
       fetchSubmodules = false;
-      sha256 = "sha256-8Qu7Wgb/LFMWp/8WropgYh40QPG78VxT1HFHc1Kxsj4=";
+      sha256 = "sha256-zT8Uy0oqhDwC7TKJuSrF4TRDBEnDdDNWWuHC2DzH48Q=";
     };
-    date = "2025-11-09";
+    date = "2025-11-22";
+  };
+  vertico-popup-frame = {
+    pname = "vertico-popup-frame";
+    version = "a99361aad4b9faf9f36902223ceecbda7a66dc1b";
+    src = fetchFromGitHub {
+      owner = "skissue";
+      repo = "vertico-popup-frame";
+      rev = "a99361aad4b9faf9f36902223ceecbda7a66dc1b";
+      fetchSubmodules = false;
+      sha256 = "sha256-vgg1z2Vdu3LV7uvqPUqKmqzJJGKePoat2hgkTrH0N0E=";
+    };
+    date = "2025-11-22";
   };
 }

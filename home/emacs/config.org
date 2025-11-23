@@ -1327,11 +1327,12 @@ Force autoload using ~el-patch~. This also allows delaying the load of [[*Margin
 #+end_src
 
 *** Configuration
-Configuration, with ~vertico-quick~, ~vertico-suspend~, ~vertico-repeat~, and ~vertico-directory~ extensions.
+Configuration, with ~vertico-quick~, ~vertico-suspend~, ~vertico-repeat~, and ~vertico-directory~ extensions, as well as my own [[https://github.com/skissue/vertico-popup-frame/][vertico-popup-frame]] 🙃.
 #+begin_src elisp
   (after! vertico
     (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
     (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
+    (vertico-popup-frame-mode)
 
     (bind-keys ("M-S" . vertico-suspend)
                ("M-R" . vertico-repeat)

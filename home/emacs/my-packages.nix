@@ -30,4 +30,9 @@ in {
     });
   ultra-scroll = melpaBuild (sources.ultra-scroll // {version = "0.2.1";});
   inline-diff = melpaBuild (sources.inline-diff // {version = "0.0.1";});
+  vertico-popup-frame = melpaBuild (sources.vertico-popup-frame
+    // {
+      version = "0.1.0";
+      packageRequires = with epkgs; [vertico];
+    });
 }

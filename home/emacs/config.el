@@ -1014,6 +1014,7 @@ See `describe-repeat-maps' for a list of all repeatable commands."
 (after! vertico
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
   (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
+  (vertico-popup-frame-mode)
 
   (bind-keys ("M-S" . vertico-suspend)
              ("M-R" . vertico-repeat)
