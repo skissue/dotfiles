@@ -140,6 +140,7 @@ in {
         atomic-chrome
         esup
         uniline
+        dag-draw
         # Languages
         treesit-grammars.with-all-grammars
         parinfer-rust-mode
