@@ -1450,13 +1450,15 @@ uses the symbol name as the default description, as well as a
               z-ai/glm-4.5-air:free
               qwen/qwen3-coder:free
               qwen/qwen3-235b-a22b:free
+              x-ai/grok-4.1-fast:free
               deepseek/deepseek-chat-v3.1
               inception/mercury-coder
               x-ai/grok-code-fast-1
               z-ai/glm-4.6
-              google/gemini-2.5-flash
               anthropic/claude-haiku-4.5
-              anthropic/claude-sonnet-4.5))
+              google/gemini-3-pro-preview
+              anthropic/claude-sonnet-4.5
+              anthropic/claude-opus-4.5))
   (setopt gptel-model           'qwen3:14b
           gptel-backend         (gptel-make-openai "Local"
                                   :protocol "http"
