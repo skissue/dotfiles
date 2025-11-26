@@ -1440,6 +1440,7 @@ uses the symbol name as the default description, as well as a
               o1
               o1-mini
               o3-mini))
+  (gptel-make-gh-copilot "GitHub Copilot")
   (gptel-make-openai "OpenRouter"
     :host "openrouter.ai"
     :endpoint "/api/v1/chat/completions"
