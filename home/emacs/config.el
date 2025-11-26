@@ -1435,11 +1435,11 @@ uses the symbol name as the default description, as well as a
     :stream t
     :key (##or (secrets-get-secret "KeePassXC" "GitHub AI")
                (user-error "Unable to retrieve GitHub AI key"))
-    :models '(gpt-4o
-              gpt-4o-mini
-              o1
-              o1-mini
-              o3-mini))
+    :models '(gpt-5-mini
+              gpt-5
+              o3-mini
+              o4-mini
+              DeepSeek-R1-0528))
   (gptel-make-gh-copilot "GitHub Copilot")
   (gptel-make-openai "OpenRouter"
     :host "openrouter.ai"
