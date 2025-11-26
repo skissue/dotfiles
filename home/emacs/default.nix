@@ -187,6 +187,7 @@ in {
         org-re-reveal
         ox-hugo
         ob-d2
+        ob-svgbob
         # Notes
         denote
         denote-org
@@ -234,6 +235,7 @@ in {
     nil
     alejandra
     ltex-ls
+    svgbob
   ];
 
   xdg.configFile = {

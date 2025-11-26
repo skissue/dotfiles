@@ -2449,6 +2449,9 @@ a property list containing the parameters of the block.")
 (autoload #'org-babel-execute:d2 "ob-d2" "Execute a BODY of D2 code with org-babel and additional PARAMS.
 This function is called by `org-babel-execute-src-block'.")
 
+(autoload 'org-babel-execute:svgbob "ob-svgbob" "Execute a BODY of Svgbob code with PARAMS via org-babel.
+This function is called by `org-babel-execute-src-block'.")
+
 (defface my/org-list-bullet
   '((t :inherit (fixed-pitch org-list-dt)))
   "Custom face for Org list bulletpoints.")
