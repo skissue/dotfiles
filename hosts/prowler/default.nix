@@ -21,6 +21,7 @@
     ++ mkModulesList [
       "hardware/secure-boot"
       "impermanence"
+      "impermanence/btrfs.nix"
     ];
 
   boot.loader.systemd-boot.enable = true;
