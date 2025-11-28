@@ -3,6 +3,7 @@ keys:
   - &prowler age1dwat457ny5pec53gjd6v292sdxhzz74uksxp7yxshdj5p87p6ymsvtursp
   - &rendezvous age1rj28y40tzyg6dkkfaud9xzt3d08qu85tvjtzsnuuyncg4flfychsvyvev6
   - &nightcrawler age1gelcfus7vuk0n0lwnqtuwemrfttd9cq4d4tx5aqzvsslrskv9d4sak77cc
+  - &iridescent age1jks4y76jn0gj93n3aax7tqpuuq3cgns54434vsxj29ee38rqzadsc9myks
 creation_rules:
   - path_regex: ^secrets/common.yaml$
     key_groups:
@@ -11,6 +12,7 @@ creation_rules:
       - *prowler
       - *rendezvous
       - *nightcrawler
+      - *iridescent
   - path_regex: ^secrets/desktop.yaml$
     key_groups:
     - age:
