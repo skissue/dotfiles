@@ -19,8 +19,6 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.supportedFilesystems = ["bcachefs"];
 
-  services.openssh.openFirewall = true;
-
   # State version (copy from auto-generated configuration.nix during install)
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
