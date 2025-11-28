@@ -12,6 +12,7 @@
       ./acme.nix
       ./caddy.nix
       ./disko.nix
+      ./kanidm.nix
     ]
     ++ mkModulesList [
       "impermanence"
