@@ -13,6 +13,7 @@
     ]
     ++ mkModulesList [
       "impermanence"
+      "impermanence/bcachefs.nix"
     ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
