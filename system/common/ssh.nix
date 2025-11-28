@@ -1,7 +1,13 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   services.openssh = {
     enable = true;
-    openFirewall = false; # Using Tailscale
+    # Using Tailscale, which is unconditionally allowed through the system
+    # firewall.
+    openFirewall = lib.mkDefault false;
     settings = {
       PermitRootLogin = "no";
       PasswordAuthentication = false;
