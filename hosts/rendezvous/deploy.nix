@@ -1,4 +1,4 @@
-{inputs}: {
+{inputs, ...}: {
   hostname = "rendezvous";
   profiles.system = {
     user = "root";

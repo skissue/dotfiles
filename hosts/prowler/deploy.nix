@@ -1,4 +1,4 @@
-{inputs}: {
+{inputs, ...}: {
   hostname = "prowler";
   profiles.system = {
     user = "root";
