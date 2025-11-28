@@ -14,7 +14,7 @@ in {
   environment.persistence."/local" = {
     hideMounts = true;
     directories = ["/var/lib/nixos"] ++ cfg.local.directories;
-    files = cfg.local.files;
+    files = ["/etc/machine-id"] ++ cfg.local.files;
   };
   environment.persistence."/data" = {
     hideMounts = true;
