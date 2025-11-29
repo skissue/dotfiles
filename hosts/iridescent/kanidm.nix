@@ -21,4 +21,17 @@ in {
       tls_key = "${certDir}/key.pem";
     };
   };
+
+  services.caddy.virtualHosts.${domain} = {
+    useACMEHost = "kanidm";
+    extraConfig = ''
+      reverse_proxy https://${config.services.kanidm.serverSettings.bindaddress} {
+        # Use correct domain during TLS verification. Fails otherwise since the
+        # given upstream is an IP.
+        transport http {
+          tls_server_name ${domain}
+        }
+      }
+    '';
+  };
 }
