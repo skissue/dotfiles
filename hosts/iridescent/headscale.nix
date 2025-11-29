@@ -76,6 +76,16 @@ in {
       value = "fd7a:115c:a1e0:5e86:7755:f40d:4b4f:19ed";
     }
     {
+      name = "oldfeeds.${private.domain.private}";
+      type = "A";
+      value = "100.72.228.191";
+    }
+    {
+      name = "oldfeeds.${private.domain.private}";
+      type = "AAAA";
+      value = "fd7a:115c:a1e0:5e86:7755:f40d:4b4f:19ed";
+    }
+    {
       name = "scrobbles.${private.domain.tailnet}";
       type = "A";
       value = "100.72.228.191";

@@ -11,6 +11,7 @@
       ./iperf
       ./koito
       ./media
+      ./miniflux
       ./nginx
       ./notes-publish
       ./postgresql
