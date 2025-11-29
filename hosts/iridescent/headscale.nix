@@ -4,8 +4,8 @@
   private,
   ...
 }: let
+  cfg = config.services.headscale;
   domain = private.domain.tailnet';
-  port = config.services.headscale.port;
 in {
   services.headscale = {
     enable = true;
@@ -24,7 +24,22 @@ in {
         override_local_dns = true;
         nameservers.global = ["9.9.9.9" "149.112.112.112" "2620:fe::fe" "2620:fe::9"];
       };
+
+      # OIDC authentication via kanidm.
+      oidc = {
+        only_start_if_oidc_is_available = true;
+        issuer = "https://auth.${private.domain.private}/oauth2/openid/headscale";
+        client_id = "headscale";
+        client_secret_path = config.sops.secrets.headscale-oidc-secret.path;
+        pkce.enabled = true;
+      };
     };
+  };
+
+  # OIDC secret (from kanidm).
+  sops.secrets.headscale-oidc-secret = {
+    owner = cfg.user;
+    group = cfg.group;
   };
 
   # Access to administratation tools.
@@ -33,7 +48,7 @@ in {
   # Let Caddy automatically get the HTTPS certificate.
   services.caddy.virtualHosts.${domain} = {
     extraConfig = ''
-      reverse_proxy http://localhost:${toString port}
+      reverse_proxy http://localhost:${toString cfg.port}
     '';
   };
 }
