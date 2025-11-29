@@ -29,10 +29,6 @@
     });
     openFirewall = true;
     authKeyFile = config.sops.secrets.tailscale-auth-key.path;
-    authKeyParameters = {
-      ephemeral = false;
-      preauthorized = true;
-    };
     extraUpFlags = [
       "--login-server"
       "https://${private.domain.tailnet'}"
