@@ -22,7 +22,7 @@ in {
         magic_dns = true;
         base_domain = "in.${domain}";
         override_local_dns = true;
-        nameservers.global = ["9.9.9.9" "149.112.112.112" "2620:fe::fe" "2620:fe::9"];
+        nameservers.global = ["fd7a:115c:a1e0:5e86:7755:f40d:4b4f:19ed" "100.72.228.191"];
       };
 
       # OIDC authentication via kanidm.
@@ -51,4 +51,39 @@ in {
       reverse_proxy http://localhost:${toString cfg.port}
     '';
   };
+
+  # DNS
+  # TODO clean up
+  services.headscale.settings.dns.extra_records = [
+    {
+      name = "media.${private.domain.private}";
+      type = "A";
+      value = "100.72.228.191";
+    }
+    {
+      name = "media.${private.domain.private}";
+      type = "AAAA";
+      value = "fd7a:115c:a1e0:5e86:7755:f40d:4b4f:19ed";
+    }
+    {
+      name = "feeds.${private.domain.private}";
+      type = "A";
+      value = "100.72.228.191";
+    }
+    {
+      name = "feeds.${private.domain.private}";
+      type = "AAAA";
+      value = "fd7a:115c:a1e0:5e86:7755:f40d:4b4f:19ed";
+    }
+    {
+      name = "scrobbles.${private.domain.tailnet}";
+      type = "A";
+      value = "100.72.228.191";
+    }
+    {
+      name = "scrobbles.${private.domain.tailnet}";
+      type = "AAAA";
+      value = "fd7a:115c:a1e0:5e86:7755:f40d:4b4f:19ed";
+    }
+  ];
 }
