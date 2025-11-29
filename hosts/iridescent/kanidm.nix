@@ -6,9 +6,17 @@
 }: let
   domain = "auth.${private.domain.private}";
   certDir = config.security.acme.certs.kanidm.directory;
+  # Hardcoded user.
+  user = config.users.users.kanidm;
 in {
   # HTTPS certificate.
-  security.acme.certs.kanidm.domain = domain;
+  security.acme.certs.kanidm = {
+    domain = domain;
+    postRun = ''
+      ${pkgs.acl}/bin/setfacl -m u:${user.name}:rx ${certDir}
+      ${pkgs.acl}/bin/setfacl -m u:${user.name}:r  ${certDir}/{fullchain,key}.pem
+    '';
+  };
 
   services.kanidm = {
     package = pkgs.kanidm_1_8;
