@@ -23,10 +23,15 @@ in {
 
     enableServer = true;
     serverSettings = {
+      version = "2";
+
       inherit domain;
       origin = "https://${domain}";
       tls_chain = "${certDir}/fullchain.pem";
       tls_key = "${certDir}/key.pem";
+
+      # Trust X-Forwarded-For from Caddy (localhost).
+      http_client_address_info.x-forward-for = ["127.0.0.1"];
     };
   };
 
