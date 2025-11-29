@@ -12,10 +12,13 @@ in {
   # HTTPS certificate.
   security.acme.certs.kanidm = {
     domain = domain;
+    # Allow kanidm service to read the certificates it needs.
     postRun = ''
       ${pkgs.acl}/bin/setfacl -m u:${user.name}:rx ${certDir}
       ${pkgs.acl}/bin/setfacl -m u:${user.name}:r  ${certDir}/{fullchain,key}.pem
     '';
+    # Reload kanidm and Caddy when certificates are updated.
+    reloadServices = ["kanidm" "caddy"];
   };
 
   services.kanidm = {
