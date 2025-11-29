@@ -13,7 +13,7 @@
     content = ''
       chain allowOutgoing {
         type route hook output priority 0; policy accept;
-        ip  daddr 100.69.0.0/16       ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+        ip  daddr 100.72.0.0/16       ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
         ip6 daddr fd7a:115c:a1e0::/48 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
       }
 
@@ -34,7 +34,7 @@
   # disabling reverse path filtering entirely, this allows all incoming
   # Tailscale traffic to pass the reverse path chain.
   networking.firewall.extraReversePathFilterRules = ''
-    iifname "tailscale0" ip saddr 100.69.0.0/16 accept;
+    iifname "tailscale0" ip saddr 100.72.0.0/16 accept;
   '';
 
   # Exclude Tailscale from Mullvad tunnel
