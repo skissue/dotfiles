@@ -12,6 +12,7 @@
       ./acme.nix
       ./caddy.nix
       ./disko.nix
+      ./headscale.nix
       ./kanidm.nix
     ]
     ++ mkModulesList [
