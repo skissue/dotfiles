@@ -35,6 +35,17 @@ in {
     };
   };
 
+  # Hardcoded data directory (services.kanidm.serverSettings.db_path is
+  # read-only).
+  my.persist.data.directories = [
+    {
+      directory = "/var/lib/kanidm";
+      user = user.name;
+      group = user.group;
+      mode = "700";
+    }
+  ];
+
   services.caddy.virtualHosts.${domain} = {
     useACMEHost = "kanidm";
     extraConfig = ''
