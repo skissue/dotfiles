@@ -23,9 +23,11 @@ in {
   };
   chaotic.mesa-git.extraPackages = graphicsPackages;
 
+  security.acme.certs.media.domain = domain;
+  
   services.nginx.virtualHosts.${domain} = {
     addSSL = true;
-    useACMEHost = "tailnet";
+    useACMEHost = "media";
     locations."/" = {
       proxyPass = "http://localhost:8096";
       proxyWebsockets = true;

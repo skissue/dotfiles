@@ -19,6 +19,7 @@
       ./wireless
     ]
     ++ mkModulesList [
+      "acme"
       "hardware/secure-boot"
       "impermanence"
       "impermanence/btrfs.nix"

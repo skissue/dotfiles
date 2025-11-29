@@ -11,14 +11,16 @@ in {
     enable = true;
     webserver = "nginx";
     virtualHost = domain;
-    baseUrl = "http://${domain}";
+    baseUrl = "https://${domain}";
     # Don't worry, this instance isn't public.
     passwordFile = pkgs.writeText "freshrss-default-password" "admin";
   };
 
+  security.acme.certs.feeds.domain = domain;
+
   services.nginx.virtualHosts.${domain} = {
     addSSL = true;
-    useACMEHost = "tailnet";
+    useACMEHost = "feeds";
   };
 
   my.persist.local.directories = [

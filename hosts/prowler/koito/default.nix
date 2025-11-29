@@ -16,9 +16,11 @@ in {
     allowedHosts = [domain];
   };
 
+  security.acme.certs.scrobbles.domain = domain;
+
   services.nginx.virtualHosts.${domain} = {
     addSSL = true;
-    useACMEHost = "tailnet";
+    useACMEHost = "scrobbles";
     locations."/" = {
       proxyPass = "http://localhost:${toString config.services.koito.port}";
       proxyWebsockets = true;
