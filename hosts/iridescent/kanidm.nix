@@ -38,6 +38,12 @@ in {
     };
   };
 
+  # Ensure HTTPS certificates exist before starting.
+  systemd.services.kanidm = {
+    requires = ["acme-order-renew-kanidm.service"];
+    after = ["acme-order-renew-kanidm.service"];
+  };
+
   # Hardcoded data directory (services.kanidm.serverSettings.db_path is
   # read-only).
   my.persist.data.directories = [
