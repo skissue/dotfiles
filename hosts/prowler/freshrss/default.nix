@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.services.freshrss;
-  domain = "feeds.${private.domain.tailnet}";
+  domain = "feeds.${private.domain.private}";
 in {
   services.freshrss = {
     enable = true;

@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.services.jellyfin;
-  domain = "media.${private.domain.tailnet}";
+  domain = "media.${private.domain.private}";
   graphicsPackages = with pkgs; [
     intel-media-driver
     libva-vdpau-driver

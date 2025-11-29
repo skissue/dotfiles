@@ -20,7 +20,7 @@ in {
         ];
         # Tailscale IPs
         access-control = [
-          "100.69.0.0/16 allow"
+          "100.72.0.0/16 allow"
           "fd7a:115c:a1e0::/48 allow"
         ];
       };

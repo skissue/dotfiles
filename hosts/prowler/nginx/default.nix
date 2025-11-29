@@ -21,9 +21,9 @@ in {
     acceptTerms = true;
     defaults.group = "nginx";
     certs.tailnet = {
-      domain = private.domain.tailnet;
+      domain = private.domain.private;
       email = "acme@${private.domain.personal}";
-      extraDomainNames = ["*.${private.domain.tailnet}"];
+      extraDomainNames = ["*.${private.domain.private}"];
       dnsProvider = "porkbun";
       environmentFile = config.sops.secrets.porkbun-api-env.path;
     };
