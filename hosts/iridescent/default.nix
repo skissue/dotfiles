@@ -9,13 +9,13 @@
     [
       # Static network configuration for DigitalOcean, contains public IPs.
       inputs.private.nixosModules.iridescent-networking
-      ./acme.nix
       ./caddy.nix
       ./disko.nix
       ./headscale.nix
       ./kanidm.nix
     ]
     ++ mkModulesList [
+      "acme"
       "impermanence"
       "impermanence/bcachefs.nix"
     ];
