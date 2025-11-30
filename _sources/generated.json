@@ -22,7 +22,7 @@
     },
     "consult-omni": {
         "cargoLocks": null,
-        "date": "2025-09-27",
+        "date": "2025-11-28",
         "extract": null,
         "name": "consult-omni",
         "passthru": null,
@@ -34,12 +34,12 @@
             "name": null,
             "owner": "armindarvish",
             "repo": "consult-omni",
-            "rev": "9fb21c08ed0f836727f2d325516e3232ce31ef97",
-            "sha256": "sha256-ghFB5NiheDO01I1quQywu8Sz+yWruYP/S00sm+aewMY=",
+            "rev": "23fc72faecb2161066832bb30e6dcf22690a30f1",
+            "sha256": "sha256-8qJTvt0DdESgXU9fyAjzKPQw21D9s0tY2Wa7rIvQAeI=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "9fb21c08ed0f836727f2d325516e3232ce31ef97"
+        "version": "23fc72faecb2161066832bb30e6dcf22690a30f1"
     },
     "gptel-quick": {
         "cargoLocks": null,

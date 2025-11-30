@@ -15,15 +15,15 @@
   };
   consult-omni = {
     pname = "consult-omni";
-    version = "9fb21c08ed0f836727f2d325516e3232ce31ef97";
+    version = "23fc72faecb2161066832bb30e6dcf22690a30f1";
     src = fetchFromGitHub {
       owner = "armindarvish";
       repo = "consult-omni";
-      rev = "9fb21c08ed0f836727f2d325516e3232ce31ef97";
+      rev = "23fc72faecb2161066832bb30e6dcf22690a30f1";
       fetchSubmodules = false;
-      sha256 = "sha256-ghFB5NiheDO01I1quQywu8Sz+yWruYP/S00sm+aewMY=";
+      sha256 = "sha256-8qJTvt0DdESgXU9fyAjzKPQw21D9s0tY2Wa7rIvQAeI=";
     };
-    date = "2025-09-27";
+    date = "2025-11-28";
   };
   gptel-quick = {
     pname = "gptel-quick";
