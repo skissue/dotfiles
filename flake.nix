@@ -13,7 +13,7 @@
     impermanence.url = "github:nix-community/impermanence";
     persist-retro.url = "github:Geometer1729/persist-retro";
 
-    private.url = "git+ssh://ad@rendezvous/home/ad/dotfiles.private";
+    private.url = "git+ssh://ad@prowler/home/ad/dotfiles.private";
 
     devshell = {
       url = "github:numtide/devshell";
