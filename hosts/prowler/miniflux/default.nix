@@ -16,13 +16,20 @@ in {
     adminCredentialsFile = config.sops.secrets.miniflux-config.path;
     config = {
       BASE_URL = "https://${domain}";
+      HTTPS = 1;
 
       # SSO via Kanidm. Secret is set in the adminCredentialsFile.
       OAUTH2_PROVIDER = "oidc";
+      OAUTH2_OIDC_PROVIDER_NAME = "Kanidm";
       OAUTH2_CLIENT_ID = "miniflux";
       OAUTH2_REDIRECT_URL = "https://${domain}/oauth2/oidc/callback";
       OAUTH2_OIDC_DISCOVERY_ENDPOINT = "https://auth.${private.domain.private}/oauth2/openid/miniflux";
       OAUTH2_USER_CREATION = 1;
+      DISABLE_LOCAL_AUTH = 1;
+
+      CLEANUP_ARCHIVE_READ_DAYS = 365;
+      CLEANUP_ARCHIVE_UNREAD_DAYS = -1;
+      FETCH_YOUTUBE_WATCH_TIME = 1;
     };
   };
 
