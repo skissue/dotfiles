@@ -31,6 +31,7 @@
     mullvad-browser
     nautilus
     obs-studio
+    opencode
     ouch
     playerctl
     prismlauncher
