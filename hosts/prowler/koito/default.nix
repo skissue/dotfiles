@@ -18,13 +18,11 @@ in {
 
   security.acme.certs.scrobbles.domain = domain;
 
-  services.nginx.virtualHosts.${domain} = {
-    addSSL = true;
+  services.caddy.virtualHosts.${domain} = {
     useACMEHost = "scrobbles";
-    locations."/" = {
-      proxyPass = "http://localhost:${toString config.services.koito.port}";
-      proxyWebsockets = true;
-    };
+    extraConfig = ''
+      reverse_proxy http://localhost:${toString config.services.koito.port}
+    '';
   };
 
   my.persist.local.directories = [

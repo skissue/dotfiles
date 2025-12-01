@@ -12,7 +12,6 @@
       ./koito
       ./media
       ./miniflux
-      ./nginx
       ./notes-publish
       ./postgresql
       ./remote-luks-unlock
@@ -21,6 +20,7 @@
     ]
     ++ mkModulesList [
       "acme"
+      "caddy"
       "hardware/secure-boot"
       "impermanence"
       "impermanence/btrfs.nix"

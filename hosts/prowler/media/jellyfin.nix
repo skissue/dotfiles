@@ -24,14 +24,12 @@ in {
   chaotic.mesa-git.extraPackages = graphicsPackages;
 
   security.acme.certs.media.domain = domain;
-  
-  services.nginx.virtualHosts.${domain} = {
-    addSSL = true;
+
+  services.caddy.virtualHosts.${domain} = {
     useACMEHost = "media";
-    locations."/" = {
-      proxyPass = "http://localhost:8096";
-      proxyWebsockets = true;
-    };
+    extraConfig = ''
+      reverse_proxy http://localhost:8096
+    '';
   };
 
   my.persist.data.directories = [

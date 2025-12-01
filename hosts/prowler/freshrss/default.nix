@@ -5,22 +5,17 @@
   ...
 }: let
   cfg = config.services.freshrss;
-  domain = "oldfeeds.${private.domain.private}";
+  url = "http://oldfeeds.${private.domain.private}";
 in {
   services.freshrss = {
     enable = true;
-    webserver = "nginx";
-    virtualHost = domain;
-    baseUrl = "http://${domain}";
+    webserver = "caddy";
+    # Using the HTTP URL for the host ensures Caddy won't try to get an SSL
+    # certificate.
+    virtualHost = url;
+    baseUrl = url;
     # Don't worry, this instance isn't public.
     passwordFile = pkgs.writeText "freshrss-default-password" "admin";
-  };
-
-  # security.acme.certs.feeds.domain = domain;
-
-  services.nginx.virtualHosts.${domain} = {
-    # addSSL = true;
-    # useACMEHost = "feeds";
   };
 
   my.persist.local.directories = [

@@ -38,11 +38,10 @@ in {
 
   security.acme.certs.feeds.domain = domain;
 
-  services.nginx.virtualHosts.${domain} = {
-    addSSL = true;
+  services.caddy.virtualHosts.${domain} = {
     useACMEHost = "feeds";
-    locations."/" = {
-      proxyPass = "http://${cfg.config.LISTEN_ADDR}";
-    };
+    extraConfig = ''
+      reverse_proxy http://${cfg.config.LISTEN_ADDR}
+    '';
   };
 }
