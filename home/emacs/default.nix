@@ -141,6 +141,7 @@ in {
         esup
         uniline
         dag-draw
+        agent-shell
         # Languages
         treesit-grammars.with-all-grammars
         parinfer-rust-mode
