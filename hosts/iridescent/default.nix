@@ -19,6 +19,7 @@
       "caddy"
       "impermanence"
       "impermanence/bcachefs.nix"
+      "netdata"
     ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
