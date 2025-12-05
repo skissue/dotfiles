@@ -21,6 +21,8 @@ in {
   services.caddy.virtualHosts.${domain} = {
     useACMEHost = "ntfy";
     extraConfig = ''
+      @not-tailnet not remote_ip 100.72.0.0/16 fd7a:115c:a1e0::/48
+      respond @not-tailnet 403
       reverse_proxy http://${cfg.settings.listen-http}
     '';
   };
