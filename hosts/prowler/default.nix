@@ -24,6 +24,7 @@
       "hardware/secure-boot"
       "impermanence"
       "impermanence/btrfs.nix"
+      "netdata"
     ];
 
   boot.loader.systemd-boot.enable = true;
