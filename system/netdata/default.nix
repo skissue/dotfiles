@@ -1,8 +1,11 @@
 {
+  config,
   pkgs,
   private,
   ...
-}: {
+}: let
+  cfg = config.services.netdata;
+in {
   services.netdata = {
     enable = true;
     package = pkgs.netdata.override {
@@ -20,4 +23,21 @@
       DEFAULT_RECIPIENT_NTFY="https://ntfy.${private.domain.private}/alerts"
     '';
   };
+
+  # Both of these directories are managed by systemd and thus always in the same
+  # place. Netdata stores the actual data in the cache directory.
+  my.persist.local.directories = [
+    {
+      directory = "/var/lib/netdata";
+      user = cfg.user;
+      group = cfg.group;
+      mode = "750";
+    }
+    {
+      directory = "/var/cache/netdata";
+      user = cfg.user;
+      group = cfg.group;
+      mode = "750";
+    }
+  ];
 }
