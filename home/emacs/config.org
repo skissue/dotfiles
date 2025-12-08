@@ -2986,7 +2986,8 @@ Org-srs is a complete spaced repetition system, 100% in Org Mode!
 
 #+begin_src elisp
   (after! org-srs
-    (setopt org-srs-item-cloze-visibility t))
+    (setopt org-srs-item-cloze-visibility t
+            org-srs-review-order-new 'random))
 #+end_src
 
 ** Auto Tangling

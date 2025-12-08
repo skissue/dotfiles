@@ -2357,7 +2357,8 @@ have `org-warning' face."
   (setopt org-anki-default-deck "Default"))
 
 (after! org-srs
-  (setopt org-srs-item-cloze-visibility t))
+  (setopt org-srs-item-cloze-visibility t
+          org-srs-review-order-new 'random))
 
 (add-to-list 'safe-local-variable-values
              '(eval . (add-hook 'after-save-hook #'org-babel-tangle nil t)))
