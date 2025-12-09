@@ -125,26 +125,29 @@ Only run once.")
            gcs-done))
 (add-hook 'emacs-startup-hook #'my/display-startup-time 50)
 
-(defvar my/private
-  (with-temp-buffer
-    (insert-file-contents (expand-file-name "private.json" user-emacs-directory))
-    (json-parse-buffer :object-type 'alist))
-  "My private configuration data.")
+(desktop!
+ (defvar my/private
+   (with-temp-buffer
+     (insert-file-contents (expand-file-name "private.json" user-emacs-directory))
+     (json-parse-buffer :object-type 'alist))
+   "My private configuration data."))
 
-(defun my/private (&rest keys)
-  "Return value of `my/private' by recursively following KEYS."
-  (map-nested-elt my/private keys))
+(desktop!
+ (defun my/private (&rest keys)
+   "Return value of `my/private' by recursively following KEYS."
+   (map-nested-elt my/private keys)))
 
 (defvar my/theuniverse "~/theuniverse/"
   "Path for `theuniverse'.")
 (defvar my/brain2 (expand-file-name "brain2/" my/theuniverse)
   "Path for `theuniverse'.")
 
-(setq no-littering-etc-directory
-      (expand-file-name "emacs/" (getenv "XDG_CONFIG_HOME"))
-      no-littering-var-directory
-      (expand-file-name "emacs/" (getenv "XDG_DATA_HOME")))
-(require 'no-littering)
+(desktop!
+ (setq no-littering-etc-directory
+       (expand-file-name "emacs/" (getenv "XDG_CONFIG_HOME"))
+       no-littering-var-directory
+       (expand-file-name "emacs/" (getenv "XDG_DATA_HOME")))
+ (require 'no-littering))
 
 (setq make-backup-files nil
       create-lockfiles nil)
@@ -299,7 +302,8 @@ where it was when you previously visited the same file."
 
 (add-hook 'prog-mode-hook #'subword-mode)
 
-(setq auth-sources '(default))
+(desktop!
+ (setq auth-sources '(default)))
 
 (setq save-interprogram-paste-before-kill t)
 
@@ -317,55 +321,57 @@ where it was when you previously visited the same file."
       compilation-ask-about-save nil
       compilation-scroll-output 'first-error)
 
-(setq display-buffer-base-action '(display-buffer-pop-up-frame)
-      frame-auto-hide-function #'delete-frame)
+(desktop!
+ (setq display-buffer-base-action '(display-buffer-pop-up-frame)
+       frame-auto-hide-function #'delete-frame))
 
-;; `async-shell-command'
-(add-to-list 'display-buffer-alist
-             `(,(regexp-quote shell-command-buffer-name-async)
-               display-buffer-same-window))
+(desktop!
+ ;; `async-shell-command'
+ (add-to-list 'display-buffer-alist
+              `(,(regexp-quote shell-command-buffer-name-async)
+                display-buffer-same-window))
 
-;; `org-read-date'
-(add-to-list 'display-buffer-alist
-             '((derived-mode . calendar-mode)
-               display-buffer-pop-up-window))
+ ;; `org-read-date'
+ (add-to-list 'display-buffer-alist
+              '((derived-mode . calendar-mode)
+                display-buffer-pop-up-window))
 
-;; Magit diff buffers
-(add-to-list 'display-buffer-alist
-             '((major-mode . magit-diff-mode)
-               display-buffer-pop-up-window))
+ ;; Magit diff buffers
+ (add-to-list 'display-buffer-alist
+              '((major-mode . magit-diff-mode)
+                display-buffer-pop-up-window))
 
-;; Org Src buffers
-(after! org
-  (setopt org-src-window-setup 'current-window))
+ ;; Org Src buffers
+ (after! org
+   (setopt org-src-window-setup 'current-window))
 
-;; Org Capture pops up a useless frame without this
-(add-to-list 'display-buffer-alist
-             `(,(rx "*Capture*")
-               display-buffer-pop-up-window))
+ ;; Org Capture pops up a useless frame without this
+ (add-to-list 'display-buffer-alist
+              `(,(rx "*Capture*")
+                display-buffer-pop-up-window))
 
-;; Org LaTeX preview spams frames without this
-(add-to-list 'display-buffer-alist
-             `(,(rx "*Org Preview LaTeX Output*")
-               display-buffer-pop-up-window))
+ ;; Org LaTeX preview spams frames without this
+ (add-to-list 'display-buffer-alist
+              `(,(rx "*Org Preview LaTeX Output*")
+                display-buffer-pop-up-window))
 
-;; Sly
-(add-to-list 'display-buffer-alist
-             '((major-mode . sly-mrepl-mode)
-               display-buffer-reuse-window))
-(add-to-list 'display-buffer-alist
-             '((major-mode . sly-stickers--replay-mode)
-               display-buffer-pop-up-window))
-;; Going through stickers repeatedly opens frames without this.
-(define-advice sly-stickers--find-and-flash
-    (:around (fn &rest args) popup-fix)
-  (let ((display-buffer-overriding-action '(display-buffer-reuse-window)))
-    (apply fn args)))
+ ;; Sly
+ (add-to-list 'display-buffer-alist
+              '((major-mode . sly-mrepl-mode)
+                display-buffer-reuse-window))
+ (add-to-list 'display-buffer-alist
+              '((major-mode . sly-stickers--replay-mode)
+                display-buffer-pop-up-window))
+ ;; Going through stickers repeatedly opens frames without this.
+ (define-advice sly-stickers--find-and-flash
+     (:around (fn &rest args) popup-fix)
+   (let ((display-buffer-overriding-action '(display-buffer-reuse-window)))
+     (apply fn args)))
 
-;; Fixes Corfu popupinfo dialog with Emacs Lisp content.
-(define-advice elisp--company-doc-buffer (:around (fn &rest args) popup-fix)
-  (let (display-buffer-base-action)
-    (apply fn args)))
+ ;; Fixes Corfu popupinfo dialog with Emacs Lisp content.
+ (define-advice elisp--company-doc-buffer (:around (fn &rest args) popup-fix)
+   (let (display-buffer-base-action)
+     (apply fn args))))
 
 (bind-keys ([remap downcase-word] . downcase-dwim)
            ([remap upcase-word] . upcase-dwim))
@@ -718,11 +724,12 @@ Only difference is to compose symbols in comments as well. See
 (after! doom-modeline
   (minions-mode))
 
-(require! 'nyan-mode)
-(setq nyan-bar-length 20
-      nyan-minimum-window-width 48
-      nyan-animate-nyancat t)
-(nyan-mode)
+(desktop!
+ (require! 'nyan-mode)
+ (setq nyan-bar-length 20
+       nyan-minimum-window-width 48
+       nyan-animate-nyancat t)
+ (nyan-mode))
 
 (add-hook 'eldoc-mode-hook #'eldoc-box-hover-at-point-mode)
 
@@ -752,14 +759,15 @@ Only difference is to compose symbols in comments as well. See
 (after! transient
   (bind-key "<escape>" #'transient-quit-one transient-base-map))
 
-(after! transient
-  (setopt transient-display-buffer-action
-          '(display-buffer-pop-up-frame
-            (pop-up-frame-parameters
-             (name . "*transient*")
-             (width . 80)
-             (height . 15)))
-          transient-show-popup 0.5))
+(desktop!
+ (after! transient
+   (setopt transient-display-buffer-action
+           '(display-buffer-pop-up-frame
+             (pop-up-frame-parameters
+              (name . "*transient*")
+              (width . 80)
+              (height . 15)))
+           transient-show-popup 0.5)))
 
 (dolist (map '(my/buffer-map
                my/git-map
@@ -794,114 +802,115 @@ Only difference is to compose symbols in comments as well. See
            ("q" . kill-buffer-and-window)
            ("`" . meow-last-buffer))
 
-(require! 'meow)
+(desktop!
+ (require! 'meow)
 
-(setq meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh
-      meow-use-clipboard t
-      meow-keypad-self-insert-undefined nil
-      auto-save-visited-predicate (##not (meow-insert-mode-p)))
-(ef-themes-with-colors
-  (custom-set-faces
-   `(meow-insert-indicator ((t :foreground ,fg-added)))
-   `(meow-beacon-indicator ((t :foreground ,fg-changed)))
-   `(meow-keypad-indicator ((t :foreground ,fg-removed)))))
+ (setq meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh
+       meow-use-clipboard t
+       meow-keypad-self-insert-undefined nil
+       auto-save-visited-predicate (##not (meow-insert-mode-p)))
+ (ef-themes-with-colors
+   (custom-set-faces
+    `(meow-insert-indicator ((t :foreground ,fg-added)))
+    `(meow-beacon-indicator ((t :foreground ,fg-changed)))
+    `(meow-keypad-indicator ((t :foreground ,fg-removed)))))
 
-(meow-motion-define-key
- '("e"        . meow-next)
- '("u"        . meow-prev)
- '("<escape>" . keyboard-escape-quit))
+ (meow-motion-define-key
+  '("e"        . meow-next)
+  '("u"        . meow-prev)
+  '("<escape>" . keyboard-escape-quit))
 
-(meow-leader-define-key
- '("?" . meow-cheatsheet)
- '("1" . meow-digit-argument)
- '("2" . meow-digit-argument)
- '("3" . meow-digit-argument)
- '("4" . meow-digit-argument)
- '("5" . meow-digit-argument)
- '("6" . meow-digit-argument)
- '("7" . meow-digit-argument)
- '("8" . meow-digit-argument)
- '("9" . meow-digit-argument)
- '("0" . meow-digit-argument)
- '("l" . meow-universal-argument)
- `("s" . ,search-map)
- '("p" . "C-x p"))
+ (meow-leader-define-key
+  '("?" . meow-cheatsheet)
+  '("1" . meow-digit-argument)
+  '("2" . meow-digit-argument)
+  '("3" . meow-digit-argument)
+  '("4" . meow-digit-argument)
+  '("5" . meow-digit-argument)
+  '("6" . meow-digit-argument)
+  '("7" . meow-digit-argument)
+  '("8" . meow-digit-argument)
+  '("9" . meow-digit-argument)
+  '("0" . meow-digit-argument)
+  '("l" . meow-universal-argument)
+  `("s" . ,search-map)
+  '("p" . "C-x p"))
 
-(meow-normal-define-key
- '("0" . meow-expand-0)
- '("1" . meow-expand-1)
- '("2" . meow-expand-2)
- '("3" . meow-expand-3)
- '("4" . meow-expand-4)
- '("5" . meow-expand-5)
- '("6" . meow-expand-6)
- '("7" . meow-expand-7)
- '("8" . meow-expand-8)
- '("9" . meow-expand-9)
- '("a" . meow-append)
- '("A" . meow-open-below)
- '("c" . meow-change)
- '("d" . meow-kill)
- '("D" . meow-C-k)
- '("e" . meow-next)
- '("E" . meow-next-expand)
- '("f" . meow-next-word)
- '("F" . meow-next-symbol)
- `("g" . ,goto-map)
- '("G" . meow-grab)
- '("h" . meow-mark-word)
- '("H" . meow-mark-symbol)
- '("i" . meow-right)
- '("I" . meow-right-expand)
- '("j" . "gc")
- '("l" . meow-line)
- '("L" . meow-goto-line)
- '("m" . meow-undo)
- '("M" . meow-undo-in-selection)
- '("n" . meow-left)
- '("N" . meow-left-expand)
- '("o" . meow-tree-sitter-node)
- '("O" . meow-to-block)
- '("p" . meow-replace)
- '("P" . meow-yank-pop)
- '("q" . meow-quit)
- '("r" . meow-join)
- '("s" . meow-insert)
- '("S" . meow-open-above)
- '("t" . meow-till)
- '("T" . meow-find)
- '("u" . meow-prev)
- '("U" . meow-prev-expand)
- '("v" . meow-search)
- '("w" . meow-back-word)
- '("W" . meow-back-symbol)
- '("x" . meow-swap-grab)
- '("X" . meow-pop-selection)
- '("y" . meow-save)
- '("z" . meow-pop-to-mark)
- '("Z" . meow-unpop-to-mark)
- '("'" . repeat)
- '(";" . meow-reverse)
- '("-" . negative-argument)
- '("=" . meow-indent)
- '("," . meow-inner-of-thing)
- '("." . meow-bounds-of-thing)
- '("[" . meow-beginning-of-thing)
- '("]" . meow-end-of-thing)
- '("/" . meow-visit)
- '("<escape>" . meow-cancel-selection))
+ (meow-normal-define-key
+  '("0" . meow-expand-0)
+  '("1" . meow-expand-1)
+  '("2" . meow-expand-2)
+  '("3" . meow-expand-3)
+  '("4" . meow-expand-4)
+  '("5" . meow-expand-5)
+  '("6" . meow-expand-6)
+  '("7" . meow-expand-7)
+  '("8" . meow-expand-8)
+  '("9" . meow-expand-9)
+  '("a" . meow-append)
+  '("A" . meow-open-below)
+  '("c" . meow-change)
+  '("d" . meow-kill)
+  '("D" . meow-C-k)
+  '("e" . meow-next)
+  '("E" . meow-next-expand)
+  '("f" . meow-next-word)
+  '("F" . meow-next-symbol)
+  `("g" . ,goto-map)
+  '("G" . meow-grab)
+  '("h" . meow-mark-word)
+  '("H" . meow-mark-symbol)
+  '("i" . meow-right)
+  '("I" . meow-right-expand)
+  '("j" . "gc")
+  '("l" . meow-line)
+  '("L" . meow-goto-line)
+  '("m" . meow-undo)
+  '("M" . meow-undo-in-selection)
+  '("n" . meow-left)
+  '("N" . meow-left-expand)
+  '("o" . meow-tree-sitter-node)
+  '("O" . meow-to-block)
+  '("p" . meow-replace)
+  '("P" . meow-yank-pop)
+  '("q" . meow-quit)
+  '("r" . meow-join)
+  '("s" . meow-insert)
+  '("S" . meow-open-above)
+  '("t" . meow-till)
+  '("T" . meow-find)
+  '("u" . meow-prev)
+  '("U" . meow-prev-expand)
+  '("v" . meow-search)
+  '("w" . meow-back-word)
+  '("W" . meow-back-symbol)
+  '("x" . meow-swap-grab)
+  '("X" . meow-pop-selection)
+  '("y" . meow-save)
+  '("z" . meow-pop-to-mark)
+  '("Z" . meow-unpop-to-mark)
+  '("'" . repeat)
+  '(";" . meow-reverse)
+  '("-" . negative-argument)
+  '("=" . meow-indent)
+  '("," . meow-inner-of-thing)
+  '("." . meow-bounds-of-thing)
+  '("[" . meow-beginning-of-thing)
+  '("]" . meow-end-of-thing)
+  '("/" . meow-visit)
+  '("<escape>" . meow-cancel-selection))
 
-(dolist (cmd '((meow-kill    . meow-delete)
-               (meow-replace . meow-yank)
-               (meow-reverse . negative-argument)))
-  (setf (alist-get (car cmd) meow-selection-command-fallback)
-        (cdr cmd)))
-(dotimes (i 10)
-  (setf (alist-get (intern (format "meow-expand-%s" i))
-                   meow-selection-command-fallback)
-        #'meow-digit-argument))
+ (dolist (cmd '((meow-kill    . meow-delete)
+                (meow-replace . meow-yank)
+                (meow-reverse . negative-argument)))
+   (setf (alist-get (car cmd) meow-selection-command-fallback)
+         (cdr cmd)))
+ (dotimes (i 10)
+   (setf (alist-get (intern (format "meow-expand-%s" i))
+                    meow-selection-command-fallback)
+         #'meow-digit-argument))
 
-(meow-global-mode)
+ (meow-global-mode))
 
 (unbind-key "C-f" 'help-map)
 (unbind-key "C-x C-n")
@@ -1210,28 +1219,32 @@ uses the symbol name as the default description, as well as a
   (advice-add 'helpful-update
               :after #'elisp-demos-advice-helpful-update))
 
-(add-hook 'my/first-file-hook #'envrc-global-mode)
+(desktop!
+ (add-hook 'my/first-file-hook #'envrc-global-mode))
 
-(after! org
-  (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment))
+(desktop!
+ (after! org
+   (advice-add #'org-babel-execute-src-block
+               :around #'envrc-propagate-environment)))
 
-(defun my/direnv-use-nix ()
-  "Create an .envrc file to enable Direnv for Nix."
-  (interactive)
-  (let* ((dir (if-let* ((proj (project-current)))
-                  (project-root proj)
-                default-directory))
-         (path (expand-file-name ".envrc" dir))
-         (shell (expand-file-name "shell.nix" dir))
-         (flake (expand-file-name "flake.nix" dir)))
-    (when (file-exists-p path)
-      (user-error ".envrc file already exists"))
-    (with-temp-file path
-      (insert (cond
-               ((file-exists-p flake) "use flake")
-               ((file-exists-p shell) "use nix")
-               (t (user-error "Could not find Nix environment file")))))
-    (envrc-allow)))
+(desktop!
+ (defun my/direnv-use-nix ()
+   "Create an .envrc file to enable Direnv for Nix."
+   (interactive)
+   (let* ((dir (if-let* ((proj (project-current)))
+                   (project-root proj)
+                 default-directory))
+          (path (expand-file-name ".envrc" dir))
+          (shell (expand-file-name "shell.nix" dir))
+          (flake (expand-file-name "flake.nix" dir)))
+     (when (file-exists-p path)
+       (user-error ".envrc file already exists"))
+     (with-temp-file path
+        (insert (cond)
+                ((file-exists-p flake) "use flake")
+                ((file-exists-p shell) "use nix")
+                (t (user-error "Could not find Nix environment file"))))
+     (envrc-allow))))
 
 (add-hooks! '(prog-mode-hook text-mode-hook) #'yas-minor-mode)
 
@@ -1342,10 +1355,11 @@ uses the symbol name as the default description, as well as a
                      ,(nerd-icons-octicon "nf-oct-copilot"
                                           :face 'nerd-icons-green))))))
 
-(pdf-loader-install)
+(desktop!
+ (pdf-loader-install)
 
-(after! dirvish
-  (add-hook 'dirvish-directory-view-mode-hook #'pdf-tools-install))
+ (after! dirvish
+   (add-hook 'dirvish-directory-view-mode-hook #'pdf-tools-install)))
 
 (after! pdf-tools
   (bind-key "?" #'gptel-quick pdf-view-mode-map)
@@ -1355,21 +1369,22 @@ uses the symbol name as the default description, as well as a
     "n" #'pdf-view-next-line-or-next-page
     "p" #'pdf-view-previous-line-or-previous-page))
 
-(defun my/zoxide-add-safe (&optional path &rest _)
-  "Call `zoxide-add' if PATH exists."
-  (require! 'zoxide)
-  (unless path
-    (setq path (funcall zoxide-get-path-function 'add)))
-  (when (file-exists-p path)
-    (zoxide-add path))
-  ;; Return nil, otherwise running inside `dirvish-find-entry-hook' inhibits
-  ;; `dirvish--find-entry'.
-  nil)
+(desktop!
+ (defun my/zoxide-add-safe (&optional path &rest _)
+   "Call `zoxide-add' if PATH exists."
+   (require! 'zoxide)
+   (unless path
+     (setq path (funcall zoxide-get-path-function 'add)))
+   (when (file-exists-p path)
+     (zoxide-add path))
+   ;; Return nil, otherwise running inside `dirvish-find-entry-hook' inhibits
+   ;; `dirvish--find-entry'.
+   nil)
 
-(add-hooks! '(find-file-hook
-              eshell-directory-change-hook
-              dirvish-find-entry-hook)
-            #'my/zoxide-add-safe)
+ (add-hooks! '(find-file-hook
+               eshell-directory-change-hook
+               dirvish-find-entry-hook)
+             #'my/zoxide-add-safe))
 
 (bind-key "f" #'focus-mode my/toggle-map)
 
@@ -1398,11 +1413,13 @@ uses the symbol name as the default description, as well as a
           writeroom-fullscreen-effect 'maximized
           writeroom-mode-line t))
 
-(add-hook 'text-mode-hook #'jinx-mode)
-(bind-key [remap ispell-word] #'jinx-correct)
+(desktop!
+ (add-hook 'text-mode-hook #'jinx-mode)
+ (bind-key [remap ispell-word] #'jinx-correct))
 
-(after! ispell
-  (setopt ispell-alternate-dictionary (getenv "WORDLIST")))
+(desktop!
+ (after! ispell
+   (setopt ispell-alternate-dictionary (getenv "WORDLIST"))))
 
 (apheleia-global-mode)
 
@@ -1627,20 +1644,22 @@ word count of the response." t)
              ("C-c C-f r" . treesit-fold-open-recursively)
              ("C-c C-f z" . treesit-fold-toggle)))
 
-(cl-pushnew "@consult_mu_src@" load-path
-            :test #'equal)
+(desktop!
+ (cl-pushnew "@consult_mu_src@" load-path
+             :test #'equal))
 
-(eval-and-compile
-  (cl-pushnew "@consult_omni_src@" load-path
-              :test #'equal)
-  (cl-pushnew "@consult_omni_src@/sources" load-path
-              :test #'equal))
+(desktop!
+ (eval-and-compile
+   (cl-pushnew "@consult_omni_src@" load-path
+               :test #'equal)
+   (cl-pushnew "@consult_omni_src@/sources" load-path
+               :test #'equal))
 
-(autoload #'consult-omni "consult-omni" "Convinient wrapper function for favorite interactive command.
+ (autoload #'consult-omni "consult-omni" "Convinient wrapper function for favorite interactive command.
 
 Calls the function in `consult-omni-default-interactive-command'." t)
 
-(bind-key "C-S-s" #'consult-omni)
+ (bind-key "C-S-s" #'consult-omni))
 
 (after! consult-omni
   ;; For some reason, if `mu4e' doesn't load properly, `consult-omni-mu4e'
@@ -2746,10 +2765,11 @@ This function is called by `org-babel-execute-src-block'.")
 
   (setopt dired-dwim-target #'dired-dwim-target-next-visible))
 
-(bind-key "e" #'mu4e my/open-map)
+(desktop!
+ (bind-key "e" #'mu4e my/open-map)
 
-(setq mail-user-agent #'mu4e-user-agent
-      read-mail-command #'mu4e)
+ (setq mail-user-agent #'mu4e-user-agent
+       read-mail-command #'mu4e))
 
 (add-hook 'mu4e-headers-mode-hook (lambda ()
                                     (visual-line-mode -1)
