@@ -1,5 +1,15 @@
 ;; -*- lexical-binding: t; -*-
 
+(defmacro desktop! (&rest body)
+  "Include BODY only if the current platform is GNU/Linux."
+  (when (eq system-type 'gnu/linux)
+    `(progn ,@body)))
+
+(defmacro android! (&rest body)
+  "Include BODY only if the current platform is Android."
+  (when (eq system-type 'android)
+    `(progn ,@body)))
+
 (defmacro require! (feature)
   "Wrapper around `require' to load FEATURE."
   `(require ,feature))
