@@ -59,6 +59,19 @@ Disable a bunch of miscellaneous things to improve both startup and redisplay pe
 ** Macros
 Some macros to make configuration more concise (basically, emulating some of ~use-package~'s features, since I'm not using it).
 
+Since this configuration is shared between desktop and Android Emacs, these two macros allow for specializing configuration to a single platform.
+#+begin_src elisp
+  (defmacro desktop! (&rest body)
+    "Include BODY only if the current platform is GNU/Linux."
+    (when (eq system-type 'gnu/linux)
+      `(progn ,@body)))
+
+  (defmacro android! (&rest body)
+    "Include BODY only if the current platform is Android."
+    (when (eq system-type 'android)
+      `(progn ,@body)))
+#+end_src
+
 Convenience wrapper around [[help:require][require]].
 #+begin_src elisp
   (defmacro require! (feature)
