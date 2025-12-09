@@ -72,10 +72,14 @@ Since this configuration is shared between desktop and Android Emacs, these two 
       `(progn ,@body)))
 #+end_src
 
-Convenience wrapper around [[help:require][require]].
+Convenience wrapper around [[help:require][require]] that will use Emacs' built-in package manager to install the package on Android (based on [[help:use-package-ensure-elpa][use-package-ensure-elpa]]).
 #+begin_src elisp
   (defmacro require! (feature)
     "Wrapper around `require' to load FEATURE."
+    (android!
+     (require 'package)
+     (unless (package-installed-p feature)
+       (package-install feature)))
     `(require ,feature))
 #+end_src
 

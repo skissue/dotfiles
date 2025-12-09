@@ -12,6 +12,10 @@
 
 (defmacro require! (feature)
   "Wrapper around `require' to load FEATURE."
+  (android!
+   (require 'package)
+   (unless (package-installed-p feature)
+     (package-install feature)))
   `(require ,feature))
 
 (defmacro after! (files &rest body)
