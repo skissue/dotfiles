@@ -59,6 +59,13 @@ Disable a bunch of miscellaneous things to improve both startup and redisplay pe
 ** Macros
 Some macros to make configuration more concise (basically, emulating some of ~use-package~'s features, since I'm not using it).
 
+Convenience wrapper around [[help:require][require]].
+#+begin_src elisp
+  (defmacro require! (feature)
+    "Wrapper around `require' to load FEATURE."
+    `(require ,feature))
+#+end_src
+
 Convenience wrapper around [[help:with-eval-after-load][with-eval-after-load]]. In addition to just wrapping, also load the library at compile time to pacify the byte compiler.
 #+begin_src elisp
   (defmacro after! (files &rest body)
@@ -168,15 +175,15 @@ A nice, simple way to quickly define compact lambdas 😁. Since it's a macro, i
 
 #+begin_src elisp
   (eval-when-compile
-    (require 'llama))
+    (require! 'llama))
 #+end_src
 
 ** el-patch
 ~el-patch~ must be loaded during byte compilation for the macros, else errors occur when trying to use the byte-compiled file. Defining new types must also be wrapped in [[help:eval-and-compile][eval-and-compile]], since macros need be defined at compilation time, but the definition must also be evaluated inside the session in order for validation to work properly.
 #+begin_src elisp
   (eval-when-compile
-    (require 'el-patch)
-    (require 'el-patch-template))
+    (require! 'el-patch)
+    (require! 'el-patch-template))
 
   (eval-and-compile
     (after! el-patch
@@ -353,7 +360,7 @@ Don't make me type an entire word and hit enter for confirmation prompts, I know
 For the [[help:sp-with-modes][sp-with-modes]] macro.
 #+begin_src elisp
   (eval-when-compile
-    (require 'smartparens))
+    (require! 'smartparens))
 #+end_src
 
 #+begin_src elisp
@@ -900,7 +907,7 @@ Set up PragmataPro and enable [[help:prettify-symbols-mode][prettify-symbols-mod
 
 ** Theme
 #+begin_src elisp
-  (require 'ef-themes)
+  (require! 'ef-themes)
 
   (setq ef-themes-bold-constructs t
         ef-themes-italic-constructs t
@@ -951,7 +958,7 @@ Minions provides a clean minor mode menu implementation that allows customizing 
 ** Nyan Mode
 This is such an important addition to Emacs.
 #+begin_src elisp
-  (require 'nyan-mode)
+  (require! 'nyan-mode)
   (setq nyan-bar-length 20
         nyan-minimum-window-width 48
         nyan-animate-nyancat t)
@@ -1059,7 +1066,7 @@ There's no built-in function to delete the current file, so here's mine.
 
 ** Meow
 #+begin_src elisp
-  (require 'meow)
+  (require! 'meow)
 
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh
         meow-use-clipboard t
@@ -1178,7 +1185,7 @@ Unbind some keys that get in the way of binds that I use /far/ more often, since
 I wrote my own package 🎉.
 #+begin_src elisp
   (after! meow
-    (require 'meow-tree-sitter)
+    (require! 'meow-tree-sitter)
     (meow-tree-sitter-register-defaults))
 #+end_src
 
@@ -1366,9 +1373,9 @@ Repeat map for candidate navigation.
 ** Orderless
 #+begin_src elisp
   (after! vertico
-    (require 'orderless))
+    (require! 'orderless))
   (after! corfu
-    (require 'orderless))
+    (require! 'orderless))
 
   (after! orderless
     (setq completion-styles '(orderless basic)
@@ -1660,7 +1667,7 @@ Currently disabled cause it throws a cryptic error that I don't feel like tracki
 
 #+begin_src elisp
   (after! magit
-    (require 'forge))
+    (require! 'forge))
 
   (after! forge
     (dolist (host '("gh-skissue" "gh-work"))
@@ -1681,7 +1688,7 @@ Currently disabled cause it throws a cryptic error that I don't feel like tracki
 Dired integration for [[https://git-annex.branchable.com/][git-annex]].
 #+begin_src elisp
   (after! dired
-    (require 'git-annex))
+    (require! 'git-annex))
 
   (after! git-annex
     (setopt git-annex-commit nil))
@@ -1758,7 +1765,7 @@ In addition to auto-loading via filename or magic values, we also want to load t
 #+begin_src elisp
   (defun my/zoxide-add-safe (&optional path &rest _)
     "Call `zoxide-add' if PATH exists."
-    (require 'zoxide)
+    (require! 'zoxide)
     (unless path
       (setq path (funcall zoxide-get-path-function 'add)))
     (when (file-exists-p path)
@@ -2043,7 +2050,7 @@ Based off code from [[https://github.com/karthink/gptel/wiki/gptel%E2%80%90rewri
     (defun my/gptel-rewrite-inline-diff (&optional ovs)
       "Start an inline-diff session on OVS."
       (interactive (list (gptel--rewrite-overlay-at)))
-      (require 'inline-diff)
+      (require! 'inline-diff)
       (when-let* ((ov-buf (overlay-buffer (or (car-safe ovs) ovs)))
                   ((buffer-live-p ov-buf)))
         (with-current-buffer ov-buf
@@ -2112,9 +2119,9 @@ The repository comes with many different files for "sources", that each have var
   (after! consult-omni
     ;; For some reason, if `mu4e' doesn't load properly, `consult-omni-mu4e'
     ;; causes it to crash and burn.
-    (require 'mu4e)
-    (require 'consult-omni-sources)
-    (require 'consult-omni-embark)
+    (require! 'mu4e)
+    (require! 'consult-omni-sources)
+    (require! 'consult-omni-embark)
 
     (setopt consult-omni-sources-modules-to-load '(consult-omni-wikipedia
                                                    consult-omni-gptel
@@ -2182,7 +2189,7 @@ The repository comes with many different files for "sources", that each have var
 Load when compiling for the [[help:disproject-with-environment][disproject-with-environment]] macro.
 #+begin_src elisp
   (eval-when-compile
-    (require 'disproject))
+    (require! 'disproject))
 #+end_src
 
 ** Atomic Chrome
@@ -2290,7 +2297,7 @@ Bind the mode to =C-<insert>=, as suggested by the documentation; the default bi
             consult-denote-grep-command #'consult-ripgrep))
 
   (after! org-capture
-    (require 'denote))
+    (require! 'denote))
 #+end_src
 
 ** Utility Functions
@@ -2300,7 +2307,7 @@ Bind the mode to =C-<insert>=, as suggested by the documentation; the default bi
   `denote-directory'. With prefix argument ARG, copy the file instead of moving
   it."
     (interactive "P")
-    (require 'denote)
+    (require! 'denote)
     (let* ((fn (if arg #'copy-file #'rename-file))
            (filename (expand-file-name (read-file-name "Ingest File: ")))
            (basename (file-name-nondirectory filename))
@@ -2313,7 +2320,7 @@ Bind the mode to =C-<insert>=, as suggested by the documentation; the default bi
   (defun my/denote-quick-create ()
     "Create a new Denote note prompting only for title."
     (interactive)
-    (require 'denote)
+    (require! 'denote)
     (let ((denote-prompts '(title)))
       (call-interactively #'denote-create-note)))
 
@@ -2495,8 +2502,8 @@ Bind the mode to =C-<insert>=, as suggested by the documentation; the default bi
 * Howm
 #+begin_src elisp
   (add-hook 'my/first-input-hook (lambda ()
-                                   (require 'howm-org)
-                                   (require 'howm)))
+                                   (require! 'howm-org)
+                                   (require! 'howm)))
 
   ;; Variables that must be set before load.
   (setq howm-follow-theme t)
@@ -2693,7 +2700,7 @@ Ah, the crown jewel of Emacs 👑.
 Habits.
 #+begin_src elisp
   (after! org
-    (require 'org-habit)
+    (require! 'org-habit)
     (setopt org-habit-preceding-days 14
             org-habit-following-days 7
             org-habit-graph-column 100))
@@ -2702,7 +2709,7 @@ Habits.
 *Super* agenda 🔥.
 #+begin_src elisp
   (after! org-agenda
-    (require 'denote-journal)
+    (require! 'denote-journal)
     (org-super-agenda-mode)
 
     (defun my/agenda-transform-daily-plan-line (line)
@@ -3059,7 +3066,7 @@ The bleeding-edge development branch of Org that I'm using has a small bug in th
 *** Reveal.js
 #+begin_src elisp
   (after! ox
-    (require 'org-re-reveal)
+    (require! 'org-re-reveal)
     (setopt org-re-reveal-root (expand-file-name "revealjs"
                                                  (getenv "XDG_DATA_HOME"))
             org-re-reveal-extra-options "controlsTutorial: false"))
@@ -3206,10 +3213,10 @@ not load org.el but only ox.el.
 
 #+begin_src elisp :tangle no
   (after! org
-    (require 'edraw-org)
+    (require! 'edraw-org)
     (edraw-org-setup-default))
   (after! ox
-    (require 'edraw-org)
+    (require! 'edraw-org)
     (edraw-org-setup-exporter))
 #+end_src
 
@@ -3695,7 +3702,7 @@ Jump around at lightning speed using [[*Consult][consult-dir]] ⚡. Inspired by 
     (if prompt
         (eshell/cd (or (eshell-find-previous-directory prompt)
                        (car (zoxide-query-with prompt))))
-      (require 'consult-dir)
+      (require! 'consult-dir)
       (eshell/cd (consult-dir--pick))))
 #+end_src
 
@@ -3703,7 +3710,7 @@ A prettier prompt, inspired by based off code from [[https://github.com/zwild/es
 #+begin_src elisp
   (defun my/eshell-prompt ()
     "My custom, prettier prompt for Eshell."
-    (require 'magit)
+    (require! 'magit)
     (concat "\n"
             (propertize (abbreviate-file-name (eshell/pwd))
                         'face 'eshell-ls-directory)
@@ -3836,7 +3843,7 @@ Set up some keybinds. I like "U" to update to mirror [[*mu4e][mu4e]]'s behavior 
 Fetch feeds from my Tiny Tiny RSS server via [[https://github.com/fasheng/elfeed-protocol][elfeed-protocol]].
 #+begin_src elisp
   (after! elfeed
-    (require 'elfeed-protocol)
+    (require! 'elfeed-protocol)
 
     (setopt elfeed-protocol-enabled-protocols '(ttrss)
             elfeed-protocol-feeds '(("ttrss+http://ad@feeds.adtailnet"
@@ -3852,7 +3859,7 @@ Fetch feeds from my Tiny Tiny RSS server via [[https://github.com/fasheng/elfeed
 I manage my feeds with [[https://github.com/remyhonig/elfeed-org][elfeed-org]], but sync the exported list to my Tiny Tiny RSS server instead of directly hooking it into Elfeed. All I need is for it to know which Org file to use 👍.
 #+begin_src elisp
   (after! elfeed-org
-    (require 'denote)
+    (require! 'denote)
     (setopt rmh-elfeed-org-files
             (seq-filter
              (apply-partially #'string-match-p "-elfeed-feeds")
@@ -3865,7 +3872,7 @@ A YouTube client for Elfeed 🔥!
 Setup (this function isn't autoloaded, for some reason):
 #+begin_src elisp
   (after! elfeed
-    (require 'elfeed-tube)
+    (require! 'elfeed-tube)
     (elfeed-tube-setup))
 #+end_src
 

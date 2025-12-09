@@ -1,5 +1,9 @@
 ;; -*- lexical-binding: t; -*-
 
+(defmacro require! (feature)
+  "Wrapper around `require' to load FEATURE."
+  `(require ,feature))
+
 (defmacro after! (files &rest body)
   "Evaluate BODY after FILES have been loaded. Thin wrapper
  around `with-eval-after-load', inspired by Doom."
@@ -85,11 +89,11 @@ Only run once.")
   (require 'cl-lib))
 
 (eval-when-compile
-  (require 'llama))
+  (require! 'llama))
 
 (eval-when-compile
-  (require 'el-patch)
-  (require 'el-patch-template))
+  (require! 'el-patch)
+  (require! 'el-patch-template))
 
 (eval-and-compile
   (after! el-patch
@@ -212,7 +216,7 @@ where it was when you previously visited the same file."
 (setq use-short-answers t)
 
 (eval-when-compile
-  (require 'smartparens))
+  (require! 'smartparens))
 
 (add-hook 'prog-mode-hook #'smartparens-mode)
 
@@ -662,7 +666,7 @@ Only difference is to compose symbols in comments as well. See
 
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 
-(require 'ef-themes)
+(require! 'ef-themes)
 
 (setq ef-themes-bold-constructs t
       ef-themes-italic-constructs t
@@ -700,7 +704,7 @@ Only difference is to compose symbols in comments as well. See
 (after! doom-modeline
   (minions-mode))
 
-(require 'nyan-mode)
+(require! 'nyan-mode)
 (setq nyan-bar-length 20
       nyan-minimum-window-width 48
       nyan-animate-nyancat t)
@@ -776,7 +780,7 @@ Only difference is to compose symbols in comments as well. See
            ("q" . kill-buffer-and-window)
            ("`" . meow-last-buffer))
 
-(require 'meow)
+(require! 'meow)
 
 (setq meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh
       meow-use-clipboard t
@@ -889,7 +893,7 @@ Only difference is to compose symbols in comments as well. See
 (unbind-key "C-x C-n")
 
 (after! meow
-  (require 'meow-tree-sitter)
+  (require! 'meow-tree-sitter)
   (meow-tree-sitter-register-defaults))
 
 (autoload-many "repeat" nil
@@ -1042,9 +1046,9 @@ See `describe-repeat-maps' for a list of all repeatable commands."
     "p" #'vertico-previous))
 
 (after! vertico
-  (require 'orderless))
+  (require! 'orderless))
 (after! corfu
-  (require 'orderless))
+  (require! 'orderless))
 
 (after! orderless
   (setq completion-styles '(orderless basic)
@@ -1267,7 +1271,7 @@ uses the symbol name as the default description, as well as a
 (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
 
 (after! magit
-  (require 'forge))
+  (require! 'forge))
 
 (after! forge
   (dolist (host '("gh-skissue" "gh-work"))
@@ -1282,7 +1286,7 @@ uses the symbol name as the default description, as well as a
           git-link-use-commit t))
 
 (after! dired
-  (require 'git-annex))
+  (require! 'git-annex))
 
 (after! git-annex
   (setopt git-annex-commit nil))
@@ -1339,7 +1343,7 @@ uses the symbol name as the default description, as well as a
 
 (defun my/zoxide-add-safe (&optional path &rest _)
   "Call `zoxide-add' if PATH exists."
-  (require 'zoxide)
+  (require! 'zoxide)
   (unless path
     (setq path (funcall zoxide-get-path-function 'add)))
   (when (file-exists-p path)
@@ -1572,7 +1576,7 @@ uses the symbol name as the default description, as well as a
   (defun my/gptel-rewrite-inline-diff (&optional ovs)
     "Start an inline-diff session on OVS."
     (interactive (list (gptel--rewrite-overlay-at)))
-    (require 'inline-diff)
+    (require! 'inline-diff)
     (when-let* ((ov-buf (overlay-buffer (or (car-safe ovs) ovs)))
                 ((buffer-live-p ov-buf)))
       (with-current-buffer ov-buf
@@ -1627,9 +1631,9 @@ Calls the function in `consult-omni-default-interactive-command'." t)
 (after! consult-omni
   ;; For some reason, if `mu4e' doesn't load properly, `consult-omni-mu4e'
   ;; causes it to crash and burn.
-  (require 'mu4e)
-  (require 'consult-omni-sources)
-  (require 'consult-omni-embark)
+  (require! 'mu4e)
+  (require! 'consult-omni-sources)
+  (require! 'consult-omni-embark)
 
   (setopt consult-omni-sources-modules-to-load '(consult-omni-wikipedia
                                                  consult-omni-gptel
@@ -1681,7 +1685,7 @@ Calls the function in `consult-omni-default-interactive-command'." t)
 (bind-key "p" #'disproject-dispatch ctl-x-map)
 
 (eval-when-compile
-  (require 'disproject))
+  (require! 'disproject))
 
 (after! atomic-chrome
   (setopt atomic-chrome-url-major-mode-alist '(("github\\.com" . gfm-mode))
@@ -1758,14 +1762,14 @@ Calls the function in `consult-omni-default-interactive-command'." t)
           consult-denote-grep-command #'consult-ripgrep))
 
 (after! org-capture
-  (require 'denote))
+  (require! 'denote))
 
 (defun my/denote-ingest-file (arg)
   "Rename a file using `denote-rename-file', then move it into
 `denote-directory'. With prefix argument ARG, copy the file instead of moving
 it."
   (interactive "P")
-  (require 'denote)
+  (require! 'denote)
   (let* ((fn (if arg #'copy-file #'rename-file))
          (filename (expand-file-name (read-file-name "Ingest File: ")))
          (basename (file-name-nondirectory filename))
@@ -1778,7 +1782,7 @@ it."
 (defun my/denote-quick-create ()
   "Create a new Denote note prompting only for title."
   (interactive)
-  (require 'denote)
+  (require! 'denote)
   (let ((denote-prompts '(title)))
     (call-interactively #'denote-create-note)))
 
@@ -1935,8 +1939,8 @@ For our purposes, a note must not be a directory, must satisfy
           org-cite-global-bibliography citar-bibliography))
 
 (add-hook 'my/first-input-hook (lambda ()
-                                 (require 'howm-org)
-                                 (require 'howm)))
+                                 (require! 'howm-org)
+                                 (require! 'howm)))
 
 ;; Variables that must be set before load.
 (setq howm-follow-theme t)
@@ -2111,13 +2115,13 @@ For our purposes, a note must not be a directory, must satisfy
      `(org-upcoming-distant-deadline ((t (:foreground ,yellow :weight light)))))))
 
 (after! org
-  (require 'org-habit)
+  (require! 'org-habit)
   (setopt org-habit-preceding-days 14
           org-habit-following-days 7
           org-habit-graph-column 100))
 
 (after! org-agenda
-  (require 'denote-journal)
+  (require! 'denote-journal)
   (org-super-agenda-mode)
 
   (defun my/agenda-transform-daily-plan-line (line)
@@ -2406,7 +2410,7 @@ have `org-warning' face."
      ...)))
 
 (after! ox
-  (require 'org-re-reveal)
+  (require! 'org-re-reveal)
   (setopt org-re-reveal-root (expand-file-name "revealjs"
                                                (getenv "XDG_DATA_HOME"))
           org-re-reveal-extra-options "controlsTutorial: false"))
@@ -2872,12 +2876,12 @@ This function is called by `org-babel-execute-src-block'.")
   (if prompt
       (eshell/cd (or (eshell-find-previous-directory prompt)
                      (car (zoxide-query-with prompt))))
-    (require 'consult-dir)
+    (require! 'consult-dir)
     (eshell/cd (consult-dir--pick))))
 
 (defun my/eshell-prompt ()
   "My custom, prettier prompt for Eshell."
-  (require 'magit)
+  (require! 'magit)
   (concat "\n"
           (propertize (abbreviate-file-name (eshell/pwd))
                       'face 'eshell-ls-directory)
@@ -2971,7 +2975,7 @@ This function is called by `org-babel-execute-src-block'.")
           elfeed-search-filter "@6-months-ago +unread "))
 
 (after! elfeed
-  (require 'elfeed-protocol)
+  (require! 'elfeed-protocol)
 
   (setopt elfeed-protocol-enabled-protocols '(ttrss)
           elfeed-protocol-feeds '(("ttrss+http://ad@feeds.adtailnet"
@@ -2983,14 +2987,14 @@ This function is called by `org-babel-execute-src-block'.")
   (elfeed-protocol-enable))
 
 (after! elfeed-org
-  (require 'denote)
+  (require! 'denote)
   (setopt rmh-elfeed-org-files
           (seq-filter
            (apply-partially #'string-match-p "-elfeed-feeds")
            (denote-directory-files))))
 
 (after! elfeed
-  (require 'elfeed-tube)
+  (require! 'elfeed-tube)
   (elfeed-tube-setup))
 
 (after! elfeed
