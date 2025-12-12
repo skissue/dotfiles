@@ -3,27 +3,27 @@
 {
   consult-mu = {
     pname = "consult-mu";
-    version = "4958fb651917b0f9f79f436f7a753263c8003537";
+    version = "8b54bbf86c2f112e3520eeeefb70d509b4590385";
     src = fetchFromGitHub {
       owner = "armindarvish";
       repo = "consult-mu";
-      rev = "4958fb651917b0f9f79f436f7a753263c8003537";
+      rev = "8b54bbf86c2f112e3520eeeefb70d509b4590385";
       fetchSubmodules = false;
-      sha256 = "sha256-cRFYTnfwWz4bxCirDHJ43Vw3eAYthJ5auRHLd+Cgo5c=";
+      sha256 = "sha256-nxutBOEO6qiPjSo7y3t1KWYb0n0AMKGl943N+uGTTjQ=";
     };
-    date = "2025-06-17";
+    date = "2025-12-02";
   };
   consult-omni = {
     pname = "consult-omni";
-    version = "23fc72faecb2161066832bb30e6dcf22690a30f1";
+    version = "bdcd5a065340dce9906ac5c5f359906d31877963";
     src = fetchFromGitHub {
       owner = "armindarvish";
       repo = "consult-omni";
-      rev = "23fc72faecb2161066832bb30e6dcf22690a30f1";
+      rev = "bdcd5a065340dce9906ac5c5f359906d31877963";
       fetchSubmodules = false;
-      sha256 = "sha256-8qJTvt0DdESgXU9fyAjzKPQw21D9s0tY2Wa7rIvQAeI=";
+      sha256 = "sha256-vmKKEmZpzHQ8RDbTuoTCWGRypLfMiHrEv9Zw0G6K1pg=";
     };
-    date = "2025-11-28";
+    date = "2025-12-03";
   };
   gptel-quick = {
     pname = "gptel-quick";
