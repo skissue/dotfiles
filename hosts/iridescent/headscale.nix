@@ -52,6 +52,18 @@ in {
     '';
   };
 
+  # Persist database.
+  my.persist.local.directories = [
+    {
+      # See value of `services.headscale.settings.database.sqlite.path`. Noise
+      # private key also lives here.
+      directory = "/var/lib/headscale";
+      user = cfg.user;
+      group = cfg.group;
+      mode = "750";
+    }
+  ];
+
   # DNS
   # TODO clean up
   services.headscale.settings.dns.extra_records = [
