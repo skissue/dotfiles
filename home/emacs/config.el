@@ -706,9 +706,12 @@ Only difference is to compose symbols in comments as well. See
       nyan-animate-nyancat t)
 (nyan-mode)
 
-(add-hook 'eldoc-mode-hook #'eldoc-box-hover-mode)
+(add-hook 'eldoc-mode-hook #'eldoc-box-hover-at-point-mode)
 
 (after! eldoc-box
+  (setopt eldoc-box-max-pixel-width (##floor (* 0.6 (frame-pixel-width)))
+          eldoc-box-max-pixel-height (##floor (* 0.25 (frame-pixel-height))))
+  
   (ef-themes-with-colors
     (custom-set-faces
      `(eldoc-box-border ((t :background ,bg-main)))
