@@ -46,19 +46,7 @@
     ];
   };
 
-  # Trying to fetch the information via
-  # `config.users.users.${config.my.user.name}` results in infinite recursion.
-  # Don't ask me why, I have zero idea.
-  my.persist.local.directories = let
-    user = config.my.user.name;
-  in [
-    {
-      directory = "/home/${user}/dotfiles.private";
-      user = user;
-      group = "users";
-      mode = "750";
-    }
-  ];
+  my.persist.userLocal.directories = ["dotfiles.private"];
 
   # State version (copy from auto-generated configuration.nix during install)
   # This value determines the NixOS release from which the default
