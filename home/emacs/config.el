@@ -679,8 +679,8 @@ Only difference is to compose symbols in comments as well. See
 (add-hook 'window-setup-hook #'spacious-padding-mode)
 
 (after! spacious-padding
-  (setq spacious-padding-subtle-mode-line
-        '(:mode-line-active error)
+  (setq spacious-padding-subtle-frame-lines
+        '(:mode-line-active error :header-line-active error)
         spacious-padding-widths
         (plist-put spacious-padding-widths
                    :right-divider-width 0)))
