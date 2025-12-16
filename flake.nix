@@ -100,17 +100,26 @@
         inputs',
         ...
       }: {
-        devshells.default = with pkgs; {
-          commands = [
-            {
-              name = "deploy";
-              package = inputs'.deploy-rs.packages.default;
-            }
-            {package = inputs'.nixos-anywhere.packages.default;}
-            {package = sops;}
-            {package = ssh-to-age;}
-            {package = nvfetcher;}
-          ];
+        devshells = {
+          default = with pkgs; {
+            commands = [
+              {package = sops;}
+              {package = ssh-to-age;}
+              {package = nvfetcher;}
+            ];
+          };
+          deploy = with pkgs; {
+            commands = [
+              {
+                name = "deploy";
+                package = inputs'.deploy-rs.packages.default;
+              }
+              {package = inputs'.nixos-anywhere.packages.default;}
+              {package = sops;}
+              {package = ssh-to-age;}
+              {package = nvfetcher;}
+            ];
+          };
         };
 
         formatter = pkgs.alejandra;
