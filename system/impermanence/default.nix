@@ -15,11 +15,19 @@ in {
     hideMounts = true;
     directories = ["/var/lib/nixos"] ++ cfg.local.directories;
     files = ["/etc/machine-id"] ++ cfg.local.files;
+    users.${config.my.user.name} = {
+      directories = cfg.userLocal.directories;
+      files = cfg.userLocal.files;
+    };
   };
   environment.persistence."/data" = {
     hideMounts = true;
     directories = cfg.data.directories;
     files = cfg.data.files;
+    users.${config.my.user.name} = {
+      directories = cfg.userData.directories;
+      files = cfg.userData.files;
+    };
   };
 
   fileSystems."/local".neededForBoot = true;
