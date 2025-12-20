@@ -2982,13 +2982,6 @@ This function is called by `org-babel-execute-src-block'.")
 
   (elfeed-protocol-enable))
 
-(after! elfeed-org
-  (require 'denote)
-  (setopt rmh-elfeed-org-files
-          (seq-filter
-           (apply-partially #'string-match-p "-elfeed-feeds")
-           (denote-directory-files))))
-
 (after! elfeed
   (require 'elfeed-tube)
   (elfeed-tube-setup))

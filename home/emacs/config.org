@@ -3848,17 +3848,6 @@ Fetch feeds from my Tiny Tiny RSS server via [[https://github.com/fasheng/elfeed
     (elfeed-protocol-enable))
 #+end_src
 
-*** =elfeed-org=
-I manage my feeds with [[https://github.com/remyhonig/elfeed-org][elfeed-org]], but sync the exported list to my Tiny Tiny RSS server instead of directly hooking it into Elfeed. All I need is for it to know which Org file to use 👍.
-#+begin_src elisp
-  (after! elfeed-org
-    (require 'denote)
-    (setopt rmh-elfeed-org-files
-            (seq-filter
-             (apply-partially #'string-match-p "-elfeed-feeds")
-             (denote-directory-files))))
-#+end_src
-
 *** Elfeed Tube
 A YouTube client for Elfeed 🔥!
 
