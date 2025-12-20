@@ -2973,12 +2973,13 @@ This function is called by `org-babel-execute-src-block'.")
 (after! elfeed
   (require 'elfeed-protocol)
 
-  (setopt elfeed-protocol-enabled-protocols '(ttrss)
-          elfeed-protocol-feeds '(("ttrss+http://ad@feeds.adtailnet"
-                                   :password (secrets-get-secret
-                                              "KeePassXC" "Tiny Tiny RSS")))
-          elfeed-protocol-ttrss-maxsize 200
-          elfeed-protocol-ttrss-fetch-category-as-tag t)
+  (let ((domain (concat "feeds." (my/private 'domain 'private))))
+    (setopt elfeed-protocol-enabled-protocols '(fever)
+            elfeed-protocol-feeds
+            `((,(concat "fever+https://ad@" domain)
+               :api-url ,(format "https://%s/fever/" domain)
+               :password (secrets-get-secret
+                          "KeePassXC" "Miniflux Fever API")))))
 
   (elfeed-protocol-enable))
 
