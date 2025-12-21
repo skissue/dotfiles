@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   inputs,
   ...
@@ -18,5 +19,8 @@
 
     # Needed for hyprlock
     security.pam.services.hyprlock = {};
+
+    # Enabled by the module by default, but conflicts with KeePassXC.
+    services.gnome.gnome-keyring.enable = lib.mkForce false;
   };
 }
