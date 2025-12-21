@@ -20,11 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
-      # url = "github:nix-community/disko";
-
-      # NOTE Fixes mounting bcachefs subvolumes during installation. Revert when
-      # merged.
-      url = "github:nix-community/disko/pull/1058/head";
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs = {
