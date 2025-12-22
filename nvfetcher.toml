@@ -42,3 +42,7 @@ fetch.git = "https://code.tecosaur.net/tec/inline-diff.git"
 [vertico-popup-frame]
 src.git = "https://github.com/skissue/vertico-popup-frame"
 fetch.github = "skissue/vertico-popup-frame"
+
+[yeetube-codeberg]
+src.git = "https://codeberg.org/thanosapollo/emacs-yeetube.git"
+fetch.git = "https://codeberg.org/thanosapollo/emacs-yeetube.git"

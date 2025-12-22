@@ -227,5 +227,25 @@
             "type": "github"
         },
         "version": "a99361aad4b9faf9f36902223ceecbda7a66dc1b"
+    },
+    "yeetube-codeberg": {
+        "cargoLocks": null,
+        "date": "2025-12-20",
+        "extract": null,
+        "name": "yeetube-codeberg",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "b1093c75ab1729efbfd5bb92864ad8eab734eec6",
+            "sha256": "sha256-+v7LFad54O0+PqB0LOZ+bU8RZpu00gZItBgx99FwNes=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://codeberg.org/thanosapollo/emacs-yeetube.git"
+        },
+        "version": "b1093c75ab1729efbfd5bb92864ad8eab734eec6"
     }
 }
