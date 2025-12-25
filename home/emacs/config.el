@@ -1969,6 +1969,15 @@ For our purposes, a note must not be a directory, must satisfy
    (format (el-patch-swap "%s%3s%s" "%s%4s%s")
            dow-str late priority)))
 
+(el-patch-feature howm)
+(after! howm
+  (el-patch-defun howm-action-lock-done-done (date type lazy desc &optional done-mark)
+    (when (null done-mark)
+      (setq done-mark ".")
+      (howm-congrats))
+    (concat (howm-reminder-today (el-patch-add nil "[%Y-%m-%d %H:%M]"))
+            done-mark " " date ":" type lazy desc)))
+
 (add-hook 'org-mode-hook #'variable-pitch-mode)
 (add-hook 'org-mode-hook #'writeroom-mode)
 (add-hook 'org-mode-hook (##setq-local line-spacing 0.1))

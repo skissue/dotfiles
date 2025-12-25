@@ -2536,6 +2536,18 @@ Change the formatting of reminders in the menu to allocate four characters for t
              dow-str late priority)))
 #+end_src
 
+Include a timestamp when marking tasks as done.
+#+begin_src elisp
+  (el-patch-feature howm)
+  (after! howm
+    (el-patch-defun howm-action-lock-done-done (date type lazy desc &optional done-mark)
+      (when (null done-mark)
+        (setq done-mark ".")
+        (howm-congrats))
+      (concat (howm-reminder-today (el-patch-add nil "[%Y-%m-%d %H:%M]"))
+              done-mark " " date ":" type lazy desc)))
+#+end_src
+
 * Org Mode
 Ah, the crown jewel of Emacs 👑.
 #+begin_src elisp
