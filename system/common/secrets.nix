@@ -14,16 +14,4 @@ in {
   _module.args.secretsDir = "${self}/secrets";
 
   sops.defaultSopsFile = "${secretsDir}/common.yaml";
-
-  # Automatically add host keys to decryption keys
-  systemd.services.set-sops-keys = {
-    wantedBy = ["multi-user.target"];
-    path = with pkgs; [config.security.sudo-rs.package ssh-to-age];
-    script = ''
-      sudo -u ${user.name} mkdir -p ${user.home}/.config/sops/age
-      ssh-to-age -private-key -i /etc/ssh/ssh_host_ed25519_key -o ${user.home}/.config/sops/age/keys.txt
-      chown -R ${user.name}:${user.group} ${user.home}/.config/sops
-      chmod -R 700 ${user.home}/.config/sops
-    '';
-  };
 }
