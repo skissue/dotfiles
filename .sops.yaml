@@ -1,4 +1,6 @@
 keys:
+  - &yubikey0 age1yubikey1q07354szx8u0lguhn7dwasfpddvn5zn64fygpge780vzqj6x025eqnmw9j6
+  - &yubikey1 age1yubikey1qwnxgj05unlv7y75t2t88mfftxq7uqmjdxsfky4t0v6qg623rhdv24sy554
   - &windstorm age1nk7x6czlkhueecs36vq3m2aw22rgzp4pehzpff2048p67unz5a4sxvfr0u
   - &prowler age1dwat457ny5pec53gjd6v292sdxhzz74uksxp7yxshdj5p87p6ymsvtursp
   - &rendezvous age1rj28y40tzyg6dkkfaud9xzt3d08qu85tvjtzsnuuyncg4flfychsvyvev6
@@ -8,6 +10,8 @@ creation_rules:
   - path_regex: ^secrets/common.yaml$
     key_groups:
     - age:
+      - *yubikey0
+      - *yubikey1
       - *windstorm
       - *prowler
       - *rendezvous
@@ -16,5 +20,7 @@ creation_rules:
   - path_regex: ^secrets/desktop.yaml$
     key_groups:
     - age:
+      - *yubikey0
+      - *yubikey1
       - *windstorm
       - *nightcrawler
