@@ -16,6 +16,7 @@
       ./notes-publish
       ./postgresql
       ./remote-luks-unlock
+      ./umurmur
       ./unbound
       ./wireless
     ]
