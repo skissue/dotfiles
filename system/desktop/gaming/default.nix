@@ -20,6 +20,7 @@
                 gamemode
               ];
           };
+          extraCompatPackages = with pkgs; [proton-ge-bin steamtinkerlaunch];
         };
         gamemode = {
           enable = true;
