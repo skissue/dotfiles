@@ -67,15 +67,15 @@
   };
   org-modern-indent = {
     pname = "org-modern-indent";
-    version = "9973bd3b91e4733a3edd1fca232208c837c05473";
+    version = "ebf9a8e571db523dc6e4cd9ed80d0e0626983ae4";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "org-modern-indent";
-      rev = "9973bd3b91e4733a3edd1fca232208c837c05473";
+      rev = "ebf9a8e571db523dc6e4cd9ed80d0e0626983ae4";
       fetchSubmodules = false;
-      sha256 = "sha256-st3338Jk9kZ5BLEPRJZhjqdncMpLoWNwp60ZwKEObyU=";
+      sha256 = "sha256-+q7KmbU8A+uR61BSa528vYbdFSj2WGsFWYW/5q7J9Kw=";
     };
-    date = "2025-04-12";
+    date = "2026-01-02";
   };
   org-popup-posframe = {
     pname = "org-popup-posframe";
@@ -114,15 +114,15 @@
   };
   ultra-scroll = {
     pname = "ultra-scroll";
-    version = "21c568b1a26e597714ad65b40f246dd6e9f71fdd";
+    version = "d230b9308c5891abf8378b1030af9e1b029e9b3b";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "ultra-scroll";
-      rev = "21c568b1a26e597714ad65b40f246dd6e9f71fdd";
+      rev = "d230b9308c5891abf8378b1030af9e1b029e9b3b";
       fetchSubmodules = false;
-      sha256 = "sha256-MV0FNI+Crqlj3sxGwNcaGXGw0Z9v1MX+cJOeyZx0MhA=";
+      sha256 = "sha256-zCKjuHjb07hnWgN3Xs1lUD7YLvYmQy1TOxad9xuU6pA=";
     };
-    date = "2025-12-15";
+    date = "2026-01-01";
   };
   vertico-popup-frame = {
     pname = "vertico-popup-frame";

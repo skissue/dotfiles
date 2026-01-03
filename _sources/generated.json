@@ -104,7 +104,7 @@
     },
     "org-modern-indent": {
         "cargoLocks": null,
-        "date": "2025-04-12",
+        "date": "2026-01-02",
         "extract": null,
         "name": "org-modern-indent",
         "passthru": null,
@@ -116,12 +116,12 @@
             "name": null,
             "owner": "jdtsmith",
             "repo": "org-modern-indent",
-            "rev": "9973bd3b91e4733a3edd1fca232208c837c05473",
-            "sha256": "sha256-st3338Jk9kZ5BLEPRJZhjqdncMpLoWNwp60ZwKEObyU=",
+            "rev": "ebf9a8e571db523dc6e4cd9ed80d0e0626983ae4",
+            "sha256": "sha256-+q7KmbU8A+uR61BSa528vYbdFSj2WGsFWYW/5q7J9Kw=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "9973bd3b91e4733a3edd1fca232208c837c05473"
+        "version": "ebf9a8e571db523dc6e4cd9ed80d0e0626983ae4"
     },
     "org-popup-posframe": {
         "cargoLocks": null,
@@ -188,7 +188,7 @@
     },
     "ultra-scroll": {
         "cargoLocks": null,
-        "date": "2025-12-15",
+        "date": "2026-01-01",
         "extract": null,
         "name": "ultra-scroll",
         "passthru": null,
@@ -200,12 +200,12 @@
             "name": null,
             "owner": "jdtsmith",
             "repo": "ultra-scroll",
-            "rev": "21c568b1a26e597714ad65b40f246dd6e9f71fdd",
-            "sha256": "sha256-MV0FNI+Crqlj3sxGwNcaGXGw0Z9v1MX+cJOeyZx0MhA=",
+            "rev": "d230b9308c5891abf8378b1030af9e1b029e9b3b",
+            "sha256": "sha256-zCKjuHjb07hnWgN3Xs1lUD7YLvYmQy1TOxad9xuU6pA=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "21c568b1a26e597714ad65b40f246dd6e9f71fdd"
+        "version": "d230b9308c5891abf8378b1030af9e1b029e9b3b"
     },
     "vertico-popup-frame": {
         "cargoLocks": null,
