@@ -1978,6 +1978,28 @@ For our purposes, a note must not be a directory, must satisfy
     (concat (howm-reminder-today (el-patch-add nil "[%Y-%m-%d %H:%M]"))
             done-mark " " date ":" type lazy desc)))
 
+(after! howm
+  (setopt howm-todo-types "[-+~!.^]"
+          howm-reminder-types "[-+~!@.^]"
+          howm-reminder-menu-types "[-+~!@^]")
+
+  (defun howm-todo-priority-daily (late lz item)
+    "Calculuate priority for ITEM with LATE and LZ timings.
+See `howm-todo-priority-schedule-2' for inspiration. Return
+`howm-todo-priority-schedule-top' if within the current day, and
+`howm-todo-priority-schedule-bottom' otherwise."
+    (let ((r (howm-todo-relative-late late lz
+                                      howm-todo-priority-schedule-laziness)))
+      (if (<= 0 r 1)
+          howm-todo-priority-schedule-top
+        howm-todo-priority-schedule-bottom)))
+
+  (add-to-list 'howm-todo-priority-func '("^" . howm-todo-priority-daily))
+
+  (add-to-list 'howm-reminder-font-lock-keywords
+               `(,(howm-reminder-regexp "[\\^]")
+                 (0 howm-reminder-schedule-face prepend))))
+
 (add-hook 'org-mode-hook #'variable-pitch-mode)
 (add-hook 'org-mode-hook #'writeroom-mode)
 (add-hook 'org-mode-hook (##setq-local line-spacing 0.1))

@@ -2548,6 +2548,32 @@ Include a timestamp when marking tasks as done.
               done-mark " " date ":" type lazy desc)))
 #+end_src
 
+Add a new todo type for "daily" tasks. These tasks should only appear on their scheduled day, and otherwise not appear on the menu at all (minimum priority). Similar to a "schedule" item, but it sinks instantly in both directions.
+#+begin_src elisp
+  (after! howm
+    (setopt howm-todo-types "[-+~!.^]"
+            howm-reminder-types "[-+~!@.^]"
+            howm-reminder-menu-types "[-+~!@^]")
+
+    (defun howm-todo-priority-daily (late lz item)
+      "Calculuate priority for ITEM with LATE and LZ timings.
+  See `howm-todo-priority-schedule-2' for inspiration. Return
+  `howm-todo-priority-schedule-top' if within the current day, and
+  `howm-todo-priority-schedule-bottom' otherwise."
+      (let ((r (howm-todo-relative-late late lz
+                                        howm-todo-priority-schedule-laziness)))
+        (if (<= 0 r 1)
+            howm-todo-priority-schedule-top
+          howm-todo-priority-schedule-bottom)))
+
+    (add-to-list 'howm-todo-priority-func '("^" . howm-todo-priority-daily))
+
+    (add-to-list 'howm-reminder-font-lock-keywords
+                 `(,(howm-reminder-regexp "[\\^]")
+                   (0 howm-reminder-schedule-face prepend))))
+    
+#+end_src
+
 * Org Mode
 Ah, the crown jewel of Emacs 👑.
 #+begin_src elisp
