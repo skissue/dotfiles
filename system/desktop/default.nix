@@ -24,4 +24,7 @@
 
   # Allow Plover to access serial (Gemini PR) devices.
   my.user.extraGroups = ["dialout"];
+
+  # Also enables services for smart card functionality.
+  programs.yubikey-manager.enable = true;
 }
