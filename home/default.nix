@@ -21,6 +21,7 @@
     ./programming
     ./secrets
     ./ssh
+    ./wlsunset
     ./xdg
   ];
 
