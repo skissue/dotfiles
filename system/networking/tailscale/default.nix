@@ -29,11 +29,16 @@
     });
     openFirewall = true;
     authKeyFile = config.sops.secrets.tailscale-auth-key.path;
+    extraDaemonFlags = ["--no-logs-no-support"];
     extraUpFlags = [
       "--login-server"
       "https://${private.domain.tailnet'}"
     ];
-    extraDaemonFlags = ["--no-logs-no-support"];
+    extraSetFlags = [
+      "--operator"
+      config.my.user.name
+      "--accept-routes"
+    ];
   };
 
   my.persist.local.directories = [
