@@ -17,7 +17,6 @@
       ./postgresql
       ./remote-luks-unlock
       ./umurmur
-      ./unbound
       ./wireless
     ]
     ++ mkModulesList [
@@ -27,6 +26,7 @@
       "impermanence"
       "impermanence/btrfs.nix"
       "netdata"
+      "unbound"
     ];
 
   boot.loader.systemd-boot.enable = true;
