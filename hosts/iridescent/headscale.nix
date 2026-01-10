@@ -22,7 +22,14 @@ in {
         magic_dns = true;
         base_domain = "in.${domain}";
         override_local_dns = true;
-        nameservers.global = ["fd7a:115c:a1e0:5e86:7755:f40d:4b4f:19ed" "100.72.228.191"];
+        nameservers.global = [
+          # prowler
+          "fd7a:115c:a1e0:5e86:7755:f40d:4b4f:19ed"
+          "100.72.228.191"
+          # iridescent
+          "fd7a:115c:a1e0:f811:19ba:3d4f:a16e:e3c6"
+          "100.72.86.116"
+        ];
       };
 
       # OIDC authentication via kanidm.
