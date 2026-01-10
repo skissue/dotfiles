@@ -20,6 +20,7 @@
       "impermanence"
       "impermanence/bcachefs.nix"
       "netdata"
+      "unbound"
     ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
