@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     aria2
     bottom
+    blender
     brave
     brightnessctl
     simple-scan
