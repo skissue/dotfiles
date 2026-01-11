@@ -10,7 +10,11 @@
     lib.url = "github:nix-community/nixpkgs.lib";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      # Only used for tests.
+      inputs.nixpkgs.follows = "";
+    };
     persist-retro.url = "github:Geometer1729/persist-retro";
 
     private.url = "git+ssh://ad@prowler/home/ad/dotfiles.private";
