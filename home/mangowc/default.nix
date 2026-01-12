@@ -10,7 +10,7 @@
 
   xdg.configFile."mango/config.conf".source = mutable-link ./config.conf;
 
-  # home.sessionPath = [(toString ./scripts)];
+  home.sessionPath = [(toString ./scripts)];
 
   # xdg.configFile."mako/config".text = ''
   #   default-timeout=5000

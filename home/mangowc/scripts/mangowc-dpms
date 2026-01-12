@@ -1,0 +1,19 @@
+#!/usr/bin/env nu
+
+def mmsg_on_monitors [command: string] {
+  mmsg -O | lines | each {|it| mmsg -d $'($command),($it)' }
+}
+
+# A `main` definition is needed for the subcommands to function.
+def main [] {
+  print "Usage: mangowc-dpms <on|off>"
+  exit 1
+}
+
+def "main on" [] {
+  mmsg_on_monitors "enable_monitor"
+}
+
+def "main off" [] {
+  mmsg_on_monitors "disable_monitor"
+}
