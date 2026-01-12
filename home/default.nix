@@ -16,6 +16,7 @@
     ./ghostty
     ./git
     ./gtk
+    ./mangowc
     ./mutable-links
     ./niri
     ./programming
