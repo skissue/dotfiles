@@ -14,17 +14,17 @@
             (workspaces)
             (bar-bottom)))
 
-(deflisten niri-workspaces "niri-workspaces")
+(deflisten mangowc-workspaces "mangowc-workspaces")
 (defwidget workspaces []
            (box
             :class "workspaces"
             :orientation "vertical"
             :space-evenly false
-            (for ws in {niri-workspaces}
+            (for ws in {mangowc-workspaces}
                  (button
-                  :class "ws ${ws.is_active ? "active" : ""} ${ws.is_focused ? "focused" : ""}"
-                  :onclick "niri msg action focus-workspace -- ${ws.idx}"
-                  {ws.active_window_id != "null" || ws.is_focused ? "●" : "○"}))))
+                  :class "ws ${ws.clients > 0 ? "active" : ""} ${ws.active ? "focused" : ""}"
+                  :onclick "mmsg -t ${ws.id}"
+                  {ws.clients > 0 || ws.active ? "●" : "○"}))))
 
 (defwidget bar-bottom []
            (box

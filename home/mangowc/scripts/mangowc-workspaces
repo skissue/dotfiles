@@ -1,0 +1,39 @@
+#!/usr/bin/env nu
+
+mut workspaces: record<string, list<record<active: bool, clients: int, focused: bool>>> = {}
+mut focused_monitor = ""
+
+for line in (mmsg -w | lines) {
+  let parts = $line | split row ' '
+  let monitor = $parts.0
+  let event = $parts.1
+
+  if $event == "selmon" and $parts.2 == "1" {
+    $focused_monitor = $monitor
+    if $monitor in $workspaces {
+      print ($workspaces | get $monitor | to json --raw)
+    }
+  } else if $event == "tag" {
+    let tag_idx = ($parts.2 | into int) - 1
+    let tag_info = {
+      id: ($parts.2 | into int)
+      active: ($parts.3 == "1")
+      clients: ($parts.4 | into int)
+      focused: ($parts.5 == "1")
+    }
+
+    # Initialize monitor's workspace list if it doesn't exist
+    if not ($monitor in $workspaces) {
+      $workspaces = $workspaces | insert $monitor (1..9 | each {|i| {id: $i, active: false, clients: 0, focused: false} })
+    }
+
+    # Update the specific tag
+    $workspaces = $workspaces | update $monitor {|row|
+      $row | get $monitor | update $tag_idx $tag_info
+    }
+
+    if $monitor == $focused_monitor {
+      print ($workspaces | get $monitor | to json --raw)
+    }
+  }
+}
