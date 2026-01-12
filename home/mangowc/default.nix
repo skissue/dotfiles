@@ -6,6 +6,8 @@
 }: {
   imports = [inputs.mangowc.hmModules.mango];
 
+  wayland.windowManager.mango.enable = true;
+  
   home.packages = with pkgs; [mako];
 
   xdg.configFile."mango/config.conf".source = mutable-link ./config.conf;
