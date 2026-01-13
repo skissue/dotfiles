@@ -5,12 +5,16 @@
   ...
 }: {
   imports = [inputs.mangowc.hmModules.mango];
+  wayland.windowManager.mango = {
+    enable = true;
+    settings = ''
+      source=${mutable-link ./config.conf}
 
-  wayland.windowManager.mango.enable = true;
-  
-  home.packages = with pkgs; [mako];
+      exec-once=swaybg -m fill -i ${inputs.private}/wallpapers/0002.png
+    '';
+  };
 
-  xdg.configFile."mango/config.conf".source = mutable-link ./config.conf;
+  home.packages = with pkgs; [mako wlr-randr];
 
   home.sessionPath = [(toString ./scripts)];
 
