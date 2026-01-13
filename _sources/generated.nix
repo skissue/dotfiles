@@ -53,17 +53,17 @@
   };
   org-bleeding-latex = {
     pname = "org-bleeding-latex";
-    version = "f9f909681a051c73c64cc7b030aa54d70bb78f80";
+    version = "6a976e4f853e6be65aac6e1e876e221983d1a710";
     src = fetchgit {
       url = "https://code.tecosaur.net/tec/org-mode.git";
-      rev = "f9f909681a051c73c64cc7b030aa54d70bb78f80";
+      rev = "6a976e4f853e6be65aac6e1e876e221983d1a710";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-MbXBcN6PJ1YSZCyxrg5Fng9pVY9X5FHFB+KAFwQu7zQ=";
+      sha256 = "sha256-11GnhHkliC7fpOw1UqJR7te5wfDm7RH3NOC0ugptX78=";
     };
-    date = "2025-08-10";
+    date = "2026-01-12";
   };
   org-modern-indent = {
     pname = "org-modern-indent";
