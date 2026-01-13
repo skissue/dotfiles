@@ -38,32 +38,53 @@
   programs.hyprlock = {
     enable = true;
     settings = {
-      # Disable fade-in, which causes a red flash on niri.
-      animation = ["fadeIn,0"];
       background = {
         monitor = "";
-        path = "screenshot";
-        blur_passes = 3;
-        blur_size = 6;
+        path = "${inputs.private}/wallpapers/0015.png";
       };
+
       input-field = {
         monitor = "";
-        size = "400, 50";
-        placeholder_text = "$PROMPT";
+        size = "600,60";
+        placeholder_text = "$PAMPROMPT";
+        outline_thickness = 2;
         dots_center = false;
-        halign = "center";
-        valign = "center";
+        outer_color = "rgba(202, 211, 245, 0.5)";
+        inner_color = "rgba(36, 39, 58, 0.6)";
+        font_color = "rgb(202, 211, 245)";
+        fade_on_empty = true;
+        rounding = 8;
+        position = "50,50";
+        halign = "left";
+        valign = "bottom";
       };
-      label = {
-        monitor = "";
-        text = "$TIME";
-        text_align = "center";
-        font_size = 36;
-        font_family = "Atkinson Hyperlegible Next";
-        position = "0, 80";
-        halign = "center";
-        valign = "center";
-      };
+
+      label = [
+        {
+          # Clock - top left
+          monitor = "";
+          text = "$TIME";
+          text_align = "left";
+          font_size = 84;
+          font_family = "PragmataPro";
+          color = "rgba(202, 211, 245, 1.0)";
+          position = "50,-10";
+          halign = "left";
+          valign = "top";
+        }
+        {
+          # Date - below clock
+          monitor = "";
+          text = ''cmd[update:60000] date +"%A, %B %d, %Y"'';
+          text_align = "left";
+          font_size = 36;
+          font_family = "PragmataPro";
+          color = "rgba(202, 211, 245, 0.7)";
+          position = "50,-120";
+          halign = "left";
+          valign = "top";
+        }
+      ];
     };
   };
 

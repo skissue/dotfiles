@@ -26,37 +26,37 @@
     on-button-middle=exec makoctl menu -n "$id" $DMENU -p 'Select action: '
   '';
 
-  programs.hyprlock = {
-    enable = true;
-    settings = {
-      # Disable fade-in, which causes a red flash on niri.
-      animation = ["fadeIn,0"];
-      background = {
-        monitor = "";
-        path = "screenshot";
-        blur_passes = 3;
-        blur_size = 6;
-      };
-      input-field = {
-        monitor = "";
-        size = "400, 50";
-        placeholder_text = "$PROMPT";
-        dots_center = false;
-        halign = "center";
-        valign = "center";
-      };
-      label = {
-        monitor = "";
-        text = "$TIME";
-        text_align = "center";
-        font_size = 36;
-        font_family = "Atkinson Hyperlegible Next";
-        position = "0, 80";
-        halign = "center";
-        valign = "center";
-      };
-    };
-  };
+  # programs.hyprlock = {
+  #   enable = true;
+  #   settings = {
+  #     # Disable fade-in, which causes a red flash on niri.
+  #     animation = ["fadeIn,0"];
+  #     background = {
+  #       monitor = "";
+  #       path = "screenshot";
+  #       blur_passes = 3;
+  #       blur_size = 6;
+  #     };
+  #     input-field = {
+  #       monitor = "";
+  #       size = "400, 50";
+  #       placeholder_text = "$PROMPT";
+  #       dots_center = false;
+  #       halign = "center";
+  #       valign = "center";
+  #     };
+  #     label = {
+  #       monitor = "";
+  #       text = "$TIME";
+  #       text_align = "center";
+  #       font_size = 36;
+  #       font_family = "Atkinson Hyperlegible Next";
+  #       position = "0, 80";
+  #       halign = "center";
+  #       valign = "center";
+  #     };
+  #   };
+  # };
 
   services.hypridle = {
     enable = true;
