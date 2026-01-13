@@ -12,6 +12,9 @@
 
       exec-once=swaybg -m fill -i ${inputs.private}/wallpapers/0002.png
     '';
+
+    # HACK This must be non-empty for the systemd activation commands to run.
+    autostart_sh = "echo -n";
   };
 
   home.packages = with pkgs; [mako wlr-randr];
