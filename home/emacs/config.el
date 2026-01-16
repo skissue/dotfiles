@@ -122,6 +122,8 @@ Only run once.")
 (defvar my/brain2 (expand-file-name "brain2/" my/theuniverse)
   "Path for `theuniverse'.")
 
+(add-to-list 'safe-local-variable-directories my/brain2)
+
 (setq no-littering-etc-directory
       (expand-file-name "emacs/" (getenv "XDG_CONFIG_HOME"))
       no-littering-var-directory

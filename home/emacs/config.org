@@ -226,6 +226,11 @@ Paths for my main Folders of Everything™, to make them convenient to reference
     "Path for `theuniverse'.")
 #+end_src
 
+Fully trust directory-local variables within brain2:
+#+begin_src elisp
+  (add-to-list 'safe-local-variable-directories my/brain2)
+#+end_src
+
 * Behavior
 ** No Littering
 Don't leave random files everywhere in the filesystem. Paths must be set before loading the package. This has to be loaded before most of the packages that it configures, so it's pretty early.
