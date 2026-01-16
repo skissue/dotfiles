@@ -2221,14 +2221,16 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
   (bind-key "C-c C-c" #'org-edit-src-exit org-src-mode-map))
 
 (after! org-attach
-  (setopt org-attach-id-dir "attach")
+  (setopt org-attach-auto-tag "attach"
+          org-attach-store-link-p t
+          org-attach-method 'mv)
+  
   (defun my/insert-org-attach-dir ()
     "Insert the current org-attach directory relative to
  `org-directory', creating it if needed."
     (interactive)
-    (insert
-     (file-relative-name (org-attach-dir-get-create)
-                         org-directory))))
+    (insert (file-relative-name (org-attach-dir-get-create)
+                                org-directory))))
 
 (after! org
   (global-org-modern-mode)
