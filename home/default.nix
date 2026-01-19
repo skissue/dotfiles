@@ -18,7 +18,6 @@
     ./gtk
     ./mangowc
     ./mutable-links
-    ./niri
     ./programming
     ./secrets
     ./ssh

@@ -72,7 +72,6 @@
       url = "github:DreamMaoMao/mangowc";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs = {
