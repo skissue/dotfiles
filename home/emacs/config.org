@@ -2831,7 +2831,7 @@ Habits.
 #+begin_src elisp
   (after! org-attach
     (setopt org-attach-auto-tag "attach"
-            org-attach-store-link-p t
+            org-attach-store-link-p 'attached
             org-attach-method 'mv)
     
     (defun my/insert-org-attach-dir ()
@@ -2840,6 +2840,19 @@ Habits.
       (interactive)
       (insert (file-relative-name (org-attach-dir-get-create)
                                   org-directory))))
+#+end_src
+
+Patch the [[help:yank-media][yank-media]] handler (for "pasting" images and other files into attachments with a link) to not insert the file name as a description, since it is both already visible within the link itself and prevents [[help:org-link-preview][org-link-preview]] from displaying images inline.
+#+begin_src elisp
+  (el-patch-feature org)
+  (after! org
+    (el-patch-define-and-eval-template
+     (defun org--image-yank-media-handler)
+     (el-patch-swap
+       (apply #'org-link-make-string-for-buffer
+              (org-attach-attach absname nil 'mv))
+       (org-link-make-string-for-buffer
+        (car (org-attach-attach absname nil 'mv))))))
 #+end_src
 
 ** Org Modern

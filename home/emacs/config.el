@@ -2224,7 +2224,7 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
 
 (after! org-attach
   (setopt org-attach-auto-tag "attach"
-          org-attach-store-link-p t
+          org-attach-store-link-p 'attached
           org-attach-method 'mv)
   
   (defun my/insert-org-attach-dir ()
@@ -2233,6 +2233,16 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
     (interactive)
     (insert (file-relative-name (org-attach-dir-get-create)
                                 org-directory))))
+
+(el-patch-feature org)
+(after! org
+  (el-patch-define-and-eval-template
+   (defun org--image-yank-media-handler)
+   (el-patch-swap
+     (apply #'org-link-make-string-for-buffer
+            (org-attach-attach absname nil 'mv))
+     (org-link-make-string-for-buffer
+      (car (org-attach-attach absname nil 'mv))))))
 
 (after! org
   (global-org-modern-mode)
