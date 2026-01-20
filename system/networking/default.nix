@@ -19,7 +19,9 @@
   # Acts as cache, layering on top of Tailscale's DNS server
   services.resolved = {
     enable = lib.mkDefault true;
-    fallbackDns = [""]; # Never fallback (don't want to use default servers)
-    dnsovertls = "true";
+    settings.Resolve = {
+      FallbackDNS = [""]; # Never fallback (don't want to use default servers)
+      DNSOverTLS = "true";
+    };
   };
 }
