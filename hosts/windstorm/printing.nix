@@ -11,11 +11,5 @@
     disabledDefaultBackends = [ "escl" ]; # Unneeded since airscan is enabled
   };
 
-  # Networked devices
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-  };
-
   my.user.extraGroups = ["scanner" "lp"];
 }
