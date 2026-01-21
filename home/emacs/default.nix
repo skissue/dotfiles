@@ -236,6 +236,7 @@ in {
     alejandra
     ltex-ls
     svgbob
+    lz4 # reSnap
   ];
 
   xdg.configFile = {
