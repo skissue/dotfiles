@@ -222,6 +222,11 @@ in {
         elfeed-tube-mpv
         yeetube
       ];
+    # Loaded after the user init.el, used for short Nix-value-dependent
+    # configuration.
+    extraConfig = ''
+      (add-to-list 'load-path "${inputs.elisp-extra}")
+    '';
   };
 
   services.emacs = {

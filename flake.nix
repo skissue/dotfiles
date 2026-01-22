@@ -58,6 +58,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    elisp-extra = {
+      url = "github:skissue/gxy?dir=elisp";
+      flake = false;
+    };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     eww.url = "github:elkowar/eww";
     git-annex-backend-XBLAKE3 = {

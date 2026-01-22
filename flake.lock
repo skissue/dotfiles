@@ -100,6 +100,24 @@
         "type": "github"
       }
     },
+    "elisp-extra": {
+      "flake": false,
+      "locked": {
+        "dir": "elisp",
+        "lastModified": 1769100723,
+        "narHash": "sha256-A3CtTx3LibYcJxCFJVs1m3+mWBJFfmq5B0KOEAbwWeU=",
+        "owner": "skissue",
+        "repo": "gxy",
+        "rev": "86ec9b37cabf4e44d39e2ac59c22aebfbd3d7d39",
+        "type": "github"
+      },
+      "original": {
+        "dir": "elisp",
+        "owner": "skissue",
+        "repo": "gxy",
+        "type": "github"
+      }
+    },
     "emacs-overlay": {
       "inputs": {
         "nixpkgs": "nixpkgs_2",
@@ -809,6 +827,7 @@
         "deploy-rs": "deploy-rs",
         "devshell": "devshell",
         "disko": "disko",
+        "elisp-extra": "elisp-extra",
         "emacs-overlay": "emacs-overlay",
         "eww": "eww",
         "flake-parts": "flake-parts",
