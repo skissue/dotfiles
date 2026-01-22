@@ -3019,13 +3019,10 @@ This function is called by `org-babel-execute-src-block'.")
 (after! elfeed
   (require 'elfeed-protocol)
 
-  (let ((domain (concat "feeds." (my/private 'domain 'private))))
-    (setopt elfeed-protocol-enabled-protocols '(fever)
-            elfeed-protocol-feeds
-            `((,(concat "fever+https://ad@" domain)
-               :api-url ,(format "https://%s/fever/" domain)
-               :password (secrets-get-secret
-                          "KeePassXC" "Miniflux Fever API")))))
+  (setopt elfeed-protocol-enabled-protocols '(miniflux)
+          elfeed-protocol-feeds
+          `((,(concat "miniflux+https://feeds." (my/private 'domain 'private))
+             :password (secrets-get-secret "KeePassXC" "Miniflux API"))))
 
   (elfeed-protocol-enable))
 
