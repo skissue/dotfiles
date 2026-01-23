@@ -7,14 +7,13 @@
   imports = [inputs.mangowc.hmModules.mango];
   wayland.windowManager.mango = {
     enable = true;
+    # Use a `source` instead of setting directly so that devices can easily add
+    # extra configuration while keeping mutable-links possible.
     settings = ''
       source=${mutable-link ./config.conf}
 
       exec-once=swaybg -m fill -i ${inputs.private}/wallpapers/0002.png
     '';
-
-    # HACK This must be non-empty for the systemd activation commands to run.
-    autostart_sh = "echo -n";
   };
 
   home.packages = with pkgs; [
