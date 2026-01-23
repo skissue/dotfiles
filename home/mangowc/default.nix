@@ -7,12 +7,15 @@
   imports = [inputs.mangowc.hmModules.mango];
   wayland.windowManager.mango = {
     enable = true;
+    systemd.enable = false; # Handled by uwsm.
+
     # Use a `source` instead of setting directly so that devices can easily add
     # extra configuration while keeping mutable-links possible.
     settings = ''
       source=${mutable-link ./config.conf}
 
       exec-once=swaybg -m fill -i ${inputs.private}/wallpapers/0002.png
+      exec-once=uwsm finalize
     '';
   };
 
