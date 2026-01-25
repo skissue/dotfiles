@@ -437,18 +437,16 @@
         ]
       },
       "locked": {
-        "dir": "koito-flake",
         "lastModified": 1769351205,
-        "narHash": "sha256-NHetmLOVIIm0sbnTiDmsktaUVyrMBS7/JrD+srGSF74=",
+        "narHash": "sha256-w8CQgTuLmo6dIuIMtSpHFt4v2ssI9bzwbdYbfau9CU8=",
         "owner": "skissue",
-        "repo": "gxy",
-        "rev": "e37c494e64897f225b1c016477975f6945af337b",
+        "repo": "koito-flake",
+        "rev": "87518c767c3dab37f5d0e569a5b8632d6461474e",
         "type": "github"
       },
       "original": {
-        "dir": "koito-flake",
         "owner": "skissue",
-        "repo": "gxy",
+        "repo": "koito-flake",
         "type": "github"
       }
     },

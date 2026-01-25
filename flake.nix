@@ -69,7 +69,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     koito = {
-      url = "github:skissue/gxy?dir=koito-flake";
+      url = "github:skissue/koito-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mangowc = {
