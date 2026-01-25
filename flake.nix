@@ -9,7 +9,7 @@
     };
     lib.url = "github:nix-community/nixpkgs.lib";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
     impermanence = {
       url = "github:nix-community/impermanence";
       # Only used for tests.

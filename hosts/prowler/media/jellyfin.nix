@@ -21,8 +21,6 @@ in {
     enable = true;
     extraPackages = graphicsPackages;
   };
-  chaotic.mesa-git.extraPackages = graphicsPackages;
-
   security.acme.certs.media.domain = domain;
 
   services.caddy.virtualHosts.${domain} = {

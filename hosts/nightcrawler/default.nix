@@ -29,8 +29,6 @@
 
   security.protectKernelImage = false; # Disallows hibernation
 
-  chaotic.mesa-git.extraPackages = with pkgs; [intel-media-driver];
-
   programs.firejail.enable = true;
   hardware.flipperzero.enable = true;
   services.usbmuxd.enable = true;

@@ -7,7 +7,6 @@
     inputs.private.nixosModules.default
     ../impermanence/options.nix # Always include so we can define paths in various modules
     ../networking
-    ./chaotic.nix
     ./logind.nix
     ./mutable-links.nix
     ./nix.nix
