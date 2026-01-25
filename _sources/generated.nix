@@ -53,17 +53,17 @@
   };
   org-bleeding-latex = {
     pname = "org-bleeding-latex";
-    version = "6a976e4f853e6be65aac6e1e876e221983d1a710";
+    version = "1ef59f0aa02e3cff40bae68b756a29bc2001739e";
     src = fetchgit {
       url = "https://code.tecosaur.net/tec/org-mode.git";
-      rev = "6a976e4f853e6be65aac6e1e876e221983d1a710";
+      rev = "1ef59f0aa02e3cff40bae68b756a29bc2001739e";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-11GnhHkliC7fpOw1UqJR7te5wfDm7RH3NOC0ugptX78=";
+      sha256 = "sha256-kPVFT2fgoOO5aCCAifzlSwDhMR2RqhhT1akOKfRyalw=";
     };
-    date = "2026-01-12";
+    date = "2026-01-15";
   };
   org-modern-indent = {
     pname = "org-modern-indent";
@@ -114,15 +114,15 @@
   };
   ultra-scroll = {
     pname = "ultra-scroll";
-    version = "d230b9308c5891abf8378b1030af9e1b029e9b3b";
+    version = "08758c6772c5fbce54fb74fb5cce080b6425c6ce";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "ultra-scroll";
-      rev = "d230b9308c5891abf8378b1030af9e1b029e9b3b";
+      rev = "08758c6772c5fbce54fb74fb5cce080b6425c6ce";
       fetchSubmodules = false;
-      sha256 = "sha256-zCKjuHjb07hnWgN3Xs1lUD7YLvYmQy1TOxad9xuU6pA=";
+      sha256 = "sha256-hKgwjs4qZikbvHKjWIJFlkI/4LXR6qovCoTBM5miVr8=";
     };
-    date = "2026-01-01";
+    date = "2026-01-17";
   };
   vertico-popup-frame = {
     pname = "vertico-popup-frame";

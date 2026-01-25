@@ -84,7 +84,7 @@
     },
     "org-bleeding-latex": {
         "cargoLocks": null,
-        "date": "2026-01-12",
+        "date": "2026-01-15",
         "extract": null,
         "name": "org-bleeding-latex",
         "passthru": null,
@@ -94,13 +94,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "6a976e4f853e6be65aac6e1e876e221983d1a710",
-            "sha256": "sha256-11GnhHkliC7fpOw1UqJR7te5wfDm7RH3NOC0ugptX78=",
+            "rev": "1ef59f0aa02e3cff40bae68b756a29bc2001739e",
+            "sha256": "sha256-kPVFT2fgoOO5aCCAifzlSwDhMR2RqhhT1akOKfRyalw=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://code.tecosaur.net/tec/org-mode.git"
         },
-        "version": "6a976e4f853e6be65aac6e1e876e221983d1a710"
+        "version": "1ef59f0aa02e3cff40bae68b756a29bc2001739e"
     },
     "org-modern-indent": {
         "cargoLocks": null,
@@ -188,7 +188,7 @@
     },
     "ultra-scroll": {
         "cargoLocks": null,
-        "date": "2026-01-01",
+        "date": "2026-01-17",
         "extract": null,
         "name": "ultra-scroll",
         "passthru": null,
@@ -200,12 +200,12 @@
             "name": null,
             "owner": "jdtsmith",
             "repo": "ultra-scroll",
-            "rev": "d230b9308c5891abf8378b1030af9e1b029e9b3b",
-            "sha256": "sha256-zCKjuHjb07hnWgN3Xs1lUD7YLvYmQy1TOxad9xuU6pA=",
+            "rev": "08758c6772c5fbce54fb74fb5cce080b6425c6ce",
+            "sha256": "sha256-hKgwjs4qZikbvHKjWIJFlkI/4LXR6qovCoTBM5miVr8=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "d230b9308c5891abf8378b1030af9e1b029e9b3b"
+        "version": "08758c6772c5fbce54fb74fb5cce080b6425c6ce"
     },
     "vertico-popup-frame": {
         "cargoLocks": null,
