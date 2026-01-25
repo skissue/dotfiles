@@ -20,7 +20,7 @@ in {
   };
 
   boot = {
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_cachyos-hardened;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_hardened;
 
     tmp = {
       useTmpfs = true;

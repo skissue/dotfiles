@@ -9,7 +9,6 @@
     };
     lib.url = "github:nix-community/nixpkgs.lib";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-
     impermanence = {
       url = "github:nix-community/impermanence";
       # Only used for tests.
@@ -58,6 +57,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     elisp-extra = {
       url = "github:skissue/gxy?dir=elisp";
       flake = false;

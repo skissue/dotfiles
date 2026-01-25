@@ -13,6 +13,7 @@
     ++ mkModulesList [
       "home-manager"
       "desktop"
+      "hardware/cachyos-kernel"
       "hardware/secure-boot"
       "networking/wireless"
       "networking/mullvad"
@@ -28,8 +29,6 @@
   };
 
   boot.initrd.systemd.enable = true;
-
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
 
   nixpkgs.config.rocmSupport = true;
 
