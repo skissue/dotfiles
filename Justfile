@@ -17,4 +17,4 @@ update *inputs:
     nix flake update --commit-lock-file --option commit-lockfile-summary 'bump(flake): update inputs' {{inputs}}
     nvfetcher
     git add _sources
-    -git commit -m 'bump: update nvfetcher sources'
+    -git commit -m 'bump(sources): update nvfetcher'
