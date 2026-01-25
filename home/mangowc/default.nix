@@ -14,7 +14,7 @@
     settings = ''
       source=${mutable-link ./config.conf}
 
-      exec-once=uwsm app -s b -- swaybg -m fill -i ${inputs.private}/wallpapers/0008.png
+      exec-once=runapp -i background-graphical.slice -- swaybg -m fill -i ${inputs.private}/wallpapers/0008.png
       exec-once=uwsm finalize
     '';
   };
@@ -22,13 +22,14 @@
   home.packages = with pkgs; [
     mako
     wlr-randr
+    runapp
     grim
     slurp
   ];
 
   home.sessionPath = [(toString ./scripts)];
 
-  programs.fuzzel.settings.main.launch-prefix = "uwsm app --";
+  programs.fuzzel.settings.main.launch-prefix = "runapp --";
 
   xdg.configFile."mako/config".text = ''
     default-timeout=5000
