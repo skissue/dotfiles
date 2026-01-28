@@ -49,6 +49,8 @@
 
   my.persist.userLocal.directories = ["dotfiles.private"];
 
+  services.postgresql.package = pkgs.postgresql_17;
+
   # State version (copy from auto-generated configuration.nix during install)
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
