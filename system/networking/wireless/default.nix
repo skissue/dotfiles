@@ -1,9 +1,14 @@
 {
-  networking.networkmanager = {
+  networking.wireless.iwd = {
     enable = true;
-    wifi.macAddress = "random";
-    ethernet.macAddress = "random";
+    settings = {
+      General = {
+        EnableNetworkConfiguration = "true";
+        AddressRandomization = "network";
+      };
+    };
   };
+
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 }
