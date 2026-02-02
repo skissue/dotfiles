@@ -1,6 +1,6 @@
 {
     "consult-mu": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2025-12-02",
         "extract": null,
         "name": "consult-mu",
@@ -21,7 +21,7 @@
         "version": "8b54bbf86c2f112e3520eeeefb70d509b4590385"
     },
     "consult-omni": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2025-12-03",
         "extract": null,
         "name": "consult-omni",
@@ -42,7 +42,7 @@
         "version": "bdcd5a065340dce9906ac5c5f359906d31877963"
     },
     "gptel-quick": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2025-11-05",
         "extract": null,
         "name": "gptel-quick",
@@ -63,7 +63,7 @@
         "version": "018ff2be8f860a1e8fe3966eec418ad635620c38"
     },
     "inline-diff": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2025-03-23",
         "extract": null,
         "name": "inline-diff",
@@ -83,7 +83,7 @@
         "version": "d1c13190dd9d8f5d14b52499ddfbcadba2a60e94"
     },
     "org-bleeding-latex": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2026-01-15",
         "extract": null,
         "name": "org-bleeding-latex",
@@ -103,7 +103,7 @@
         "version": "1ef59f0aa02e3cff40bae68b756a29bc2001739e"
     },
     "org-modern-indent": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2026-01-02",
         "extract": null,
         "name": "org-modern-indent",
@@ -124,7 +124,7 @@
         "version": "ebf9a8e571db523dc6e4cd9ed80d0e0626983ae4"
     },
     "org-popup-posframe": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2024-05-28",
         "extract": null,
         "name": "org-popup-posframe",
@@ -145,7 +145,7 @@
         "version": "d39cb7c2c9a996689b0d6519695eed3d807c0c85"
     },
     "org-typst": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2024-05-10",
         "extract": null,
         "name": "org-typst",
@@ -166,7 +166,7 @@
         "version": "367f23c9db3c80f75be6c407470ba71d5c34f709"
     },
     "revealjs": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": null,
         "extract": null,
         "name": "revealjs",
@@ -187,7 +187,7 @@
         "version": "5.2.1"
     },
     "ultra-scroll": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2026-01-17",
         "extract": null,
         "name": "ultra-scroll",
@@ -208,7 +208,7 @@
         "version": "08758c6772c5fbce54fb74fb5cce080b6425c6ce"
     },
     "vertico-popup-frame": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2025-11-22",
         "extract": null,
         "name": "vertico-popup-frame",
@@ -229,8 +229,8 @@
         "version": "a99361aad4b9faf9f36902223ceecbda7a66dc1b"
     },
     "yeetube-codeberg": {
-        "cargoLocks": null,
-        "date": "2025-12-20",
+        "cargoLock": null,
+        "date": "2026-01-30",
         "extract": null,
         "name": "yeetube-codeberg",
         "passthru": null,
@@ -240,12 +240,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "b1093c75ab1729efbfd5bb92864ad8eab734eec6",
-            "sha256": "sha256-+v7LFad54O0+PqB0LOZ+bU8RZpu00gZItBgx99FwNes=",
+            "rev": "2eddda6d93050b25a00c739b8ad72b58ce8602cc",
+            "sha256": "sha256-7VFfWXJGWVmLGLrfP4iux0M4VpGFC0NInjbIWmWUzUs=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://codeberg.org/thanosapollo/emacs-yeetube.git"
         },
-        "version": "b1093c75ab1729efbfd5bb92864ad8eab734eec6"
+        "version": "2eddda6d93050b25a00c739b8ad72b58ce8602cc"
     }
 }
