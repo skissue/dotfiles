@@ -16,7 +16,6 @@
       "hardware/cachyos-kernel"
       "hardware/secure-boot"
       "networking/wireless"
-      "networking/mullvad"
     ];
 
   boot.loader.systemd-boot.enable = true;

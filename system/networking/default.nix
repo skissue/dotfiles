@@ -11,10 +11,7 @@
     nameservers = ["9.9.9.9#dns.quad9.net" "149.112.112.112#dns.quad9.net" "2620:fe::fe#dns.quad9.net" "2620:fe::9#dns.quad9.net"];
   };
 
-  networking.nftables = {
-    enable = true;
-    flushRuleset = false; # Breaks active Mullvad/Tailscale connection rules
-  };
+  networking.nftables.enable = true;
 
   services.resolved = {
     enable = true;
