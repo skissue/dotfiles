@@ -15,6 +15,7 @@
       "desktop"
       "hardware/cachyos-kernel"
       "hardware/secure-boot"
+      "networking/airvpn"
       "networking/wireless"
     ];
 
