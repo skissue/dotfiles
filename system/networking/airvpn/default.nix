@@ -45,9 +45,6 @@
         Domains = ["~."];
         DNSOverTLS = false;
       };
-      linkConfig = {
-        ActivationPolicy = "manual";
-      };
       routingPolicyRules = [
         {
           Family = "both";
@@ -83,10 +80,26 @@
           Table = 52;
           Priority = 49;
         }
+        # HACK Send Quad9 traffic outside the tunnel to resolve the initial
+        # *.vpn.airdns.org endpoint domain (see below). Must match a server in
+        # networking.nameservers
+        {
+          To = "9.9.9.9";
+          DestinationPort = 853;
+          IPProtocol = "tcp";
+          Table = "main";
+          Priority = 49;
+        }
       ];
     };
   };
 
   # Required for Wireguard tunnels to function.
   networking.firewall.checkReversePath = "loose";
+
+  # HACK To resolve the domain used for the endpoint (*.vpn.airdns.org), we need a
+  # link that explicitly handles the route as otherwise resolved will attempt to
+  # route to wg0 (since it has ~.), which obviously fails since the link is not
+  # up yet.
+  services.resolved.settings.Resolve.Domains = "~vpn.airdns.org";
 }
