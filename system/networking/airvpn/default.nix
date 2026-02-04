@@ -58,7 +58,7 @@
         }
         # Allow local private IPs outside the tunnel.
         {
-          To = "10.0.0.0/8";
+          To = "10.0.0.0/24";
           Table = "main";
           Priority = 49;
         }
