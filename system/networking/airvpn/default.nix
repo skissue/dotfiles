@@ -39,10 +39,11 @@
         Name = "wg0";
       };
       networkConfig = {
-        Address = [
-          "10.140.33.159/32"
-          "fd7d:76ee:e68f:a993:5fe2:ed7a:957b:5834/128"
-        ];
+        Address = ["10.182.62.103/32" "fd7d:76ee:e68f:a993:7ecd:ccf1:f6b0:7754/128"];
+        DNS = ["10.128.0.1" "fd7d:76ee:e68f:a993::1"];
+        DNSDefaultRoute = true;
+        Domains = ["~."];
+        DNSOverTLS = false;
       };
       linkConfig = {
         ActivationPolicy = "manual";
