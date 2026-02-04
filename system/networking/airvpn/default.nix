@@ -67,6 +67,22 @@
           Table = "main";
           Priority = 49;
         }
+        # Send Tailscale traffic to Tailscale's routing table. Subnets are taken
+        # from my Headscale configuration. Could also be implemented using
+        # nftables and the firewall mark from above.
+        #
+        # NOTE: Tailscale will always use routing table 52:
+        # https://github.com/tailscale/tailscale/blob/5edfa6f9a8b409908861172882de03e9a67f0c2f/wgengine/router/osrouter/router_linux.go#L1208-L1224
+        {
+          To = "100.72.0.0/16";
+          Table = 52;
+          Priority = 49;
+        }
+        {
+          To = "fd7a:115c:a1e0::/48";
+          Table = 52;
+          Priority = 49;
+        }
       ];
     };
   };
