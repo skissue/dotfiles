@@ -2,7 +2,10 @@
   config,
   secretsDir,
   ...
-}: {
+}: let
+  wgTable = 222;
+  bypassMark = 22222;
+in {
   sops.secrets."airvpn/private" = {
     sopsFile = "${secretsDir}/desktop.yaml";
     owner = "systemd-network";
@@ -20,7 +23,7 @@
       };
       wireguardConfig = {
         PrivateKeyFile = config.sops.secrets."airvpn/private".path;
-        FirewallMark = 22222;
+        FirewallMark = bypassMark;
       };
       wireguardPeers = [
         {
@@ -29,7 +32,7 @@
           Endpoint = "america3.vpn.airdns.org:1637";
           AllowedIPs = ["0.0.0.0/0" "::/0"];
           PersistentKeepalive = 15;
-          RouteTable = 222;
+          RouteTable = wgTable;
         }
       ];
     };
@@ -48,9 +51,9 @@
       routingPolicyRules = [
         {
           Family = "both";
-          FirewallMark = 22222;
+          FirewallMark = bypassMark;
           InvertRule = true;
-          Table = 222;
+          Table = wgTable;
           Priority = 50;
         }
         # Allow local private IPs outside the tunnel.
