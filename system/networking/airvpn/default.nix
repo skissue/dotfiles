@@ -5,6 +5,7 @@
 }: let
   wgTable = 222;
   bypassMark = 22222;
+  bypassMarkS = toString bypassMark;
 in {
   sops.secrets."airvpn/private" = {
     sopsFile = "${secretsDir}/desktop.yaml";
@@ -105,4 +106,29 @@ in {
   # route to wg0 (since it has ~.), which obviously fails since the link is not
   # up yet.
   services.resolved.settings.Resolve.Domains = "~vpn.airdns.org";
+
+  # Slice for processes that should bypass the VPN tunnel.
+  systemd.slices.bypass-vpn = {
+    description = "Slice for processes bypassing VPN tunnel";
+    wantedBy = ["multi-user.target"];
+    before = ["nftables.service"];
+  };
+
+  # Mark packets from bypass-vpn.slice with bypassMark so they route via main table.
+  networking.nftables.tables.vpn-bypass = {
+    family = "inet";
+    content = ''
+      chain output {
+        type route hook output priority mangle;
+        socket cgroupv2 level 2 "bypass.slice/bypass-vpn.slice" meta mark set ${bypassMarkS}
+      }
+      chain postrouting {
+        type nat hook postrouting priority srcnat;
+        meta mark ${bypassMarkS} oifname != "wg0" masquerade
+      }
+    '';
+  };
+
+  # Cgroup path doesn't exist in build sandbox, skip validation.
+  networking.nftables.checkRuleset = false;
 }
