@@ -17,7 +17,6 @@
       ./postgresql
       ./remote-luks-unlock
       ./umurmur
-      ./wireless
     ]
     ++ mkModulesList [
       "acme"
@@ -26,6 +25,7 @@
       "impermanence"
       "impermanence/btrfs.nix"
       "netdata"
+      "networking/wireless"
       "unbound"
     ];
 
