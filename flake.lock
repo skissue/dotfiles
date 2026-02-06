@@ -437,11 +437,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769353792,
-        "narHash": "sha256-d0HqCZ+ksAuVozN9klulHvohiUDnDDiTd0utRoHYdMk=",
+        "lastModified": 1770402847,
+        "narHash": "sha256-rgCz/FLi1DCS5bH9Howg/173xIXZMQhURVJJb/+1ogU=",
         "owner": "skissue",
         "repo": "koito-flake",
-        "rev": "b89835a26c0d9f20fffbb0d9e67e0ae7db3cecab",
+        "rev": "6e0a1e7761f00a3b4bf3682a9e0f014164377fad",
         "type": "github"
       },
       "original": {
@@ -808,11 +808,11 @@
     },
     "private": {
       "locked": {
-        "lastModified": 1768275621,
-        "narHash": "sha256-C9PH7izFDnkdnCH3dR+xEKHzmPLTipASEdIYBzJKqmQ=",
+        "lastModified": 1770395195,
+        "narHash": "sha256-jJZSPpv4ZCmfvcHlkRo5J8wqKxsp8V6Gv5vTBIB940Y=",
         "ref": "refs/heads/main",
-        "rev": "1bbcded5730a7f8357dedfba2ad0231b142a8eb7",
-        "revCount": 23,
+        "rev": "a87ab34ac1c9af2ab0a9a73a885496e4b9e6cfdc",
+        "revCount": 24,
         "type": "git",
         "url": "ssh://ad@prowler/home/ad/dotfiles.private"
       },
