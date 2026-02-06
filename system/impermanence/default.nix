@@ -13,7 +13,13 @@ in {
 
   environment.persistence."/local" = {
     hideMounts = true;
-    directories = ["/var/lib/nixos"] ++ cfg.local.directories;
+    directories =
+      [
+        "/var/lib/nixos"
+        "/var/lib/systemd"
+        "/var/log/journal"
+      ]
+      ++ cfg.local.directories;
     files = ["/etc/machine-id"] ++ cfg.local.files;
     users.${config.my.user.name} = {
       directories = cfg.userLocal.directories;
