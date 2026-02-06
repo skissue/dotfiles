@@ -81,8 +81,8 @@ in {
     content = ''
       chain prerouting {
         type nat hook prerouting priority 0;
-        ip  saddr 100.69.0.0/16       tcp dport 53 redirect to 5354
-        ip  saddr 100.69.0.0/16       udp dport 53 redirect to 5354
+        ip  saddr 100.72.0.0/16       tcp dport 53 redirect to 5354
+        ip  saddr 100.72.0.0/16       udp dport 53 redirect to 5354
         ip6 saddr fd7a:115c:a1e0::/48 tcp dport 53 redirect to 5354
         ip6 saddr fd7a:115c:a1e0::/48 udp dport 53 redirect to 5354
       }
