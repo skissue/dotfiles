@@ -122,9 +122,10 @@ in {
         type route hook output priority mangle;
         socket cgroupv2 level 2 "bypass.slice/bypass-vpn.slice" meta mark set ${bypassMarkS}
       }
+      
       chain postrouting {
         type nat hook postrouting priority srcnat;
-        meta mark ${bypassMarkS} oifname != "wg0" masquerade
+        meta mark ${bypassMarkS} oifname != { "wg0", "lo" } masquerade
       }
     '';
   };
