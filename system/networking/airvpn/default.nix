@@ -107,20 +107,18 @@ in {
   # up yet.
   services.resolved.settings.Resolve.Domains = "~vpn.airdns.org";
 
-  # Slice for processes that should bypass the VPN tunnel.
-  systemd.slices.bypass-vpn = {
-    description = "Slice for processes bypassing VPN tunnel";
+  systemd.slices.system-airvpn_bypass = {
+    description = "Slice for processes bypassing AirVPN tunnel";
     wantedBy = ["multi-user.target"];
     before = ["nftables.service"];
   };
 
-  # Mark packets from bypass-vpn.slice with bypassMark so they route via main table.
-  networking.nftables.tables.vpn-bypass = {
+  networking.nftables.tables.airvpn-bypass = {
     family = "inet";
     content = ''
       chain output {
         type route hook output priority mangle;
-        socket cgroupv2 level 2 "bypass.slice/bypass-vpn.slice" meta mark set ${bypassMarkS}
+        socket cgroupv2 level 2 "system.slice/system-airvpn_bypass.slice" meta mark set ${bypassMarkS}
       }
       
       chain postrouting {
