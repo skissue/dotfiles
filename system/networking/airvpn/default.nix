@@ -58,43 +58,6 @@ in {
           Table = wgTable;
           Priority = wgPriority;
         }
-        # Allow local private IPs outside the tunnel.
-        {
-          To = "10.0.0.0/24";
-          Table = "main";
-          Priority = wgPriority - 1;
-        }
-        {
-          To = "192.168.0.0/16";
-          Table = "main";
-          Priority = wgPriority - 1;
-        }
-        # Send Tailscale traffic to Tailscale's routing table. Subnets are taken
-        # from my Headscale configuration. Could also be implemented using
-        # nftables and the firewall mark from above.
-        #
-        # NOTE: Tailscale will always use routing table 52:
-        # https://github.com/tailscale/tailscale/blob/5edfa6f9a8b409908861172882de03e9a67f0c2f/wgengine/router/osrouter/router_linux.go#L1208-L1224
-        {
-          To = "100.72.0.0/16";
-          Table = 52;
-          Priority = wgPriority - 1;
-        }
-        {
-          To = "fd7a:115c:a1e0::/48";
-          Table = 52;
-          Priority = wgPriority - 1;
-        }
-        # HACK Send Quad9 traffic outside the tunnel to resolve the initial
-        # *.vpn.airdns.org endpoint domain (see below). Must match a server in
-        # networking.nameservers
-        {
-          To = "9.9.9.9";
-          DestinationPort = 853;
-          IPProtocol = "tcp";
-          Table = "main";
-          Priority = wgPriority - 1;
-        }
       ];
     };
   };
@@ -119,9 +82,27 @@ in {
     content = ''
       chain output {
         type route hook output priority mangle;
+
+        # Allow local private IPs outside the tunnel.
+        ip daddr 10.0.0.0/24 meta mark set ${bypassMarkS}
+        ip daddr 192.168.0.0/16 meta mark set ${bypassMarkS}
+
+        # Send Tailscale traffic to Tailscale's routing table. Subnets are taken
+        # from my Headscale configuration.
+        #
+        # NOTE: Tailscale will always use routing table 52:
+        # https://github.com/tailscale/tailscale/blob/5edfa6f9a8b409908861172882de03e9a67f0c2f/wgengine/router/osrouter/router_linux.go#L1208-L1224
+        ip  daddr 100.72.0.0/16       meta mark set ${bypassMarkS}
+        ip6 daddr fd7a:115c:a1e0::/48 meta mark set ${bypassMarkS}
+
+        # HACK Send Quad9 traffic outside the tunnel to resolve the initial
+        # *.vpn.airdns.org endpoint domain (see above). Must match a server in
+        # networking.nameservers
+        ip daddr 9.9.9.9 tcp dport 853 meta mark set ${bypassMarkS}
+
         socket cgroupv2 level 2 "system.slice/system-airvpn_bypass.slice" meta mark set ${bypassMarkS}
       }
-      
+
       chain postrouting {
         type nat hook postrouting priority srcnat;
         meta mark ${bypassMarkS} oifname != { "wg0", "lo" } masquerade
