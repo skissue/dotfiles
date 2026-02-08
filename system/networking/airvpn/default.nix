@@ -6,6 +6,7 @@
   wgTable = 222;
   bypassMark = 22222;
   bypassMarkS = toString bypassMark;
+  wgPriority = 50;
 in {
   sops.secrets."airvpn/private" = {
     sopsFile = "${secretsDir}/desktop.yaml";
@@ -55,18 +56,18 @@ in {
           FirewallMark = bypassMark;
           InvertRule = true;
           Table = wgTable;
-          Priority = 50;
+          Priority = wgPriority;
         }
         # Allow local private IPs outside the tunnel.
         {
           To = "10.0.0.0/24";
           Table = "main";
-          Priority = 49;
+          Priority = wgPriority - 1;
         }
         {
           To = "192.168.0.0/16";
           Table = "main";
-          Priority = 49;
+          Priority = wgPriority - 1;
         }
         # Send Tailscale traffic to Tailscale's routing table. Subnets are taken
         # from my Headscale configuration. Could also be implemented using
@@ -77,12 +78,12 @@ in {
         {
           To = "100.72.0.0/16";
           Table = 52;
-          Priority = 49;
+          Priority = wgPriority - 1;
         }
         {
           To = "fd7a:115c:a1e0::/48";
           Table = 52;
-          Priority = 49;
+          Priority = wgPriority - 1;
         }
         # HACK Send Quad9 traffic outside the tunnel to resolve the initial
         # *.vpn.airdns.org endpoint domain (see below). Must match a server in
@@ -92,7 +93,7 @@ in {
           DestinationPort = 853;
           IPProtocol = "tcp";
           Table = "main";
-          Priority = 49;
+          Priority = wgPriority - 1;
         }
       ];
     };
