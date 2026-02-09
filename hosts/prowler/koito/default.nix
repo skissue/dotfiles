@@ -4,7 +4,7 @@
   private,
   ...
 }: let
-  domain = "scrobbles.${private.domain.tailnet}";
+  domain = "scrobbles.${private.domain.private}";
 in {
   imports = [inputs.koito.nixosModules.default];
 
