@@ -112,4 +112,8 @@ in {
 
   # Cgroup path doesn't exist in build sandbox, skip validation.
   networking.nftables.checkRuleset = false;
+
+  # Exclude Tailscale traffic from the Wireguard tunnel by putting it into the
+  # slice.
+  systemd.services.tailscaled.serviceConfig.Slice = "system-airvpn_bypass.slice";
 }
