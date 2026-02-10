@@ -664,19 +664,27 @@ Only difference is to compose symbols in comments as well. See
 
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 
-(require 'ef-themes)
+(require 'doric-themes)
+(doric-themes-load-theme 'doric-obsidian)
 
-(setq ef-themes-bold-constructs t
-      ef-themes-italic-constructs t
-      ef-themes-mixed-fonts t
-      ef-themes-headings '((0 1.8)
-                           (1 variable-pitch light 1.5)
-                           (2 variable-pitch light 1.4)
-                           (3 variable-pitch light 1.3)
-                           (4 variable-pitch light 1.2)
-                           (t variable-pitch light 1.1)))
-
-(ef-themes-load-theme 'ef-owl)
+(custom-set-faces
+ '(outline-1          ((t :inherit variable-pitch :weight light :height 1.5)))
+ '(outline-2          ((t :inherit variable-pitch :weight light :height 1.4)))
+ '(outline-3          ((t :inherit variable-pitch :weight light :height 1.3)))
+ '(outline-4          ((t :inherit variable-pitch :weight light :height 1.2)))
+ '(outline-5          ((t :inherit variable-pitch :weight light :height 1.1)))
+ '(outline-6          ((t :inherit variable-pitch :weight light :height 1.1)))
+ '(outline-7          ((t :inherit variable-pitch :weight light :height 1.1)))
+ '(outline-8          ((t :inherit variable-pitch :weight light :height 1.1)))
+ '(org-document-title ((t :height 1.8)))
+ '(org-level-1        ((t :inherit outline-1)))
+ '(org-level-2        ((t :inherit outline-2)))
+ '(org-level-3        ((t :inherit outline-3)))
+ '(org-level-4        ((t :inherit outline-4)))
+ '(org-level-5        ((t :inherit outline-5)))
+ '(org-level-6        ((t :inherit outline-6)))
+ '(org-level-7        ((t :inherit outline-7)))
+ '(org-level-8        ((t :inherit outline-8))))
 
 (add-hook 'window-setup-hook #'spacious-padding-mode)
 
@@ -714,7 +722,7 @@ Only difference is to compose symbols in comments as well. See
   (setopt eldoc-box-max-pixel-width (##floor (* 0.6 (frame-pixel-width)))
           eldoc-box-max-pixel-height (##floor (* 0.25 (frame-pixel-height))))
   
-  (ef-themes-with-colors
+  (doric-themes-with-colors
     (custom-set-faces
      `(eldoc-box-border ((t :background ,bg-main)))
      '(eldoc-box-body ((t :inherit variable-pitch)))))
@@ -783,11 +791,11 @@ Only difference is to compose symbols in comments as well. See
 (setq meow-use-clipboard t
       meow-keypad-self-insert-undefined nil
       auto-save-visited-predicate (##not (meow-insert-mode-p)))
-(ef-themes-with-colors
+(doric-themes-with-colors
   (custom-set-faces
-   `(meow-insert-indicator ((t :foreground ,fg-added)))
-   `(meow-beacon-indicator ((t :foreground ,fg-changed)))
-   `(meow-keypad-indicator ((t :foreground ,fg-removed)))))
+   `(meow-insert-indicator ((t :foreground ,fg-green)))
+   `(meow-beacon-indicator ((t :foreground ,fg-cyan)))
+   `(meow-keypad-indicator ((t :foreground ,fg-red)))))
 
 (meow-motion-define-key
  '("t"        . meow-next)
@@ -1361,12 +1369,12 @@ uses the symbol name as the default description, as well as a
 (add-hook 'prog-mode-hook #'hl-todo-mode)
 
 (after! hl-todo
-  (ef-themes-with-colors
+  (doric-themes-with-colors
     (setopt hl-todo-keyword-faces
-            `(("TODO" . ,green)
-              ("FIXME" . ,yellow)
-              ("HACK" . ,cyan)
-              ("NOTE" . ,blue)))))
+            `(("TODO" . ,fg-green)
+              ("FIXME" . ,fg-yellow)
+              ("HACK" . ,fg-cyan)
+              ("NOTE" . ,fg-blue)))))
 
 (bind-keys :map goto-map
            ("t" . consult-todo)
@@ -2053,11 +2061,11 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
           org-cycle-separator-lines              0
           org-blank-before-new-entry             '((heading . t)
                                                    (plain-list-item . auto))
-          org-todo-keyword-faces (ef-themes-with-colors
+          org-todo-keyword-faces (doric-themes-with-colors
                                    `(("CANCELED"
-                                      :foreground ,red)
+                                      :foreground ,fg-red)
                                      ("WAIT"
-                                      :foreground ,yellow)))
+                                      :foreground ,fg-yellow)))
           org-refile-targets     '((nil :maxlevel . 2)
                                    (org-agenda-files :maxlevel . 2)))
   (custom-set-faces
@@ -2137,12 +2145,12 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
           org-agenda-deadline-faces '((0.8 . org-imminent-deadline)
                                       (0.5 . org-upcoming-deadline)
                                       (0.0 . org-upcoming-distant-deadline)))
-  (ef-themes-with-colors
+  (doric-themes-with-colors
     (custom-set-faces
-     `(org-scheduled-today           ((t (:foreground ,magenta :weight bold))))
-     `(org-imminent-deadline         ((t (:foreground ,red    :weight semibold))))
-     `(org-upcoming-deadline         ((t (:foreground ,yellow :weight medium))))
-     `(org-upcoming-distant-deadline ((t (:foreground ,yellow :weight light)))))))
+     `(org-scheduled-today           ((t (:foreground ,fg-magenta :weight bold))))
+     `(org-imminent-deadline         ((t (:foreground ,fg-red    :weight semibold))))
+     `(org-upcoming-deadline         ((t (:foreground ,fg-yellow :weight medium))))
+     `(org-upcoming-distant-deadline ((t (:foreground ,fg-yellow :weight light)))))))
 
 (after! org
   (require 'org-habit)
@@ -2254,21 +2262,21 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
           org-modern-star 'replace
           org-modern-replace-stars "§∯δσ𝛼∞𝜺"
           ;; For some reason, inheriting from `org-modern-todo' messes with the size
-          org-modern-todo-faces (ef-themes-with-colors
+          org-modern-todo-faces (doric-themes-with-colors
                                   `(("CANCELED"
                                      :inverse-video t
                                      :weight semibold
-                                     :foreground ,red)
+                                     :foreground ,fg-red)
                                     ("WAIT"
                                      :inverse-video t
                                      :weight semibold
-                                     :foreground ,yellow))))
-  (ef-themes-with-colors
+                                     :foreground ,fg-yellow))))
+  (doric-themes-with-colors
     (custom-set-faces
      '(org-modern-label ((t :height 1.0
                             :inherit fixed-pitch)))
      `(org-modern-done ((t :inherit org-modern-todo
-                           :foreground ,green)))
+                           :foreground ,fg-green)))
      '(org-modern-symbol ((t (:family "Maple Mono NF" :height 1.1)))))))
 
 (after! org-indent
@@ -2458,8 +2466,8 @@ have `org-warning' face."
           org-re-reveal-extra-options "controlsTutorial: false"))
 
 (after! nice-org-html
-  (setopt nice-org-html-theme-alist `((light . ef-light)
-                                      (dark  . ,(ef-themes--current-theme)))
+  (setopt nice-org-html-theme-alist `((light . doric-light)
+                                      (dark  . doric-dark))
           nice-org-html-default-mode 'dark
           nice-org-html-options '(:collapsing t
                                               :src-lang t)))
