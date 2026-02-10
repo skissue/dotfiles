@@ -51,6 +51,17 @@ in {
         DNSOverTLS = false;
       };
       routingPolicyRules = [
+        # Try Tailscale's routing table first. Tailscale only adds entries for
+        # its IPs, so this sends Tailscale traffic to Tailscale and other
+        # traffic will fallback.
+        #
+        # NOTE: Tailscale will always use routing table 52:
+        # https://github.com/tailscale/tailscale/blob/5edfa6f9a8b409908861172882de03e9a67f0c2f/wgengine/router/osrouter/router_linux.go#L1208-L1224
+        {
+          Family = "both";
+          Priority = wgPriority - 1;
+          Table = 52;
+        }
         {
           Family = "both";
           FirewallMark = bypassMark;
@@ -86,14 +97,6 @@ in {
         # Allow local private IPs outside the tunnel.
         ip daddr 10.0.0.0/24 meta mark set ${bypassMarkS}
         ip daddr 192.168.0.0/16 meta mark set ${bypassMarkS}
-
-        # Send Tailscale traffic to Tailscale's routing table. Subnets are taken
-        # from my Headscale configuration.
-        #
-        # NOTE: Tailscale will always use routing table 52:
-        # https://github.com/tailscale/tailscale/blob/5edfa6f9a8b409908861172882de03e9a67f0c2f/wgengine/router/osrouter/router_linux.go#L1208-L1224
-        ip  daddr 100.72.0.0/16       meta mark set ${bypassMarkS}
-        ip6 daddr fd7a:115c:a1e0::/48 meta mark set ${bypassMarkS}
 
         # HACK Send Quad9 traffic outside the tunnel to resolve the initial
         # *.vpn.airdns.org endpoint domain (see above). Must match a server in
