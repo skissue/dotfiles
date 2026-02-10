@@ -3,46 +3,46 @@
     enable = true;
     installBatSyntax = true;
     settings = {
-      theme = "ef-owl";
+      theme = "doric-obsidian";
       font-family = "PragmataPro Mono Liga";
       font-size = 14;
       background-opacity = 0.85;
       command = "nu";
     };
-    themes.ef-owl = {
-      # https://codeberg.org/anhsirk0/ghostty-themes/src/branch/main/themes/ef-owl ❤️
-      # Ef-Owl Colors
-      background = "#292c2f";
-      foreground = "#d0d0d0";
-      selection-background = "#404f66";
-      selection-foreground = "#d0d0d0";
-      cursor-color = "#afe6ef";
+    themes.doric-obsidian = {
+      # https://codeberg.org/anhsirk0/ghostty-themes/src/branch/main/themes/doric-obsidian ❤️
+      # Doric-Obsidian Colors
+      background = "#181818";
+      foreground = "#e7e7e7";
+      selection-background = "#505050";
+      selection-foreground = "#e7e7e7";
+      cursor-color = "#eeddbb";
 
       palette = [
         # black
-        "0=#373b3d"
-        "8=#60676b"
+        "0=#2f2f2f"
+        "8=#2f2f2f"
         # red
-        "1=#d67869"
-        "9=#e4959f"
+        "1=#eca28f"
+        "9=#eca28f"
         # green
-        "2=#70bb70"
-        "10=#60bd90"
+        "2=#b9d0aa"
+        "10=#b9d0aa"
         # yellow
-        "3=#c09f6f"
-        "11=#cf9f90"
+        "3=#c0b080"
+        "11=#c0b080"
         # blue
-        "4=#80a4e0"
-        "12=#72aff0"
+        "4=#9fbfe7"
+        "12=#9fbfe7"
         # magenta
-        "5=#e5a0ea"
-        "13=#cfa0e8"
+        "5=#e9acbf"
+        "13=#e9acbf"
         # cyan
-        "6=#8fb8ea"
-        "14=#7ac0b9"
+        "6=#a0c0d0"
+        "14=#a0c0d0"
         # white
-        "7=#d0d0d0"
-        "15=#857f8f"
+        "7=#e7e7e7"
+        "15=#e7e7e7"
       ];
     };
   };
