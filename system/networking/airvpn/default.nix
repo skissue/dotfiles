@@ -31,7 +31,7 @@ in {
         {
           PublicKey = "PyLCXAQT8KkM4T+dUsOQfn+Ub3pGxfGlxkIApuig+hk=";
           PresharedKeyFile = config.sops.secrets."airvpn/preshared".path;
-          Endpoint = "america3.vpn.airdns.org:1637";
+          Endpoint = "us3.vpn.airdns.org:1637";
           AllowedIPs = ["0.0.0.0/0" "::/0"];
           PersistentKeepalive = 15;
           RouteTable = wgTable;
