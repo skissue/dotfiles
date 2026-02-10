@@ -39,4 +39,6 @@ in {
   yeetube = epkgs.yeetube.overrideAttrs (oldAttrs: {
     inherit (sources.yeetube-codeberg) src;
   });
+  # Want to use v1.0 but emacs-overlay updates are broken right now.
+  doric-themes = melpaBuild sources.doric-themes;
 }

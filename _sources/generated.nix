@@ -30,6 +30,17 @@
     };
     date = "2025-12-03";
   };
+  doric-themes = {
+    pname = "doric-themes";
+    version = "1.0.0";
+    src = fetchFromGitHub {
+      owner = "protesilaos";
+      repo = "doric-themes";
+      rev = "1.0.0";
+      fetchSubmodules = false;
+      sha256 = "sha256-TJZLB7kR2eCK4HX0VrLqEm1s1S3DFg4izgQgSFOJFas=";
+    };
+  };
   gptel-quick = {
     pname = "gptel-quick";
     version = "018ff2be8f860a1e8fe3966eec418ad635620c38";

@@ -46,3 +46,7 @@ fetch.github = "skissue/vertico-popup-frame"
 [yeetube-codeberg]
 src.git = "https://codeberg.org/thanosapollo/emacs-yeetube.git"
 fetch.git = "https://codeberg.org/thanosapollo/emacs-yeetube.git"
+
+[doric-themes]
+src.github_tag = "protesilaos/doric-themes"
+fetch.github = "protesilaos/doric-themes"

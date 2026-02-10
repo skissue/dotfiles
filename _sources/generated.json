@@ -41,6 +41,27 @@
         },
         "version": "bdcd5a065340dce9906ac5c5f359906d31877963"
     },
+    "doric-themes": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "doric-themes",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "protesilaos",
+            "repo": "doric-themes",
+            "rev": "1.0.0",
+            "sha256": "sha256-TJZLB7kR2eCK4HX0VrLqEm1s1S3DFg4izgQgSFOJFas=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "1.0.0"
+    },
     "gptel-quick": {
         "cargoLock": null,
         "date": "2025-11-05",
