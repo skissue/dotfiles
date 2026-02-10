@@ -4,10 +4,12 @@
   ...
 }: let
   wgTable = 222;
-  bypassMark = 22222;
-  bypassMarkS = toString bypassMark;
+  wgMark = 22222;
+  # Must match the priority in ./exclude.nix!
   wgPriority = 50;
 in {
+  imports = [./exclude.nix];
+
   sops.secrets."airvpn/private" = {
     sopsFile = "${secretsDir}/desktop.yaml";
     owner = "systemd-network";
@@ -25,7 +27,7 @@ in {
       };
       wireguardConfig = {
         PrivateKeyFile = config.sops.secrets."airvpn/private".path;
-        FirewallMark = bypassMark;
+        FirewallMark = wgMark;
       };
       wireguardPeers = [
         {
@@ -59,12 +61,12 @@ in {
         # https://github.com/tailscale/tailscale/blob/5edfa6f9a8b409908861172882de03e9a67f0c2f/wgengine/router/osrouter/router_linux.go#L1208-L1224
         {
           Family = "both";
-          Priority = wgPriority - 1;
+          Priority = wgPriority - 10;
           Table = 52;
         }
         {
           Family = "both";
-          FirewallMark = bypassMark;
+          FirewallMark = wgMark;
           InvertRule = true;
           Table = wgTable;
           Priority = wgPriority;
@@ -81,42 +83,4 @@ in {
   # route to wg0 (since it has ~.), which obviously fails since the link is not
   # up yet.
   services.resolved.settings.Resolve.Domains = "~vpn.airdns.org";
-
-  systemd.slices.system-airvpn_bypass = {
-    description = "Slice for processes bypassing AirVPN tunnel";
-    wantedBy = ["multi-user.target"];
-    before = ["nftables.service"];
-  };
-
-  networking.nftables.tables.airvpn-bypass = {
-    family = "inet";
-    content = ''
-      chain output {
-        type route hook output priority mangle;
-
-        # Allow local private IPs outside the tunnel.
-        ip daddr 10.0.0.0/24 meta mark set ${bypassMarkS}
-        ip daddr 192.168.0.0/16 meta mark set ${bypassMarkS}
-
-        # HACK Send Quad9 traffic outside the tunnel to resolve the initial
-        # *.vpn.airdns.org endpoint domain (see above). Must match a server in
-        # networking.nameservers
-        ip daddr 9.9.9.9 tcp dport 853 meta mark set ${bypassMarkS}
-
-        socket cgroupv2 level 2 "system.slice/system-airvpn_bypass.slice" meta mark set ${bypassMarkS}
-      }
-
-      chain postrouting {
-        type nat hook postrouting priority srcnat;
-        meta mark ${bypassMarkS} oifname != { "wg0", "lo" } masquerade
-      }
-    '';
-  };
-
-  # Cgroup path doesn't exist in build sandbox, skip validation.
-  networking.nftables.checkRuleset = false;
-
-  # Exclude Tailscale traffic from the Wireguard tunnel by putting it into the
-  # slice.
-  systemd.services.tailscaled.serviceConfig.Slice = "system-airvpn_bypass.slice";
 }
