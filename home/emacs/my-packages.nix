@@ -4,6 +4,10 @@
 }: let
   inherit (epkgs) melpaBuild;
 in {
+  # Packages that depend on jsonrpc will pull in the ELPA version, which is
+  # behind the one bundled with Emacs and breaks Eglot on the bleeding edge, so
+  # disable it entirely.
+  jsonrpc = null;
   # Org Mode source with new async LaTeX preview support.
   # TODO Remove when this is merged.
   org = melpaBuild (sources.org-bleeding-latex
