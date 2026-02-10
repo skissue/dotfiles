@@ -4,6 +4,10 @@ $env.config.history = {
     isolation: true
 }
 
+# Doric Obsidian `fg-shadow-subtle` color, because the one Nushell picks is
+# near-unreadable.
+$env.config.color_config.hints = "#969696"
+
 # https://www.nushell.sh/cookbook/external_completers.html
 let zoxide_completer = {|spans|
     $spans | skip 1 | zoxide query -l $in | lines | where {|x| $x != $env.PWD}
