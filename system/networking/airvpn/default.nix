@@ -2,11 +2,9 @@
   config,
   secretsDir,
   ...
-}: let
+}:
+with import ./values.nix; let
   wgTable = 222;
-  wgMark = 22222;
-  # Must match the priority in ./exclude.nix!
-  wgPriority = 50;
 in {
   imports = [./exclude.nix];
 
@@ -20,7 +18,7 @@ in {
   };
 
   systemd.network = {
-    netdevs."99-wg0" = {
+    netdevs.${netconfName} = {
       netdevConfig = {
         Name = "wg0";
         Kind = "wireguard";
@@ -41,10 +39,8 @@ in {
       ];
     };
 
-    networks."99-wg0" = {
-      matchConfig = {
-        Name = "wg0";
-      };
+    networks.${netconfName} = {
+      matchConfig.Name = "wg0";
       networkConfig = {
         Address = ["10.182.62.103/32" "fd7d:76ee:e68f:a993:7ecd:ccf1:f6b0:7754/128"];
         DNS = ["10.128.0.1" "fd7d:76ee:e68f:a993::1"];

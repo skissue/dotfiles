@@ -1,11 +1,5 @@
-let
-  # Must match the priority in ./default.nix!
-  excludeMark = 24242;
-  excludeMarkS = toString excludeMark;
-  wgPriority = 50;
-in {
-  # Must match the config name in ./default.nix!
-  systemd.network.networks."99-wg0".routingPolicyRules = [
+with import ./values.nix; {
+  systemd.network.networks.${netconfName}.routingPolicyRules = [
     {
       Family = "both";
       FirewallMark = excludeMark;
