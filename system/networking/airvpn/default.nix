@@ -6,7 +6,10 @@
 with import ./values.nix; let
   wgTable = 222;
 in {
-  imports = [./exclude.nix];
+  imports = [
+    ./exclude.nix
+    ./kill-switch.nix
+  ];
 
   sops.secrets."airvpn/private" = {
     sopsFile = "${secretsDir}/desktop.yaml";
