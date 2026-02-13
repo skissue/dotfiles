@@ -24,8 +24,8 @@ in {
   services.kanidm = {
     package = pkgs.kanidm_1_8;
 
-    enableServer = true;
-    serverSettings = {
+    server.enable = true;
+    server.settings = {
       version = "2";
 
       inherit domain;
@@ -58,7 +58,7 @@ in {
   services.caddy.virtualHosts.${domain} = {
     useACMEHost = "kanidm";
     extraConfig = ''
-      reverse_proxy https://${config.services.kanidm.serverSettings.bindaddress} {
+      reverse_proxy https://${config.services.kanidm.server.settings.bindaddress} {
         # Use correct domain during TLS verification. Fails otherwise since the
         # given upstream is an IP.
         transport http {
