@@ -1,4 +1,12 @@
-with import ./values.nix; {
+{
+  config,
+  pkgs,
+  ...
+}:
+with import ./values.nix; let
+  sliceName = "system-airvpn_exclude.slice";
+  unitPrefix = "airvpn-exclude-";
+in {
   systemd.network.networks.${netconfName}.routingPolicyRules = [
     {
       Family = "both";
@@ -47,5 +55,28 @@ with import ./values.nix; {
 
   # Exclude Tailscale traffic from the Wireguard tunnel by putting it into the
   # slice.
-  systemd.services.tailscaled.serviceConfig.Slice = "system-airvpn_exclude.slice";
+  systemd.services.tailscaled.serviceConfig.Slice = sliceName;
+
+  environment.systemPackages = [
+    (pkgs.writeShellApplication {
+      name = "airvpn-exclude";
+      runtimeInputs = [config.systemd.package];
+      text = ''
+        exec systemd-run --slice=${sliceName} --unit=${unitPrefix}"$$" --scope -- "$@"
+      '';
+    })
+  ];
+
+  # Allow wheel to run airvpn-exclude without authentication.
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (action.id == "org.freedesktop.systemd1.manage-units" &&
+          action.lookup("verb") == "start" &&
+          action.lookup("unit").indexOf("${unitPrefix}") == 0 &&
+          action.lookup("unit").endsWith(".scope") &&
+          subject.isInGroup("wheel")) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
 }
