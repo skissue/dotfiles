@@ -25,7 +25,7 @@
         with ps; [
           # TETR.IO
           nspr
-          xorg.libXdamage
+          libxdamage
         ];
     })
     mangohud

@@ -10,7 +10,7 @@
   gtk3,
   alsa-lib,
   dbus-glib,
-  xorg,
+  libxtst,
   pciutils,
   libva,
   pipewire,
@@ -80,7 +80,7 @@ in
       gtk3
       alsa-lib
       dbus-glib
-      xorg.libXtst
+      libxtst
     ];
 
     installPhase = ''
