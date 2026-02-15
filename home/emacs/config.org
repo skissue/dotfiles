@@ -906,7 +906,7 @@ Set up PragmataPro and enable [[help:prettify-symbols-mode][prettify-symbols-mod
 ** Theme
 #+begin_src elisp
   (require 'doric-themes)
-  (doric-themes-load-theme 'doric-obsidian)
+  (doric-themes-select 'doric-obsidian)
 #+end_src
 
 Make outline/Org headings sized up. Need to override Doric's default Org heading settings.

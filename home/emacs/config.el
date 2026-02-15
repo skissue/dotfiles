@@ -665,7 +665,7 @@ Only difference is to compose symbols in comments as well. See
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 
 (require 'doric-themes)
-(doric-themes-load-theme 'doric-obsidian)
+(doric-themes-select 'doric-obsidian)
 
 (custom-set-faces
  '(outline-1          ((t :inherit variable-pitch :weight light :height 1.5)))
