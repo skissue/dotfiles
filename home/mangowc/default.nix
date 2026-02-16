@@ -26,6 +26,8 @@
 
   home.packages = with pkgs; [
     wlr-randr
+    wlrctl
+    wl-kbptr
     runapp
     grim
     slurp

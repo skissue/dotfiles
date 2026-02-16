@@ -1,0 +1,15 @@
+#!/usr/bin/env nu
+
+let focused = mmsg -g -o | parse '{monitor} selmon {sel}' | where sel == '1' | get monitor.0
+
+let geom = mmsg -g -x
+  | parse '{monitor} {key} {value}'
+  | where monitor == $focused
+  | select key value
+  | transpose --header-row
+  | into record
+
+(wl-kbptr
+  -r $'($geom.width)x($geom.height)+($geom.x)+($geom.y)'
+  -o modes=floating,click
+  -o mode_floating.source=detect)
