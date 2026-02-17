@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+set -eu
+
+app="$1"
+shift
+wlrctl toplevel focus "$app" || runapp "$@"
