@@ -6,11 +6,6 @@
 }: let
   cfg = config.services.jellyfin;
   domain = "media.${private.domain.private}";
-  graphicsPackages = with pkgs; [
-    intel-media-driver
-    libva-vdpau-driver
-    intel-compute-runtime-legacy1
-  ];
 in {
   services.jellyfin.enable = true;
   users.users.${cfg.user}.extraGroups = ["media"];
@@ -19,7 +14,11 @@ in {
   # CPU is 7th generation (Kaby Lake).
   hardware.graphics = {
     enable = true;
-    extraPackages = graphicsPackages;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      libva-vdpau-driver
+      intel-compute-runtime-legacy1
+    ];
   };
   security.acme.certs.media.domain = domain;
 
