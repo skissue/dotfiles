@@ -1923,19 +1923,13 @@ Persist undo history; despite the name, this works independently of Undo Fu and 
       :stream t
       :key (##or (secrets-get-secret "KeePassXC" "OpenRouter")
                  (user-error "Unable to retrieve OpenRouter key"))
-      :models '(kwaipilot/kat-coder-pro:free
-                z-ai/glm-4.5-air:free
-                qwen/qwen3-coder:free
-                qwen/qwen3-235b-a22b:free
-                x-ai/grok-4.1-fast:free
+      :models '(openrouter/free
                 deepseek/deepseek-chat-v3.1
-                inception/mercury-coder
                 x-ai/grok-code-fast-1
-                z-ai/glm-4.6
-                anthropic/claude-haiku-4.5
-                google/gemini-3-pro-preview
-                anthropic/claude-sonnet-4.5
-                anthropic/claude-opus-4.5))
+                minimax/minimax-m2.5
+                z-ai/glm-5
+                anthropic/claude-sonnet-4.6
+                anthropic/claude-opus-4.6))
     (setopt gptel-model           'qwen3:14b
             gptel-backend         (gptel-make-openai "Local"
                                     :protocol "http"
