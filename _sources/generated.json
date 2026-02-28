@@ -41,11 +41,11 @@
         },
         "version": "bdcd5a065340dce9906ac5c5f359906d31877963"
     },
-    "doric-themes": {
+    "gptel-openrouter-models": {
         "cargoLock": null,
-        "date": null,
+        "date": "2026-02-27",
         "extract": null,
-        "name": "doric-themes",
+        "name": "gptel-openrouter-models",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -53,14 +53,14 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "owner": "protesilaos",
-            "repo": "doric-themes",
-            "rev": "1.0.0",
-            "sha256": "sha256-TJZLB7kR2eCK4HX0VrLqEm1s1S3DFg4izgQgSFOJFas=",
+            "owner": "skissue",
+            "repo": "gptel-openrouter-models",
+            "rev": "07a54486662136131d5d38e23b3b8ff3aea07b79",
+            "sha256": "sha256-j7pXSU8XNUJjK+bxdLzZUo0iyuFtO4ZW5Q+x/bO3sC0=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "1.0.0"
+        "version": "07a54486662136131d5d38e23b3b8ff3aea07b79"
     },
     "gptel-quick": {
         "cargoLock": null,

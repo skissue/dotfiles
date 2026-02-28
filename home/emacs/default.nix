@@ -126,6 +126,7 @@ in {
         undo-fu-session
         keycast
         gptel
+        gptel-openrouter-models
         gptel-quick
         gptel-aibo
         inline-diff

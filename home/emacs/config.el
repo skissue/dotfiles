@@ -1461,13 +1461,7 @@ uses the symbol name as the default description, as well as a
     :stream t
     :key (##or (secrets-get-secret "KeePassXC" "OpenRouter")
                (user-error "Unable to retrieve OpenRouter key"))
-    :models '(openrouter/free
-              deepseek/deepseek-chat-v3.1
-              x-ai/grok-code-fast-1
-              minimax/minimax-m2.5
-              z-ai/glm-5
-              anthropic/claude-sonnet-4.6
-              anthropic/claude-opus-4.6))
+    :models (gptel-openrouter-models))
   (setopt gptel-model           'qwen3:14b
           gptel-backend         (gptel-make-openai "Local"
                                   :protocol "http"

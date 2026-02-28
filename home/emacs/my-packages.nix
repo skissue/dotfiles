@@ -27,6 +27,11 @@ in {
       version = "0.0.5";
       packageRequires = with epkgs; [compat gptel];
     });
+  gptel-openrouter-models = melpaBuild (sources.gptel-openrouter-models
+    // {
+      version = "1.0.0";
+      files = ''(:defaults "openrouter-models.json")'';
+    });
   org-modern-indent = melpaBuild (sources.org-modern-indent
     // {
       version = "0.1.4";

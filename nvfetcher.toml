@@ -15,6 +15,10 @@ fetch.github = "skissue/org-typst"
 src.git = "https://github.com/karthink/gptel-quick"
 fetch.github = "karthink/gptel-quick"
 
+[gptel-openrouter-models]
+src.git = "https://github.com/skissue/gptel-openrouter-models"
+fetch.github = "skissue/gptel-openrouter-models"
+
 [consult-omni]
 src.git = "https://github.com/armindarvish/consult-omni"
 fetch.github = "armindarvish/consult-omni"

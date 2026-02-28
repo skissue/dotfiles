@@ -30,16 +30,17 @@
     };
     date = "2025-12-03";
   };
-  doric-themes = {
-    pname = "doric-themes";
-    version = "1.0.0";
+  gptel-openrouter-models = {
+    pname = "gptel-openrouter-models";
+    version = "07a54486662136131d5d38e23b3b8ff3aea07b79";
     src = fetchFromGitHub {
-      owner = "protesilaos";
-      repo = "doric-themes";
-      rev = "1.0.0";
+      owner = "skissue";
+      repo = "gptel-openrouter-models";
+      rev = "07a54486662136131d5d38e23b3b8ff3aea07b79";
       fetchSubmodules = false;
-      sha256 = "sha256-TJZLB7kR2eCK4HX0VrLqEm1s1S3DFg4izgQgSFOJFas=";
+      sha256 = "sha256-j7pXSU8XNUJjK+bxdLzZUo0iyuFtO4ZW5Q+x/bO3sC0=";
     };
+    date = "2026-02-27";
   };
   gptel-quick = {
     pname = "gptel-quick";
