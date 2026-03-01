@@ -57,7 +57,7 @@
       mpris
       modernx
       thumbfast
-      mpv-cheatsheet
+      mpv-cheatsheet-ng
       skipsilence
     ];
   };
