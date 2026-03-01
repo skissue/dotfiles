@@ -200,7 +200,8 @@ in {
         consult-denote
         citar
         citar-embark
-        citar-denote
+        # Fails to build right now
+        # citar-denote
         biblio
         howm
         # Applications
