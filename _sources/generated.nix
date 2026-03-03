@@ -32,15 +32,15 @@
   };
   gptel-openrouter-models = {
     pname = "gptel-openrouter-models";
-    version = "07a54486662136131d5d38e23b3b8ff3aea07b79";
+    version = "1b28d83d2b2e58db0237b4f186257dcfcdac589f";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "gptel-openrouter-models";
-      rev = "07a54486662136131d5d38e23b3b8ff3aea07b79";
+      rev = "1b28d83d2b2e58db0237b4f186257dcfcdac589f";
       fetchSubmodules = false;
-      sha256 = "sha256-j7pXSU8XNUJjK+bxdLzZUo0iyuFtO4ZW5Q+x/bO3sC0=";
+      sha256 = "sha256-k6UxeR/q5zcNTNGP5yCqHPpujDy53/HTsSsGLdYKfnE=";
     };
-    date = "2026-02-27";
+    date = "2026-03-04";
   };
   gptel-quick = {
     pname = "gptel-quick";
@@ -53,6 +53,18 @@
       sha256 = "sha256-7a5+YQifwtVYHP6qQXS1yxA42bVGXmErirra0TrSSQ0=";
     };
     date = "2025-11-05";
+  };
+  howm = {
+    pname = "howm";
+    version = "126b168384f0bd7c759b3671d1d5c656a2f005d4";
+    src = fetchFromGitHub {
+      owner = "skissue";
+      repo = "howm";
+      rev = "126b168384f0bd7c759b3671d1d5c656a2f005d4";
+      fetchSubmodules = false;
+      sha256 = "sha256-vvrpsRs5lly8lOJMxGKjAMOnfajUC5HNvNmcD5ZuHbY=";
+    };
+    date = "2026-03-03";
   };
   inline-diff = {
     pname = "inline-diff";
@@ -155,16 +167,16 @@
   };
   yeetube-codeberg = {
     pname = "yeetube-codeberg";
-    version = "2eddda6d93050b25a00c739b8ad72b58ce8602cc";
+    version = "77e816972a70db86ad06ef10db56e0d8cecede5c";
     src = fetchgit {
       url = "https://codeberg.org/thanosapollo/emacs-yeetube.git";
-      rev = "2eddda6d93050b25a00c739b8ad72b58ce8602cc";
+      rev = "77e816972a70db86ad06ef10db56e0d8cecede5c";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-7VFfWXJGWVmLGLrfP4iux0M4VpGFC0NInjbIWmWUzUs=";
+      sha256 = "sha256-o1uZYcnEVc/OSjluleZ4C57Hddj7OnWtJ6G3gTt3a38=";
     };
-    date = "2026-01-30";
+    date = "2026-03-02";
   };
 }

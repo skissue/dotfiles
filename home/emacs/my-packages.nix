@@ -44,6 +44,10 @@ in {
       version = "0.1.0";
       packageRequires = with epkgs; [vertico];
     });
+  howm = melpaBuild (sources.howm
+    // {
+      version = "1.5.6";
+    });
   # YeeTube from the Codeberg mirror, because upstream has frequent downtime.
   yeetube = epkgs.yeetube.overrideAttrs (oldAttrs: {
     inherit (sources.yeetube-codeberg) src;
