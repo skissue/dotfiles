@@ -142,6 +142,7 @@ in {
         esup
         uniline
         dag-draw
+        el-search
         # Fails to build
         # agent-shell
         # Languages
