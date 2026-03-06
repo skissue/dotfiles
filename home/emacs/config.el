@@ -1941,6 +1941,9 @@ For our purposes, a note must not be a directory, must satisfy
 (setq howm-follow-theme t)
 
 (after! howm
+  (add-hook 'howm-mode-hook #'howm-mode-set-buffer-name)
+  (add-hook 'howm-mode-hook #'howm-eldoc-mode)
+
   (setopt howm-directory (expand-file-name "howm" my/brain2)
           howm-keyword-file (expand-file-name ".howm-keys" howm-directory)
           howm-history-file (expand-file-name ".howm-history" howm-directory)
@@ -1955,7 +1958,9 @@ For our purposes, a note must not be a directory, must satisfy
           howm-view-grep-extended-option nil
           howm-view-grep-fixed-option "-F"
           howm-view-grep-expr-option nil
-          howm-view-grep-file-stdin-option nil))
+          howm-view-grep-file-stdin-option nil
+
+          howm-eldoc-fontify-preview t))
 
 (after! meow
   (advice-add 'howm-menu-mode :after #'meow-motion-mode)

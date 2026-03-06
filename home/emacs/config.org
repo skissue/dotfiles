@@ -2507,6 +2507,9 @@ Bind the mode to =C-<insert>=, as suggested by the documentation; the default bi
   (setq howm-follow-theme t)
 
   (after! howm
+    (add-hook 'howm-mode-hook #'howm-mode-set-buffer-name)
+    (add-hook 'howm-mode-hook #'howm-eldoc-mode)
+
     (setopt howm-directory (expand-file-name "howm" my/brain2)
             howm-keyword-file (expand-file-name ".howm-keys" howm-directory)
             howm-history-file (expand-file-name ".howm-history" howm-directory)
@@ -2521,7 +2524,9 @@ Bind the mode to =C-<insert>=, as suggested by the documentation; the default bi
             howm-view-grep-extended-option nil
             howm-view-grep-fixed-option "-F"
             howm-view-grep-expr-option nil
-            howm-view-grep-file-stdin-option nil))
+            howm-view-grep-file-stdin-option nil
+
+            howm-eldoc-fontify-preview t))
 #+end_src
 
 Make Howm's menu and list view properly start in Meow's motion state. Note that normally this would happen via [[help:meow-mode-state-list][meow-mode-state-list]], or, failing that, a major mode hook, but Howm does weird things when creating its buffers, and doesn't use a proper major mode, so we have to resort to advice instead 🤷.
