@@ -2529,11 +2529,10 @@ Bind the mode to =C-<insert>=, as suggested by the documentation; the default bi
             howm-eldoc-fontify-preview t))
 #+end_src
 
-Make Howm's menu and list view properly start in Meow's motion state. Note that normally this would happen via [[help:meow-mode-state-list][meow-mode-state-list]], or, failing that, a major mode hook, but Howm does weird things when creating its buffers, and doesn't use a proper major mode, so we have to resort to advice instead 🤷.
+Make Howm's list view ("riffle") start in Meow's motion state. This is the only mode that derives from [[help:text-mode][text-mode]] instead of [[help:special-mode][special-mode]], so it requires manual setting. Requires my personal fork.
 #+begin_src elisp
   (after! meow
-    (advice-add 'howm-menu-mode :after #'meow-motion-mode)
-    (advice-add 'howm-view-summary-mode :after #'meow-motion-mode))
+    (add-to-list 'meow-mode-state-list '(riffle-mode . motion)))
 #+end_src
 
 Change the formatting of reminders in the menu to allocate four characters for the "elapsed"/"late" number.

@@ -1963,8 +1963,7 @@ For our purposes, a note must not be a directory, must satisfy
           howm-eldoc-fontify-preview t))
 
 (after! meow
-  (advice-add 'howm-menu-mode :after #'meow-motion-mode)
-  (advice-add 'howm-view-summary-mode :after #'meow-motion-mode))
+  (add-to-list 'meow-mode-state-list '(riffle-mode . motion)))
 
 (el-patch-feature howm)
 (after! howm
