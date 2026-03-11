@@ -1950,6 +1950,7 @@ For our purposes, a note must not be a directory, must satisfy
           howm-file-name-format "%Y%m%dT%H%M%S.org"
           howm-view-split-horizontally t
           howm-menu-todo-num 20
+          howm-menu-reminder-prefix-format "%s%4s%s"
 
           howm-view-use-grep t
           howm-view-grep-command "rg"
@@ -1965,13 +1966,6 @@ For our purposes, a note must not be a directory, must satisfy
 
 (after! meow
   (add-to-list 'meow-mode-state-list '(riffle-mode . motion)))
-
-(el-patch-feature howm)
-(after! howm
-  (el-patch-define-and-eval-template
-   (defun howm-menu-format-reminder)
-   (format (el-patch-swap "%s%3s%s" "%s%4s%s")
-           dow-str late priority)))
 
 (el-patch-feature howm)
 (after! howm
