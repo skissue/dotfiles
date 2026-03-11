@@ -43,7 +43,7 @@
     },
     "gptel-openrouter-models": {
         "cargoLock": null,
-        "date": "2026-03-09",
+        "date": "2026-03-11",
         "extract": null,
         "name": "gptel-openrouter-models",
         "passthru": null,
@@ -55,12 +55,12 @@
             "name": null,
             "owner": "skissue",
             "repo": "gptel-openrouter-models",
-            "rev": "3c44973de1207feaef8a61effc14b8394d085800",
-            "sha256": "sha256-Nih8fE2qapqcydWLhV+iI4eKu0qZ889SF1mfcYlzL48=",
+            "rev": "8678eddd5ee00db60ec290d07e189fafd318357a",
+            "sha256": "sha256-+EVEEd/ARGGlC4W1cb2jCCRp6ybw7pSLbCeg5GHI6cs=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "3c44973de1207feaef8a61effc14b8394d085800"
+        "version": "8678eddd5ee00db60ec290d07e189fafd318357a"
     },
     "gptel-quick": {
         "cargoLock": null,
@@ -85,7 +85,7 @@
     },
     "howm": {
         "cargoLock": null,
-        "date": "2026-03-09",
+        "date": "2026-03-11",
         "extract": null,
         "name": "howm",
         "passthru": null,
@@ -97,12 +97,12 @@
             "name": null,
             "owner": "skissue",
             "repo": "howm",
-            "rev": "0b7589562ce3dbe6a524e1631253d572dc8158c1",
-            "sha256": "sha256-pzXDdbHpLcYv96+k2xmQZtwRwd8ppExu0qN72H4OiEY=",
+            "rev": "9313204477f65dee9ae61d037ba3300d624e769f",
+            "sha256": "sha256-GVmJZp1eDj9lJVLaARE5DiaxmSPVDSSLj53Mo2kQKZk=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "0b7589562ce3dbe6a524e1631253d572dc8158c1"
+        "version": "9313204477f65dee9ae61d037ba3300d624e769f"
     },
     "inline-diff": {
         "cargoLock": null,
@@ -221,12 +221,12 @@
             "name": null,
             "owner": "hakimel",
             "repo": "reveal.js",
-            "rev": "5.2.1",
-            "sha256": "sha256-f5g09Xj4XF+v6Y6zW13R4PUTWkAt3wwGpa9nSypUV6w=",
+            "rev": "6.0.0",
+            "sha256": "sha256-G4botQL3FPdOB4a8zAyAzIgMgxTi0LmezryUye5LhFY=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "5.2.1"
+        "version": "6.0.0"
     },
     "ultra-scroll": {
         "cargoLock": null,
