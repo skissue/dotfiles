@@ -56,15 +56,15 @@
   };
   howm = {
     pname = "howm";
-    version = "63bd0a911bc869e21c82c980b347223dc3f1642b";
+    version = "565f0d174017bc45ea9d3527a43e29c5f4437559";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "howm";
-      rev = "63bd0a911bc869e21c82c980b347223dc3f1642b";
+      rev = "565f0d174017bc45ea9d3527a43e29c5f4437559";
       fetchSubmodules = false;
-      sha256 = "sha256-JExzhWtf0+yagHdDO+k7+UuRQNmDMOYr065pfZbcez4=";
+      sha256 = "sha256-9xhrJ5eTYCyLd9LJkdgkDUpq5VtypY1iybNMB3nLlMI=";
     };
-    date = "2026-03-11";
+    date = "2026-03-12";
   };
   inline-diff = {
     pname = "inline-diff";
