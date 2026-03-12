@@ -2517,6 +2517,7 @@ Bind the mode to =C-<insert>=, as suggested by the documentation; the default bi
             howm-view-split-horizontally t
             howm-menu-todo-num 20
             howm-menu-reminder-prefix-format "%s%4s%s"
+            howm-reminder-done-format "[%Y-%m-%d %H:%M]"
 
             howm-view-use-grep t
             howm-view-grep-command "rg"
@@ -2538,18 +2539,6 @@ Make Howm's list view ("riffle") start in Meow's motion state. This is the only 
 #+begin_src elisp
   (after! meow
     (add-to-list 'meow-mode-state-list '(riffle-mode . motion)))
-#+end_src
-
-Include a timestamp when marking tasks as done.
-#+begin_src elisp
-  (el-patch-feature howm)
-  (after! howm
-    (el-patch-defun howm-action-lock-done-done (date type lazy desc &optional done-mark)
-      (when (null done-mark)
-        (setq done-mark ".")
-        (howm-congrats))
-      (concat (howm-reminder-today (el-patch-add nil "[%Y-%m-%d %H:%M]"))
-              done-mark " " date ":" type lazy desc)))
 #+end_src
 
 Add a new todo type for "daily" tasks. These tasks should only appear on their scheduled day, and otherwise not appear on the menu at all (minimum priority). Similar to a "schedule" item, but it sinks instantly in both directions.

@@ -1951,6 +1951,7 @@ For our purposes, a note must not be a directory, must satisfy
           howm-view-split-horizontally t
           howm-menu-todo-num 20
           howm-menu-reminder-prefix-format "%s%4s%s"
+          howm-reminder-done-format "[%Y-%m-%d %H:%M]"
 
           howm-view-use-grep t
           howm-view-grep-command "rg"
@@ -1966,15 +1967,6 @@ For our purposes, a note must not be a directory, must satisfy
 
 (after! meow
   (add-to-list 'meow-mode-state-list '(riffle-mode . motion)))
-
-(el-patch-feature howm)
-(after! howm
-  (el-patch-defun howm-action-lock-done-done (date type lazy desc &optional done-mark)
-    (when (null done-mark)
-      (setq done-mark ".")
-      (howm-congrats))
-    (concat (howm-reminder-today (el-patch-add nil "[%Y-%m-%d %H:%M]"))
-            done-mark " " date ":" type lazy desc)))
 
 (after! howm
   (setopt howm-todo-types "[-+~!.^]"
