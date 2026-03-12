@@ -32,15 +32,15 @@
   };
   gptel-openrouter-models = {
     pname = "gptel-openrouter-models";
-    version = "8678eddd5ee00db60ec290d07e189fafd318357a";
+    version = "be8875c7c97d1657d15c34b0198dbaf98fe664d3";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "gptel-openrouter-models";
-      rev = "8678eddd5ee00db60ec290d07e189fafd318357a";
+      rev = "be8875c7c97d1657d15c34b0198dbaf98fe664d3";
       fetchSubmodules = false;
-      sha256 = "sha256-+EVEEd/ARGGlC4W1cb2jCCRp6ybw7pSLbCeg5GHI6cs=";
+      sha256 = "sha256-ztNmZLIiQYvfTgEhLCaP7HIkDJU5pX54uTXVfkN8B1w=";
     };
-    date = "2026-03-11";
+    date = "2026-03-12";
   };
   gptel-quick = {
     pname = "gptel-quick";
@@ -56,13 +56,13 @@
   };
   howm = {
     pname = "howm";
-    version = "9313204477f65dee9ae61d037ba3300d624e769f";
+    version = "63bd0a911bc869e21c82c980b347223dc3f1642b";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "howm";
-      rev = "9313204477f65dee9ae61d037ba3300d624e769f";
+      rev = "63bd0a911bc869e21c82c980b347223dc3f1642b";
       fetchSubmodules = false;
-      sha256 = "sha256-GVmJZp1eDj9lJVLaARE5DiaxmSPVDSSLj53Mo2kQKZk=";
+      sha256 = "sha256-JExzhWtf0+yagHdDO+k7+UuRQNmDMOYr065pfZbcez4=";
     };
     date = "2026-03-11";
   };

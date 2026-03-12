@@ -43,7 +43,7 @@
     },
     "gptel-openrouter-models": {
         "cargoLock": null,
-        "date": "2026-03-11",
+        "date": "2026-03-12",
         "extract": null,
         "name": "gptel-openrouter-models",
         "passthru": null,
@@ -55,12 +55,12 @@
             "name": null,
             "owner": "skissue",
             "repo": "gptel-openrouter-models",
-            "rev": "8678eddd5ee00db60ec290d07e189fafd318357a",
-            "sha256": "sha256-+EVEEd/ARGGlC4W1cb2jCCRp6ybw7pSLbCeg5GHI6cs=",
+            "rev": "be8875c7c97d1657d15c34b0198dbaf98fe664d3",
+            "sha256": "sha256-ztNmZLIiQYvfTgEhLCaP7HIkDJU5pX54uTXVfkN8B1w=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "8678eddd5ee00db60ec290d07e189fafd318357a"
+        "version": "be8875c7c97d1657d15c34b0198dbaf98fe664d3"
     },
     "gptel-quick": {
         "cargoLock": null,
@@ -97,12 +97,12 @@
             "name": null,
             "owner": "skissue",
             "repo": "howm",
-            "rev": "9313204477f65dee9ae61d037ba3300d624e769f",
-            "sha256": "sha256-GVmJZp1eDj9lJVLaARE5DiaxmSPVDSSLj53Mo2kQKZk=",
+            "rev": "63bd0a911bc869e21c82c980b347223dc3f1642b",
+            "sha256": "sha256-JExzhWtf0+yagHdDO+k7+UuRQNmDMOYr065pfZbcez4=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "9313204477f65dee9ae61d037ba3300d624e769f"
+        "version": "63bd0a911bc869e21c82c980b347223dc3f1642b"
     },
     "inline-diff": {
         "cargoLock": null,
