@@ -57,6 +57,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    bouncer = {
+      url = "github:skissue/bouncer";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     elisp-extra = {
       url = "github:skissue/gxy?dir=elisp";

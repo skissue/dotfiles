@@ -1,12 +1,13 @@
 {
   pkgs,
-  sources,
+  inputs,
   ...
 }: {
   home.packages = with pkgs; [
     aria2
-    bottom
     blender
+    bottom
+    inputs.bouncer.packages.${pkgs.stdenv.hostPlatform.system}.bouncer-gui
     brave
     brightnessctl
     simple-scan
@@ -69,8 +70,8 @@
     "image/png" = "imv.desktop";
     "image/jpeg" = "imv.desktop";
     "text/html" = "zen-browser.desktop";
-    "x-scheme-handler/http" = "zen-browser.desktop";
-    "x-scheme-handler/https" = "zen-browser.desktop";
+    "x-scheme-handler/http" = "bouncer.desktop";
+    "x-scheme-handler/https" = "bouncer.desktop";
   };
   xdg.configFile = {
     "satty/config.toml".source = (pkgs.formats.toml {}).generate "satty-config" {

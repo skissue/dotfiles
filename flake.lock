@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "bouncer": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773456671,
+        "narHash": "sha256-DnvBKfX8mVGIB/D3vhF+farmTxFa0MxJWmx6ruaxHAs=",
+        "owner": "skissue",
+        "repo": "bouncer",
+        "rev": "4ecd8d5e142a173eed7419597960ab9bed6a7a2a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "skissue",
+        "repo": "bouncer",
+        "type": "github"
+      }
+    },
     "cachyos-kernel": {
       "inputs": {
         "cachyos-kernel": "cachyos-kernel_2",
@@ -823,6 +843,7 @@
     },
     "root": {
       "inputs": {
+        "bouncer": "bouncer",
         "cachyos-kernel": "cachyos-kernel",
         "deploy-rs": "deploy-rs",
         "devshell": "devshell",
