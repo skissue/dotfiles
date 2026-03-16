@@ -8,6 +8,7 @@ in {
   # behind the one bundled with Emacs and breaks Eglot on the bleeding edge, so
   # disable it entirely.
   jsonrpc = null;
+
   # Org Mode source with new async LaTeX preview support.
   # TODO Remove when this is merged.
   org = melpaBuild (sources.org-bleeding-latex
@@ -52,4 +53,10 @@ in {
   yeetube = epkgs.yeetube.overrideAttrs (oldAttrs: {
     inherit (sources.yeetube-codeberg) src;
   });
+  elfin = melpaBuild (sources.elfin
+    // {
+      version = "0.0.1";
+      packageRequires = with epkgs; [plz];
+      files = ''(:defaults "extras")'';
+    });
 }

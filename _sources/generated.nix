@@ -30,17 +30,29 @@
     };
     date = "2025-12-03";
   };
+  elfin = {
+    pname = "elfin";
+    version = "aec54954a923edd0c302041b675e4a8b49306c64";
+    src = fetchFromGitHub {
+      owner = "skissue";
+      repo = "elfin";
+      rev = "aec54954a923edd0c302041b675e4a8b49306c64";
+      fetchSubmodules = false;
+      sha256 = "sha256-nqHiiSANIni4t273tw8JfSvy81DY9V2zBcYXgFGhYRo=";
+    };
+    date = "2026-03-15";
+  };
   gptel-openrouter-models = {
     pname = "gptel-openrouter-models";
-    version = "df58c11a9445830d56b1a2316d5f1ea96e497167";
+    version = "40b7067a891d9c3202d681bf1305c5021c8a4174";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "gptel-openrouter-models";
-      rev = "df58c11a9445830d56b1a2316d5f1ea96e497167";
+      rev = "40b7067a891d9c3202d681bf1305c5021c8a4174";
       fetchSubmodules = false;
-      sha256 = "sha256-xBvPvBPfFHF0MqRH2PHKCVKNZKx8IzmA4QgBFgU2obI=";
+      sha256 = "sha256-a+7wCT4Ud5Etj0J/03367Q8HWtvSzeffhUjbOjMogk4=";
     };
-    date = "2026-03-13";
+    date = "2026-03-15";
   };
   gptel-quick = {
     pname = "gptel-quick";

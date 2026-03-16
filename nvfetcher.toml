@@ -54,3 +54,7 @@ fetch.github = "skissue/howm"
 [yeetube-codeberg]
 src.git = "https://codeberg.org/thanosapollo/emacs-yeetube.git"
 fetch.git = "https://codeberg.org/thanosapollo/emacs-yeetube.git"
+
+[elfin]
+src.git = "https://github.com/skissue/elfin"
+fetch.github = "skissue/elfin"

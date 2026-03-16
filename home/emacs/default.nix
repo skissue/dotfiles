@@ -225,6 +225,7 @@ in {
         elfeed-tube
         elfeed-tube-mpv
         yeetube
+        elfin
       ];
     # Loaded after the user init.el, used for short Nix-value-dependent
     # configuration.
