@@ -7,7 +7,7 @@
     aria2
     blender
     bottom
-    inputs.bouncer.packages.${pkgs.stdenv.hostPlatform.system}.bouncer-gui
+    inputs.bouncer.packages.${pkgs.stdenv.hostPlatform.system}.default
     brave
     brightnessctl
     simple-scan
