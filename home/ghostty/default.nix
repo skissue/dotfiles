@@ -8,6 +8,7 @@
       font-size = 14;
       background-opacity = 0.85;
       command = "nu";
+      notify-on-command-finish = "unfocused";
     };
     themes.doric-obsidian = {
       # https://codeberg.org/anhsirk0/ghostty-themes/src/branch/main/themes/doric-obsidian ❤️
