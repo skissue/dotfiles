@@ -9,6 +9,7 @@
       background-opacity = 0.85;
       command = "nu";
       notify-on-command-finish = "unfocused";
+      notify-on-command-finish-action = "no-bell,notify";
     };
     themes.doric-obsidian = {
       # https://codeberg.org/anhsirk0/ghostty-themes/src/branch/main/themes/doric-obsidian ❤️
