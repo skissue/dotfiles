@@ -10,6 +10,7 @@
     inputs.bouncer.packages.${pkgs.stdenv.hostPlatform.system}.default
     brave
     brightnessctl
+    inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
     simple-scan
     ffmpeg
     gpu-screen-recorder
