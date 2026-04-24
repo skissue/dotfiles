@@ -44,15 +44,15 @@
   };
   gptel-openrouter-models = {
     pname = "gptel-openrouter-models";
-    version = "4d4ef09a23378b31cb9f64f74af78511c559abc2";
+    version = "d934b4906ab02fb4e2915ba77aae6d16a223603c";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "gptel-openrouter-models";
-      rev = "4d4ef09a23378b31cb9f64f74af78511c559abc2";
+      rev = "d934b4906ab02fb4e2915ba77aae6d16a223603c";
       fetchSubmodules = false;
-      sha256 = "sha256-5V67kwPcNnqXn4opNXF0k5Y1AkZeJ5pcKRQaz9OnFCE=";
+      sha256 = "sha256-BxEvSYyFRm2V9GzfaSNVzTke4wvUBNJKdtaY1aipvKc=";
     };
-    date = "2026-04-06";
+    date = "2026-04-24";
   };
   gptel-quick = {
     pname = "gptel-quick";
@@ -144,13 +144,13 @@
   };
   revealjs = {
     pname = "revealjs";
-    version = "6.0.0";
+    version = "6.0.1";
     src = fetchFromGitHub {
       owner = "hakimel";
       repo = "reveal.js";
-      rev = "6.0.0";
+      rev = "6.0.1";
       fetchSubmodules = false;
-      sha256 = "sha256-G4botQL3FPdOB4a8zAyAzIgMgxTi0LmezryUye5LhFY=";
+      sha256 = "sha256-J0CeWxL0Gs/1pOgszHUYgSl1+9nXibgb3fNyDVMr2OQ=";
     };
   };
   ultra-scroll = {
