@@ -16,7 +16,7 @@
 
     # Use a `source` instead of setting directly so that devices can easily add
     # extra configuration while keeping mutable-links possible.
-    settings = ''
+    extraConfig = ''
       source=${mutable-link ./config.conf}
 
       exec-once=runapp -i background-graphical.slice -- swaybg -m fill -i ${inputs.private}/wallpapers/0008.png
