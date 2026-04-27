@@ -6,7 +6,6 @@
 }: {
   imports = [
     inputs.mangowc.hmModules.mango
-    ./hyprlock.nix
     ./mako.nix
   ];
 
