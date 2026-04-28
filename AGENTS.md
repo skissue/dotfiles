@@ -24,3 +24,6 @@ NixOS flake-parts dotfiles repo. Single system architecture: `x86_64-linux`.
 - **Conventions**: Use `inputs` / `self` via specialArgs; helper `mkModulesList` converts module names to paths
 - **Imports**: List subdirectory paths in `imports = [ ./subdir ]`; prefer one module per directory with `default.nix`
 - **Secrets**: Managed with sops-nix; keys in `.sops.yaml`
+
+## Commit Messages
+Conventional commits: `type(scope): lowercase description` (no period). Types: `feat`, `fix`, `refactor`, `bump`. Scope is the module path (e.g., `home/emacs`, `packages/zen-browser`, `system/desktop`). Use `flake` or `sources` for input/nvfetcher bumps. Examples: `feat(home/ghostty): notify on command finish`, `bump(packages/zen-browser): v1.19.10b`.
