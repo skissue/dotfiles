@@ -32,27 +32,27 @@
   };
   elfin = {
     pname = "elfin";
-    version = "fdafa1ffd80b9dc326252f348893e0a5a7f80e4a";
+    version = "cf5c4d24239822aaf868d72b506b5c2bcadd50e7";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "elfin";
-      rev = "fdafa1ffd80b9dc326252f348893e0a5a7f80e4a";
+      rev = "cf5c4d24239822aaf868d72b506b5c2bcadd50e7";
       fetchSubmodules = false;
-      sha256 = "sha256-No0jhwB6q3bhhoxLQAXRICINKmpY0g6LXYcfbpmp0FY=";
+      sha256 = "sha256-tztqNqwvW3b7fCEd5T0fys8rcMuDTVrQOSNMcMuYci0=";
     };
-    date = "2026-03-16";
+    date = "2026-04-27";
   };
   gptel-openrouter-models = {
     pname = "gptel-openrouter-models";
-    version = "d934b4906ab02fb4e2915ba77aae6d16a223603c";
+    version = "c21322ccff0ae23e241280fbaed7ee6073288657";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "gptel-openrouter-models";
-      rev = "d934b4906ab02fb4e2915ba77aae6d16a223603c";
+      rev = "c21322ccff0ae23e241280fbaed7ee6073288657";
       fetchSubmodules = false;
-      sha256 = "sha256-BxEvSYyFRm2V9GzfaSNVzTke4wvUBNJKdtaY1aipvKc=";
+      sha256 = "sha256-dwSgc7XduTGuL9P44I0cvaQKeC0Yx73t8lT1CRDDC68=";
     };
-    date = "2026-04-24";
+    date = "2026-04-28";
   };
   gptel-quick = {
     pname = "gptel-quick";
@@ -155,15 +155,15 @@
   };
   ultra-scroll = {
     pname = "ultra-scroll";
-    version = "0a9a26071ec33305cbc7a0f1dc7202702319d51f";
+    version = "6dfb3478e6ee1a6c1534c56235c55f9d0ad9dca4";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "ultra-scroll";
-      rev = "0a9a26071ec33305cbc7a0f1dc7202702319d51f";
+      rev = "6dfb3478e6ee1a6c1534c56235c55f9d0ad9dca4";
       fetchSubmodules = false;
-      sha256 = "sha256-KPDwZ5sfsDdZq6sShX2s5/u7UVjG3CNT2/C2jjmk52c=";
+      sha256 = "sha256-KsLbI9hbLxPc+aYhzeTenKhDJ8qrOxv5ZXzAbqsotEo=";
     };
-    date = "2026-03-25";
+    date = "2026-04-25";
   };
   vertico-popup-frame = {
     pname = "vertico-popup-frame";
