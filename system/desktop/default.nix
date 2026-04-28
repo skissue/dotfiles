@@ -5,6 +5,7 @@
     ./greetd
     ./kanata
     ./mangowc
+    ./niri
     ./pipewire
     ./usbs
   ];
