@@ -85,4 +85,7 @@
       font = {family = "Atkinson Hyperlegible Next";};
     };
   };
+  home.sessionVariables = {
+    CLAUDE_USE_WAYLAND = 1;
+  };
 }
