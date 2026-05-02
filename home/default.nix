@@ -19,6 +19,7 @@
     ./hyprlock
     ./mangowc
     ./mutable-links
+    ./niri
     ./programming
     ./secrets
     ./ssh
