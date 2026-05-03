@@ -22,5 +22,8 @@
 
     # Enabled by the module by default, but conflicts with KeePassXC.
     services.gnome.gnome-keyring.enable = lib.mkForce false;
+
+    # Basically Just Better™, also used by UWSM.
+    services.dbus.implementation = "broker";
   };
 }
