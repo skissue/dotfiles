@@ -17,7 +17,6 @@
     ./git
     ./gtk
     ./hyprlock
-    ./mangowc
     ./mutable-links
     ./niri
     ./programming

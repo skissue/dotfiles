@@ -4,7 +4,6 @@
     ./gaming
     ./greetd
     ./kanata
-    ./mangowc
     ./niri
     ./pipewire
     ./usbs
