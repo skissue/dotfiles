@@ -404,6 +404,24 @@ window-rule {
     clip-to-geometry true
 }
 
+// Tiled windows: xray blur (efficient, blurs wallpaper once and reuses it).
+window-rule {
+    match is-floating=false
+    background-effect {
+        blur true
+        xray true
+    }
+}
+
+// Floating windows: true blur (reads actual content behind the window).
+window-rule {
+    match is-floating=true
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
 window-rule {
     match app-id="emacs" title=r#"^\*transient\*"#
 
