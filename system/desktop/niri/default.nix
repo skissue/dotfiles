@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   inputs,
@@ -13,6 +14,10 @@
       enable = true;
       package = pkgs.niri-unstable;
     };
+
+    # Show niri in greetd/display manager sessions
+    environment.pathsToLink = ["/share/wayland-sessions"];
+    services.displayManager.sessionPackages = [config.programs.niri.package];
 
     # Fallback portal, after GNOME's
     xdg.portal.extraPortals = with pkgs; [xdg-desktop-portal-gtk];
