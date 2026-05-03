@@ -459,7 +459,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return       hotkey-overlay-title="Open a Terminal: ghostty"   { spawn "ghostty" "+new-window"; }
     Mod+Shift+Return hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Mod+F            hotkey-overlay-title="Open Emacs"                 { spawn "emacsclient" "-c"; }
+    Mod+O            hotkey-overlay-title="Open Emacs"                 { spawn "emacsclient" "-c"; }
 
     Super+Grave       hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
     Super+Shift+Grave hotkey-overlay-title="Suspend machine"           { spawn "systemctl" "suspend"; }
@@ -491,16 +491,16 @@ binds {
     // or do a four-finger swipe up on a touchpad.
     Mod+Tab repeat=false { toggle-overview; }
 
-    Mod+D repeat=false { close-window; }
+    Mod+Q repeat=false { close-window; }
 
-    Mod+N       { focus-column-left; }
-    Mod+E       { focus-window-down; }
-    Mod+I       { focus-window-up; }
-    Mod+O       { focus-column-right; }
-    Mod+Shift+N { move-column-left; }
-    Mod+Shift+E { move-window-down; }
-    Mod+Shift+I { move-window-up; }
-    Mod+Shift+O { move-column-right; }
+    Mod+H       { focus-column-left; }
+    Mod+T       { focus-window-down; }
+    Mod+N       { focus-window-up; }
+    Mod+S       { focus-column-right; }
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+T { move-window-down; }
+    Mod+Shift+N { move-window-up; }
+    Mod+Shift+S { move-column-right; }
 
     // Alternative commands that move across workspaces when reaching
     // the first or last window in a column.
@@ -514,10 +514,10 @@ binds {
     Mod+Ctrl+Home { move-column-to-first; }
     Mod+Ctrl+End  { move-column-to-last; }
 
-    Mod+R       { focus-monitor-left; }
-    Mod+S       { focus-monitor-right; }
-    Mod+Shift+R { move-column-to-monitor-left; }
-    Mod+Shift+S { move-column-to-monitor-right; }
+    Mod+I       { focus-monitor-left; }
+    Mod+A       { focus-monitor-right; }
+    Mod+Shift+I { move-column-to-monitor-left; }
+    Mod+Shift+A { move-column-to-monitor-right; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
@@ -615,20 +615,19 @@ binds {
     // Expel the bottom window from the focused column to the right.
     Mod+Ctrl+BracketRight { expel-window-from-column; }
 
-    Mod+V       { switch-preset-column-width; }
-    Mod+Shift+V { switch-preset-window-height; }
-    Mod+Ctrl+V  { reset-window-height; }
+    Mod+C       { switch-preset-column-width; }
+    Mod+Shift+C { switch-preset-window-height; }
+    Mod+Ctrl+C  { reset-window-height; }
     
-    Mod+T       { maximize-column; }
-    Mod+Shift+T { fullscreen-window; }
-    Mod+Alt+T   { toggle-windowed-fullscreen; }
+    Mod+E       { maximize-column; }
+    Mod+Shift+E { fullscreen-window; }
+    Mod+Alt+E   { toggle-windowed-fullscreen; }
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
-    Mod+Ctrl+T { expand-column-to-available-width; }
+    Mod+Ctrl+E { expand-column-to-available-width; }
 
-    Mod+C { center-column; }
     // Center all fully visible columns on screen.
-    Mod+Ctrl+C { center-visible-columns; }
+    Mod+Ctrl+Shift+C { center-visible-columns; }
 
     // Finer width adjustments.
     // This command can also:
@@ -650,8 +649,8 @@ binds {
     Mod+Ctrl+Shift+Equal { set-window-height "+2%"; }
 
     // Move the focused window between the floating and the tiling layout.
-    Mod+W       { toggle-window-floating; }
-    Mod+Shift+W { switch-focus-between-floating-and-tiling; }
+    Mod+F       { toggle-window-floating; }
+    Mod+Shift+F { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
@@ -681,7 +680,7 @@ binds {
     Mod+Shift+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
-    Mod+Shift+X { quit; }
+    Mod+Shift+Q { quit; }
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
