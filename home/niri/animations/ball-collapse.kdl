@@ -1,0 +1,119 @@
+// "Ball collapse" close animation.
+// The window collapses inward into a solid circle centered on a random
+// (x, y) point in the middle 60% of the window, fading to the ball color
+// as it goes. The disk holds briefly, bulges outward, then snaps shut
+// like a black hole / old-CRT poweroff effect.
+animations {
+    window-close {
+        duration-ms 700
+        curve "linear"
+
+        custom-shader r#"
+            vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+                float t = niri_clamped_progress;
+
+                // -------- Tunables --------
+                // Phase boundaries (fractions of total duration).
+                const float COLLAPSE_END = 0.55;
+                const float HOLD_END     = 0.62;
+                const float BULGE_END    = 0.78;
+                // poof phase covers BULGE_END .. 1.0
+
+                // Solid-disk radius as a fraction of window width.
+                const float BALL_RADIUS = 0.05;
+                // How much the disk grows during the bulge.
+                const float BULGE_SCALE = 1.45;
+
+                // Ball color (Nord red #BF616A).
+                const vec3 BALL_COLOR = vec3(0.749, 0.380, 0.416);
+
+                // -------- Setup --------
+                // Random collapse point in the middle 60% of the window.
+                float rx = fract(niri_random_seed * 0.61803 + 0.123);
+                float ry = fract(niri_random_seed * 0.91138 + 0.789);
+                float impact_x = 0.2 + 0.6 * rx;
+                float impact_y = 0.2 + 0.6 * ry;
+
+                vec2 px = coords_geo.xy * size_geo.xy;
+                float radius_px = BALL_RADIUS * size_geo.x;
+                vec2 impact_px = vec2(impact_x * size_geo.x, impact_y * size_geo.y);
+                float dist = length(px - impact_px);
+
+                if (t < COLLAPSE_END) {
+                    // -------- Phase 1: Collapse --------
+                    // Wave shrinks from beyond the corners down to the
+                    // final ball radius. Outside the wave: gone. Inside:
+                    // a band fades from window content to ball color.
+                    float ft = t / COLLAPSE_END;
+                    // Ease-in: gentle start, accelerating "suck-in".
+                    float ease = ft * ft;
+
+                    float max_dist = length(size_geo.xy) * 1.05;
+                    float wave = mix(max_dist, radius_px, ease);
+
+                    // Reject pixels outside the window itself.
+                    if (coords_geo.x < 0.0 || coords_geo.x > 1.0 ||
+                        coords_geo.y < 0.0 || coords_geo.y > 1.0) {
+                        return vec4(0.0);
+                    }
+
+                    // Outside the collapsing wave: window already eaten.
+                    if (dist > wave) {
+                        return vec4(0.0);
+                    }
+
+                    vec3 coords_tex = niri_geo_to_tex * vec3(coords_geo.xy, 1.0);
+                    vec4 color = texture2D(niri_tex, coords_tex.st);
+
+                    // Color band: near the wave front pixels are fully ball
+                    // colored, deep inside they are still the window color.
+                    // The band widens as the wave shrinks so by the end of
+                    // the phase the entire interior is ball colored.
+                    float band = mix(max(size_geo.x, size_geo.y) * 0.12,
+                                     radius_px * 2.0, ease);
+                    float edge_t = clamp((wave - dist) / band, 0.0, 1.0);
+                    float color_mix = pow(edge_t, 0.8);
+
+                    // Extra global tint that ramps up so the very last
+                    // frames of this phase are pure ball color.
+                    float global_tint = ease * ease;
+                    color_mix *= (1.0 - global_tint);
+
+                    vec4 ball = vec4(BALL_COLOR * color.a, color.a);
+                    return mix(ball, color, color_mix);
+
+                } else if (t < HOLD_END) {
+                    // -------- Phase 2: Hold --------
+                    // A short beat where the solid disk just sits.
+                    float aa = smoothstep(radius_px, radius_px - 1.5, dist);
+                    return vec4(BALL_COLOR * aa, aa);
+
+                } else if (t < BULGE_END) {
+                    // -------- Phase 3: Bulge --------
+                    // Quick anticipatory swell before the snap-shut.
+                    float ft = (t - HOLD_END) / (BULGE_END - HOLD_END);
+                    float ease = 1.0 - (1.0 - ft) * (1.0 - ft);
+
+                    float r = mix(radius_px, radius_px * BULGE_SCALE, ease);
+                    float aa = smoothstep(r, r - 1.5, dist);
+                    return vec4(BALL_COLOR * aa, aa);
+
+                } else {
+                    // -------- Phase 4: Poof --------
+                    // Snap shut. Disk shrinks rapidly to nothing with a
+                    // small alpha tail at the very end.
+                    float ft = (t - BULGE_END) / (1.0 - BULGE_END);
+                    float ease = ft * ft;
+
+                    float r = mix(radius_px * BULGE_SCALE, 0.0, ease);
+                    if (r < 0.5) return vec4(0.0);
+
+                    float alpha_fade = 1.0 - smoothstep(0.7, 1.0, ft);
+                    float aa = smoothstep(r, max(r - 1.5, 0.0), dist);
+                    aa *= alpha_fade;
+                    return vec4(BALL_COLOR * aa, aa);
+                }
+            }
+        "#
+    }
+}

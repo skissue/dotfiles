@@ -1,0 +1,124 @@
+// "Ball drop" open animation.
+// A solid-color circle falls from above the window, lands at a random x
+// within the middle 60% of the window, flattens like a raindrop on impact,
+// then blooms outward from the impact point to reveal the window content.
+animations {
+    window-open {
+        duration-ms 700
+        curve "linear"
+
+        custom-shader r#"
+            vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+                float t = niri_clamped_progress;
+
+                // -------- Tunables --------
+                // Phase boundaries (fractions of total duration).
+                const float FALL_END    = 0.30;
+                const float FLATTEN_END = 0.37;
+                // bloom phase covers FLATTEN_END .. 1.0
+
+                // Ball size as a fraction of window width.
+                const float BALL_RADIUS = 0.05;
+
+                // Squish at the end of the flatten phase.
+                const float SQUISH_X = 1.6;
+                const float SQUISH_Y = 0.35;
+
+                // Ball color (Nord red #BF616A).
+                const vec3 BALL_COLOR = vec3(0.749, 0.380, 0.416);
+
+                // -------- Setup --------
+                // Random impact x in [0.2, 0.8] of the window width.
+                float rx = fract(niri_random_seed * 0.61803 + 0.123);
+                float impact_x = 0.2 + 0.6 * rx;
+
+                // Work in logical pixels so circles look round.
+                vec2 px = coords_geo.xy * size_geo.xy;
+                float radius_px = BALL_RADIUS * size_geo.x;
+
+                // The ball lands so its bottom touches y = size_geo.y.
+                float impact_cx_px = impact_x * size_geo.x;
+                float impact_cy_px = size_geo.y - radius_px;
+
+                vec4 result = vec4(0.0);
+
+                if (t < FALL_END) {
+                    // -------- Phase 1: Fall --------
+                    // Ball center travels from above the window down to the
+                    // impact point with a gravity-like ease-in.
+                    float ft = t / FALL_END;
+                    float ease = ft * ft;
+
+                    float start_cy_px = -radius_px;
+                    float cy_px = mix(start_cy_px, impact_cy_px, ease);
+
+                    vec2 d = px - vec2(impact_cx_px, cy_px);
+                    float dist = length(d);
+                    float aa = smoothstep(radius_px, radius_px - 1.5, dist);
+                    result = vec4(BALL_COLOR * aa, aa);
+
+                } else if (t < FLATTEN_END) {
+                    // -------- Phase 2: Flatten --------
+                    // Squish into a flat ellipse, bottom pinned to the floor.
+                    float ft = (t - FALL_END) / (FLATTEN_END - FALL_END);
+                    // Ease-out so the squish snaps in then settles.
+                    float ease = 1.0 - (1.0 - ft) * (1.0 - ft);
+
+                    float sx = mix(1.0, SQUISH_X, ease);
+                    float sy = mix(1.0, SQUISH_Y, ease);
+
+                    float rx_px = radius_px * sx;
+                    float ry_px = radius_px * sy;
+                    float cy_px = size_geo.y - ry_px;
+
+                    vec2 d = px - vec2(impact_cx_px, cy_px);
+                    float norm = length(vec2(d.x / rx_px, d.y / ry_px));
+                    // Approximate AA in normalized space.
+                    float aa_width = 1.5 / min(rx_px, ry_px);
+                    float aa = smoothstep(1.0, 1.0 - aa_width, norm);
+                    result = vec4(BALL_COLOR * aa, aa);
+
+                } else {
+                    // -------- Phase 3: Bloom --------
+                    // A circular wave grows from the impact point. Inside the
+                    // wave we reveal the window; the leading edge is colored
+                    // with the ball color.
+                    float ft = (t - FLATTEN_END) / (1.0 - FLATTEN_END);
+                    // Ease-out for a snappy reveal.
+                    float ease = 1.0 - (1.0 - ft) * (1.0 - ft);
+
+                    // Furthest pixel from the impact corner, plus a margin.
+                    float max_dist = length(size_geo.xy) * 1.05;
+                    float wave = ease * max_dist;
+
+                    vec2 impact_px = vec2(impact_cx_px, size_geo.y);
+                    float dist = length(px - impact_px);
+
+                    // Reject pixels outside the window.
+                    if (coords_geo.x < 0.0 || coords_geo.x > 1.0 ||
+                        coords_geo.y < 0.0 || coords_geo.y > 1.0) {
+                        return vec4(0.0);
+                    }
+
+                    if (dist > wave) {
+                        return vec4(0.0);
+                    }
+
+                    vec3 coords_tex = niri_geo_to_tex * vec3(coords_geo.xy, 1.0);
+                    vec4 color = texture2D(niri_tex, coords_tex.st);
+
+                    // Color band at the leading edge: ball color near the
+                    // front, real window color further back.
+                    float band = max(size_geo.x, size_geo.y) * 0.12;
+                    float edge_t = clamp((wave - dist) / band, 0.0, 1.0);
+                    float color_mix = pow(edge_t, 0.8);
+
+                    vec4 ball = vec4(BALL_COLOR * color.a, color.a);
+                    result = mix(ball, color, color_mix);
+                }
+
+                return result;
+            }
+        "#
+    }
+}
