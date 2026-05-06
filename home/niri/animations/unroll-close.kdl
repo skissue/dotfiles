@@ -1,0 +1,87 @@
+// "Unroll" close animation — partner to `unroll.kdl`, rotated by 90deg.
+// The window first rolls inward horizontally into a vertical focus-ring blue
+// line at the center, then the line collapses vertically to a point.
+animations {
+    window-close {
+        duration-ms 400
+        curve "linear"
+
+        custom-shader r#"
+            vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+                float t = niri_clamped_progress;
+
+                // -------- Tunables --------
+                // Phase boundary (fraction of total duration).
+                // Phase 1 (horizontal roll-up): 0   .. H_ROLL_END
+                // Phase 2 (vertical collapse): H_ROLL_END .. 1.0
+                const float H_ROLL_END = 0.65;
+
+                // Match niri's focus-ring width and color exactly so the rim
+                // continues seamlessly from the real focus ring.
+                const float BORDER_PX = 2.0;
+                // Focus-ring active-color #7fc8ff.
+                const vec3 RING_BLUE = vec3(0.498, 0.784, 1.0);
+
+                // -------- Setup --------
+                float bx = BORDER_PX / size_geo.x;
+                float by = BORDER_PX / size_geo.y;
+
+                vec2 c = coords_geo.xy;
+
+                // Outer bounds of the still-visible rectangle.
+                float left, right, top, bottom;
+
+                if (t < H_ROLL_END) {
+                    // -------- Phase 1: Horizontal roll-up --------
+                    // Rim shrinks horizontally toward a 2*BORDER_PX-thick
+                    // vertical line at x = 0.5.
+                    top    = -by;
+                    bottom = 1.0 + by;
+                    float ft = t / H_ROLL_END;
+                    // Reversed ease-out: starts slow, accelerates inward.
+                    float r = 1.0 - ft;
+                    float ease = 1.0 - (1.0 - r) * (1.0 - r);
+                    float half_w = max(bx, (0.5 + bx) * ease);
+                    left  = 0.5 - half_w;
+                    right = 0.5 + half_w;
+
+                } else {
+                    // -------- Phase 2: Vertical collapse --------
+                    // The 2*BORDER_PX-thick vertical line shrinks toward the
+                    // center point.
+                    float ft = (t - H_ROLL_END) / (1.0 - H_ROLL_END);
+                    float r = 1.0 - ft;
+                    float ease = 1.0 - (1.0 - r) * (1.0 - r);
+                    float half_h = (0.5 + by) * ease;
+                    top    = 0.5 - half_h;
+                    bottom = 0.5 + half_h;
+                    left   = 0.5 - bx;
+                    right  = 0.5 + bx;
+                }
+
+                // Outside the still-visible rectangle: gone.
+                if (c.x < left || c.x > right || c.y < top || c.y > bottom) {
+                    return vec4(0.0);
+                }
+
+                // Detect rim: pixel within BORDER_PX of an outer edge.
+                bool on_v_edge = c.x < left + bx || c.x > right - bx;
+                bool on_h_edge = c.y < top  + by || c.y > bottom - by;
+                bool on_border = on_v_edge || on_h_edge;
+
+                if (on_border) {
+                    return vec4(RING_BLUE, 1.0);
+                }
+
+                // Inside the still-visible rect but outside the window: guard.
+                if (c.x < 0.0 || c.x > 1.0 || c.y < 0.0 || c.y > 1.0) {
+                    return vec4(0.0);
+                }
+
+                // Interior: real window pixels in place, no translation.
+                vec3 coords_tex = niri_geo_to_tex * vec3(c, 1.0);
+                return texture2D(niri_tex, coords_tex.st);
+            }
+        "#
+    }
+}

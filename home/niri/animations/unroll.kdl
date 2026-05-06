@@ -1,0 +1,100 @@
+// "Unroll" open animation.
+// A blue line grows horizontally from the center of the window, then unrolls
+// vertically up and down. The four edges of the unrolled rectangle stay a
+// solid focus-ring blue rim drawn just *outside* the window geometry — at the
+// exact position, width, and color of niri's focus ring — so the real focus
+// ring takes over seamlessly when the animation completes. The interior
+// reveals the actual window pixels in place (no translation).
+animations {
+    window-open {
+        duration-ms 400
+        curve "linear"
+
+        custom-shader r#"
+            vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+                float t = niri_clamped_progress;
+
+                // -------- Tunables --------
+                // Phase boundary (fraction of total duration).
+                // Phase 1 (horizontal expand): 0   .. H_EXPAND_END
+                // Phase 2 (vertical unroll):   H_EXPAND_END .. 1.0
+                const float H_EXPAND_END = 0.35;
+
+                // Match niri's focus-ring width and color exactly so the rim
+                // hands off seamlessly to the real focus ring.
+                const float BORDER_PX = 2.0;
+                // Focus-ring active-color #7fc8ff.
+                const vec3 RING_BLUE = vec3(0.498, 0.784, 1.0);
+
+                // -------- Setup --------
+                // Border thickness in geo coords.
+                float bx = BORDER_PX / size_geo.x;
+                float by = BORDER_PX / size_geo.y;
+
+                vec2 c = coords_geo.xy;
+
+                // Outer bounds of the currently-unrolled rectangle. The fully
+                // unrolled rectangle is [-bx, 1+bx] x [-by, 1+by] — i.e. the
+                // window plus the focus-ring rim.
+                float left, right, top, bottom;
+
+                if (t < H_EXPAND_END) {
+                    // -------- Phase 1: Horizontal line expand --------
+                    // A 2*BORDER_PX-thick line grows horizontally from center
+                    // out to the focus-ring's left and right edges. The
+                    // doubled thickness splits cleanly in phase 2: the top
+                    // half becomes the top rim, the bottom half the bottom.
+                    float ft = t / H_EXPAND_END;
+                    // Ease-out so the line snaps out across the width.
+                    float ease = 1.0 - (1.0 - ft) * (1.0 - ft);
+                    float half_w = (0.5 + bx) * ease;
+                    left   = 0.5 - half_w;
+                    right  = 0.5 + half_w;
+                    top    = 0.5 - by;
+                    bottom = 0.5 + by;
+
+                } else {
+                    // -------- Phase 2: Vertical unroll --------
+                    // The line grows up and down to the focus-ring's top and
+                    // bottom edges. The outer rim stays focus-ring blue; the
+                    // interior reveals the actual window pixels in place.
+                    left  = -bx;
+                    right = 1.0 + bx;
+                    float ft = (t - H_EXPAND_END) / (1.0 - H_EXPAND_END);
+                    // Ease-out for a fast unfurl that settles into place.
+                    float ease = 1.0 - (1.0 - ft) * (1.0 - ft);
+                    // Keep at least the 2*BORDER_PX-thick line so phase 1 -> 2
+                    // is continuous (rim is BORDER_PX top + BORDER_PX bottom).
+                    float half_h = max(by, (0.5 + by) * ease);
+                    top    = 0.5 - half_h;
+                    bottom = 0.5 + half_h;
+                }
+
+                // Outside the unrolled rectangle: nothing yet.
+                if (c.x < left || c.x > right || c.y < top || c.y > bottom) {
+                    return vec4(0.0);
+                }
+
+                // Detect rim: pixel within BORDER_PX of an outer edge.
+                bool on_v_edge = c.x < left + bx || c.x > right - bx;
+                bool on_h_edge = c.y < top  + by || c.y > bottom - by;
+                bool on_border = on_v_edge || on_h_edge;
+
+                if (on_border) {
+                    // Premultiplied solid focus-ring blue.
+                    return vec4(RING_BLUE, 1.0);
+                }
+
+                // Inside the unrolled rect but outside the window: shouldn't
+                // happen with a thin rim aligned to the window, but guard.
+                if (c.x < 0.0 || c.x > 1.0 || c.y < 0.0 || c.y > 1.0) {
+                    return vec4(0.0);
+                }
+
+                // Interior: real window pixels in place, no translation.
+                vec3 coords_tex = niri_geo_to_tex * vec3(c, 1.0);
+                return texture2D(niri_tex, coords_tex.st);
+            }
+        "#
+    }
+}

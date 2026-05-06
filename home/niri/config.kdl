@@ -362,8 +362,10 @@ animations {
 // Each file overrides the relevant subsections of `animations` from above.
 // include "animations/dissolve.kdl"
 // include "animations/fly-in.kdl"
-include "animations/ball-drop.kdl"
-include "animations/ball-collapse.kdl"
+// include "animations/ball-drop.kdl"
+// include "animations/ball-collapse.kdl"
+include "animations/unroll.kdl"
+include "animations/unroll-close.kdl"
 
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
