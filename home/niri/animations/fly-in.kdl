@@ -1,0 +1,123 @@
+// "Fly in from off-screen" open animation.
+// The window is broken up into a grid of tiles; each tile starts off-screen
+// in a random direction and drifts into its final position while fading in.
+// Pairs with the dissolve close animation.
+animations {
+    window-open {
+        duration-ms 600
+        curve "linear"
+
+        custom-shader r#"
+            // Cheap 2D hash helpers.
+            float niri_hash21(vec2 p) {
+                p = fract(p * vec2(443.897, 441.423));
+                p += dot(p, p.yx + 19.19);
+                return fract((p.x + p.y) * p.x);
+            }
+            vec2 niri_hash22(vec2 p) {
+                return vec2(niri_hash21(p), niri_hash21(p + vec2(7.13, 91.7)));
+            }
+
+            vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+                float t = niri_clamped_progress;
+
+                // Grid cell size in logical pixels. Bigger = chunkier
+                // fragments and a smaller search radius below.
+                float tile_px = 48.0;
+                vec2 tile_size = vec2(tile_px) / size_geo.xy;
+
+                // Maximum drift distance in logical pixels. Each tile starts
+                // this far from its final position. The neighbourhood search
+                // radius below must be at least ceil(MAX_DRIFT_PX / tile_px).
+                const float MAX_DRIFT_PX = 240.0;
+                const int RADIUS = 5;
+
+                // Tile this output pixel falls into.
+                vec2 base = floor(coords_geo.xy / tile_size);
+
+                // Tiles flying in may currently overlap any number of pixels.
+                // Search a neighbourhood and keep the strongest contribution.
+                vec4 result = vec4(0.0);
+
+                for (int dy = -RADIUS; dy <= RADIUS; dy++) {
+                    for (int dx = -RADIUS; dx <= RADIUS; dx++) {
+                        vec2 tile_id = base + vec2(float(dx), float(dy));
+
+                        // Per-tile randomness, mixed with the per-animation
+                        // random seed so successive open animations differ.
+                        vec2 seed = tile_id + niri_random_seed * 137.0;
+                        vec2 r1 = niri_hash22(seed);
+                        vec2 r2 = niri_hash22(seed + 31.7);
+
+                        float local = t;
+
+                        // Drift direction: completely random angle per tile.
+                        float angle = r1.x * 6.2831853;
+                        vec2 dir = vec2(cos(angle), sin(angle));
+
+                        // Ease-out: starts at MAX_DRIFT_PX, decays to 0.
+                        float decel = (1.0 - local) * (1.0 - local);
+                        float dist_px = MAX_DRIFT_PX * decel;
+
+                        // Per-tile rotation around its centre: starts rotated,
+                        // unwinds to zero as the tile lands.
+                        float rot = (r2.y - 0.5) * 2.5 * (1.0 - local);
+
+                        vec2 tile_centre = (tile_id + 0.5) * tile_size;
+                        vec2 offset_geo = dir * dist_px / size_geo.xy;
+
+                        // Reverse-map the output pixel to the source pixel
+                        // inside this tile's *original* position.
+                        vec2 local_pos = (coords_geo.xy - tile_centre - offset_geo) / tile_size;
+
+                        // Inverse rotation (sampling backwards).
+                        float c = cos(-rot);
+                        float s = sin(-rot);
+                        local_pos = mat2(c, -s, s, c) * local_pos;
+
+                        // Reject pixels outside this tile's source bounds.
+                        if (abs(local_pos.x) > 0.5 || abs(local_pos.y) > 0.5) continue;
+
+                        vec2 src = tile_centre + local_pos * tile_size;
+
+                        // Reject pixels outside the window itself.
+                        if (src.x < 0.0 || src.x > 1.0 || src.y < 0.0 || src.y > 1.0) continue;
+
+                        vec3 coords_tex = niri_geo_to_tex * vec3(src, 1.0);
+                        vec4 color = texture2D(niri_tex, coords_tex.st);
+
+                        // Two-stage fade:
+                        //   1. transparent -> Nord bright blue (quick alpha
+                        //      fade-in so tiles don't pop in mid-flight).
+                        //   2. Nord blue -> the actual pixel color, ease-in
+                        //      so most of the flight is blue and the real
+                        //      color reveals near the end.
+                        // Colors are premultiplied.
+                        const vec3 NORD_BLUE = vec3(0.533, 0.753, 0.816); // #88C0D0
+                        const float FADE_IN_END = 0.15;
+
+                        float alpha = clamp(local / FADE_IN_END, 0.0, 1.0);
+
+                        float color_t = clamp(
+                            (local - FADE_IN_END) / (1.0 - FADE_IN_END),
+                            0.0, 1.0);
+                        float color_mix = pow(color_t, 1.6);
+
+                        vec4 blue = vec4(NORD_BLUE * color.a, color.a);
+                        color = mix(blue, color, color_mix);
+                        color *= alpha;
+
+                        // Keep the strongest contribution among overlapping
+                        // tiles. Avoids darkening at overlaps for premultiplied
+                        // colors.
+                        if (color.a > result.a) {
+                            result = color;
+                        }
+                    }
+                }
+
+                return result;
+            }
+        "#
+    }
+}
