@@ -694,6 +694,10 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
+    Mod+D       { set-dynamic-cast-window; }
+    Mod+Shift+D { set-dynamic-cast-monitor; }
+    Mod+Ctrl+D  { clear-dynamic-cast-target; }
+
     Print       { screenshot; }
     Shift+Print { screenshot-window; }
     Ctrl+Print  { screenshot-screen; }
