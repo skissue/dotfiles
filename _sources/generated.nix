@@ -44,15 +44,15 @@
   };
   gptel-openrouter-models = {
     pname = "gptel-openrouter-models";
-    version = "c21322ccff0ae23e241280fbaed7ee6073288657";
+    version = "e6573a5ca59e6d64cf5d30d20c167f41d84d2067";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "gptel-openrouter-models";
-      rev = "c21322ccff0ae23e241280fbaed7ee6073288657";
+      rev = "e6573a5ca59e6d64cf5d30d20c167f41d84d2067";
       fetchSubmodules = false;
-      sha256 = "sha256-dwSgc7XduTGuL9P44I0cvaQKeC0Yx73t8lT1CRDDC68=";
+      sha256 = "sha256-S5n175HTxOjincrpamEedX1tzP83eVlIF9fiZpUMS3U=";
     };
-    date = "2026-04-28";
+    date = "2026-05-09";
   };
   gptel-quick = {
     pname = "gptel-quick";
@@ -155,15 +155,15 @@
   };
   ultra-scroll = {
     pname = "ultra-scroll";
-    version = "6dfb3478e6ee1a6c1534c56235c55f9d0ad9dca4";
+    version = "c6decf7754edda0aa7c5a775b7d6147490a8f464";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "ultra-scroll";
-      rev = "6dfb3478e6ee1a6c1534c56235c55f9d0ad9dca4";
+      rev = "c6decf7754edda0aa7c5a775b7d6147490a8f464";
       fetchSubmodules = false;
-      sha256 = "sha256-KsLbI9hbLxPc+aYhzeTenKhDJ8qrOxv5ZXzAbqsotEo=";
+      sha256 = "sha256-GuUeJnntpLAiY+4NWtuvCewRLfpHQB/74oxqVVRFuUA=";
     };
-    date = "2026-04-25";
+    date = "2026-05-01";
   };
   vertico-popup-frame = {
     pname = "vertico-popup-frame";
@@ -179,16 +179,16 @@
   };
   yeetube-codeberg = {
     pname = "yeetube-codeberg";
-    version = "77e816972a70db86ad06ef10db56e0d8cecede5c";
+    version = "e6c3e8f1957565cbb519b1adb66e7b3a48434f37";
     src = fetchgit {
       url = "https://codeberg.org/thanosapollo/emacs-yeetube.git";
-      rev = "77e816972a70db86ad06ef10db56e0d8cecede5c";
+      rev = "e6c3e8f1957565cbb519b1adb66e7b3a48434f37";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-o1uZYcnEVc/OSjluleZ4C57Hddj7OnWtJ6G3gTt3a38=";
+      sha256 = "sha256-4LqFcNT7ZuAXZkeX+4Gk7uTqXdZI5Jem02+7aqZqMN8=";
     };
-    date = "2026-03-02";
+    date = "2026-05-06";
   };
 }

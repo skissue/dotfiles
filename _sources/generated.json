@@ -64,7 +64,7 @@
     },
     "gptel-openrouter-models": {
         "cargoLock": null,
-        "date": "2026-04-28",
+        "date": "2026-05-09",
         "extract": null,
         "name": "gptel-openrouter-models",
         "passthru": null,
@@ -76,12 +76,12 @@
             "name": null,
             "owner": "skissue",
             "repo": "gptel-openrouter-models",
-            "rev": "c21322ccff0ae23e241280fbaed7ee6073288657",
-            "sha256": "sha256-dwSgc7XduTGuL9P44I0cvaQKeC0Yx73t8lT1CRDDC68=",
+            "rev": "e6573a5ca59e6d64cf5d30d20c167f41d84d2067",
+            "sha256": "sha256-S5n175HTxOjincrpamEedX1tzP83eVlIF9fiZpUMS3U=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "c21322ccff0ae23e241280fbaed7ee6073288657"
+        "version": "e6573a5ca59e6d64cf5d30d20c167f41d84d2067"
     },
     "gptel-quick": {
         "cargoLock": null,
@@ -251,7 +251,7 @@
     },
     "ultra-scroll": {
         "cargoLock": null,
-        "date": "2026-04-25",
+        "date": "2026-05-01",
         "extract": null,
         "name": "ultra-scroll",
         "passthru": null,
@@ -263,12 +263,12 @@
             "name": null,
             "owner": "jdtsmith",
             "repo": "ultra-scroll",
-            "rev": "6dfb3478e6ee1a6c1534c56235c55f9d0ad9dca4",
-            "sha256": "sha256-KsLbI9hbLxPc+aYhzeTenKhDJ8qrOxv5ZXzAbqsotEo=",
+            "rev": "c6decf7754edda0aa7c5a775b7d6147490a8f464",
+            "sha256": "sha256-GuUeJnntpLAiY+4NWtuvCewRLfpHQB/74oxqVVRFuUA=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "6dfb3478e6ee1a6c1534c56235c55f9d0ad9dca4"
+        "version": "c6decf7754edda0aa7c5a775b7d6147490a8f464"
     },
     "vertico-popup-frame": {
         "cargoLock": null,
@@ -293,7 +293,7 @@
     },
     "yeetube-codeberg": {
         "cargoLock": null,
-        "date": "2026-03-02",
+        "date": "2026-05-06",
         "extract": null,
         "name": "yeetube-codeberg",
         "passthru": null,
@@ -303,12 +303,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "77e816972a70db86ad06ef10db56e0d8cecede5c",
-            "sha256": "sha256-o1uZYcnEVc/OSjluleZ4C57Hddj7OnWtJ6G3gTt3a38=",
+            "rev": "e6c3e8f1957565cbb519b1adb66e7b3a48434f37",
+            "sha256": "sha256-4LqFcNT7ZuAXZkeX+4Gk7uTqXdZI5Jem02+7aqZqMN8=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://codeberg.org/thanosapollo/emacs-yeetube.git"
         },
-        "version": "77e816972a70db86ad06ef10db56e0d8cecede5c"
+        "version": "e6c3e8f1957565cbb519b1adb66e7b3a48434f37"
     }
 }
