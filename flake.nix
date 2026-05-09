@@ -94,12 +94,10 @@
     ...
   } @ inputs: let
     lib = inputs.lib.lib;
+    system = "x86_64-linux";
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux"];
-      imports = [
-        inputs.devshell.flakeModule
-      ];
 
       flake =
         (import ./hosts inputs)
@@ -111,36 +109,34 @@
               (lib.attrNames (builtins.readDir ./packages))
               (p: final.callPackage (import ./packages/${p}) {});
           };
-        };
 
-      perSystem = {
-        pkgs,
-        system,
-        inputs',
-        ...
-      }: {
-        devshells = {
-          default = with pkgs; {
-            commands = [
-              {package = sops;}
-              {package = ssh-to-age;}
-              {package = nvfetcher;}
-            ];
-          };
-          deploy = with pkgs; {
-            commands = [
-              {
-                name = "deploy";
-                package = inputs'.deploy-rs.packages.default;
-              }
-              {package = inputs'.nixos-anywhere.packages.default;}
-              {package = sops;}
-              {package = ssh-to-age;}
-              {package = nvfetcher;}
-            ];
+          devShells.${system} = let
+            pkgs = nixpkgs.legacyPackages.${system};
+            mkShell = inputs.devshell.legacyPackages.${system}.mkShell;
+          in {
+            default = mkShell {
+              commands = with pkgs; [
+                {package = sops;}
+                {package = ssh-to-age;}
+                {package = nvfetcher;}
+              ];
+            };
+            deploy = mkShell {
+              commands = with pkgs; [
+                {
+                  name = "deploy";
+                  package = inputs.deploy-rs.packages.${system}.default;
+                }
+                {package = inputs.nixos-anywhere.packages.${system}.default;}
+                {package = sops;}
+                {package = ssh-to-age;}
+                {package = nvfetcher;}
+              ];
+            };
           };
         };
 
+      perSystem = {pkgs, ...}: {
         formatter = pkgs.alejandra;
       };
     };
