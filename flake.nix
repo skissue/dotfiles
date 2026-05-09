@@ -99,16 +99,19 @@
       systems = ["x86_64-linux"];
       imports = [
         inputs.devshell.flakeModule
-        ./hosts
       ];
 
-      flake.overlays.default = final: prev: {
-        my-sources-private = inputs.private.sources;
-        my =
-          lib.genAttrs
-          (lib.attrNames (builtins.readDir ./packages))
-          (p: final.callPackage (import ./packages/${p}) {});
-      };
+      flake =
+        (import ./hosts inputs)
+        // {
+          overlays.default = final: prev: {
+            my-sources-private = inputs.private.sources;
+            my =
+              lib.genAttrs
+              (lib.attrNames (builtins.readDir ./packages))
+              (p: final.callPackage (import ./packages/${p}) {});
+          };
+        };
 
       perSystem = {
         pkgs,
