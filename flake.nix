@@ -3,11 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "lib";
-    };
-    lib.url = "github:nix-community/nixpkgs.lib";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     impermanence = {
       url = "github:nix-community/impermanence";
@@ -50,7 +45,6 @@
       url = "github:nix-community/nixos-anywhere";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.disko.follows = "disko";
-      inputs.flake-parts.follows = "flake-parts";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -89,54 +83,48 @@
 
   outputs = {
     self,
-    flake-parts,
     nixpkgs,
     ...
   } @ inputs: let
-    lib = inputs.lib.lib;
+    lib = nixpkgs.lib;
     system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
   in
-    flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux"];
+    (import ./hosts inputs)
+    // {
+      overlays.default = final: prev: {
+        my-sources-private = inputs.private.sources;
+        my =
+          lib.genAttrs
+          (lib.attrNames (builtins.readDir ./packages))
+          (p: final.callPackage (import ./packages/${p}) {});
+      };
 
-      flake =
-        (import ./hosts inputs)
-        // {
-          overlays.default = final: prev: {
-            my-sources-private = inputs.private.sources;
-            my =
-              lib.genAttrs
-              (lib.attrNames (builtins.readDir ./packages))
-              (p: final.callPackage (import ./packages/${p}) {});
-          };
+      formatter.${system} = pkgs.alejandra;
 
-          formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
-
-          devShells.${system} = let
-            pkgs = nixpkgs.legacyPackages.${system};
-            mkShell = inputs.devshell.legacyPackages.${system}.mkShell;
-          in {
-            default = mkShell {
-              commands = with pkgs; [
-                {package = sops;}
-                {package = ssh-to-age;}
-                {package = nvfetcher;}
-              ];
-            };
-            deploy = mkShell {
-              commands = with pkgs; [
-                {
-                  name = "deploy";
-                  package = inputs.deploy-rs.packages.${system}.default;
-                }
-                {package = inputs.nixos-anywhere.packages.${system}.default;}
-                {package = sops;}
-                {package = ssh-to-age;}
-                {package = nvfetcher;}
-              ];
-            };
-          };
+      devShells.${system} = let
+        mkShell = inputs.devshell.legacyPackages.${system}.mkShell;
+      in {
+        default = mkShell {
+          commands = with pkgs; [
+            {package = sops;}
+            {package = ssh-to-age;}
+            {package = nvfetcher;}
+          ];
         };
+        deploy = mkShell {
+          commands = with pkgs; [
+            {
+              name = "deploy";
+              package = inputs.deploy-rs.packages.${system}.default;
+            }
+            {package = inputs.nixos-anywhere.packages.${system}.default;}
+            {package = sops;}
+            {package = ssh-to-age;}
+            {package = nvfetcher;}
+          ];
+        };
+      };
     };
 
   nixConfig = {
