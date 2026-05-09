@@ -177,18 +177,4 @@
     };
     date = "2025-11-22";
   };
-  yeetube-codeberg = {
-    pname = "yeetube-codeberg";
-    version = "e6c3e8f1957565cbb519b1adb66e7b3a48434f37";
-    src = fetchgit {
-      url = "https://codeberg.org/thanosapollo/emacs-yeetube.git";
-      rev = "e6c3e8f1957565cbb519b1adb66e7b3a48434f37";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sparseCheckout = [ ];
-      sha256 = "sha256-4LqFcNT7ZuAXZkeX+4Gk7uTqXdZI5Jem02+7aqZqMN8=";
-    };
-    date = "2026-05-06";
-  };
 }

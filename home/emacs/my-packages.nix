@@ -49,10 +49,6 @@ in {
     // {
       version = "1.5.6";
     });
-  # YeeTube from the Codeberg mirror, because upstream has frequent downtime.
-  yeetube = epkgs.yeetube.overrideAttrs (oldAttrs: {
-    inherit (sources.yeetube-codeberg) src;
-  });
   elfin = melpaBuild (sources.elfin
     // {
       version = "0.0.1";
