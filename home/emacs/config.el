@@ -1154,10 +1154,7 @@ See `describe-repeat-maps' for a list of all repeatable commands."
              ("C-c c a" . eglot-code-actions)
              ("C-c c f" . eglot-format)
              ("C-c c r" . eglot-rename))
-  (setopt eglot-autoshutdown t)
-  (setf (alist-get '(markdown-mode org-mode text-mode) eglot-server-programs
-                   nil nil #'equal)
-        '("ltex-ls")))
+  (setopt eglot-autoshutdown t))
 
 (custom-set-faces
  '(eglot-inlay-hint-face ((t (:inherit font-lock-comment-face)))))

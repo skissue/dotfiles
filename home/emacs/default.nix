@@ -244,7 +244,6 @@ in {
     imagemagick # For dirvish image preview
     nil
     alejandra
-    ltex-ls
     svgbob
     lz4 # reSnap
   ];
