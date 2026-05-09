@@ -110,6 +110,8 @@
               (p: final.callPackage (import ./packages/${p}) {});
           };
 
+          formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+
           devShells.${system} = let
             pkgs = nixpkgs.legacyPackages.${system};
             mkShell = inputs.devshell.legacyPackages.${system}.mkShell;
@@ -135,10 +137,6 @@
             };
           };
         };
-
-      perSystem = {pkgs, ...}: {
-        formatter = pkgs.alejandra;
-      };
     };
 
   nixConfig = {
