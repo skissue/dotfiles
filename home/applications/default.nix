@@ -41,7 +41,6 @@
     pwvucontrol
     qpwgraph
     ripgrep
-    ripgrep-all
     satty
     signal-desktop
     swaybg
