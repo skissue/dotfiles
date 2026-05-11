@@ -1,17 +1,17 @@
 @use 'sass:color';
 
-$background:   #1d1f21;
-$current-line: #282a2e;
-$selection:    #373b41;
-$foreground:   #c5c8c6;
-$comment:      #969896;
-$red:          #cc6666;
-$orange:       #de935f;
-$yellow:       #f0c674;
-$green:        #b5bd68;
-$aqua:         #8abeb7;
-$blue:         #81a2be;
-$purple:       #b294bb;
+$base:    #191724;
+$surface: #1f1d2e;
+$overlay: #26233a;
+$muted:   #6e6a86;
+$subtle:  #908caa;
+$text:    #e0def4;
+$love:    #eb6f92;
+$gold:    #f6c177;
+$rose:    #ebbcba;
+$pine:    #31748f;
+$foam:    #9ccfd8;
+$iris:    #c4a7e7;
 
 * {
     all: unset;
@@ -26,13 +26,13 @@ $purple:       #b294bb;
 
 // System tray menus get "popup" by default.
 tooltip, .popup {
-    background: $background;
+    background: $base;
 }
 
 .bar {
     padding: 4px 0;
-    background: color.change($background, $alpha: 0.75);
-    color: $foreground;
+    background: color.change($base, $alpha: 0.75);
+    color: $text;
 }
 
 .workspaces {
@@ -46,7 +46,7 @@ tooltip, .popup {
         }
 
         &.focused {
-            color: $aqua;
+            color: $foam;
         }
     }
 }
@@ -56,7 +56,7 @@ tooltip, .popup {
         padding: 8px 0;
         
         &:nth-last-child(even) {
-            background: $selection;
+            background: $overlay;
         }
     }
 }
@@ -66,12 +66,12 @@ tooltip, .popup {
     font-family: Symbols Nerd Font;
 }
 
-.red {
-    color: $red;
+.love {
+    color: $love;
 }
 
-.green {
-    color: $green;
+.pine {
+    color: $pine;
 }
 
 .tray {
@@ -83,5 +83,5 @@ tooltip, .popup {
 }
 
 .time > :nth-child(even) {
-    color: $blue;
+    color: $foam;
 }
