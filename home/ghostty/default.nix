@@ -3,7 +3,7 @@
     enable = true;
     installBatSyntax = true;
     settings = {
-      theme = "doric-obsidian";
+      theme = "Rose Pine";
       font-family = "PragmataPro Mono Liga";
       font-size = 14;
       background-opacity = 0.85;
