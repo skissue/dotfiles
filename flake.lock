@@ -177,11 +177,11 @@
       "flake": false,
       "locked": {
         "dir": "elisp",
-        "lastModified": 1773370758,
-        "narHash": "sha256-1V9Ecl+8WAQ671x+jZ2SHG4uqt5NrggsImvACSMx9zc=",
+        "lastModified": 1778467918,
+        "narHash": "sha256-0EaZ8TOTAxkvC7/CMqHYLU1QyjnvNxHEMagISE9oNYo=",
         "owner": "skissue",
         "repo": "gxy",
-        "rev": "f5786fb3d4507ebcda1c27012c43cf72905b3468",
+        "rev": "54c764f57bbac942ac40fcd9eba5659f5b5819f2",
         "type": "github"
       },
       "original": {
