@@ -19,6 +19,11 @@
       merge.conflictstyle = "zdiff3";
       diff.algorithm = "histogram";
 
+      fetch.prune = true;
+      pull.rebase = true;
+      merge.ff = "only";
+      push.followTags = true;
+
       sendemail.sendmailCmd = lib.getExe config.programs.msmtp.package;
 
       transfer.fsckobjects = true;
