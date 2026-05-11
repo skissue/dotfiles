@@ -48,21 +48,6 @@
   };
 
   programs.ssh.matchBlocks = {
-    "gh-skissue" = {
-      user = "git";
-      hostname = "github.com";
-      identityFile = "~/.ssh/skissue";
-    };
-    "cb-skissue" = {
-      user = "git";
-      hostname = "codeberg.org";
-      identityFile = "~/.ssh/skissue";
-    };
-    "gl-skissue" = {
-      user = "git";
-      hostname = "gitlab.com";
-      identityFile = "~/.ssh/skissue";
-    };
     "gh-work" = {
       user = "git";
       hostname = "github.com";
