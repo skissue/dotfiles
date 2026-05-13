@@ -170,6 +170,7 @@ in {
         hyprlang-ts-mode
         kdl-mode
         nim-mode
+        kotlin-ts-mode
         # Org
         org-contrib
         org-modern
