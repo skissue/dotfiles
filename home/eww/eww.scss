@@ -1,17 +1,32 @@
 @use 'sass:color';
 
-$background:   #1d1f21;
-$current-line: #282a2e;
-$selection:    #373b41;
-$foreground:   #c5c8c6;
-$comment:      #969896;
-$red:          #cc6666;
-$orange:       #de935f;
-$yellow:       #f0c674;
-$green:        #b5bd68;
-$aqua:         #8abeb7;
-$blue:         #81a2be;
-$purple:       #b294bb;
+// Catppuccin Mocha
+$rosewater: #f5e0dc;
+$flamingo:  #f2cdcd;
+$pink:      #f5c2e7;
+$mauve:     #cba6f7;
+$red:       #f38ba8;
+$maroon:    #eba0ac;
+$peach:     #fab387;
+$yellow:    #f9e2af;
+$green:     #a6e3a1;
+$teal:      #94e2d5;
+$sky:       #89dceb;
+$sapphire:  #74c7ec;
+$blue:      #89b4fa;
+$lavender:  #b4befe;
+$text:      #cdd6f4;
+$subtext1:  #bac2de;
+$subtext0:  #a6adc8;
+$overlay2:  #9399b2;
+$overlay1:  #7f849c;
+$overlay0:  #6c7086;
+$surface2:  #585b70;
+$surface1:  #45475a;
+$surface0:  #313244;
+$base:      #1e1e2e;
+$mantle:    #181825;
+$crust:     #11111b;
 
 * {
     all: unset;
@@ -26,13 +41,13 @@ $purple:       #b294bb;
 
 // System tray menus get "popup" by default.
 tooltip, .popup {
-    background: $background;
+    background: $base;
 }
 
 .bar {
     padding: 4px 0;
-    background: color.change($background, $alpha: 0.75);
-    color: $foreground;
+    background: color.change($base, $alpha: 0.75);
+    color: $text;
 }
 
 .workspaces {
@@ -46,7 +61,7 @@ tooltip, .popup {
         }
 
         &.focused {
-            color: $aqua;
+            color: $teal;
         }
     }
 }
@@ -56,7 +71,7 @@ tooltip, .popup {
         padding: 8px 0;
         
         &:nth-last-child(even) {
-            background: $selection;
+            background: $surface2;
         }
     }
 }
