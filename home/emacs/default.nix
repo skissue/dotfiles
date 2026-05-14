@@ -74,7 +74,6 @@ in {
         casual
         casual-avy
         # Appearance
-        doric-themes
         modus-themes
         modus-catppuccin
         doom-modeline
