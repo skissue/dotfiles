@@ -76,6 +76,7 @@ in {
         # Appearance
         doric-themes
         modus-themes
+        modus-catppuccin
         doom-modeline
         minions
         writeroom-mode

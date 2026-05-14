@@ -92,6 +92,20 @@
     };
     date = "2025-03-23";
   };
+  modus-catppuccin = {
+    pname = "modus-catppuccin";
+    version = "a0f7bd9e258b717f9c2b398fae1085d50615c5d2";
+    src = fetchgit {
+      url = "https://gitlab.com/magus/modus-catppuccin.git";
+      rev = "a0f7bd9e258b717f9c2b398fae1085d50615c5d2";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sparseCheckout = [ ];
+      sha256 = "sha256-MpHbftXXpAh78hKfmJijRmEDH9jZ3asEWmgs1Gxa26I=";
+    };
+    date = "2026-01-10";
+  };
   org-bleeding-latex = {
     pname = "org-bleeding-latex";
     version = "1ef59f0aa02e3cff40bae68b756a29bc2001739e";

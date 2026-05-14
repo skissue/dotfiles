@@ -145,6 +145,26 @@
         },
         "version": "d1c13190dd9d8f5d14b52499ddfbcadba2a60e94"
     },
+    "modus-catppuccin": {
+        "cargoLock": null,
+        "date": "2026-01-10",
+        "extract": null,
+        "name": "modus-catppuccin",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "a0f7bd9e258b717f9c2b398fae1085d50615c5d2",
+            "sha256": "sha256-MpHbftXXpAh78hKfmJijRmEDH9jZ3asEWmgs1Gxa26I=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://gitlab.com/magus/modus-catppuccin.git"
+        },
+        "version": "a0f7bd9e258b717f9c2b398fae1085d50615c5d2"
+    },
     "org-bleeding-latex": {
         "cargoLock": null,
         "date": "2026-01-15",

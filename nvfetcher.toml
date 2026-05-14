@@ -54,3 +54,7 @@ fetch.github = "skissue/howm"
 [elfin]
 src.git = "https://github.com/skissue/elfin"
 fetch.github = "skissue/elfin"
+
+[modus-catppuccin]
+src.git = "https://gitlab.com/magus/modus-catppuccin.git"
+fetch.git = "https://gitlab.com/magus/modus-catppuccin.git"

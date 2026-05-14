@@ -55,4 +55,9 @@ in {
       packageRequires = with epkgs; [plz];
       files = ''(:defaults "extras")'';
     });
+  modus-catppuccin = melpaBuild (sources.modus-catppuccin
+    // {
+      version = "0.1.0";
+      packageRequires = with epkgs; [modus-themes];
+    });
 }
