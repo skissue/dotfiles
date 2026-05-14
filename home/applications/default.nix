@@ -11,6 +11,7 @@
     brave
     brightnessctl
     inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
+    inputs.crack.packages.${pkgs.stdenv.hostPlatform.system}.default
     simple-scan
     ffmpeg
     gpu-screen-recorder
