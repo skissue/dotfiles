@@ -171,6 +171,7 @@ in {
         kdl-mode
         nim-mode
         kotlin-ts-mode
+        bazel
         # Org
         org-contrib
         org-modern
