@@ -64,7 +64,7 @@
     },
     "gptel-openrouter-models": {
         "cargoLock": null,
-        "date": "2026-05-11",
+        "date": "2026-05-16",
         "extract": null,
         "name": "gptel-openrouter-models",
         "passthru": null,
@@ -76,12 +76,12 @@
             "name": null,
             "owner": "skissue",
             "repo": "gptel-openrouter-models",
-            "rev": "b4fc11a82d8b07002ba87df0de1db703a1a9fb5f",
-            "sha256": "sha256-DZdTjB/5QndyB1YagY0TBBUyVja0zy9zeYl101hWhBE=",
+            "rev": "c83b5a3278f7ca52f64fe6ea9ce95ead3f162b1d",
+            "sha256": "sha256-rWLZSRxXJr2P/ZHQgQmI3DWmHwc8SFvhteK/cP0SJYw=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "b4fc11a82d8b07002ba87df0de1db703a1a9fb5f"
+        "version": "c83b5a3278f7ca52f64fe6ea9ce95ead3f162b1d"
     },
     "gptel-quick": {
         "cargoLock": null,
@@ -271,7 +271,7 @@
     },
     "ultra-scroll": {
         "cargoLock": null,
-        "date": "2026-05-01",
+        "date": "2026-05-16",
         "extract": null,
         "name": "ultra-scroll",
         "passthru": null,
@@ -283,12 +283,12 @@
             "name": null,
             "owner": "jdtsmith",
             "repo": "ultra-scroll",
-            "rev": "c6decf7754edda0aa7c5a775b7d6147490a8f464",
-            "sha256": "sha256-GuUeJnntpLAiY+4NWtuvCewRLfpHQB/74oxqVVRFuUA=",
+            "rev": "f38653053b5c9bbe8dbcb6b2236ab8997fc2f9bb",
+            "sha256": "sha256-vTox9o5QLsBXKIi+Hru2CAmMXuTIPcxP2/fgiOO0Xio=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "c6decf7754edda0aa7c5a775b7d6147490a8f464"
+        "version": "f38653053b5c9bbe8dbcb6b2236ab8997fc2f9bb"
     },
     "vertico-popup-frame": {
         "cargoLock": null,
