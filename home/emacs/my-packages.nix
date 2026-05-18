@@ -9,14 +9,6 @@ in {
   # disable it entirely.
   jsonrpc = null;
 
-  # Org Mode source with new async LaTeX preview support.
-  # TODO Remove when this is merged.
-  org = melpaBuild (sources.org-bleeding-latex
-    // {
-      pname = "org";
-      version = "9.7.69";
-      files = ''(:defaults "etc")'';
-    });
   org-popup-posframe = melpaBuild (sources.org-popup-posframe
     // {
       version = "0.0.1";

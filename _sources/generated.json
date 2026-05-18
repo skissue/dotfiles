@@ -165,26 +165,6 @@
         },
         "version": "a0f7bd9e258b717f9c2b398fae1085d50615c5d2"
     },
-    "org-bleeding-latex": {
-        "cargoLock": null,
-        "date": "2026-01-15",
-        "extract": null,
-        "name": "org-bleeding-latex",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "1ef59f0aa02e3cff40bae68b756a29bc2001739e",
-            "sha256": "sha256-kPVFT2fgoOO5aCCAifzlSwDhMR2RqhhT1akOKfRyalw=",
-            "sparseCheckout": [],
-            "type": "git",
-            "url": "https://code.tecosaur.net/tec/org-mode.git"
-        },
-        "version": "1ef59f0aa02e3cff40bae68b756a29bc2001739e"
-    },
     "org-modern-indent": {
         "cargoLock": null,
         "date": "2026-01-02",

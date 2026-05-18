@@ -525,11 +525,6 @@ Deal with various things that don't play nice with this setup.
                `(,(rx "*Capture*")
                  display-buffer-pop-up-window))
 
-  ;; Org LaTeX preview spams frames without this
-  (add-to-list 'display-buffer-alist
-               `(,(rx "*Org Preview LaTeX Output*")
-                 display-buffer-pop-up-window))
-
   ;; Sly
   (add-to-list 'display-buffer-alist
                '((major-mode . sly-mrepl-mode)
@@ -2981,30 +2976,6 @@ Automatically toggles certain markers on and off depending on whether they're be
             org-latex-packages-alist '(("" "tikz" t))
             org-latex-pdf-process '("latexmk -f -pdf -%latex -interaction=nonstopmode -output-directory=%o %f"
                                     "latexmk -c -output-directory=%o %f")))
-#+end_src
-
-*** Previews
-#+begin_src elisp
-  (add-hook 'org-mode-hook #'org-latex-preview-mode)
-
-  (after! org-latex-preview
-    (setopt org-latex-preview-process-default 'dvisvgm
-            org-latex-preview-display-live t
-            org-latex-preview-mode-update-delay 0.5))
-#+end_src
-
-For some reason, the new machinery scatters temporary ~tex~ files around in the directory from which its invoked. I assume this is a bug, here's a quick boolean swap to fix it ¯\_(ツ)_/¯.
-#+begin_src elisp
-  (el-patch-feature org-latex-preview)
-  (after! org-latex-preview
-    (el-patch-define-and-eval-template
-     (defun org-latex-preview--create-tex-file)
-     (tex-temp-name
-      (expand-file-name
-       (concat (make-temp-name "org-tex-") ".tex")
-       (and (el-patch-wrap 1
-              (not remote-file-p))
-            temporary-file-directory)))))
 #+end_src
 
 ** Org Download

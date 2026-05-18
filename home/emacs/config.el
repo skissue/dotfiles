@@ -328,11 +328,6 @@ where it was when you previously visited the same file."
              `(,(rx "*Capture*")
                display-buffer-pop-up-window))
 
-;; Org LaTeX preview spams frames without this
-(add-to-list 'display-buffer-alist
-             `(,(rx "*Org Preview LaTeX Output*")
-               display-buffer-pop-up-window))
-
 ;; Sly
 (add-to-list 'display-buffer-alist
              '((major-mode . sly-mrepl-mode)
@@ -2358,24 +2353,6 @@ have `org-warning' face."
           org-latex-packages-alist '(("" "tikz" t))
           org-latex-pdf-process '("latexmk -f -pdf -%latex -interaction=nonstopmode -output-directory=%o %f"
                                   "latexmk -c -output-directory=%o %f")))
-
-(add-hook 'org-mode-hook #'org-latex-preview-mode)
-
-(after! org-latex-preview
-  (setopt org-latex-preview-process-default 'dvisvgm
-          org-latex-preview-display-live t
-          org-latex-preview-mode-update-delay 0.5))
-
-(el-patch-feature org-latex-preview)
-(after! org-latex-preview
-  (el-patch-define-and-eval-template
-   (defun org-latex-preview--create-tex-file)
-   (tex-temp-name
-    (expand-file-name
-     (concat (make-temp-name "org-tex-") ".tex")
-     (and (el-patch-wrap 1
-            (not remote-file-p))
-          temporary-file-directory)))))
 
 (after! org-download
   (setopt org-download-backend "curl \"%s\" -o \"%s\""
