@@ -2390,25 +2390,6 @@ have `org-warning' face."
       (setq pub-dir (expand-file-name "export/" my/brain2)))
     (funcall fn ext subtreep pub-dir)))
 
-(el-patch-feature ox)
-(after! ox
-  (el-patch-define-and-eval-template
-   (defun org-export-get-all-feature-conditions)
-   (while ...
-     (setq backend (el-patch-wrap 2 1
-                     (if (symbolp parent)
-                         (org-export-get-backend parent)
-                       parent)))
-     ...))
-  (el-patch-define-and-eval-template
-   (defun org-export-get-all-feature-implementations)
-   (while ...
-     (setq backend (el-patch-wrap 2 1
-                     (if (symbolp parent)
-                         (org-export-get-backend parent)
-                       parent)))
-     ...)))
-
 (after! ox
   (require 'org-re-reveal)
   (setopt org-re-reveal-root (expand-file-name "revealjs"
