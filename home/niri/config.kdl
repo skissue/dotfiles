@@ -493,6 +493,7 @@ binds {
     Mod+Return       hotkey-overlay-title="Open a Terminal: ghostty"   { spawn "ghostty" "+new-window"; }
     Mod+Shift+Return hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+O            hotkey-overlay-title="Open Emacs"                 { spawn "emacsclient" "-c"; }
+    Mod+J            hotkey-overlay-title="Move pointer: wl-kbptr"     { spawn "niri-wl-kbptr"; }
 
     Super+Grave       hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
     Super+Shift+Grave hotkey-overlay-title="Suspend machine"           { spawn "systemctl" "suspend"; }

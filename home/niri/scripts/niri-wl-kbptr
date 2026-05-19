@@ -1,0 +1,8 @@
+#!/usr/bin/env nu
+
+let geom = niri msg --json focused-output | from json | get logical
+
+(wl-kbptr
+  -r $'($geom.width)x($geom.height)+($geom.x)+($geom.y)'
+  -o modes=floating,click
+  -o mode_floating.source=detect)

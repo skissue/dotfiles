@@ -3,7 +3,7 @@
   mutable-link,
   ...
 }: {
-  home.packages = with pkgs; [xwayland-satellite-unstable mako];
+  home.packages = with pkgs; [xwayland-satellite-unstable mako wl-kbptr];
 
   xdg.configFile."niri/config.kdl".source = mutable-link ./config.kdl;
   xdg.configFile."niri/animations".source = mutable-link ./animations;
