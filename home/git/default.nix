@@ -52,11 +52,11 @@
     ];
   };
 
-  programs.ssh.matchBlocks = {
+  programs.ssh.settings = {
     "gh-work" = {
-      user = "git";
-      hostname = "github.com";
-      identityFile = "~/.ssh/work";
+      User = "git";
+      HostName = "github.com";
+      IdentityFile = "~/.ssh/work";
     };
   };
 
