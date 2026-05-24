@@ -43,8 +43,6 @@
   networking.firewall.allowedTCPPorts = [21000 21013];
   networking.firewall.allowedUDPPorts = [21003];
 
-  boot.kernelParams = ["usbcore.quirks=303a:8253:m"];
-
   virtualisation.docker.enable = true;
 
   # State version (copy from auto-generated configuration.nix during install)
