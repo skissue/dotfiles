@@ -66,17 +66,4 @@ in {
       '';
     })
   ];
-
-  # Allow wheel to run airvpn-exclude without authentication.
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      if (action.id == "org.freedesktop.systemd1.manage-units" &&
-          action.lookup("verb") == "start" &&
-          action.lookup("unit").indexOf("${unitPrefix}") == 0 &&
-          action.lookup("unit").endsWith(".scope") &&
-          subject.isInGroup("wheel")) {
-        return polkit.Result.YES;
-      }
-    });
-  '';
 }
