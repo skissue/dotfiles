@@ -66,6 +66,7 @@ in {
         llama
         aio
         plz
+        posframe
         # Keybinds
         meow
         meow-tree-sitter
