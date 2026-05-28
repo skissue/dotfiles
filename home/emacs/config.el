@@ -264,15 +264,6 @@ where it was when you previously visited the same file."
       redisplay-skip-fontification-on-input t
       fast-but-imprecise-scrolling t)
 
-(add-hook 'my/first-input-hook #'ultra-scroll-mode)
-
-(after! pixel-scroll
-  (bind-keys :map pixel-scroll-precision-mode-map
-             ;; For some reason, these are swapped 💀.
-             ([remap scroll-up-command] . pixel-scroll-interpolate-down)
-             ([remap scroll-down-command] . pixel-scroll-interpolate-up))
-  (setq pixel-scroll-precision-interpolate-page t))
-
 (setq-default indent-tabs-mode nil
               sentence-end-double-space nil
               tab-width 4

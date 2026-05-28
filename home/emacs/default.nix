@@ -84,7 +84,6 @@ in {
         spacious-padding
         eldoc-box
         indent-bars
-        ultra-scroll
         flyover
         # Completion
         vertico

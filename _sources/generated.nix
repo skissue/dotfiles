@@ -153,18 +153,6 @@
       sha256 = "sha256-J0CeWxL0Gs/1pOgszHUYgSl1+9nXibgb3fNyDVMr2OQ=";
     };
   };
-  ultra-scroll = {
-    pname = "ultra-scroll";
-    version = "f38653053b5c9bbe8dbcb6b2236ab8997fc2f9bb";
-    src = fetchFromGitHub {
-      owner = "jdtsmith";
-      repo = "ultra-scroll";
-      rev = "f38653053b5c9bbe8dbcb6b2236ab8997fc2f9bb";
-      fetchSubmodules = false;
-      sha256 = "sha256-vTox9o5QLsBXKIi+Hru2CAmMXuTIPcxP2/fgiOO0Xio=";
-    };
-    date = "2026-05-16";
-  };
   vertico-popup-frame = {
     pname = "vertico-popup-frame";
     version = "15e4969622bbfe6d699e6e4fab4ac3b7d9c20bf9";

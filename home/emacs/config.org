@@ -417,21 +417,6 @@ Repeat map for s-exp manipulation.
         fast-but-imprecise-scrolling t)
 #+end_src
 
-=ultra-scroll= provides super fast and super smooth pixel-wise scrolling for Emacs, especially with touchpads.
-#+begin_src elisp
-  (add-hook 'my/first-input-hook #'ultra-scroll-mode)
-#+end_src
-
-=ultra-scroll= automatically enables [[help:pixel-scroll-precision-mode][pixel-scroll-precision-mode]], so we might as well use it to make page-wise scrolling smooth.
-#+begin_src elisp
-  (after! pixel-scroll
-    (bind-keys :map pixel-scroll-precision-mode-map
-               ;; For some reason, these are swapped 💀.
-               ([remap scroll-up-command] . pixel-scroll-interpolate-down)
-               ([remap scroll-down-command] . pixel-scroll-interpolate-up))
-    (setq pixel-scroll-precision-interpolate-page t))
-#+end_src
-
 ** Editing
 #+begin_src elisp
   (setq-default indent-tabs-mode nil

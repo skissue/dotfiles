@@ -249,27 +249,6 @@
         },
         "version": "6.0.1"
     },
-    "ultra-scroll": {
-        "cargoLock": null,
-        "date": "2026-05-16",
-        "extract": null,
-        "name": "ultra-scroll",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "jdtsmith",
-            "repo": "ultra-scroll",
-            "rev": "f38653053b5c9bbe8dbcb6b2236ab8997fc2f9bb",
-            "sha256": "sha256-vTox9o5QLsBXKIi+Hru2CAmMXuTIPcxP2/fgiOO0Xio=",
-            "sparseCheckout": [],
-            "type": "github"
-        },
-        "version": "f38653053b5c9bbe8dbcb6b2236ab8997fc2f9bb"
-    },
     "vertico-popup-frame": {
         "cargoLock": null,
         "date": "2026-05-28",
