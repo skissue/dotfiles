@@ -118,18 +118,6 @@
     };
     date = "2026-01-02";
   };
-  org-popup-posframe = {
-    pname = "org-popup-posframe";
-    version = "d39cb7c2c9a996689b0d6519695eed3d807c0c85";
-    src = fetchFromGitHub {
-      owner = "A7R7";
-      repo = "org-popup-posframe";
-      rev = "d39cb7c2c9a996689b0d6519695eed3d807c0c85";
-      fetchSubmodules = false;
-      sha256 = "sha256-yZJBx/uJ9W9ZAdYieZ7ArRvigt0391rIyTt+DEIHHjU=";
-    };
-    date = "2024-05-28";
-  };
   org-typst = {
     pname = "org-typst";
     version = "367f23c9db3c80f75be6c407470ba71d5c34f709";

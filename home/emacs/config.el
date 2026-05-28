@@ -2430,14 +2430,6 @@ This function is called by `org-babel-execute-src-block'.")
   (advice-add #'org-toggle-inline-images :override #'org-sliced-images-toggle-inline-images)
   (advice-add #'org-display-inline-images :override #'org-sliced-images-display-inline-images))
 
-(autoload #'org-popup-posframe-mode "org-popup-posframe" "Show `org-mode' popup buffers in posframe." t)
-
-(after! org
-  (setopt org-popup-posframe-org-insert-link nil
-          ;; Currently broken with Org 9.7
-          org-popup-posframe-org-todo nil)
-  (org-popup-posframe-mode))
-
 (add-hook 'lisp-data-mode-hook #'parinfer-rust-mode)
 (add-hook 'parinfer-rust-mode-hook (##electric-pair-local-mode -1))
 

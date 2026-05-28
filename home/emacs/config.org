@@ -3107,17 +3107,6 @@ Makes scrolling +much nicer+ functional 🙂.
     (advice-add #'org-display-inline-images :override #'org-sliced-images-display-inline-images))
 #+end_src
 
-** Posframe Popups
-#+begin_src elisp
-  (autoload #'org-popup-posframe-mode "org-popup-posframe" "Show `org-mode' popup buffers in posframe." t)
-
-  (after! org
-    (setopt org-popup-posframe-org-insert-link nil
-            ;; Currently broken with Org 9.7
-            org-popup-posframe-org-todo nil)
-    (org-popup-posframe-mode))
-#+end_src
-
 ** Easydraw
 According to the README:
 #+begin_quote

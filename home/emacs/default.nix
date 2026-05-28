@@ -182,7 +182,6 @@ in {
         org-anki
         org-noter
         org-sliced-images
-        org-popup-posframe
         org-typst
         org-srs
         nice-org-html

@@ -1,7 +1,3 @@
-[org-popup-posframe]
-src.git = "https://github.com/A7R7/org-popup-posframe"
-fetch.github = "A7R7/org-popup-posframe"
-
 [org-typst]
 src.git = "https://github.com/skissue/org-typst"
 fetch.github = "skissue/org-typst"

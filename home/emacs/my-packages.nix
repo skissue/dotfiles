@@ -9,11 +9,6 @@ in {
   # disable it entirely.
   jsonrpc = null;
 
-  org-popup-posframe = melpaBuild (sources.org-popup-posframe
-    // {
-      version = "0.0.1";
-      packageRequires = with epkgs; [posframe];
-    });
   org-typst = melpaBuild (sources.org-typst // {version = "0.1.0";});
   gptel-quick = melpaBuild (sources.gptel-quick
     // {

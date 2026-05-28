@@ -186,27 +186,6 @@
         },
         "version": "ebf9a8e571db523dc6e4cd9ed80d0e0626983ae4"
     },
-    "org-popup-posframe": {
-        "cargoLock": null,
-        "date": "2024-05-28",
-        "extract": null,
-        "name": "org-popup-posframe",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "A7R7",
-            "repo": "org-popup-posframe",
-            "rev": "d39cb7c2c9a996689b0d6519695eed3d807c0c85",
-            "sha256": "sha256-yZJBx/uJ9W9ZAdYieZ7ArRvigt0391rIyTt+DEIHHjU=",
-            "sparseCheckout": [],
-            "type": "github"
-        },
-        "version": "d39cb7c2c9a996689b0d6519695eed3d807c0c85"
-    },
     "org-typst": {
         "cargoLock": null,
         "date": "2024-05-10",
