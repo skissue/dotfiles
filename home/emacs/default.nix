@@ -241,7 +241,11 @@ in {
   };
 
   home.packages = with pkgs; [
-    imagemagick # For dirvish image preview
+    # Dirvish previews
+    vips
+    ffmpegthumbnailer
+    mediainfo
+    
     nil
     alejandra
     svgbob
