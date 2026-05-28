@@ -3752,7 +3752,7 @@ Fetch feeds from my Miniflux server via [[https://github.com/fasheng/elfeed-prot
     (require 'elfeed-protocol)
 
     (setopt elfeed-protocol-enabled-protocols '(miniflux)
-            elfeed-protocol-feeds
+            elfeed-feeds
             `((,(concat "miniflux+https://feeds." (my/private 'domain 'private))
                :password (secrets-get-secret "KeePassXC" "Miniflux API"))))
 

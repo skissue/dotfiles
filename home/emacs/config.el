@@ -2905,7 +2905,7 @@ This function is called by `org-babel-execute-src-block'.")
   (require 'elfeed-protocol)
 
   (setopt elfeed-protocol-enabled-protocols '(miniflux)
-          elfeed-protocol-feeds
+          elfeed-feeds
           `((,(concat "miniflux+https://feeds." (my/private 'domain 'private))
              :password (secrets-get-secret "KeePassXC" "Miniflux API"))))
 
