@@ -272,7 +272,7 @@
     },
     "vertico-popup-frame": {
         "cargoLock": null,
-        "date": "2025-11-22",
+        "date": "2026-05-28",
         "extract": null,
         "name": "vertico-popup-frame",
         "passthru": null,
@@ -284,11 +284,11 @@
             "name": null,
             "owner": "skissue",
             "repo": "vertico-popup-frame",
-            "rev": "a99361aad4b9faf9f36902223ceecbda7a66dc1b",
-            "sha256": "sha256-vgg1z2Vdu3LV7uvqPUqKmqzJJGKePoat2hgkTrH0N0E=",
+            "rev": "15e4969622bbfe6d699e6e4fab4ac3b7d9c20bf9",
+            "sha256": "sha256-EZ7H/kDyEJOa+JTZzjqf6Oa0UfP1eLAyVZfvGxQweHE=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "a99361aad4b9faf9f36902223ceecbda7a66dc1b"
+        "version": "15e4969622bbfe6d699e6e4fab4ac3b7d9c20bf9"
     }
 }

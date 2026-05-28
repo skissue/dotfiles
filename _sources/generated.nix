@@ -167,14 +167,14 @@
   };
   vertico-popup-frame = {
     pname = "vertico-popup-frame";
-    version = "a99361aad4b9faf9f36902223ceecbda7a66dc1b";
+    version = "15e4969622bbfe6d699e6e4fab4ac3b7d9c20bf9";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "vertico-popup-frame";
-      rev = "a99361aad4b9faf9f36902223ceecbda7a66dc1b";
+      rev = "15e4969622bbfe6d699e6e4fab4ac3b7d9c20bf9";
       fetchSubmodules = false;
-      sha256 = "sha256-vgg1z2Vdu3LV7uvqPUqKmqzJJGKePoat2hgkTrH0N0E=";
+      sha256 = "sha256-EZ7H/kDyEJOa+JTZzjqf6Oa0UfP1eLAyVZfvGxQweHE=";
     };
-    date = "2025-11-22";
+    date = "2026-05-28";
   };
 }
