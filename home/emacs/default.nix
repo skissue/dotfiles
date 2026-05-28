@@ -213,6 +213,7 @@ in {
         eshell-atuin
         eshell-syntax-highlighting
         vterm
+        ghostel
         verb
         spray
         calfw
