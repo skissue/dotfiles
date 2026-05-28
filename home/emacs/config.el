@@ -1302,28 +1302,6 @@ uses the symbol name as the default description, as well as a
   (dolist (f '(org-edit-special))
     (cl-pushnew f pulsar-pulse-functions)))
 
-(bind-key "c" #'copilot-mode my/toggle-map)
-
-(after! copilot
-  (setopt copilot-install-dir (eval
-                               (car
-                                (get 'copilot-install-dir 'standard-value)))
-          copilot-node-executable (let ((exec-path (default-value 'exec-path)))
-                                    (executable-find "node")))
-  (bind-keys :map copilot-completion-map
-             ("M-RET"   . copilot-accept-completion)
-             ("M-n"     . copilot-next-completion)
-             ("M-p"     . copilot-previous-completion)
-             ("M-<tab>" . copilot-accept-completion-by-line)
-             ("M-f"     . copilot-accept-completion-by-word)))
-
-(after! copilot
-  (push #'copilot-mode minions-prominent-modes)  
-  (setf (cdr (assq 'copilot-mode minor-mode-alist))
-        (list `(" " (:propertize
-                     ,(nerd-icons-octicon "nf-oct-copilot"
-                                          :face 'nerd-icons-green))))))
-
 (pdf-loader-install)
 
 (after! dirvish
@@ -1443,7 +1421,6 @@ uses the symbol name as the default description, as well as a
               o3-mini
               o4-mini
               DeepSeek-R1-0528))
-  (gptel-make-gh-copilot "GitHub Copilot")
   (gptel-make-openai "OpenRouter"
     :host "openrouter.ai"
     :endpoint "/api/v1/chat/completions"

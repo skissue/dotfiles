@@ -111,7 +111,6 @@ in {
         pulsar
         yasnippet
         pdf-tools
-        copilot
         zoxide
         focus
         hl-todo

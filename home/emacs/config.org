@@ -1712,35 +1712,6 @@ Bind the file Transient sub-menu from [[https://github.com/magit/magit-annex/][m
       (cl-pushnew f pulsar-pulse-functions)))
 #+end_src
 
-** Copilot
-The Nix package for this package provides a Copilot executable. However, [[*No Littering][no-littering]] then changes the default value which is set through a patch. Thus, to get the original value, we have to do some weird fishing for the original value (which is thankfully saved by Customize). Also, because of the weird way that NixOS wraps the path environment for Emacs for Copilot, [[*Direnv][Direnv]] actually makes it unable to find the ~node~ executable. Thus, after first loading Copilot, find the executable with [[help:exec-path][exec-path]] bound to the global value.
-#+begin_src elisp
-  (bind-key "c" #'copilot-mode my/toggle-map)
-
-  (after! copilot
-    (setopt copilot-install-dir (eval
-                                 (car
-                                  (get 'copilot-install-dir 'standard-value)))
-            copilot-node-executable (let ((exec-path (default-value 'exec-path)))
-                                      (executable-find "node")))
-    (bind-keys :map copilot-completion-map
-               ("M-RET"   . copilot-accept-completion)
-               ("M-n"     . copilot-next-completion)
-               ("M-p"     . copilot-previous-completion)
-               ("M-<tab>" . copilot-accept-completion-by-line)
-               ("M-f"     . copilot-accept-completion-by-word)))
-#+end_src
-
-Show a little pilot icon from Nerd Fonts in the modeline when enabled.
-#+begin_src elisp
-  (after! copilot
-    (push #'copilot-mode minions-prominent-modes)  
-    (setf (cdr (assq 'copilot-mode minor-mode-alist))
-          (list `(" " (:propertize
-                       ,(nerd-icons-octicon "nf-oct-copilot"
-                                            :face 'nerd-icons-green))))))
-#+end_src
-
 ** PDF Tools
 In addition to auto-loading via filename or magic values, we also want to load the package if [[*Dirvish][Dirvish]] is opened, since it requires PDF Tools to be loaded for PDF previews to work.
 #+begin_src elisp
@@ -1903,7 +1874,6 @@ Persist undo history; despite the name, this works independently of Undo Fu and 
                 o3-mini
                 o4-mini
                 DeepSeek-R1-0528))
-    (gptel-make-gh-copilot "GitHub Copilot")
     (gptel-make-openai "OpenRouter"
       :host "openrouter.ai"
       :endpoint "/api/v1/chat/completions"
