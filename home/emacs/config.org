@@ -2389,24 +2389,6 @@ Bind the mode to =C-<insert>=, as suggested by the documentation; the default bi
             (buffer-string))))
 #+end_src
 
-** Explore
-#+begin_src elisp
-  (bind-keys :map my/notes-map
-             :prefix "e"
-             :prefix-map my/denote-explore-map
-             ("cd" . denote-explore-degree-barchart)
-             ("ce" . denote-explore-extensions-barchart)
-             ("ck" . denote-explore-keywords-barchart)
-             ("d"  . denote-explore-identify-duplicate-notes)
-             ("i"  . denote-explore-isolated-notes)
-             ("n"  . denote-explore-network)
-             ("N"  . denote-explore-network-regenerate)
-             ("rk" . denote-explore-random-keyword)
-             ("rl" . denote-explore-random-link)
-             ("rn" . denote-explore-random-note)
-             ("s"  . denote-explore-sync-metadata))
-#+end_src
-
 ** Fix Heading Links in Capture
 [[help:org-capture][org-capture]] uses the linking mechanism internally when capturing things, which sometimes results in Denote trying to create a =CUSTOM_ID= when I don't actually want one.
 #+begin_src elisp

@@ -1843,21 +1843,6 @@ the end of the file."
                              (default-toplevel-value 'denote-directory)))
           (buffer-string))))
 
-(bind-keys :map my/notes-map
-           :prefix "e"
-           :prefix-map my/denote-explore-map
-           ("cd" . denote-explore-degree-barchart)
-           ("ce" . denote-explore-extensions-barchart)
-           ("ck" . denote-explore-keywords-barchart)
-           ("d"  . denote-explore-identify-duplicate-notes)
-           ("i"  . denote-explore-isolated-notes)
-           ("n"  . denote-explore-network)
-           ("N"  . denote-explore-network-regenerate)
-           ("rk" . denote-explore-random-keyword)
-           ("rl" . denote-explore-random-link)
-           ("rn" . denote-explore-random-note)
-           ("s"  . denote-explore-sync-metadata))
-
 (defun my/fix-denote-heading-links-in-capture (fn &rest args)
   "Around advice for `org-capture' that binds
 `denote-org-store-link-to-heading' to 'nil', to avoid randomly

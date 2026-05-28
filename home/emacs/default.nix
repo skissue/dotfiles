@@ -200,7 +200,6 @@ in {
         denote-org
         denote-journal
         denote-sequence
-        denote-explore
         consult-denote
         citar
         citar-embark
