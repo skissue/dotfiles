@@ -120,7 +120,7 @@ Only run once.")
 (defvar my/theuniverse "~/theuniverse/"
   "Path for `theuniverse'.")
 (defvar my/brain2 (expand-file-name "brain2/" my/theuniverse)
-  "Path for `theuniverse'.")
+  "Path for `brain2'.")
 
 (add-to-list 'safe-local-variable-directories my/brain2)
 

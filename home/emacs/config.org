@@ -223,7 +223,7 @@ Paths for my main Folders of Everything™, to make them convenient to reference
   (defvar my/theuniverse "~/theuniverse/"
     "Path for `theuniverse'.")
   (defvar my/brain2 (expand-file-name "brain2/" my/theuniverse)
-    "Path for `theuniverse'.")
+    "Path for `brain2'.")
 #+end_src
 
 Fully trust directory-local variables within brain2:
