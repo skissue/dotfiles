@@ -212,7 +212,6 @@ in {
         eat
         eshell-atuin
         eshell-syntax-highlighting
-        vterm
         ghostel
         verb
         spray

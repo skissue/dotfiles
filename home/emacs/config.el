@@ -2509,9 +2509,45 @@ This function is called by `org-babel-execute-src-block'.")
     '("j" "Just" my/justl-disproject)))
 
 (after! justl
+  (defun my/justl-ghostel-args (recipe)
+    "Return command-line arguments for running RECIPE with `just'."
+    (let ((recipe-name (justl--recipe-name recipe))
+          (recipe-args (justl--recipe-args recipe))
+          (transient-args (transient-args 'justl-help-popup)))
+      (append transient-args
+              (list recipe-name)
+              (mapcar #'justl--arg-default recipe-args))))
+
+  (defun my/justl-exec-ghostel (&optional no-send)
+    "Execute just recipe in Ghostel.
+When NO-SEND is non-nil, insert the command ready for editing but do not
+execute it."
+    (interactive)
+    (require 'ghostel)
+    (let* ((recipe (justl--get-recipe-under-cursor))
+           (args-list (my/justl-ghostel-args recipe))
+           (buffer-name (format "*justl - ghostel - %s*"
+                                (justl--recipe-name recipe)))
+           (default-directory (f-dirname justl-justfile)))
+      (if no-send
+          (let ((ghostel-buffer-name buffer-name))
+            (with-current-buffer (ghostel)
+              (ghostel-send-string
+               (mapconcat #'shell-quote-argument
+                          (append (list "exec" justl-executable) args-list)
+                          " "))))
+        (let ((buffer (get-buffer-create buffer-name)))
+          (pop-to-buffer buffer)
+          (ghostel-exec buffer justl-executable args-list)))))
+
+  (defun my/justl-no-exec-ghostel ()
+    "Open Ghostel with the recipe but do not execute it."
+    (interactive)
+    (my/justl-exec-ghostel t))
+
   (bind-keys :map justl-mode-map
-             ("v" . justl-exec-vterm)
-             ("V" . justl-no-exec-vterm)))
+             ("t" . my/justl-exec-ghostel)
+             ("T" . my/justl-no-exec-ghostel)))
 
 (setf (alist-get "\\.gp\\'" auto-mode-alist
                  nil nil #'equal)
@@ -2827,20 +2863,26 @@ This function is called by `org-babel-execute-src-block'.")
 (after! eshell
   (eshell-syntax-highlighting-global-mode))
 
-(bind-key "t" #'vterm my/open-map)
+(bind-key "t" #'ghostel my/open-map)
 
 (after! meow
-  (push '(vterm-mode . insert) meow-mode-state-list))
+  (push '(ghostel-mode . insert) meow-mode-state-list))
 
-(after! vterm
-  (setopt vterm-shell (executable-find "nu")))
+(after! ghostel
+  (setopt ghostel-shell (or (executable-find "nu") ghostel-shell)))
 
-(defun my/setup-meow-toggle-vterm-copy-mode ()
-  "Add hooks to enable/disable `vterm-copy-mode' with Meow's insert mode."
-  (add-hook 'meow-insert-exit-hook #'vterm-copy-mode nil t)
-  (add-hook 'meow-insert-enter-hook (##vterm-copy-mode -1) nil t))
+(after! ghostel
+  (defun my/ghostel-enter-copy-mode ()
+    "Enter `ghostel-copy-mode' unless it is already active."
+    (unless (bound-and-true-p ghostel--copy-mode-active)
+      (ghostel-copy-mode)))
 
-(add-hook 'vterm-mode-hook #'my/setup-meow-toggle-vterm-copy-mode)
+  (defun my/setup-meow-toggle-ghostel-copy-mode ()
+    "Add hooks to enable/disable `ghostel-copy-mode' with Meow's insert mode."
+    (add-hook 'meow-insert-exit-hook #'my/ghostel-enter-copy-mode nil t)
+    (add-hook 'meow-insert-enter-hook #'ghostel-copy-mode-exit nil t))
+
+  (add-hook 'ghostel-mode-hook #'my/setup-meow-toggle-ghostel-copy-mode))
 
 (after! calc
   (bind-key "C-o" #'casual-calc-tmenu calc-mode-map)

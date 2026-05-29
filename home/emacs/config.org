@@ -3221,12 +3221,48 @@ Common Lisp.
       '("j" "Just" my/justl-disproject)))
 #+end_src
 
-Add a bind to run a recipe with [[*Vterm][Vterm]] in justl.el.
+Add a bind to run a recipe with [[*Ghostel][Ghostel]] in justl.el.
 #+begin_src elisp
   (after! justl
+    (defun my/justl-ghostel-args (recipe)
+      "Return command-line arguments for running RECIPE with `just'."
+      (let ((recipe-name (justl--recipe-name recipe))
+            (recipe-args (justl--recipe-args recipe))
+            (transient-args (transient-args 'justl-help-popup)))
+        (append transient-args
+                (list recipe-name)
+                (mapcar #'justl--arg-default recipe-args))))
+
+    (defun my/justl-exec-ghostel (&optional no-send)
+      "Execute just recipe in Ghostel.
+  When NO-SEND is non-nil, insert the command ready for editing but do not
+  execute it."
+      (interactive)
+      (require 'ghostel)
+      (let* ((recipe (justl--get-recipe-under-cursor))
+             (args-list (my/justl-ghostel-args recipe))
+             (buffer-name (format "*justl - ghostel - %s*"
+                                  (justl--recipe-name recipe)))
+             (default-directory (f-dirname justl-justfile)))
+        (if no-send
+            (let ((ghostel-buffer-name buffer-name))
+              (with-current-buffer (ghostel)
+                (ghostel-send-string
+                 (mapconcat #'shell-quote-argument
+                            (append (list "exec" justl-executable) args-list)
+                            " "))))
+          (let ((buffer (get-buffer-create buffer-name)))
+            (pop-to-buffer buffer)
+            (ghostel-exec buffer justl-executable args-list)))))
+
+    (defun my/justl-no-exec-ghostel ()
+      "Open Ghostel with the recipe but do not execute it."
+      (interactive)
+      (my/justl-exec-ghostel t))
+
     (bind-keys :map justl-mode-map
-               ("v" . justl-exec-vterm)
-               ("V" . justl-no-exec-vterm)))
+               ("t" . my/justl-exec-ghostel)
+               ("T" . my/justl-no-exec-ghostel)))
 #+end_src
 
 ** Gnuplot
@@ -3629,25 +3665,31 @@ Syntax highlighting.
     (eshell-syntax-highlighting-global-mode))
 #+end_src
 
-** Vterm
+** Ghostel
 #+begin_src elisp
-  (bind-key "t" #'vterm my/open-map)
+  (bind-key "t" #'ghostel my/open-map)
 
   (after! meow
-    (push '(vterm-mode . insert) meow-mode-state-list))
+    (push '(ghostel-mode . insert) meow-mode-state-list))
 
-  (after! vterm
-    (setopt vterm-shell (executable-find "nu")))
+  (after! ghostel
+    (setopt ghostel-shell (or (executable-find "nu") ghostel-shell)))
 #+end_src
 
-Automatically enable/disable [[help:vterm-copy-mode][vterm-copy-mode]] when entering/leaving Meow's insert mode.
+Automatically enable/disable [[help:ghostel-copy-mode][ghostel-copy-mode]] when entering/leaving Meow's insert mode.
 #+begin_src elisp
-  (defun my/setup-meow-toggle-vterm-copy-mode ()
-    "Add hooks to enable/disable `vterm-copy-mode' with Meow's insert mode."
-    (add-hook 'meow-insert-exit-hook #'vterm-copy-mode nil t)
-    (add-hook 'meow-insert-enter-hook (##vterm-copy-mode -1) nil t))
+  (after! ghostel
+    (defun my/ghostel-enter-copy-mode ()
+      "Enter `ghostel-copy-mode' unless it is already active."
+      (unless (bound-and-true-p ghostel--copy-mode-active)
+        (ghostel-copy-mode)))
 
-  (add-hook 'vterm-mode-hook #'my/setup-meow-toggle-vterm-copy-mode)
+    (defun my/setup-meow-toggle-ghostel-copy-mode ()
+      "Add hooks to enable/disable `ghostel-copy-mode' with Meow's insert mode."
+      (add-hook 'meow-insert-exit-hook #'my/ghostel-enter-copy-mode nil t)
+      (add-hook 'meow-insert-enter-hook #'ghostel-copy-mode-exit nil t))
+
+    (add-hook 'ghostel-mode-hook #'my/setup-meow-toggle-ghostel-copy-mode))
 #+end_src
 
 ** Calc
