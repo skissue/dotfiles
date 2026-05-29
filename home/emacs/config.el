@@ -2872,6 +2872,10 @@ execute it."
   (setopt ghostel-shell (or (executable-find "nu") ghostel-shell)))
 
 (after! ghostel
+  (add-hook 'ghostel-mode-hook
+            (##face-remap-add-relative 'default 'fixed-pitch)))
+
+(after! ghostel
   (defun my/ghostel-enter-copy-mode ()
     "Enter `ghostel-copy-mode' unless it is already active."
     (unless (bound-and-true-p ghostel--copy-mode-active)

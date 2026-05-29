@@ -3676,6 +3676,13 @@ Syntax highlighting.
     (setopt ghostel-shell (or (executable-find "nu") ghostel-shell)))
 #+end_src
 
+Keep the default face fixed-width in Ghostel so ligatures and other wide characters don't shift alignment.
+#+begin_src elisp
+  (after! ghostel
+    (add-hook 'ghostel-mode-hook
+              (##face-remap-add-relative 'default 'fixed-pitch)))
+#+end_src
+
 Automatically enable/disable [[help:ghostel-copy-mode][ghostel-copy-mode]] when entering/leaving Meow's insert mode.
 #+begin_src elisp
   (after! ghostel
