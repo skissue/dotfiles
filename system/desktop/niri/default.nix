@@ -15,6 +15,15 @@
       package = pkgs.niri-unstable;
     };
 
+    programs.uwsm = {
+      enable = true;
+      waylandCompositors.niri = {
+        prettyName = "Niri";
+        comment = "Niri compositor managed by uwsm";
+        binPath = "${config.programs.niri.package}/bin/niri-session";
+      };
+    };
+
     # Show niri in greetd/display manager sessions
     environment.pathsToLink = ["/share/wayland-sessions"];
     services.displayManager.sessionPackages = [config.programs.niri.package];
