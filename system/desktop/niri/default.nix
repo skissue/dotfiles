@@ -41,7 +41,7 @@
     systemd.user.services.niri-flake-polkit.enable = lib.mkForce false;
     systemd.user.services.hyprpolkitagent = {
       description = "Hyprland Polkit Authentication Agent";
-      wantedBy = ["niri.service"];
+      wantedBy = ["graphical-session.target"];
       after = ["graphical-session.target"];
       partOf = ["graphical-session.target"];
       unitConfig.ConditionEnvironment = "WAYLAND_DISPLAY";
