@@ -1917,6 +1917,10 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
                `(,(howm-reminder-regexp "[\\^]")
                  (0 howm-reminder-schedule-face prepend))))
 
+(after! funn
+  (setopt funn-directory (expand-file-name "funn.el" my/brain2))
+  (global-funn-mode))
+
 (add-hook 'org-mode-hook #'variable-pitch-mode)
 (add-hook 'org-mode-hook #'writeroom-mode)
 (add-hook 'org-mode-hook (##setq-local line-spacing 0.1))
