@@ -370,6 +370,22 @@
         "type": "github"
       }
     },
+    "funn": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1780972800,
+        "narHash": "sha256-ezTW70U+P890s/9QuxIRe/GY7NTBKELsVdkOUaJaXss=",
+        "ref": "refs/heads/main",
+        "rev": "d7df3b8579084298db07ec873b66d3df6ac1b0ba",
+        "revCount": 54,
+        "type": "git",
+        "url": "ssh://git@github.com/skissue/funn.el"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/skissue/funn.el"
+      }
+    },
     "git-annex-backend-XBLAKE3": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -939,6 +955,7 @@
         "elisp-extra": "elisp-extra",
         "emacs-overlay": "emacs-overlay",
         "eww": "eww",
+        "funn": "funn",
         "git-annex-backend-XBLAKE3": "git-annex-backend-XBLAKE3",
         "home-manager": "home-manager",
         "impermanence": "impermanence",

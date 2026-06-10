@@ -1,6 +1,7 @@
 {
   epkgs,
   sources,
+  inputs,
 }: let
   inherit (epkgs) melpaBuild;
 in {
@@ -46,4 +47,11 @@ in {
       version = "0.1.0";
       packageRequires = with epkgs; [modus-themes];
     });
+  funn = melpaBuild {
+    pname = "funn";
+    version = "0.1.0";
+    src = inputs.funn;
+    packageRequires = with epkgs; [posframe];
+    files = ''("src/*.el")'';
+  };
 }

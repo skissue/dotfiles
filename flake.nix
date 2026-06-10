@@ -79,6 +79,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri.url = "github:sodiboo/niri-flake";
+    # TODO private for now, move to nvfetcher later
+    funn = {
+      url = "git+ssh://git@github.com/skissue/funn.el";
+      flake = false;
+    };
   };
 
   outputs = {

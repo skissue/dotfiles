@@ -53,7 +53,7 @@ in {
     package = inputs.emacs-overlay.packages.${pkgs.stdenv.hostPlatform.system}.emacs-igc-pgtk;
     overrides = self: super:
       import ./my-packages.nix {
-        inherit sources;
+        inherit inputs sources;
         # Use `super` since some packages are overrides.
         epkgs = super;
       };
@@ -204,6 +204,7 @@ in {
         # citar-denote
         biblio
         howm
+        funn
         # Applications
         dirvish
         osm
@@ -244,7 +245,7 @@ in {
     vips
     ffmpegthumbnailer
     mediainfo
-    
+
     nil
     alejandra
     svgbob
