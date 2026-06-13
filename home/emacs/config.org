@@ -2473,6 +2473,19 @@ Add a new todo type for "daily" tasks. These tasks should only appear on their s
     (global-funn-mode))
 #+end_src
 
+#+begin_src elisp
+  (defun my/funn-set-agenda-files (&rest _)
+    "Set variable `org-agenda-files' to all molecules under the lattice phase."
+    (setopt org-agenda-files
+            (directory-files-recursively
+             (expand-file-name
+              (funn-phase-directory (funn-phase-named 'lattice))
+              funn-directory)
+             (rx ".org" string-end))))
+
+  (advice-add #'org-agenda-files :before #'my/funn-set-agenda-files)
+#+end_src
+
 * Org Mode
 Ah, the crown jewel of Emacs 👑.
 #+begin_src elisp

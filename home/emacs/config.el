@@ -1921,6 +1921,17 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
   (setopt funn-directory (expand-file-name "funn.el" my/brain2))
   (global-funn-mode))
 
+(defun my/funn-set-agenda-files (&rest _)
+  "Set variable `org-agenda-files' to all molecules under the lattice phase."
+  (setopt org-agenda-files
+          (directory-files-recursively
+           (expand-file-name
+            (funn-phase-directory (funn-phase-named 'lattice))
+            funn-directory)
+           (rx ".org" string-end))))
+
+(advice-add #'org-agenda-files :before #'my/funn-set-agenda-files)
+
 (add-hook 'org-mode-hook #'variable-pitch-mode)
 (add-hook 'org-mode-hook #'writeroom-mode)
 (add-hook 'org-mode-hook (##setq-local line-spacing 0.1))
