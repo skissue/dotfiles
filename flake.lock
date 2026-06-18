@@ -373,11 +373,11 @@
     "funn": {
       "flake": false,
       "locked": {
-        "lastModified": 1781219228,
-        "narHash": "sha256-jUdJ5bkUZnFQ+N7vTFbctsAbXO+5PoP9HYtws7BgTuc=",
+        "lastModified": 1781810397,
+        "narHash": "sha256-Uq4rZr73i6WbjTBQs56wObZf1WOhaNyEVL6Zr1Z8UZQ=",
         "ref": "refs/heads/main",
-        "rev": "b41538efbcbf295ef2a02b51c9e5b9acf7107466",
-        "revCount": 71,
+        "rev": "d6e66a6fa0ae832f9c9cec3d542b3d27d08991be",
+        "revCount": 90,
         "type": "git",
         "url": "ssh://git@github.com/skissue/funn.el"
       },
