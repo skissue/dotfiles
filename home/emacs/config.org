@@ -2470,7 +2470,9 @@ Add a new todo type for "daily" tasks. These tasks should only appear on their s
 #+begin_src elisp
   (after! funn
     (setopt funn-directory (expand-file-name "funn.el" my/brain2))
-    (global-funn-mode))
+    (global-funn-mode)
+    
+    (add-hook 'funn-mode-hook #'funn-buffer-name-rename-buffer))
 #+end_src
 
 #+begin_src elisp
