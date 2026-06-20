@@ -1921,7 +1921,8 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
   (setopt funn-directory (expand-file-name "funn.el" my/brain2))
   (global-funn-mode)
   
-  (add-hook 'funn-mode-hook #'funn-buffer-name-rename-buffer))
+  (add-hook 'funn-mode-hook #'funn-buffer-name-rename-buffer)
+  (add-hook 'funn-atom-parse-functions #'funn-task-data-atom-parser))
 
 (defun my/funn-set-agenda-files (&rest _)
   "Set variable `org-agenda-files' to all molecules under the lattice phase."
