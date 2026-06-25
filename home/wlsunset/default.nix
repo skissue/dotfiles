@@ -3,7 +3,7 @@
     enable = true;
 
     temperature.night = 2000;
-    sunrise = "07:30";
-    sunset = "21:30";
+    sunrise = "07:00";
+    sunset = "21:00";
   };
 }
