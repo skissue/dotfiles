@@ -1971,6 +1971,7 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
           org-tags-column                        0
           org-special-ctrl-a/e                   t
           org-todo-keywords                      '((type "TODO(t)"
+                                                         "THINK(k/@)"
                                                          "WAIT(w@/@)"
                                                          "|"
                                                          "DONE(d)"
@@ -1986,10 +1987,12 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
           org-blank-before-new-entry             '((heading . t)
                                                    (plain-list-item . auto))
           org-todo-keyword-faces (modus-themes-with-colors
-                                   `(("CANCELED"
-                                      :foreground ,red)
+                                   `(("THINK"
+                                      :foreground ,cyan)
                                      ("WAIT"
-                                      :foreground ,yellow)))
+                                      :foreground ,yellow)
+                                     ("CANCELED"
+                                      :foreground ,red)))
           org-refile-targets     '((nil :maxlevel . 2)
                                    (org-agenda-files :maxlevel . 2)))
   (custom-set-faces
@@ -2187,14 +2190,18 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
           org-modern-replace-stars "§∯δσ𝛼∞𝜺"
           ;; For some reason, inheriting from `org-modern-todo' messes with the size
           org-modern-todo-faces (modus-themes-with-colors
-                                  `(("CANCELED"
+                                  `(("THINK"
                                      :inverse-video t
                                      :weight semibold
-                                     :foreground ,red)
+                                     :foreground ,cyan)
                                     ("WAIT"
                                      :inverse-video t
                                      :weight semibold
-                                     :foreground ,yellow))))
+                                     :foreground ,yellow)
+                                    ("CANCELED"
+                                     :inverse-video t
+                                     :weight semibold
+                                     :foreground ,red))))
   (modus-themes-with-colors
     (custom-set-faces
      '(org-modern-label ((t :height 1.0
