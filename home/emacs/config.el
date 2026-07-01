@@ -1971,7 +1971,9 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
           org-tags-column                        0
           org-special-ctrl-a/e                   t
           org-todo-keywords                      '((type "TODO(t)"
+                                                         "NEXT(n!)"
                                                          "THINK(k/@)"
+                                                         "FUTURE(f!/!)"
                                                          "WAIT(w@/@)"
                                                          "|"
                                                          "DONE(d)"
@@ -1987,8 +1989,12 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
           org-blank-before-new-entry             '((heading . t)
                                                    (plain-list-item . auto))
           org-todo-keyword-faces (modus-themes-with-colors
-                                   `(("THINK"
+                                   `(("NEXT"
                                       :foreground ,cyan)
+                                     ("THINK"
+                                      :foreground ,indigo)
+                                     ("FUTURE"
+                                      :foreground ,rust)
                                      ("WAIT"
                                       :foreground ,yellow)
                                      ("CANCELED"
@@ -2190,10 +2196,18 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
           org-modern-replace-stars "§∯δσ𝛼∞𝜺"
           ;; For some reason, inheriting from `org-modern-todo' messes with the size
           org-modern-todo-faces (modus-themes-with-colors
-                                  `(("THINK"
+                                  `(("NEXT"
                                      :inverse-video t
                                      :weight semibold
                                      :foreground ,cyan)
+                                    ("THINK"
+                                     :inverse-video t
+                                     :weight semibold
+                                     :foreground ,indigo)
+                                    ("FUTURE"
+                                     :inverse-video t
+                                     :weight semibold
+                                     :foreground ,rust)
                                     ("WAIT"
                                      :inverse-video t
                                      :weight semibold
