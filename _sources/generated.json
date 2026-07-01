@@ -22,7 +22,7 @@
     },
     "consult-omni": {
         "cargoLock": null,
-        "date": "2025-12-03",
+        "date": "2026-06-24",
         "extract": null,
         "name": "consult-omni",
         "passthru": null,
@@ -34,12 +34,12 @@
             "name": null,
             "owner": "armindarvish",
             "repo": "consult-omni",
-            "rev": "bdcd5a065340dce9906ac5c5f359906d31877963",
-            "sha256": "sha256-vmKKEmZpzHQ8RDbTuoTCWGRypLfMiHrEv9Zw0G6K1pg=",
+            "rev": "3a126ee54479755408faed10da945dbc2366303b",
+            "sha256": "sha256-8Koe6IO2+/HvDb2IE1dc/DY3hGmNWcEMAfz6d0gdT7k=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "bdcd5a065340dce9906ac5c5f359906d31877963"
+        "version": "3a126ee54479755408faed10da945dbc2366303b"
     },
     "elfin": {
         "cargoLock": null,
@@ -64,7 +64,7 @@
     },
     "gptel-openrouter-models": {
         "cargoLock": null,
-        "date": "2026-06-20",
+        "date": "2026-07-01",
         "extract": null,
         "name": "gptel-openrouter-models",
         "passthru": null,
@@ -76,12 +76,12 @@
             "name": null,
             "owner": "skissue",
             "repo": "gptel-openrouter-models",
-            "rev": "0c7f311eec0a0445e628bdca5e892ab756abcf1b",
-            "sha256": "sha256-2gzQAqGKEa4uA1iM0z96DXSjSOL15kq9vsXRdmrq5sw=",
+            "rev": "d93bc207dd5d642aa365b0cf8963ad934dd7645d",
+            "sha256": "sha256-2LU1E6b3fO/kyzAZX6kS1ZxX4LDN1rEGKx5h83eBvS8=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "0c7f311eec0a0445e628bdca5e892ab756abcf1b"
+        "version": "d93bc207dd5d642aa365b0cf8963ad934dd7645d"
     },
     "gptel-quick": {
         "cargoLock": null,
