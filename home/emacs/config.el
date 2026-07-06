@@ -2923,7 +2923,7 @@ execute it."
   (defun my/setup-meow-toggle-ghostel-copy-mode ()
     "Add hooks to enable/disable `ghostel-copy-mode' with Meow's insert mode."
     (add-hook 'meow-insert-exit-hook #'my/ghostel-enter-copy-mode nil t)
-    (add-hook 'meow-insert-enter-hook #'ghostel-copy-mode-exit nil t))
+    (add-hook 'meow-insert-enter-hook #'ghostel-readonly-exit nil t))
 
   (add-hook 'ghostel-mode-hook #'my/setup-meow-toggle-ghostel-copy-mode))
 
