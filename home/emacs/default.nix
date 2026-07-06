@@ -139,7 +139,8 @@ in {
         disproject
         atomic-chrome
         esup
-        uniline
+        # Fails to build
+        # uniline
         dag-draw
         el-search
         # Fails to build
