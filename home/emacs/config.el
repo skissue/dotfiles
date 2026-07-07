@@ -1408,6 +1408,7 @@ uses the symbol name as the default description, as well as a
     :key (##or (secrets-get-secret "KeePassXC" "OpenRouter")
                (user-error "Unable to retrieve OpenRouter key"))
     :models (gptel-openrouter-models))
+  (gptel-make-openai-oauth "OpenAI Codex")
   (setopt gptel-model           'qwen3:14b
           gptel-backend         (gptel-make-openai "Local"
                                   :protocol "http"

@@ -1855,6 +1855,7 @@ Persist undo history; despite the name, this works independently of Undo Fu and 
       :key (##or (secrets-get-secret "KeePassXC" "OpenRouter")
                  (user-error "Unable to retrieve OpenRouter key"))
       :models (gptel-openrouter-models))
+    (gptel-make-openai-oauth "OpenAI Codex")
     (setopt gptel-model           'qwen3:14b
             gptel-backend         (gptel-make-openai "Local"
                                     :protocol "http"
