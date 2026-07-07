@@ -1401,17 +1401,6 @@ uses the symbol name as the default description, as well as a
   (add-to-list 'pulsar-pulse-functions #'gptel-end-of-response))
 
 (after! gptel
-  (gptel-make-openai "GitHub Models"
-    :host "models.inference.ai.azure.com"
-    :endpoint "/chat/completions"
-    :stream t
-    :key (##or (secrets-get-secret "KeePassXC" "GitHub AI")
-               (user-error "Unable to retrieve GitHub AI key"))
-    :models '(gpt-5-mini
-              gpt-5
-              o3-mini
-              o4-mini
-              DeepSeek-R1-0528))
   (gptel-make-openai "OpenRouter"
     :host "openrouter.ai"
     :endpoint "/api/v1/chat/completions"
@@ -1441,88 +1430,6 @@ uses the symbol name as the default description, as well as a
         "-----\n=@me:=\n")
   (setf (alist-get 'org-mode gptel-response-prefix-alist)
         "-----\n=@ai:=\n"))
-
-(el-patch-feature gptel)
-(el-patch-defvar gptel--openai
-  (el-patch-remove (gptel-make-openai
-                       "ChatGPT"
-                     :key 'gptel-api-key
-                     :stream t
-                     :models gptel--openai-models)))
-
-(after! gptel
-  (gptel-make-tool
-   :name "clone_repository"
-   :description "Clone a Git repository"
-   :args (list '(:name "repo_uri"
-                       :type "string"
-                       :description "The URI of the Git repository to clone"))
-   :category "Programming"
-   :confirm t
-   :function (lambda (repo-uri)
-               (let* ((repo-name (file-name-nondirectory
-                                  (string-trim-right repo-uri "\\.git")))
-                      (target-dir (expand-file-name repo-name "~/git")))
-                 (if (file-exists-p target-dir)
-                     (error "Directory already exists: %s" target-dir)
-                   (unless (zerop (call-process "git" nil nil nil
-                                                "clone" repo-uri target-dir))
-                     (error "Failed to clone repository"))
-                   (format "Repository cloned successfully: %s" target-dir)))))
-  (gptel-make-tool
-   :name "compile"
-   :description "Run a user-specified compile command and return the output"
-   :args nil
-   :category "Programming"
-   :include t
-   :async t
-   :function (lambda (callback)
-               (cl-flet
-                   ((setup (proc)
-                      ;; Wrap sentinel to invoke callback with content on exit.
-                      (let* ((orig-sen (process-sentinel proc))
-                             (sen
-                              (lambda (prog msg)
-                                (funcall orig-sen proc msg)
-                                (when (eq (process-status proc) 'exit)
-                                  (with-current-buffer (process-buffer proc)
-                                    (goto-char (point-min))
-                                    ;; Skip header line.
-                                    (re-search-forward
-                                     "^-\\*- mode: compilation.* -\\*-$"
-                                     nil t)
-                                    (thread-last
-                                      (buffer-substring (point) (point-max))
-                                      (string-trim)
-                                      (funcall callback)))))))
-                        (set-process-sentinel proc sen))))
-                 ;; Temporarily add setup function to process start hook.
-                 (add-hook 'compilation-start-hook #'setup 50)
-                 (recompile)
-                 (remove-hook 'compilation-start-hook #'setup)))))
-
-(after! gptel
-  (gptel-make-tool
-   :name "fetch"
-   :description "Fetch a URL from the Internet and extract its content as Markdown"
-   :args (list '(:name "url"
-                       :type "string"
-                       :description "URL to fetch"))
-   :category "Internet"
-   :async t
-   :function (lambda (callback url)
-               (url-retrieve
-                (concat
-                 "https://urltomarkdown.herokuapp.com/?title=true&links=true&url=" url)
-                (lambda (status)
-                  (set-buffer-multibyte t)
-                  (goto-char (point-min))
-                  (re-search-forward "\n\n" nil t)
-                  (thread-last
-                    (buffer-substring (point) (point-max))
-                    (string-trim)
-                    (funcall callback)))
-                nil :silent :no-cookies))))
 
 (after! gptel-rewrite
   (defun my/gptel-rewrite-inline-diff (&optional ovs)
