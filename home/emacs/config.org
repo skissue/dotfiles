@@ -887,7 +887,6 @@ Set up PragmataPro and enable [[help:prettify-symbols-mode][prettify-symbols-mod
 Use the [[https://gitlab.com/magus/modus-catppuccin][modus-catppuccin]] derivative to get the Catppuccin Mocha palette on top of Modus.
 #+begin_src elisp
   (require 'modus-themes)
-  (require 'modus-catppuccin)
 
   (setopt modus-themes-bold-constructs t
           modus-themes-italic-constructs t
@@ -903,7 +902,7 @@ Use the [[https://gitlab.com/magus/modus-catppuccin][modus-catppuccin]] derivati
                                   (0 . (variable-pitch 1.8))
                                   (t . (variable-pitch light 1.1))))
 
-  (load-theme 'catppuccin-mocha :no-confirm)
+  (load-theme 'kusanagi :no-confirm)
 #+end_src
 
 ** Spacious Padding

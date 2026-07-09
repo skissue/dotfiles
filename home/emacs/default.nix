@@ -76,7 +76,7 @@ in {
         casual-avy
         # Appearance
         modus-themes
-        modus-catppuccin
+        kusanagi-theme
         doom-modeline
         minions
         writeroom-mode

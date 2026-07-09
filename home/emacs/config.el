@@ -651,7 +651,6 @@ Only difference is to compose symbols in comments as well. See
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 
 (require 'modus-themes)
-(require 'modus-catppuccin)
 
 (setopt modus-themes-bold-constructs t
         modus-themes-italic-constructs t
@@ -667,7 +666,7 @@ Only difference is to compose symbols in comments as well. See
                                 (0 . (variable-pitch 1.8))
                                 (t . (variable-pitch light 1.1))))
 
-(load-theme 'catppuccin-mocha :no-confirm)
+(load-theme 'kusanagi :no-confirm)
 
 (add-hook 'window-setup-hook #'spacious-padding-mode)
 
