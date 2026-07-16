@@ -47,6 +47,11 @@ in {
       version = "0.1.0";
       packageRequires = with epkgs; [modus-themes];
     });
+  modus-alabaster = melpaBuild (sources.modus-alabaster
+    // {
+      version = "0.0.1";
+      packageRequires = with epkgs; [modus-themes];
+    });
   funn = melpaBuild {
     pname = "funn";
     version = "0.1.0";

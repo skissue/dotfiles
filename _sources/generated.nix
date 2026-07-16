@@ -44,15 +44,15 @@
   };
   gptel-openrouter-models = {
     pname = "gptel-openrouter-models";
-    version = "9db9c78a39b779e6837d338c087031fa933afb4e";
+    version = "1297e425d94c4a3023ec497ea1a315ed7dc914b1";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "gptel-openrouter-models";
-      rev = "9db9c78a39b779e6837d338c087031fa933afb4e";
+      rev = "1297e425d94c4a3023ec497ea1a315ed7dc914b1";
       fetchSubmodules = false;
-      sha256 = "sha256-//7yVRUFjsWtOPu/z3wkcGuiYJ+LgfIgr9XE2FmUkD8=";
+      sha256 = "sha256-ZPTod6ddjh8yvQbI10U/C9+OHISyF9eY3Dm8rUhw7FE=";
     };
-    date = "2026-07-13";
+    date = "2026-07-15";
   };
   gptel-quick = {
     pname = "gptel-quick";
@@ -91,6 +91,18 @@
       sha256 = "sha256-DbInB73UmMoqU1nJWJocKinJSUqxbY8tzLS0j8gq4FU=";
     };
     date = "2025-03-23";
+  };
+  modus-alabaster = {
+    pname = "modus-alabaster";
+    version = "a9b4cad48b863d6600dd8acea8d7e51d6ddc0092";
+    src = fetchFromGitHub {
+      owner = "dpassen";
+      repo = "modus-alabaster";
+      rev = "a9b4cad48b863d6600dd8acea8d7e51d6ddc0092";
+      fetchSubmodules = false;
+      sha256 = "sha256-D94FLGXHs2zto6yGe1ISh76ceH1PK+bZRQHMaiHJU2U=";
+    };
+    date = "2026-07-14";
   };
   modus-catppuccin = {
     pname = "modus-catppuccin";

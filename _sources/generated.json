@@ -64,7 +64,7 @@
     },
     "gptel-openrouter-models": {
         "cargoLock": null,
-        "date": "2026-07-13",
+        "date": "2026-07-15",
         "extract": null,
         "name": "gptel-openrouter-models",
         "passthru": null,
@@ -76,12 +76,12 @@
             "name": null,
             "owner": "skissue",
             "repo": "gptel-openrouter-models",
-            "rev": "9db9c78a39b779e6837d338c087031fa933afb4e",
-            "sha256": "sha256-//7yVRUFjsWtOPu/z3wkcGuiYJ+LgfIgr9XE2FmUkD8=",
+            "rev": "1297e425d94c4a3023ec497ea1a315ed7dc914b1",
+            "sha256": "sha256-ZPTod6ddjh8yvQbI10U/C9+OHISyF9eY3Dm8rUhw7FE=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "9db9c78a39b779e6837d338c087031fa933afb4e"
+        "version": "1297e425d94c4a3023ec497ea1a315ed7dc914b1"
     },
     "gptel-quick": {
         "cargoLock": null,
@@ -144,6 +144,27 @@
             "url": "https://code.tecosaur.net/tec/inline-diff.git"
         },
         "version": "d1c13190dd9d8f5d14b52499ddfbcadba2a60e94"
+    },
+    "modus-alabaster": {
+        "cargoLock": null,
+        "date": "2026-07-14",
+        "extract": null,
+        "name": "modus-alabaster",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "dpassen",
+            "repo": "modus-alabaster",
+            "rev": "a9b4cad48b863d6600dd8acea8d7e51d6ddc0092",
+            "sha256": "sha256-D94FLGXHs2zto6yGe1ISh76ceH1PK+bZRQHMaiHJU2U=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "a9b4cad48b863d6600dd8acea8d7e51d6ddc0092"
     },
     "modus-catppuccin": {
         "cargoLock": null,

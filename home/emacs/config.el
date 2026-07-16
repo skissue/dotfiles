@@ -666,7 +666,12 @@ Only difference is to compose symbols in comments as well. See
                                 (0 . (variable-pitch 1.8))
                                 (t . (variable-pitch light 1.1))))
 
-(load-theme 'kusanagi :no-confirm)
+(load-theme 'modus-alabaster-dark :no-confirm)
+
+(custom-theme-set-faces
+ 'modus-alabaster-dark
+ '(modus-themes-bold ((t (:inherit bold))) t)
+ '(modus-themes-slant ((t (:inherit italic))) t))
 
 (add-hook 'window-setup-hook #'spacious-padding-mode)
 

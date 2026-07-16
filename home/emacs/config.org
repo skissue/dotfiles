@@ -884,7 +884,7 @@ Set up PragmataPro and enable [[help:prettify-symbols-mode][prettify-symbols-mod
 #+end_src
 
 ** Theme
-Use the [[https://gitlab.com/magus/modus-catppuccin][modus-catppuccin]] derivative to get the Catppuccin Mocha palette on top of Modus.
+Use the [[https://github.com/dpassen/modus-alabaster][Modus Alabaster]] derivative for the Alabaster theme on top of Modus.
 #+begin_src elisp
   (require 'modus-themes)
 
@@ -902,7 +902,15 @@ Use the [[https://gitlab.com/magus/modus-catppuccin][modus-catppuccin]] derivati
                                   (0 . (variable-pitch 1.8))
                                   (t . (variable-pitch light 1.1))))
 
-  (load-theme 'kusanagi :no-confirm)
+  (load-theme 'modus-alabaster-dark :no-confirm)
+#+end_src
+
+Alabaster discourages the use of bold/italic faces; I prefer to still have them, so override the theme.
+#+begin_src elisp
+  (custom-theme-set-faces
+   'modus-alabaster-dark
+   '(modus-themes-bold ((t (:inherit bold))) t)
+   '(modus-themes-slant ((t (:inherit italic))) t))
 #+end_src
 
 ** Spacious Padding

@@ -76,6 +76,7 @@ in {
         casual-avy
         # Appearance
         modus-themes
+        modus-alabaster
         kusanagi-theme
         doom-modeline
         minions
