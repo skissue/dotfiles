@@ -3,7 +3,7 @@
     enable = true;
     installBatSyntax = true;
     settings = {
-      theme = "kusanagi";
+      theme = "alabaster-dark";
       font-family = "PragmataPro Mono Liga";
       font-size = 14;
       background-opacity = 0.85;
@@ -36,6 +36,32 @@
         "13=#ff4466"
         "14=#8ecede"
         "15=#8ecede"
+      ];
+    };
+    themes.alabaster-dark = {
+      background = "0E1415";
+      foreground = "CECECE";
+      cursor-color = "CD974B";
+      cursor-text = "293334";
+      selection-background = "293334";
+      selection-foreground = "CECECE";
+      palette = [
+        "0=#0E1415"
+        "1=#e25d56"
+        "2=#73ca50"
+        "3=#e9bf57"
+        "4=#4a88e4"
+        "5=#915caf"
+        "6=#23acdd"
+        "7=#f0f0f0"
+        "8=#777777"
+        "9=#f36868"
+        "10=#88db3f"
+        "11=#f0bf7a"
+        "12=#6f8fdb"
+        "13=#e987e9"
+        "14=#4ac9e2"
+        "15=#FFFFFF"
       ];
     };
   };
