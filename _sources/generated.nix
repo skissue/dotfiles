@@ -44,15 +44,15 @@
   };
   gptel-openrouter-models = {
     pname = "gptel-openrouter-models";
-    version = "1297e425d94c4a3023ec497ea1a315ed7dc914b1";
+    version = "69ea046909b39e6dbae2ad39240a7349804f8f86";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "gptel-openrouter-models";
-      rev = "1297e425d94c4a3023ec497ea1a315ed7dc914b1";
+      rev = "69ea046909b39e6dbae2ad39240a7349804f8f86";
       fetchSubmodules = false;
-      sha256 = "sha256-ZPTod6ddjh8yvQbI10U/C9+OHISyF9eY3Dm8rUhw7FE=";
+      sha256 = "sha256-3+merKSMsduL8D6yhy1GO7Nu2KFatZ8+l8gY3V7eps8=";
     };
-    date = "2026-07-15";
+    date = "2026-07-22";
   };
   gptel-quick = {
     pname = "gptel-quick";
@@ -104,31 +104,17 @@
     };
     date = "2026-07-14";
   };
-  modus-catppuccin = {
-    pname = "modus-catppuccin";
-    version = "a0f7bd9e258b717f9c2b398fae1085d50615c5d2";
-    src = fetchgit {
-      url = "https://gitlab.com/magus/modus-catppuccin.git";
-      rev = "a0f7bd9e258b717f9c2b398fae1085d50615c5d2";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sparseCheckout = [ ];
-      sha256 = "sha256-MpHbftXXpAh78hKfmJijRmEDH9jZ3asEWmgs1Gxa26I=";
-    };
-    date = "2026-01-10";
-  };
   org-modern-indent = {
     pname = "org-modern-indent";
-    version = "ebf9a8e571db523dc6e4cd9ed80d0e0626983ae4";
+    version = "86bd83ee1ad95f123810eb3b116beb543db1960a";
     src = fetchFromGitHub {
       owner = "jdtsmith";
       repo = "org-modern-indent";
-      rev = "ebf9a8e571db523dc6e4cd9ed80d0e0626983ae4";
+      rev = "86bd83ee1ad95f123810eb3b116beb543db1960a";
       fetchSubmodules = false;
-      sha256 = "sha256-+q7KmbU8A+uR61BSa528vYbdFSj2WGsFWYW/5q7J9Kw=";
+      sha256 = "sha256-vQzYk5qejCBehpbxkMceOMsmeLyjnAstpezZw/ZR1jQ=";
     };
-    date = "2026-01-02";
+    date = "2026-07-21";
   };
   org-typst = {
     pname = "org-typst";
