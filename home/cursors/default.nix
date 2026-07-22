@@ -4,6 +4,7 @@
   ...
 }: {
   home.pointerCursor = {
+    enable = true;
     package = pkgs.catppuccin-cursors.mochaPink;
     name = "catppuccin-mocha-pink-cursors";
     size = 36;
