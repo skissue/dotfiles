@@ -57,7 +57,6 @@
           "minecraft-server"
           "copilot-language-server"
           "netdata"
-          "claude-code"
         ];
     };
   };

@@ -74,10 +74,6 @@
       url = "github:skissue/koito-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    claude-desktop = {
-      url = "github:aaddrick/claude-desktop-debian";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     niri.url = "github:sodiboo/niri-flake";
     # TODO private for now, move to nvfetcher later
     funn = {

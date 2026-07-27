@@ -10,7 +10,6 @@
     inputs.bouncer.packages.${pkgs.stdenv.hostPlatform.system}.default
     brave
     brightnessctl
-    inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
     inputs.crack.packages.${pkgs.stdenv.hostPlatform.system}.default
     simple-scan
     ffmpeg
@@ -102,6 +101,5 @@
     };
   };
   home.sessionVariables = {
-    CLAUDE_USE_WAYLAND = 1;
   };
 }
