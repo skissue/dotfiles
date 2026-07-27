@@ -75,28 +75,6 @@
         "type": "github"
       }
     },
-    "crack": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "dir": "crack",
-        "lastModified": 1780009593,
-        "narHash": "sha256-UFetwJVXzq6ey9h2r7xG7hNW3xPajDocRGLOTtCdLDA=",
-        "owner": "skissue",
-        "repo": "gxy",
-        "rev": "35c48805715ef254745644894312f85771c8eb5c",
-        "type": "github"
-      },
-      "original": {
-        "dir": "crack",
-        "owner": "skissue",
-        "repo": "gxy",
-        "type": "github"
-      }
-    },
     "crane": {
       "locked": {
         "lastModified": 1784407669,
@@ -870,7 +848,6 @@
       "inputs": {
         "bouncer": "bouncer",
         "cachyos-kernel": "cachyos-kernel",
-        "crack": "crack",
         "deploy-rs": "deploy-rs",
         "devshell": "devshell",
         "disko": "disko",

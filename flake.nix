@@ -56,10 +56,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-    crack = {
-      url = "github:skissue/gxy?dir=crack";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     elisp-extra = {
       url = "github:skissue/gxy?dir=elisp";
       flake = false;
