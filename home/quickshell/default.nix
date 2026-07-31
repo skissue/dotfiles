@@ -4,8 +4,9 @@
   mutable-link,
   ...
 }: {
-  home.packages = [
-    inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
+  home.packages = with pkgs; [
+    inputs.quickshell.packages.${stdenv.hostPlatform.system}.default
+    kdePackages.qtdeclarative # qmlls
   ];
 
   xdg.configFile."quickshell" = {
