@@ -23,7 +23,7 @@ ColumnLayout {
             readonly property bool empty: !active && modelData.active_window_id === null
                         
             implicitWidth: 12
-            implicitHeight: active ? 18 : 12
+            implicitHeight: active ? 20 : 12
             radius: width / 2
                         
             // Has windows = filled circle, no windows = hollow circle

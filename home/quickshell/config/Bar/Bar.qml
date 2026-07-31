@@ -7,13 +7,35 @@ import qs.Services
 PanelWindow {
     id: root
 
-    color: "#0e1415"
+    property bool detached: Niri.activeWindowFor(screen.name) !== null
+    property real backgroundOpacity: detached ? 1 : 0
+    
+    Behavior on backgroundOpacity {
+        NumberAnimation {
+            duration: 180
+            easing.type: Easing.OutCubic
+        }
+    }
+
+    color: "transparent"
     implicitWidth: 40
 
     anchors {
         top: true
         bottom: true
         left: true
+    }
+
+    margins {
+        top: 8
+        bottom: 8
+        left: 8
+    }
+
+    Rectangle {
+        anchors.fill: parent
+        color: "#0e1415"
+        opacity: backgroundOpacity
     }
 
     Workspaces {
@@ -44,6 +66,7 @@ PanelWindow {
             
             text: Niri.activeWindowFor(screen.name)?.title ?? ""
             font.family: "PragmataPro"
+            font.italic: true
             font.pointSize: 11
             color: "#cecece"
         }
@@ -52,14 +75,33 @@ PanelWindow {
     ColumnLayout {
         id: barBottom
         
+        anchors.left: parent.left
+        anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottomMargin: 16
 
-        spacing: 16
+        spacing: 8
 
-        Systray {}
+        Item {
+            Layout.fillWidth: true
+            implicitHeight: content.implicitHeight + 16
+
+            Rectangle {
+                anchors.fill: parent
+                color: "#1d2324"
+                opacity: backgroundOpacity
+            }
+            
+            Systray {
+                id: content
+                anchors.centerIn: parent
+                Layout.alignment: Qt.AlignHCenter
+            }
+        }
+
         
-        Clock {}
+        Clock {
+            Layout.alignment: Qt.AlignHCenter
+        }
     }
 }
