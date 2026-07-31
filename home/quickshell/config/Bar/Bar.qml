@@ -16,12 +16,9 @@ PanelWindow {
         left: true
     }
 
-    SystemClock {
-        id: clock
-        precision: SystemClock.Seconds
-    }
-
     Workspaces {
+        id: barTop
+        
         output: screen.name
                 
         anchors.top: parent.top
@@ -29,23 +26,40 @@ PanelWindow {
         anchors.topMargin: 16
     }
 
+    Item {
+        anchors.top: barTop.bottom
+        anchors.bottom: barBottom.top
+        width: parent.width
+
+        Text {
+            anchors.centerIn: parent
+
+            // Rotation swaps width/height
+            rotation: -90
+            width: parent.height
+            height: parent.width
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+            
+            text: Niri.activeWindowFor(screen.name)?.title ?? ""
+            font.family: "PragmataPro"
+            font.pointSize: 11
+            color: "#cecece"
+        }
+    }
+
     ColumnLayout {
-        anchors.centerIn: parent
+        id: barBottom
+        
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottomMargin: 16
 
-        Text {
-            color: "#cecece"
-            text: Qt.formatDateTime(clock.date, "hh")
-        }
+        spacing: 16
 
-        Text {
-            color: "#cecece"
-            text: Qt.formatDateTime(clock.date, "mm")
-        }
-
-
-        Text {
-            color: "#cecece"
-            text: Qt.formatDateTime(clock.date, "ss")
-        }
+        Systray {}
+        
+        Clock {}
     }
 }

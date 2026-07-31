@@ -5,11 +5,35 @@ import Quickshell.Io
 
 Singleton {
     property var workspaces: []
+    property var windows: []
 
     function workspacesFor(output: string): var {
         return workspaces
             .filter(ws => ws.output === output)
             .sort((a, b) => a.idx - b.idx)
+    }
+
+    function activeWindowFor(output: string): var {
+        const ws = workspaces.find(ws => ws.is_active && ws.output === output)
+
+        if (!ws || ws.active_window_id === null) return null
+
+        return windows.find(w => w.id === ws.active_window_id)
+    }
+
+    function focusWorkspace(id: int): void {
+        const request = {
+            Action: {
+                FocusWorkspace: {
+                    reference: {
+                        Id: id
+                    }
+                }
+            }
+        }
+
+        commandSocket.write(JSON.stringify(request) + "\n")
+        commandSocket.flush()
     }
 
     Socket {
@@ -53,8 +77,32 @@ Singleton {
 
                         return wsNext
                     })
+                } else if ("WorkspaceActiveWindowChanged" in event) {
+                    const change = event.WorkspaceActiveWindowChanged
+
+                    workspaces = workspaces.map(ws => {
+                        if (ws.id !== change.workspace_id) return ws
+
+                        return Object.assign({}, ws, {
+                            active_window_id: change.active_window_id
+                        })
+                    })
+                } else if ("WindowsChanged" in event) {
+                    windows = event.WindowsChanged.windows
+                } else if ("WindowOpenedOrChanged" in event) {
+                    const changed = event.WindowOpenedOrChanged.window
+                    windows = windows.filter(w => w.id !== changed.id).concat([changed])
+                } else if ("WindowClosed" in event) {
+                    const id = event.WindowClosed.id
+                    windows = windows.filter(win => win.id !== id)
                 }
             }
         }
+    }
+
+    Socket {
+        id: commandSocket
+        path: Quickshell.env("NIRI_SOCKET")
+        connected: true
     }
 }

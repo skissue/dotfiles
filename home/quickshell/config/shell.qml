@@ -1,3 +1,6 @@
+//@ pragma UseQApplication
+// TODO implement our own menus so they're not ugly
+
 import Quickshell
 import qs.Bar
 

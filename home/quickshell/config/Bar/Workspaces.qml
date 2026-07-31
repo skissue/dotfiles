@@ -41,6 +41,10 @@ ColumnLayout {
                     duration: 60
                 }
             }
+
+            TapHandler {
+                onTapped: Niri.focusWorkspace(modelData.id)
+            }
         }
     }
                
