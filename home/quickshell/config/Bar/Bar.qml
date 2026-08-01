@@ -38,14 +38,49 @@ PanelWindow {
         opacity: backgroundOpacity
     }
 
-    Workspaces {
+    ColumnLayout {
         id: barTop
-        
-        output: screen.name
-                
+
         anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: 16
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.topMargin: 8
+
+        spacing: 16
+
+        RowLayout {
+            Layout.alignment: Qt.AlignHCenter
+            spacing: -2
+
+            Text {
+                Layout.alignment: Qt.AlignBaseline
+                text: "["
+                color: "#cecece"
+                font.family: "PragmataPro"
+                font.pointSize: 16
+            }
+
+            Text {
+                Layout.alignment: Qt.AlignBaseline
+                text: ""
+                color: "#cecece"
+                font.family: "PragmataPro"
+                font.pointSize: 14
+            }
+
+            Text {
+                Layout.alignment: Qt.AlignBaseline
+                text: "]"
+                color: "#cecece"
+                font.family: "PragmataPro"
+                font.pointSize: 16
+            }
+        }
+
+        Workspaces {
+            Layout.alignment: Qt.AlignHCenter
+            output: screen.name
+        }
     }
 
     Item {
