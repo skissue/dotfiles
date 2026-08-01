@@ -13,4 +13,6 @@
     source = mutable-link ./config;
     recursive = true;
   };
+
+  home.sessionVariables.QS_WALLPAPER_DIRECTORY = "${inputs.private}/wallpapers";
 }

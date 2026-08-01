@@ -3,8 +3,12 @@
 
 import Quickshell
 import qs.Bar
+import qs.Overlay
+import qs.Backdrop
 
 ShellRoot {
+    // TransmissionDemo {}
+
     Variants {
         model: Quickshell.screens
         
@@ -13,4 +17,14 @@ ShellRoot {
             screen: modelData
         }
     }
+
+    Variants {
+        model: Quickshell.screens
+        
+        Wallpaper {
+            required property var modelData
+            screen: modelData
+        }
+    }
+
 }
