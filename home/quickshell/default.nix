@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     inputs.quickshell.packages.${stdenv.hostPlatform.system}.default
     kdePackages.qtdeclarative # qmlls
+    kdePackages.qtshadertools # qsb
   ];
 
   xdg.configFile."quickshell" = {
