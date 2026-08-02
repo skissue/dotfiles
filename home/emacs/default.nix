@@ -173,7 +173,6 @@ in {
         nim-mode
         kotlin-ts-mode
         bazel
-        (treesit-grammars.with-grammars (_: [qml-support.tree-sitter-qmljs]))
         qml-support.qml-ts-mode
         # Org
         org-contrib
