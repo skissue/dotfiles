@@ -26,6 +26,33 @@ Rectangle {
         "Equipment Status: Green",
         "All Systems Green",
     ]
+    property int visibleLinesIndex: 0
+    property int currentLine: 0
+    property int currentCharacter: 0
+    readonly property string authorizationMessage: "AUTHORIZATION REQUIRED: "
+    readonly property int authorizationLine: messages.length
+    readonly property int lineCount: messages.length + 1
+    readonly property bool authorizationRevealed:
+      currentLine > authorizationLine
+      || (
+          currentLine === authorizationLine
+          && currentCharacter >= authorizationMessage.length
+      )
+    property bool animationStarted: false
+
+    function lineAt(index: int): string {
+        return index === authorizationLine
+            ? authorizationMessage
+            : messages[index]
+    }
+
+    function startPrinting(): void {
+        if (animationStarted)
+          return
+
+        animationStarted = true
+        printTimer.restart()
+    }
 
     property real warpStrength: 0.01
     property real chromaStrength: 3.25
@@ -120,8 +147,19 @@ Rectangle {
             model: root.messages
 
             Text {
+                required property int index
                 required property string modelData
-                text: modelData
+
+                readonly property bool printed: index < root.currentLine
+                readonly property bool printing: index === root.currentLine
+
+                visible: index <= root.currentLine
+                text: {
+                    if (printed) return modelData
+                    if (printing) return modelData.slice(0, root.currentCharacter) + "_"
+
+                    return ""
+                }
 
                 color: "#e5e7e7"
                 font.family: "IBM Plex Sans Condensed"
@@ -134,7 +172,15 @@ Rectangle {
 
         RowLayout {
             Text {
-                text: "AUTHORIZATION REQUIRED: "
+                text: {
+                    if (!root.animationStarted) return ""
+
+                    if (root.currentLine > root.authorizationLine) return root.authorizationMessage
+
+                    if (root.currentLine === root.authorizationLine) return root.authorizationMessage.slice(0, root.currentCharacter)
+
+                    return ""
+                }
                 color: "#e5e7e7"
                 font.family: "IBM Plex Sans Condensed"
                 font.pointSize: 16
@@ -149,9 +195,39 @@ Rectangle {
                 echoMode: TextInput.Password
                 inputMethodHints: Qt.ImhSensitiveData
                 focus: true
+                opacity: root.authorizationRevealed ? 0.8 : 0
+
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: 80
+                    }
+                }
 
                 onTextChanged: root.context.currentText = text
                 Keys.onReturnPressed: root.context.tryUnlock()
+                Keys.onPressed: event => {
+                    root.startPrinting()
+
+                    // Continue into TextInput's normal key processing.
+                    event.accepted = false
+                }
+
+                cursorDelegate: Item {
+                    width: 12
+
+                    Rectangle {
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                            bottom: parent.bottom
+                            leftMargin: 2
+                            bottomMargin: -6
+                        }
+
+                        height: 2
+                        color: "#e5e7e7"
+                    }
+                }
             }
         }
 
@@ -162,6 +238,45 @@ Rectangle {
             color: "#e5e7e7"
             font.family: "IBM Plex Sans Condensed"
             font.pointSize: 16
+        }
+    }
+
+    Timer {
+        interval: 120
+        repeat: true
+        running: root.visibleLinesIndex < root.messages.length
+
+        onTriggered: root.visibleLinesIndex++
+    }
+
+    function resetPrinting(): void {
+        currentLine = 0
+        currentCharacter = 0
+        printTimer.restart()
+    }
+
+    Timer {
+        id: printTimer
+
+        // Per-character interval
+        interval: 1
+        repeat: true
+        running: false
+
+        onTriggered: {
+            if (root.currentLine >= root.lineCount) {
+                stop()
+                return
+            }
+
+            const message = root.lineAt(root.currentLine)
+
+            if (root.currentCharacter < message.length) {
+                root.currentCharacter += 1 + Math.floor(Math.random() * 4)
+            } else {
+                root.currentLine++
+                root.currentCharacter = 0
+            }
         }
     }
 
