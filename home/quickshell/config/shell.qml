@@ -3,9 +3,9 @@
 
 import Quickshell
 import qs.Bar
-import qs.Overlay
 import qs.Backdrop
 import qs.Lock
+import qs.Notifications
 
 ShellRoot {
     // TransmissionDemo {}
@@ -29,4 +29,6 @@ ShellRoot {
     }
 
     SessionLock {}
+
+    Notifications {}
 }

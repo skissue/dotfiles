@@ -48,33 +48,15 @@ PanelWindow {
 
         spacing: 16
 
-        RowLayout {
+
+        Text {
             Layout.alignment: Qt.AlignHCenter
-            spacing: -2
-
-            Text {
-                Layout.alignment: Qt.AlignBaseline
-                text: "["
-                color: "#cecece"
-                font.family: "PragmataPro"
-                font.pointSize: 16
-            }
-
-            Text {
-                Layout.alignment: Qt.AlignBaseline
-                text: ""
-                color: "#cecece"
-                font.family: "PragmataPro"
-                font.pointSize: 14
-            }
-
-            Text {
-                Layout.alignment: Qt.AlignBaseline
-                text: "]"
-                color: "#cecece"
-                font.family: "PragmataPro"
-                font.pointSize: 16
-            }
+            // Correct for Nerd Fonts icons not being perfectly aligned
+            Layout.rightMargin: 1
+            text: ""
+            color: "#cecece"
+            font.family: "PragmataPro"
+            font.pointSize: 14
         }
 
         Workspaces {
