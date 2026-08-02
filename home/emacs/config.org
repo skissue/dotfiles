@@ -3350,6 +3350,12 @@ More CDLaTeX hotkeys.
           '("nimlangserver")))
 #+end_src
 
+** QML
+#+begin_src elisp
+  (after! eglot
+    (add-to-list 'eglot-server-programs '(qml-ts-mode "qmlls")))
+#+end_src
+
 * Applications
 ** Osm.el
 I have [[help:global-visual-line-mode][global-visual-line-mode]] enabled, which breaks stuff inside map buffers, so I undo the breaking stuff.

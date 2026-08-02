@@ -2598,6 +2598,9 @@ execute it."
   (setf (alist-get 'nim-mode eglot-server-programs)
         '("nimlangserver")))
 
+(after! eglot
+  (add-to-list 'eglot-server-programs '(qml-ts-mode "qmlls")))
+
 (bind-key "m" #'osm my/open-map)
 
 (add-hook 'osm-mode-hook (lambda ()
