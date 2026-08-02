@@ -11,28 +11,40 @@ Scope {
         onNotification: n => n.tracked = true
     }
 
-    PanelWindow {
-        anchors {
-            top: true
-            right: true
-        }
-
-        implicitWidth: notificationStack.implicitWidth
-        implicitHeight: notificationStack.implicitHeight
+    Variants {
+        model: Quickshell.screens
         
-        color: "transparent"
-        focusable: false
-        WlrLayershell.layer: WlrLayer.Overlay
-
-        ColumnLayout {
-            id: notificationStack
+        PanelWindow {
+            required property var modelData
+            screen: modelData
             
-            Repeater {
-                model: notificationServer.trackedNotifications
+            anchors {
+                top: true
+                right: true
+            }
 
-                NotificationToast {
-                    required property Notification modelData
-                    notification: modelData
+            margins {
+                top: 4
+                right: 4
+            }
+
+            implicitWidth: notificationStack.implicitWidth
+            implicitHeight: notificationStack.implicitHeight
+        
+            color: "transparent"
+            focusable: false
+            WlrLayershell.layer: WlrLayer.Overlay
+
+            ColumnLayout {
+                id: notificationStack
+            
+                Repeater {
+                    model: notificationServer.trackedNotifications
+
+                    NotificationToast {
+                        required property Notification modelData
+                        notification: modelData
+                    }
                 }
             }
         }
