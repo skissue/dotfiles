@@ -54,4 +54,5 @@ in {
     packageRequires = with epkgs; [posframe];
     files = ''("src/*.el")'';
   };
+  qml-ts-mode = melpaBuild (sources.qml-ts-mode // {version = "0.1";});
 }

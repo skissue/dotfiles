@@ -128,6 +128,18 @@
     };
     date = "2024-05-10";
   };
+  qml-ts-mode = {
+    pname = "qml-ts-mode";
+    version = "b80c6663521b4d0083e416e6712ebc02d37b7aec";
+    src = fetchFromGitHub {
+      owner = "xhcoding";
+      repo = "qml-ts-mode";
+      rev = "b80c6663521b4d0083e416e6712ebc02d37b7aec";
+      fetchSubmodules = false;
+      sha256 = "sha256-WXK/CdFF9E2kG+uIios4HtKcEMhILS9MddJfVDeRLh0=";
+    };
+    date = "2025-06-01";
+  };
   revealjs = {
     pname = "revealjs";
     version = "6.0.1";

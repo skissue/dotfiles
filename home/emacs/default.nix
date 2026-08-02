@@ -36,7 +36,6 @@
         -f package-quickstart-refresh
       cp package-quickstart.elc $out
     '';
-  qml-support = inputs.nix-qml-support.packages.${pkgs.stdenv.hostPlatform.system};
   init-substituted = pkgs.replaceVars ./config.el {
     # See explanations in ./config.org
     consult_mu_src = sources.consult-mu.src;
@@ -173,7 +172,7 @@ in {
         nim-mode
         kotlin-ts-mode
         bazel
-        qml-support.qml-ts-mode
+        qml-ts-mode
         # Org
         org-contrib
         org-modern

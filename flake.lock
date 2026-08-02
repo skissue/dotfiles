@@ -545,26 +545,6 @@
         "type": "github"
       }
     },
-    "nix-qml-support": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1767942797,
-        "narHash": "sha256-ypny6yOP3Buh7UBmETW3R/el3nHdzYNOCMhVnCdm9U4=",
-        "ref": "refs/heads/master",
-        "rev": "8bdd6351a130f8ed8fe13c9ec87ed965c4d9912b",
-        "revCount": 2,
-        "type": "git",
-        "url": "https://git.outfoxxed.me/outfoxxed/nix-qml-support"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.outfoxxed.me/outfoxxed/nix-qml-support"
-      }
-    },
     "nix-vm-test": {
       "inputs": {
         "nixpkgs": [
@@ -903,7 +883,6 @@
         "niri": "niri",
         "nix-index": "nix-index",
         "nix-monitored": "nix-monitored",
-        "nix-qml-support": "nix-qml-support",
         "nixos-anywhere": "nixos-anywhere",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_6",

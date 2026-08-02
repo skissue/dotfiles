@@ -208,6 +208,27 @@
         },
         "version": "367f23c9db3c80f75be6c407470ba71d5c34f709"
     },
+    "qml-ts-mode": {
+        "cargoLock": null,
+        "date": "2025-06-01",
+        "extract": null,
+        "name": "qml-ts-mode",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "xhcoding",
+            "repo": "qml-ts-mode",
+            "rev": "b80c6663521b4d0083e416e6712ebc02d37b7aec",
+            "sha256": "sha256-WXK/CdFF9E2kG+uIios4HtKcEMhILS9MddJfVDeRLh0=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "b80c6663521b4d0083e416e6712ebc02d37b7aec"
+    },
     "revealjs": {
         "cargoLock": null,
         "date": null,

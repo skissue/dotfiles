@@ -45,3 +45,7 @@ fetch.github = "skissue/elfin"
 [modus-alabaster]
 src.git = "https://github.com/dpassen/modus-alabaster"
 fetch.github = "dpassen/modus-alabaster"
+
+[qml-ts-mode]
+src.git = "https://github.com/xhcoding/qml-ts-mode"
+fetch.github = "xhcoding/qml-ts-mode"
