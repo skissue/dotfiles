@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Layouts
 
@@ -25,7 +27,39 @@ Rectangle {
         "All Systems Green",
     ]
 
+    property real warpStrength: 0.01
+    property real chromaStrength: 3.25
+    property real overscan: 0.015
+    property real glitchAmount: 0
+
     color: "#0b0804"
+
+    layer.enabled: true
+    layer.smooth: true
+    layer.effect: ShaderEffect {
+        property real time: 0
+        property real glitchAmount: root.glitchAmount
+        property vector2d resolution: Qt.vector2d(root.width, root.height)
+        property real warpStrength: root.warpStrength
+        property real chromaStrength: root.chromaStrength
+        property real overscan: root.overscan
+
+        blending: false
+        fragmentShader: Qt.resolvedUrl("Shaders/yorha-crt.frag.qsb")
+
+        onStatusChanged: {
+            if (status === ShaderEffect.Error)
+                console.error(`Failed to load lock screen shader: ${log}`)
+        }
+
+        NumberAnimation on time {
+            from: 0
+            to: 1000
+            duration: 1000000
+            loops: Animation.Infinite
+            running: true
+        }
+    }
 
     Image {
         anchors.fill: parent
@@ -128,6 +162,33 @@ Rectangle {
             color: "#e5e7e7"
             font.family: "IBM Plex Sans Condensed"
             font.pointSize: 16
+        }
+    }
+
+    Timer {
+        id: glitchTimer
+
+        running: true
+        interval: 900
+
+        onTriggered: {
+            root.glitchAmount = 0.45 + Math.random() * 0.55
+            glitchEndTimer.interval = 35 + Math.random() * 110
+            glitchEndTimer.restart()
+        }
+    }
+
+    Timer {
+        id: glitchEndTimer
+
+        onTriggered: {
+            root.glitchAmount = 0
+
+            // Short intervals occasionally produce a cluster of flickers.
+            glitchTimer.interval = Math.random() < 0.28
+                ? 45 + Math.random() * 130
+                : 650 + Math.random() * 2600
+            glitchTimer.restart()
         }
     }
 }

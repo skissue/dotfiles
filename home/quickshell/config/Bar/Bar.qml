@@ -12,7 +12,7 @@ PanelWindow {
     
     Behavior on backgroundOpacity {
         NumberAnimation {
-            duration: 180
+            duration: 240
             easing.type: Easing.OutCubic
         }
     }
