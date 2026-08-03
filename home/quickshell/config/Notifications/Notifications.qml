@@ -37,6 +37,8 @@ Scope {
 
             ColumnLayout {
                 id: notificationStack
+
+                spacing: NotificationStyle.toastSpacing
             
                 Repeater {
                     model: notificationServer.trackedNotifications
