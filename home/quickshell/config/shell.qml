@@ -22,9 +22,18 @@ ShellRoot {
     Variants {
         model: Quickshell.screens
         
-        Wallpaper {
+        Scope {
+            id: screenScope
+            
             required property var modelData
-            screen: modelData
+
+            Wallpaper {
+                screen: screenScope.modelData
+            }
+
+            MprisPanel {
+                screen: screenScope.modelData
+            }
         }
     }
 
