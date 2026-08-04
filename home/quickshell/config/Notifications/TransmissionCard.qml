@@ -182,11 +182,14 @@ Item {
                     }
 
                     Image {
+                        readonly property bool useFallback: root.imageSource.toString() === ""
+                        
                         anchors.fill: parent
+                        anchors.margins: useFallback ? 8 : 0
 
-                        source: root.imageSource
-                        visible: source != ""
+                        source: useFallback ? Qt.resolvedUrl("yorha-logo.svg") : root.imageSource
                         fillMode: Image.PreserveAspectFit
+                        opacity: 0.6
                     }
 
                     Rectangle {
