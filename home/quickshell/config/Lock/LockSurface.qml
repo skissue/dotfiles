@@ -120,7 +120,7 @@ Rectangle {
             Layout.alignment: Qt.AlignBaseline
 
             color: "#e5e7e7"
-            font.family: "IBM Plex Sans Condensed"
+            font.family: "FOT-NewRodin Pro"
             font.pointSize: 48
             font.letterSpacing: 2
         }
@@ -129,7 +129,7 @@ Rectangle {
             Layout.alignment: Qt.AlignBaseline
 
             color: "#e5e7e7"
-            font.family: "IBM Plex Sans Condensed"
+            font.family: "FOT-NewRodin Pro"
             font.pointSize: 24
             font.letterSpacing: 1
         }
@@ -138,10 +138,10 @@ Rectangle {
     ColumnLayout {
         anchors.top: header.bottom
         anchors.left: header.left
-        anchors.topMargin: parent.height * 0.05
+        anchors.topMargin: parent.height * 0.04
         anchors.leftMargin: parent.width * 0.02
 
-        spacing: 16
+        spacing: 12
 
         Repeater {
             model: root.messages
@@ -162,7 +162,7 @@ Rectangle {
                 }
 
                 color: "#e5e7e7"
-                font.family: "IBM Plex Sans Condensed"
+                font.family: "FOT-NewRodin Pro"
                 font.pointSize: 16
                 font.weight: Font.Bold
                 font.letterSpacing: 1
@@ -182,7 +182,7 @@ Rectangle {
                     return ""
                 }
                 color: "#e5e7e7"
-                font.family: "IBM Plex Sans Condensed"
+                font.family: "FOT-NewRodin Pro"
                 font.pointSize: 16
                 font.weight: Font.Bold
                 opacity: 0.8
@@ -241,13 +241,13 @@ Rectangle {
         }
     }
 
-    Timer {
-        interval: 120
-        repeat: true
-        running: root.visibleLinesIndex < root.messages.length
+    // Timer {
+    //     interval: 120
+    //     repeat: true
+    //     running: root.visibleLinesIndex < root.messages.length
 
-        onTriggered: root.visibleLinesIndex++
-    }
+//         onTriggered: root.visibleLinesIndex++
+    // }
 
     function resetPrinting(): void {
         currentLine = 0
@@ -255,12 +255,9 @@ Rectangle {
         printTimer.restart()
     }
 
-    Timer {
+    FrameAnimation {
         id: printTimer
 
-        // Per-character interval
-        interval: 1
-        repeat: true
         running: false
 
         onTriggered: {
