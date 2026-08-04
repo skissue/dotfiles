@@ -65,8 +65,12 @@
     enable = true;
     settings = {
       general = {
-        lock_cmd = "hyprlock";
-        before_sleep_cmd = "loginctl lock-session";
+        lock_cmd = "qs ipc call lock activate";
+        # Quickshell handler will lock system
+        before_sleep_cmd = "qs ipc call sleep prepare";
+        after_sleep_cmd = "qs ipc call sleep resume";
+        # Wait for a session lock
+        inhibit_sleep = 3;
       };
       listener = [
         {

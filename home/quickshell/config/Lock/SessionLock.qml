@@ -1,6 +1,8 @@
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
+import QtQml
+import qs.Services
 
 Scope {
     id: root
@@ -41,6 +43,18 @@ Scope {
 
         function isLocked(): bool {
             return sessionLock.locked
+        }
+    }
+
+    // Always lock before sleeping.
+    Connections {
+        target: SleepEvents
+
+        function onPreSleep() {
+            if (!sessionLock.locked) {
+                lockContext.reset()
+                sessionLock.locked = true
+            }
         }
     }
 }
