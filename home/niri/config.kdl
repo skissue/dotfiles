@@ -364,8 +364,10 @@ animations {
 // include "animations/fly-in.kdl"
 // include "animations/ball-drop.kdl"
 // include "animations/ball-collapse.kdl"
-include "animations/unroll.kdl"
-include "animations/unroll-close.kdl"
+// include "animations/unroll.kdl"
+// include "animations/unroll-close.kdl"
+include "animations/nier.kdl"
+include "animations/nier-close.kdl"
 
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:

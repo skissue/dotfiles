@@ -1,0 +1,79 @@
+// NieR-inspired triangular window closing animation.
+animations {
+    window-close {
+        duration-ms 350
+        curve "linear"
+
+        custom-shader r#"
+            float nier_triangle_random(vec2 cell) {
+                cell = fract(cell * vec2(0.1031, 0.1030));
+                cell += dot(cell, cell.yx + 33.33);
+                return fract((cell.x + cell.y) * cell.x);
+            }
+
+            vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+                float reverse_time = 1.0 - niri_clamped_progress;
+
+                const float TRIANGLE_FADE_DURATION = 0.14;
+                const float TARGET_ROW_COUNT = 9.0;
+
+                vec2 point_px = coords_geo.xy * size_geo.xy;
+                float target_row_height_px =
+                    size_geo.y / TARGET_ROW_COUNT;
+                float size_difference_px =
+                    abs(size_geo.x - size_geo.y);
+
+                float corner_steps = max(
+                    1.0,
+                    floor(size_difference_px /
+                        (2.0 * target_row_height_px) + 0.5));
+                float row_height_px = size_difference_px > 0.0
+                    ? size_difference_px / (2.0 * corner_steps)
+                    : target_row_height_px;
+
+                vec2 grid_origin_px = vec2(size_geo.y * 0.5);
+
+                float triangle_alpha = 0.0;
+                bool inside =
+                    coords_geo.x >= 0.0 && coords_geo.x <= 1.0 &&
+                    coords_geo.y >= 0.0 && coords_geo.y <= 1.0;
+
+                if (inside) {
+                    float vertical =
+                        (point_px.y - grid_origin_px.y) / row_height_px;
+                    float row = floor(vertical);
+                    float within_row = fract(vertical);
+
+                    float across =
+                        (point_px.x - grid_origin_px.x) / row_height_px;
+                    across += mod(row, 2.0);
+
+                    float wrapped = mod(across, 2.0);
+                    float distance_to_even = min(wrapped, 2.0 - wrapped);
+                    bool points_up = distance_to_even <= within_row;
+
+                    float triangle_index = points_up
+                        ? 2.0 * floor((across + 1.0) * 0.5)
+                        : 2.0 * floor(across * 0.5) + 1.0;
+
+                    float reveal_order = nier_triangle_random(
+                        vec2(triangle_index, row) +
+                        niri_random_seed * 137.0);
+                    float fade_start =
+                        (1.0 - TRIANGLE_FADE_DURATION) * reveal_order;
+                    triangle_alpha = smoothstep(
+                        fade_start,
+                        fade_start + TRIANGLE_FADE_DURATION,
+                        reverse_time);
+                }
+
+                if (triangle_alpha <= 0.0) {
+                    return vec4(0.0);
+                }
+
+                vec3 coords_tex = niri_geo_to_tex * coords_geo;
+                return texture2D(niri_tex, coords_tex.st) * triangle_alpha;
+            }
+        "#
+    }
+}

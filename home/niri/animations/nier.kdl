@@ -1,0 +1,216 @@
+// NieR-inspired line-and-triangle window opening animation.
+animations {
+    window-open {
+        duration-ms 500
+        curve "linear"
+
+        custom-shader r#"
+            float nier_growing_line(
+                    vec2 point_px,
+                    vec2 size_px,
+                    vec2 start_geo,
+                    vec2 direction_px,
+                    float time,
+                    float delay,
+                    float finish,
+                    float width_px)
+            {
+                float progress = clamp(
+                    (time - delay) / (finish - delay),
+                    0.0,
+                    1.0);
+
+                if (progress <= 0.0) {
+                    return 0.0;
+                }
+
+                vec2 start_px = start_geo * size_px;
+                vec2 direction = normalize(direction_px);
+
+                float distance_to_edge = 1.0e20;
+                if (direction.x > 0.0) {
+                    distance_to_edge = min(
+                        distance_to_edge,
+                        (size_px.x - start_px.x) / direction.x);
+                } else if (direction.x < 0.0) {
+                    distance_to_edge = min(
+                        distance_to_edge,
+                        -start_px.x / direction.x);
+                }
+                if (direction.y > 0.0) {
+                    distance_to_edge = min(
+                        distance_to_edge,
+                        (size_px.y - start_px.y) / direction.y);
+                } else if (direction.y < 0.0) {
+                    distance_to_edge = min(
+                        distance_to_edge,
+                        -start_px.y / direction.y);
+                }
+
+                vec2 segment = direction * distance_to_edge * progress;
+                float segment_length_sq = max(dot(segment, segment), 0.0001);
+                float along = clamp(
+                    dot(point_px - start_px, segment) / segment_length_sq,
+                    0.0,
+                    1.0);
+                float distance_px = length(
+                    point_px - (start_px + segment * along));
+
+                float half_width = width_px * 0.5;
+                return 1.0 - smoothstep(
+                    half_width,
+                    half_width + 0.75,
+                    distance_px);
+            }
+
+            float nier_triangle_random(vec2 cell) {
+                cell = fract(cell * vec2(0.1031, 0.1030));
+                cell += dot(cell, cell.yx + 33.33);
+                return fract((cell.x + cell.y) * cell.x);
+            }
+
+            vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+                float time = niri_clamped_progress;
+
+                const float ANIMATION_END = 1.0;
+                const float LINE_FINISH = 0.30;
+                const float LINE_FADE_START = 0.50;
+                const float LINE_FADE_END = 0.95;
+                const float TRIANGLE_START = 0.30;
+                const float TRIANGLE_FADE_DURATION = 0.14;
+                const float LINE_WIDTH_PX = 1.25;
+                const vec3 LINE_COLOR = vec3(0.847, 0.835, 0.776);
+                const float TARGET_ROW_COUNT = 9.0;
+
+                if (time >= ANIMATION_END) {
+                    vec3 coords_tex = niri_geo_to_tex * coords_geo;
+                    return texture2D(niri_tex, coords_tex.st);
+                }
+
+                float latest_triangle_start =
+                    ANIMATION_END - TRIANGLE_FADE_DURATION;
+
+                vec2 point_px = coords_geo.xy * size_geo.xy;
+                float target_row_height_px =
+                    size_geo.y / TARGET_ROW_COUNT;
+                float size_difference_px =
+                    abs(size_geo.x - size_geo.y);
+
+                // Fit the lattice so its diagonal edges pass through all four corners.
+                float corner_steps = max(
+                    1.0,
+                    floor(size_difference_px /
+                        (2.0 * target_row_height_px) + 0.5));
+                float row_height_px = size_difference_px > 0.0
+                    ? size_difference_px / (2.0 * corner_steps)
+                    : target_row_height_px;
+
+                vec2 grid_origin_px = vec2(size_geo.y * 0.5);
+
+                float diagonal_period_px = row_height_px * 2.0;
+                float diagonal_steps = floor(
+                    size_geo.x * 0.12 / diagonal_period_px + 0.5);
+                float left_guide =
+                    diagonal_steps * diagonal_period_px / size_geo.x;
+                float right_guide = 1.0 - left_guide;
+
+                float horizontal_steps = max(
+                    1.0,
+                    floor(
+                        size_geo.y * 0.40 / row_height_px + 0.5));
+                float top_guide =
+                    (grid_origin_px.y -
+                     horizontal_steps * row_height_px) / size_geo.y;
+                float bottom_guide = 1.0 - top_guide;
+
+                float line = 0.0;
+
+                line = max(line, nier_growing_line(
+                    point_px, size_geo.xy,
+                    vec2(0.00, 0.00), vec2(1.00, 1.00),
+                    time, 0.00, LINE_FINISH, LINE_WIDTH_PX));
+                line = max(line, nier_growing_line(
+                    point_px, size_geo.xy,
+                    vec2(1.00, 0.00), vec2(-1.00, 1.00),
+                    time, 0.014, LINE_FINISH, LINE_WIDTH_PX));
+                line = max(line, nier_growing_line(
+                    point_px, size_geo.xy,
+                    vec2(0.00, 1.00), vec2(1.00, -1.00),
+                    time, 0.028, LINE_FINISH, LINE_WIDTH_PX));
+                line = max(line, nier_growing_line(
+                    point_px, size_geo.xy,
+                    vec2(1.00, 1.00), vec2(-1.00, -1.00),
+                    time, 0.042, LINE_FINISH, LINE_WIDTH_PX));
+
+                line = max(line, nier_growing_line(
+                    point_px, size_geo.xy,
+                    vec2(0.00, top_guide), vec2(1.00, 0.00),
+                    time, 0.010, LINE_FINISH, LINE_WIDTH_PX));
+                line = max(line, nier_growing_line(
+                    point_px, size_geo.xy,
+                    vec2(1.00, bottom_guide), vec2(-1.00, 0.00),
+                    time, 0.038, LINE_FINISH, LINE_WIDTH_PX));
+
+                line = max(line, nier_growing_line(
+                    point_px, size_geo.xy,
+                    vec2(left_guide, 0.00), vec2(1.00, 1.00),
+                    time, 0.018, LINE_FINISH, LINE_WIDTH_PX));
+                line = max(line, nier_growing_line(
+                    point_px, size_geo.xy,
+                    vec2(right_guide, 0.00), vec2(-1.00, 1.00),
+                    time, 0.046, LINE_FINISH, LINE_WIDTH_PX));
+
+                float triangle_alpha = 0.0;
+                bool inside =
+                    coords_geo.x >= 0.0 && coords_geo.x <= 1.0 &&
+                    coords_geo.y >= 0.0 && coords_geo.y <= 1.0;
+
+                if (time >= TRIANGLE_START && inside) {
+                    float vertical =
+                        (point_px.y - grid_origin_px.y) / row_height_px;
+                    float row = floor(vertical);
+                    float within_row = fract(vertical);
+
+                    float across =
+                        (point_px.x - grid_origin_px.x) / row_height_px;
+                    across += mod(row, 2.0);
+
+                    float wrapped = mod(across, 2.0);
+                    float distance_to_even = min(wrapped, 2.0 - wrapped);
+                    bool points_up = distance_to_even <= within_row;
+
+                    float triangle_index = points_up
+                        ? 2.0 * floor((across + 1.0) * 0.5)
+                        : 2.0 * floor(across * 0.5) + 1.0;
+
+                    float reveal_order = nier_triangle_random(
+                        vec2(triangle_index, row) +
+                        niri_random_seed * 137.0);
+                    float fade_start = mix(
+                        TRIANGLE_START,
+                        latest_triangle_start,
+                        reveal_order);
+                    triangle_alpha = smoothstep(
+                        fade_start,
+                        fade_start + TRIANGLE_FADE_DURATION,
+                        time);
+                }
+
+                vec4 content = vec4(0.0);
+                if (triangle_alpha > 0.0) {
+                    vec3 coords_tex = niri_geo_to_tex * coords_geo;
+                    content = texture2D(niri_tex, coords_tex.st) * triangle_alpha;
+                }
+
+                float line_fade = 1.0 - smoothstep(
+                    LINE_FADE_START,
+                    LINE_FADE_END,
+                    time);
+                float line_alpha = line * line_fade * 0.90;
+                vec4 stroke = vec4(LINE_COLOR * line_alpha, line_alpha);
+
+                return content + stroke * (1.0 - content.a);
+            }
+        "#
+    }
+}
