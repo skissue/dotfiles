@@ -5,7 +5,9 @@
   ...
 }: {
   home.packages = with pkgs; [
-    inputs.quickshell.packages.${stdenv.hostPlatform.system}.default
+    (inputs.quickshell.packages.${stdenv.hostPlatform.system}.default.withModules [
+      kdePackages.qtmultimedia
+    ])
     kdePackages.qtdeclarative # qmlls
     kdePackages.qtshadertools # qsb
   ];

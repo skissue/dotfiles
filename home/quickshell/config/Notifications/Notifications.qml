@@ -3,12 +3,42 @@ import Quickshell.Services.Notifications
 import Quickshell.Wayland
 import QtQuick
 import QtQuick.Layouts
+import QtMultimedia
 
 Scope {
     NotificationServer {
         id: notificationServer
 
-        onNotification: n => n.tracked = true
+        extraHints: ["sound"]
+
+        onNotification: n => {
+            n.tracked = true
+
+            if (!n.hints["suppress-sound"]) {
+                notificationSound.stop()
+                
+                if (n.hints["sound-file"]) {
+                    console.log(n.hints["sound-file"])
+                    notificationSound.source = n.hints["sound-file"]
+                } else {
+                    notificationSound.source = Qt.resolvedUrl("core_1.wav")
+                }
+                
+                notificationSound.play()
+            }
+        }
+    }
+
+    SoundEffect {
+        id: notificationSound
+
+        source: Qt.resolvedUrl("core_1.wav")
+        
+        onStatusChanged: {
+            if (status === SoundEffect.Error) {
+                console.warn("Failed to load notification sound")
+            }
+        }
     }
 
     Variants {
