@@ -9,6 +9,7 @@ Scope {
     NotificationServer {
         id: notificationServer
 
+        imageSupported: true
         extraHints: ["sound"]
 
         onNotification: n => {
