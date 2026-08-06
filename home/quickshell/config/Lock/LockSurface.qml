@@ -3,6 +3,8 @@ pragma ComponentBehavior: Bound
 import Quickshell
 import QtQuick
 import QtQuick.Layouts
+import QtQml
+import qs.Services
 
 Rectangle {
     id: root
@@ -275,6 +277,14 @@ Rectangle {
                 root.currentLine++
                 root.currentCharacter = 0
             }
+        }
+    }
+
+    Connections {
+        target: SleepEvents
+
+        function onResumed() {
+            printTimer.running = true
         }
     }
 
