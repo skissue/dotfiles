@@ -15,7 +15,7 @@ Scope {
         onNotification: n => {
             n.tracked = true
 
-            if (!n.hints["suppress-sound"]) {
+            if (!n.hints["suppress-sound"] && !n.lastGeneration) {
                 notificationSound.stop()
                 
                 if (n.hints["sound-file"]) {
