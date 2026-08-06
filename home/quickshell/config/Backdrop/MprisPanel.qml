@@ -99,7 +99,7 @@ PanelWindow {
                 layer.enabled: true
                 layer.smooth: true
                 layer.effect: ShaderEffect {
-                    fragmentShader: Qt.resolvedUrl("Shaders/mpris-gradient.frag.qsb")
+                    fragmentShader: Quickshell.shellPath("shaders/mpris-gradient.frag.qsb")
 
                     onStatusChanged: {
                         if (status === ShaderEffect.Error) {

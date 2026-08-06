@@ -1,3 +1,4 @@
+import Quickshell
 import QtQuick
 import QtQuick.Layouts
 
@@ -187,7 +188,9 @@ Item {
                         anchors.fill: parent
                         anchors.margins: useFallback ? 8 : 0
 
-                        source: useFallback ? Qt.resolvedUrl("yorha-logo.svg") : root.imageSource
+                        source: useFallback
+                            ? Quickshell.shellPath("assets/yorha-logo.svg")
+                            : root.imageSource
                         fillMode: Image.PreserveAspectFit
                         opacity: 0.6
                     }

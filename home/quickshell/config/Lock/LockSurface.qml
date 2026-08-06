@@ -1,5 +1,6 @@
 pragma ComponentBehavior: Bound
 
+import Quickshell
 import QtQuick
 import QtQuick.Layouts
 
@@ -72,7 +73,7 @@ Rectangle {
         property real overscan: root.overscan
 
         blending: false
-        fragmentShader: Qt.resolvedUrl("Shaders/yorha-crt.frag.qsb")
+        fragmentShader: Quickshell.shellPath("shaders/yorha-crt.frag.qsb")
 
         onStatusChanged: {
             if (status === ShaderEffect.Error)
@@ -90,7 +91,7 @@ Rectangle {
 
     Image {
         anchors.fill: parent
-        source: Qt.resolvedUrl("bg-tile.png")
+        source: Quickshell.shellPath("assets/bg-tile.png")
         fillMode: Image.Tile
         smooth: false
     }
@@ -100,7 +101,7 @@ Rectangle {
         width: parent.width * 0.5
         height: parent.height * 0.4
 
-        source: Qt.resolvedUrl("yorha.png")
+        source: Quickshell.shellPath("assets/yorha.png")
         fillMode: Image.PreserveAspectFit
         opacity: 0.1
     }

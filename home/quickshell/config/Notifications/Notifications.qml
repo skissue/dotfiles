@@ -22,7 +22,7 @@ Scope {
                     console.log(n.hints["sound-file"])
                     notificationSound.source = n.hints["sound-file"]
                 } else {
-                    notificationSound.source = Qt.resolvedUrl("core_1.wav")
+                    notificationSound.source = Quickshell.shellPath("assets/core_1.wav")
                 }
                 
                 notificationSound.play()
@@ -33,7 +33,7 @@ Scope {
     SoundEffect {
         id: notificationSound
 
-        source: Qt.resolvedUrl("core_1.wav")
+        source: Quickshell.shellPath("assets/core_1.wav")
         
         onStatusChanged: {
             if (status === SoundEffect.Error) {

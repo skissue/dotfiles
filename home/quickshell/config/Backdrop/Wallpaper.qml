@@ -15,7 +15,7 @@ PanelWindow {
 
     Image {
         anchors.fill: parent
-        source: Qt.resolvedUrl(`${Quickshell.env("QS_WALLPAPER_DIRECTORY")}/0016.png`)
+        source: `${Quickshell.env("QS_WALLPAPER_DIRECTORY")}/0016.png`
         fillMode: Image.PreserveAspectCrop
     }
 }
