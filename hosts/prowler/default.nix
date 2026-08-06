@@ -14,6 +14,7 @@
       ./media
       ./miniflux
       ./notes-publish
+      ./playmarket
       ./postgresql
       ./remote-luks-unlock
       ./umurmur

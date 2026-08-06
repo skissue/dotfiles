@@ -792,6 +792,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_7": {
+      "locked": {
+        "lastModified": 1785747939,
+        "narHash": "sha256-D740uKsMbgsfK2oaDenJLLPIZfq7W0/g4KN/Fls8eKs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "104240a772428cc2e20d8fd86c9ddbb886bbaff2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "persist-retro": {
       "locked": {
         "lastModified": 1709936804,
@@ -804,6 +820,24 @@
       "original": {
         "owner": "Geometer1729",
         "repo": "persist-retro",
+        "type": "github"
+      }
+    },
+    "playmarket": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_7"
+      },
+      "locked": {
+        "lastModified": 1786036769,
+        "narHash": "sha256-ThSB3fspXhlx+EKxw7Q3LQ+UE/zzYGQyVL88X3DJayI=",
+        "owner": "skissue",
+        "repo": "playmarket",
+        "rev": "aa93b1fb1f7cce93f7d4bb40a1ae51a3373dca10",
+        "type": "github"
+      },
+      "original": {
+        "owner": "skissue",
+        "repo": "playmarket",
         "type": "github"
       }
     },
@@ -887,6 +921,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_6",
         "persist-retro": "persist-retro",
+        "playmarket": "playmarket",
         "private": "private",
         "quickshell": "quickshell",
         "sops-nix": "sops-nix"

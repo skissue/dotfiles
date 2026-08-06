@@ -105,6 +105,16 @@ in {
       value = "fd7a:115c:a1e0:5e86:7755:f40d:4b4f:19ed";
     }
     {
+      name = "playmarket.xxx";
+      type = "A";
+      value = "100.72.228.191";
+    }
+    {
+      name = "playmarket.xxx";
+      type = "AAAA";
+      value = "fd7a:115c:a1e0:5e86:7755:f40d:4b4f:19ed";
+    }
+    {
       name = "ntfy.${private.domain.private}";
       type = "A";
       value = "100.72.86.116";
