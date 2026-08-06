@@ -6,6 +6,9 @@
 }: let
   domain = "scrobbles.${private.domain.private}";
 in {
+  # TODO migrate to nixpkgs' module
+  disabledModules = ["services/web-apps/koito.nix"];
+
   imports = [inputs.koito.nixosModules.default];
 
   nixpkgs.overlays = [inputs.koito.overlays.default];
