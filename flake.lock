@@ -828,11 +828,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1786036769,
-        "narHash": "sha256-ThSB3fspXhlx+EKxw7Q3LQ+UE/zzYGQyVL88X3DJayI=",
+        "lastModified": 1786041001,
+        "narHash": "sha256-Uv0V6fUQ5hZ6Q2/ml9apZ/lpe5cApRpIrqR4YJ1t/Cc=",
         "owner": "skissue",
         "repo": "playmarket",
-        "rev": "aa93b1fb1f7cce93f7d4bb40a1ae51a3373dca10",
+        "rev": "94a03e29e51bb194da5f0b9188096bd88269d23d",
         "type": "github"
       },
       "original": {
