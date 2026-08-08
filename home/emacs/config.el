@@ -2601,6 +2601,14 @@ execute it."
 (after! eglot
   (add-to-list 'eglot-server-programs '(qml-ts-mode "qmlls")))
 
+(after! apheleia
+  (add-to-list 'apheleia-formatters
+               '(qmlformat "qmlformat" "-i"
+                           "--semicolon-rule" "essential"
+                           inplace))
+  (add-to-list 'apheleia-mode-alist
+               '(qml-ts-mode . qmlformat)))
+
 (bind-key "m" #'osm my/open-map)
 
 (add-hook 'osm-mode-hook (lambda ()

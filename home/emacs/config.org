@@ -3354,6 +3354,14 @@ More CDLaTeX hotkeys.
 #+begin_src elisp
   (after! eglot
     (add-to-list 'eglot-server-programs '(qml-ts-mode "qmlls")))
+
+  (after! apheleia
+    (add-to-list 'apheleia-formatters
+                 '(qmlformat "qmlformat" "-i"
+                             "--semicolon-rule" "essential"
+                             inplace))
+    (add-to-list 'apheleia-mode-alist
+                 '(qml-ts-mode . qmlformat)))
 #+end_src
 
 * Applications
