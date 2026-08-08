@@ -6,7 +6,7 @@
   imports =
     [
       ./disko.nix
-      ./llama-swap.nix
+      # ./llama-swap.nix
       ./printing.nix
       ./sunshine.nix
     ]
