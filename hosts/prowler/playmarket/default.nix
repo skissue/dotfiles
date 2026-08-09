@@ -1,10 +1,12 @@
 {
   config,
   inputs,
+  private,
   ...
 }: let
   cfg = config.services.playmarket;
   auth = config.services.tailscaleAuth;
+  domain = "playmarket.${private.domain.wasteoftime}";
 in {
   imports = [inputs.playmarket.nixosModules.default];
 
@@ -14,23 +16,28 @@ in {
   services.tailscaleAuth.enable = true;
   users.users.${config.services.caddy.user}.extraGroups = [auth.group];
 
-  services.caddy.virtualHosts."http://playmarket.xxx".extraConfig = ''
-    route {
-      request_header -X-Auth-User
+  security.acme.certs.wasteoftime.domain = "*.${private.domain.wasteoftime}";
 
-      forward_auth unix/${auth.socketPath} {
-        uri /auth
-        header_up Remote-Addr {remote_host}
-        header_up Remote-Port {remote_port}
-        header_up Original-URI {uri}
-        copy_headers {
-          Tailscale-User>X-Auth-User
+  services.caddy.virtualHosts.${domain} = {
+    useACMEHost = "wasteoftime";
+    extraConfig = ''
+      route {
+        request_header -X-Auth-User
+
+        forward_auth unix/${auth.socketPath} {
+          uri /auth
+          header_up Remote-Addr {remote_host}
+          header_up Remote-Port {remote_port}
+          header_up Original-URI {uri}
+          copy_headers {
+            Tailscale-User>X-Auth-User
+          }
         }
-      }
 
-      reverse_proxy http://127.0.0.1:${toString cfg.port}
-    }
-  '';
+        reverse_proxy http://127.0.0.1:${toString cfg.port}
+      }
+    '';
+  };
 
   # DynamicUser places StateDirectory beneath /var/lib/private and exposes it
   # to the service at /var/lib/playmarket.
