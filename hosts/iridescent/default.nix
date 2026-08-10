@@ -13,6 +13,7 @@
       ./headscale.nix
       ./kanidm.nix
       ./ntfy.nix
+      ./playmarket.nix
     ]
     ++ mkModulesList [
       "acme"
