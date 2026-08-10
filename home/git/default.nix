@@ -36,6 +36,7 @@
     ignores = [
       "/.direnv"
       "/.envrc"
+      "/.worktrees"
     ];
 
     includes = [
