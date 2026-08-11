@@ -32,6 +32,7 @@ in {
 
       request_header -X-Auth-User
 
+      encode
       reverse_proxy http://127.0.0.1:${toString cfg.port} {
         header_up X-Real-IP {client_ip}
       }
