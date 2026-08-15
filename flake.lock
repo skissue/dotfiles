@@ -795,11 +795,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1786748764,
-        "narHash": "sha256-U0YwUvtOv+CuX4mrcj9NHG+UkvDOMzDXrIyZGgyf52U=",
+        "lastModified": 1786758465,
+        "narHash": "sha256-RbVk8CV3kQhskcg2q+CuW6HpiFEYhFk1hvXlObQtI6Y=",
         "ref": "refs/heads/main",
-        "rev": "0f15248b2cb69610ee0e3e22c84fb899d8159e91",
-        "revCount": 223,
+        "rev": "fcd699f701d78af2aa93f55f8ff84ca80bf6aa71",
+        "revCount": 224,
         "type": "git",
         "url": "ssh://git@github.com/skissue/playmarket"
       },
