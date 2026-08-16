@@ -44,15 +44,15 @@
   };
   gptel-openrouter-models = {
     pname = "gptel-openrouter-models";
-    version = "42c3ca7c808a2138a5d5fd7871ffdfaf87d672d5";
+    version = "75a7a1f77e21f35527de413647675ca97b67ae1a";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "gptel-openrouter-models";
-      rev = "42c3ca7c808a2138a5d5fd7871ffdfaf87d672d5";
+      rev = "75a7a1f77e21f35527de413647675ca97b67ae1a";
       fetchSubmodules = false;
-      sha256 = "sha256-bXUPHcrNyuNe+GiSggV/RTnvA/wVdZ0+kkPvOvnjBvE=";
+      sha256 = "sha256-OduKF6tEnyVf3kaxHqSYSqpBwXQ6IgrYnlDYeDiq2Bc=";
     };
-    date = "2026-08-15";
+    date = "2026-08-16";
   };
   gptel-quick = {
     pname = "gptel-quick";
