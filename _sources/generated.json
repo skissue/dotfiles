@@ -64,7 +64,7 @@
     },
     "gptel-openrouter-models": {
         "cargoLock": null,
-        "date": "2026-08-16",
+        "date": "2026-08-17",
         "extract": null,
         "name": "gptel-openrouter-models",
         "passthru": null,
@@ -76,12 +76,12 @@
             "name": null,
             "owner": "skissue",
             "repo": "gptel-openrouter-models",
-            "rev": "75a7a1f77e21f35527de413647675ca97b67ae1a",
-            "sha256": "sha256-OduKF6tEnyVf3kaxHqSYSqpBwXQ6IgrYnlDYeDiq2Bc=",
+            "rev": "573147f406546a817883f7382170c7dec5e44329",
+            "sha256": "sha256-oSsqTPzVZajihRh8KbJjvG4J9En4Sc+4JbgYXQAHmg4=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "75a7a1f77e21f35527de413647675ca97b67ae1a"
+        "version": "573147f406546a817883f7382170c7dec5e44329"
     },
     "gptel-quick": {
         "cargoLock": null,
