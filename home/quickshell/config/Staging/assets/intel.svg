@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Intel</title>
+  <g fill="#fff">
+    <circle cx="32" cy="13" r="6.5"/>
+    <path d="m8 34 6-6 17 17-6 6Z"/>
+    <path d="m56 34-6-6-17 17 6 6Z"/>
+  </g>
+</svg>

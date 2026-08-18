@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Weapons</title>
+  <g fill="#fff">
+    <circle cx="32" cy="12" r="6"/>
+    <path d="M7 32Q32 14 57 32l-4 3Q32 20 11 35Z"/>
+    <path d="m32 31 7 10-3.5 9-3.5 12-3.5-12-3.5-9Z"/>
+  </g>
+</svg>

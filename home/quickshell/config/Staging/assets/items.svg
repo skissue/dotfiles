@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Items</title>
+  <circle cx="32" cy="15" r="6" fill="#fff"/>
+  <path
+    d="M23 25 32 34 41 25"
+    fill="none"
+    stroke="#fff"
+    stroke-width="5"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  />
+  <path
+    d="m32 34 11 11-11 11-11-11Z"
+    fill="none"
+    stroke="#fff"
+    stroke-width="5"
+    stroke-linejoin="miter"
+  />
+</svg>
