@@ -70,9 +70,7 @@
       url = "github:skissue/koito-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # niri.url = "github:sodiboo/niri-flake";
-    # TODO revert when merged
-    niri.url = "github:sodiboo/niri-flake/pull/1850/head";
+    niri.url = "github:epireyn/niri-flake";
     playmarket.url = "git+ssh://git@github.com/skissue/playmarket";
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
