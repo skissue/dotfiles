@@ -48,7 +48,7 @@
     mangohud
     mullvad-browser
     nautilus
-    (obs-studio.override {browserSupport = false;})
+    obs-studio
     opencode
     ouch
     playerctl
