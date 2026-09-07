@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       General = {
-        EnableNetworkConfiguration = "true";
+        EnableNetworkConfiguration = "false";
         AddressRandomization = "network";
       };
     };
