@@ -13,7 +13,7 @@
       "home-manager"
       "desktop"
       "hardware/secure-boot"
-      "networking/airvpn"
+      "networking/windscribe"
       "networking/wireless"
     ];
 

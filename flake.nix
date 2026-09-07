@@ -76,6 +76,10 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    windscribe-nix = {
+      url = "github:syntheit/windscribe-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # TODO private for now, move to nvfetcher later
     funn = {
       url = "git+ssh://git@github.com/skissue/funn.el";
