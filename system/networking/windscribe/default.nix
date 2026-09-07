@@ -24,6 +24,12 @@
   # Allow asymmetric routing through VPN tunnels.
   networking.firewall.checkReversePath = "loose";
 
+  # Port forwarding
+  networking.firewall.interfaces."utun420" = {
+    allowedTCPPorts = [51966];
+    allowedUDPPorts = [51966];
+  };
+
   # Also exclude 100.72.0.0/16 and 100.100.100.100 in Windscribe's split-tunnel
   # settings so its firewall permits peers and MagicDNS. Priority 0 follows the existing
   # local lookup and precedes Windscribe's subsequently auto-prioritized rules.
