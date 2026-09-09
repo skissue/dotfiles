@@ -1,25 +1,12 @@
 {
   inputs,
   lib,
-  pkgs,
   ...
 }: {
-  imports = [inputs.windscribe-nix.nixosModules.default];
+  imports = [inputs.windscribe.nixosModules.default];
 
   # Login, connection settings and the kill switch are managed by the official app.
-  services.windscribe = {
-    enable = true;
-    package = inputs.windscribe-nix.packages.${pkgs.stdenv.hostPlatform.system}.windscribe.overrideAttrs (old: {
-      postInstall =
-        (old.postInstall or "")
-        + ''
-          # MagicDNS is served locally by tailscaled, not an external DNS server.
-          # The nftables guard below confines this exemption to tailscale0/lo.
-          substituteInPlace "$out/opt/windscribe/scripts/dns-leak-protect" \
-            --replace-fail 'allowed=("$@")' 'allowed=("$@" "100.100.100.100")'
-        '';
-    });
-  };
+  services.windscribe.enable = true;
 
   # Allow asymmetric routing through VPN tunnels.
   networking.firewall.checkReversePath = "loose";

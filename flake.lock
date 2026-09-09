@@ -891,7 +891,7 @@
         "private": "private",
         "quickshell": "quickshell",
         "sops-nix": "sops-nix",
-        "windscribe-nix": "windscribe-nix"
+        "windscribe": "windscribe"
       }
     },
     "rust-overlay": {
@@ -1025,24 +1025,26 @@
         "type": "github"
       }
     },
-    "windscribe-nix": {
+    "windscribe": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1784441830,
-        "narHash": "sha256-Rv2C5mA/xtZcW5btGZZs3cWUsf6eF3uhdqOTvh6pg6g=",
-        "owner": "syntheit",
-        "repo": "windscribe-nix",
-        "rev": "ae9279ddd55a39c41fadc92490d53ce25e687dde",
-        "type": "github"
+        "lastModified": 1788914188,
+        "narHash": "sha256-WplFB6X0lWe8yDz7X+Dx3YzE4+VMDaL0BdnMdpTwAEU=",
+        "ref": "refs/heads/master",
+        "rev": "1442f8da330dbb726976cc8678b730a4830a6fbc",
+        "revCount": 2915,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/skissue/windscribe-flake"
       },
       "original": {
-        "owner": "syntheit",
-        "repo": "windscribe-nix",
-        "type": "github"
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/skissue/windscribe-flake"
       }
     },
     "xwayland-satellite-stable": {

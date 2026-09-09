@@ -76,8 +76,8 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    windscribe-nix = {
-      url = "github:syntheit/windscribe-nix";
+    windscribe = {
+      url = "git+https://github.com/skissue/windscribe-flake?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # TODO private for now, move to nvfetcher later
