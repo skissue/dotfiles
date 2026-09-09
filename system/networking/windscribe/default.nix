@@ -18,21 +18,19 @@
   };
 
   # Also exclude 100.72.0.0/16 and 100.100.100.100 in Windscribe's split-tunnel
-  # settings so its firewall permits peers and MagicDNS. Priority 0 follows the existing
-  # local lookup and precedes Windscribe's subsequently auto-prioritized rules.
-  # Equal-priority rules retain insertion order, so re-adding this rule while
-  # Windscribe has priority-0 rules installed requires checking their order.
+  # settings so its firewall permits peers and MagicDNS. These scoped rules precede
+  # Windscribe's reserved 5208/5209 rules and Tailscale's 5210+ rules.
   systemd.network.networks."10-tailscale0".routingPolicyRules = [
     {
       To = "100.72.0.0/16";
       Table = 52;
-      Priority = 0;
+      Priority = 5100;
       Family = "ipv4";
     }
     {
       To = "100.100.100.100/32";
       Table = 52;
-      Priority = 0;
+      Priority = 5101;
       Family = "ipv4";
     }
   ];
