@@ -1032,11 +1032,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788957880,
-        "narHash": "sha256-G7F9raZGIPNwVcpWgGzmeDrC8AdEWuGJoFSMBSO86Bk=",
+        "lastModified": 1789000290,
+        "narHash": "sha256-sGcL4C2b3GP3lT5QIyEZ8Uikkqb4IfODaztQ6s7JdhY=",
         "ref": "refs/heads/master",
-        "rev": "7fec4613005021ba83664c3b60db7596276625eb",
-        "revCount": 2919,
+        "rev": "6d73a21d6d60dcd12d4933ba37901a22b1b47d50",
+        "revCount": 2920,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/skissue/windscribe-flake"
