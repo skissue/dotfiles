@@ -354,6 +354,14 @@ where it was when you previously visited the same file."
  '(fixed-pitch-serif ((t (:font "PragmataPro Liga"))))
  '(variable-pitch    ((t (:font "Atkinson Hyperlegible Next")))))
 
+(defun my/set-emoji-font ()
+  "Use Twitter Color Emoji in the selected graphical frame."
+  (set-fontset-font nil 'emoji
+                    (font-spec :family "Twitter Color Emoji")
+                    nil 'prepend))
+
+(add-hook 'server-after-make-frame-hook #'my/set-emoji-font)
+
 (autoload #'nerd-icons-set-font "nerd-icons" "Modify nerd font charsets to use FONT-FAMILY for FRAME." nil)
 (add-hook 'server-after-make-frame-hook #'nerd-icons-set-font)
 
