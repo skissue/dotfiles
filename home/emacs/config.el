@@ -672,6 +672,7 @@ Only difference is to compose symbols in comments as well. See
                                 (7 . (variable-pitch light 1.1))
                                 (8 . (variable-pitch light 1.1))
                                 (0 . (variable-pitch 1.8))
+                                (section-other . (bold 1.0))
                                 (t . (variable-pitch light 1.1)))
         modus-alabaster-dark-palette-overrides '((bg-added-refine bg-active)
                                                  (bg-removed-refine bg-active)
