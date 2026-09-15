@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  mutable-link,
   ...
 }: let
   quickshell = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default.withModules [
@@ -38,13 +39,19 @@ in {
     kdePackages.qtshadertools # qsb
   ];
 
-  hjem.users.${config.my.user.name}.xdg.config.files."quickshell".source = pkgs.symlinkJoin {
-    name = "quickshell-config";
-    paths = [
-      ./config
-      compiledShaders
-    ];
-  };
+  hjem.users.${config.my.user.name}.xdg.config.files."quickshell".source =
+    # Manual conditional because we need to use the tree with compiled shaders
+    # for normal builds.
+    if config.my.enable-mutable-links
+    then mutable-link ./config
+    else
+      pkgs.symlinkJoin {
+        name = "quickshell-config";
+        paths = [
+          ./config
+          compiledShaders
+        ];
+      };
 
   # Let Home Manager retire its old link before Hjem takes ownership.
   # TODO remove
