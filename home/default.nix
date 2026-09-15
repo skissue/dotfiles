@@ -20,7 +20,6 @@
     ./mutable-links
     ./niri
     ./programming
-    ./quickshell
     ./secrets
     ./ssh
     ./wlsunset

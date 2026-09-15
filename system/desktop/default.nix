@@ -6,6 +6,7 @@
     ./greetd
     ./niri
     ./pipewire
+    ./quickshell
     ./usbs
   ];
 
