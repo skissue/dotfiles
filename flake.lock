@@ -312,6 +312,26 @@
         "type": "github"
       }
     },
+    "hjem": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789234255,
+        "narHash": "sha256-0nvWuRbgL4GEKpR8Y4wsB3kmsVgyd0cW8kLHc2BqlTc=",
+        "owner": "feel-co",
+        "repo": "hjem",
+        "rev": "e5e30b4320a8cbcd6cdfc65f044763669a8f0363",
+        "type": "github"
+      },
+      "original": {
+        "owner": "feel-co",
+        "repo": "hjem",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -876,6 +896,7 @@
         "eww": "eww",
         "funn": "funn",
         "git-annex-backend-XBLAKE3": "git-annex-backend-XBLAKE3",
+        "hjem": "hjem",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "koito": "koito",
