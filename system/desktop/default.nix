@@ -1,5 +1,6 @@
 {
   imports = [
+    ../hjem
     ./fonts
     ./gaming
     ./greetd
