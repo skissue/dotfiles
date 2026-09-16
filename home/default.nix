@@ -5,7 +5,6 @@
 }: {
   imports = [
     inputs.private.homeManagerModules.default
-    ./annex
     ./applications
     ./cli
     ./cursors
