@@ -1,6 +1,7 @@
 {
   imports = [
     ../hjem
+    ./amp
     ./annex
     ./fonts
     ./gaming

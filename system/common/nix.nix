@@ -48,6 +48,7 @@
       # Wall of shame.
       allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
+          "amp-cli"
           "obsidian"
           "steam"
           "steam-unwrapped"
