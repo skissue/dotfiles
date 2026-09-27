@@ -36,7 +36,7 @@ in {
   services.caddy = {
     package = pkgs.caddy.withPlugins {
       plugins = ["github.com/mholt/caddy-ratelimit@v0.1.1-0.20260612195517-5625512f24f6"];
-      hash = "sha256-y+lf699YUSBwMmq62K7NKSRzjS849xRdWATJJrUdIOI=";
+      hash = "sha256-qNJMAahc69hP6VkP0xiuqOGhMYnl7aCZSW9N8QCl2aQ=";
     };
 
     virtualHosts.${domain} = {
