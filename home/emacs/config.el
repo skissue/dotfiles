@@ -2304,6 +2304,10 @@ have `org-warning' face."
           nice-org-html-options '(:collapsing t
                                               :src-lang t)))
 
+(after! ox
+  (require 'ox-typst)
+  (setopt ox-typst-paper-size "us-letter"))
+
 (autoload #'org-babel-execute:C "ob-C" "Execute a block of C code with org-babel.
 This function is called by `org-babel-execute-src-block'." nil)
 (autoload #'org-babel-execute:C++ "ob-C" "Execute a block of C++ code with org-babel.
@@ -2322,12 +2326,9 @@ This function calls `org-babel-execute:C++'." nil)
 (autoload #'org-babel-execute:gnuplot "ob-gnuplot" "Execute a block of Gnuplot code.
 This function is called by `org-babel-execute-src-block'." nil)
 
-(autoload #'org-babel-execute:typst "org-typst" "Execute a block of Typst markup." nil)
-
-(after! org-typst
-  (cl-pushnew "#import \"@preview/cetz:0.2.2\""
-              org-typst-babel-preamble
-              :test #'equal))
+(after! ob-typst
+  (add-to-list "#import \"@preview/cetz:0.5.2\"" ob-typst-babel-preamble
+               :append))
 
 (autoload #'org-babel-execute:lisp "ob-lisp" "Execute a block of Common Lisp code with Babel.
 BODY is the contents of the block, as a string.  PARAMS is

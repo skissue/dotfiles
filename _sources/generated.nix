@@ -118,15 +118,15 @@
   };
   org-typst = {
     pname = "org-typst";
-    version = "367f23c9db3c80f75be6c407470ba71d5c34f709";
+    version = "a9a8f2ebd227f5f170cd14318cb755f5e4306223";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "org-typst";
-      rev = "367f23c9db3c80f75be6c407470ba71d5c34f709";
+      rev = "a9a8f2ebd227f5f170cd14318cb755f5e4306223";
       fetchSubmodules = false;
-      sha256 = "sha256-ynuUyRdZRvmUq/zejkGyZSpHDKd7R34olAfqMoqU7Ic=";
+      sha256 = "sha256-6DCttkycX62ungFsZ5lwb2fCYUJKrbfCAf5+YBSWkN4=";
     };
-    date = "2024-05-10";
+    date = "2026-09-29";
   };
   qml-ts-mode = {
     pname = "qml-ts-mode";

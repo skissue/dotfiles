@@ -2935,6 +2935,13 @@ When exporting files in my =brain2= directory, default to the =export/= subdirec
                                                 :src-lang t)))
 #+end_src
 
+*** Typst
+#+begin_src elisp
+  (after! ox
+    (require 'ox-typst)
+    (setopt ox-typst-paper-size "us-letter"))
+#+end_src
+
 ** Babel Languages
 *** C/C++
 #+begin_src elisp
@@ -2965,12 +2972,9 @@ When exporting files in my =brain2= directory, default to the =export/= subdirec
 
 *** Typst
 #+begin_src elisp
-  (autoload #'org-babel-execute:typst "org-typst" "Execute a block of Typst markup." nil)
-
-  (after! org-typst
-    (cl-pushnew "#import \"@preview/cetz:0.2.2\""
-                org-typst-babel-preamble
-                :test #'equal))
+  (after! ob-typst
+    (add-to-list "#import \"@preview/cetz:0.5.2\"" ob-typst-babel-preamble
+                 :append))
 #+end_src
 
 *** Lisp

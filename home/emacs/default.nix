@@ -185,7 +185,6 @@ in {
         org-anki
         org-noter
         org-sliced-images
-        org-typst
         org-srs
         nice-org-html
         htmlize
@@ -193,8 +192,10 @@ in {
         dslide
         org-re-reveal
         ox-hugo
+        ox-typst
         ob-d2
         ob-svgbob
+        ob-typst
         # Notes
         denote
         denote-org

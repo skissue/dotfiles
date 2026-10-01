@@ -10,7 +10,18 @@ in {
   # disable it entirely.
   jsonrpc = null;
 
-  org-typst = melpaBuild (sources.org-typst // {version = "0.1.0";});
+  ob-typst = melpaBuild (sources.org-typst
+    // {
+      pname = "ob-typst";
+      version = "0.1.0";
+      files = ''("ob-typst.el")'';
+    });
+  ox-typst = melpaBuild (sources.org-typst
+    // {
+      pname = "ox-typst";
+      version = "0.1.0";
+      files = ''("ox-typst.el")'';
+    });
   gptel-quick = melpaBuild (sources.gptel-quick
     // {
       version = "0.0.5";
