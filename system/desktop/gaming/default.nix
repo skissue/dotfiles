@@ -8,6 +8,7 @@
             gamemode
           ];
       };
+      remotePlay.openFirewall = true;
       extraCompatPackages = with pkgs; [proton-ge-bin steamtinkerlaunch];
     };
     gamemode = {
