@@ -17,14 +17,14 @@ Scope {
 
             if (!n.hints["suppress-sound"] && !n.lastGeneration) {
                 notificationSound.stop()
-                
+
                 if (n.hints["sound-file"]) {
                     console.log(n.hints["sound-file"])
                     notificationSound.source = n.hints["sound-file"]
                 } else {
                     notificationSound.source = Quickshell.shellPath("assets/core_1.wav")
                 }
-                
+
                 notificationSound.play()
             }
         }
@@ -34,7 +34,7 @@ Scope {
         id: notificationSound
 
         source: Quickshell.shellPath("assets/core_1.wav")
-        
+
         onStatusChanged: {
             if (status === SoundEffect.Error) {
                 console.warn("Failed to load notification sound")
@@ -44,11 +44,11 @@ Scope {
 
     Variants {
         model: Quickshell.screens
-        
+
         PanelWindow {
             required property var modelData
             screen: modelData
-            
+
             anchors {
                 top: true
                 right: true
@@ -61,7 +61,7 @@ Scope {
 
             implicitWidth: notificationStack.implicitWidth
             implicitHeight: notificationStack.implicitHeight
-        
+
             color: "transparent"
             focusable: false
             WlrLayershell.layer: WlrLayer.Overlay
@@ -70,7 +70,7 @@ Scope {
                 id: notificationStack
 
                 spacing: NotificationStyle.toastSpacing
-            
+
                 Repeater {
                     model: notificationServer.trackedNotifications
 
