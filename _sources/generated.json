@@ -64,7 +64,7 @@
     },
     "gptel-openrouter-models": {
         "cargoLock": null,
-        "date": "2026-09-25",
+        "date": "2026-10-03",
         "extract": null,
         "name": "gptel-openrouter-models",
         "passthru": null,
@@ -76,12 +76,12 @@
             "name": null,
             "owner": "skissue",
             "repo": "gptel-openrouter-models",
-            "rev": "c1c4766d4b10d25b4b2ecc5e8261469802bf02c8",
-            "sha256": "sha256-tKK130Si6bt5CFgY93Z97YzBKnWi4zpsOeXyu4m48Xk=",
+            "rev": "5ed8b75b371f3dafe05bbc6ec9bf623ad49e3f06",
+            "sha256": "sha256-kIP8z/NZyiyTGuMBygAsJE8aSG2fwo+F3pKe8wxeLZM=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "c1c4766d4b10d25b4b2ecc5e8261469802bf02c8"
+        "version": "5ed8b75b371f3dafe05bbc6ec9bf623ad49e3f06"
     },
     "gptel-quick": {
         "cargoLock": null,
@@ -147,7 +147,7 @@
     },
     "modus-alabaster": {
         "cargoLock": null,
-        "date": "2026-09-23",
+        "date": "2026-10-02",
         "extract": null,
         "name": "modus-alabaster",
         "passthru": null,
@@ -159,12 +159,12 @@
             "name": null,
             "owner": "dpassen",
             "repo": "modus-alabaster",
-            "rev": "c3fac31e08c8e1c874c1be665aa650b4c2f69c0d",
-            "sha256": "sha256-0Tmv9EVUj85kEVnQRCmq7s2sx5kZZ8XeqTwliyGGfcI=",
+            "rev": "29369bf9900f1511be20f3021bde0bbe56dc3b28",
+            "sha256": "sha256-XOJweRwVn7t4jPMg9GXiZlqGi8e0ccf7sstwZLBHPp0=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "c3fac31e08c8e1c874c1be665aa650b4c2f69c0d"
+        "version": "29369bf9900f1511be20f3021bde0bbe56dc3b28"
     },
     "org-modern-indent": {
         "cargoLock": null,
