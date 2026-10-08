@@ -152,6 +152,7 @@ in {
         sly
         sly-macrostep
         sly-quicklisp
+        geiser
         rustic
         nix-ts-mode
         typst-ts-mode
