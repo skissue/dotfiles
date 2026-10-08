@@ -926,8 +926,12 @@ Alabaster discourages the use of bold/italic faces; I prefer to still have them,
 #+end_src
 
 ** Spacious Padding
+This package freaks out Emacs if it's initialized early in the daemon lifecycle, so a bit of extra code to ensure that doesn't happen.
 #+begin_src elisp
-  (add-hook 'window-setup-hook #'spacious-padding-mode)
+  (if (daemonp)
+      (add-hook 'server-after-make-frame-hook
+                (##spacious-padding-mode))
+    (add-hook 'window-setup-hook #'spacious-padding-mode))
 
   (after! spacious-padding
     (setq spacious-padding-subtle-frame-lines

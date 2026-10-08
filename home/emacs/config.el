@@ -685,7 +685,10 @@ Only difference is to compose symbols in comments as well. See
  '(modus-themes-bold ((t (:inherit bold))) t)
  '(modus-themes-slant ((t (:inherit italic))) t))
 
-(add-hook 'window-setup-hook #'spacious-padding-mode)
+(if (daemonp)
+    (add-hook 'server-after-make-frame-hook
+              (##spacious-padding-mode))
+  (add-hook 'window-setup-hook #'spacious-padding-mode))
 
 (after! spacious-padding
   (setq spacious-padding-subtle-frame-lines
