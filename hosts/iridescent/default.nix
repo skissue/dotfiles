@@ -9,11 +9,11 @@
     [
       # Static network configuration for DigitalOcean, contains public IPs.
       inputs.private.nixosModules.iridescent-networking
+      ./acme.nix
       ./disko.nix
       ./headscale.nix
       ./kanidm.nix
       ./ntfy.nix
-      ./playmarket.nix
     ]
     ++ mkModulesList [
       "acme"
