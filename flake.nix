@@ -75,7 +75,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri.url = "github:epireyn/niri-flake";
-    playmarket.url = "git+ssh://git@github.com/skissue/playmarket";
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
