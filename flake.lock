@@ -399,11 +399,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770402847,
-        "narHash": "sha256-rgCz/FLi1DCS5bH9Howg/173xIXZMQhURVJJb/+1ogU=",
+        "lastModified": 1791822463,
+        "narHash": "sha256-O0wwClGDci9K8j/rdQxIUTahbRLLA3bPF6Jp3WeH70M=",
         "owner": "skissue",
         "repo": "koito-flake",
-        "rev": "6e0a1e7761f00a3b4bf3682a9e0f014164377fad",
+        "rev": "b16b16a535c9bf36d42c5f2d104a84e56aaa0b7e",
         "type": "github"
       },
       "original": {
