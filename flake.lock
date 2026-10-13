@@ -392,26 +392,6 @@
         "type": "github"
       }
     },
-    "koito": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1791822463,
-        "narHash": "sha256-O0wwClGDci9K8j/rdQxIUTahbRLLA3bPF6Jp3WeH70M=",
-        "owner": "skissue",
-        "repo": "koito-flake",
-        "rev": "b16b16a535c9bf36d42c5f2d104a84e56aaa0b7e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "skissue",
-        "repo": "koito-flake",
-        "type": "github"
-      }
-    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -865,7 +845,6 @@
         "hjem": "hjem",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
-        "koito": "koito",
         "lanzaboote": "lanzaboote",
         "niri": "niri",
         "nix-index": "nix-index",

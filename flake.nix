@@ -70,10 +70,6 @@
       url = "github:skissue/git-annex-backend-XBLAKE3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    koito = {
-      url = "github:skissue/koito-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     niri.url = "github:epireyn/niri-flake";
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";

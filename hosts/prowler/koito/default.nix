@@ -1,38 +1,27 @@
 {
   config,
-  inputs,
   private,
   ...
 }: let
   domain = "scrobbles.${private.domain.private}";
 in {
-  # TODO migrate to nixpkgs' module
-  disabledModules = ["services/web-apps/koito.nix"];
-
-  imports = [inputs.koito.nixosModules.default];
-
-  nixpkgs.overlays = [inputs.koito.overlays.default];
-
-  services.koito = {
-    enable = true;
-    bindAddress = "0.0.0.0";
-    allowedHosts = [domain];
-  };
+  services.koito.enable = true;
 
   security.acme.certs.scrobbles.domain = domain;
 
   services.caddy.virtualHosts.${domain} = {
     useACMEHost = "scrobbles";
     extraConfig = ''
-      reverse_proxy http://localhost:${toString config.services.koito.port}
+      reverse_proxy http://127.0.0.1:${toString config.services.koito.environment.KOITO_LISTEN_PORT}
     '';
   };
 
+  # DynamicUser places StateDirectory beneath /var/lib/private and exposes it
+  # to the service at /var/lib/koito.
+  systemd.services.koito.serviceConfig.StateDirectoryMode = "0700";
   my.persist.local.directories = [
     {
-      directory = "/var/lib/koito";
-      user = "koito";
-      group = "koito";
+      directory = "/var/lib/private/koito";
       mode = "700";
     }
   ];
