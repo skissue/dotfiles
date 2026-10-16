@@ -18,7 +18,6 @@
     ./hyprlock
     ./mutable-links
     ./niri
-    ./programming
     ./secrets
     ./ssh
     ./wlsunset

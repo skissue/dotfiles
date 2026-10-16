@@ -8,6 +8,7 @@
     ./greetd
     ./niri
     ./pipewire
+    ./programming
     ./quickshell
     ./usbs
   ];
