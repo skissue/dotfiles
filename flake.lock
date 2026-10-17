@@ -856,7 +856,8 @@
         "private": "private",
         "quickshell": "quickshell",
         "sops-nix": "sops-nix",
-        "windscribe": "windscribe"
+        "windscribe": "windscribe",
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -1042,6 +1043,29 @@
       "original": {
         "owner": "Supreeeme",
         "repo": "xwayland-satellite",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792047775,
+        "narHash": "sha256-Ks46+ZukSOvdgmextucbLykzpAmygNZ2I+HWxCe03ok=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "9342d127aa8c585e82f3f57ddb25800fd546029f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

@@ -48,7 +48,7 @@
     waypipe
     wl-clipboard
     yt-dlp
-    my.zen-browser
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta
   ];
 
   programs.mpv = {
@@ -68,7 +68,7 @@
   xdg.mimeApps.defaultApplications = {
     "image/png" = "imv.desktop";
     "image/jpeg" = "imv.desktop";
-    "text/html" = "zen-browser.desktop";
+    "text/html" = "zen-beta.desktop";
     "x-scheme-handler/http" = "bouncer.desktop";
     "x-scheme-handler/https" = "bouncer.desktop";
   };
