@@ -13,7 +13,7 @@
     ++ mkModulesList [
       "home-manager"
       "desktop"
-      "hardware/cachyos-kernel"
+      # "hardware/cachyos-kernel"
       "hardware/secure-boot"
       "networking/windscribe"
       "networking/wireless"
