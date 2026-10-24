@@ -20,13 +20,13 @@
       substituters = [
         "https://nix-community.cachix.org"
         "https://hyprland.cachix.org"
-        # TODO re-enable when back online: <https://github.com/xddxdd/nix-cachyos-kernel/issues/110>
-        # "https://attic.xuyh0120.win/lantian"
+        # nix-cachyos-kernel
+        "https://cache.lantian.pub/lantian"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-        # "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+        "lantian:WVGO7vsRMSEN+h7Lp7kv6SAmrkEXgUGbbXm7jMDjBuQ="
       ];
     };
 
