@@ -28,8 +28,6 @@
     options = ["compress=zstd:1" "noatime" "nofail" "autodefrag" "nossd"];
   };
 
-  boot.initrd.systemd.enable = true;
-
   nixpkgs.config.rocmSupport = true;
 
   virtualisation.waydroid.enable = true;
