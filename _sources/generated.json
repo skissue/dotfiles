@@ -64,7 +64,7 @@
     },
     "gptel-openrouter-models": {
         "cargoLock": null,
-        "date": "2026-10-24",
+        "date": "2026-10-27",
         "extract": null,
         "name": "gptel-openrouter-models",
         "passthru": null,
@@ -76,12 +76,12 @@
             "name": null,
             "owner": "skissue",
             "repo": "gptel-openrouter-models",
-            "rev": "d4c1750ef029cc88c876b2346ebe6cd0fab3c9a3",
-            "sha256": "sha256-l5rpeoF2oE/mBWf4S9TQsQ0Km0cR2L3iXJSsFV9WPYk=",
+            "rev": "125761876ec828907e41c3e8af5ef02fe5b910ad",
+            "sha256": "sha256-IaI/qkjjD8KonWR+6h1dR6utPGCayrVNTaKjmVCLbig=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "d4c1750ef029cc88c876b2346ebe6cd0fab3c9a3"
+        "version": "125761876ec828907e41c3e8af5ef02fe5b910ad"
     },
     "gptel-quick": {
         "cargoLock": null,
@@ -127,7 +127,7 @@
     },
     "inline-diff": {
         "cargoLock": null,
-        "date": "2025-03-23",
+        "date": "2026-10-27",
         "extract": null,
         "name": "inline-diff",
         "passthru": null,
@@ -137,13 +137,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "d1c13190dd9d8f5d14b52499ddfbcadba2a60e94",
-            "sha256": "sha256-DbInB73UmMoqU1nJWJocKinJSUqxbY8tzLS0j8gq4FU=",
+            "rev": "7e093a40dce893b8b16a3b1952975e6af7dfec12",
+            "sha256": "sha256-b//rDastJfNBLrijghGPd7uyl7D2PiRp+CEtwCEExGM=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://code.tecosaur.net/tec/inline-diff.git"
         },
-        "version": "d1c13190dd9d8f5d14b52499ddfbcadba2a60e94"
+        "version": "7e093a40dce893b8b16a3b1952975e6af7dfec12"
     },
     "modus-alabaster": {
         "cargoLock": null,

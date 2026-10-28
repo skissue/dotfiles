@@ -44,15 +44,15 @@
   };
   gptel-openrouter-models = {
     pname = "gptel-openrouter-models";
-    version = "d4c1750ef029cc88c876b2346ebe6cd0fab3c9a3";
+    version = "125761876ec828907e41c3e8af5ef02fe5b910ad";
     src = fetchFromGitHub {
       owner = "skissue";
       repo = "gptel-openrouter-models";
-      rev = "d4c1750ef029cc88c876b2346ebe6cd0fab3c9a3";
+      rev = "125761876ec828907e41c3e8af5ef02fe5b910ad";
       fetchSubmodules = false;
-      sha256 = "sha256-l5rpeoF2oE/mBWf4S9TQsQ0Km0cR2L3iXJSsFV9WPYk=";
+      sha256 = "sha256-IaI/qkjjD8KonWR+6h1dR6utPGCayrVNTaKjmVCLbig=";
     };
-    date = "2026-10-24";
+    date = "2026-10-27";
   };
   gptel-quick = {
     pname = "gptel-quick";
@@ -80,17 +80,17 @@
   };
   inline-diff = {
     pname = "inline-diff";
-    version = "d1c13190dd9d8f5d14b52499ddfbcadba2a60e94";
+    version = "7e093a40dce893b8b16a3b1952975e6af7dfec12";
     src = fetchgit {
       url = "https://code.tecosaur.net/tec/inline-diff.git";
-      rev = "d1c13190dd9d8f5d14b52499ddfbcadba2a60e94";
+      rev = "7e093a40dce893b8b16a3b1952975e6af7dfec12";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-DbInB73UmMoqU1nJWJocKinJSUqxbY8tzLS0j8gq4FU=";
+      sha256 = "sha256-b//rDastJfNBLrijghGPd7uyl7D2PiRp+CEtwCEExGM=";
     };
-    date = "2025-03-23";
+    date = "2026-10-27";
   };
   modus-alabaster = {
     pname = "modus-alabaster";
