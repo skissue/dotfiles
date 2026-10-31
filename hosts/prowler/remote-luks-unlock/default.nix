@@ -9,8 +9,6 @@ in {
     availableKernelModules = ["ccm" "ctr" "ath10k_pci"]; # Crypto modules and wireless driver
 
     systemd = {
-      enable = true;
-
       packages = [pkgs.wpa_supplicant]; # For units
       initrdBin = [pkgs.wpa_supplicant]; # For the actual executable
       targets.initrd.wants = ["wpa_supplicant@${interface}.service"];
