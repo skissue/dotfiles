@@ -22,6 +22,16 @@
     libreoffice
     libsecret
     (lutris.override {
+      # Drop deprecated GTK2 from the game runtime
+      # <https://github.com/NixOS/nixpkgs/issues/410814#issuecomment-6574676195>
+      buildFHSEnv = args:
+        pkgs.buildFHSEnv (args
+          // {
+            multiPkgs = ps:
+              pkgs.lib.filter
+              (p: pkgs.lib.getName p != "gtk+")
+              (args.multiPkgs ps);
+          });
       extraLibraries = ps:
         with ps; [
           # TETR.IO
