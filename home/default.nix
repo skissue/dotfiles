@@ -20,7 +20,6 @@
     ./niri
     ./secrets
     ./ssh
-    ./wlsunset
     ./xdg
   ];
 

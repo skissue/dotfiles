@@ -10,6 +10,7 @@
     ./programming
     ./quickshell
     ./usbs
+    ./wlsunset
   ];
 
   services.logind.settings.Login.HandlePowerKey = "suspend";
