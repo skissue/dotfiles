@@ -4,6 +4,7 @@
     ./annex
     ./fonts
     ./gaming
+    ./ghostty
     ./greetd
     ./niri
     ./pipewire

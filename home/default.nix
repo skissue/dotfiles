@@ -12,7 +12,6 @@
     ./email
     ./eww
     ./fuzzel
-    ./ghostty
     ./git
     ./gtk
     ./hyprlock
