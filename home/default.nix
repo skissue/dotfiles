@@ -10,7 +10,6 @@
     ./cursors
     ./emacs
     ./email
-    ./eww
     ./fuzzel
     ./git
     ./gtk

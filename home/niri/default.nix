@@ -3,7 +3,7 @@
   mutable-link,
   ...
 }: {
-  home.packages = with pkgs; [xwayland-satellite-unstable mako wl-kbptr runapp];
+  home.packages = with pkgs; [xwayland-satellite-unstable wl-kbptr runapp];
 
   xdg.configFile."niri/config.kdl".source = mutable-link ./config.kdl;
   xdg.configFile."niri/animations".source = mutable-link ./animations;
@@ -11,55 +11,6 @@
   home.sessionPath = [(toString ./scripts)];
 
   programs.fuzzel.settings.main.launch-prefix = "runapp --";
-
-  xdg.configFile."mako/config".text = ''
-    default-timeout=5000
-    group-by=app-name,summary
-    layer=overlay
-
-    font=Atkinson Hyperlegible Next 16
-    background-color=#24273ad9
-    text-color=#cad3f5
-
-    width=500
-    height=200
-    border-size=0
-
-    on-notify=exec pw-play ${./zoom.ogg}
-    on-button-middle=exec makoctl menu -n "$id" $DMENU -p 'Select action: '
-  '';
-
-  # programs.hyprlock = {
-  #   enable = true;
-  #   settings = {
-  #     # Disable fade-in, which causes a red flash on niri.
-  #     animation = ["fadeIn,0"];
-  #     background = {
-  #       monitor = "";
-  #       path = "screenshot";
-  #       blur_passes = 3;
-  #       blur_size = 6;
-  #     };
-  #     input-field = {
-  #       monitor = "";
-  #       size = "400, 50";
-  #       placeholder_text = "$PROMPT";
-  #       dots_center = false;
-  #       halign = "center";
-  #       valign = "center";
-  #     };
-  #     label = {
-  #       monitor = "";
-  #       text = "$TIME";
-  #       text_align = "center";
-  #       font_size = 36;
-  #       font_family = "Atkinson Hyperlegible Next";
-  #       position = "0, 80";
-  #       halign = "center";
-  #       valign = "center";
-  #     };
-  #   };
-  # };
 
   services.hypridle = {
     enable = true;
