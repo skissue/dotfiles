@@ -33,6 +33,14 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  systemd.services."systemd-backlight@backlight:intel_backlight" = {
+    overrideStrategy = "asDropin";
+    # Turn the panel off after systemd restores its saved brightness.
+    postStart = ''
+      echo 0 > /sys/class/backlight/intel_backlight/brightness
+    '';
+  };
+
   security.sudo-rs.wheelNeedsPassword = false;
 
   services.fwupd.enable = true;
