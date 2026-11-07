@@ -14,7 +14,7 @@
       "desktop"
       "hardware/secure-boot"
       "networking/windscribe"
-      "networking/wireless"
+      "networking/wireless/mutable"
     ];
 
   boot.loader.systemd-boot.enable = true;
