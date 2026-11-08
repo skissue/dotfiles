@@ -7,6 +7,8 @@
     '';
   };
 
+  boot.kernelParams = ["cfg80211.ieee80211_regdom=US"];
+
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 }
