@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   inputs,
   mkModulesList,
@@ -19,7 +18,7 @@
       "acme"
       "caddy"
       "impermanence"
-      "impermanence/bcachefs.nix"
+      "impermanence/bcachefs"
       "netdata"
       "unbound"
     ];

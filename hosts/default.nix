@@ -12,7 +12,10 @@ in {
         ];
         specialArgs = {
           inherit self inputs host;
-          mkModulesList = map (m: "${self}/system/${m}");
+          mkModulesList = map (m:
+            lib.warnIf (lib.hasSuffix ".nix" m)
+            "mkModulesList: '${m}' should be a directory"
+            "${self}/system/${m}");
         };
       };
   in

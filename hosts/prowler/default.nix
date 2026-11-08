@@ -22,7 +22,7 @@
       "caddy"
       "hardware/secure-boot"
       "impermanence"
-      "impermanence/btrfs.nix"
+      "impermanence/btrfs"
       "netdata"
       "networking/wireless"
       "unbound"
