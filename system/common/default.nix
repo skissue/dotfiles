@@ -17,6 +17,8 @@
     ./user.nix
   ];
 
+  boot.tmp.useTmpfs = true;
+
   time.timeZone = lib.mkDefault "America/New_York";
 
   system.configurationRevision = inputs.self.rev or "dirty";
