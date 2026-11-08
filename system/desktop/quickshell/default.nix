@@ -44,6 +44,7 @@ in {
       description = "Quickshell desktop shell";
       wantedBy = ["graphical-session.target"];
       after = ["graphical-session.target"];
+      partOf = ["graphical-session.target"];
       startLimitIntervalSec = 30;
       startLimitBurst = 3;
       unitConfig.ConditionEnvironment = ["WAYLAND_DISPLAY" "NIRI_SOCKET"];
