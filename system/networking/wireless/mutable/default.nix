@@ -1,16 +1,26 @@
 {mkModulesList, ...}: {
   imports = mkModulesList ["networking/wireless"];
 
-  networking.wireless = {
-    userControlled = true;
-    allowAuxiliaryImperativeNetworks = true;
+  networking = {
+    # NetworkManager handles DHCP
+    useDHCP = false;
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+      wifi = {
+        backend = "wpa_supplicant";
+        macAddress = "random";
+        scanRandMacAddress = true;
+      };
+      settings.keyfile.path = "/var/lib/NetworkManager/system-connections";
+    };
   };
 
-  my.user.extraGroups = ["wpa_supplicant"];
+  # Use NetworkManager instead of networkd for online check
+  # <https://github.com/NixOS/nixpkgs/blob/76abcfc873caee1b9b22c12d34b92f0d6dea1c1b/nixos/modules/system/boot/networkd.nix#L4096-L4109>
+  systemd.network.wait-online.enable = false;
 
-  systemd.tmpfiles.rules = [
-    # For some reason NixOS sets imperative.conf to 664 so protect the main directory
-    # <https://github.com/NixOS/nixpkgs/blob/1d060086d60cb76a40cf37109f979d88a5bd6396/nixos/modules/services/networking/wpa_supplicant.nix#L141>
-    "d /etc/wpa_supplicant 0700 wpa_supplicant wpa_supplicant -"
-  ];
+  my.user.extraGroups = ["networkmanager"];
+
+  my.persist.local.directories = ["/var/lib/NetworkManager"];
 }

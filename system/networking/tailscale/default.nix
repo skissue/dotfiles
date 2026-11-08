@@ -36,6 +36,11 @@ in {
   # Accept all Tailscale traffic, it's trusted anyway
   networking.firewall.trustedInterfaces = ["tailscale0"];
 
+  # Leave tailscale0 to networkd
+  networking.networkmanager.unmanaged = [
+    "interface-name:${config.services.tailscale.interfaceName}"
+  ];
+
   systemd.network.networks."10-tailscale0" = {
     matchConfig.Name = "tailscale0";
     linkConfig.RequiredForOnline = false;
