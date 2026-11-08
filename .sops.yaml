@@ -24,3 +24,9 @@ creation_rules:
       - *yubikey1
       - *windstorm
       - *nightcrawler
+  - path_regex: ^secrets/prowler.yaml$
+    key_groups:
+    - age:
+      - *yubikey0
+      - *yubikey1
+      - *prowler

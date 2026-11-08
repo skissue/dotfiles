@@ -1,5 +1,4 @@
 {
-  config,
   mkModulesList,
   pkgs,
   ...
@@ -15,8 +14,8 @@
       ./miniflux
       ./notes-publish
       ./postgresql
-      ./remote-luks-unlock
       ./umurmur
+      ./wireless
     ]
     ++ mkModulesList [
       "acme"
