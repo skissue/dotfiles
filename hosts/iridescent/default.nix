@@ -19,7 +19,6 @@
       "caddy"
       "impermanence"
       "impermanence/bcachefs"
-      "netdata"
       "unbound"
     ];
 

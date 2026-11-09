@@ -56,7 +56,6 @@
           "steam-run"
           "minecraft-server"
           "copilot-language-server"
-          "netdata"
         ];
     };
   };
