@@ -10,6 +10,7 @@
     ./pipewire
     ./programming
     ./quickshell
+    ./ssh
     ./usbs
     ./wlsunset
   ];
