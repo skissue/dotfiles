@@ -55,7 +55,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    amp-desktop = {
+    amp = {
       url = "github:skissue/amp-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
