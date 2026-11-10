@@ -55,6 +55,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    amp-desktop = {
+      url = "github:skissue/amp-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     bouncer = {
       url = "github:skissue/bouncer";
       inputs.nixpkgs.follows = "nixpkgs";

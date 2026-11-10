@@ -50,6 +50,7 @@
       allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
           "amp-cli"
+          "amp-desktop"
           "obsidian"
           "steam"
           "steam-unwrapped"

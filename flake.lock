@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "amp-desktop": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794326590,
+        "narHash": "sha256-zEMpuvRicj0MiEyPNypC8GRXs7nUcBbjSXrwA+N2VZg=",
+        "owner": "skissue",
+        "repo": "amp-flake",
+        "rev": "ae542b552dbb55a83606869c191a231e6271382a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "skissue",
+        "repo": "amp-flake",
+        "type": "github"
+      }
+    },
     "bouncer": {
       "inputs": {
         "nixpkgs": [
@@ -832,6 +852,7 @@
     },
     "root": {
       "inputs": {
+        "amp-desktop": "amp-desktop",
         "bouncer": "bouncer",
         "cachyos-kernel": "cachyos-kernel",
         "deploy-rs": "deploy-rs",
