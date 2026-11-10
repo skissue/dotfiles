@@ -12,8 +12,9 @@
       user.work = "example-user";
       domain = {
         private = "private.example.invalid";
-        tailnet' = "tailnet.example.invalid";
-        wasteoftime = "wasteoftime.example.invalid";
+        tailnet = "tailnet.example.invalid";
+        internal = "internal.example.invalid";
+        waste-of-time = "wasteoftime.example.invalid";
       };
     };
   in {

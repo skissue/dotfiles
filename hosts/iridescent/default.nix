@@ -12,7 +12,6 @@
       ./disko.nix
       ./headscale.nix
       ./kanidm.nix
-      ./ntfy.nix
     ]
     ++ mkModulesList [
       "acme"

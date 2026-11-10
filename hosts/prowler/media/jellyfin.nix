@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.services.jellyfin;
-  domain = "media.${private.domain.private}";
+  domain = "media.${private.domain.internal}";
 in {
   services.jellyfin.enable = true;
   users.users.${cfg.user}.extraGroups = ["media"];
@@ -20,10 +20,9 @@ in {
       intel-compute-runtime-legacy1
     ];
   };
-  security.acme.certs.media.domain = domain;
 
   services.caddy.virtualHosts.${domain} = {
-    useACMEHost = "media";
+    useACMEHost = "internal";
     extraConfig = ''
       reverse_proxy http://localhost:8096
     '';

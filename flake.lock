@@ -797,11 +797,11 @@
     },
     "private": {
       "locked": {
-        "lastModified": 1786298273,
-        "narHash": "sha256-wMcncMxwYZqvprvAfFHr/mwAZl+innY2mQ2FpuF8UFQ=",
+        "lastModified": 1794184991,
+        "narHash": "sha256-Eh2Jglrssp+IiEY8VzZBuJQ8RXBHOVN5owdW7vRhiwI=",
         "ref": "refs/heads/main",
-        "rev": "3d1e751d05dd780eaff4dad7e7b19844d52d7536",
-        "revCount": 26,
+        "rev": "e3e4aba1b06f16e91af875977b8bc80419f5ff97",
+        "revCount": 27,
         "type": "git",
         "url": "ssh://ad@prowler/home/ad/dotfiles.private"
       },

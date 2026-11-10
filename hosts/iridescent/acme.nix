@@ -1,3 +1,5 @@
 {private, ...}: {
-  security.acme.certs.wasteoftime.domain = "*.${private.domain.wasteoftime}";
+  security.acme.certs.private.domain = "*.${private.domain.private}";
+  security.acme.certs.internal.domain = "*.${private.domain.internal}";
+  security.acme.certs.waste-of-time.domain = "*.${private.domain.waste-of-time}";
 }

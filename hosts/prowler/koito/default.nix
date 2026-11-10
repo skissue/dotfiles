@@ -3,14 +3,12 @@
   private,
   ...
 }: let
-  domain = "scrobbles.${private.domain.private}";
+  domain = "scrobbles.${private.domain.internal}";
 in {
   services.koito.enable = true;
 
-  security.acme.certs.scrobbles.domain = domain;
-
   services.caddy.virtualHosts.${domain} = {
-    useACMEHost = "scrobbles";
+    useACMEHost = "internal";
     extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString config.services.koito.environment.KOITO_LISTEN_PORT}
     '';

@@ -5,14 +5,14 @@
 }: {
   imports =
     [
-      ./annex
       ./disko.nix
-      ./freshrss
+      ./acme
+      ./annex
       ./iperf
       ./koito
       ./media
       ./miniflux
-      ./notes-publish
+      ./ntfy
       ./postgresql
       ./umurmur
       ./wireless

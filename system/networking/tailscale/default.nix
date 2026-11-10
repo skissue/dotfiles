@@ -1,10 +1,9 @@
 {
   config,
-  pkgs,
   private,
   ...
 }: let
-  domain = private.domain.tailnet';
+  domain = private.domain.tailnet;
 in {
   sops.secrets.tailscale-auth-key = {
     restartUnits = ["tailscaled-autoconnect.service"];
@@ -17,7 +16,7 @@ in {
     extraDaemonFlags = ["--no-logs-no-support"];
     extraUpFlags = [
       "--login-server"
-      "https://${domain}"
+      "https://hs.${private.domain.private}"
     ];
     extraSetFlags = [
       "--operator"
@@ -46,7 +45,7 @@ in {
     linkConfig.RequiredForOnline = false;
 
     networkConfig = {
-      Domains = ["in.${domain}" "~${private.domain.private}"];
+      Domains = [domain "~${private.domain.internal}"];
       DNS = "100.100.100.100";
       DNSOverTLS = false;
       LLMNR = false;

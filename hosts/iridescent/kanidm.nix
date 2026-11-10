@@ -4,14 +4,14 @@
   private,
   ...
 }: let
+  # NOTE make sure this matches all OIDC users
   domain = "auth.${private.domain.private}";
-  certDir = config.security.acme.certs.kanidm.directory;
+  certDir = config.security.acme.certs.private.directory;
   # Hardcoded user.
   user = config.users.users.kanidm;
 in {
   # HTTPS certificate.
-  security.acme.certs.kanidm = {
-    domain = domain;
+  security.acme.certs.private = {
     # Allow kanidm service to read the certificates it needs.
     postRun = ''
       ${pkgs.acl}/bin/setfacl -m u:${user.name}:rx ${certDir}
@@ -40,8 +40,8 @@ in {
 
   # Ensure HTTPS certificates exist before starting.
   systemd.services.kanidm = {
-    requires = ["acme-order-renew-kanidm.service"];
-    after = ["acme-order-renew-kanidm.service"];
+    requires = ["acme-order-renew-private.service"];
+    after = ["acme-order-renew-private.service"];
   };
 
   # Hardcoded data directory (services.kanidm.serverSettings.db_path is
@@ -56,7 +56,7 @@ in {
   ];
 
   services.caddy.virtualHosts.${domain} = {
-    useACMEHost = "kanidm";
+    useACMEHost = "private";
     extraConfig = ''
       reverse_proxy https://${config.services.kanidm.server.settings.bindaddress} {
         # Use correct domain during TLS verification. Fails otherwise since the

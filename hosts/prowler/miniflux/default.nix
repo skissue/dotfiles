@@ -4,7 +4,7 @@
   ...
 }: let
   cfg = config.services.miniflux;
-  domain = "feeds.${private.domain.private}";
+  domain = "feeds.${private.domain.internal}";
 in {
   services.miniflux = {
     enable = true;
@@ -36,10 +36,8 @@ in {
   # Being owned by root is fine.
   sops.secrets.miniflux-config = {};
 
-  security.acme.certs.feeds.domain = domain;
-
   services.caddy.virtualHosts.${domain} = {
-    useACMEHost = "feeds";
+    useACMEHost = "internal";
     extraConfig = ''
       reverse_proxy http://${cfg.config.LISTEN_ADDR}
     '';

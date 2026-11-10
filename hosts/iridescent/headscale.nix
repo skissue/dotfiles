@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.services.headscale;
-  domain = private.domain.tailnet';
+  domain = "hs.${private.domain.private}";
 in {
   services.headscale = {
     enable = true;
@@ -20,7 +20,7 @@ in {
 
       dns = {
         magic_dns = true;
-        base_domain = "in.${domain}";
+        base_domain = private.domain.tailnet;
         override_local_dns = true;
         nameservers.global = [
           # prowler
@@ -35,6 +35,7 @@ in {
       # OIDC authentication via kanidm.
       oidc = {
         only_start_if_oidc_is_available = true;
+        # NOTE make sure this matches kanidm
         issuer = "https://auth.${private.domain.private}/oauth2/openid/headscale";
         client_id = "headscale";
         client_secret_path = config.sops.secrets.headscale-oidc-secret.path;
@@ -49,11 +50,11 @@ in {
     group = cfg.group;
   };
 
-  # Access to administratation tools.
+  # Access to administration tools.
   environment.systemPackages = [pkgs.headscale];
 
-  # Let Caddy automatically get the HTTPS certificate.
   services.caddy.virtualHosts.${domain} = {
+    useACMEHost = "private";
     extraConfig = ''
       reverse_proxy http://localhost:${toString cfg.port}
     '';
@@ -75,52 +76,42 @@ in {
   # TODO clean up
   services.headscale.settings.dns.extra_records = [
     {
-      name = "media.${private.domain.private}";
+      name = "media.${private.domain.internal}";
       type = "A";
       value = "100.72.228.191";
     }
     {
-      name = "media.${private.domain.private}";
+      name = "media.${private.domain.internal}";
       type = "AAAA";
       value = "fd7a:115c:a1e0:5e86:7755:f40d:4b4f:19ed";
     }
     {
-      name = "feeds.${private.domain.private}";
+      name = "feeds.${private.domain.internal}";
       type = "A";
       value = "100.72.228.191";
     }
     {
-      name = "feeds.${private.domain.private}";
+      name = "feeds.${private.domain.internal}";
       type = "AAAA";
       value = "fd7a:115c:a1e0:5e86:7755:f40d:4b4f:19ed";
     }
     {
-      name = "oldfeeds.${private.domain.private}";
+      name = "ntfy.${private.domain.internal}";
       type = "A";
       value = "100.72.228.191";
     }
     {
-      name = "oldfeeds.${private.domain.private}";
+      name = "ntfy.${private.domain.internal}";
       type = "AAAA";
       value = "fd7a:115c:a1e0:5e86:7755:f40d:4b4f:19ed";
     }
     {
-      name = "ntfy.${private.domain.private}";
-      type = "A";
-      value = "100.72.86.116";
-    }
-    {
-      name = "ntfy.${private.domain.private}";
-      type = "AAAA";
-      value = "fd7a:115c:a1e0:f811:19ba:3d4f:a16e:e3c6";
-    }
-    {
-      name = "scrobbles.${private.domain.private}";
+      name = "scrobbles.${private.domain.internal}";
       type = "A";
       value = "100.72.228.191";
     }
     {
-      name = "scrobbles.${private.domain.private}";
+      name = "scrobbles.${private.domain.internal}";
       type = "AAAA";
       value = "fd7a:115c:a1e0:5e86:7755:f40d:4b4f:19ed";
     }
