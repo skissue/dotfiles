@@ -16,6 +16,8 @@ in {
     };
   };
 
+  my.persist.local.directories = ["/var/lib/private/ntfy-sh"];
+
   services.caddy.virtualHosts.${domain} = {
     useACMEHost = "internal";
     extraConfig = ''
