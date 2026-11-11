@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  imports = [./run0.nix];
+
   security.protectKernelImage = lib.mkDefault true;
 
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;

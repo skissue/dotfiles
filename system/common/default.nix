@@ -7,11 +7,11 @@
     inputs.private.nixosModules.default
     ../impermanence/options.nix # Always include so we can define paths in various modules
     ../networking
+    ../security
     ./logind.nix
     ./mutable-links.nix
     ./nix.nix
     ./secrets.nix
-    ./security.nix
     ./ssh.nix
     ./sudo.nix
     ./user.nix
