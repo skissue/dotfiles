@@ -8,8 +8,4 @@
 
     bindl = ,switch:on:Lid Switch,exec,systemctl suspend
   '';
-
-  programs.hyprlock.settings = {
-    auth.fingerprint.enabled = true;
-  };
 }

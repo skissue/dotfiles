@@ -22,12 +22,10 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   services.fprintd.enable = true;
-  # Don't allow logging in with fprint, and hyprlock has a separate parallel
-  # setup.
+  # Don't allow logging in with fprint.
   security.pam.services = {
     login.fprintAuth = false;
     greetd.fprintAuth = false;
-    hyprlock.fprintAuth = false;
   };
 
   security.protectKernelImage = false; # Disallows hibernation

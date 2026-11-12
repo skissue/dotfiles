@@ -13,7 +13,6 @@
     ./fuzzel
     ./git
     ./gtk
-    ./hyprlock
     ./mutable-links
     ./niri
     ./secrets
