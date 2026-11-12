@@ -9,7 +9,6 @@
       # Only used for tests.
       inputs.nixpkgs.follows = "";
     };
-    persist-retro.url = "github:Geometer1729/persist-retro";
 
     private.url = "git+ssh://ad@prowler/home/ad/dotfiles.private";
 

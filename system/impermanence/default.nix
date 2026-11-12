@@ -8,7 +8,6 @@
 in {
   imports = [
     inputs.impermanence.nixosModules.impermanence
-    inputs.persist-retro.nixosModules.persist-retro
   ];
 
   environment.persistence."/local" = {

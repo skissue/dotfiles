@@ -778,21 +778,6 @@
         "type": "github"
       }
     },
-    "persist-retro": {
-      "locked": {
-        "lastModified": 1709936804,
-        "narHash": "sha256-PXLha5hQLAFasIkSO4HJn9/pUbpXo8dtUKuXYYHsh6Y=",
-        "owner": "Geometer1729",
-        "repo": "persist-retro",
-        "rev": "28b016825449dc3f893e0515abfed418baed011f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Geometer1729",
-        "repo": "persist-retro",
-        "type": "github"
-      }
-    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat_4",
@@ -873,7 +858,6 @@
         "nixos-anywhere": "nixos-anywhere",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_6",
-        "persist-retro": "persist-retro",
         "private": "private",
         "quickshell": "quickshell",
         "sops-nix": "sops-nix",
