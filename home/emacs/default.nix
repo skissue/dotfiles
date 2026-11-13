@@ -36,14 +36,9 @@
         -f package-quickstart-refresh
       cp package-quickstart.elc $out
     '';
-  init-substituted = pkgs.replaceVars ./config.el {
-    # See explanations in ./config.org
-    consult_mu_src = sources.consult-mu.src;
-    consult_omni_src = sources.consult-omni.src;
-  };
   early-init = compile ./early-init.el [];
   # Git needed to load Magit at compile-time.
-  init = compile init-substituted [pkgs.git];
+  init = compile ./config.el [pkgs.git];
 in {
   # Fresh versions of packages
   nixpkgs.overlays = [inputs.emacs-overlay.overlays.package];
@@ -260,7 +255,7 @@ in {
   xdg.configFile = {
     "emacs/early-init.el".source = ./early-init.el;
     "emacs/early-init.elc".source = early-init;
-    "emacs/init.el".source = init-substituted;
+    "emacs/init.el".source = ./config.el;
     "emacs/init.elc".source = init;
     "emacs/package-quickstart.elc".source = quickstart-file;
     "emacs/private.json".text = builtins.toJSON private;
@@ -275,7 +270,4 @@ in {
     "application/pdf" = "emacsclient.desktop";
     "x-scheme-handler/mailto" = "emacsclient.desktop";
   };
-
-  # For `consult-omni-man`
-  programs.man.generateCaches = true;
 }
