@@ -226,8 +226,6 @@
       ffmpegthumbnailer
       mediainfo
 
-      nil
-      alejandra
       svgbob
       (lib.getBin lz4) # reSnap
     ]));
