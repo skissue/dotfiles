@@ -2,10 +2,12 @@
   imports = [
     ../hjem
     ./annex
+    ./emacs
     ./fonts
     ./gaming
     ./ghostty
     ./greetd
+    ./mimeapps
     ./niri
     ./pipewire
     ./programming

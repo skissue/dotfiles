@@ -2,6 +2,8 @@
   (startup-redirect-eln-cache
     (expand-file-name  "emacs/eln-cache/" (getenv "XDG_CACHE_HOME"))))
 
+(setq user-lisp-auto-scrape nil)
+
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(tool-bar-lines . 0) default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)

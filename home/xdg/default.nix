@@ -10,7 +10,8 @@
   cacheDir = vars.XDG_CACHE_HOME;
 in {
   xdg.enable = true;
-  xdg.mimeApps.enable = true;
+  # The shared mimeapps.list is now managed by Hjem.
+  xdg.mimeApps.enable = false;
   home.preferXdgDirectories = true;
 
   home.sessionVariables = {

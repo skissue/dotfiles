@@ -23,6 +23,12 @@ Put the native compilation cache in ~XDG_CACHE_HOME~, where it belongs. This has
       (expand-file-name  "emacs/eln-cache/" (getenv "XDG_CACHE_HOME"))))
 #+end_src
 
+** User Lisp
+Emacs adds ~user-lisp/~ to ~load-path~ before loading regular init. These files live in the Nix store, so skip runtime compilation and autoload generation.
+#+begin_src elisp
+  (setq user-lisp-auto-scrape nil)
+#+end_src
+
 ** Disable UI Elements
 Disable these before they've loaded to save some time. Supposedly, manually adjusting [[help:default-frame-alist][default-frame-alist]] is faster.
 #+begin_src elisp
