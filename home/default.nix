@@ -8,7 +8,6 @@
     ./applications
     ./cli
     ./cursors
-    ./emacs
     ./email
     ./fuzzel
     ./git
@@ -31,5 +30,9 @@
 
   # Required for greetd to inherit home-manager environment (sessionVariables
   # etc.). Probably also needed for other programs as well.
-  home.file.".profile".text = ". \"/etc/profiles/per-user/\$USER/etc/profile.d/hm-session-vars.sh\"";
+  home.file.".profile".text = ''
+    . "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
+    # TODO placeholder while migrating to hjem
+    . "${osConfig.hjem.users.${osConfig.my.user.name}.environment.loadEnv}"
+  '';
 }
