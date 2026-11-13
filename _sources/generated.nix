@@ -6,30 +6,6 @@
   dockerTools,
 }:
 {
-  consult-mu = {
-    pname = "consult-mu";
-    version = "8b54bbf86c2f112e3520eeeefb70d509b4590385";
-    src = fetchFromGitHub {
-      owner = "armindarvish";
-      repo = "consult-mu";
-      rev = "8b54bbf86c2f112e3520eeeefb70d509b4590385";
-      fetchSubmodules = false;
-      sha256 = "sha256-nxutBOEO6qiPjSo7y3t1KWYb0n0AMKGl943N+uGTTjQ=";
-    };
-    date = "2025-12-02";
-  };
-  consult-omni = {
-    pname = "consult-omni";
-    version = "3a126ee54479755408faed10da945dbc2366303b";
-    src = fetchFromGitHub {
-      owner = "armindarvish";
-      repo = "consult-omni";
-      rev = "3a126ee54479755408faed10da945dbc2366303b";
-      fetchSubmodules = false;
-      sha256 = "sha256-8Koe6IO2+/HvDb2IE1dc/DY3hGmNWcEMAfz6d0gdT7k=";
-    };
-    date = "2026-06-24";
-  };
   elfin = {
     pname = "elfin";
     version = "cf5c4d24239822aaf868d72b506b5c2bcadd50e7";

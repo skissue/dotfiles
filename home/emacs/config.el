@@ -1492,56 +1492,6 @@ word count of the response." t)
              ("C-c C-f r" . treesit-fold-open-recursively)
              ("C-c C-f z" . treesit-fold-toggle)))
 
-(cl-pushnew "@consult_mu_src@" load-path
-            :test #'equal)
-
-(eval-and-compile
-  (cl-pushnew "@consult_omni_src@" load-path
-              :test #'equal)
-  (cl-pushnew "@consult_omni_src@/sources" load-path
-              :test #'equal))
-
-(autoload #'consult-omni "consult-omni" "Convinient wrapper function for favorite interactive command.
-
-Calls the function in `consult-omni-default-interactive-command'." t)
-
-(bind-key "C-S-s" #'consult-omni)
-
-(after! consult-omni
-  ;; For some reason, if `mu4e' doesn't load properly, `consult-omni-mu4e'
-  ;; causes it to crash and burn.
-  (require 'mu4e)
-  (require 'consult-omni-sources)
-  (require 'consult-omni-embark)
-
-  (setopt consult-omni-sources-modules-to-load '(consult-omni-wikipedia
-                                                 consult-omni-gptel
-                                                 consult-omni-calc
-                                                 consult-omni-buffer
-                                                 consult-omni-mu4e
-                                                 consult-omni-stackoverflow
-                                                 consult-omni-dict
-                                                 consult-omni-man
-                                                 consult-omni-org-agenda
-                                                 consult-omni-notes))
-  (consult-omni-sources-load-modules)
-
-  (setopt consult-omni-http-retrieve-backend 'plz
-          consult-omni-multi-sources '("Wikipedia"
-                                       "gptel"
-                                       "calc"
-                                       "Buffer"
-                                       "File"
-                                       "mu4e"
-                                       "StackOverflow"
-                                       "Dictionary"
-                                       "man"
-                                       "Org Agenda"
-                                       "Notes Search")
-          consult-omni-notes-files (list my/brain2)
-          consult-omni-notes-backend-command "rga"
-          consult-omni--notes-new-func #'consult-omni--notes-new-create-denote))
-
 (bind-key [remap list-buffers] #'ibuffer)
 
 (after! ibuffer

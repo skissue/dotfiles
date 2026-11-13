@@ -10,14 +10,6 @@ fetch.github = "karthink/gptel-quick"
 src.git = "https://github.com/skissue/gptel-openrouter-models"
 fetch.github = "skissue/gptel-openrouter-models"
 
-[consult-omni]
-src.git = "https://github.com/armindarvish/consult-omni"
-fetch.github = "armindarvish/consult-omni"
-
-[consult-mu]
-src.git = "https://github.com/armindarvish/consult-mu"
-fetch.github = "armindarvish/consult-mu"
-
 [revealjs]
 src.github_tag = "hakimel/reveal.js"
 fetch.github = "hakimel/reveal.js"
