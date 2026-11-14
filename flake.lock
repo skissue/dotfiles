@@ -842,18 +842,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1794623125,
-        "narHash": "sha256-mKAxcaQF/ZWzTzQ6ZFE8qHISw1BRZvKhLLHQKrJOx+c=",
-        "ref": "main",
-        "rev": "67b08d6ec577863275a675b1092075ff02dab0c8",
-        "revCount": 38,
+        "lastModified": 1794623585,
+        "narHash": "sha256-IlIMsGqQOyqB4WbrftrBVwo4pwxPZHwvFgEzRR2PS7o=",
+        "ref": "refs/heads/main",
+        "rev": "e0f05c7a0950d5826a33f27e512b2b689f039450",
+        "revCount": 39,
         "type": "git",
-        "url": "file:///home/ad/git/rbsgo"
+        "url": "ssh://ad@prowler/home/ad/git/rbsgo"
       },
       "original": {
-        "ref": "main",
         "type": "git",
-        "url": "file:///home/ad/git/rbsgo"
+        "url": "ssh://ad@prowler/home/ad/git/rbsgo"
       }
     },
     "root": {

@@ -79,8 +79,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rbsgo = {
-      # TODO replace with actual remote
-      url = "git+file:///home/ad/git/rbsgo?ref=main";
+      url = "git+ssh://ad@prowler/home/ad/git/rbsgo";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     windscribe = {
