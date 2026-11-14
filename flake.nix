@@ -78,6 +78,11 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rbsgo = {
+      # TODO replace with actual remote
+      url = "git+file:///home/ad/git/rbsgo?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     windscribe = {
       url = "git+https://github.com/skissue/windscribe-flake?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";

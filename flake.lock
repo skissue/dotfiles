@@ -835,6 +835,27 @@
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       }
     },
+    "rbsgo": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794623125,
+        "narHash": "sha256-mKAxcaQF/ZWzTzQ6ZFE8qHISw1BRZvKhLLHQKrJOx+c=",
+        "ref": "main",
+        "rev": "67b08d6ec577863275a675b1092075ff02dab0c8",
+        "revCount": 38,
+        "type": "git",
+        "url": "file:///home/ad/git/rbsgo"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "file:///home/ad/git/rbsgo"
+      }
+    },
     "root": {
       "inputs": {
         "amp": "amp",
@@ -860,6 +881,7 @@
         "nixpkgs": "nixpkgs_6",
         "private": "private",
         "quickshell": "quickshell",
+        "rbsgo": "rbsgo",
         "sops-nix": "sops-nix",
         "windscribe": "windscribe",
         "zen-browser": "zen-browser"

@@ -14,6 +14,7 @@
       ./miniflux
       ./ntfy
       ./postgresql
+      ./rbsgo
       ./umurmur
       ./wireless
     ]
