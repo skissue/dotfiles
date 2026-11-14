@@ -53,7 +53,7 @@
     ];
   };
 
-  my.persist.userLocal.directories = ["dotfiles.private"];
+  my.persist.userData.directories = ["git"];
 
   services.postgresql.package = pkgs.postgresql_17;
 
