@@ -808,11 +808,11 @@
         "rev": "e3e4aba1b06f16e91af875977b8bc80419f5ff97",
         "revCount": 27,
         "type": "git",
-        "url": "ssh://ad@prowler/home/ad/dotfiles.private"
+        "url": "ssh://ad@prowler/home/ad/git/dotfiles.private"
       },
       "original": {
         "type": "git",
-        "url": "ssh://ad@prowler/home/ad/dotfiles.private"
+        "url": "ssh://ad@prowler/home/ad/git/dotfiles.private"
       }
     },
     "quickshell": {

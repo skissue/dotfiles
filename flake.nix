@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "";
     };
 
-    private.url = "git+ssh://ad@prowler/home/ad/dotfiles.private";
+    private.url = "git+ssh://ad@prowler/home/ad/git/dotfiles.private";
 
     devshell = {
       url = "github:numtide/devshell";
