@@ -1950,7 +1950,7 @@ See `howm-todo-priority-schedule-2' for inspiration. Return
                                       (0.0 . org-upcoming-distant-deadline)))
   (modus-themes-with-colors
     (custom-set-faces
-     `(org-scheduled-today           ((t (:foreground ,mauve  :weight bold))))
+     `(org-scheduled-today           ((t (:foreground ,magenta :weight bold))))
      `(org-imminent-deadline         ((t (:foreground ,red    :weight semibold))))
      `(org-upcoming-deadline         ((t (:foreground ,yellow :weight medium))))
      `(org-upcoming-distant-deadline ((t (:foreground ,yellow :weight light)))))))
