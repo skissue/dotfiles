@@ -38,15 +38,6 @@
       makeinfo --no-split -I "$src/doc" "$src/doc/geiser.texi" -o geiser.info
     '';
   });
-  persist = super.persist.overrideAttrs (_: {
-    postPatch = ''
-      substituteInPlace persist.texi --replace-fail '@section ' '@chapter '
-    '';
-    # Compile the patched working copy, not Twist's default unpatched $src.
-    buildInfo = ''
-      makeinfo --no-split persist.texi -o persist.info
-    '';
-  });
   pdf-tools = super.pdf-tools.overrideAttrs (old: {
     nativeBuildInputs = [
       pkgs.autoconf

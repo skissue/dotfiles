@@ -3677,16 +3677,6 @@ Spritz-like speedreading for Emacs 💨.
   (bind-key "c" #'cfw:open-org-calendar my/open-map)
 #+end_src
 
-** Ement
-#+begin_src elisp
-  (add-hook 'ement-room-compose-hook #'corfu-mode)
-
-  (after! ement
-    (setopt ement-save-sessions t
-            ement-room-use-variable-pitch t
-            ement-room-send-message-filter #'ement-room-send-org-filter))
-#+end_src
-
 ** Elfeed
 Set up some keybinds. I like "U" to update to mirror [[*mu4e][mu4e]]'s behavior 🙃.
 #+begin_src elisp

@@ -2845,13 +2845,6 @@ execute it."
 
 (bind-key "c" #'cfw:open-org-calendar my/open-map)
 
-(add-hook 'ement-room-compose-hook #'corfu-mode)
-
-(after! ement
-  (setopt ement-save-sessions t
-          ement-room-use-variable-pitch t
-          ement-room-send-message-filter #'ement-room-send-org-filter))
-
 (bind-key "f" #'elfeed my/open-map)
 
 (after! elfeed

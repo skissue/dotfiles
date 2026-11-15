@@ -173,28 +173,6 @@
     },
     "version": "1.12.6.1"
   },
-  "ement": {
-    "archive": {
-      "narHash": "sha256-zkRtB2vnVXkyK4/OxUUUaslfaucGtLKfh32G7rMwuvo=",
-      "type": "tarball",
-      "url": "https://elpa.gnu.org/packages/ement-0.17.tar"
-    },
-    "inventory": {
-      "type": "archive",
-      "url": "https://elpa.gnu.org/packages/"
-    },
-    "packageRequires": {
-      "emacs": "27.1",
-      "map": "2.1",
-      "persist": "0.5",
-      "plz": "0.6",
-      "svg-lib": "0.2.5",
-      "taxy": "0.10",
-      "taxy-magit-section": "0.13",
-      "transient": "0.3.7"
-    },
-    "version": "0.17"
-  },
   "haskell-ts-mode": {
     "archive": {
       "narHash": "sha256-BeIHwIPJR1aT5elYy8rrGKCOxvsvV4QvyEQRJ+vORIg=",
@@ -290,22 +268,6 @@
       "emacs": "25"
     },
     "version": "1.0.2"
-  },
-  "persist": {
-    "archive": {
-      "narHash": "sha256-U0em7vsRvAqh7F2Tjmwu4HYsyZbN0zfhby65nhceqz4=",
-      "type": "tarball",
-      "url": "https://elpa.gnu.org/packages/persist-0.8.tar"
-    },
-    "inventory": {
-      "type": "archive",
-      "url": "https://elpa.gnu.org/packages/"
-    },
-    "packageRequires": {
-      "compat": "30.0.2.0",
-      "emacs": "26.1"
-    },
-    "version": "0.8"
   },
   "plz": {
     "archive": {
@@ -426,53 +388,6 @@
       "emacs": "25"
     },
     "version": "2.4.0"
-  },
-  "svg-lib": {
-    "archive": {
-      "narHash": "sha256-Z1JdNfLZRdncm7x+COzwsRoKdwaSPFIeOtG9cNd49Zw=",
-      "type": "tarball",
-      "url": "https://elpa.gnu.org/packages/svg-lib-0.3.tar"
-    },
-    "inventory": {
-      "type": "archive",
-      "url": "https://elpa.gnu.org/packages/"
-    },
-    "packageRequires": {
-      "emacs": "27.1"
-    },
-    "version": "0.3"
-  },
-  "taxy": {
-    "archive": {
-      "narHash": "sha256-QPzIWdqZzuyazEDHZQNQ0DBtlZfkbmfz0V/EpToPA14=",
-      "type": "tarball",
-      "url": "https://elpa.gnu.org/packages/taxy-0.10.2.tar"
-    },
-    "inventory": {
-      "type": "archive",
-      "url": "https://elpa.gnu.org/packages/"
-    },
-    "packageRequires": {
-      "emacs": "26.3"
-    },
-    "version": "0.10.2"
-  },
-  "taxy-magit-section": {
-    "archive": {
-      "narHash": "sha256-ZvL5LDRiY7ZMywua6iWVEOrSGCrF5xyss6Uz4np2bJM=",
-      "type": "tarball",
-      "url": "https://elpa.gnu.org/packages/taxy-magit-section-0.14.3.tar"
-    },
-    "inventory": {
-      "type": "archive",
-      "url": "https://elpa.gnu.org/packages/"
-    },
-    "packageRequires": {
-      "emacs": "26.3",
-      "magit-section": "3.2.1",
-      "taxy": "0.10"
-    },
-    "version": "0.14.3"
   },
   "tomelr": {
     "archive": {
