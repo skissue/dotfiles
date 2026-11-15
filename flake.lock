@@ -876,11 +876,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794673348,
-        "narHash": "sha256-me/JqErRb2FuCyS2A8RYqALC4oPX8+Hlx0w40or68bs=",
+        "lastModified": 1794754117,
+        "narHash": "sha256-fw7RX0mzdUfDXlmmdJ/sxeuCInthJHwF7SYl1RrhMfE=",
         "ref": "refs/heads/main",
-        "rev": "2f70e3c93f80c138b2e85ed93fa8aa277457d471",
-        "revCount": 45,
+        "rev": "f3c9f0198314aa045b440cff0da03bf7cf07e238",
+        "revCount": 49,
         "type": "git",
         "url": "ssh://ad@prowler/home/ad/git/rbsgo"
       },
