@@ -22,7 +22,7 @@
     },
     "gptel-openrouter-models": {
         "cargoLock": null,
-        "date": "2026-11-14",
+        "date": "2026-11-15",
         "extract": null,
         "name": "gptel-openrouter-models",
         "passthru": null,
@@ -34,12 +34,12 @@
             "name": null,
             "owner": "skissue",
             "repo": "gptel-openrouter-models",
-            "rev": "1f7758eaf5eae3043ef97e5780a4a80df486de5b",
-            "sha256": "sha256-n3u39a6ClfDyI68wdZLurYWZdNqePoaVhbSgl2G3Ceo=",
+            "rev": "0eb509bcbdf6717af72ab6c7cd0f095dc4b0fe21",
+            "sha256": "sha256-8e1763BHOr7sAlyPtyo6FQuxGggs1X8emQkwBuRap5g=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "1f7758eaf5eae3043ef97e5780a4a80df486de5b"
+        "version": "0eb509bcbdf6717af72ab6c7cd0f095dc4b0fe21"
     },
     "gptel-quick": {
         "cargoLock": null,
@@ -105,7 +105,7 @@
     },
     "melpa": {
         "cargoLock": null,
-        "date": "2026-11-08",
+        "date": "2026-11-15",
         "extract": null,
         "name": "melpa",
         "passthru": null,
@@ -117,12 +117,12 @@
             "name": null,
             "owner": "melpa",
             "repo": "melpa",
-            "rev": "844608fd509b3154517674b4099f04789e338571",
-            "sha256": "sha256-mppsyo2niMpQueSieFObnleK4Ir81QIYOsEYdgFvSIk=",
+            "rev": "be3a609d8b5dc97790756034b04c2aa3d0ceda8b",
+            "sha256": "sha256-+zwTEM/uQqlSGh8EWqfbwWRTCfZ7KH4RMSSklnLmz54=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "844608fd509b3154517674b4099f04789e338571"
+        "version": "be3a609d8b5dc97790756034b04c2aa3d0ceda8b"
     },
     "modus-alabaster": {
         "cargoLock": null,
