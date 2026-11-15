@@ -1730,12 +1730,6 @@ For our purposes, a note must not be a directory, must satisfy
   (setopt gac-silent-message-p t
           gac-debounce-interval 60))
 
-(after! citar
-  (citar-denote-mode)
-  (setopt citar-bibliography (list
-                              (expand-file-name "refs.bib" my/brain2))
-          org-cite-global-bibliography citar-bibliography))
-
 (add-hook 'my/first-input-hook (lambda ()
                                  (require 'howm-org)
                                  (require 'howm)))

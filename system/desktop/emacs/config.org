@@ -2255,7 +2255,7 @@ Bind the mode to =C-<insert>=, as suggested by the documentation; the default bi
 #+end_src
 
 ** Citar
-#+begin_src elisp
+#+begin_src elisp :tangle no
   (after! citar
     (citar-denote-mode)
     (setopt citar-bibliography (list
