@@ -1,9 +1,12 @@
 {
   config,
   inputs,
+  private,
   secretsDir,
   ...
-}: {
+}: let
+  domain = "rbsgo.${private.domain.internal}";
+in {
   imports = [inputs.rbsgo.nixosModules.default];
 
   services.rbsgo = {
@@ -16,7 +19,16 @@
     restartUnits = ["rbsgo.service"];
   };
 
-  # TODO web proxy
+  services.caddy.virtualHosts.${domain} = {
+    useACMEHost = "internal";
+    # TODO this should probably live at a lower unified level (firewall?)
+    # NOTE must match listening address in the config
+    extraConfig = ''
+      @not-tailnet not remote_ip 100.72.0.0/16 fd7a:115c:a1e0::/48
+      respond @not-tailnet 403
+      reverse_proxy http://127.0.0.1:3003
+    '';
+  };
 
   my.persist.data.directories = [
     {
