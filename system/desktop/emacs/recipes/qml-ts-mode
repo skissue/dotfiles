@@ -1,0 +1,1 @@
+(qml-ts-mode :fetcher github :repo "xhcoding/qml-ts-mode")

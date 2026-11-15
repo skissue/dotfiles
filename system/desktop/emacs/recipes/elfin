@@ -1,0 +1,1 @@
+(elfin :fetcher github :repo "skissue/elfin" :files (:defaults "extras/*.el"))

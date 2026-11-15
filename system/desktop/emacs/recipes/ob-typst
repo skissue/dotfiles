@@ -1,0 +1,1 @@
+(ob-typst :fetcher github :repo "skissue/org-typst" :files ("ob-typst.el"))

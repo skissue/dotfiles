@@ -1,0 +1,4 @@
+(rustic
+ :repo "emacs-rustic/rustic"
+ :fetcher github
+ :files (:defaults (:exclude "rustic-flycheck.el")))

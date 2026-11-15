@@ -103,6 +103,27 @@
         },
         "version": "3fa1f1614c145e8688ed7ea2c3d2c80aceee804c"
     },
+    "melpa": {
+        "cargoLock": null,
+        "date": "2026-11-08",
+        "extract": null,
+        "name": "melpa",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "melpa",
+            "repo": "melpa",
+            "rev": "844608fd509b3154517674b4099f04789e338571",
+            "sha256": "sha256-mppsyo2niMpQueSieFObnleK4Ir81QIYOsEYdgFvSIk=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "844608fd509b3154517674b4099f04789e338571"
+    },
     "modus-alabaster": {
         "cargoLock": null,
         "date": "2026-10-02",

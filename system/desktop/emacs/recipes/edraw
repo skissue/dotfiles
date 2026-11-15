@@ -1,0 +1,1 @@
+(edraw :fetcher github :repo "misohena/el-easydraw" :files (:defaults "msg"))

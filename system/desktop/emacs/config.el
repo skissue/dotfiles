@@ -1526,9 +1526,8 @@ word count of the response." t)
   (interactive)
   (apply #'esup
          nil
-         `("--eval" "(package-activate-all)"
-           ,@(cl-loop for dir in load-path
-                      append (list "-L" dir)))))
+         (cl-loop for dir in load-path
+                  append (list "-L" dir))))
 
 (after! esup
   (setopt esup-depth 0))

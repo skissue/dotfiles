@@ -68,6 +68,7 @@
       flake = false;
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+    twist.url = "github:emacs-twist/twist.nix";
     eww.url = "github:elkowar/eww";
     git-annex-backend-XBLAKE3 = {
       url = "github:skissue/git-annex-backend-XBLAKE3";

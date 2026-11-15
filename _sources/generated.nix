@@ -68,6 +68,18 @@
     };
     date = "2026-11-14";
   };
+  melpa = {
+    pname = "melpa";
+    version = "844608fd509b3154517674b4099f04789e338571";
+    src = fetchFromGitHub {
+      owner = "melpa";
+      repo = "melpa";
+      rev = "844608fd509b3154517674b4099f04789e338571";
+      fetchSubmodules = false;
+      sha256 = "sha256-mppsyo2niMpQueSieFObnleK4Ir81QIYOsEYdgFvSIk=";
+    };
+    date = "2026-11-08";
+  };
   modus-alabaster = {
     pname = "modus-alabaster";
     version = "29369bf9900f1511be20f3021bde0bbe56dc3b28";

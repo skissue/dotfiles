@@ -18,3 +18,11 @@ update *inputs:
     nvfetcher
     git add _sources
     -git commit -m 'bump(sources): update nvfetcher'
+
+# Update selected Git inputs (all if omitted), then archive releases and dependencies.
+[working-directory: 'system/desktop/emacs/lock']
+emacs-update *inputs:
+    nix flake update {{inputs}}
+    nix run --impure --refresh "{{justfile_directory()}}#nixosConfigurations.windstorm.config.system.build.emacs-twist.generateLockDir" -- --force --no-update-flake-lock .
+    git add flake.nix flake.lock archive.lock
+    git diff --cached --quiet -- flake.nix flake.lock archive.lock || git commit --only -m 'bump(system/desktop/emacs): update inputs' -- flake.nix flake.lock archive.lock

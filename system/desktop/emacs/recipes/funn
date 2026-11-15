@@ -1,0 +1,1 @@
+(funn :fetcher github :repo "skissue/funn.el" :files ("src/*.el"))
