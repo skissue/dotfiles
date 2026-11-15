@@ -796,7 +796,7 @@ Only difference is to compose symbols in comments as well. See
 (modus-themes-with-colors
   (custom-set-faces
    `(meow-insert-indicator ((t :foreground ,green)))
-   `(meow-beacon-indicator ((t :foreground ,teal)))
+   `(meow-beacon-indicator ((t :foreground ,cyan)))
    `(meow-keypad-indicator ((t :foreground ,red)))))
 
 (meow-motion-define-key
@@ -1350,7 +1350,7 @@ uses the symbol name as the default description, as well as a
     (setopt hl-todo-keyword-faces
             `(("TODO" . ,green)
               ("FIXME" . ,yellow)
-              ("HACK" . ,teal)
+              ("HACK" . ,cyan)
               ("NOTE" . ,blue)))))
 
 (bind-keys :map goto-map

@@ -1087,7 +1087,7 @@ There's no built-in function to delete the current file, so here's mine.
   (modus-themes-with-colors
     (custom-set-faces
      `(meow-insert-indicator ((t :foreground ,green)))
-     `(meow-beacon-indicator ((t :foreground ,teal)))
+     `(meow-beacon-indicator ((t :foreground ,cyan)))
      `(meow-keypad-indicator ((t :foreground ,red)))))
 
   (meow-motion-define-key
@@ -1776,7 +1776,7 @@ In addition to auto-loading via filename or magic values, we also want to load t
       (setopt hl-todo-keyword-faces
               `(("TODO" . ,green)
                 ("FIXME" . ,yellow)
-                ("HACK" . ,teal)
+                ("HACK" . ,cyan)
                 ("NOTE" . ,blue)))))
 #+end_src
 
