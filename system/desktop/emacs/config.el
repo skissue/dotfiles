@@ -2272,10 +2272,6 @@ This function calls `org-babel-execute:C++'." nil)
 (autoload #'org-babel-execute:gnuplot "ob-gnuplot" "Execute a block of Gnuplot code.
 This function is called by `org-babel-execute-src-block'." nil)
 
-(after! ob-typst
-  (add-to-list "#import \"@preview/cetz:0.5.2\"" ob-typst-babel-preamble
-               :append))
-
 (autoload #'org-babel-execute:lisp "ob-lisp" "Execute a block of Common Lisp code with Babel.
 BODY is the contents of the block, as a string.  PARAMS is
 a property list containing the parameters of the block.")

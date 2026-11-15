@@ -2921,13 +2921,6 @@ When exporting files in my =brain2= directory, default to the =export/= subdirec
   This function is called by `org-babel-execute-src-block'." nil)
 #+end_src
 
-*** Typst
-#+begin_src elisp
-  (after! ob-typst
-    (add-to-list "#import \"@preview/cetz:0.5.2\"" ob-typst-babel-preamble
-                 :append))
-#+end_src
-
 *** Lisp
 #+begin_src elisp
   (autoload #'org-babel-execute:lisp "ob-lisp" "Execute a block of Common Lisp code with Babel.
