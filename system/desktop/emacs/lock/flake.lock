@@ -691,11 +691,11 @@
     "elfin": {
       "flake": false,
       "locked": {
-        "lastModified": 1777344767,
-        "narHash": "sha256-tztqNqwvW3b7fCEd5T0fys8rcMuDTVrQOSNMcMuYci0=",
+        "lastModified": 1794798663,
+        "narHash": "sha256-TrfIEwlh0wBZSLDW1qUjcc2sAgs7PIakSGGBmyXsl8A=",
         "owner": "skissue",
         "repo": "elfin",
-        "rev": "cf5c4d24239822aaf868d72b506b5c2bcadd50e7",
+        "rev": "5a355b95acafea145eb2cbee1cafcbcd9c0d8905",
         "type": "github"
       },
       "original": {
