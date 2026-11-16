@@ -25,4 +25,4 @@ emacs-update *inputs:
     nix flake update {{inputs}}
     nix run --impure --refresh "{{justfile_directory()}}#nixosConfigurations.windstorm.config.system.build.emacs-twist.generateLockDir" -- --force --no-update-flake-lock .
     git add flake.nix flake.lock archive.lock
-    git diff --cached --quiet -- flake.nix flake.lock archive.lock || git commit --only -m 'bump(system/desktop/emacs): update inputs' -- flake.nix flake.lock archive.lock
+    git diff --cached --quiet -- flake.nix flake.lock archive.lock || git commit --only -m 'bump(system/desktop/emacs): update packages' -- flake.nix flake.lock archive.lock
