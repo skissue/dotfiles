@@ -305,6 +305,11 @@ where it was when you previously visited the same file."
              '((derived-mode . calendar-mode)
                display-buffer-pop-up-window))
 
+;; `org-insert-link' help and stored links (not the minibuffer)
+(add-to-list 'display-buffer-alist
+             `(,(rx bos "*Org Links*" eos)
+               display-buffer-pop-up-window))
+
 ;; Magit diff buffers
 (add-to-list 'display-buffer-alist
              '((major-mode . magit-diff-mode)
