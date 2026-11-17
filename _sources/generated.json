@@ -1,7 +1,7 @@
 {
     "elfin": {
         "cargoLock": null,
-        "date": "2026-04-27",
+        "date": "2026-11-17",
         "extract": null,
         "name": "elfin",
         "passthru": null,
@@ -13,16 +13,16 @@
             "name": null,
             "owner": "skissue",
             "repo": "elfin",
-            "rev": "cf5c4d24239822aaf868d72b506b5c2bcadd50e7",
-            "sha256": "sha256-tztqNqwvW3b7fCEd5T0fys8rcMuDTVrQOSNMcMuYci0=",
+            "rev": "dbacc817a195751a7ca0f62fe48b2734bc36f02f",
+            "sha256": "sha256-pR+osVS2kEaLXfLiML0lcFqSlpauQGdVcBCYGStXY3Q=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "cf5c4d24239822aaf868d72b506b5c2bcadd50e7"
+        "version": "dbacc817a195751a7ca0f62fe48b2734bc36f02f"
     },
     "gptel-openrouter-models": {
         "cargoLock": null,
-        "date": "2026-11-15",
+        "date": "2026-11-17",
         "extract": null,
         "name": "gptel-openrouter-models",
         "passthru": null,
@@ -34,12 +34,12 @@
             "name": null,
             "owner": "skissue",
             "repo": "gptel-openrouter-models",
-            "rev": "0eb509bcbdf6717af72ab6c7cd0f095dc4b0fe21",
-            "sha256": "sha256-8e1763BHOr7sAlyPtyo6FQuxGggs1X8emQkwBuRap5g=",
+            "rev": "9abcbb2ab6da14f33f7dc0efeba4fe084c021e24",
+            "sha256": "sha256-oKCmux5ta0TKBg6txkMMItRCjteeLFU2gRO6fDSMTD4=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "0eb509bcbdf6717af72ab6c7cd0f095dc4b0fe21"
+        "version": "9abcbb2ab6da14f33f7dc0efeba4fe084c021e24"
     },
     "gptel-quick": {
         "cargoLock": null,
@@ -117,12 +117,12 @@
             "name": null,
             "owner": "melpa",
             "repo": "melpa",
-            "rev": "be3a609d8b5dc97790756034b04c2aa3d0ceda8b",
-            "sha256": "sha256-+zwTEM/uQqlSGh8EWqfbwWRTCfZ7KH4RMSSklnLmz54=",
+            "rev": "8d525bf492f8ae18a3855775eb2e3c65e957ad10",
+            "sha256": "sha256-4j98um3j+OrOIrtPy/kZ71EQdSspl3xCMosVWwqdw8U=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "be3a609d8b5dc97790756034b04c2aa3d0ceda8b"
+        "version": "8d525bf492f8ae18a3855775eb2e3c65e957ad10"
     },
     "modus-alabaster": {
         "cargoLock": null,
