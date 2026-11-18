@@ -6,6 +6,21 @@
   inherit (pkgs) lib;
   emacsPackage = inputs.emacs-overlay.packages.${pkgs.stdenv.hostPlatform.system}.emacs-igc-pgtk;
   grammars = pkgs.emacsPackages.treesit-grammars.with-all-grammars;
+  # HACK twist uses fetchTree by default internally which redownloads (almost) every time for reasons,
+  # force it to use fetchTarball instead, see: <https://github.com/NixOS/nix/issues/12751>
+  archiveOverrides = lib.mapAttrs (_name: _locked: _: prev:
+    lib.optionalAttrs
+    (prev.inventory.type == "archive" && prev.archive.type == "tarball")
+    {
+      src = {
+        inherit (prev.archive) narHash;
+        outPath = builtins.fetchTarball {
+          inherit (prev.archive) url;
+          sha256 = prev.archive.narHash;
+        };
+      };
+    })
+  (lib.importJSON ./lock/archive.lock);
 in
   (inputs.twist.lib.makeEnv {
     inherit pkgs emacsPackage;
@@ -35,11 +50,13 @@ in
         url = "https://elpa.nongnu.org/nongnu/";
       }
     ];
-    inputOverrides = {
-      funn.src = inputs.funn;
-      # mu supplies generated Lisp matching the executable used by email.
-      mu4e.src = "${pkgs.mu.mu4e}/share/emacs/site-lisp/mu4e";
-    };
+    inputOverrides =
+      archiveOverrides
+      // {
+        funn.src = inputs.funn;
+        # mu supplies generated Lisp matching the executable used by email.
+        mu4e.src = "${pkgs.mu.mu4e}/share/emacs/site-lisp/mu4e";
+      };
     extraSiteStartElisp = ''
       (add-to-list 'treesit-extra-load-path "${grammars}/lib")
     '';
