@@ -7,6 +7,13 @@
 
   security.protectKernelImage = lib.mkDefault true;
 
+  # Block this module until LPE is fixed
+  # See: <https://lore.kernel.org/all/20261112172149.27355-1-yves.bieri@theori.io/>
+  # TODO remove when kernel updates fix this
+  boot.extraModprobeConfig = ''
+    install sctp ${pkgs.coreutils}/bin/false
+  '';
+
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
   boot.kernelParams = [
     "init_on_alloc=1"
