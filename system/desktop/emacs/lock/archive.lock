@@ -79,9 +79,9 @@
   },
   "denote": {
     "archive": {
-      "narHash": "sha256-w+zWGI3/IvdVqh8slsFo++apdzwkKm6ayC3Rhj3Rbp0=",
+      "narHash": "sha256-R1uoUcMHQmeaeG59hjYhyPlKcsKmPYSoew4sgjIsfqk=",
       "type": "tarball",
-      "url": "https://elpa.gnu.org/packages/denote-4.2.3.tar"
+      "url": "https://elpa.gnu.org/packages/denote-4.3.1.tar"
     },
     "inventory": {
       "type": "archive",
@@ -90,7 +90,7 @@
     "packageRequires": {
       "emacs": "28.1"
     },
-    "version": "4.2.3"
+    "version": "4.3.1"
   },
   "denote-journal": {
     "archive": {

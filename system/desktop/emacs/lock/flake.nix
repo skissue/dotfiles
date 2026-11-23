@@ -933,6 +933,12 @@
       repo = "tablist";
       type = "github";
     };
+    timeout = {
+      flake = false;
+      owner = "karthink";
+      repo = "timeout";
+      type = "github";
+    };
     tldr = {
       flake = false;
       owner = "kuanyui";
