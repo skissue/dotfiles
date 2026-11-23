@@ -2,4 +2,4 @@
 # name: inline math
 # key: mk
 # --
-\\($0\\)
+@@typst:\$$0\$@@

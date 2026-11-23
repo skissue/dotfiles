@@ -2,7 +2,6 @@
 # name: display math
 # key: dm
 # --
-\\begin{equation${1:*}}
-${2:\\label\{eq:$3\}
-}${0:?}
-\\end{equation$1}
+#+begin_export typst
+\$ ${0:?} \$${1: <eq:${2:name}>}
+#+end_export
