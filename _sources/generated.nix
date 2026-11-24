@@ -6,68 +6,6 @@
   dockerTools,
 }:
 {
-  elfin = {
-    pname = "elfin";
-    version = "d7ce5a1245475227b57a3d3d2dd243ea50f989bb";
-    src = fetchFromGitHub {
-      owner = "skissue";
-      repo = "elfin";
-      rev = "d7ce5a1245475227b57a3d3d2dd243ea50f989bb";
-      fetchSubmodules = false;
-      sha256 = "sha256-PE/7zkufBaF6nU2V5DD2/RUwTS1Kwf3ER/t/f3NLmEc=";
-    };
-    date = "2026-11-19";
-  };
-  gptel-openrouter-models = {
-    pname = "gptel-openrouter-models";
-    version = "ca1b52f7c42a57f77eb0e1b4e9397b2c33e596da";
-    src = fetchFromGitHub {
-      owner = "skissue";
-      repo = "gptel-openrouter-models";
-      rev = "ca1b52f7c42a57f77eb0e1b4e9397b2c33e596da";
-      fetchSubmodules = false;
-      sha256 = "sha256-7vDK2Mui51KVH5m0Zev2wUOVgKnTvvWLd7t5NcOzgzw=";
-    };
-    date = "2026-11-22";
-  };
-  gptel-quick = {
-    pname = "gptel-quick";
-    version = "36fe296e016449433fa1213f4b89cb8dc7d4db5e";
-    src = fetchFromGitHub {
-      owner = "karthink";
-      repo = "gptel-quick";
-      rev = "36fe296e016449433fa1213f4b89cb8dc7d4db5e";
-      fetchSubmodules = false;
-      sha256 = "sha256-W2cEtjhoXxAhMxycLAg0qe2Ehpgn1L/m1VcpZu/Trsw=";
-    };
-    date = "2026-06-07";
-  };
-  howm = {
-    pname = "howm";
-    version = "565f0d174017bc45ea9d3527a43e29c5f4437559";
-    src = fetchFromGitHub {
-      owner = "skissue";
-      repo = "howm";
-      rev = "565f0d174017bc45ea9d3527a43e29c5f4437559";
-      fetchSubmodules = false;
-      sha256 = "sha256-9xhrJ5eTYCyLd9LJkdgkDUpq5VtypY1iybNMB3nLlMI=";
-    };
-    date = "2026-03-12";
-  };
-  inline-diff = {
-    pname = "inline-diff";
-    version = "3fa1f1614c145e8688ed7ea2c3d2c80aceee804c";
-    src = fetchgit {
-      url = "https://code.tecosaur.net/tec/inline-diff.git";
-      rev = "3fa1f1614c145e8688ed7ea2c3d2c80aceee804c";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sparseCheckout = [ ];
-      sha256 = "sha256-AiQwqaPoWiJrZhjLJ5SvPwaXSVa0coJW7ihBjHQP/1Q=";
-    };
-    date = "2026-11-14";
-  };
   melpa = {
     pname = "melpa";
     version = "8d525bf492f8ae18a3855775eb2e3c65e957ad10";
@@ -80,54 +18,6 @@
     };
     date = "2026-11-15";
   };
-  modus-alabaster = {
-    pname = "modus-alabaster";
-    version = "29369bf9900f1511be20f3021bde0bbe56dc3b28";
-    src = fetchFromGitHub {
-      owner = "dpassen";
-      repo = "modus-alabaster";
-      rev = "29369bf9900f1511be20f3021bde0bbe56dc3b28";
-      fetchSubmodules = false;
-      sha256 = "sha256-XOJweRwVn7t4jPMg9GXiZlqGi8e0ccf7sstwZLBHPp0=";
-    };
-    date = "2026-10-02";
-  };
-  org-modern-indent = {
-    pname = "org-modern-indent";
-    version = "86bd83ee1ad95f123810eb3b116beb543db1960a";
-    src = fetchFromGitHub {
-      owner = "jdtsmith";
-      repo = "org-modern-indent";
-      rev = "86bd83ee1ad95f123810eb3b116beb543db1960a";
-      fetchSubmodules = false;
-      sha256 = "sha256-vQzYk5qejCBehpbxkMceOMsmeLyjnAstpezZw/ZR1jQ=";
-    };
-    date = "2026-07-21";
-  };
-  org-typst = {
-    pname = "org-typst";
-    version = "a9a8f2ebd227f5f170cd14318cb755f5e4306223";
-    src = fetchFromGitHub {
-      owner = "skissue";
-      repo = "org-typst";
-      rev = "a9a8f2ebd227f5f170cd14318cb755f5e4306223";
-      fetchSubmodules = false;
-      sha256 = "sha256-6DCttkycX62ungFsZ5lwb2fCYUJKrbfCAf5+YBSWkN4=";
-    };
-    date = "2026-09-29";
-  };
-  qml-ts-mode = {
-    pname = "qml-ts-mode";
-    version = "b80c6663521b4d0083e416e6712ebc02d37b7aec";
-    src = fetchFromGitHub {
-      owner = "xhcoding";
-      repo = "qml-ts-mode";
-      rev = "b80c6663521b4d0083e416e6712ebc02d37b7aec";
-      fetchSubmodules = false;
-      sha256 = "sha256-WXK/CdFF9E2kG+uIios4HtKcEMhILS9MddJfVDeRLh0=";
-    };
-    date = "2025-06-01";
-  };
   revealjs = {
     pname = "revealjs";
     version = "6.0.2";
@@ -138,17 +28,5 @@
       fetchSubmodules = false;
       sha256 = "sha256-yh9Fwp8PT6fFrbSsih7cD9EzH2wbfd3idjyemOQTqF8=";
     };
-  };
-  vertico-popup-frame = {
-    pname = "vertico-popup-frame";
-    version = "15e4969622bbfe6d699e6e4fab4ac3b7d9c20bf9";
-    src = fetchFromGitHub {
-      owner = "skissue";
-      repo = "vertico-popup-frame";
-      rev = "15e4969622bbfe6d699e6e4fab4ac3b7d9c20bf9";
-      fetchSubmodules = false;
-      sha256 = "sha256-EZ7H/kDyEJOa+JTZzjqf6Oa0UfP1eLAyVZfvGxQweHE=";
-    };
-    date = "2026-05-28";
   };
 }

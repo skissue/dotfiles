@@ -1,46 +1,6 @@
-[org-typst]
-src.git = "https://github.com/skissue/org-typst"
-fetch.github = "skissue/org-typst"
-
-[gptel-quick]
-src.git = "https://github.com/karthink/gptel-quick"
-fetch.github = "karthink/gptel-quick"
-
-[gptel-openrouter-models]
-src.git = "https://github.com/skissue/gptel-openrouter-models"
-fetch.github = "skissue/gptel-openrouter-models"
-
 [revealjs]
 src.github_tag = "hakimel/reveal.js"
 fetch.github = "hakimel/reveal.js"
-
-[org-modern-indent]
-src.git = "https://github.com/jdtsmith/org-modern-indent"
-fetch.github = "jdtsmith/org-modern-indent"
-
-[inline-diff]
-src.git = "https://code.tecosaur.net/tec/inline-diff.git"
-fetch.git = "https://code.tecosaur.net/tec/inline-diff.git"
-
-[vertico-popup-frame]
-src.git = "https://github.com/skissue/vertico-popup-frame"
-fetch.github = "skissue/vertico-popup-frame"
-
-[howm]
-src.git = "https://github.com/skissue/howm"
-fetch.github = "skissue/howm"
-
-[elfin]
-src.git = "https://github.com/skissue/elfin"
-fetch.github = "skissue/elfin"
-
-[modus-alabaster]
-src.git = "https://github.com/dpassen/modus-alabaster"
-fetch.github = "dpassen/modus-alabaster"
-
-[qml-ts-mode]
-src.git = "https://github.com/xhcoding/qml-ts-mode"
-fetch.github = "xhcoding/qml-ts-mode"
 
 [melpa]
 src.git = "https://github.com/melpa/melpa"
