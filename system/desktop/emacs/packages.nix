@@ -121,6 +121,7 @@
   "org-noter"
   "org-sliced-images"
   "org-srs"
+  "org-typst-preview"
   "nice-org-html"
   "htmlize"
   "git-auto-commit-mode"

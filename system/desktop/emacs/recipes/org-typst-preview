@@ -1,0 +1,1 @@
+(org-typst-preview :fetcher github :repo "skissue/org-typst" :branch "org-typst-preview" :files ("org-typst-preview.el"))

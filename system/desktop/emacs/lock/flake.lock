@@ -2081,6 +2081,23 @@
         "type": "github"
       }
     },
+    "org-typst-preview": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795465345,
+        "narHash": "sha256-zYMlNSL/GqyxKM/a6QTvcB1MICl+m5+bBOyE/Aw+2R4=",
+        "owner": "skissue",
+        "repo": "org-typst",
+        "rev": "74d48efae9661b5095d48cc51ef2a4bbb0fceab9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "skissue",
+        "ref": "org-typst-preview",
+        "repo": "org-typst",
+        "type": "github"
+      }
+    },
     "osm": {
       "flake": false,
       "locked": {
@@ -2453,6 +2470,7 @@
         "org-sliced-images": "org-sliced-images",
         "org-srs": "org-srs",
         "org-super-agenda": "org-super-agenda",
+        "org-typst-preview": "org-typst-preview",
         "osm": "osm",
         "ov": "ov",
         "ox-hugo": "ox-hugo",

@@ -777,6 +777,13 @@
       repo = "org-super-agenda";
       type = "github";
     };
+    org-typst-preview = {
+      flake = false;
+      owner = "skissue";
+      ref = "org-typst-preview";
+      repo = "org-typst";
+      type = "github";
+    };
     osm = {
       flake = false;
       owner = "minad";
