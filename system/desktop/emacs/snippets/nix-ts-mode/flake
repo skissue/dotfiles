@@ -1,0 +1,25 @@
+# -*- mode: snippet -*-
+# name: flake.nix
+# key: flake
+# expand-env: ((yas-indent-line 'none))
+# --
+{
+  description = "${1:Development environment}";
+
+  inputs = {${2:
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  }$3};
+
+  outputs = {nixpkgs, ...}: let
+    system = "${4:x86_64-linux}";
+    pkgs = nixpkgs.legacyPackages.\${system};
+  in {
+    devShells.\${system}.default = with pkgs;
+      mkShell {
+        packages = [$5];${6:
+        shellHook = ''
+$0
+        '';}
+      };
+  };
+}
