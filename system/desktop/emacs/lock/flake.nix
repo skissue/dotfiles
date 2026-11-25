@@ -780,7 +780,6 @@
     org-typst-preview = {
       flake = false;
       owner = "skissue";
-      ref = "org-typst-preview";
       repo = "org-typst";
       type = "github";
     };
