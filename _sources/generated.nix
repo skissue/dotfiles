@@ -8,15 +8,15 @@
 {
   melpa = {
     pname = "melpa";
-    version = "e42c9cc8e2775a5c4ae654ef601cc27f2fa943e5";
+    version = "c906d3e4d5e04766a3656feffb2bcde941c4d25b";
     src = fetchFromGitHub {
       owner = "melpa";
       repo = "melpa";
-      rev = "e42c9cc8e2775a5c4ae654ef601cc27f2fa943e5";
+      rev = "c906d3e4d5e04766a3656feffb2bcde941c4d25b";
       fetchSubmodules = false;
-      sha256 = "sha256-bLnv+buQDSr6kDaO/72L7WRCm1m/FyawlHoA1XOuTGk=";
+      sha256 = "sha256-2Y7mFOjMPitEVy0bZ3yLpYbDxEZLMmClaTw98O682tQ=";
     };
-    date = "2026-11-22";
+    date = "2026-11-24";
   };
   revealjs = {
     pname = "revealjs";
