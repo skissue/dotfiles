@@ -2732,11 +2732,11 @@
     "touchtypst": {
       "flake": false,
       "locked": {
-        "lastModified": 1795563227,
-        "narHash": "sha256-eKLemk45ERVDFTWDfYqjQ1O+1Du4kXvMZQjiTC/1z8E=",
+        "lastModified": 1795636049,
+        "narHash": "sha256-U11FIasiDLfVeiz8XCThWGY4NURGWVXI4oj1tL1Bkpg=",
         "owner": "skissue",
         "repo": "touchtypst.el",
-        "rev": "8419d8bfaafa0a210b341546bf00a5ba70210b02",
+        "rev": "095e4237ab1b16f04d5287fba9552e19f0946a8d",
         "type": "github"
       },
       "original": {
