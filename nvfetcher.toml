@@ -5,3 +5,7 @@ fetch.github = "hakimel/reveal.js"
 [melpa]
 src.git = "https://github.com/melpa/melpa"
 fetch.github = "melpa/melpa"
+
+[tree-sitter-typst]
+src.git = "https://github.com/uben0/tree-sitter-typst"
+fetch.github = "uben0/tree-sitter-typst"

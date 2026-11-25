@@ -952,6 +952,12 @@
       repo = "tldr.el";
       type = "github";
     };
+    touchtypst = {
+      flake = false;
+      owner = "skissue";
+      repo = "touchtypst.el";
+      type = "github";
+    };
     treepy = {
       flake = false;
       owner = "volrath";

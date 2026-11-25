@@ -5,7 +5,14 @@
 }: let
   inherit (pkgs) lib;
   emacsPackage = inputs.emacs-overlay.packages.${pkgs.stdenv.hostPlatform.system}.emacs-igc-pgtk;
-  grammars = pkgs.emacsPackages.treesit-grammars.with-all-grammars;
+  # Touchtypst needs latest bleeding grammar and nixpkgs is old
+  grammars = pkgs.emacsPackages.treesit-grammars.with-grammars (_:
+    (pkgs.tree-sitter-grammars.overrideScope (_: prev: {
+      tree-sitter-typst = prev.tree-sitter-typst.overrideAttrs {
+        inherit (sources.tree-sitter-typst) src;
+        version = "unstable-${sources.tree-sitter-typst.date}";
+      };
+    })).allGrammars);
   # HACK twist uses fetchTree by default internally which redownloads (almost) every time for reasons,
   # force it to use fetchTarball instead, see: <https://github.com/NixOS/nix/issues/12751>
   archiveOverrides = lib.mapAttrs (_name: _locked: _: prev:

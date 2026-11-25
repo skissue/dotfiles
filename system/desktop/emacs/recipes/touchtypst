@@ -1,0 +1,1 @@
+(touchtypst :fetcher github :repo "skissue/touchtypst.el" :files ("touchtypst.el" "touchtypst-parse.el"))

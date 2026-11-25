@@ -2499,6 +2499,7 @@
         "tablist": "tablist",
         "timeout": "timeout",
         "tldr": "tldr",
+        "touchtypst": "touchtypst",
         "treepy": "treepy",
         "ts": "ts",
         "uiua-mode": "uiua-mode",
@@ -2726,6 +2727,22 @@
       "original": {
         "owner": "kuanyui",
         "repo": "tldr.el",
+        "type": "github"
+      }
+    },
+    "touchtypst": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795563227,
+        "narHash": "sha256-eKLemk45ERVDFTWDfYqjQ1O+1Du4kXvMZQjiTC/1z8E=",
+        "owner": "skissue",
+        "repo": "touchtypst.el",
+        "rev": "8419d8bfaafa0a210b341546bf00a5ba70210b02",
+        "type": "github"
+      },
+      "original": {
+        "owner": "skissue",
+        "repo": "touchtypst.el",
         "type": "github"
       }
     },

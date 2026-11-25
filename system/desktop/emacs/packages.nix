@@ -90,6 +90,7 @@
   "rustic"
   "nix-ts-mode"
   "typst-ts-mode"
+  "touchtypst"
   "nushell-ts-mode"
   "just-mode"
   "justl"

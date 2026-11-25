@@ -40,5 +40,26 @@
             "type": "github"
         },
         "version": "6.0.2"
+    },
+    "tree-sitter-typst": {
+        "cargoLock": null,
+        "date": "2025-02-10",
+        "extract": null,
+        "name": "tree-sitter-typst",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "uben0",
+            "repo": "tree-sitter-typst",
+            "rev": "46cf4ded12ee974a70bf8457263b67ad7ee0379d",
+            "sha256": "sha256-s/9R3DKA6dix6BkU4mGXaVggE4bnzOyu20T1wuqHQxk=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "46cf4ded12ee974a70bf8457263b67ad7ee0379d"
     }
 }

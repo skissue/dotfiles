@@ -29,4 +29,16 @@
       sha256 = "sha256-yh9Fwp8PT6fFrbSsih7cD9EzH2wbfd3idjyemOQTqF8=";
     };
   };
+  tree-sitter-typst = {
+    pname = "tree-sitter-typst";
+    version = "46cf4ded12ee974a70bf8457263b67ad7ee0379d";
+    src = fetchFromGitHub {
+      owner = "uben0";
+      repo = "tree-sitter-typst";
+      rev = "46cf4ded12ee974a70bf8457263b67ad7ee0379d";
+      fetchSubmodules = false;
+      sha256 = "sha256-s/9R3DKA6dix6BkU4mGXaVggE4bnzOyu20T1wuqHQxk=";
+    };
+    date = "2025-02-10";
+  };
 }
