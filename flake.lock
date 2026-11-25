@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795419578,
-        "narHash": "sha256-81kT3rcUsHxrUSh9iTHX574ackeMY/wJbixP3iqw6BU=",
+        "lastModified": 1795595731,
+        "narHash": "sha256-wpcjC2L8q6YGNynDgeZGSAYz8n0ypIfA4ZvqKEs4h50=",
         "owner": "skissue",
         "repo": "amp-flake",
-        "rev": "2ad840b1601ad856cd6c5c0f0f214567945aa51d",
+        "rev": "450adcfc599dd8d45ab9d072fbee2c895165c6dc",
         "type": "github"
       },
       "original": {
