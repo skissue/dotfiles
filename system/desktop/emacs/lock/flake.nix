@@ -777,6 +777,12 @@
       repo = "org-super-agenda";
       type = "github";
     };
+    org-touchtypst = {
+      flake = false;
+      owner = "skissue";
+      repo = "touchtypst.el";
+      type = "github";
+    };
     org-typst-preview = {
       flake = false;
       owner = "skissue";

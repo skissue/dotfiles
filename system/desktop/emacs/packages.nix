@@ -122,6 +122,7 @@
   "org-noter"
   "org-sliced-images"
   "org-srs"
+  "org-touchtypst"
   "org-typst-preview"
   "nice-org-html"
   "htmlize"

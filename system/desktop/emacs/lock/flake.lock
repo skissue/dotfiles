@@ -2081,6 +2081,22 @@
         "type": "github"
       }
     },
+    "org-touchtypst": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795651300,
+        "narHash": "sha256-kNivTD5AuUU/+u67xGinXX4jA56QjDGrEKB7YiIgEw0=",
+        "owner": "skissue",
+        "repo": "touchtypst.el",
+        "rev": "6bae911725496a4cf897a2e3b20ae39bf23ceea7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "skissue",
+        "repo": "touchtypst.el",
+        "type": "github"
+      }
+    },
     "org-typst-preview": {
       "flake": false,
       "locked": {
@@ -2469,6 +2485,7 @@
         "org-sliced-images": "org-sliced-images",
         "org-srs": "org-srs",
         "org-super-agenda": "org-super-agenda",
+        "org-touchtypst": "org-touchtypst",
         "org-typst-preview": "org-typst-preview",
         "osm": "osm",
         "ov": "ov",
