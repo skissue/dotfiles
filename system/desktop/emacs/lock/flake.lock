@@ -83,11 +83,11 @@
     "bazel": {
       "flake": false,
       "locked": {
-        "lastModified": 1795196418,
-        "narHash": "sha256-HMzlpC61Xt+og63/slgu47t1kJsJvoHF2Po6gWL6cLw=",
+        "lastModified": 1795665733,
+        "narHash": "sha256-TfBBlxQD864eJYtDC7AhkSxFSISqI2eHsgNqXY6A/T4=",
         "owner": "bazelbuild",
         "repo": "emacs-bazel-mode",
-        "rev": "f6e58d5c9c899c8c2c9c844ac37779897813303e",
+        "rev": "090f8115b572cb1afbe1cfa079b2088e8866b67f",
         "type": "github"
       },
       "original": {
@@ -531,11 +531,11 @@
     "doom-modeline": {
       "flake": false,
       "locked": {
-        "lastModified": 1795449834,
-        "narHash": "sha256-x2Ng6Zom706wBKZr7adI95ke+uxtUKQyycM4hKEtA/k=",
+        "lastModified": 1795580943,
+        "narHash": "sha256-sWeVIK45Q+JfLftcaMQmykCBhAlURr5zXdoZYrvALLU=",
         "owner": "seagle0128",
         "repo": "doom-modeline",
-        "rev": "8b844528f2c0b2ec30d42321bfabcc47ac6804c2",
+        "rev": "f7c6db67396982b6088ddbd27cefa7265931839d",
         "type": "github"
       },
       "original": {
@@ -1140,11 +1140,11 @@
     "gptel-openrouter-models": {
       "flake": false,
       "locked": {
-        "lastModified": 1795407804,
-        "narHash": "sha256-7q5SMcLhcamyfQsKQwWBOgouidcTSWxYAGh8ji4yABw=",
+        "lastModified": 1795671761,
+        "narHash": "sha256-qSAKnGdfP7bDxpTN5BYXugU87ROnQqXwGtdpaHbuzhg=",
         "owner": "skissue",
         "repo": "gptel-openrouter-models",
-        "rev": "0cb8ca50b9b8dae4505a8cd19107261e1df6d0e6",
+        "rev": "9331d1646617ca317d282986f6b7770cf3c4dcbe",
         "type": "github"
       },
       "original": {
@@ -1524,11 +1524,11 @@
     "markdown-mode": {
       "flake": false,
       "locked": {
-        "lastModified": 1792630529,
-        "narHash": "sha256-HQgBlx8seRHv4nxc4TdxtsQxrY3IMRVVmEjqKJrHIo0=",
+        "lastModified": 1795599917,
+        "narHash": "sha256-H94tRqmrhrOZb7VnUPCw2fVSIdVNzPZoW9WfHYt50Yw=",
         "owner": "jrblevin",
         "repo": "markdown-mode",
-        "rev": "e2e2bc753b4330f85b6ea7e62cd0552e8ea47b76",
+        "rev": "6a3ba88f18e0b3d4a736e2490d795a9b03967d85",
         "type": "github"
       },
       "original": {
@@ -1636,11 +1636,11 @@
     "nerd-icons": {
       "flake": false,
       "locked": {
-        "lastModified": 1795240306,
-        "narHash": "sha256-TKUzkCNoKBUZyGCbgjmXAgFSSEgpCdwlFvGuJbDgsKk=",
+        "lastModified": 1795662399,
+        "narHash": "sha256-RK9rBNwdbt1RaPtoSiBOu2JJyinNXu9nnXNv+flLbHI=",
         "owner": "rainstormstudio",
         "repo": "nerd-icons.el",
-        "rev": "9e184d8e05891a5b0444e65acb3a1bdb24eab3b1",
+        "rev": "760ea462e5edd431ec530e4d3a6abb7a4e05f95b",
         "type": "github"
       },
       "original": {
@@ -1764,11 +1764,11 @@
     "nov": {
       "flake": false,
       "locked": {
-        "lastModified": 1792691147,
-        "narHash": "sha256-I7x4ZXhe9+WFQ9OJ566ZwnPVwldzmPWb5DDxWbaXAQ0=",
+        "lastModified": 1795451256,
+        "narHash": "sha256-llX6LIJxGMPgDc4CRJfYSmxH9g1PZ8AEZCHJTFxM/1M=",
         "ref": "refs/heads/master",
-        "rev": "b1fdcbd41c037ab50dce29db878f2ab226ed66c3",
-        "revCount": 150,
+        "rev": "ac62554d90a24939b980a3a43564c2bc093fcf2b",
+        "revCount": 151,
         "type": "git",
         "url": "https://depp.brause.cc/nov.el.git"
       },
@@ -1844,11 +1844,11 @@
     "ob-typst": {
       "flake": false,
       "locked": {
-        "lastModified": 1790736266,
-        "narHash": "sha256-6DCttkycX62ungFsZ5lwb2fCYUJKrbfCAf5+YBSWkN4=",
+        "lastModified": 1795623336,
+        "narHash": "sha256-5p4E+k4aP8TpZOf68yWH35DdpuySQ2mJAqGd6jD2AaM=",
         "owner": "skissue",
         "repo": "org-typst",
-        "rev": "a9a8f2ebd227f5f170cd14318cb755f5e4306223",
+        "rev": "c498297645e8f07ebabd1836539c4af1b0a25f75",
         "type": "github"
       },
       "original": {
@@ -2164,11 +2164,11 @@
     "ox-typst": {
       "flake": false,
       "locked": {
-        "lastModified": 1790736266,
-        "narHash": "sha256-6DCttkycX62ungFsZ5lwb2fCYUJKrbfCAf5+YBSWkN4=",
+        "lastModified": 1795623336,
+        "narHash": "sha256-5p4E+k4aP8TpZOf68yWH35DdpuySQ2mJAqGd6jD2AaM=",
         "owner": "skissue",
         "repo": "org-typst",
-        "rev": "a9a8f2ebd227f5f170cd14318cb755f5e4306223",
+        "rev": "c498297645e8f07ebabd1836539c4af1b0a25f75",
         "type": "github"
       },
       "original": {
@@ -2749,11 +2749,11 @@
     "touchtypst": {
       "flake": false,
       "locked": {
-        "lastModified": 1795636049,
-        "narHash": "sha256-U11FIasiDLfVeiz8XCThWGY4NURGWVXI4oj1tL1Bkpg=",
+        "lastModified": 1795651300,
+        "narHash": "sha256-kNivTD5AuUU/+u67xGinXX4jA56QjDGrEKB7YiIgEw0=",
         "owner": "skissue",
         "repo": "touchtypst.el",
-        "rev": "095e4237ab1b16f04d5287fba9552e19f0946a8d",
+        "rev": "6bae911725496a4cf897a2e3b20ae39bf23ceea7",
         "type": "github"
       },
       "original": {
@@ -2813,11 +2813,11 @@
     "uiua-ts-mode": {
       "flake": false,
       "locked": {
-        "lastModified": 1781870266,
-        "narHash": "sha256-N9raU67CZpc0GZs+90Rt61fy7QqE4BExFRsUEZ8Bu00=",
+        "lastModified": 1795580559,
+        "narHash": "sha256-EcbCPHoFXTTaUdWW/s1miuwnneu2bFNswcvHRzxRIDg=",
         "owner": "crmsnbleyd",
         "repo": "uiua-ts-mode",
-        "rev": "11c33876671b551e2c62eab142c46c047f2ec14f",
+        "rev": "100b31f96346ed9d3260c956ae5fdc5d83f6f9d5",
         "type": "github"
       },
       "original": {
