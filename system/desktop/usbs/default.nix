@@ -22,7 +22,7 @@
         KeyringMode = "shared";
       };
 
-      path = with pkgs; [bcachefs-tools util-linux];
+      path = [config.boot.bcachefs.package pkgs.util-linux];
       script = ''
         mkdir -p /media/${name}
         bcachefs mount \
