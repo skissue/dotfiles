@@ -2852,7 +2852,7 @@ execute it."
 
   (setopt elfeed-protocol-enabled-protocols '(miniflux)
           elfeed-feeds
-          `((,(concat "miniflux+https://feeds." (my/private 'domain 'private))
+          `((,(concat "miniflux+https://feeds." (my/private 'domain 'internal))
              :password (secrets-get-secret "KeePassXC" "Miniflux API"))))
 
   (elfeed-protocol-enable))
