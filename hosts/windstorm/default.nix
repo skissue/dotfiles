@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   mkModulesList,
   ...
@@ -18,6 +19,10 @@
       "networking/windscribe"
       "networking/wireless/mutable"
     ];
+
+  # TODO remove when nixpkgs' version has the newer kernel fix:
+  # <https://github.com/koverstreet/bcachefs-tools/issues/1248>
+  boot.bcachefs.package = inputs.cachyos-kernel.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.bcachefs-tools;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
